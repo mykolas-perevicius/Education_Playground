@@ -13,7 +13,20 @@ This repository contains a complete curriculum organized into three difficulty l
 
 ## Getting Started
 
-### 1. Take the Calibration Test
+### Path A: Complete Beginner (Never Coded Before)
+
+**Start here if you've NEVER programmed before!**
+
+1. **Beginner Scripts Track** (`beginner_scripts/`)
+   - Simple Python scripts with extensive comments
+   - 10 lessons covering absolute basics
+   - Each lesson: 15-30 minutes
+   - Run with: `python beginner_scripts/1_hello_world.py`
+   - **Complete this first!** Then proceed to Path B.
+
+### Path B: Some Programming Experience
+
+1. **Take the Calibration Test**
 
 Start by running the calibration test to determine your skill level:
 
@@ -36,6 +49,43 @@ Based on your score, you'll be recommended one of three levels:
 ### 2. Choose Your Path
 
 ## Course Structure
+
+The curriculum is organized into **difficulty levels** (Beginner Scripts, Easy, Medium, Hard) plus an essential **Developer Tools** track that complements all levels.
+
+---
+
+### 🌱 Beginner Scripts Track (Pre-Easy)
+
+**For absolute beginners who have never programmed before!**
+
+📂 Location: `beginner_scripts/`
+
+**10 Python script lessons** covering the fundamentals:
+1. Hello World - Your first program
+2. Variables and Types - Storing information
+3. String Manipulation - Working with text
+4. Basic Math - Numbers and operations
+5. Lists and Dictionaries - Organizing data
+6. List/Dict Methods - Advanced operations
+7. Imports - Using modules
+8. Error Handling - Dealing with mistakes
+9. Indexing and For Loops - Iteration
+10. Conditionals and While Loops - Control flow
+
+**Features:**
+- Simple `.py` scripts (no notebooks required)
+- Extensive comments explaining every line
+- TODO exercises for practice
+- Time estimates for each section
+- Instructor-friendly format
+
+**Total Time:** 3-5 hours for complete beginners
+
+**After completing:** Progress to Easy Level notebooks or take the Calibration Test!
+
+---
+
+### Core Tracks by Difficulty
 
 Each level contains **three parallel tracks** that can be completed in any order:
 
@@ -179,38 +229,135 @@ Each level contains **three parallel tracks** that can be completed in any order
    - Formal languages and automata
    - Virtual memory and paging
 
+#### Classic Problems & Interview Prep Track 🔥
+
+7. **Project Ideas** (`hard/07_project_ideas.ipynb`)
+   - Advanced project challenges for portfolio building
+
+8. **Classic Problems Collection** (`hard/08_classic_problems.ipynb`) ⭐
+   - **LeetCode Classics**: Two Sum, Three Sum, Longest Substring, Merge K Lists, Trapping Rain Water
+   - **Dynamic Programming**: Knapsack, Longest Common Subsequence, Edit Distance
+   - **Graph Algorithms**: Dijkstra's Shortest Path, Cycle Detection
+   - **Cryptography**: Caesar Cipher, Vigenère Cipher, RSA Implementation
+   - **ML from Scratch**: K-Nearest Neighbors, Linear Regression, Neural Networks
+   - **Interview patterns**: Hash maps, two pointers, sliding window, heap, DP
+
+9. **CTF Challenges - Hacker Training** (`hard/09_ctf_challenges.ipynb`) 🚩
+   - **Web Exploitation**: SQL Injection, XSS, security vulnerabilities
+   - **Binary Exploitation (Pwn)**: Buffer overflows, format string attacks
+   - **Reverse Engineering**: Decompiling, crackmes, understanding binaries
+   - **Cryptography**: Breaking encryption, classical and modern ciphers
+   - **Forensics**: Steganography, file carving, metadata extraction
+   - **OSINT**: Open Source Intelligence, finding hidden information
+   - **Misc**: Encoding puzzles, CTF techniques and tools
+   - Prepares for: Bug bounties, penetration testing, security careers
+
+**💡 These problems are legendary** - solved by generations of programmers. Master them for:
+- FAANG interviews (Google, Facebook, Amazon, Apple, Netflix)
+- Competitive programming (Codeforces, TopCoder)
+- Cybersecurity careers and CTF competitions
+- Real-world problem-solving skills
+
+---
+
+### Developer Tools Track (The Missing Semester)
+
+**Essential skills for every developer** - Inspired by MIT's "The Missing Semester of Your CS Education". These lessons can be taken at any level!
+
+📂 Location: `tools/`
+
+#### Core Tools
+
+1. **Shell and Command Line** (`tools/01_shell_basics.ipynb`)
+   - Terminal fundamentals and navigation
+   - File operations and text processing
+   - Pipes, redirection, and command chaining
+   - Essential for all developers
+
+2. **Shell Scripting** (`tools/02_shell_scripting.ipynb`)
+   - Writing bash scripts
+   - Automating repetitive tasks
+   - Text processing with sed, awk, grep
+
+3. **Version Control with Git** (`tools/03_git_essentials.ipynb`)
+   - Git fundamentals and workflows
+   - Branching, merging, and collaboration
+   - Industry-standard version control
+
+4. **Text Editors** (`tools/04_text_editors.ipynb`)
+   - Vim basics and power features
+   - VS Code productivity tips
+   - Editor customization
+
+5. **Data Wrangling** (`tools/05_data_wrangling.ipynb`)
+   - Processing data with Unix tools
+   - Regular expressions
+   - JSON/CSV manipulation
+
+6. **Debugging and Profiling** (`tools/06_debugging_profiling.ipynb`)
+   - Python debugger (pdb)
+   - Performance profiling and optimization
+   - Static analysis tools
+
+7. **Security Essentials** (`tools/07_security_essentials.ipynb`)
+   - SSH and authentication
+   - Secrets management
+   - Common vulnerabilities
+
+8. **Build Systems and CI/CD** (`tools/08_build_and_automation.ipynb`)
+   - Makefiles and automation
+   - GitHub Actions and CI/CD
+   - Docker basics
+
+9. **Package Management** (`tools/09_package_management.ipynb`)
+   - pip, poetry, and virtual environments
+   - Dependency management
+   - System package managers
+
+10. **Dotfiles and Configuration** (`tools/10_dotfiles.ipynb`)
+    - Shell configuration (.bashrc, .zshrc)
+    - Tool configuration
+    - Dotfile management
+
+**💡 Recommended**: Start with Shell Basics and Git Essentials - you'll use these every day!
+
+See `tools/README.md` for detailed information and learning paths.
+
 ---
 
 ## Installation
 
-### Prerequisites
+**📖 For detailed setup instructions, see [SETUP.md](SETUP.md)**
 
-- Python 3.8 or higher
-- Jupyter Notebook or JupyterLab
+### Quick Start
 
-### Setup
-
-1. Clone this repository:
+1. **Clone the repository**:
 ```bash
 git clone https://github.com/mykolas-perevicius/Education_Playground.git
 cd Education_Playground
 ```
 
-2. (Optional) Create a virtual environment:
+2. **Install dependencies**:
 ```bash
+# Create virtual environment (recommended)
 python -m venv venv
 source venv/bin/activate  # On Windows: venv\Scripts\activate
+
+# Install all packages
+pip install -r requirements.txt
 ```
 
-3. Install required packages:
-```bash
-pip install jupyter numpy pandas matplotlib scikit-learn tensorflow xgboost nltk
-```
-
-4. Start Jupyter:
+3. **Start learning**:
 ```bash
 jupyter notebook
+# Then open 00_calibration_test.ipynb
 ```
+
+**Need help?** Check [SETUP.md](SETUP.md) for:
+- Platform-specific instructions (Windows, macOS, Linux)
+- Alternative installation methods (Conda, Docker)
+- GPU setup for deep learning
+- Troubleshooting common issues
 
 ## How to Use This Course
 

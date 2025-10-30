@@ -1,0 +1,923 @@
+% Education Playground - Course Syllabus
+% Comprehensive Programming, AI/ML, and Computer Science Education
+
+\documentclass[11pt,letterpaper]{article}
+
+% Packages
+\usepackage[utf8]{inputenc}
+\usepackage[margin=1in]{geometry}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage{graphicx}
+\usepackage{multicol}
+\usepackage{array}
+
+% Colors
+\definecolor{primarycolor}{RGB}{0, 102, 204}
+\definecolor{secondarycolor}{RGB}{51, 51, 51}
+
+% Header/Footer
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\textbf{Education Playground}}
+\fancyhead[R]{Course Syllabus}
+\fancyfoot[C]{\thepage}
+
+% Title formatting
+\titleformat{\section}
+  {\color{primarycolor}\Large\bfseries}
+  {\thesection}{1em}{}[\titlerule]
+
+\titleformat{\subsection}
+  {\color{secondarycolor}\large\bfseries}
+  {\thesubsection}{1em}{}
+
+% Hyperlink setup
+\hypersetup{
+    colorlinks=true,
+    linkcolor=primarycolor,
+    urlcolor=blue,
+    pdftitle={Education Playground Syllabus},
+    pdfauthor={Education Playground}
+}
+
+\begin{document}
+
+% Title Page
+\begin{titlepage}
+    \centering
+    \vspace*{2cm}
+
+    {\Huge\bfseries Education Playground\par}
+    \vspace{0.5cm}
+    {\Large Interactive Programming, AI \& Computing Platform\par}
+    \vspace{2cm}
+
+    {\LARGE\textbf{Course Syllabus}\par}
+    \vspace{0.5cm}
+    {\large Self-Paced Learning Curriculum\par}
+    \vspace{3cm}
+
+    \begin{tabular}{rl}
+        \textbf{Version:} & 2.0 \\
+        \textbf{Last Updated:} & October 2025 \\
+        \textbf{Format:} & Self-Paced, Interactive Notebooks \\
+        \textbf{Repository:} & \url{https://github.com/mykolas-perevicius/Education\_Playground} \\
+    \end{tabular}
+
+    \vfill
+    {\large From Complete Beginner to Advanced Practitioner\par}
+\end{titlepage}
+
+% Table of Contents
+\tableofcontents
+\newpage
+
+% Course Overview
+\section{Course Overview}
+
+\subsection{Mission Statement}
+Education Playground is a comprehensive, self-paced learning platform designed to take students from complete beginners to advanced practitioners in programming, artificial intelligence, machine learning, and computer science fundamentals.
+
+\subsection{Learning Philosophy}
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Learn by Doing}: Interactive Jupyter notebooks with hands-on exercises
+    \item \textbf{Flexible Paths}: Parallel tracks allow students to focus on interests
+    \item \textbf{Progressive Difficulty}: Three carefully designed levels (Easy, Medium, Hard)
+    \item \textbf{Real-World Focus}: Practical applications and industry-relevant skills
+    \item \textbf{Complete Coverage}: From ``Hello World'' to FAANG interviews and CTF competitions
+\end{itemize}
+
+\subsection{Target Audience}
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Beginners}: No prior programming experience required
+    \item \textbf{Career Changers}: Transitioning into tech careers
+    \item \textbf{Students}: Supplementing formal CS education
+    \item \textbf{Professionals}: Upskilling in AI/ML and cybersecurity
+    \item \textbf{Interview Prep}: Preparing for technical interviews at top companies
+\end{itemize}
+
+\subsection{Learning Outcomes}
+Upon completion, students will be able to:
+\begin{enumerate}[leftmargin=*]
+    \item Write clean, efficient Python code following modern best practices
+    \item Implement machine learning algorithms from scratch and using industry frameworks
+    \item Solve classic computer science problems and algorithm challenges
+    \item Understand and apply cryptographic principles
+    \item Perform security analysis and ethical hacking (CTF skills)
+    \item Use professional developer tools (shell, git, debugging, CI/CD)
+    \item Build production-ready applications and systems
+    \item Pass technical interviews at FAANG companies
+\end{enumerate}
+
+% Prerequisites
+\section{Prerequisites}
+
+\subsection{Required}
+\begin{itemize}[leftmargin=*]
+    \item Computer with internet connection (Windows, macOS, or Linux)
+    \item Python 3.10 or higher
+    \item Jupyter Notebook or JupyterLab
+    \item 4GB+ RAM (8GB+ recommended for deep learning)
+    \item 5GB+ free disk space
+\end{itemize}
+
+\subsection{Recommended}
+\begin{itemize}[leftmargin=*]
+    \item Basic computer literacy (file management, web browsing)
+    \item Willingness to experiment and learn from mistakes
+    \item GitHub account for version control practice
+    \item Text editor (VS Code recommended)
+\end{itemize}
+
+\subsection{Optional}
+\begin{itemize}[leftmargin=*]
+    \item GPU with CUDA support (for deep learning acceleration)
+    \item Multiple monitors (for better workflow)
+    \item Mechanical keyboard (for comfort during long coding sessions)
+\end{itemize}
+
+% Course Structure
+\section{Course Structure}
+
+\subsection{Difficulty Levels}
+The curriculum is organized into three difficulty levels, determined by an initial calibration test:
+
+\begin{center}
+\begin{tabular}{|c|l|l|}
+\hline
+\textbf{Level} & \textbf{Score Range} & \textbf{Description} \\
+\hline
+Easy & 0--30 points & Complete beginners, new to programming \\
+Medium & 31--60 points & Basic programming knowledge \\
+Hard & 61+ points & Experienced programmers \\
+\hline
+\end{tabular}
+\end{center}
+
+\subsection{Parallel Learning Tracks}
+Each level contains three parallel tracks that can be completed in any order:
+\begin{enumerate}[leftmargin=*]
+    \item \textbf{Python Programming Track}: Core language skills
+    \item \textbf{AI \& Machine Learning Track}: From basics to deep learning
+    \item \textbf{Computing Fundamentals Track}: Computer architecture and theory
+\end{enumerate}
+
+Additionally, the \textbf{Developer Tools Track} is available at all levels.
+
+% Easy Level
+\section{Easy Level (Beginner)}
+
+\subsection{Target Students}
+Students with little to no programming experience (0--30 points on calibration test).
+
+\subsection{Estimated Time}
+20--30 hours to complete all tracks.
+
+\subsection{Python Fundamentals Track}
+
+\subsubsection{Lesson 1: Introduction to Python}
+\begin{itemize}[leftmargin=*]
+    \item Hello World and basic output
+    \item Comments and documentation
+    \item Running Python code
+    \item ASCII art and creative exercises
+\end{itemize}
+
+\subsubsection{Lesson 2: Variables and Data Types}
+\begin{itemize}[leftmargin=*]
+    \item Creating and using variables
+    \item Strings, integers, floats, and booleans
+    \item Type checking and conversion
+    \item String operations and formatting
+\end{itemize}
+
+\subsubsection{Lesson 3: Basic Operations and Conditionals}
+\begin{itemize}[leftmargin=*]
+    \item Mathematical operations
+    \item Comparison operators
+    \item If/else statements
+    \item Logical operators (and, or, not)
+\end{itemize}
+
+\subsection{AI \& ML Introduction Track}
+
+\subsubsection{Lesson 4: Introduction to AI and Machine Learning}
+\begin{itemize}[leftmargin=*]
+    \item What is AI and ML?
+    \item Simple pattern recognition
+    \item Rule-based AI systems
+    \item Basic recommendation systems
+\end{itemize}
+
+\subsection{Computing Fundamentals Track}
+
+\subsubsection{Lesson 5: Computing Fundamentals}
+\begin{itemize}[leftmargin=*]
+    \item How computers store information
+    \item Binary numbers and data representation
+    \item ASCII and text encoding
+    \item Bits, bytes, and storage units
+\end{itemize}
+
+\subsection{Projects}
+\begin{itemize}[leftmargin=*]
+    \item Calculator application
+    \item Text-based games (Hangman, Guess the Number)
+    \item Simple chatbot
+    \item Mad Libs generator
+    \item Basic cipher encoder/decoder
+\end{itemize}
+
+% Medium Level
+\section{Medium Level (Intermediate)}
+
+\subsection{Target Students}
+Students with basic programming knowledge (31--60 points on calibration test).
+
+\subsection{Estimated Time}
+40--60 hours to complete all tracks.
+
+\subsection{Python Advanced Track}
+
+\subsubsection{Lesson 1: Functions and Modules}
+\begin{itemize}[leftmargin=*]
+    \item Defining and calling functions
+    \item Parameters and return values
+    \item Importing and using modules
+    \item Scope and namespaces
+\end{itemize}
+
+\subsubsection{Lesson 2: Data Structures}
+\begin{itemize}[leftmargin=*]
+    \item Lists and list operations
+    \item Dictionaries for key-value storage
+    \item Sets and tuples
+    \item List comprehensions
+\end{itemize}
+
+\subsubsection{Lesson 3: Classes and Object-Oriented Programming}
+\begin{itemize}[leftmargin=*]
+    \item Creating classes and objects
+    \item Instance variables and methods
+    \item Constructors (\_\_init\_\_)
+    \item Basic inheritance
+\end{itemize}
+
+\subsection{Machine Learning Track}
+
+\subsubsection{Lesson 4: Machine Learning Basics}
+\begin{itemize}[leftmargin=*]
+    \item Introduction to scikit-learn
+    \item Supervised vs unsupervised learning
+    \item Classification and regression
+    \item Model evaluation and accuracy
+\end{itemize}
+
+\subsubsection{Lesson 5: Data Analysis with Pandas}
+\begin{itemize}[leftmargin=*]
+    \item Working with DataFrames
+    \item Data cleaning and manipulation
+    \item Grouping and aggregation
+    \item Basic data visualization
+\end{itemize}
+
+\subsection{Algorithms \& Problem Solving Track}
+
+\subsubsection{Lesson 6: Algorithms and Problem Solving}
+\begin{itemize}[leftmargin=*]
+    \item Searching algorithms (linear, binary)
+    \item Sorting algorithms (bubble, selection)
+    \item Time complexity basics
+    \item Problem-solving strategies
+\end{itemize}
+
+\subsection{Projects}
+\begin{itemize}[leftmargin=*]
+    \item Library management system
+    \item Weather data analyzer
+    \item Movie recommendation system
+    \item Web scraper
+    \item Sorting algorithm visualizer
+\end{itemize}
+
+% Hard Level
+\section{Hard Level (Advanced)}
+
+\subsection{Target Students}
+Experienced programmers (61+ points on calibration test).
+
+\subsection{Estimated Time}
+80--120 hours to complete all tracks.
+
+\subsection{Advanced Python Track}
+
+\subsubsection{Lesson 1: Advanced Functions and Decorators}
+\begin{itemize}[leftmargin=*]
+    \item Higher-order functions and closures
+    \item Lambda functions and functional programming
+    \item Creating and using decorators
+    \item Advanced decorator patterns
+\end{itemize}
+
+\subsubsection{Lesson 2: Generators and Iterators}
+\begin{itemize}[leftmargin=*]
+    \item Iterator protocol
+    \item Generator functions and yield
+    \item Generator expressions
+    \item Coroutines and data pipelines
+\end{itemize}
+
+\subsubsection{Lesson 3: Algorithms and Complexity Analysis}
+\begin{itemize}[leftmargin=*]
+    \item Big O notation
+    \item Sorting algorithms (quicksort, merge sort)
+    \item Searching algorithms
+    \item Dynamic programming
+    \item Data structures (heaps, graphs, trees)
+\end{itemize}
+
+\subsection{Deep Learning \& AI Track}
+
+\subsubsection{Lesson 4: Deep Learning and Neural Networks}
+\begin{itemize}[leftmargin=*]
+    \item Neural network architecture
+    \item Building networks with TensorFlow/Keras
+    \item Convolutional Neural Networks (CNNs)
+    \item Transfer learning
+    \item Advanced optimization techniques
+\end{itemize}
+
+\subsubsection{Lesson 5: Advanced ML and Natural Language Processing}
+\begin{itemize}[leftmargin=*]
+    \item Ensemble learning (Random Forest, XGBoost)
+    \item Natural Language Processing
+    \item Text classification and sentiment analysis
+    \item Word embeddings
+    \item Hyperparameter tuning
+\end{itemize}
+
+\subsection{Computer Systems Track}
+
+\subsubsection{Lesson 6: Computer Systems and Theory}
+\begin{itemize}[leftmargin=*]
+    \item Computer architecture and organization
+    \item Memory hierarchy and caching
+    \item Concurrency and parallelism
+    \item Computational complexity theory (P vs NP)
+    \item Formal languages and automata
+    \item Virtual memory and paging
+\end{itemize}
+
+\subsection{Classic Problems \& Interview Prep Track}
+
+\subsubsection{Lesson 8: Classic Problems Collection}
+\textbf{LeetCode Classics:}
+\begin{itemize}[leftmargin=*]
+    \item Two Sum (Hash map pattern)
+    \item Three Sum (Two pointers)
+    \item Longest Substring Without Repeating Characters
+    \item Merge K Sorted Lists (Heap)
+    \item Trapping Rain Water
+\end{itemize}
+
+\textbf{Dynamic Programming:}
+\begin{itemize}[leftmargin=*]
+    \item 0/1 Knapsack Problem
+    \item Longest Common Subsequence (LCS)
+    \item Edit Distance (Levenshtein)
+\end{itemize}
+
+\textbf{Graph Algorithms:}
+\begin{itemize}[leftmargin=*]
+    \item Dijkstra's Shortest Path
+    \item Cycle Detection in Directed Graphs
+\end{itemize}
+
+\textbf{Cryptography:}
+\begin{itemize}[leftmargin=*]
+    \item Caesar Cipher
+    \item Vigenère Cipher
+    \item RSA Encryption Implementation
+\end{itemize}
+
+\textbf{Machine Learning from Scratch:}
+\begin{itemize}[leftmargin=*]
+    \item K-Nearest Neighbors
+    \item Linear Regression with Gradient Descent
+    \item Neural Network with Backpropagation
+\end{itemize}
+
+\subsubsection{Lesson 9: CTF Challenges - Hacker Training}
+\textbf{Web Exploitation:}
+\begin{itemize}[leftmargin=*]
+    \item SQL Injection (OWASP Top 10)
+    \item Cross-Site Scripting (XSS)
+    \item Web vulnerability analysis
+\end{itemize}
+
+\textbf{Binary Exploitation (Pwn):}
+\begin{itemize}[leftmargin=*]
+    \item Buffer Overflow fundamentals
+    \item Format String attacks
+    \item Modern protections (Canaries, DEP, ASLR)
+\end{itemize}
+
+\textbf{Reverse Engineering:}
+\begin{itemize}[leftmargin=*]
+    \item Bytecode decompilation
+    \item Crackme challenges
+    \item Analysis tools (Ghidra, IDA, radare2)
+\end{itemize}
+
+\textbf{Cryptography in Practice:}
+\begin{itemize}[leftmargin=*]
+    \item Breaking classical ciphers
+    \item Cryptanalysis techniques
+\end{itemize}
+
+\textbf{Digital Forensics:}
+\begin{itemize}[leftmargin=*]
+    \item LSB Steganography
+    \item File Carving (magic bytes)
+    \item Metadata extraction (EXIF)
+\end{itemize}
+
+\textbf{OSINT (Open Source Intelligence):}
+\begin{itemize}[leftmargin=*]
+    \item Information gathering techniques
+    \item Privacy analysis
+\end{itemize}
+
+\textbf{Misc Challenges:}
+\begin{itemize}[leftmargin=*]
+    \item Multi-layer encoding/decoding
+    \item Pattern recognition
+\end{itemize}
+
+\subsection{Projects}
+\begin{itemize}[leftmargin=*]
+    \item Custom ML framework
+    \item Interpreted programming language
+    \item Distributed system with consensus
+    \item Blockchain implementation
+    \item Operating system kernel module
+    \item Compiler for subset of language
+\end{itemize}
+
+% Developer Tools Track
+\section{Developer Tools Track (The Missing Semester)}
+
+\subsection{Overview}
+Essential professional development skills inspired by MIT's ``The Missing Semester of Your CS Education.'' Available at all levels.
+
+\subsection{Estimated Time}
+30--40 hours to complete all lessons.
+
+\subsection{Core Tools Curriculum}
+
+\subsubsection{Lesson 1: Shell and Command Line}
+\begin{itemize}[leftmargin=*]
+    \item Terminal fundamentals and navigation
+    \item File operations and text processing
+    \item Pipes, redirection, and command chaining
+    \item Keyboard shortcuts and efficiency
+\end{itemize}
+
+\subsubsection{Lesson 2: Shell Scripting}
+\begin{itemize}[leftmargin=*]
+    \item Writing bash scripts
+    \item Variables and control flow
+    \item Text processing (sed, awk, grep)
+    \item Automation techniques
+\end{itemize}
+
+\subsubsection{Lesson 3: Version Control with Git}
+\begin{itemize}[leftmargin=*]
+    \item Git fundamentals and workflows
+    \item Branching, merging, and collaboration
+    \item Resolving conflicts
+    \item Advanced Git (rebase, cherry-pick, bisect)
+\end{itemize}
+
+\subsubsection{Lesson 4: Text Editors}
+\begin{itemize}[leftmargin=*]
+    \item Vim basics and philosophy
+    \item Essential Vim commands
+    \item VS Code power features
+    \item Editor configuration
+\end{itemize}
+
+\subsubsection{Lesson 5: Data Wrangling}
+\begin{itemize}[leftmargin=*]
+    \item Processing text with Unix tools
+    \item Regular expressions
+    \item JSON/CSV manipulation
+    \item Combining commands with pipes
+\end{itemize}
+
+\subsubsection{Lesson 6: Debugging and Profiling}
+\begin{itemize}[leftmargin=*]
+    \item Python debugger (pdb)
+    \item Logging best practices
+    \item Performance profiling
+    \item Memory analysis
+    \item Static analysis tools
+\end{itemize}
+
+\subsubsection{Lesson 7: Security Essentials}
+\begin{itemize}[leftmargin=*]
+    \item SSH and key-based authentication
+    \item Password management
+    \item Environment variables and secrets
+    \item Common vulnerabilities
+    \item HTTPS and certificates
+\end{itemize}
+
+\subsubsection{Lesson 8: Build Systems and CI/CD}
+\begin{itemize}[leftmargin=*]
+    \item Make and Makefiles
+    \item GitHub Actions
+    \item Testing automation
+    \item Docker basics
+    \item Deployment pipelines
+\end{itemize}
+
+\subsubsection{Lesson 9: Package Management}
+\begin{itemize}[leftmargin=*]
+    \item pip and virtual environments
+    \item poetry and modern Python tools
+    \item System package managers
+    \item Dependency management
+\end{itemize}
+
+\subsubsection{Lesson 10: Dotfiles and Configuration}
+\begin{itemize}[leftmargin=*]
+    \item Shell configuration (.bashrc, .zshrc)
+    \item Git configuration
+    \item Tool configuration
+    \item Dotfile management with Git
+\end{itemize}
+
+% Assessment and Grading
+\section{Assessment and Evaluation}
+
+\subsection{Calibration Test}
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Purpose}: Determine appropriate starting level
+    \item \textbf{Format}: Jupyter notebook with coding challenges
+    \item \textbf{Duration}: Self-paced (typically 30--60 minutes)
+    \item \textbf{Sections}: Basic syntax, control flow, data structures, OOP, advanced concepts
+    \item \textbf{Scoring}: Self-assessment (0--100 points)
+\end{itemize}
+
+\subsection{Exercise Completion}
+Each lesson contains interactive exercises:
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Easy Level}: 3--5 exercises per lesson
+    \item \textbf{Medium Level}: 5--8 exercises per lesson
+    \item \textbf{Hard Level}: 8--15 exercises per lesson
+    \item \textbf{Self-Check Quizzes}: Knowledge verification
+\end{itemize}
+
+\subsection{Project Work}
+\begin{itemize}[leftmargin=*]
+    \item Build portfolio-worthy projects
+    \item Apply concepts from multiple lessons
+    \item Real-world problem solving
+    \item Optional: Share on GitHub for community feedback
+\end{itemize}
+
+\subsection{Progress Tracking}
+\textbf{Self-Assessment Checklist:}
+\begin{itemize}[leftmargin=*]
+    \item Can explain concepts to others
+    \item Can implement solutions from scratch
+    \item Can recognize patterns and apply them
+    \item Can debug efficiently
+    \item Can read and understand others' code
+\end{itemize}
+
+\subsection{Mastery Indicators}
+\textbf{Easy Level Mastery:}
+\begin{itemize}[leftmargin=*]
+    \item Write simple programs independently
+    \item Understand error messages
+    \item Use basic data structures
+\end{itemize}
+
+\textbf{Medium Level Mastery:}
+\begin{itemize}[leftmargin=*]
+    \item Design and implement complete applications
+    \item Apply OOP principles
+    \item Work with APIs and libraries
+    \item Basic algorithm analysis
+\end{itemize}
+
+\textbf{Hard Level Mastery:}
+\begin{itemize}[leftmargin=*]
+    \item Solve LeetCode mediums in 20--30 minutes
+    \item Implement ML algorithms from scratch
+    \item Analyze time/space complexity
+    \item Pass FAANG technical interviews
+    \item Compete in CTF competitions
+\end{itemize}
+
+% Resources and Materials
+\section{Resources and Materials}
+
+\subsection{Core Materials}
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Interactive Notebooks}: Jupyter notebooks with executable code
+    \item \textbf{Cheat Sheets}: Quick reference guides (Python, ML/AI)
+    \item \textbf{Resource Guide}: Curated external learning materials
+    \item \textbf{Project Ideas}: Structured project challenges with learning goals
+\end{itemize}
+
+\subsection{Supplementary Materials}
+\begin{itemize}[leftmargin=*]
+    \item \textbf{SETUP.md}: Comprehensive installation guide
+    \item \textbf{requirements.txt}: All necessary Python packages
+    \item \textbf{README.md}: Complete course navigation
+    \item \textbf{Work Log}: Session tracking for continuity
+\end{itemize}
+
+\subsection{External Resources}
+\begin{itemize}[leftmargin=*]
+    \item Online platforms: Futurecoder, LearnPython.org, Kaggle Learn
+    \item Courses: Google ML Crash Course, Fast.ai, DeepLearning.AI
+    \item Books: Automate the Boring Stuff, Think Python, Deep Learning Book
+    \item Practice: LeetCode, HackTheBox, OverTheWire, picoCTF
+\end{itemize}
+
+\subsection{Tools and Software}
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Required}: Python, Jupyter, Git
+    \item \textbf{Recommended}: VS Code, Docker, GitHub CLI
+    \item \textbf{Optional}: PyCharm, Vim, tmux, specialized security tools
+\end{itemize}
+
+% Learning Strategies
+\section{Learning Strategies and Best Practices}
+
+\subsection{Effective Learning Techniques}
+\begin{enumerate}[leftmargin=*]
+    \item \textbf{Active Learning}: Type every code example, don't just read
+    \item \textbf{Experimentation}: Modify code and observe changes
+    \item \textbf{Spaced Repetition}: Review previous lessons regularly
+    \item \textbf{Teaching Others}: Explain concepts to solidify understanding
+    \item \textbf{Project-Based}: Apply skills to real-world problems
+    \item \textbf{Community Engagement}: Join forums, share progress
+\end{enumerate}
+
+\subsection{Recommended Study Schedule}
+
+\subsubsection{Part-Time (10--15 hours/week)}
+\begin{itemize}[leftmargin=*]
+    \item Easy Level: 2--3 weeks
+    \item Medium Level: 4--6 weeks
+    \item Hard Level: 8--12 weeks
+    \item Total: 3--6 months to completion
+\end{itemize}
+
+\subsubsection{Full-Time (30--40 hours/week)}
+\begin{itemize}[leftmargin=*]
+    \item Easy Level: 1 week
+    \item Medium Level: 2 weeks
+    \item Hard Level: 3--4 weeks
+    \item Total: 6--8 weeks to completion
+\end{itemize}
+
+\subsection{Flexible Learning Paths}
+\begin{enumerate}[leftmargin=*]
+    \item \textbf{Python-First}: Master programming fundamentals before AI/ML
+    \item \textbf{AI-Focused}: Learn Python alongside machine learning concepts
+    \item \textbf{Systems-Focused}: Emphasize computing fundamentals and algorithms
+    \item \textbf{Balanced}: Rotate between tracks for well-rounded knowledge
+    \item \textbf{Interview Prep}: Focus on algorithms and classic problems
+    \item \textbf{Security Path}: Prioritize CTF and developer tools tracks
+\end{enumerate}
+
+\subsection{Overcoming Challenges}
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Stuck on Problem}: Read error messages, search documentation, ask community
+    \item \textbf{Feeling Overwhelmed}: Take breaks, review fundamentals, celebrate small wins
+    \item \textbf{Imposter Syndrome}: Remember everyone was a beginner once
+    \item \textbf{Plateaus}: Try harder problems, build projects, learn from others
+\end{itemize}
+
+% Career Preparation
+\section{Career Preparation}
+
+\subsection{Career Paths}
+\textbf{Software Engineering:}
+\begin{itemize}[leftmargin=*]
+    \item Backend Developer
+    \item Full-Stack Developer
+    \item Systems Programmer
+\end{itemize}
+
+\textbf{Data Science \& AI/ML:}
+\begin{itemize}[leftmargin=*]
+    \item Machine Learning Engineer
+    \item Data Scientist
+    \item ML Research Scientist
+\end{itemize}
+
+\textbf{Cybersecurity:}
+\begin{itemize}[leftmargin=*]
+    \item Penetration Tester
+    \item Security Researcher
+    \item Bug Bounty Hunter
+    \item Incident Responder
+    \item Red Team Operator
+\end{itemize}
+
+\textbf{Other Opportunities:}
+\begin{itemize}[leftmargin=*]
+    \item Competitive Programmer
+    \item Technical Interviewer
+    \item Developer Advocate
+    \item Technical Writer
+\end{itemize}
+
+\subsection{Interview Preparation}
+\textbf{Technical Interview Skills:}
+\begin{itemize}[leftmargin=*]
+    \item Pattern recognition (hash maps, two pointers, DP)
+    \item Problem-solving communication
+    \item Time/space complexity analysis
+    \item Testing and edge cases
+    \item Code optimization
+\end{itemize}
+
+\textbf{Recommended Practice:}
+\begin{itemize}[leftmargin=*]
+    \item LeetCode: 150+ problems (Easy: 50, Medium: 75, Hard: 25)
+    \item Mock interviews with peers
+    \item System design practice
+    \item Behavioral question preparation
+\end{itemize}
+
+\subsection{Portfolio Building}
+\begin{itemize}[leftmargin=*]
+    \item Complete 3--5 substantial projects
+    \item Contribute to open source
+    \item Write technical blog posts
+    \item Build public GitHub profile
+    \item Participate in CTF competitions (showcase writeups)
+\end{itemize}
+
+% Support and Community
+\section{Support and Community}
+
+\subsection{Getting Help}
+\begin{itemize}[leftmargin=*]
+    \item \textbf{GitHub Issues}: Report bugs or request clarifications
+    \item \textbf{Discussions}: Ask questions, share solutions
+    \item \textbf{External Communities}: r/learnpython, Python Discord, Stack Overflow
+\end{itemize}
+
+\subsection{Contributing}
+We welcome contributions!
+\begin{itemize}[leftmargin=*]
+    \item Report typos and errors
+    \item Suggest improvements
+    \item Add new exercises or projects
+    \item Share learning resources
+    \item Write tutorials or explanations
+\end{itemize}
+
+\subsection{Code of Conduct}
+\begin{itemize}[leftmargin=*]
+    \item Be respectful and inclusive
+    \item Help others learn
+    \item Give constructive feedback
+    \item Share knowledge freely
+    \item Practice ethical hacking (authorized testing only!)
+\end{itemize}
+
+% Appendices
+\section{Appendices}
+
+\subsection{Appendix A: Setup Instructions}
+Detailed installation instructions available in \texttt{SETUP.md}:
+\begin{itemize}[leftmargin=*]
+    \item Platform-specific guides (Windows, macOS, Linux)
+    \item Multiple installation methods (venv, conda, Docker)
+    \item GPU setup for deep learning
+    \item Troubleshooting common issues
+\end{itemize}
+
+\subsection{Appendix B: Quick Reference}
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Python Cheatsheet}: \texttt{PYTHON\_CHEATSHEET.md}
+    \item \textbf{ML/AI Cheatsheet}: \texttt{ML\_AI\_CHEATSHEET.md}
+    \item \textbf{Resources Guide}: \texttt{RESOURCES.md}
+\end{itemize}
+
+\subsection{Appendix C: Glossary of Terms}
+\begin{description}[leftmargin=*]
+    \item[Algorithm] Step-by-step procedure for solving a problem
+    \item[API] Application Programming Interface
+    \item[Big O] Notation for describing algorithm complexity
+    \item[CTF] Capture The Flag (security competition)
+    \item[DP] Dynamic Programming
+    \item[FAANG] Facebook/Meta, Amazon, Apple, Netflix, Google
+    \item[GPU] Graphics Processing Unit (for ML acceleration)
+    \item[IDE] Integrated Development Environment
+    \item[ML] Machine Learning
+    \item[OOP] Object-Oriented Programming
+    \item[OSINT] Open Source Intelligence
+    \item[Pwn] Binary exploitation challenges
+    \item[RE] Reverse Engineering
+    \item[REPL] Read-Eval-Print Loop
+    \item[XSS] Cross-Site Scripting (web vulnerability)
+\end{description}
+
+\subsection{Appendix D: Recommended Reading Order}
+\textbf{For Complete Beginners:}
+\begin{enumerate}[leftmargin=*]
+    \item Take calibration test
+    \item Easy Level: Python Fundamentals (Lessons 1--3)
+    \item Easy Level: Computing Fundamentals (Lesson 5)
+    \item Developer Tools: Shell Basics (Lesson 1)
+    \item Easy Level: AI Introduction (Lesson 4)
+    \item Progress to Medium Level
+\end{enumerate}
+
+\textbf{For Interview Preparation:}
+\begin{enumerate}[leftmargin=*]
+    \item Medium Level: Algorithms \& Problem Solving
+    \item Hard Level: Algorithms and Complexity
+    \item Hard Level: Classic Problems Collection
+    \item Practice on LeetCode daily
+    \item Mock interviews
+\end{enumerate}
+
+\textbf{For Security Career:}
+\begin{enumerate}[leftmargin=*]
+    \item Python fundamentals
+    \item Developer Tools: Shell, Git, Security Essentials
+    \item Hard Level: CTF Challenges
+    \item Practice on CTF platforms
+    \item Learn specialized tools
+\end{enumerate}
+
+% License and Attribution
+\section{License and Attribution}
+
+\subsection{License}
+This course is released under the MIT License. See \texttt{LICENSE} file for details.
+
+\subsection{Acknowledgments}
+\begin{itemize}[leftmargin=*]
+    \item Inspired by MIT's ``The Missing Semester of Your CS Education''
+    \item Influenced by Stanford CS courses
+    \item Community contributions and feedback
+    \item Open source tools and libraries
+\end{itemize}
+
+\subsection{Author}
+Created by Mykolas Perevicius and the Education Playground community.
+
+\subsection{Version History}
+\begin{itemize}[leftmargin=*]
+    \item \textbf{v1.0} (Initial): Basic Python curriculum
+    \item \textbf{v1.5} (Major): Added AI/ML and Computing tracks
+    \item \textbf{v2.0} (Current): Added Developer Tools, Classic Problems, CTF Challenges
+\end{itemize}
+
+% Contact Information
+\section{Contact and Links}
+
+\subsection{Repository}
+\url{https://github.com/mykolas-perevicius/Education_Playground}
+
+\subsection{Issues and Support}
+\url{https://github.com/mykolas-perevicius/Education_Playground/issues}
+
+\subsection{Discussions}
+\url{https://github.com/mykolas-perevicius/Education_Playground/discussions}
+
+% Final Note
+\vspace{1cm}
+\begin{center}
+\rule{0.5\textwidth}{0.4pt}
+
+\vspace{0.5cm}
+{\large\textbf{Happy Learning!}}
+
+\vspace{0.3cm}
+{\itshape Every expert was once a beginner.
+Your journey starts here. Keep practicing, stay curious,
+and enjoy the journey!}
+
+\vspace{0.5cm}
+\rule{0.5\textwidth}{0.4pt}
+\end{center}
+
+\end{document}
