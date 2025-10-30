@@ -13,7 +13,20 @@ This repository contains a complete curriculum organized into three difficulty l
 
 ## Getting Started
 
-### 1. Take the Calibration Test
+### Path A: Complete Beginner (Never Coded Before)
+
+**Start here if you've NEVER programmed before!**
+
+1. **Beginner Scripts Track** (`beginner_scripts/`)
+   - Simple Python scripts with extensive comments
+   - 10 lessons covering absolute basics
+   - Each lesson: 15-30 minutes
+   - Run with: `python beginner_scripts/1_hello_world.py`
+   - **Complete this first!** Then proceed to Path B.
+
+### Path B: Some Programming Experience
+
+1. **Take the Calibration Test**
 
 Start by running the calibration test to determine your skill level:
 
@@ -37,7 +50,40 @@ Based on your score, you'll be recommended one of three levels:
 
 ## Course Structure
 
-The curriculum is organized into **difficulty levels** (Easy, Medium, Hard) plus an essential **Developer Tools** track that complements all levels.
+The curriculum is organized into **difficulty levels** (Beginner Scripts, Easy, Medium, Hard) plus an essential **Developer Tools** track that complements all levels.
+
+---
+
+### 🌱 Beginner Scripts Track (Pre-Easy)
+
+**For absolute beginners who have never programmed before!**
+
+📂 Location: `beginner_scripts/`
+
+**10 Python script lessons** covering the fundamentals:
+1. Hello World - Your first program
+2. Variables and Types - Storing information
+3. String Manipulation - Working with text
+4. Basic Math - Numbers and operations
+5. Lists and Dictionaries - Organizing data
+6. List/Dict Methods - Advanced operations
+7. Imports - Using modules
+8. Error Handling - Dealing with mistakes
+9. Indexing and For Loops - Iteration
+10. Conditionals and While Loops - Control flow
+
+**Features:**
+- Simple `.py` scripts (no notebooks required)
+- Extensive comments explaining every line
+- TODO exercises for practice
+- Time estimates for each section
+- Instructor-friendly format
+
+**Total Time:** 3-5 hours for complete beginners
+
+**After completing:** Progress to Easy Level notebooks or take the Calibration Test!
+
+---
 
 ### Core Tracks by Difficulty
 
