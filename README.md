@@ -37,6 +37,10 @@ Based on your score, you'll be recommended one of three levels:
 
 ## Course Structure
 
+The curriculum is organized into **difficulty levels** (Easy, Medium, Hard) plus an essential **Developer Tools** track that complements all levels.
+
+### Core Tracks by Difficulty
+
 Each level contains **three parallel tracks** that can be completed in any order:
 
 ---
@@ -181,36 +185,104 @@ Each level contains **three parallel tracks** that can be completed in any order
 
 ---
 
+### Developer Tools Track (The Missing Semester)
+
+**Essential skills for every developer** - Inspired by MIT's "The Missing Semester of Your CS Education". These lessons can be taken at any level!
+
+📂 Location: `tools/`
+
+#### Core Tools
+
+1. **Shell and Command Line** (`tools/01_shell_basics.ipynb`)
+   - Terminal fundamentals and navigation
+   - File operations and text processing
+   - Pipes, redirection, and command chaining
+   - Essential for all developers
+
+2. **Shell Scripting** (`tools/02_shell_scripting.ipynb`)
+   - Writing bash scripts
+   - Automating repetitive tasks
+   - Text processing with sed, awk, grep
+
+3. **Version Control with Git** (`tools/03_git_essentials.ipynb`)
+   - Git fundamentals and workflows
+   - Branching, merging, and collaboration
+   - Industry-standard version control
+
+4. **Text Editors** (`tools/04_text_editors.ipynb`)
+   - Vim basics and power features
+   - VS Code productivity tips
+   - Editor customization
+
+5. **Data Wrangling** (`tools/05_data_wrangling.ipynb`)
+   - Processing data with Unix tools
+   - Regular expressions
+   - JSON/CSV manipulation
+
+6. **Debugging and Profiling** (`tools/06_debugging_profiling.ipynb`)
+   - Python debugger (pdb)
+   - Performance profiling and optimization
+   - Static analysis tools
+
+7. **Security Essentials** (`tools/07_security_essentials.ipynb`)
+   - SSH and authentication
+   - Secrets management
+   - Common vulnerabilities
+
+8. **Build Systems and CI/CD** (`tools/08_build_and_automation.ipynb`)
+   - Makefiles and automation
+   - GitHub Actions and CI/CD
+   - Docker basics
+
+9. **Package Management** (`tools/09_package_management.ipynb`)
+   - pip, poetry, and virtual environments
+   - Dependency management
+   - System package managers
+
+10. **Dotfiles and Configuration** (`tools/10_dotfiles.ipynb`)
+    - Shell configuration (.bashrc, .zshrc)
+    - Tool configuration
+    - Dotfile management
+
+**💡 Recommended**: Start with Shell Basics and Git Essentials - you'll use these every day!
+
+See `tools/README.md` for detailed information and learning paths.
+
+---
+
 ## Installation
 
-### Prerequisites
+**📖 For detailed setup instructions, see [SETUP.md](SETUP.md)**
 
-- Python 3.8 or higher
-- Jupyter Notebook or JupyterLab
+### Quick Start
 
-### Setup
-
-1. Clone this repository:
+1. **Clone the repository**:
 ```bash
 git clone https://github.com/mykolas-perevicius/Education_Playground.git
 cd Education_Playground
 ```
 
-2. (Optional) Create a virtual environment:
+2. **Install dependencies**:
 ```bash
+# Create virtual environment (recommended)
 python -m venv venv
 source venv/bin/activate  # On Windows: venv\Scripts\activate
+
+# Install all packages
+pip install -r requirements.txt
 ```
 
-3. Install required packages:
-```bash
-pip install jupyter numpy pandas matplotlib scikit-learn tensorflow xgboost nltk
-```
-
-4. Start Jupyter:
+3. **Start learning**:
 ```bash
 jupyter notebook
+# Then open 00_calibration_test.ipynb
 ```
+
+**Need help?** Check [SETUP.md](SETUP.md) for:
+- Platform-specific instructions (Windows, macOS, Linux)
+- Alternative installation methods (Conda, Docker)
+- GPU setup for deep learning
+- Troubleshooting common issues
 
 ## How to Use This Course
 
