@@ -282,6 +282,33 @@ Rotate between tracks for well-rounded knowledge
 - Computational complexity
 - Systems programming
 
+### Supplementary Materials
+
+📚 **[RESOURCES.md](RESOURCES.md)** - Comprehensive external learning resources
+- Curated free courses from top platforms (Coursera, edX, Fast.ai)
+- Interactive learning platforms (Futurecoder, LearnPython.org, Kaggle)
+- Books, YouTube channels, podcasts, communities
+- Learning paths organized by focus area
+
+⚡ **[PYTHON_CHEATSHEET.md](PYTHON_CHEATSHEET.md)** - Quick Python reference
+- All core concepts in one place
+- Code examples for every feature
+- Best practices and common pitfalls
+- One-liners and performance tips
+
+🤖 **[ML_AI_CHEATSHEET.md](ML_AI_CHEATSHEET.md)** - ML/AI quick reference
+- scikit-learn complete guide
+- TensorFlow/Keras essentials
+- NLP and text processing
+- Model deployment patterns
+- Troubleshooting common issues
+
+🚀 **Project Ideas** (in each level folder)
+- **Easy**: 10 beginner projects (calculator, games, chatbot)
+- **Medium**: 10 intermediate projects (ML apps, data analysis, algorithms)
+- **Hard**: 10+ advanced projects (frameworks, compilers, production ML systems)
+- All include features, bonuses, and learning goals
+
 ## Contributing
 
 Found a typo or have a suggestion? Contributions are welcome!
