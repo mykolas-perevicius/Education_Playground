@@ -183,6 +183,35 @@ Each level contains **three parallel tracks** that can be completed in any order
    - Formal languages and automata
    - Virtual memory and paging
 
+#### Classic Problems & Interview Prep Track 🔥
+
+7. **Project Ideas** (`hard/07_project_ideas.ipynb`)
+   - Advanced project challenges for portfolio building
+
+8. **Classic Problems Collection** (`hard/08_classic_problems.ipynb`) ⭐
+   - **LeetCode Classics**: Two Sum, Three Sum, Longest Substring, Merge K Lists, Trapping Rain Water
+   - **Dynamic Programming**: Knapsack, Longest Common Subsequence, Edit Distance
+   - **Graph Algorithms**: Dijkstra's Shortest Path, Cycle Detection
+   - **Cryptography**: Caesar Cipher, Vigenère Cipher, RSA Implementation
+   - **ML from Scratch**: K-Nearest Neighbors, Linear Regression, Neural Networks
+   - **Interview patterns**: Hash maps, two pointers, sliding window, heap, DP
+
+9. **CTF Challenges - Hacker Training** (`hard/09_ctf_challenges.ipynb`) 🚩
+   - **Web Exploitation**: SQL Injection, XSS, security vulnerabilities
+   - **Binary Exploitation (Pwn)**: Buffer overflows, format string attacks
+   - **Reverse Engineering**: Decompiling, crackmes, understanding binaries
+   - **Cryptography**: Breaking encryption, classical and modern ciphers
+   - **Forensics**: Steganography, file carving, metadata extraction
+   - **OSINT**: Open Source Intelligence, finding hidden information
+   - **Misc**: Encoding puzzles, CTF techniques and tools
+   - Prepares for: Bug bounties, penetration testing, security careers
+
+**💡 These problems are legendary** - solved by generations of programmers. Master them for:
+- FAANG interviews (Google, Facebook, Amazon, Apple, Netflix)
+- Competitive programming (Codeforces, TopCoder)
+- Cybersecurity careers and CTF competitions
+- Real-world problem-solving skills
+
 ---
 
 ### Developer Tools Track (The Missing Semester)
