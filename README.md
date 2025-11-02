@@ -2,6 +2,33 @@
 
 Welcome to the Education Playground! A **production-quality**, comprehensive, self-paced learning platform covering **Python Programming**, **Artificial Intelligence**, **Machine Learning**, **High-Performance Computing**, **GPU/CUDA Programming**, and **Computer Science Fundamentals** for all skill levels.
 
+---
+
+## 🚀 START HERE - Quick Launch
+
+**Choose your adventure:**
+
+### 📱 Learn on Any Device (Phone, Tablet, Desktop)
+**Browse right here!** This website works on any device. Read tutorials, view exercises, and explore topics.
+
+### ▶️ Run Code Interactively (FREE - No Setup!)
+Click the **rocket icon** 🚀 on any notebook page and select **"Colab"** to run code in your browser (works on mobile too!)
+
+### 🎯 Not Sure Where to Begin?
+
+**Pick your path:**
+
+| Your Background | Start Here | Time |
+|----------------|------------|------|
+| **Never coded before** | [Beginner Scripts](beginner_scripts/README.md) → 10 simple lessons | 3-5 hrs |
+| **Some coding experience** | [Calibration Test](00_calibration_test.ipynb) → Find your level | 30 min |
+| **Want AI/ML/GPU** | [Hard Level](hard/README_HARD.md) → Advanced topics | Jump in! |
+| **Need dev tools** | [Developer Tools](tools/README.md) → Git, Docker, Shell | Jump in! |
+
+**👉 Most Popular:** Start with the [Calibration Test](00_calibration_test.ipynb) to find your perfect starting point!
+
+---
+
 ## 🆕 Recent Major Enhancements (2025)
 
 **All notebooks have been significantly expanded with**:
