@@ -43,3 +43,4 @@ htmlcov/
 # Environment
 .env
 .venv
+_build/

@@ -1,0 +1,120 @@
+# Table of Contents for Education Playground
+
+format: jb-book
+root: README
+chapters:
+  - file: 00_calibration_test
+    title: 🎯 Calibration Test - Find Your Level
+
+  # Beginner Scripts Track (Python files - see repository)
+  - file: beginner_scripts/README
+    title: 🌱 Beginner Scripts (10 Python Files)
+
+  # Easy Level
+  - file: easy/README_EASY
+    title: 📗 Easy Level - Beginner
+    sections:
+      - file: easy/01_introduction_to_python
+        title: "1. Introduction to Python"
+      - file: easy/02_variables_and_data_types
+        title: "2. Variables and Data Types"
+      - file: easy/03_basic_operations_and_conditionals
+        title: "3. Operations and Conditionals"
+      - file: easy/04_intro_to_ai_and_ml
+        title: "4. Intro to AI and ML"
+      - file: easy/05_computing_fundamentals
+        title: "5. Computing Fundamentals"
+
+  # Medium Level
+  - file: medium/README_MEDIUM
+    title: 📘 Medium Level - Intermediate
+    sections:
+      - file: medium/01_functions_and_modules
+        title: "1. Functions and Modules"
+      - file: medium/02_data_structures
+        title: "2. Data Structures"
+      - file: medium/03_classes_and_oop
+        title: "3. Classes and OOP"
+      - file: medium/04_machine_learning_basics
+        title: "4. Machine Learning Basics"
+      - file: medium/05_data_analysis_with_pandas
+        title: "5. Data Analysis with Pandas"
+      - file: medium/06_algorithms_and_problem_solving
+        title: "6. Algorithms and Problem Solving"
+
+  # Hard Level
+  - file: hard/README_HARD
+    title: 📕 Hard Level - Advanced
+    sections:
+      - file: hard/01_advanced_functions_and_decorators
+        title: "1. Advanced Functions & Decorators"
+      - file: hard/02_generators_and_iterators
+        title: "2. Generators and Iterators"
+      - file: hard/03_algorithms_and_complexity
+        title: "3. Algorithms and Complexity"
+      - file: hard/04_deep_learning_and_neural_networks
+        title: "4. Deep Learning & Neural Networks"
+      - file: hard/05_advanced_ml_and_nlp
+        title: "5. Advanced ML and NLP"
+      - file: hard/06_computer_systems_and_theory
+        title: "6. Computer Systems and Theory"
+      - file: hard/07_project_ideas
+        title: "7. Project Ideas & Implementation"
+      - file: hard/08_classic_problems
+        title: "8. Classic Problems Collection"
+      - file: hard/09_ctf_challenges
+        title: "9. CTF Challenges - Hacker Training"
+      - file: hard/10_performance_computing
+        title: "10. Performance Computing ⚡ NEW!"
+      - file: hard/11_cuda_and_parallel_computing
+        title: "11. CUDA & GPU Computing 🎮 NEW!"
+
+  # Developer Tools
+  - file: tools/README
+    title: 🛠️ Developer Tools Track
+    sections:
+      - file: tools/01_shell_basics
+        title: "1. Shell and Command Line"
+      - file: tools/02_command_line_tools
+        title: "2. Command Line Tools"
+      - file: tools/03_git_essentials
+        title: "3. Git Essentials"
+      - file: tools/04_text_editors
+        title: "4. Text Editors"
+      - file: tools/05_build_systems_cicd
+        title: "5. Build Systems and CI/CD"
+      - file: tools/06_debugging_profiling
+        title: "6. Debugging and Profiling"
+      - file: tools/07_security_essentials
+        title: "7. Security Essentials"
+      - file: tools/08_package_management
+        title: "8. Package Management"
+      - file: tools/09_ssh_remote_systems
+        title: "9. SSH and Remote Systems"
+      - file: tools/10_docker_containers
+        title: "10. Docker and Containers"
+
+  # Solutions
+  - file: solutions/README_SOLUTIONS
+    title: 📝 Solutions
+    sections:
+      - file: solutions/easy_solutions
+        title: "Easy Level Solutions"
+      - file: solutions/medium_solutions
+        title: "Medium Level Solutions"
+      - file: solutions/hard_solutions
+        title: "Hard Level Solutions"
+      - file: solutions/tools_solutions
+        title: "Tools Solutions"
+
+  # Supplementary
+  - file: RESOURCES
+    title: 📚 Learning Resources
+  - file: PYTHON_CHEATSHEET
+    title: ⚡ Python Cheat Sheet
+  - file: ML_AI_CHEATSHEET
+    title: 🤖 ML/AI Cheat Sheet
+  - file: SETUP
+    title: 🔧 Setup Guide
+  - file: RELEASE_NOTES_v2.0.0
+    title: 🎉 Release Notes v2.0.0

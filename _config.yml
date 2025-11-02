@@ -1,0 +1,27 @@
+# Minimal JupyterBook Configuration for Education Playground
+
+title: Education Playground
+author: Mykolas Perevicius
+copyright: "2025"
+
+execute:
+  execute_notebooks: off
+
+repository:
+  url: https://github.com/mykolas-perevicius/Education_Playground
+  branch: main
+
+html:
+  use_repository_button: true
+  use_issues_button: true
+  baseurl: "https://mykolas-perevicius.github.io/Education_Playground/"
+
+launch_buttons:
+  colab_url: "https://colab.research.google.com"
+
+parse:
+  myst_enable_extensions:
+    - dollarmath
+    - linkify
+    - substitution
+    - tasklist
