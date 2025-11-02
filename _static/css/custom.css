@@ -1,0 +1,690 @@
+/**
+ * Education Playground - Custom Styles
+ * Sophisticated, user-friendly design
+ */
+
+/* ============================================
+   Onboarding Modal
+   ============================================ */
+
+.onboarding-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.onboarding-modal.show {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.onboarding-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(4px);
+}
+
+.onboarding-content {
+    position: relative;
+    background: white;
+    border-radius: 16px;
+    max-width: 600px;
+    width: 90%;
+    max-height: 90vh;
+    overflow-y: auto;
+    padding: 40px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    animation: slideUp 0.4s ease;
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(30px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.onboarding-close {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    background: none;
+    border: none;
+    font-size: 32px;
+    color: #999;
+    cursor: pointer;
+    line-height: 1;
+    padding: 8px;
+    transition: color 0.2s;
+}
+
+.onboarding-close:hover {
+    color: #333;
+}
+
+.onboarding-step h2 {
+    margin: 0 0 8px 0;
+    font-size: 28px;
+    color: #1a1a1a;
+    text-align: center;
+}
+
+.onboarding-step .subtitle {
+    text-align: center;
+    color: #666;
+    font-size: 16px;
+    margin: 0 0 32px 0;
+}
+
+.question-container {
+    margin: 32px 0;
+}
+
+.question-container h3 {
+    text-align: center;
+    font-size: 20px;
+    color: #333;
+    margin: 0 0 24px 0;
+}
+
+/* Choice Cards */
+.choice-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+}
+
+.choice-cards.vertical {
+    grid-template-columns: 1fr;
+}
+
+.choice-card {
+    background: #f8f9fa;
+    border: 2px solid #e0e0e0;
+    border-radius: 12px;
+    padding: 24px 16px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+
+.choice-card:hover {
+    background: #fff;
+    border-color: #4CAF50;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(76, 175, 80, 0.2);
+}
+
+.choice-card:active {
+    transform: translateY(0);
+}
+
+.choice-card.wide {
+    flex-direction: row;
+    text-align: left;
+    padding: 20px;
+    gap: 16px;
+}
+
+.choice-icon {
+    font-size: 48px;
+    line-height: 1;
+}
+
+.choice-card.wide .choice-icon {
+    font-size: 36px;
+}
+
+.choice-title {
+    font-weight: 600;
+    font-size: 18px;
+    color: #1a1a1a;
+}
+
+.choice-desc {
+    font-size: 14px;
+    color: #666;
+    line-height: 1.4;
+}
+
+.choice-card.wide .choice-content {
+    flex: 1;
+}
+
+/* Back Button */
+.back-button {
+    background: none;
+    border: none;
+    color: #666;
+    font-size: 16px;
+    cursor: pointer;
+    padding: 8px 12px;
+    margin-bottom: 16px;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    transition: color 0.2s;
+}
+
+.back-button:hover {
+    color: #333;
+}
+
+/* Final Step */
+.step-final {
+    text-align: center;
+}
+
+.success-icon {
+    font-size: 72px;
+    margin-bottom: 16px;
+}
+
+.step-final .description {
+    font-size: 16px;
+    color: #666;
+    margin: 16px 0;
+    line-height: 1.6;
+}
+
+.time-estimate {
+    background: #e8f5e9;
+    color: #2e7d32;
+    padding: 8px 16px;
+    border-radius: 20px;
+    display: inline-block;
+    font-size: 14px;
+    font-weight: 500;
+    margin: 16px 0;
+}
+
+.final-actions {
+    margin: 32px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    align-items: center;
+}
+
+.btn {
+    display: inline-block;
+    padding: 14px 32px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    border: 2px solid transparent;
+    cursor: pointer;
+}
+
+.btn-primary {
+    background: #4CAF50;
+    color: white;
+}
+
+.btn-primary:hover {
+    background: #45a049;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(76, 175, 80, 0.3);
+}
+
+.btn-large {
+    padding: 16px 40px;
+    font-size: 18px;
+}
+
+.btn-secondary {
+    background: white;
+    color: #4CAF50;
+    border-color: #4CAF50;
+}
+
+.btn-secondary:hover {
+    background: #f1f8f4;
+}
+
+.or-divider {
+    color: #999;
+    font-size: 14px;
+    margin: 8px 0;
+}
+
+.final-note {
+    font-size: 14px;
+    color: #666;
+    background: #f8f9fa;
+    padding: 12px 16px;
+    border-radius: 8px;
+    border-left: 4px solid #4CAF50;
+    margin-top: 24px;
+}
+
+.skip-link {
+    text-align: center;
+    margin-top: 24px;
+}
+
+.skip-link a {
+    color: #666;
+    font-size: 14px;
+    text-decoration: none;
+}
+
+.skip-link a:hover {
+    color: #333;
+    text-decoration: underline;
+}
+
+/* Final Options (for advanced users) */
+.final-options {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    margin: 24px 0;
+}
+
+.option-card {
+    background: #f8f9fa;
+    border: 2px solid #e0e0e0;
+    border-radius: 12px;
+    padding: 20px;
+    text-decoration: none;
+    color: #1a1a1a;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.2s ease;
+}
+
+.option-card:hover {
+    background: white;
+    border-color: #4CAF50;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(76, 175, 80, 0.2);
+}
+
+.option-icon {
+    font-size: 36px;
+}
+
+.option-label {
+    font-weight: 600;
+    font-size: 15px;
+    text-align: center;
+}
+
+/* ============================================
+   Continue Learning Banner
+   ============================================ */
+
+.continue-learning-banner {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border-radius: 12px;
+    padding: 20px 24px;
+    margin-bottom: 32px;
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+}
+
+.continue-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 12px;
+}
+
+.continue-text {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.continue-text strong {
+    font-size: 18px;
+}
+
+.continue-text span {
+    font-size: 14px;
+    opacity: 0.9;
+}
+
+.continue-actions {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+.btn-continue {
+    background: white;
+    color: #667eea;
+    padding: 10px 24px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 14px;
+    transition: all 0.2s;
+    white-space: nowrap;
+}
+
+.btn-continue:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.btn-reset {
+    background: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: white;
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-reset:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+.continue-progress {
+    font-size: 13px;
+    opacity: 0.9;
+    text-align: right;
+}
+
+/* ============================================
+   Mark as Complete Button
+   ============================================ */
+
+.mark-complete-btn {
+    background: #f8f9fa;
+    border: 2px solid #4CAF50;
+    color: #4CAF50;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    margin: 20px 0;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.mark-complete-btn:hover {
+    background: #4CAF50;
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(76, 175, 80, 0.3);
+}
+
+.mark-complete-btn.completed {
+    background: #4CAF50;
+    color: white;
+    cursor: default;
+}
+
+.mark-complete-btn.completed:hover {
+    transform: none;
+}
+
+/* ============================================
+   Completion Toast
+   ============================================ */
+
+.completion-toast {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    background: #4CAF50;
+    color: white;
+    padding: 16px 24px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    font-weight: 600;
+    font-size: 16px;
+    z-index: 9999;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.3s ease;
+}
+
+.completion-toast.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ============================================
+   Mobile Quick Navigation
+   ============================================ */
+
+.mobile-quick-nav {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 9000;
+}
+
+.quick-nav-btn {
+    background: #4CAF50;
+    color: white;
+    border: none;
+    padding: 14px 20px;
+    border-radius: 30px;
+    font-size: 15px;
+    font-weight: 600;
+    box-shadow: 0 4px 12px rgba(76, 175, 80, 0.4);
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.quick-nav-btn:active {
+    transform: scale(0.95);
+}
+
+.quick-nav-menu {
+    position: absolute;
+    bottom: 60px;
+    right: 0;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    padding: 8px;
+    min-width: 180px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.quick-nav-menu.hidden {
+    display: none;
+}
+
+.quick-nav-menu a {
+    padding: 12px 16px;
+    border-radius: 8px;
+    text-decoration: none;
+    color: #333;
+    font-size: 15px;
+    transition: background 0.2s;
+}
+
+.quick-nav-menu a:hover {
+    background: #f8f9fa;
+}
+
+/* ============================================
+   Enhanced Homepage Hero
+   ============================================ */
+
+.hero-section {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 60px 32px;
+    border-radius: 16px;
+    margin-bottom: 48px;
+    text-align: center;
+}
+
+.hero-section h1 {
+    font-size: 42px;
+    margin: 0 0 16px 0;
+}
+
+.hero-section .subtitle {
+    font-size: 20px;
+    opacity: 0.9;
+    margin-bottom: 32px;
+}
+
+.hero-cta {
+    display: inline-block;
+    background: white;
+    color: #667eea;
+    padding: 16px 40px;
+    border-radius: 8px;
+    font-size: 18px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.2s;
+}
+
+.hero-cta:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* ============================================
+   Responsive Design
+   ============================================ */
+
+@media (max-width: 768px) {
+    .onboarding-content {
+        padding: 32px 24px;
+        width: 95%;
+    }
+
+    .onboarding-step h2 {
+        font-size: 24px;
+    }
+
+    .choice-cards {
+        grid-template-columns: 1fr;
+    }
+
+    .final-options {
+        grid-template-columns: 1fr;
+    }
+
+    .continue-content {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .continue-actions {
+        width: 100%;
+        flex-direction: column;
+    }
+
+    .btn-continue {
+        width: 100%;
+        text-align: center;
+    }
+
+    .hero-section h1 {
+        font-size: 32px;
+    }
+
+    .hero-section .subtitle {
+        font-size: 18px;
+    }
+
+    .mobile-quick-nav {
+        display: block;
+    }
+}
+
+@media (min-width: 769px) {
+    .mobile-quick-nav {
+        display: none;
+    }
+}
+
+/* ============================================
+   JupyterBook Theme Enhancements
+   ============================================ */
+
+/* Better code block styling */
+div.highlight {
+    border-radius: 8px;
+    margin: 16px 0;
+}
+
+/* Better table styling */
+table {
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+/* Improved link colors */
+a {
+    color: #4CAF50;
+    transition: color 0.2s;
+}
+
+a:hover {
+    color: #45a049;
+}
+
+/* Badge styling for shields.io badges */
+img[src*="shields.io"] {
+    display: inline-block;
+    margin: 4px;
+}
+
+/* Smooth scrolling */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Focus styles for accessibility */
+*:focus-visible {
+    outline: 2px solid #4CAF50;
+    outline-offset: 2px;
+}
+
+/* Print styles */
+@media print {
+    .onboarding-modal,
+    .continue-learning-banner,
+    .mobile-quick-nav,
+    .mark-complete-btn,
+    .completion-toast {
+        display: none !important;
+    }
+}

@@ -15,6 +15,10 @@ html:
   use_repository_button: true
   use_issues_button: true
   baseurl: "https://mykolas-perevicius.github.io/Education_Playground/"
+  extra_footer: |
+    <script src="_static/js/onboarding.js"></script>
+  extra_css:
+    - _static/css/custom.css
 
 launch_buttons:
   colab_url: "https://colab.research.google.com"

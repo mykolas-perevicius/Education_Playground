@@ -1,31 +1,52 @@
-# Education Playground - Interactive Programming, AI & Computing Platform
+# Education Playground
 
-Welcome to the Education Playground! A **production-quality**, comprehensive, self-paced learning platform covering **Python Programming**, **Artificial Intelligence**, **Machine Learning**, **High-Performance Computing**, **GPU/CUDA Programming**, and **Computer Science Fundamentals** for all skill levels.
+![Python](https://img.shields.io/badge/python-3.10+-blue.svg)
+![License](https://img.shields.io/badge/license-MIT-green.svg)
+![Jupyter Book](https://img.shields.io/badge/Jupyter-Book-orange.svg)
+![Status](https://img.shields.io/badge/status-active-success.svg)
+![Last Updated](https://img.shields.io/github/last-commit/mykolas-perevicius/Education_Playground)
+
+> Learn Python, AI, and Computing — From Zero to Hero
+
+A comprehensive, self-paced learning platform covering **Python**, **AI/ML**, **GPU Computing**, and **Computer Science** for all skill levels. **100% free** and runs in your browser!
 
 ---
 
-## 🚀 START HERE - Quick Launch
+## 🚀 START LEARNING (30 seconds)
 
-**Choose your adventure:**
+**New here? An interactive guide will help you find your path when you visit the site!**
 
-### 📱 Learn on Any Device (Phone, Tablet, Desktop)
-**Browse right here!** This website works on any device. Read tutorials, view exercises, and explore topics.
+Or jump straight in:
 
-### ▶️ Run Code Interactively (FREE - No Setup!)
-Click the **rocket icon** 🚀 on any notebook page and select **"Colab"** to run code in your browser (works on mobile too!)
+<div align="center">
 
-### 🎯 Not Sure Where to Begin?
+### 🌟 **Complete Beginner?**
+**[→ Start Lesson 1 (Colab)](https://colab.research.google.com/github/mykolas-perevicius/Education_Playground/blob/main/easy/01_introduction_to_python.ipynb)**
+*Opens in your browser • No installation needed • Works on any device*
 
-**Pick your path:**
+---
 
-| Your Background | Start Here | Time |
-|----------------|------------|------|
-| **Never coded before** | [Beginner Scripts](beginner_scripts/README.md) → 10 simple lessons | 3-5 hrs |
-| **Some coding experience** | [Calibration Test](00_calibration_test.ipynb) → Find your level | 30 min |
-| **Want AI/ML/GPU** | [Hard Level](hard/README_HARD.md) → Advanced topics | Jump in! |
-| **Need dev tools** | [Developer Tools](tools/README.md) → Git, Docker, Shell | Jump in! |
+### 💪 **Have Some Experience?**
+**[→ Take the 5-Minute Level Finder](00_calibration_test.ipynb)**
+*Find your perfect starting point*
 
-**👉 Most Popular:** Start with the [Calibration Test](00_calibration_test.ipynb) to find your perfect starting point!
+---
+
+### 🚀 **Advanced User?**
+**[→ Browse All Topics](#course-structure)** | **[→ GPU Computing](hard/11_cuda_and_parallel_computing.ipynb)** | **[→ AI/ML](hard/04_deep_learning_and_neural_networks.ipynb)**
+
+</div>
+
+---
+
+## ✨ Why Education Playground?
+
+- ✅ **No Setup Required** — Start learning in your browser with Google Colab
+- ✅ **Complete Curriculum** — 40+ interactive notebooks covering beginner to expert
+- ✅ **Self-Paced** — Learn at your own speed with clear progress tracking
+- ✅ **Real Projects** — Build actual applications, not just exercises
+- ✅ **Free Forever** — Open source and accessible to everyone
+- ✅ **Mobile Friendly** — Learn on phone, tablet, or desktop
 
 ---
 
@@ -606,11 +627,66 @@ If you have questions or need help:
 - **Real-World Focus**: Industry-applicable examples
 - **Testing**: All code validated and tested
 
+## 💬 Need Help?
+
+**Stuck on something? You're not alone!**
+
+### 💭 Communities
+- **[Python Discord](https://pythondiscord.com/)** — Live help from 350,000+ Python developers
+- **[r/learnpython](https://reddit.com/r/learnpython)** — Beginner-friendly Python community
+- **[r/learnmachinelearning](https://reddit.com/r/learnmachinelearning)** — ML/AI support
+- **[Stack Overflow](https://stackoverflow.com/questions/tagged/python)** — Q&A for specific problems
+
+### 🐛 Report Issues
+- **[GitHub Issues](https://github.com/mykolas-perevicius/Education_Playground/issues)** — Found a bug or have a suggestion?
+
+---
+
+## 📚 Additional Learning Resources
+
+Want to supplement your learning? Check out these excellent resources:
+
+### Python Fundamentals
+- **[Python.org Official Tutorial](https://docs.python.org/3/tutorial/)** — The definitive Python guide
+- **[Real Python](https://realpython.com/)** — In-depth Python tutorials
+- **[Automate the Boring Stuff](https://automatetheboringstuff.com/)** — Free book, practical projects
+- **[Python Tutor](https://pythontutor.com/)** — Visualize code execution
+
+### Machine Learning & AI
+- **[Google ML Crash Course](https://developers.google.com/machine-learning/crash-course)** — Free Google course
+- **[Fast.ai](https://www.fast.ai/)** — Practical deep learning
+- **[3Blue1Brown - Neural Networks](https://www.youtube.com/playlist?list=PLZHQObOWTQDNU6R1_67000Dx_ZCJB-3pi)** — Beautiful visual explanations
+- **[Kaggle Learn](https://www.kaggle.com/learn)** — Interactive ML courses
+
+### Practice & Challenges
+- **[LeetCode](https://leetcode.com/)** — Coding interview prep
+- **[HackerRank](https://www.hackerrank.com/)** — Programming challenges
+- **[Exercism](https://exercism.org/tracks/python)** — Practice with mentorship
+- **[Advent of Code](https://adventofcode.com/)** — Fun yearly programming puzzles
+
+### Developer Tools
+- **[MIT Missing Semester](https://missing.csail.mit.edu/)** — Essential dev tools course
+- **[Oh My Git!](https://ohmygit.org/)** — Learn Git interactively
+- **[Learn Git Branching](https://learngitbranching.js.org/)** — Visual Git tutorial
+
+### Video Tutorials
+- **[Corey Schafer - Python](https://www.youtube.com/c/Coreyms)** — Excellent Python tutorials
+- **[freeCodeCamp](https://www.youtube.com/c/Freecodecamp)** — Full courses (4-10 hours)
+- **[Sentdex](https://www.youtube.com/c/sentdex)** — Python & ML tutorials
+
+---
+
 ## Acknowledgments
 
 Created to make programming, AI, computer science, and high-performance computing education accessible and interactive for everyone.
 
 Special thanks to the open-source community and the thousands of developers who have contributed to the tools and libraries featured in this curriculum.
+
+---
+
+## 🎓 Start Your Journey
+
+**Ready to begin?** [Click here to start learning!](https://mykolas-perevicius.github.io/Education_Playground/)
 
 ---
 
