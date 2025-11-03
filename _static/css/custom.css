@@ -627,11 +627,133 @@
     .mobile-quick-nav {
         display: block;
     }
+
+    .bd-container__inner.bd-page-width {
+        max-width: 100%;
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+
+    .bd-main .bd-content {
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    .hero-section {
+        padding: 36px 20px;
+    }
+
+    .hero-section h1 {
+        font-size: 28px;
+        line-height: 1.2;
+    }
+
+    .hero-section .subtitle {
+        font-size: 16px;
+    }
+
+    .hero-cta {
+        width: 100%;
+        padding: 14px 20px;
+        font-size: 16px;
+    }
+
+    .continue-learning-banner {
+        padding: 18px;
+    }
+
+    .continue-content {
+        gap: 12px;
+    }
+
+    .continue-actions {
+        gap: 10px;
+    }
+
+    .btn {
+        width: 100%;
+        text-align: center;
+    }
+
+    .option-card {
+        padding: 16px;
+    }
+
+    .bd-sidebar-primary {
+        width: 100%;
+    }
+
+    .bd-header .navbar-brand img {
+        max-height: 36px;
+    }
+
+    .bd-header .navbar-brand .logo__title {
+        font-size: 1.1rem;
+    }
+
+    .bd-sidebar-primary .bd-sidenav {
+        padding-bottom: 24px;
+    }
 }
 
 @media (min-width: 769px) {
     .mobile-quick-nav {
         display: none;
+    }
+}
+
+@media (max-width: 1024px) {
+    #pst-primary-sidebar-checkbox:not(:checked) ~ .bd-container .bd-sidebar-primary {
+        transform: translateX(-100%);
+        transition: transform 0.3s ease;
+    }
+
+    #pst-primary-sidebar-checkbox:checked ~ .bd-container .bd-sidebar-primary {
+        transform: translateX(0);
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 100vh;
+        width: min(80%, 320px);
+        overflow-y: auto;
+        background: #ffffff;
+        box-shadow: 0 0 30px rgba(0, 0, 0, 0.25);
+        z-index: 9998;
+        padding-bottom: 48px;
+    }
+
+    #pst-primary-sidebar-checkbox:checked ~ .overlay-primary {
+        display: block;
+        z-index: 9997;
+        background: rgba(0, 0, 0, 0.4);
+    }
+
+    #pst-primary-sidebar-checkbox:not(:checked) ~ .overlay-primary {
+        display: none;
+    }
+
+    .bd-container__inner.bd-page-width {
+        display: block;
+    }
+
+    .bd-sidebar-primary .bd-sidebar {
+        width: 100%;
+    }
+
+    .bd-sidebar-primary .bd-sidenav {
+        padding: 24px 20px 40px;
+    }
+
+    .bd-sidebar-primary .sidebar-header-items {
+        padding: 20px 20px 0;
+    }
+
+    .bd-main {
+        width: 100%;
+    }
+
+    .bd-main .bd-content {
+        margin-left: 0;
     }
 }
 

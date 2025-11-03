@@ -39,6 +39,8 @@ wheels/
 .pytest_cache/
 .coverage
 htmlcov/
+.nbexec-cache/
+artifacts/
 
 # Environment
 .env

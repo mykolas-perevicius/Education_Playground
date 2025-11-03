@@ -625,6 +625,25 @@
         });
     }
 
+    function syncSidebarToggleTargets() {
+        const primaryCheckbox = document.getElementById('pst-primary-sidebar-checkbox');
+        const secondaryCheckbox = document.getElementById('pst-secondary-sidebar-checkbox');
+
+        if (primaryCheckbox) {
+            const labels = document.querySelectorAll('label[for="__primary"], label.primary-toggle');
+            labels.forEach(label => {
+                label.setAttribute('for', primaryCheckbox.id);
+            });
+        }
+
+        if (secondaryCheckbox) {
+            const labels = document.querySelectorAll('label[for="__secondary"], label.secondary-toggle');
+            labels.forEach(label => {
+                label.setAttribute('for', secondaryCheckbox.id);
+            });
+        }
+    }
+
     // Initialize everything when DOM is ready
     function init() {
         basePath = computeBasePath();
@@ -648,6 +667,9 @@
 
         // Add mark as complete buttons
         addCompleteButtons(tracker);
+
+        // Fix sidebar toggles (Jupyter Book 1.0 compatibility)
+        syncSidebarToggleTargets();
 
         // Add mobile navigation
         addMobileQuickNav();
