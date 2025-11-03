@@ -20,6 +20,61 @@
         COLAB_BASE: 'https://colab.research.google.com/github/mykolas-perevicius/Education_Playground/blob/main/'
     };
 
+    let basePath = '/';
+
+    function computeBasePath() {
+        const docOptions = document.getElementById('documentation_options');
+        if (docOptions) {
+            const root = docOptions.getAttribute('data-url_root') || '/';
+            const url = new URL(root, window.location.href);
+            let path = url.pathname;
+            if (!path.endsWith('/')) {
+                path += '/';
+            }
+            return path;
+        }
+        const path = window.location.pathname;
+        const idx = path.lastIndexOf('/');
+        let base = idx >= 0 ? path.slice(0, idx + 1) : '/';
+        if (!base.endsWith('/')) {
+            base += '/';
+        }
+        return base || '/';
+    }
+
+    function buildDocUrl(relativePath = '') {
+        const trimmedBase = basePath.replace(/\/+$/, '');
+        const trimmedRelative = (relativePath || '').replace(/^\/+/, '');
+
+        if (!trimmedRelative) {
+            return trimmedBase ? `${trimmedBase}/` : '/';
+        }
+
+        if (!trimmedBase) {
+            return `/${trimmedRelative}`;
+        }
+
+        return `${trimmedBase}/${trimmedRelative}`;
+    }
+
+    function normalizePath(path) {
+        if (!path) return null;
+
+        try {
+            if (path.startsWith('http://') || path.startsWith('https://')) {
+                return new URL(path).pathname;
+            }
+        } catch (err) {
+            // Ignore malformed URLs and fall back to relative handling
+        }
+
+        if (path.startsWith('/')) {
+            return path;
+        }
+
+        return buildDocUrl(path);
+    }
+
     // Progress tracking
     class ProgressTracker {
         constructor() {
@@ -28,12 +83,30 @@
 
         load() {
             const stored = localStorage.getItem(CONFIG.STORAGE_KEY);
-            return stored ? JSON.parse(stored) : {
+            const data = stored ? JSON.parse(stored) : {
                 level: null,
                 completedLessons: [],
                 lastVisited: null,
                 startedAt: null
             };
+            return this.normalizeData(data);
+        }
+
+        normalizeData(data) {
+            const normalized = { ...data };
+
+            normalized.lastVisited = normalizePath(normalized.lastVisited);
+
+            if (Array.isArray(normalized.completedLessons)) {
+                const lessons = normalized.completedLessons
+                    .map(normalizePath)
+                    .filter(Boolean);
+                normalized.completedLessons = Array.from(new Set(lessons));
+            } else {
+                normalized.completedLessons = [];
+            }
+
+            return normalized;
         }
 
         save() {
@@ -49,14 +122,17 @@
         }
 
         markLessonComplete(lessonPath) {
-            if (!this.data.completedLessons.includes(lessonPath)) {
-                this.data.completedLessons.push(lessonPath);
+            const normalized = normalizePath(lessonPath);
+            if (!normalized) return;
+
+            if (!this.data.completedLessons.includes(normalized)) {
+                this.data.completedLessons.push(normalized);
                 this.save();
             }
         }
 
         setLastVisited(path) {
-            this.data.lastVisited = path;
+            this.data.lastVisited = normalizePath(path);
             this.save();
         }
 
@@ -313,9 +389,8 @@
                 // Multiple options (advanced users)
                 content += '<div class="final-options">';
                 config.options.forEach(opt => {
-                    const colabUrl = CONFIG.COLAB_BASE + opt.path.replace('.html', '.ipynb');
                     content += `
-                        <a href="${opt.path}" class="option-card" data-level="${level}">
+                        <a href="${buildDocUrl(opt.path)}" class="option-card" data-level="${level}">
                             <span class="option-icon">${opt.icon}</span>
                             <span class="option-label">${opt.label}</span>
                         </a>
@@ -342,7 +417,7 @@
                 }
 
                 content += `
-                        <a href="${config.path}" class="btn btn-secondary" data-level="${level}">
+                        <a href="${buildDocUrl(config.path)}" class="btn btn-secondary" data-level="${level}">
                             📖 Browse Lessons
                         </a>
                     </div>
@@ -406,6 +481,7 @@
 
             const banner = document.createElement('div');
             banner.className = 'continue-learning-banner';
+            const continueHref = progress.lastVisited || buildDocUrl();
             banner.innerHTML = `
                 <div class="continue-content">
                     <div class="continue-text">
@@ -413,7 +489,7 @@
                         <span>Continue where you left off</span>
                     </div>
                     <div class="continue-actions">
-                        <a href="${progress.lastVisited}" class="btn btn-continue">
+                        <a href="${continueHref}" class="btn btn-continue">
                             Continue Learning →
                         </a>
                         <button class="btn-reset" title="Start over">
@@ -462,7 +538,8 @@
         if (!article) return;
 
         const currentPath = window.location.pathname;
-        const isCompleted = tracker.getProgress().completedLessons.includes(currentPath);
+        const normalizedPath = normalizePath(currentPath);
+        let isCompleted = tracker.getProgress().completedLessons.includes(normalizedPath);
 
         const button = document.createElement('button');
         button.className = 'mark-complete-btn ' + (isCompleted ? 'completed' : '');
@@ -475,6 +552,7 @@
                 tracker.markLessonComplete(currentPath);
                 button.className = 'mark-complete-btn completed';
                 button.innerHTML = '✅ Completed';
+                isCompleted = true;
 
                 // Show celebration
                 showCompletionToast();
@@ -514,16 +592,33 @@
                 📚 Quick Nav
             </button>
             <div class="quick-nav-menu hidden">
-                <a href="/">🏠 Home</a>
-                <a href="/beginner_scripts/README.html">🌱 Beginner</a>
-                <a href="/easy/README_EASY.html">📗 Easy</a>
-                <a href="/medium/README_MEDIUM.html">📘 Medium</a>
-                <a href="/hard/README_HARD.html">📕 Hard</a>
-                <a href="/tools/README.html">🛠️ Tools</a>
+                <a data-rel="home">🏠 Home</a>
+                <a data-rel="beginner">🌱 Beginner</a>
+                <a data-rel="easy">📗 Easy</a>
+                <a data-rel="medium">📘 Medium</a>
+                <a data-rel="hard">📕 Hard</a>
+                <a data-rel="tools">🛠️ Tools</a>
             </div>
         `;
 
         document.body.appendChild(nav);
+
+        const menu = nav.querySelector('.quick-nav-menu');
+        const links = {
+            home: '',
+            beginner: CONFIG.PATHS.beginner,
+            easy: 'easy/README_EASY.html',
+            medium: 'medium/README_MEDIUM.html',
+            hard: 'hard/README_HARD.html',
+            tools: 'tools/README.html'
+        };
+
+        Object.entries(links).forEach(([rel, target]) => {
+            const anchor = menu.querySelector(`[data-rel="${rel}"]`);
+            if (anchor) {
+                anchor.setAttribute('href', buildDocUrl(target));
+            }
+        });
 
         document.getElementById('quick-nav-toggle').addEventListener('click', () => {
             nav.querySelector('.quick-nav-menu').classList.toggle('hidden');
@@ -532,6 +627,7 @@
 
     // Initialize everything when DOM is ready
     function init() {
+        basePath = computeBasePath();
         const tracker = new ProgressTracker();
 
         // Track current page
