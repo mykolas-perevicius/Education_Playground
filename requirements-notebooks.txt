@@ -1,0 +1,11 @@
+numpy
+numba
+torch
+nbformat
+nbconvert
+ipykernel
+playwright
+imageio
+
+# Optional GPU extras (install manually when CUDA drivers available):
+# cupy-cuda11x
