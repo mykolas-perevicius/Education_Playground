@@ -206,6 +206,30 @@ This will help you determine which level to start with.
 
 ---
 
+## Guided Paths, Inline Checkers & Analytics
+
+Once the site is built (`bash scripts/build_book.sh`) you’ll have access to the new guided-learning surface:
+
+1. **Guided Paths Panel**
+   - Open `_build/html/README.html` in your browser.
+   - Use the sidebar panel to pick a curated journey (Data Analyst, ML Engineer, Python Pro).
+   - Click “Reset” in the panel to clear your selection.
+2. **Mark Lessons Complete**
+   - Each notebook page now shows a “Mark Lesson Complete” button under the title.
+   - Clicking it drops a completion badge beside the sidebar entry.
+3. **Inline Exercise Checkers**
+   - Look for highlighted sections tagged “Inline Checker”. Edit the code, then click **Run Check** to validate your solution.
+   - Expectations are encoded in the `data-inline-checker` attributes—add your own by copying the existing markup.
+4. **Live Python Consoles**
+   - Blocks tagged `data-live-console` provide a Pyodide-backed editor so you can experiment without leaving the docs.
+   - Use the **Run Code** / **Reset** buttons to iterate quickly.
+5. **Download Progress Analytics**
+   - Scroll to the footer and click **Download Learning Analytics** to export a JSON snapshot of your current progress and guided-path coverage.
+
+> ✅ Tip: Add new inline checkers or consoles by inserting the same HTML snippets into your notebooks—the front-end automatically upgrades them on page load.
+
+---
+
 ## IDE Setup
 
 ### VS Code (Recommended)

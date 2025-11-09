@@ -17,6 +17,7 @@ html:
   baseurl: "https://mykolas-perevicius.github.io/Education_Playground/"
   extra_footer: |
     <script src="_static/js/onboarding.js"></script>
+    <script src="_static/js/learning_tools.js"></script>
   extra_css:
     - _static/css/custom.css
 

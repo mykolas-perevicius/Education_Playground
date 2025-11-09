@@ -90,7 +90,7 @@ async def perform_interactions(page: Page, base_delay: float, enabled: bool) -> 
         pass
 
 
-async def launch_browser(playwright) -> tuple[Browser, str]:
+async def launch_browser(playwright, headless: bool) -> tuple[Browser, str]:
     errors = []
     for launcher, name in (
         (playwright.chromium, "Chromium"),
@@ -98,8 +98,8 @@ async def launch_browser(playwright) -> tuple[Browser, str]:
         (playwright.webkit, "WebKit"),
     ):
         try:
-            LOGGER.debug("Attempting to launch %s", name)
-            browser = await launcher.launch(headless=False)
+            LOGGER.debug("Attempting to launch %s (headless=%s)", name, headless)
+            browser = await launcher.launch(headless=headless)
             return browser, name
         except Exception as exc:
             LOGGER.warning("Failed to launch %s: %s", name, exc)
@@ -114,6 +114,8 @@ async def play_showcase(
     video_out: Path | None,
     gif_out: Path | None,
     gif_speed: float,
+    keep_frames: bool,
+    headless: bool,
 ) -> None:
     if not DOCS_ROOT.exists():
         raise FileNotFoundError(
@@ -140,128 +142,134 @@ async def play_showcase(
 
     try:
         async with async_playwright() as p:
-            browser, browser_name = await launch_browser(p)
+            browser, browser_name = await launch_browser(p, headless=headless)
             context_kwargs = {"viewport": {"width": 1280, "height": 720}}
 
-        video_temp_dir: Path | None = None
-        if video_out:
-            video_temp_dir = Path(tempfile.mkdtemp(prefix="playwright-video-", dir=ARTIFACTS_DIR))
-            context_kwargs["record_video_dir"] = str(video_temp_dir)
-            context_kwargs["record_video_size"] = {"width": 1280, "height": 720}
-
-        context = await browser.new_context(**context_kwargs)
-        page = await context.new_page()
-        page.set_default_navigation_timeout(15_000)
-        page.set_default_timeout(15_000)
-
-        try:
-            step = 0
-            while queue:
-                rel_path = queue.popleft()
-                if rel_path in visited:
-                    continue
-
-                step += 1
-                url = f"{BASE_URL}{rel_path}"
-                LOGGER.info("[%s] Visiting %s (%s)", step, rel_path, browser_name)
-
-                await page.goto(url)
-                await page.evaluate(
-                    """
-                    (label) => {
-                        if (!window.__playwrightOverlay) {
-                            const el = document.createElement('div');
-                            el.style.position = 'fixed';
-                            el.style.top = '16px';
-                            el.style.left = '50%';
-                            el.style.transform = 'translateX(-50%)';
-                            el.style.zIndex = '9999';
-                            el.style.background = 'rgba(76, 175, 80, 0.9)';
-                            el.style.color = '#fff';
-                            el.style.padding = '10px 18px';
-                            el.style.borderRadius = '999px';
-                            el.style.fontFamily = 'system-ui, sans-serif';
-                            el.style.boxShadow = '0 10px 30px rgba(0,0,0,0.25)';
-                            el.style.pointerEvents = 'none';
-                            document.body.appendChild(el);
-                            window.__playwrightOverlay = el;
-                        }
-                        window.__playwrightOverlay.textContent = `▶ ${label}`;
-                    }
-                    """,
-                    rel_path,
-                )
-
-                await perform_interactions(page, delay, interactions)
-
-                if gif_frames_dir:
-                    safe_name = rel_path.replace("/", "_")
-                    frame_path = gif_frames_dir / f"{step:03d}_{safe_name}.png"
-                    await page.screenshot(path=str(frame_path), full_page=True)
-                    frame_paths.append(frame_path)
-
-                await page.wait_for_load_state("networkidle")
-                with contextlib.suppress(Exception):
-                    await page.wait_for_timeout(int(delay * 1000))
-
-                anchors = await page.locator("a[href]").all()
-                for anchor in anchors:
-                    href = await anchor.get_attribute("href")
-                    candidate = normalize_internal_href(BASE_URL, href, home_page=HOME_PAGE)
-                    if not candidate:
-                        continue
-                    if candidate in visited or candidate in queue:
-                        continue
-                    queue.append(candidate)
-
-                visited.add(rel_path)
-
-                if expected.issubset(visited):
-                    LOGGER.info("Reached all %s pages listed in _toc.yml; stopping crawl.", total_expected)
-                    break
-
-                if limit is not None and step >= limit:
-                    break
-
-                if len(visited) > max_pages:
-                    LOGGER.warning(
-                        "Visited %s pages, exceeding the allowed %s (expected %s). Aborting crawl.",
-                        len(visited),
-                        max_pages,
-                        total_expected,
-                    )
-                    break
-
-            missing = sorted(expected - visited)
-            if missing:
-                LOGGER.warning("Missing pages from crawl:")
-                for item in missing:
-                    LOGGER.warning("  - %s", item)
-            else:
-                LOGGER.info("Reached every page listed in _toc.yml!")
-
-            with contextlib.suppress(Exception):
-                await page.wait_for_timeout(2000)
-        finally:
-            recorded_video: Path | None = None
+            video_temp_dir: Path | None = None
             if video_out:
-                try:
-                    await page.close()
-                    if page.video:
-                        video_path = await page.video.path()
+                video_temp_dir = Path(tempfile.mkdtemp(prefix="playwright-video-", dir=ARTIFACTS_DIR))
+                context_kwargs["record_video_dir"] = str(video_temp_dir)
+                context_kwargs["record_video_size"] = {"width": 1280, "height": 720}
+
+            context = await browser.new_context(**context_kwargs)
+            page: Page | None = None
+            page = await context.new_page()
+            page.set_default_navigation_timeout(15_000)
+            page.set_default_timeout(15_000)
+
+            try:
+                step = 0
+                while queue:
+                    rel_path = queue.popleft()
+                    if rel_path in visited:
+                        continue
+
+                    step += 1
+                    url = f"{BASE_URL}{rel_path}"
+                    LOGGER.info("[%s] Visiting %s (%s)", step, rel_path, browser_name)
+
+                    await page.goto(url)
+                    await page.evaluate(
+                        """
+                        (label) => {
+                            if (!window.__playwrightOverlay) {
+                                const el = document.createElement('div');
+                                el.style.position = 'fixed';
+                                el.style.top = '16px';
+                                el.style.left = '50%';
+                                el.style.transform = 'translateX(-50%)';
+                                el.style.zIndex = '9999';
+                                el.style.background = 'rgba(76, 175, 80, 0.9)';
+                                el.style.color = '#fff';
+                                el.style.padding = '10px 18px';
+                                el.style.borderRadius = '999px';
+                                el.style.fontFamily = 'system-ui, sans-serif';
+                                el.style.boxShadow = '0 10px 30px rgba(0,0,0,0.25)';
+                                el.style.pointerEvents = 'none';
+                                document.body.appendChild(el);
+                                window.__playwrightOverlay = el;
+                            }
+                            window.__playwrightOverlay.textContent = `▶ ${label}`;
+                        }
+                        """,
+                        rel_path,
+                    )
+
+                    await perform_interactions(page, delay, interactions)
+
+                    if gif_frames_dir:
+                        safe_name = rel_path.replace("/", "_")
+                        frame_path = gif_frames_dir / f"{step:03d}_{safe_name}.png"
+                        await page.screenshot(path=str(frame_path), full_page=True)
+                        frame_paths.append(frame_path)
+
+                    await page.wait_for_load_state("networkidle")
+                    with contextlib.suppress(Exception):
+                        await page.wait_for_timeout(int(delay * 1000))
+
+                    anchors = await page.locator("a[href]").all()
+                    for anchor in anchors:
+                        href = await anchor.get_attribute("href")
+                        candidate = normalize_internal_href(BASE_URL, href, home_page=HOME_PAGE)
+                        if not candidate:
+                            continue
+                        if candidate in visited or candidate in queue:
+                            continue
+                        queue.append(candidate)
+
+                    visited.add(rel_path)
+
+                    if expected.issubset(visited):
+                        LOGGER.info("Reached all %s pages listed in _toc.yml; stopping crawl.", total_expected)
+                        break
+
+                    if limit is not None and step >= limit:
+                        break
+
+                    if len(visited) > max_pages:
+                        LOGGER.warning(
+                            "Visited %s pages, exceeding the allowed %s (expected %s). Aborting crawl.",
+                            len(visited),
+                            max_pages,
+                            total_expected,
+                        )
+                        break
+
+                missing = sorted(expected - visited)
+                if missing:
+                    LOGGER.warning("Missing pages from crawl:")
+                    for item in missing:
+                        LOGGER.warning("  - %s", item)
+                else:
+                    LOGGER.info("Reached every page listed in _toc.yml!")
+
+                with contextlib.suppress(Exception):
+                    await page.wait_for_timeout(2000)
+            finally:
+                page_video = None
+                if page is not None:
+                    page_video = page.video if video_out else None
+                    with contextlib.suppress(Exception):
+                        await page.close()
+
+                if video_out and page_video:
+                    try:
+                        video_path = await page_video.path()
                         video_out.parent.mkdir(parents=True, exist_ok=True)
                         shutil.move(video_path, video_out)
                         recorded_video = video_out
                         LOGGER.info("Video saved to %s", video_out)
-                    if video_temp_dir and video_temp_dir.exists():
-                        shutil.rmtree(video_temp_dir)
-                except Exception as exc:
-                    LOGGER.warning("Unable to finalize video: %s", exc)
+                    except Exception as exc:
+                        LOGGER.warning("Unable to finalize video: %s", exc)
 
-            with contextlib.suppress(Exception):
-                await context.close()
-            with contextlib.suppress(Exception):
-                await browser.close()
+                if video_temp_dir and video_temp_dir.exists():
+                    with contextlib.suppress(Exception):
+                        shutil.rmtree(video_temp_dir)
+
+                with contextlib.suppress(Exception):
+                    await context.close()
+                with contextlib.suppress(Exception):
+                    await browser.close()
 
     except asyncio.CancelledError:
         LOGGER.info("Showcase cancelled; cleaning up.")
@@ -281,6 +289,30 @@ async def play_showcase(
         except Exception as exc:
             LOGGER.warning("Unable to render GIF: %s", exc)
 
+    if gif_frames_dir and gif_frames_dir.exists() and not keep_frames:
+        with contextlib.suppress(Exception):
+            shutil.rmtree(gif_frames_dir)
+
+
+def parse_non_negative_float(value: str) -> float:
+    try:
+        parsed = float(value)
+    except ValueError as exc:
+        raise argparse.ArgumentTypeError(f"Invalid float value: {value}") from exc
+    if parsed < 0.0:
+        raise argparse.ArgumentTypeError("Value must be non-negative.")
+    return parsed
+
+
+def parse_non_negative_int(value: str) -> int:
+    try:
+        parsed = int(value)
+    except ValueError as exc:
+        raise argparse.ArgumentTypeError(f"Invalid integer value: {value}") from exc
+    if parsed < 0:
+        raise argparse.ArgumentTypeError("Value must be non-negative.")
+    return parsed
+
 
 def parse_path(value: str | None) -> Path | None:
     if value is None:
@@ -292,13 +324,13 @@ def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument(
         "--delay",
-        type=float,
+        type=parse_non_negative_float,
         default=1.5,
         help="Seconds to pause on each page (default: 1.5).",
     )
     parser.add_argument(
         "--limit",
-        type=int,
+        type=parse_non_negative_int,
         default=None,
         help="Maximum number of pages to visit (default: entire site).",
     )
@@ -326,6 +358,16 @@ def main() -> None:
         help="Speed multiplier for GIF playback (default: 3.0 = ~3x faster than delay).",
     )
     parser.add_argument(
+        "--keep-frames",
+        action="store_true",
+        help="Retain temporary PNG frames when generating GIFs.",
+    )
+    parser.add_argument(
+        "--headless",
+        action="store_true",
+        help="Launch browsers in headless mode (default: headed).",
+    )
+    parser.add_argument(
         "--log-level",
         default="INFO",
         choices=["CRITICAL", "ERROR", "WARNING", "INFO", "DEBUG"],
@@ -347,6 +389,8 @@ def main() -> None:
                 video_out=args.video_out,
                 gif_out=args.gif_out,
                 gif_speed=max(args.gif_speed, 0.1),
+                keep_frames=args.keep_frames,
+                headless=args.headless,
             )
         )
     except KeyboardInterrupt:

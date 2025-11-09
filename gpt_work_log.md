@@ -124,3 +124,56 @@ This log tracks ChatGPT (Codex) sessions working on Education Playground.
 ### Outcomes
 - Automated Playwright runs now surface steady INFO-level progress, making it obvious which page is under test and preventing the job from looking stuck even when the browser sandbox rejects launches.
 - Both the showcase walkthrough and the pytest crawl share canonical URL handling, so skipped/duplicate pages no longer bloat the queue and the crawl terminates as soon as every `_toc` target is reached.
+
+---
+
+## Session 8: Browser Lifecycle Fix
+**Date:** 2025-11-04  
+**Status:** ✅ Complete  
+**Objective:** Keep the Playwright showcase browser alive for the full crawl and ensure cleanup happens inside the active Playwright context.
+
+### Actions
+- Reworked `scripts/playwright_showcase.py` so the `async_playwright()` context remains active while new pages are opened, preventing the browser from being torn down prematurely.
+- Collapsed browser/video cleanup inside the same context, guaranteeing we close pages, contexts, and temporary video directories deterministically.
+- Retained GIF rendering controls while honoring the video/frames guard so GIF generation skips when a video capture is requested.
+- Ensured page shutdown and temporary directory cleanup occur even when video capture is disabled, eliminating lingering handles after GIF-only runs.
+- Added an optional `--keep-frames` flag so contributors can retain raw PNG captures when producing GIFs; by default frames are now tidied automatically once rendering completes.
+
+### Outcomes
+- Showcase script no longer crashes on `Browser closed` errors triggered by an early `playwright.stop()`.
+- Resource cleanup (video files, contexts, browsers) now happens reliably even when the crawl exits early or raises.
+- GIF-only executions now release Playwright resources cleanly, with no stray browser contexts left behind, while still allowing opt-in access to the intermediate PNG frames when needed.
+
+---
+
+## Session 9: CLI Hardening & Headless Mode
+**Date:** 2025-11-04  
+**Status:** ✅ Complete  
+**Objective:** Make the Playwright showcase friendlier for automation by adding headless support and guarding against invalid CLI inputs.
+
+### Actions
+- Added a `--headless` flag that plumbs through to the browser launch helper so CI environments can run the walkthrough without a display.
+- Introduced non-negative validators for the `--delay` and `--limit` options, producing clear argparse errors when users pass bogus values.
+- Kept the GIF frame cleanup default while letting users opt-in to retain PNG captures via `--keep-frames`.
+
+### Outcomes
+- Showcase script can now run unattended in headless mode, unblocking CI smoke runs or remote demos.
+- CLI misconfiguration fails fast with readable feedback instead of crashing mid-run.
+- Artifact cleanup policy is explicit, balancing tidy defaults with easy access to raw frames when debugging animations.
+
+---
+
+## Session 10: Guided Paths & Learning UX
+**Date:** 2025-11-04  
+**Status:** ✅ Complete  
+**Objective:** Deliver comprehensive Education Playground UX upgrades spanning guided paths, progress sync, inline checkers, interactive consoles, and analytics export.
+
+### Actions
+- Added `_static/js/learning_tools.js`, centralising guided-path definitions, progress utilities, badge rendering, inline exercise checkers (with lazy Pyodide), live console snippets, and analytics download support.
+- Extended `_static/css/custom.css` with modern styling for guided cards, completion badges, inline exercise containers, console outputs, and analytics controls.
+- Updated `_config.yml` to load the new script on every page so the enhancements ship with the site build.
+
+### Outcomes
+- Learners can opt into curated journeys with at-a-glance completion badges and a dedicated mark-complete CTA per lesson.
+- Inline exercises and consoles now offer immediate feedback inside the docs, marking progress when checks succeed while keeping Pyodide loads on-demand.
+- Educators can export progress analytics (including guided-path coverage) for curriculum reviews without leaving the browser.

@@ -62,6 +62,14 @@ Or jump straight in:
 - ✅ **NEW: Performance Computing** - Profiling, optimization, Numba, multiprocessing
 - ✅ **NEW: CUDA & GPU Computing** - Parallel computing, CuPy, PyTorch GPU, multi-GPU
 
+## 🎓 Guided Learning Experience (NEW)
+
+- 🗺️ **Guided Paths** – choose curated journeys like *Data Analyst Jumpstart* or *ML Engineer Sprint* straight from the sidebar.
+- 🏅 **Progress Badges & Mark Complete** – track lessons you’ve finished with automatic sidebar badges and a quick “Mark Complete” button on every page.
+- ✅ **Inline Exercise Checkers** – solve TODOs right in the docs; instant feedback appears when your code passes the expectation.
+- 💻 **Live Python Consoles** – experiment inside the browser with a Pyodide-powered console block; no local runtime required.
+- 📊 **Downloadable Analytics** – export a JSON snapshot of your learning progress (including guided-path coverage) with a single click.
+
 ## Overview
 
 This repository contains a complete curriculum organized into three difficulty levels. Each level includes modules on:
