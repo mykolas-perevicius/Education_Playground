@@ -1,0 +1,512 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Package Management\n\n## Managing Dependencies Like a Pro\n\nWhat you’ll learn:\n- Python: pip, conda, poetry, pipenv\n- Node.js: npm, yarn, pnpm\n- System packages: apt, yum, brew\n- Version pinning and lock files\n- Virtual environments\n- Security and auditing\n\nTime: 60-90 minutes &#8212; Education Playground</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=0c185eed" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=c73c0f3e"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'tools/08_package_management';</script>
+    <script src="../_static/js/onboarding.js?v=557b7536"></script>
+    <link rel="canonical" href="https://mykolas-perevicius.github.io/Education_Playground/tools/08_package_management.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="SSH &amp; Remote Systems\n\n## Secure Remote Access\n\nWhat you’ll learn:\n- SSH fundamentals\n- Key-based authentication\n- SSH config\n- Remote command execution\n- File transfer (scp, rsync)\n- Port forwarding &amp; tunneling\n- tmux for persistent sessions\n\nTime: 75-90 minutes" href="09_ssh_remote_systems.html" />
+    <link rel="prev" title="Security Essentials for Developers" href="07_security_essentials.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../README.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Education Playground</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../00_calibration_test.html">🎯 Calibration Test - Find Your Level</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../beginner_scripts/README.html">🌱 Beginner Scripts (10 Python Files)</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../easy/README_EASY.html">📗 Easy Level - Beginner</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../easy/01_introduction_to_python.html">1. Introduction to Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../easy/02_variables_and_data_types.html">2. Variables and Data Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../easy/03_basic_operations_and_conditionals.html">3. Operations and Conditionals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../easy/04_intro_to_ai_and_ml.html">4. Intro to AI and ML</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../easy/05_computing_fundamentals.html">5. Computing Fundamentals</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../medium/README_MEDIUM.html">📘 Medium Level - Intermediate</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../medium/01_functions_and_modules.html">1. Functions and Modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../medium/02_data_structures.html">2. Data Structures</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../medium/03_classes_and_oop.html">3. Classes and OOP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../medium/04_machine_learning_basics.html">4. Machine Learning Basics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../medium/05_data_analysis_with_pandas.html">5. Data Analysis with Pandas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../medium/06_algorithms_and_problem_solving.html">6. Algorithms and Problem Solving</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../hard/README_HARD.html">📕 Hard Level - Advanced</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../hard/01_advanced_functions_and_decorators.html">1. Advanced Functions &amp; Decorators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hard/02_generators_and_iterators.html">2. Generators and Iterators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hard/03_algorithms_and_complexity.html">3. Algorithms and Complexity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hard/04_deep_learning_and_neural_networks.html">4. Deep Learning &amp; Neural Networks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hard/05_advanced_ml_and_nlp.html">5. Advanced ML and NLP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hard/06_computer_systems_and_theory.html">6. Computer Systems and Theory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hard/07_project_ideas.html">7. Project Ideas &amp; Implementation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hard/08_classic_problems.html">Lesson 8: Classic Problems Collection</a></li>
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../hard/09_ctf_challenges.html">Lesson 9: Capture The Flag (CTF) - Hacker Training</a></li>
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../hard/10_performance_computing.html">10. Performance Computing ⚡ NEW!</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hard/11_cuda_and_parallel_computing.html">11. CUDA &amp; GPU Computing 🎮 NEW!</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="README.html">🛠️ Developer Tools Track</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="01_shell_basics.html">1. Shell and Command Line</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02_command_line_tools.html">2. Command Line Tools</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03_git_essentials.html">3. Git Essentials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04_text_editors.html">4. Text Editors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05_build_systems_cicd.html">5. Build Systems and CI/CD</a></li>
+<li class="toctree-l2"><a class="reference internal" href="06_debugging_profiling.html">6. Debugging and Profiling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="07_security_essentials.html">7. Security Essentials</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">8. Package Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="09_ssh_remote_systems.html">9. SSH and Remote Systems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="10_docker_containers.html">10. Docker and Containers</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../solutions/README_SOLUTIONS.html">📝 Solutions</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../solutions/easy_solutions.html">Easy Level - Complete Solutions</a></li>
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../solutions/medium_solutions.html">Medium Level - Complete Solutions</a></li>
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../solutions/hard_solutions.html">Hard Level - Complete Solutions</a></li>
+
+
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../solutions/tools_solutions.html">Developer Tools - Complete Solutions</a></li>
+
+
+
+
+
+
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../RESOURCES.html">📚 Learning Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../PYTHON_CHEATSHEET.html">⚡ Python Cheat Sheet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ML_AI_CHEATSHEET.html">🤖 ML/AI Cheat Sheet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../SETUP.html">🔧 Setup Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../RELEASE_NOTES_v2.0.0.html">🎉 Release Notes v2.0.0</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none"></div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Package Management\n\n## Managing Dependencies Like a Pro\n\nWhat you’ll learn:\n- Python: pip, conda, poetry, pipenv\n- Node.js: npm, yarn, pnpm\n- System packages: apt, yum, brew\n- Version pinning and lock files\n- Virtual environments\n- Security and auditing\n\nTime: 60-90 minutes</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#python-package-management-n-n-pip-the-standard-tool-n-nbash-n-install-package-npip-install-requests-n-n-specific-version-npip-install-requests-2-28-0-n-n-upgrade-npip-install-upgrade-requests-n-n-install-from-requirements-npip-install-r-requirements-txt-n-n-list-installed-npip-list-n-n-show-package-info-npip-show-requests-n">1. Python Package Management\n\n### pip - The Standard Tool\n\n<code class="docutils literal notranslate"><span class="pre">bash\n#</span> <span class="pre">Install</span> <span class="pre">package\npip</span> <span class="pre">install</span> <span class="pre">requests\n\n#</span> <span class="pre">Specific</span> <span class="pre">version\npip</span> <span class="pre">install</span> <span class="pre">requests==2.28.0\n\n#</span> <span class="pre">Upgrade\npip</span> <span class="pre">install</span> <span class="pre">--upgrade</span> <span class="pre">requests\n\n#</span> <span class="pre">Install</span> <span class="pre">from</span> <span class="pre">requirements\npip</span> <span class="pre">install</span> <span class="pre">-r</span> <span class="pre">requirements.txt\n\n#</span> <span class="pre">List</span> <span class="pre">installed\npip</span> <span class="pre">list\n\n#</span> <span class="pre">Show</span> <span class="pre">package</span> <span class="pre">info\npip</span> <span class="pre">show</span> <span class="pre">requests\n</span></code></a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#virtual-environments-n-nbash-n-create-venv-npython-m-venv-myenv-n-n-activate-nsource-myenv-bin-activate-linux-mac-nmyenv-scripts-activate-windows-n-n-deactivate-ndeactivate-n">Virtual Environments\n\n<code class="docutils literal notranslate"><span class="pre">bash\n#</span> <span class="pre">Create</span> <span class="pre">venv\npython</span> <span class="pre">-m</span> <span class="pre">venv</span> <span class="pre">myenv\n\n#</span> <span class="pre">Activate\nsource</span> <span class="pre">myenv/bin/activate</span>  <span class="pre">#</span> <span class="pre">Linux/Mac\nmyenv\\Scripts\\activate</span>    <span class="pre">#</span> <span class="pre">Windows\n\n#</span> <span class="pre">Deactivate\ndeactivate\n</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#poetry-modern-python-n-nbash-n-install-poetry-ncurl-ssl-https-install-python-poetry-org-python3-n-n-init-project-npoetry-init-n-n-add-dependency-npoetry-add-requests-n-n-install-all-npoetry-install-n-n-run-command-in-venv-npoetry-run-python-app-py-n-n-npyproject-toml-ntoml-n-tool-poetry-dependencies-npython-3-8-nrequests-2-28-0-n">Poetry - Modern Python\n\n<code class="docutils literal notranslate"><span class="pre">bash\n#</span> <span class="pre">Install</span> <span class="pre">poetry\ncurl</span> <span class="pre">-sSL</span> <span class="pre">https://install.python-poetry.org</span> <span class="pre">|</span> <span class="pre">python3</span> <span class="pre">-\n\n#</span> <span class="pre">Init</span> <span class="pre">project\npoetry</span> <span class="pre">init\n\n#</span> <span class="pre">Add</span> <span class="pre">dependency\npoetry</span> <span class="pre">add</span> <span class="pre">requests\n\n#</span> <span class="pre">Install</span> <span class="pre">all\npoetry</span> <span class="pre">install\n\n#</span> <span class="pre">Run</span> <span class="pre">command</span> <span class="pre">in</span> <span class="pre">venv\npoetry</span> <span class="pre">run</span> <span class="pre">python</span> <span class="pre">app.py\n</span></code>\n\n<strong>pyproject.toml:</strong>\n<code class="docutils literal notranslate"><span class="pre">toml\n[tool.poetry.dependencies]\npython</span> <span class="pre">=</span> <span class="pre">\"^3.8\"\nrequests</span> <span class="pre">=</span> <span class="pre">\"^2.28.0\"\n</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#node-js-package-management-n-n-npm-n-nbash-n-install-package-nnpm-install-express-n-n-dev-dependency-nnpm-install-save-dev-jest-n-n-global-install-nnpm-install-g-typescript-n-n-install-from-package-json-nnpm-install-n-n-update-nnpm-update-n-n-audit-security-nnpm-audit-nnpm-audit-fix-n">2. Node.js Package Management\n\n### npm\n\n<code class="docutils literal notranslate"><span class="pre">bash\n#</span> <span class="pre">Install</span> <span class="pre">package\nnpm</span> <span class="pre">install</span> <span class="pre">express\n\n#</span> <span class="pre">Dev</span> <span class="pre">dependency\nnpm</span> <span class="pre">install</span> <span class="pre">--save-dev</span> <span class="pre">jest\n\n#</span> <span class="pre">Global</span> <span class="pre">install\nnpm</span> <span class="pre">install</span> <span class="pre">-g</span> <span class="pre">typescript\n\n#</span> <span class="pre">Install</span> <span class="pre">from</span> <span class="pre">package.json\nnpm</span> <span class="pre">install\n\n#</span> <span class="pre">Update\nnpm</span> <span class="pre">update\n\n#</span> <span class="pre">Audit</span> <span class="pre">security\nnpm</span> <span class="pre">audit\nnpm</span> <span class="pre">audit</span> <span class="pre">fix\n</span></code></a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#yarn-fast-alternative-n-nbash-n-install-yarn-nnpm-install-g-yarn-n-n-add-package-nyarn-add-express-n-n-dev-dependency-nyarn-add-dev-jest-n-n-install-all-nyarn-install-n-n-why-yarn-n-faster-than-npm-n-better-lock-file-yarn-lock-n-offline-mode-n">yarn - Fast Alternative\n\n<code class="docutils literal notranslate"><span class="pre">bash\n#</span> <span class="pre">Install</span> <span class="pre">yarn\nnpm</span> <span class="pre">install</span> <span class="pre">-g</span> <span class="pre">yarn\n\n#</span> <span class="pre">Add</span> <span class="pre">package\nyarn</span> <span class="pre">add</span> <span class="pre">express\n\n#</span> <span class="pre">Dev</span> <span class="pre">dependency\nyarn</span> <span class="pre">add</span> <span class="pre">--dev</span> <span class="pre">jest\n\n#</span> <span class="pre">Install</span> <span class="pre">all\nyarn</span> <span class="pre">install\n\n#</span> <span class="pre">Why</span> <span class="pre">yarn?\n#</span> <span class="pre">-</span> <span class="pre">Faster</span> <span class="pre">than</span> <span class="pre">npm\n#</span> <span class="pre">-</span> <span class="pre">Better</span> <span class="pre">lock</span> <span class="pre">file</span> <span class="pre">(yarn.lock)\n#</span> <span class="pre">-</span> <span class="pre">Offline</span> <span class="pre">mode\n</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#system-package-managers-n-n-apt-debian-ubuntu-n-nbash-n-update-package-list-nsudo-apt-update-n-n-upgrade-packages-nsudo-apt-upgrade-n-n-install-package-nsudo-apt-install-git-n-n-remove-package-nsudo-apt-remove-git-n-n-search-packages-napt-search-python-n-n-show-info-napt-show-python3-n">3. System Package Managers\n\n### apt (Debian/Ubuntu)\n\n<code class="docutils literal notranslate"><span class="pre">bash\n#</span> <span class="pre">Update</span> <span class="pre">package</span> <span class="pre">list\nsudo</span> <span class="pre">apt</span> <span class="pre">update\n\n#</span> <span class="pre">Upgrade</span> <span class="pre">packages\nsudo</span> <span class="pre">apt</span> <span class="pre">upgrade\n\n#</span> <span class="pre">Install</span> <span class="pre">package\nsudo</span> <span class="pre">apt</span> <span class="pre">install</span> <span class="pre">git\n\n#</span> <span class="pre">Remove</span> <span class="pre">package\nsudo</span> <span class="pre">apt</span> <span class="pre">remove</span> <span class="pre">git\n\n#</span> <span class="pre">Search</span> <span class="pre">packages\napt</span> <span class="pre">search</span> <span class="pre">python\n\n#</span> <span class="pre">Show</span> <span class="pre">info\napt</span> <span class="pre">show</span> <span class="pre">python3\n</span></code></a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#homebrew-macos-linux-n-nbash-n-install-n-bin-bash-c-curl-fssl-https-raw-githubusercontent-com-homebrew-install-head-install-sh-n-n-install-package-nbrew-install-git-n-n-update-nbrew-update-nbrew-upgrade-n-n-search-nbrew-search-python-n-n-info-nbrew-info-python-n">Homebrew (macOS/Linux)\n\n<code class="docutils literal notranslate"><span class="pre">bash\n#</span> <span class="pre">Install\n/bin/bash</span> <span class="pre">-c</span> <span class="pre">\"$(curl</span> <span class="pre">-fsSL</span> <span class="pre">https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)\"\n\n#</span> <span class="pre">Install</span> <span class="pre">package\nbrew</span> <span class="pre">install</span> <span class="pre">git\n\n#</span> <span class="pre">Update\nbrew</span> <span class="pre">update\nbrew</span> <span class="pre">upgrade\n\n#</span> <span class="pre">Search\nbrew</span> <span class="pre">search</span> <span class="pre">python\n\n#</span> <span class="pre">Info\nbrew</span> <span class="pre">info</span> <span class="pre">python\n</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dependency-lock-files-n-n-why-lock-files-n-nwithout-lock-file-n-nrequests-2-28-0-could-install-2-28-0-or-2-31-0-n-n-nwith-lock-file-n-nrequests-2-28-0-exact-version-reproducible-n-urllib3-1-26-14-n-certifi-2022-12-7-n-n-n-creating-lock-files-n-nbash-n-python-npip-freeze-requirements-txt-n-n-poetry-npoetry-lock-n-n-npm-nnpm-install-creates-package-lock-json-n-n-yarn-nyarn-install-creates-yarn-lock-n">4. Dependency Lock Files\n\n### Why Lock Files?\n\n<strong>Without lock file:</strong>\n<code class="docutils literal notranslate"><span class="pre">\nrequests&gt;=2.28.0</span>  <span class="pre">#</span> <span class="pre">Could</span> <span class="pre">install</span> <span class="pre">2.28.0</span> <span class="pre">or</span> <span class="pre">2.31.0!\n</span></code>\n\n<strong>With lock file:</strong>\n<code class="docutils literal notranslate"><span class="pre">\nrequests==2.28.0</span>  <span class="pre">#</span> <span class="pre">Exact</span> <span class="pre">version,</span> <span class="pre">reproducible\n</span>  <span class="pre">urllib3==1.26.14\n</span>  <span class="pre">certifi==2022.12.7\n</span></code>\n\n### Creating Lock Files\n\n<code class="docutils literal notranslate"><span class="pre">bash\n#</span> <span class="pre">Python\npip</span> <span class="pre">freeze</span> <span class="pre">&gt;</span> <span class="pre">requirements.txt\n\n#</span> <span class="pre">Poetry\npoetry</span> <span class="pre">lock\n\n#</span> <span class="pre">npm\nnpm</span> <span class="pre">install</span>  <span class="pre">#</span> <span class="pre">Creates</span> <span class="pre">package-lock.json\n\n#</span> <span class="pre">yarn\nyarn</span> <span class="pre">install</span>  <span class="pre">#</span> <span class="pre">Creates</span> <span class="pre">yarn.lock\n</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#security-auditing-n-nbash-n-python-check-vulnerabilities-npip-install-safety-nsafety-check-n-n-node-js-nnpm-audit-nnpm-audit-fix-n-n-snyk-all-languages-nnpm-install-g-snyk-nsnyk-test-n">5. Security &amp; Auditing\n\n<code class="docutils literal notranslate"><span class="pre">bash\n#</span> <span class="pre">Python:</span> <span class="pre">Check</span> <span class="pre">vulnerabilities\npip</span> <span class="pre">install</span> <span class="pre">safety\nsafety</span> <span class="pre">check\n\n#</span> <span class="pre">Node.js\nnpm</span> <span class="pre">audit\nnpm</span> <span class="pre">audit</span> <span class="pre">fix\n\n#</span> <span class="pre">Snyk</span> <span class="pre">(all</span> <span class="pre">languages)\nnpm</span> <span class="pre">install</span> <span class="pre">-g</span> <span class="pre">snyk\nsnyk</span> <span class="pre">test\n</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises-n-n1-create-virtual-environment-and-install-packages-n2-generate-requirements-txt-with-versions-n3-set-up-poetry-project-n4-audit-dependencies-for-security-issues-n-n-key-takeaways-n-n-use-virtual-environments-n-pin-versions-in-production-n-use-lock-files-for-reproducibility-n-audit-dependencies-regularly-n-separate-dev-and-prod-dependencies">🎯 Exercises\n\n1. Create virtual environment and install packages\n2. Generate requirements.txt with versions\n3. Set up Poetry project\n4. Audit dependencies for security issues\n\n## 🎓 Key Takeaways\n\n- Use virtual environments\n- Pin versions in production\n- Use lock files for reproducibility\n- Audit dependencies regularly\n- Separate dev and prod dependencies</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#next-steps-n-nnext-lesson-09-ssh-remote-systems-ipynb-n-n-resources-n-n-poetry-docs-n-npm-docs-n-homebrew">🚀 Next Steps\n\n<strong>Next lesson:</strong> <code class="docutils literal notranslate"><span class="pre">09_ssh_remote_systems.ipynb</span></code>\n\n## 📚 Resources\n\n- Poetry Docs\n- npm Docs\n- Homebrew</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="package-management-n-n-managing-dependencies-like-a-pro-n-nwhat-you-ll-learn-n-python-pip-conda-poetry-pipenv-n-node-js-npm-yarn-pnpm-n-system-packages-apt-yum-brew-n-version-pinning-and-lock-files-n-virtual-environments-n-security-and-auditing-n-ntime-60-90-minutes">
+<h1>Package Management\n\n## Managing Dependencies Like a Pro\n\n<strong>What you’ll learn:</strong>\n- Python: pip, conda, poetry, pipenv\n- Node.js: npm, yarn, pnpm\n- System packages: apt, yum, brew\n- Version pinning and lock files\n- Virtual environments\n- Security and auditing\n\n<strong>Time:</strong> 60-90 minutes<a class="headerlink" href="#package-management-n-n-managing-dependencies-like-a-pro-n-nwhat-you-ll-learn-n-python-pip-conda-poetry-pipenv-n-node-js-npm-yarn-pnpm-n-system-packages-apt-yum-brew-n-version-pinning-and-lock-files-n-virtual-environments-n-security-and-auditing-n-ntime-60-90-minutes" title="Link to this heading">#</a></h1>
+<section id="python-package-management-n-n-pip-the-standard-tool-n-nbash-n-install-package-npip-install-requests-n-n-specific-version-npip-install-requests-2-28-0-n-n-upgrade-npip-install-upgrade-requests-n-n-install-from-requirements-npip-install-r-requirements-txt-n-n-list-installed-npip-list-n-n-show-package-info-npip-show-requests-n">
+<h2>1. Python Package Management\n\n### pip - The Standard Tool\n\n<code class="docutils literal notranslate"><span class="pre">bash\n#</span> <span class="pre">Install</span> <span class="pre">package\npip</span> <span class="pre">install</span> <span class="pre">requests\n\n#</span> <span class="pre">Specific</span> <span class="pre">version\npip</span> <span class="pre">install</span> <span class="pre">requests==2.28.0\n\n#</span> <span class="pre">Upgrade\npip</span> <span class="pre">install</span> <span class="pre">--upgrade</span> <span class="pre">requests\n\n#</span> <span class="pre">Install</span> <span class="pre">from</span> <span class="pre">requirements\npip</span> <span class="pre">install</span> <span class="pre">-r</span> <span class="pre">requirements.txt\n\n#</span> <span class="pre">List</span> <span class="pre">installed\npip</span> <span class="pre">list\n\n#</span> <span class="pre">Show</span> <span class="pre">package</span> <span class="pre">info\npip</span> <span class="pre">show</span> <span class="pre">requests\n</span></code><a class="headerlink" href="#python-package-management-n-n-pip-the-standard-tool-n-nbash-n-install-package-npip-install-requests-n-n-specific-version-npip-install-requests-2-28-0-n-n-upgrade-npip-install-upgrade-requests-n-n-install-from-requirements-npip-install-r-requirements-txt-n-n-list-installed-npip-list-n-n-show-package-info-npip-show-requests-n" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create requirements.txt\n!cat &gt; requirements.txt &lt;&lt; &#39;EOF&#39;\nrequests&gt;=2.28.0,&lt;3.0.0\npandas==1.5.3\nnumpy~=1.24.0  # Compatible version\nEOF\n\nprint(&quot;✅ Created requirements.txt&quot;)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="virtual-environments-n-nbash-n-create-venv-npython-m-venv-myenv-n-n-activate-nsource-myenv-bin-activate-linux-mac-nmyenv-scripts-activate-windows-n-n-deactivate-ndeactivate-n">
+<h3>Virtual Environments\n\n<code class="docutils literal notranslate"><span class="pre">bash\n#</span> <span class="pre">Create</span> <span class="pre">venv\npython</span> <span class="pre">-m</span> <span class="pre">venv</span> <span class="pre">myenv\n\n#</span> <span class="pre">Activate\nsource</span> <span class="pre">myenv/bin/activate</span>&#160; <span class="pre">#</span> <span class="pre">Linux/Mac\nmyenv\\Scripts\\activate</span>&#160;&#160;&#160; <span class="pre">#</span> <span class="pre">Windows\n\n#</span> <span class="pre">Deactivate\ndeactivate\n</span></code><a class="headerlink" href="#virtual-environments-n-nbash-n-create-venv-npython-m-venv-myenv-n-n-activate-nsource-myenv-bin-activate-linux-mac-nmyenv-scripts-activate-windows-n-n-deactivate-ndeactivate-n" title="Link to this heading">#</a></h3>
+</section>
+<section id="poetry-modern-python-n-nbash-n-install-poetry-ncurl-ssl-https-install-python-poetry-org-python3-n-n-init-project-npoetry-init-n-n-add-dependency-npoetry-add-requests-n-n-install-all-npoetry-install-n-n-run-command-in-venv-npoetry-run-python-app-py-n-n-npyproject-toml-ntoml-n-tool-poetry-dependencies-npython-3-8-nrequests-2-28-0-n">
+<h3>Poetry - Modern Python\n\n<code class="docutils literal notranslate"><span class="pre">bash\n#</span> <span class="pre">Install</span> <span class="pre">poetry\ncurl</span> <span class="pre">-sSL</span> <span class="pre">https://install.python-poetry.org</span> <span class="pre">|</span> <span class="pre">python3</span> <span class="pre">-\n\n#</span> <span class="pre">Init</span> <span class="pre">project\npoetry</span> <span class="pre">init\n\n#</span> <span class="pre">Add</span> <span class="pre">dependency\npoetry</span> <span class="pre">add</span> <span class="pre">requests\n\n#</span> <span class="pre">Install</span> <span class="pre">all\npoetry</span> <span class="pre">install\n\n#</span> <span class="pre">Run</span> <span class="pre">command</span> <span class="pre">in</span> <span class="pre">venv\npoetry</span> <span class="pre">run</span> <span class="pre">python</span> <span class="pre">app.py\n</span></code>\n\n<strong>pyproject.toml:</strong>\n<code class="docutils literal notranslate"><span class="pre">toml\n[tool.poetry.dependencies]\npython</span> <span class="pre">=</span> <span class="pre">\&quot;^3.8\&quot;\nrequests</span> <span class="pre">=</span> <span class="pre">\&quot;^2.28.0\&quot;\n</span></code><a class="headerlink" href="#poetry-modern-python-n-nbash-n-install-poetry-ncurl-ssl-https-install-python-poetry-org-python3-n-n-init-project-npoetry-init-n-n-add-dependency-npoetry-add-requests-n-n-install-all-npoetry-install-n-n-run-command-in-venv-npoetry-run-python-app-py-n-n-npyproject-toml-ntoml-n-tool-poetry-dependencies-npython-3-8-nrequests-2-28-0-n" title="Link to this heading">#</a></h3>
+</section>
+</section>
+<section id="node-js-package-management-n-n-npm-n-nbash-n-install-package-nnpm-install-express-n-n-dev-dependency-nnpm-install-save-dev-jest-n-n-global-install-nnpm-install-g-typescript-n-n-install-from-package-json-nnpm-install-n-n-update-nnpm-update-n-n-audit-security-nnpm-audit-nnpm-audit-fix-n">
+<h2>2. Node.js Package Management\n\n### npm\n\n<code class="docutils literal notranslate"><span class="pre">bash\n#</span> <span class="pre">Install</span> <span class="pre">package\nnpm</span> <span class="pre">install</span> <span class="pre">express\n\n#</span> <span class="pre">Dev</span> <span class="pre">dependency\nnpm</span> <span class="pre">install</span> <span class="pre">--save-dev</span> <span class="pre">jest\n\n#</span> <span class="pre">Global</span> <span class="pre">install\nnpm</span> <span class="pre">install</span> <span class="pre">-g</span> <span class="pre">typescript\n\n#</span> <span class="pre">Install</span> <span class="pre">from</span> <span class="pre">package.json\nnpm</span> <span class="pre">install\n\n#</span> <span class="pre">Update\nnpm</span> <span class="pre">update\n\n#</span> <span class="pre">Audit</span> <span class="pre">security\nnpm</span> <span class="pre">audit\nnpm</span> <span class="pre">audit</span> <span class="pre">fix\n</span></code><a class="headerlink" href="#node-js-package-management-n-n-npm-n-nbash-n-install-package-nnpm-install-express-n-n-dev-dependency-nnpm-install-save-dev-jest-n-n-global-install-nnpm-install-g-typescript-n-n-install-from-package-json-nnpm-install-n-n-update-nnpm-update-n-n-audit-security-nnpm-audit-nnpm-audit-fix-n" title="Link to this heading">#</a></h2>
+<section id="yarn-fast-alternative-n-nbash-n-install-yarn-nnpm-install-g-yarn-n-n-add-package-nyarn-add-express-n-n-dev-dependency-nyarn-add-dev-jest-n-n-install-all-nyarn-install-n-n-why-yarn-n-faster-than-npm-n-better-lock-file-yarn-lock-n-offline-mode-n">
+<h3>yarn - Fast Alternative\n\n<code class="docutils literal notranslate"><span class="pre">bash\n#</span> <span class="pre">Install</span> <span class="pre">yarn\nnpm</span> <span class="pre">install</span> <span class="pre">-g</span> <span class="pre">yarn\n\n#</span> <span class="pre">Add</span> <span class="pre">package\nyarn</span> <span class="pre">add</span> <span class="pre">express\n\n#</span> <span class="pre">Dev</span> <span class="pre">dependency\nyarn</span> <span class="pre">add</span> <span class="pre">--dev</span> <span class="pre">jest\n\n#</span> <span class="pre">Install</span> <span class="pre">all\nyarn</span> <span class="pre">install\n\n#</span> <span class="pre">Why</span> <span class="pre">yarn?\n#</span> <span class="pre">-</span> <span class="pre">Faster</span> <span class="pre">than</span> <span class="pre">npm\n#</span> <span class="pre">-</span> <span class="pre">Better</span> <span class="pre">lock</span> <span class="pre">file</span> <span class="pre">(yarn.lock)\n#</span> <span class="pre">-</span> <span class="pre">Offline</span> <span class="pre">mode\n</span></code><a class="headerlink" href="#yarn-fast-alternative-n-nbash-n-install-yarn-nnpm-install-g-yarn-n-n-add-package-nyarn-add-express-n-n-dev-dependency-nyarn-add-dev-jest-n-n-install-all-nyarn-install-n-n-why-yarn-n-faster-than-npm-n-better-lock-file-yarn-lock-n-offline-mode-n" title="Link to this heading">#</a></h3>
+</section>
+</section>
+<section id="system-package-managers-n-n-apt-debian-ubuntu-n-nbash-n-update-package-list-nsudo-apt-update-n-n-upgrade-packages-nsudo-apt-upgrade-n-n-install-package-nsudo-apt-install-git-n-n-remove-package-nsudo-apt-remove-git-n-n-search-packages-napt-search-python-n-n-show-info-napt-show-python3-n">
+<h2>3. System Package Managers\n\n### apt (Debian/Ubuntu)\n\n<code class="docutils literal notranslate"><span class="pre">bash\n#</span> <span class="pre">Update</span> <span class="pre">package</span> <span class="pre">list\nsudo</span> <span class="pre">apt</span> <span class="pre">update\n\n#</span> <span class="pre">Upgrade</span> <span class="pre">packages\nsudo</span> <span class="pre">apt</span> <span class="pre">upgrade\n\n#</span> <span class="pre">Install</span> <span class="pre">package\nsudo</span> <span class="pre">apt</span> <span class="pre">install</span> <span class="pre">git\n\n#</span> <span class="pre">Remove</span> <span class="pre">package\nsudo</span> <span class="pre">apt</span> <span class="pre">remove</span> <span class="pre">git\n\n#</span> <span class="pre">Search</span> <span class="pre">packages\napt</span> <span class="pre">search</span> <span class="pre">python\n\n#</span> <span class="pre">Show</span> <span class="pre">info\napt</span> <span class="pre">show</span> <span class="pre">python3\n</span></code><a class="headerlink" href="#system-package-managers-n-n-apt-debian-ubuntu-n-nbash-n-update-package-list-nsudo-apt-update-n-n-upgrade-packages-nsudo-apt-upgrade-n-n-install-package-nsudo-apt-install-git-n-n-remove-package-nsudo-apt-remove-git-n-n-search-packages-napt-search-python-n-n-show-info-napt-show-python3-n" title="Link to this heading">#</a></h2>
+<section id="homebrew-macos-linux-n-nbash-n-install-n-bin-bash-c-curl-fssl-https-raw-githubusercontent-com-homebrew-install-head-install-sh-n-n-install-package-nbrew-install-git-n-n-update-nbrew-update-nbrew-upgrade-n-n-search-nbrew-search-python-n-n-info-nbrew-info-python-n">
+<h3>Homebrew (macOS/Linux)\n\n<code class="docutils literal notranslate"><span class="pre">bash\n#</span> <span class="pre">Install\n/bin/bash</span> <span class="pre">-c</span> <span class="pre">\&quot;$(curl</span> <span class="pre">-fsSL</span> <span class="pre">https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)\&quot;\n\n#</span> <span class="pre">Install</span> <span class="pre">package\nbrew</span> <span class="pre">install</span> <span class="pre">git\n\n#</span> <span class="pre">Update\nbrew</span> <span class="pre">update\nbrew</span> <span class="pre">upgrade\n\n#</span> <span class="pre">Search\nbrew</span> <span class="pre">search</span> <span class="pre">python\n\n#</span> <span class="pre">Info\nbrew</span> <span class="pre">info</span> <span class="pre">python\n</span></code><a class="headerlink" href="#homebrew-macos-linux-n-nbash-n-install-n-bin-bash-c-curl-fssl-https-raw-githubusercontent-com-homebrew-install-head-install-sh-n-n-install-package-nbrew-install-git-n-n-update-nbrew-update-nbrew-upgrade-n-n-search-nbrew-search-python-n-n-info-nbrew-info-python-n" title="Link to this heading">#</a></h3>
+</section>
+</section>
+<section id="dependency-lock-files-n-n-why-lock-files-n-nwithout-lock-file-n-nrequests-2-28-0-could-install-2-28-0-or-2-31-0-n-n-nwith-lock-file-n-nrequests-2-28-0-exact-version-reproducible-n-urllib3-1-26-14-n-certifi-2022-12-7-n-n-n-creating-lock-files-n-nbash-n-python-npip-freeze-requirements-txt-n-n-poetry-npoetry-lock-n-n-npm-nnpm-install-creates-package-lock-json-n-n-yarn-nyarn-install-creates-yarn-lock-n">
+<h2>4. Dependency Lock Files\n\n### Why Lock Files?\n\n<strong>Without lock file:</strong>\n<code class="docutils literal notranslate"><span class="pre">\nrequests&gt;=2.28.0</span>&#160; <span class="pre">#</span> <span class="pre">Could</span> <span class="pre">install</span> <span class="pre">2.28.0</span> <span class="pre">or</span> <span class="pre">2.31.0!\n</span></code>\n\n<strong>With lock file:</strong>\n<code class="docutils literal notranslate"><span class="pre">\nrequests==2.28.0</span>&#160; <span class="pre">#</span> <span class="pre">Exact</span> <span class="pre">version,</span> <span class="pre">reproducible\n</span>&#160; <span class="pre">urllib3==1.26.14\n</span>&#160; <span class="pre">certifi==2022.12.7\n</span></code>\n\n### Creating Lock Files\n\n<code class="docutils literal notranslate"><span class="pre">bash\n#</span> <span class="pre">Python\npip</span> <span class="pre">freeze</span> <span class="pre">&gt;</span> <span class="pre">requirements.txt\n\n#</span> <span class="pre">Poetry\npoetry</span> <span class="pre">lock\n\n#</span> <span class="pre">npm\nnpm</span> <span class="pre">install</span>&#160; <span class="pre">#</span> <span class="pre">Creates</span> <span class="pre">package-lock.json\n\n#</span> <span class="pre">yarn\nyarn</span> <span class="pre">install</span>&#160; <span class="pre">#</span> <span class="pre">Creates</span> <span class="pre">yarn.lock\n</span></code><a class="headerlink" href="#dependency-lock-files-n-n-why-lock-files-n-nwithout-lock-file-n-nrequests-2-28-0-could-install-2-28-0-or-2-31-0-n-n-nwith-lock-file-n-nrequests-2-28-0-exact-version-reproducible-n-urllib3-1-26-14-n-certifi-2022-12-7-n-n-n-creating-lock-files-n-nbash-n-python-npip-freeze-requirements-txt-n-n-poetry-npoetry-lock-n-n-npm-nnpm-install-creates-package-lock-json-n-n-yarn-nyarn-install-creates-yarn-lock-n" title="Link to this heading">#</a></h2>
+</section>
+<section id="security-auditing-n-nbash-n-python-check-vulnerabilities-npip-install-safety-nsafety-check-n-n-node-js-nnpm-audit-nnpm-audit-fix-n-n-snyk-all-languages-nnpm-install-g-snyk-nsnyk-test-n">
+<h2>5. Security &amp; Auditing\n\n<code class="docutils literal notranslate"><span class="pre">bash\n#</span> <span class="pre">Python:</span> <span class="pre">Check</span> <span class="pre">vulnerabilities\npip</span> <span class="pre">install</span> <span class="pre">safety\nsafety</span> <span class="pre">check\n\n#</span> <span class="pre">Node.js\nnpm</span> <span class="pre">audit\nnpm</span> <span class="pre">audit</span> <span class="pre">fix\n\n#</span> <span class="pre">Snyk</span> <span class="pre">(all</span> <span class="pre">languages)\nnpm</span> <span class="pre">install</span> <span class="pre">-g</span> <span class="pre">snyk\nsnyk</span> <span class="pre">test\n</span></code><a class="headerlink" href="#security-auditing-n-nbash-n-python-check-vulnerabilities-npip-install-safety-nsafety-check-n-n-node-js-nnpm-audit-nnpm-audit-fix-n-n-snyk-all-languages-nnpm-install-g-snyk-nsnyk-test-n" title="Link to this heading">#</a></h2>
+</section>
+<section id="exercises-n-n1-create-virtual-environment-and-install-packages-n2-generate-requirements-txt-with-versions-n3-set-up-poetry-project-n4-audit-dependencies-for-security-issues-n-n-key-takeaways-n-n-use-virtual-environments-n-pin-versions-in-production-n-use-lock-files-for-reproducibility-n-audit-dependencies-regularly-n-separate-dev-and-prod-dependencies">
+<h2>🎯 Exercises\n\n1. Create virtual environment and install packages\n2. Generate requirements.txt with versions\n3. Set up Poetry project\n4. Audit dependencies for security issues\n\n## 🎓 Key Takeaways\n\n- Use virtual environments\n- Pin versions in production\n- Use lock files for reproducibility\n- Audit dependencies regularly\n- Separate dev and prod dependencies<a class="headerlink" href="#exercises-n-n1-create-virtual-environment-and-install-packages-n2-generate-requirements-txt-with-versions-n3-set-up-poetry-project-n4-audit-dependencies-for-security-issues-n-n-key-takeaways-n-n-use-virtual-environments-n-pin-versions-in-production-n-use-lock-files-for-reproducibility-n-audit-dependencies-regularly-n-separate-dev-and-prod-dependencies" title="Link to this heading">#</a></h2>
+</section>
+<section id="next-steps-n-nnext-lesson-09-ssh-remote-systems-ipynb-n-n-resources-n-n-poetry-docs-n-npm-docs-n-homebrew">
+<h2>🚀 Next Steps\n\n<strong>Next lesson:</strong> <code class="docutils literal notranslate"><span class="pre">09_ssh_remote_systems.ipynb</span></code>\n\n## 📚 Resources\n\n- <a class="reference external" href="https://python-poetry.org/docs/">Poetry Docs</a>\n- <a class="reference external" href="https://docs.npmjs.com/">npm Docs</a>\n- <a class="reference external" href="https://brew.sh/">Homebrew</a><a class="headerlink" href="#next-steps-n-nnext-lesson-09-ssh-remote-systems-ipynb-n-n-resources-n-n-poetry-docs-n-npm-docs-n-homebrew" title="Link to this heading">#</a></h2>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./tools"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="07_security_essentials.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Security Essentials for Developers</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="09_ssh_remote_systems.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">SSH &amp; Remote Systems\n\n## Secure Remote Access\n\n<strong>What you’ll learn:</strong>\n- SSH fundamentals\n- Key-based authentication\n- SSH config\n- Remote command execution\n- File transfer (scp, rsync)\n- Port forwarding &amp; tunneling\n- tmux for persistent sessions\n\n<strong>Time:</strong> 75-90 minutes</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#python-package-management-n-n-pip-the-standard-tool-n-nbash-n-install-package-npip-install-requests-n-n-specific-version-npip-install-requests-2-28-0-n-n-upgrade-npip-install-upgrade-requests-n-n-install-from-requirements-npip-install-r-requirements-txt-n-n-list-installed-npip-list-n-n-show-package-info-npip-show-requests-n">1. Python Package Management\n\n### pip - The Standard Tool\n\n<code class="docutils literal notranslate"><span class="pre">bash\n#</span> <span class="pre">Install</span> <span class="pre">package\npip</span> <span class="pre">install</span> <span class="pre">requests\n\n#</span> <span class="pre">Specific</span> <span class="pre">version\npip</span> <span class="pre">install</span> <span class="pre">requests==2.28.0\n\n#</span> <span class="pre">Upgrade\npip</span> <span class="pre">install</span> <span class="pre">--upgrade</span> <span class="pre">requests\n\n#</span> <span class="pre">Install</span> <span class="pre">from</span> <span class="pre">requirements\npip</span> <span class="pre">install</span> <span class="pre">-r</span> <span class="pre">requirements.txt\n\n#</span> <span class="pre">List</span> <span class="pre">installed\npip</span> <span class="pre">list\n\n#</span> <span class="pre">Show</span> <span class="pre">package</span> <span class="pre">info\npip</span> <span class="pre">show</span> <span class="pre">requests\n</span></code></a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#virtual-environments-n-nbash-n-create-venv-npython-m-venv-myenv-n-n-activate-nsource-myenv-bin-activate-linux-mac-nmyenv-scripts-activate-windows-n-n-deactivate-ndeactivate-n">Virtual Environments\n\n<code class="docutils literal notranslate"><span class="pre">bash\n#</span> <span class="pre">Create</span> <span class="pre">venv\npython</span> <span class="pre">-m</span> <span class="pre">venv</span> <span class="pre">myenv\n\n#</span> <span class="pre">Activate\nsource</span> <span class="pre">myenv/bin/activate</span>  <span class="pre">#</span> <span class="pre">Linux/Mac\nmyenv\\Scripts\\activate</span>    <span class="pre">#</span> <span class="pre">Windows\n\n#</span> <span class="pre">Deactivate\ndeactivate\n</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#poetry-modern-python-n-nbash-n-install-poetry-ncurl-ssl-https-install-python-poetry-org-python3-n-n-init-project-npoetry-init-n-n-add-dependency-npoetry-add-requests-n-n-install-all-npoetry-install-n-n-run-command-in-venv-npoetry-run-python-app-py-n-n-npyproject-toml-ntoml-n-tool-poetry-dependencies-npython-3-8-nrequests-2-28-0-n">Poetry - Modern Python\n\n<code class="docutils literal notranslate"><span class="pre">bash\n#</span> <span class="pre">Install</span> <span class="pre">poetry\ncurl</span> <span class="pre">-sSL</span> <span class="pre">https://install.python-poetry.org</span> <span class="pre">|</span> <span class="pre">python3</span> <span class="pre">-\n\n#</span> <span class="pre">Init</span> <span class="pre">project\npoetry</span> <span class="pre">init\n\n#</span> <span class="pre">Add</span> <span class="pre">dependency\npoetry</span> <span class="pre">add</span> <span class="pre">requests\n\n#</span> <span class="pre">Install</span> <span class="pre">all\npoetry</span> <span class="pre">install\n\n#</span> <span class="pre">Run</span> <span class="pre">command</span> <span class="pre">in</span> <span class="pre">venv\npoetry</span> <span class="pre">run</span> <span class="pre">python</span> <span class="pre">app.py\n</span></code>\n\n<strong>pyproject.toml:</strong>\n<code class="docutils literal notranslate"><span class="pre">toml\n[tool.poetry.dependencies]\npython</span> <span class="pre">=</span> <span class="pre">\"^3.8\"\nrequests</span> <span class="pre">=</span> <span class="pre">\"^2.28.0\"\n</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#node-js-package-management-n-n-npm-n-nbash-n-install-package-nnpm-install-express-n-n-dev-dependency-nnpm-install-save-dev-jest-n-n-global-install-nnpm-install-g-typescript-n-n-install-from-package-json-nnpm-install-n-n-update-nnpm-update-n-n-audit-security-nnpm-audit-nnpm-audit-fix-n">2. Node.js Package Management\n\n### npm\n\n<code class="docutils literal notranslate"><span class="pre">bash\n#</span> <span class="pre">Install</span> <span class="pre">package\nnpm</span> <span class="pre">install</span> <span class="pre">express\n\n#</span> <span class="pre">Dev</span> <span class="pre">dependency\nnpm</span> <span class="pre">install</span> <span class="pre">--save-dev</span> <span class="pre">jest\n\n#</span> <span class="pre">Global</span> <span class="pre">install\nnpm</span> <span class="pre">install</span> <span class="pre">-g</span> <span class="pre">typescript\n\n#</span> <span class="pre">Install</span> <span class="pre">from</span> <span class="pre">package.json\nnpm</span> <span class="pre">install\n\n#</span> <span class="pre">Update\nnpm</span> <span class="pre">update\n\n#</span> <span class="pre">Audit</span> <span class="pre">security\nnpm</span> <span class="pre">audit\nnpm</span> <span class="pre">audit</span> <span class="pre">fix\n</span></code></a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#yarn-fast-alternative-n-nbash-n-install-yarn-nnpm-install-g-yarn-n-n-add-package-nyarn-add-express-n-n-dev-dependency-nyarn-add-dev-jest-n-n-install-all-nyarn-install-n-n-why-yarn-n-faster-than-npm-n-better-lock-file-yarn-lock-n-offline-mode-n">yarn - Fast Alternative\n\n<code class="docutils literal notranslate"><span class="pre">bash\n#</span> <span class="pre">Install</span> <span class="pre">yarn\nnpm</span> <span class="pre">install</span> <span class="pre">-g</span> <span class="pre">yarn\n\n#</span> <span class="pre">Add</span> <span class="pre">package\nyarn</span> <span class="pre">add</span> <span class="pre">express\n\n#</span> <span class="pre">Dev</span> <span class="pre">dependency\nyarn</span> <span class="pre">add</span> <span class="pre">--dev</span> <span class="pre">jest\n\n#</span> <span class="pre">Install</span> <span class="pre">all\nyarn</span> <span class="pre">install\n\n#</span> <span class="pre">Why</span> <span class="pre">yarn?\n#</span> <span class="pre">-</span> <span class="pre">Faster</span> <span class="pre">than</span> <span class="pre">npm\n#</span> <span class="pre">-</span> <span class="pre">Better</span> <span class="pre">lock</span> <span class="pre">file</span> <span class="pre">(yarn.lock)\n#</span> <span class="pre">-</span> <span class="pre">Offline</span> <span class="pre">mode\n</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#system-package-managers-n-n-apt-debian-ubuntu-n-nbash-n-update-package-list-nsudo-apt-update-n-n-upgrade-packages-nsudo-apt-upgrade-n-n-install-package-nsudo-apt-install-git-n-n-remove-package-nsudo-apt-remove-git-n-n-search-packages-napt-search-python-n-n-show-info-napt-show-python3-n">3. System Package Managers\n\n### apt (Debian/Ubuntu)\n\n<code class="docutils literal notranslate"><span class="pre">bash\n#</span> <span class="pre">Update</span> <span class="pre">package</span> <span class="pre">list\nsudo</span> <span class="pre">apt</span> <span class="pre">update\n\n#</span> <span class="pre">Upgrade</span> <span class="pre">packages\nsudo</span> <span class="pre">apt</span> <span class="pre">upgrade\n\n#</span> <span class="pre">Install</span> <span class="pre">package\nsudo</span> <span class="pre">apt</span> <span class="pre">install</span> <span class="pre">git\n\n#</span> <span class="pre">Remove</span> <span class="pre">package\nsudo</span> <span class="pre">apt</span> <span class="pre">remove</span> <span class="pre">git\n\n#</span> <span class="pre">Search</span> <span class="pre">packages\napt</span> <span class="pre">search</span> <span class="pre">python\n\n#</span> <span class="pre">Show</span> <span class="pre">info\napt</span> <span class="pre">show</span> <span class="pre">python3\n</span></code></a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#homebrew-macos-linux-n-nbash-n-install-n-bin-bash-c-curl-fssl-https-raw-githubusercontent-com-homebrew-install-head-install-sh-n-n-install-package-nbrew-install-git-n-n-update-nbrew-update-nbrew-upgrade-n-n-search-nbrew-search-python-n-n-info-nbrew-info-python-n">Homebrew (macOS/Linux)\n\n<code class="docutils literal notranslate"><span class="pre">bash\n#</span> <span class="pre">Install\n/bin/bash</span> <span class="pre">-c</span> <span class="pre">\"$(curl</span> <span class="pre">-fsSL</span> <span class="pre">https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)\"\n\n#</span> <span class="pre">Install</span> <span class="pre">package\nbrew</span> <span class="pre">install</span> <span class="pre">git\n\n#</span> <span class="pre">Update\nbrew</span> <span class="pre">update\nbrew</span> <span class="pre">upgrade\n\n#</span> <span class="pre">Search\nbrew</span> <span class="pre">search</span> <span class="pre">python\n\n#</span> <span class="pre">Info\nbrew</span> <span class="pre">info</span> <span class="pre">python\n</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dependency-lock-files-n-n-why-lock-files-n-nwithout-lock-file-n-nrequests-2-28-0-could-install-2-28-0-or-2-31-0-n-n-nwith-lock-file-n-nrequests-2-28-0-exact-version-reproducible-n-urllib3-1-26-14-n-certifi-2022-12-7-n-n-n-creating-lock-files-n-nbash-n-python-npip-freeze-requirements-txt-n-n-poetry-npoetry-lock-n-n-npm-nnpm-install-creates-package-lock-json-n-n-yarn-nyarn-install-creates-yarn-lock-n">4. Dependency Lock Files\n\n### Why Lock Files?\n\n<strong>Without lock file:</strong>\n<code class="docutils literal notranslate"><span class="pre">\nrequests&gt;=2.28.0</span>  <span class="pre">#</span> <span class="pre">Could</span> <span class="pre">install</span> <span class="pre">2.28.0</span> <span class="pre">or</span> <span class="pre">2.31.0!\n</span></code>\n\n<strong>With lock file:</strong>\n<code class="docutils literal notranslate"><span class="pre">\nrequests==2.28.0</span>  <span class="pre">#</span> <span class="pre">Exact</span> <span class="pre">version,</span> <span class="pre">reproducible\n</span>  <span class="pre">urllib3==1.26.14\n</span>  <span class="pre">certifi==2022.12.7\n</span></code>\n\n### Creating Lock Files\n\n<code class="docutils literal notranslate"><span class="pre">bash\n#</span> <span class="pre">Python\npip</span> <span class="pre">freeze</span> <span class="pre">&gt;</span> <span class="pre">requirements.txt\n\n#</span> <span class="pre">Poetry\npoetry</span> <span class="pre">lock\n\n#</span> <span class="pre">npm\nnpm</span> <span class="pre">install</span>  <span class="pre">#</span> <span class="pre">Creates</span> <span class="pre">package-lock.json\n\n#</span> <span class="pre">yarn\nyarn</span> <span class="pre">install</span>  <span class="pre">#</span> <span class="pre">Creates</span> <span class="pre">yarn.lock\n</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#security-auditing-n-nbash-n-python-check-vulnerabilities-npip-install-safety-nsafety-check-n-n-node-js-nnpm-audit-nnpm-audit-fix-n-n-snyk-all-languages-nnpm-install-g-snyk-nsnyk-test-n">5. Security &amp; Auditing\n\n<code class="docutils literal notranslate"><span class="pre">bash\n#</span> <span class="pre">Python:</span> <span class="pre">Check</span> <span class="pre">vulnerabilities\npip</span> <span class="pre">install</span> <span class="pre">safety\nsafety</span> <span class="pre">check\n\n#</span> <span class="pre">Node.js\nnpm</span> <span class="pre">audit\nnpm</span> <span class="pre">audit</span> <span class="pre">fix\n\n#</span> <span class="pre">Snyk</span> <span class="pre">(all</span> <span class="pre">languages)\nnpm</span> <span class="pre">install</span> <span class="pre">-g</span> <span class="pre">snyk\nsnyk</span> <span class="pre">test\n</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises-n-n1-create-virtual-environment-and-install-packages-n2-generate-requirements-txt-with-versions-n3-set-up-poetry-project-n4-audit-dependencies-for-security-issues-n-n-key-takeaways-n-n-use-virtual-environments-n-pin-versions-in-production-n-use-lock-files-for-reproducibility-n-audit-dependencies-regularly-n-separate-dev-and-prod-dependencies">🎯 Exercises\n\n1. Create virtual environment and install packages\n2. Generate requirements.txt with versions\n3. Set up Poetry project\n4. Audit dependencies for security issues\n\n## 🎓 Key Takeaways\n\n- Use virtual environments\n- Pin versions in production\n- Use lock files for reproducibility\n- Audit dependencies regularly\n- Separate dev and prod dependencies</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#next-steps-n-nnext-lesson-09-ssh-remote-systems-ipynb-n-n-resources-n-n-poetry-docs-n-npm-docs-n-homebrew">🚀 Next Steps\n\n<strong>Next lesson:</strong> <code class="docutils literal notranslate"><span class="pre">09_ssh_remote_systems.ipynb</span></code>\n\n## 📚 Resources\n\n- Poetry Docs\n- npm Docs\n- Homebrew</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Mykolas Perevicius
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

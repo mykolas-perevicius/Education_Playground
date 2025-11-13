@@ -1,0 +1,900 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Beginner Python Scripts - Your First Steps &#8212; Education Playground</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=0c185eed" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=c73c0f3e"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'beginner_scripts/README';</script>
+    <script src="../_static/js/onboarding.js?v=557b7536"></script>
+    <link rel="canonical" href="https://mykolas-perevicius.github.io/Education_Playground/beginner_scripts/README.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="📗 Easy Level - Beginner Track" href="../easy/README_EASY.html" />
+    <link rel="prev" title="Programming Calibration Test" href="../00_calibration_test.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../README.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Education Playground</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../00_calibration_test.html">🎯 Calibration Test - Find Your Level</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">🌱 Beginner Scripts (10 Python Files)</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../easy/README_EASY.html">📗 Easy Level - Beginner</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../easy/01_introduction_to_python.html">1. Introduction to Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../easy/02_variables_and_data_types.html">2. Variables and Data Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../easy/03_basic_operations_and_conditionals.html">3. Operations and Conditionals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../easy/04_intro_to_ai_and_ml.html">4. Intro to AI and ML</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../easy/05_computing_fundamentals.html">5. Computing Fundamentals</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../medium/README_MEDIUM.html">📘 Medium Level - Intermediate</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../medium/01_functions_and_modules.html">1. Functions and Modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../medium/02_data_structures.html">2. Data Structures</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../medium/03_classes_and_oop.html">3. Classes and OOP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../medium/04_machine_learning_basics.html">4. Machine Learning Basics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../medium/05_data_analysis_with_pandas.html">5. Data Analysis with Pandas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../medium/06_algorithms_and_problem_solving.html">6. Algorithms and Problem Solving</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../hard/README_HARD.html">📕 Hard Level - Advanced</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../hard/01_advanced_functions_and_decorators.html">1. Advanced Functions &amp; Decorators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hard/02_generators_and_iterators.html">2. Generators and Iterators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hard/03_algorithms_and_complexity.html">3. Algorithms and Complexity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hard/04_deep_learning_and_neural_networks.html">4. Deep Learning &amp; Neural Networks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hard/05_advanced_ml_and_nlp.html">5. Advanced ML and NLP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hard/06_computer_systems_and_theory.html">6. Computer Systems and Theory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hard/07_project_ideas.html">7. Project Ideas &amp; Implementation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hard/08_classic_problems.html">Lesson 8: Classic Problems Collection</a></li>
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../hard/09_ctf_challenges.html">Lesson 9: Capture The Flag (CTF) - Hacker Training</a></li>
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../hard/10_performance_computing.html">10. Performance Computing ⚡ NEW!</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hard/11_cuda_and_parallel_computing.html">11. CUDA &amp; GPU Computing 🎮 NEW!</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../tools/README.html">🛠️ Developer Tools Track</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../tools/01_shell_basics.html">1. Shell and Command Line</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools/02_command_line_tools.html">2. Command Line Tools</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools/03_git_essentials.html">3. Git Essentials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools/04_text_editors.html">4. Text Editors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools/05_build_systems_cicd.html">5. Build Systems and CI/CD</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools/06_debugging_profiling.html">6. Debugging and Profiling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools/07_security_essentials.html">7. Security Essentials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools/08_package_management.html">8. Package Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools/09_ssh_remote_systems.html">9. SSH and Remote Systems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools/10_docker_containers.html">10. Docker and Containers</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../solutions/README_SOLUTIONS.html">📝 Solutions</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../solutions/easy_solutions.html">Easy Level - Complete Solutions</a></li>
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../solutions/medium_solutions.html">Medium Level - Complete Solutions</a></li>
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../solutions/hard_solutions.html">Hard Level - Complete Solutions</a></li>
+
+
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../solutions/tools_solutions.html">Developer Tools - Complete Solutions</a></li>
+
+
+
+
+
+
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../RESOURCES.html">📚 Learning Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../PYTHON_CHEATSHEET.html">⚡ Python Cheat Sheet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ML_AI_CHEATSHEET.html">🤖 ML/AI Cheat Sheet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../SETUP.html">🔧 Setup Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../RELEASE_NOTES_v2.0.0.html">🎉 Release Notes v2.0.0</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none"></div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Beginner Python Scripts - Your First Steps</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#about-this-track">📌 About This Track</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#who-should-use-this">🎯 Who Should Use This?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lesson-structure">📚 Lesson Structure</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#format-features">Format Features</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#complete-lesson-plan">📖 Complete Lesson Plan</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lesson-1-hello-world">Lesson 1: Hello World</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lesson-2-variables-and-types">Lesson 2: Variables and Types</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lesson-3-string-manipulation">Lesson 3: String Manipulation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lesson-4-basic-math">Lesson 4: Basic Math</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lesson-5-lists-and-dictionaries">Lesson 5: Lists and Dictionaries</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lesson-6-list-and-dictionary-methods">Lesson 6: List and Dictionary Methods</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lesson-7-imports">Lesson 7: Imports</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lesson-8-error-handling">Lesson 8: Error Handling</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lesson-9-indexing-and-for-loops">Lesson 9: Indexing and For Loops</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lesson-10-conditionals-and-while-loops">Lesson 10: Conditionals and While Loops</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-use-these-lessons">🎓 How to Use These Lessons</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#running-the-code">Running the Code</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#best-practices">Best Practices</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#for-instructors">For Instructors</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#after-completing-this-track">🎯 After Completing This Track</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#next-steps-in-education-playground">Next Steps in Education Playground</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#skills-you-ll-have">Skills You’ll Have</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#troubleshooting">🔧 Troubleshooting</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#additional-resources">📚 Additional Resources</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tips-for-success">🌟 Tips for Success</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="beginner-python-scripts-your-first-steps">
+<h1>Beginner Python Scripts - Your First Steps<a class="headerlink" href="#beginner-python-scripts-your-first-steps" title="Link to this heading">#</a></h1>
+<p><strong>Start here if you’re a complete beginner!</strong> These Python scripts provide the gentlest introduction to programming before diving into the full Education Playground curriculum.</p>
+<section id="about-this-track">
+<h2>📌 About This Track<a class="headerlink" href="#about-this-track" title="Link to this heading">#</a></h2>
+<p>This is the <strong>absolute beginner track</strong> - simple <code class="docutils literal notranslate"><span class="pre">.py</span></code> scripts with extensive comments and guided exercises. Perfect for:</p>
+<ul class="simple">
+<li><p>Complete programming beginners</p></li>
+<li><p>Students who prefer scripts over Jupyter notebooks</p></li>
+<li><p>Classroom instruction (includes timing and instructor notes)</p></li>
+<li><p>Quick reference and practice</p></li>
+</ul>
+</section>
+<section id="who-should-use-this">
+<h2>🎯 Who Should Use This?<a class="headerlink" href="#who-should-use-this" title="Link to this heading">#</a></h2>
+<p><strong>Choose this track if you:</strong></p>
+<ul class="simple">
+<li><p>Have NEVER programmed before</p></li>
+<li><p>Want step-by-step guided lessons</p></li>
+<li><p>Prefer running Python scripts (not notebooks)</p></li>
+<li><p>Are teaching a beginner class</p></li>
+</ul>
+<p><strong>After completing this</strong>, progress to:</p>
+<ul class="simple">
+<li><p><strong>Easy Level</strong> in main Education Playground for interactive notebooks</p></li>
+<li><p><strong>Developer Tools</strong> track for professional skills</p></li>
+<li><p><strong>Medium Level</strong> if you grasp concepts quickly</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="lesson-structure">
+<h2>📚 Lesson Structure<a class="headerlink" href="#lesson-structure" title="Link to this heading">#</a></h2>
+<p>Each lesson has two files:</p>
+<ol class="arabic simple">
+<li><p><strong>Main lesson file</strong> (e.g., <code class="docutils literal notranslate"><span class="pre">2_variables_and_types.py</span></code>) - Detailed explanations with examples</p></li>
+<li><p><strong>TODO exercise file</strong> (e.g., <code class="docutils literal notranslate"><span class="pre">2_variables_and_typestodo.py</span></code>) - Hands-on practice</p></li>
+</ol>
+<section id="format-features">
+<h3>Format Features<a class="headerlink" href="#format-features" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>⏱️ <strong>Time Estimates</strong>: Each section shows expected duration</p></li>
+<li><p>📝 <strong>TODO Markers</strong>: Stop and practice at designated points</p></li>
+<li><p>🎓 <strong>Section Titles</strong>: Clear topic headers</p></li>
+<li><p>💡 <strong>TAKEAWAY Sections</strong>: Key concept summaries</p></li>
+<li><p>⚠️ <strong>FIXME Comments</strong>: Common mistakes to learn from</p></li>
+</ul>
+</section>
+</section>
+<hr class="docutils" />
+<section id="complete-lesson-plan">
+<h2>📖 Complete Lesson Plan<a class="headerlink" href="#complete-lesson-plan" title="Link to this heading">#</a></h2>
+<section id="lesson-1-hello-world">
+<h3>Lesson 1: Hello World<a class="headerlink" href="#lesson-1-hello-world" title="Link to this heading">#</a></h3>
+<p><strong>File</strong>: <code class="docutils literal notranslate"><span class="pre">1_hello_world.py</span></code>
+<strong>Time</strong>: 5 minutes
+<strong>Topics</strong>:</p>
+<ul class="simple">
+<li><p>Your first Python program</p></li>
+<li><p>Running Python code</p></li>
+<li><p>The print() function</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="lesson-2-variables-and-types">
+<h3>Lesson 2: Variables and Types<a class="headerlink" href="#lesson-2-variables-and-types" title="Link to this heading">#</a></h3>
+<p><strong>Files</strong>: <code class="docutils literal notranslate"><span class="pre">2_variables_and_types.py</span></code> + <code class="docutils literal notranslate"><span class="pre">2_variables_and_typestodo.py</span></code>
+<strong>Time</strong>: 20 minutes
+<strong>Topics</strong>:</p>
+<ul class="simple">
+<li><p>Creating variables</p></li>
+<li><p>Data types (int, float, string, boolean, None)</p></li>
+<li><p>Multiple variable assignment</p></li>
+<li><p>Type checking with <code class="docutils literal notranslate"><span class="pre">type()</span></code></p></li>
+<li><p>Type conversions (str(), int(), float(), bool())</p></li>
+<li><p>String concatenation</p></li>
+</ul>
+<p><strong>Key Concepts</strong>:</p>
+<ul class="simple">
+<li><p>Variables as “pointers” to values</p></li>
+<li><p>Case sensitivity in Python</p></li>
+<li><p>Difference between concatenation (+) and comma separation</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="lesson-3-string-manipulation">
+<h3>Lesson 3: String Manipulation<a class="headerlink" href="#lesson-3-string-manipulation" title="Link to this heading">#</a></h3>
+<p><strong>Files</strong>: <code class="docutils literal notranslate"><span class="pre">3_string_manipulation.py</span></code> + <code class="docutils literal notranslate"><span class="pre">3_string_manipulationtodo.py</span></code>
+<strong>Time</strong>: 15 minutes
+<strong>Topics</strong>:</p>
+<ul class="simple">
+<li><p>String indexing</p></li>
+<li><p>String slicing</p></li>
+<li><p>String methods (upper(), lower(), replace(), split(), strip())</p></li>
+<li><p>Escape characters</p></li>
+<li><p>Multi-line strings</p></li>
+</ul>
+<p><strong>Key Concepts</strong>:</p>
+<ul class="simple">
+<li><p>Strings are sequences (can be indexed)</p></li>
+<li><p>Positive and negative indexing</p></li>
+<li><p>Slicing syntax [start:end:step]</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="lesson-4-basic-math">
+<h3>Lesson 4: Basic Math<a class="headerlink" href="#lesson-4-basic-math" title="Link to this heading">#</a></h3>
+<p><strong>Files</strong>: <code class="docutils literal notranslate"><span class="pre">4_basic_math.py</span></code> + <code class="docutils literal notranslate"><span class="pre">4_basic_mathtodo.py</span></code>
+<strong>Time</strong>: 20 minutes
+<strong>Topics</strong>:</p>
+<ul class="simple">
+<li><p>Arithmetic operators (+, -, *, /, //, %, **)</p></li>
+<li><p>Order of operations</p></li>
+<li><p>Math with variables</p></li>
+<li><p>Comparison operators (==, !=, &lt;, &gt;, &lt;=, &gt;=)</p></li>
+<li><p>The math module</p></li>
+</ul>
+<p><strong>Key Concepts</strong>:</p>
+<ul class="simple">
+<li><p>Integer division vs float division</p></li>
+<li><p>Modulo operator for remainders</p></li>
+<li><p>Exponentiation with **</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="lesson-5-lists-and-dictionaries">
+<h3>Lesson 5: Lists and Dictionaries<a class="headerlink" href="#lesson-5-lists-and-dictionaries" title="Link to this heading">#</a></h3>
+<p><strong>Files</strong>: <code class="docutils literal notranslate"><span class="pre">5_lists_and_dicts.py</span></code> + <code class="docutils literal notranslate"><span class="pre">5_lists_and_dictstodo.py</span></code>
+<strong>Time</strong>: 30 minutes
+<strong>Topics</strong>:</p>
+<ul class="simple">
+<li><p>Creating lists</p></li>
+<li><p>List indexing (positive and negative)</p></li>
+<li><p>Appending to lists</p></li>
+<li><p>Modifying list elements</p></li>
+<li><p>Creating dictionaries</p></li>
+<li><p>Accessing dictionary values by key</p></li>
+<li><p>Adding key-value pairs</p></li>
+<li><p>Nested lists and dictionaries</p></li>
+<li><p>Tuples (immutable lists)</p></li>
+</ul>
+<p><strong>Key Concepts</strong>:</p>
+<ul class="simple">
+<li><p>Lists are ordered and mutable</p></li>
+<li><p>Dictionaries map keys to values</p></li>
+<li><p>Tuples are immutable</p></li>
+<li><p>Complex data structures with nesting</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="lesson-6-list-and-dictionary-methods">
+<h3>Lesson 6: List and Dictionary Methods<a class="headerlink" href="#lesson-6-list-and-dictionary-methods" title="Link to this heading">#</a></h3>
+<p><strong>Files</strong>: <code class="docutils literal notranslate"><span class="pre">6_lists_and_dicts_methods.py</span></code> + <code class="docutils literal notranslate"><span class="pre">6_lists_and_dicts_methodstodo.py</span></code>
+<strong>Time</strong>: 25 minutes
+<strong>Topics</strong>:</p>
+<ul class="simple">
+<li><p>List methods: append(), insert(), remove(), pop(), sort(), reverse()</p></li>
+<li><p>Dictionary methods: keys(), values(), items(), get(), pop()</p></li>
+<li><p>List comprehensions (basic)</p></li>
+<li><p>Dictionary comprehensions (basic)</p></li>
+</ul>
+<p><strong>Key Concepts</strong>:</p>
+<ul class="simple">
+<li><p>Methods modify the original structure</p></li>
+<li><p>Methods vs functions</p></li>
+<li><p>Comprehensions for concise code</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="lesson-7-imports">
+<h3>Lesson 7: Imports<a class="headerlink" href="#lesson-7-imports" title="Link to this heading">#</a></h3>
+<p><strong>Files</strong>: <code class="docutils literal notranslate"><span class="pre">7_imports.py</span></code> + <code class="docutils literal notranslate"><span class="pre">7_importstodo.py</span></code>
+<strong>Time</strong>: 15 minutes
+<strong>Topics</strong>:</p>
+<ul class="simple">
+<li><p>What are modules?</p></li>
+<li><p>Importing entire modules</p></li>
+<li><p>Importing specific functions</p></li>
+<li><p>Using aliases (import … as)</p></li>
+<li><p>Common built-in modules (random, datetime, math)</p></li>
+</ul>
+<p><strong>Key Concepts</strong>:</p>
+<ul class="simple">
+<li><p>Code reusability through modules</p></li>
+<li><p>Python Standard Library</p></li>
+<li><p>Third-party packages</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="lesson-8-error-handling">
+<h3>Lesson 8: Error Handling<a class="headerlink" href="#lesson-8-error-handling" title="Link to this heading">#</a></h3>
+<p><strong>Files</strong>: <code class="docutils literal notranslate"><span class="pre">8_error_handling.py</span></code> + <code class="docutils literal notranslate"><span class="pre">8_error_handlingtodo.py</span></code>
+<strong>Time</strong>: 15 minutes
+<strong>Topics</strong>:</p>
+<ul class="simple">
+<li><p>Types of errors (SyntaxError, TypeError, ValueError, etc.)</p></li>
+<li><p>Reading error messages</p></li>
+<li><p>Try-except blocks</p></li>
+<li><p>Catching specific exceptions</p></li>
+<li><p>Finally blocks</p></li>
+</ul>
+<p><strong>Key Concepts</strong>:</p>
+<ul class="simple">
+<li><p>Errors are normal and expected</p></li>
+<li><p>Graceful error handling</p></li>
+<li><p>Debugging strategies</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="lesson-9-indexing-and-for-loops">
+<h3>Lesson 9: Indexing and For Loops<a class="headerlink" href="#lesson-9-indexing-and-for-loops" title="Link to this heading">#</a></h3>
+<p><strong>Files</strong>: <code class="docutils literal notranslate"><span class="pre">9_indexing_and_for_loops.py</span></code> + <code class="docutils literal notranslate"><span class="pre">9_indexing_and_for_loopstodo.py</span></code>
+<strong>Time</strong>: 25 minutes
+<strong>Topics</strong>:</p>
+<ul class="simple">
+<li><p>For loops basics</p></li>
+<li><p>Iterating over lists</p></li>
+<li><p>Iterating over dictionaries</p></li>
+<li><p>Range() function</p></li>
+<li><p>Enumerate() function</p></li>
+<li><p>Nested loops</p></li>
+</ul>
+<p><strong>Key Concepts</strong>:</p>
+<ul class="simple">
+<li><p>Iteration pattern</p></li>
+<li><p>Loop variable</p></li>
+<li><p>Range for counting</p></li>
+<li><p>Enumerate for index+value</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="lesson-10-conditionals-and-while-loops">
+<h3>Lesson 10: Conditionals and While Loops<a class="headerlink" href="#lesson-10-conditionals-and-while-loops" title="Link to this heading">#</a></h3>
+<p><strong>Files</strong>: <code class="docutils literal notranslate"><span class="pre">10_conditionals_and_while_loops.py</span></code> + <code class="docutils literal notranslate"><span class="pre">10_conditionals_and_while_loopstodo.py</span></code>
+<strong>Time</strong>: 30 minutes
+<strong>Topics</strong>:</p>
+<ul class="simple">
+<li><p>If statements</p></li>
+<li><p>If-elif-else chains</p></li>
+<li><p>Logical operators (and, or, not)</p></li>
+<li><p>While loops</p></li>
+<li><p>Break and continue statements</p></li>
+<li><p>Infinite loop prevention</p></li>
+</ul>
+<p><strong>Key Concepts</strong>:</p>
+<ul class="simple">
+<li><p>Boolean logic</p></li>
+<li><p>Control flow</p></li>
+<li><p>Loop control (break/continue)</p></li>
+<li><p>When to use for vs while</p></li>
+</ul>
+</section>
+</section>
+<hr class="docutils" />
+<section id="how-to-use-these-lessons">
+<h2>🎓 How to Use These Lessons<a class="headerlink" href="#how-to-use-these-lessons" title="Link to this heading">#</a></h2>
+<section id="running-the-code">
+<h3>Running the Code<a class="headerlink" href="#running-the-code" title="Link to this heading">#</a></h3>
+<ol class="arabic">
+<li><p><strong>Open the main lesson file</strong> in your text editor or IDE</p></li>
+<li><p><strong>Read through the comments</strong> - they explain everything!</p></li>
+<li><p><strong>Run the script</strong> to see the output:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>1_hello_world.py
+</pre></div>
+</div>
+</li>
+<li><p><strong>Stop at TODO markers</strong> and complete the exercises</p></li>
+<li><p><strong>Open the corresponding TODO file</strong> for guided practice</p></li>
+<li><p><strong>Experiment!</strong> Change values and see what happens</p></li>
+</ol>
+</section>
+<section id="best-practices">
+<h3>Best Practices<a class="headerlink" href="#best-practices" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p>✅ <strong>Type every example</strong> - Don’t copy-paste, type it yourself</p></li>
+<li><p>✅ <strong>Run frequently</strong> - Execute code often to see results</p></li>
+<li><p>✅ <strong>Break things</strong> - Try invalid inputs to understand errors</p></li>
+<li><p>✅ <strong>Complete TODOs</strong> - Practice is essential</p></li>
+<li><p>✅ <strong>Review</strong> - Go back to previous lessons as needed</p></li>
+</ol>
+</section>
+<section id="for-instructors">
+<h3>For Instructors<a class="headerlink" href="#for-instructors" title="Link to this heading">#</a></h3>
+<p>Each lesson includes:</p>
+<ul class="simple">
+<li><p><strong>Time estimates</strong> for pacing</p></li>
+<li><p><strong>FIXME sections</strong> to demonstrate common errors</p></li>
+<li><p><strong>TODO breaks</strong> for student practice</p></li>
+<li><p><strong>TAKEAWAY summaries</strong> for concept reinforcement</p></li>
+</ul>
+<p><strong>Suggested Pace</strong>: 2-3 lessons per session (1-2 hours)</p>
+</section>
+</section>
+<hr class="docutils" />
+<section id="after-completing-this-track">
+<h2>🎯 After Completing This Track<a class="headerlink" href="#after-completing-this-track" title="Link to this heading">#</a></h2>
+<p>Once you’ve mastered these fundamentals, you’re ready for:</p>
+<section id="next-steps-in-education-playground">
+<h3>Next Steps in Education Playground<a class="headerlink" href="#next-steps-in-education-playground" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p><strong>Easy Level Notebooks</strong> (<code class="docutils literal notranslate"><span class="pre">easy/</span></code> directory)</p>
+<ul class="simple">
+<li><p>Interactive Jupyter notebooks</p></li>
+<li><p>More exercises and visualizations</p></li>
+<li><p>AI/ML introduction</p></li>
+<li><p>Computing fundamentals</p></li>
+</ul>
+</li>
+<li><p><strong>Developer Tools Track</strong> (<code class="docutils literal notranslate"><span class="pre">tools/</span></code> directory)</p>
+<ul class="simple">
+<li><p>Shell/command line basics</p></li>
+<li><p>Git version control</p></li>
+<li><p>Professional development skills</p></li>
+</ul>
+</li>
+<li><p><strong>Take the Calibration Test</strong> (<code class="docutils literal notranslate"><span class="pre">00_calibration_test.ipynb</span></code>)</p>
+<ul class="simple">
+<li><p>Assess your skills</p></li>
+<li><p>Get personalized level recommendation</p></li>
+<li><p>Track your progress</p></li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="skills-you-ll-have">
+<h3>Skills You’ll Have<a class="headerlink" href="#skills-you-ll-have" title="Link to this heading">#</a></h3>
+<p>After completing all 10 lessons, you’ll be able to:</p>
+<ul class="simple">
+<li><p>✅ Write and run Python programs</p></li>
+<li><p>✅ Use variables, loops, and conditionals</p></li>
+<li><p>✅ Work with lists, dictionaries, and strings</p></li>
+<li><p>✅ Handle errors gracefully</p></li>
+<li><p>✅ Import and use modules</p></li>
+<li><p>✅ Read and understand Python code</p></li>
+<li><p>✅ Debug basic problems</p></li>
+</ul>
+</section>
+</section>
+<hr class="docutils" />
+<section id="troubleshooting">
+<h2>🔧 Troubleshooting<a class="headerlink" href="#troubleshooting" title="Link to this heading">#</a></h2>
+<p><strong>“Python command not found”</strong></p>
+<ul class="simple">
+<li><p>Install Python 3.10+ from <a class="reference external" href="http://python.org">python.org</a></p></li>
+<li><p>Verify: <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">--version</span></code> or <code class="docutils literal notranslate"><span class="pre">python3</span> <span class="pre">--version</span></code></p></li>
+</ul>
+<p><strong>“File not found”</strong></p>
+<ul class="simple">
+<li><p>Make sure you’re in the <code class="docutils literal notranslate"><span class="pre">beginner_scripts/</span></code> directory</p></li>
+<li><p>Use <code class="docutils literal notranslate"><span class="pre">cd</span></code> to navigate: <code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">beginner_scripts</span></code></p></li>
+</ul>
+<p><strong>“Syntax Error”</strong></p>
+<ul class="simple">
+<li><p>Check for typos, missing colons, incorrect indentation</p></li>
+<li><p>Read the error message - it tells you the line number!</p></li>
+</ul>
+<p><strong>“Import Error”</strong></p>
+<ul class="simple">
+<li><p>Built-in modules (random, math, datetime) should work automatically</p></li>
+<li><p>For third-party modules, use: <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">module_name</span></code></p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="additional-resources">
+<h2>📚 Additional Resources<a class="headerlink" href="#additional-resources" title="Link to this heading">#</a></h2>
+<p><strong>Practice Platforms:</strong></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://futurecoder.io/">Futurecoder</a> - Interactive Python for absolute beginners</p></li>
+<li><p><a class="reference external" href="http://pythontutor.com/">Python Tutor</a> - Visualize code execution</p></li>
+<li><p><a class="reference external" href="https://www.learnpython.org/">LearnPython.org</a> - Interactive tutorials</p></li>
+</ul>
+<p><strong>Documentation:</strong></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://docs.python.org/3/tutorial/">Official Python Tutorial</a></p></li>
+<li><p><a class="reference internal" href="../PYTHON_CHEATSHEET.html"><span class="std std-doc">Python Cheatsheet</span></a> - Quick reference guide</p></li>
+</ul>
+<p><strong>When Stuck:</strong></p>
+<ul class="simple">
+<li><p>Read error messages carefully</p></li>
+<li><p>Use <code class="docutils literal notranslate"><span class="pre">print()</span></code> to debug</p></li>
+<li><p>Check the TODO files for hints</p></li>
+<li><p>Search for the error online</p></li>
+<li><p>Ask in r/learnpython or Python Discord</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="tips-for-success">
+<h2>🌟 Tips for Success<a class="headerlink" href="#tips-for-success" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p><strong>Consistency &gt; Intensity</strong>: Practice 30 minutes daily beats 5 hours once a week</p></li>
+<li><p><strong>Embrace Errors</strong>: They’re learning opportunities, not failures</p></li>
+<li><p><strong>Experiment Freely</strong>: Modify examples to see what breaks and why</p></li>
+<li><p><strong>Teach Someone</strong>: Explaining concepts solidifies your understanding</p></li>
+<li><p><strong>Build Something</strong>: Apply what you learn to a small project</p></li>
+</ol>
+<hr class="docutils" />
+<p><strong>Ready to start?</strong> Open <code class="docutils literal notranslate"><span class="pre">1_hello_world.py</span></code> and begin your programming journey! 🚀</p>
+<p><strong>Questions or feedback?</strong> Open an issue on GitHub or join the discussion!</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./beginner_scripts"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../00_calibration_test.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Programming Calibration Test</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../easy/README_EASY.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">📗 Easy Level - Beginner Track</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#about-this-track">📌 About This Track</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#who-should-use-this">🎯 Who Should Use This?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lesson-structure">📚 Lesson Structure</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#format-features">Format Features</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#complete-lesson-plan">📖 Complete Lesson Plan</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lesson-1-hello-world">Lesson 1: Hello World</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lesson-2-variables-and-types">Lesson 2: Variables and Types</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lesson-3-string-manipulation">Lesson 3: String Manipulation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lesson-4-basic-math">Lesson 4: Basic Math</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lesson-5-lists-and-dictionaries">Lesson 5: Lists and Dictionaries</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lesson-6-list-and-dictionary-methods">Lesson 6: List and Dictionary Methods</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lesson-7-imports">Lesson 7: Imports</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lesson-8-error-handling">Lesson 8: Error Handling</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lesson-9-indexing-and-for-loops">Lesson 9: Indexing and For Loops</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lesson-10-conditionals-and-while-loops">Lesson 10: Conditionals and While Loops</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-use-these-lessons">🎓 How to Use These Lessons</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#running-the-code">Running the Code</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#best-practices">Best Practices</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#for-instructors">For Instructors</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#after-completing-this-track">🎯 After Completing This Track</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#next-steps-in-education-playground">Next Steps in Education Playground</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#skills-you-ll-have">Skills You’ll Have</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#troubleshooting">🔧 Troubleshooting</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#additional-resources">📚 Additional Resources</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tips-for-success">🌟 Tips for Success</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Mykolas Perevicius
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

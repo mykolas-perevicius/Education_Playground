@@ -1,0 +1,559 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Docker &amp; Containers\n\n## Containerization Fundamentals\n\nWhat you’ll learn:\n- Container concepts\n- Docker basics (images, containers)\n- Dockerfile creation\n- Docker Compose\n- Multi-stage builds\n- Container orchestration intro\n- Best practices\n\nTime: 90-120 minutes &#8212; Education Playground</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=0c185eed" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=c73c0f3e"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'tools/10_docker_containers';</script>
+    <script src="../_static/js/onboarding.js?v=557b7536"></script>
+    <link rel="canonical" href="https://mykolas-perevicius.github.io/Education_Playground/tools/10_docker_containers.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="📝 Solutions" href="../solutions/README_SOLUTIONS.html" />
+    <link rel="prev" title="SSH &amp; Remote Systems\n\n## Secure Remote Access\n\nWhat you’ll learn:\n- SSH fundamentals\n- Key-based authentication\n- SSH config\n- Remote command execution\n- File transfer (scp, rsync)\n- Port forwarding &amp; tunneling\n- tmux for persistent sessions\n\nTime: 75-90 minutes" href="09_ssh_remote_systems.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../README.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Education Playground</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../00_calibration_test.html">🎯 Calibration Test - Find Your Level</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../beginner_scripts/README.html">🌱 Beginner Scripts (10 Python Files)</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../easy/README_EASY.html">📗 Easy Level - Beginner</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../easy/01_introduction_to_python.html">1. Introduction to Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../easy/02_variables_and_data_types.html">2. Variables and Data Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../easy/03_basic_operations_and_conditionals.html">3. Operations and Conditionals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../easy/04_intro_to_ai_and_ml.html">4. Intro to AI and ML</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../easy/05_computing_fundamentals.html">5. Computing Fundamentals</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../medium/README_MEDIUM.html">📘 Medium Level - Intermediate</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../medium/01_functions_and_modules.html">1. Functions and Modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../medium/02_data_structures.html">2. Data Structures</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../medium/03_classes_and_oop.html">3. Classes and OOP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../medium/04_machine_learning_basics.html">4. Machine Learning Basics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../medium/05_data_analysis_with_pandas.html">5. Data Analysis with Pandas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../medium/06_algorithms_and_problem_solving.html">6. Algorithms and Problem Solving</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../hard/README_HARD.html">📕 Hard Level - Advanced</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../hard/01_advanced_functions_and_decorators.html">1. Advanced Functions &amp; Decorators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hard/02_generators_and_iterators.html">2. Generators and Iterators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hard/03_algorithms_and_complexity.html">3. Algorithms and Complexity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hard/04_deep_learning_and_neural_networks.html">4. Deep Learning &amp; Neural Networks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hard/05_advanced_ml_and_nlp.html">5. Advanced ML and NLP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hard/06_computer_systems_and_theory.html">6. Computer Systems and Theory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hard/07_project_ideas.html">7. Project Ideas &amp; Implementation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hard/08_classic_problems.html">Lesson 8: Classic Problems Collection</a></li>
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../hard/09_ctf_challenges.html">Lesson 9: Capture The Flag (CTF) - Hacker Training</a></li>
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../hard/10_performance_computing.html">10. Performance Computing ⚡ NEW!</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hard/11_cuda_and_parallel_computing.html">11. CUDA &amp; GPU Computing 🎮 NEW!</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="README.html">🛠️ Developer Tools Track</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="01_shell_basics.html">1. Shell and Command Line</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02_command_line_tools.html">2. Command Line Tools</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03_git_essentials.html">3. Git Essentials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04_text_editors.html">4. Text Editors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05_build_systems_cicd.html">5. Build Systems and CI/CD</a></li>
+<li class="toctree-l2"><a class="reference internal" href="06_debugging_profiling.html">6. Debugging and Profiling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="07_security_essentials.html">7. Security Essentials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="08_package_management.html">8. Package Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="09_ssh_remote_systems.html">9. SSH and Remote Systems</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">10. Docker and Containers</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../solutions/README_SOLUTIONS.html">📝 Solutions</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../solutions/easy_solutions.html">Easy Level - Complete Solutions</a></li>
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../solutions/medium_solutions.html">Medium Level - Complete Solutions</a></li>
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../solutions/hard_solutions.html">Hard Level - Complete Solutions</a></li>
+
+
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../solutions/tools_solutions.html">Developer Tools - Complete Solutions</a></li>
+
+
+
+
+
+
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../RESOURCES.html">📚 Learning Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../PYTHON_CHEATSHEET.html">⚡ Python Cheat Sheet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ML_AI_CHEATSHEET.html">🤖 ML/AI Cheat Sheet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../SETUP.html">🔧 Setup Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../RELEASE_NOTES_v2.0.0.html">🎉 Release Notes v2.0.0</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none"></div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Docker & Containers\n\n## Containerization Fundamentals\n\nWhat you’ll learn:\n- Container concepts\n- Docker basics (images, containers)\n- Dockerfile creation\n- Docker Compose\n- Multi-stage builds\n- Container orchestration intro\n- Best practices\n\nTime: 90-120 minutes</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-containers-n-n-the-problem-n-ntraditional-n-n-it-works-on-my-machine-n-ndeveloper-python-3-10-ubuntu-20-04-nproduction-python-3-8-centos-7-n-different-behavior-bugs-in-production-n-n-nwith-containers-n-nsame-image-runs-everywhere-n-developer-laptop-n-ci-cd-pipeline-n-production-servers-n-cloud-platforms-n">1. Why Containers?\n\n### The Problem\n\n<strong>Traditional:</strong>\n<code class="docutils literal notranslate"><span class="pre">\n\"It</span> <span class="pre">works</span> <span class="pre">on</span> <span class="pre">my</span> <span class="pre">machine!\"\n\nDeveloper:</span> <span class="pre">Python</span> <span class="pre">3.10,</span> <span class="pre">Ubuntu</span> <span class="pre">20.04\nProduction:</span> <span class="pre">Python</span> <span class="pre">3.8,</span> <span class="pre">CentOS</span> <span class="pre">7\n→</span> <span class="pre">Different</span> <span class="pre">behavior,</span> <span class="pre">bugs</span> <span class="pre">in</span> <span class="pre">production\n</span></code>\n\n<strong>With Containers:</strong>\n<code class="docutils literal notranslate"><span class="pre">\nSame</span> <span class="pre">image</span> <span class="pre">runs</span> <span class="pre">everywhere:\n-</span> <span class="pre">Developer</span> <span class="pre">laptop\n-</span> <span class="pre">CI/CD</span> <span class="pre">pipeline\n-</span> <span class="pre">Production</span> <span class="pre">servers\n-</span> <span class="pre">Cloud</span> <span class="pre">platforms\n</span></code></a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#containers-vs-vms-n-n-n-n-container-vm-n-n-app-1app-2-app-n-n-guest-os-n-container-n-runtime-n-hypervisor-n-n-host-os-n-host-os-n-n-lightweight-resource-heavy-n-start-in-ms-start-in-minutes-n-mb-in-size-gb-in-size-n">Containers vs VMs\n\n<code class="docutils literal notranslate"><span class="pre">\n┌─────────────────┐</span>   <span class="pre">┌─────────────────┐\n│</span>   <span class="pre">Container</span>     <span class="pre">│</span>   <span class="pre">│</span>       <span class="pre">VM</span>        <span class="pre">│\n│</span> <span class="pre">┌─────┬─────┐</span>  <span class="pre">│</span>   <span class="pre">│</span>  <span class="pre">┌──────────┐</span>   <span class="pre">│\n│</span> <span class="pre">│App</span> <span class="pre">1│App</span> <span class="pre">2│</span>  <span class="pre">│</span>   <span class="pre">│</span>  <span class="pre">│</span>   <span class="pre">App</span>    <span class="pre">│</span>   <span class="pre">│\n│</span> <span class="pre">└─────┴─────┘</span>  <span class="pre">│</span>   <span class="pre">│</span>  <span class="pre">├──────────┤</span>   <span class="pre">│\n│</span> <span class="pre">┌───────────┐</span>  <span class="pre">│</span>   <span class="pre">│</span>  <span class="pre">│Guest</span> <span class="pre">OS</span>  <span class="pre">│</span>   <span class="pre">│\n│</span> <span class="pre">│Container</span>  <span class="pre">│</span>  <span class="pre">│</span>   <span class="pre">│</span>  <span class="pre">└──────────┘</span>   <span class="pre">│\n│</span> <span class="pre">│</span> <span class="pre">Runtime</span>   <span class="pre">│</span>  <span class="pre">│</span>   <span class="pre">│</span>  <span class="pre">┌──────────┐</span>   <span class="pre">│\n│</span> <span class="pre">└───────────┘</span>  <span class="pre">│</span>   <span class="pre">│</span>  <span class="pre">│Hypervisor│</span>   <span class="pre">│\n│</span> <span class="pre">┌───────────┐</span>  <span class="pre">│</span>   <span class="pre">│</span>  <span class="pre">└──────────┘</span>   <span class="pre">│\n│</span> <span class="pre">│</span>  <span class="pre">Host</span> <span class="pre">OS</span>  <span class="pre">│</span>  <span class="pre">│</span>   <span class="pre">│</span>  <span class="pre">┌──────────┐</span>   <span class="pre">│\n│</span> <span class="pre">└───────────┘</span>  <span class="pre">│</span>   <span class="pre">│</span>  <span class="pre">│</span> <span class="pre">Host</span> <span class="pre">OS</span>  <span class="pre">│</span>   <span class="pre">│\n└─────────────────┘</span>   <span class="pre">└─────────────────┘\n</span>  <span class="pre">Lightweight</span>         <span class="pre">Resource</span> <span class="pre">Heavy\n</span>  <span class="pre">Start</span> <span class="pre">in</span> <span class="pre">ms</span>         <span class="pre">Start</span> <span class="pre">in</span> <span class="pre">minutes\n</span>  <span class="pre">MB</span> <span class="pre">in</span> <span class="pre">size</span>          <span class="pre">GB</span> <span class="pre">in</span> <span class="pre">size\n</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#docker-basics-n-n-installation-n-nbash-n-ubuntu-debian-ncurl-fssl-https-get-docker-com-sh-n-n-add-user-to-docker-group-no-sudo-needed-nsudo-usermod-ag-docker-user-n-n-verify-ndocker-version-ndocker-run-hello-world-n">2. Docker Basics\n\n### Installation\n\n<code class="docutils literal notranslate"><span class="pre">bash\n#</span> <span class="pre">Ubuntu/Debian\ncurl</span> <span class="pre">-fsSL</span> <span class="pre">https://get.docker.com</span> <span class="pre">|</span> <span class="pre">sh\n\n#</span> <span class="pre">Add</span> <span class="pre">user</span> <span class="pre">to</span> <span class="pre">docker</span> <span class="pre">group</span> <span class="pre">(no</span> <span class="pre">sudo</span> <span class="pre">needed)\nsudo</span> <span class="pre">usermod</span> <span class="pre">-aG</span> <span class="pre">docker</span> <span class="pre">$USER\n\n#</span> <span class="pre">Verify\ndocker</span> <span class="pre">--version\ndocker</span> <span class="pre">run</span> <span class="pre">hello-world\n</span></code></a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#core-concepts-n-nimage-blueprint-like-a-class-ncontainer-running-instance-like-an-object-n-nbash-n-pull-image-from-docker-hub-ndocker-pull-python-3-11-n-n-list-images-ndocker-images-n-n-run-container-ndocker-run-python-3-11-python-version-n-n-run-interactively-ndocker-run-it-python-3-11-bash-n-n-run-in-background-detached-ndocker-run-d-nginx-n-n-list-running-containers-ndocker-ps-n-n-list-all-containers-ndocker-ps-a-n">Core Concepts\n\n<strong>Image:</strong> Blueprint (like a class)\n<strong>Container:</strong> Running instance (like an object)\n\n<code class="docutils literal notranslate"><span class="pre">bash\n#</span> <span class="pre">Pull</span> <span class="pre">image</span> <span class="pre">from</span> <span class="pre">Docker</span> <span class="pre">Hub\ndocker</span> <span class="pre">pull</span> <span class="pre">python:3.11\n\n#</span> <span class="pre">List</span> <span class="pre">images\ndocker</span> <span class="pre">images\n\n#</span> <span class="pre">Run</span> <span class="pre">container\ndocker</span> <span class="pre">run</span> <span class="pre">python:3.11</span> <span class="pre">python</span> <span class="pre">--version\n\n#</span> <span class="pre">Run</span> <span class="pre">interactively\ndocker</span> <span class="pre">run</span> <span class="pre">-it</span> <span class="pre">python:3.11</span> <span class="pre">bash\n\n#</span> <span class="pre">Run</span> <span class="pre">in</span> <span class="pre">background</span> <span class="pre">(detached)\ndocker</span> <span class="pre">run</span> <span class="pre">-d</span> <span class="pre">nginx\n\n#</span> <span class="pre">List</span> <span class="pre">running</span> <span class="pre">containers\ndocker</span> <span class="pre">ps\n\n#</span> <span class="pre">List</span> <span class="pre">all</span> <span class="pre">containers\ndocker</span> <span class="pre">ps</span> <span class="pre">-a\n</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-docker-images-n-n-dockerfile-n-nsimple-python-app">3. Creating Docker Images\n\n### Dockerfile\n\n<strong>Simple Python app:</strong></a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#build-and-run-n-nbash-n-build-image-ndocker-build-t-my-app-1-0-n-n-run-container-ndocker-run-d-p-5000-5000-name-myapp-my-app-1-0-n-n-test-ncurl-http-localhost-5000-n-n-view-logs-ndocker-logs-myapp-n-n-stop-container-ndocker-stop-myapp-n-n-remove-container-ndocker-rm-myapp-n">Build and Run\n\n<code class="docutils literal notranslate"><span class="pre">bash\n#</span> <span class="pre">Build</span> <span class="pre">image\ndocker</span> <span class="pre">build</span> <span class="pre">-t</span> <span class="pre">my-app:1.0</span> <span class="pre">.\n\n#</span> <span class="pre">Run</span> <span class="pre">container\ndocker</span> <span class="pre">run</span> <span class="pre">-d</span> <span class="pre">-p</span> <span class="pre">5000:5000</span> <span class="pre">--name</span> <span class="pre">myapp</span> <span class="pre">my-app:1.0\n\n#</span> <span class="pre">Test\ncurl</span> <span class="pre">http://localhost:5000\n\n#</span> <span class="pre">View</span> <span class="pre">logs\ndocker</span> <span class="pre">logs</span> <span class="pre">myapp\n\n#</span> <span class="pre">Stop</span> <span class="pre">container\ndocker</span> <span class="pre">stop</span> <span class="pre">myapp\n\n#</span> <span class="pre">Remove</span> <span class="pre">container\ndocker</span> <span class="pre">rm</span> <span class="pre">myapp\n</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dockerfile-best-practices-n-n-multi-stage-builds-n-ndockerfile-n-build-stage-nfrom-node-18-as-builder-nworkdir-app-ncopy-package-json-nrun-npm-install-ncopy-nrun-npm-run-build-n-n-production-stage-nfrom-nginx-alpine-ncopy-from-builder-app-dist-usr-share-nginx-html-nexpose-80-ncmd-nginx-g-daemon-off-n-n-nbenefits-n-smaller-final-image-n-no-build-tools-in-production-n-more-secure">4. Dockerfile Best Practices\n\n### Multi-Stage Builds\n\n<code class="docutils literal notranslate"><span class="pre">dockerfile\n#</span> <span class="pre">Build</span> <span class="pre">stage\nFROM</span> <span class="pre">node:18</span> <span class="pre">AS</span> <span class="pre">builder\nWORKDIR</span> <span class="pre">/app\nCOPY</span> <span class="pre">package*.json</span> <span class="pre">./\nRUN</span> <span class="pre">npm</span> <span class="pre">install\nCOPY</span> <span class="pre">.</span> <span class="pre">.\nRUN</span> <span class="pre">npm</span> <span class="pre">run</span> <span class="pre">build\n\n#</span> <span class="pre">Production</span> <span class="pre">stage\nFROM</span> <span class="pre">nginx:alpine\nCOPY</span> <span class="pre">--from=builder</span> <span class="pre">/app/dist</span> <span class="pre">/usr/share/nginx/html\nEXPOSE</span> <span class="pre">80\nCMD</span> <span class="pre">[\"nginx\",</span> <span class="pre">\"-g\",</span> <span class="pre">\"daemon</span> <span class="pre">off;\"]\n</span></code>\n\n<strong>Benefits:</strong>\n- Smaller final image\n- No build tools in production\n- More secure</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#layer-caching-n-ndockerfile-n-bad-cache-busted-on-any-code-change-ncopy-nrun-pip-install-r-requirements-txt-n-n-good-dependencies-cached-separately-ncopy-requirements-txt-nrun-pip-install-r-requirements-txt-ncopy-n">Layer Caching\n\n<code class="docutils literal notranslate"><span class="pre">dockerfile\n#</span> <span class="pre">❌</span> <span class="pre">Bad:</span> <span class="pre">Cache</span> <span class="pre">busted</span> <span class="pre">on</span> <span class="pre">any</span> <span class="pre">code</span> <span class="pre">change\nCOPY</span> <span class="pre">.</span> <span class="pre">.\nRUN</span> <span class="pre">pip</span> <span class="pre">install</span> <span class="pre">-r</span> <span class="pre">requirements.txt\n\n#</span> <span class="pre">✅</span> <span class="pre">Good:</span> <span class="pre">Dependencies</span> <span class="pre">cached</span> <span class="pre">separately\nCOPY</span> <span class="pre">requirements.txt</span> <span class="pre">.\nRUN</span> <span class="pre">pip</span> <span class="pre">install</span> <span class="pre">-r</span> <span class="pre">requirements.txt\nCOPY</span> <span class="pre">.</span> <span class="pre">.\n</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#security-n-ndockerfile-n-don-t-run-as-root-nrun-adduser-d-myuser-nuser-myuser-n-n-use-specific-versions-nfrom-python-3-11-4-slim-not-latest-n-n-scan-for-vulnerabilities-n-docker-scan-my-app-1-0-n">Security\n\n<code class="docutils literal notranslate"><span class="pre">dockerfile\n#</span> <span class="pre">Don't</span> <span class="pre">run</span> <span class="pre">as</span> <span class="pre">root\nRUN</span> <span class="pre">adduser</span> <span class="pre">-D</span> <span class="pre">myuser\nUSER</span> <span class="pre">myuser\n\n#</span> <span class="pre">Use</span> <span class="pre">specific</span> <span class="pre">versions\nFROM</span> <span class="pre">python:3.11.4-slim</span>  <span class="pre">#</span> <span class="pre">Not</span> <span class="pre">'latest'\n\n#</span> <span class="pre">Scan</span> <span class="pre">for</span> <span class="pre">vulnerabilities\n#</span> <span class="pre">docker</span> <span class="pre">scan</span> <span class="pre">my-app:1.0\n</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#docker-compose-n-n-multi-container-apps-n-ndocker-compose-yml">5. Docker Compose\n\n### Multi-Container Apps\n\n<strong>docker-compose.yml:</strong></a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#docker-compose-commands-n-nbash-n-start-all-services-ndocker-compose-up-d-n-n-view-logs-ndocker-compose-logs-f-n-n-stop-services-ndocker-compose-down-n-n-rebuild-images-ndocker-compose-build-n-n-scale-service-ndocker-compose-up-d-scale-web-3-n">Docker Compose Commands\n\n<code class="docutils literal notranslate"><span class="pre">bash\n#</span> <span class="pre">Start</span> <span class="pre">all</span> <span class="pre">services\ndocker-compose</span> <span class="pre">up</span> <span class="pre">-d\n\n#</span> <span class="pre">View</span> <span class="pre">logs\ndocker-compose</span> <span class="pre">logs</span> <span class="pre">-f\n\n#</span> <span class="pre">Stop</span> <span class="pre">services\ndocker-compose</span> <span class="pre">down\n\n#</span> <span class="pre">Rebuild</span> <span class="pre">images\ndocker-compose</span> <span class="pre">build\n\n#</span> <span class="pre">Scale</span> <span class="pre">service\ndocker-compose</span> <span class="pre">up</span> <span class="pre">-d</span> <span class="pre">--scale</span> <span class="pre">web=3\n</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#volumes-data-persistence-n-nbash-n-named-volume-ndocker-run-v-mydata-app-data-myapp-n-n-bind-mount-local-directory-ndocker-run-v-pwd-data-app-data-myapp-n-n-read-only-ndocker-run-v-pwd-config-app-config-ro-myapp-n-n-list-volumes-ndocker-volume-ls-n-n-inspect-volume-ndocker-volume-inspect-mydata-n">6. Volumes &amp; Data Persistence\n\n<code class="docutils literal notranslate"><span class="pre">bash\n#</span> <span class="pre">Named</span> <span class="pre">volume\ndocker</span> <span class="pre">run</span> <span class="pre">-v</span> <span class="pre">mydata:/app/data</span> <span class="pre">myapp\n\n#</span> <span class="pre">Bind</span> <span class="pre">mount</span> <span class="pre">(local</span> <span class="pre">directory)\ndocker</span> <span class="pre">run</span> <span class="pre">-v</span> <span class="pre">$(pwd)/data:/app/data</span> <span class="pre">myapp\n\n#</span> <span class="pre">Read-only\ndocker</span> <span class="pre">run</span> <span class="pre">-v</span> <span class="pre">$(pwd)/config:/app/config:ro</span> <span class="pre">myapp\n\n#</span> <span class="pre">List</span> <span class="pre">volumes\ndocker</span> <span class="pre">volume</span> <span class="pre">ls\n\n#</span> <span class="pre">Inspect</span> <span class="pre">volume\ndocker</span> <span class="pre">volume</span> <span class="pre">inspect</span> <span class="pre">mydata\n</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#networking-n-nbash-n-create-network-ndocker-network-create-mynetwork-n-n-run-containers-in-network-ndocker-run-network-mynetwork-name-web-myapp-ndocker-run-network-mynetwork-name-db-postgres-n-n-now-web-can-reach-db-by-name-n-database-url-postgresql-db-5432-myapp-n-n-list-networks-ndocker-network-ls-n">7. Networking\n\n<code class="docutils literal notranslate"><span class="pre">bash\n#</span> <span class="pre">Create</span> <span class="pre">network\ndocker</span> <span class="pre">network</span> <span class="pre">create</span> <span class="pre">mynetwork\n\n#</span> <span class="pre">Run</span> <span class="pre">containers</span> <span class="pre">in</span> <span class="pre">network\ndocker</span> <span class="pre">run</span> <span class="pre">--network</span> <span class="pre">mynetwork</span> <span class="pre">--name</span> <span class="pre">web</span> <span class="pre">myapp\ndocker</span> <span class="pre">run</span> <span class="pre">--network</span> <span class="pre">mynetwork</span> <span class="pre">--name</span> <span class="pre">db</span> <span class="pre">postgres\n\n#</span> <span class="pre">Now</span> <span class="pre">'web'</span> <span class="pre">can</span> <span class="pre">reach</span> <span class="pre">'db'</span> <span class="pre">by</span> <span class="pre">name!\n#</span> <span class="pre">DATABASE_URL=postgresql://db:5432/myapp\n\n#</span> <span class="pre">List</span> <span class="pre">networks\ndocker</span> <span class="pre">network</span> <span class="pre">ls\n</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#container-orchestration-n-n-kubernetes-k8s-n-nfor-production-n-auto-scaling-n-self-healing-n-load-balancing-n-rolling-updates-n-service-discovery-n-nalternatives-n-docker-swarm-simpler-n-amazon-ecs-n-google-cloud-run-n-azure-container-instances">8. Container Orchestration\n\n### Kubernetes (K8s)\n\n<strong>For production:</strong>\n- Auto-scaling\n- Self-healing\n- Load balancing\n- Rolling updates\n- Service discovery\n\n<strong>Alternatives:</strong>\n- Docker Swarm (simpler)\n- Amazon ECS\n- Google Cloud Run\n- Azure Container Instances</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises-n-n1-create-dockerfile-for-python-app-n2-build-and-run-container-n3-write-docker-compose-yml-with-database-n4-implement-multi-stage-build-n5-set-up-volume-for-persistence-n-n-key-takeaways-n-n-containers-ensure-consistency-n-dockerfile-reproducible-builds-n-multi-stage-builds-smaller-images-n-docker-compose-multi-container-apps-n-volumes-for-data-persistence-n-networks-for-container-communication">🎯 Exercises\n\n1. Create Dockerfile for Python app\n2. Build and run container\n3. Write docker-compose.yml with database\n4. Implement multi-stage build\n5. Set up volume for persistence\n\n## 🎓 Key Takeaways\n\n- Containers ensure consistency\n- Dockerfile = reproducible builds\n- Multi-stage builds = smaller images\n- Docker Compose = multi-container apps\n- Volumes for data persistence\n- Networks for container communication</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#next-steps-n-n1-learn-kubernetes-basics-n2-ci-cd-with-containers-n3-security-scanning-n4-container-monitoring-n-n-resources-n-n-docker-docs-n-docker-hub-n-kubernetes-n-play-with-docker">🚀 Next Steps\n\n1. Learn Kubernetes basics\n2. CI/CD with containers\n3. Security scanning\n4. Container monitoring\n\n## 📚 Resources\n\n- Docker Docs\n- Docker Hub\n- Kubernetes\n- Play with Docker</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="docker-containers-n-n-containerization-fundamentals-n-nwhat-you-ll-learn-n-container-concepts-n-docker-basics-images-containers-n-dockerfile-creation-n-docker-compose-n-multi-stage-builds-n-container-orchestration-intro-n-best-practices-n-ntime-90-120-minutes">
+<h1>Docker &amp; Containers\n\n## Containerization Fundamentals\n\n<strong>What you’ll learn:</strong>\n- Container concepts\n- Docker basics (images, containers)\n- Dockerfile creation\n- Docker Compose\n- Multi-stage builds\n- Container orchestration intro\n- Best practices\n\n<strong>Time:</strong> 90-120 minutes<a class="headerlink" href="#docker-containers-n-n-containerization-fundamentals-n-nwhat-you-ll-learn-n-container-concepts-n-docker-basics-images-containers-n-dockerfile-creation-n-docker-compose-n-multi-stage-builds-n-container-orchestration-intro-n-best-practices-n-ntime-90-120-minutes" title="Link to this heading">#</a></h1>
+<section id="why-containers-n-n-the-problem-n-ntraditional-n-n-it-works-on-my-machine-n-ndeveloper-python-3-10-ubuntu-20-04-nproduction-python-3-8-centos-7-n-different-behavior-bugs-in-production-n-n-nwith-containers-n-nsame-image-runs-everywhere-n-developer-laptop-n-ci-cd-pipeline-n-production-servers-n-cloud-platforms-n">
+<h2>1. Why Containers?\n\n### The Problem\n\n<strong>Traditional:</strong>\n<code class="docutils literal notranslate"><span class="pre">\n\&quot;It</span> <span class="pre">works</span> <span class="pre">on</span> <span class="pre">my</span> <span class="pre">machine!\&quot;\n\nDeveloper:</span> <span class="pre">Python</span> <span class="pre">3.10,</span> <span class="pre">Ubuntu</span> <span class="pre">20.04\nProduction:</span> <span class="pre">Python</span> <span class="pre">3.8,</span> <span class="pre">CentOS</span> <span class="pre">7\n→</span> <span class="pre">Different</span> <span class="pre">behavior,</span> <span class="pre">bugs</span> <span class="pre">in</span> <span class="pre">production\n</span></code>\n\n<strong>With Containers:</strong>\n<code class="docutils literal notranslate"><span class="pre">\nSame</span> <span class="pre">image</span> <span class="pre">runs</span> <span class="pre">everywhere:\n-</span> <span class="pre">Developer</span> <span class="pre">laptop\n-</span> <span class="pre">CI/CD</span> <span class="pre">pipeline\n-</span> <span class="pre">Production</span> <span class="pre">servers\n-</span> <span class="pre">Cloud</span> <span class="pre">platforms\n</span></code><a class="headerlink" href="#why-containers-n-n-the-problem-n-ntraditional-n-n-it-works-on-my-machine-n-ndeveloper-python-3-10-ubuntu-20-04-nproduction-python-3-8-centos-7-n-different-behavior-bugs-in-production-n-n-nwith-containers-n-nsame-image-runs-everywhere-n-developer-laptop-n-ci-cd-pipeline-n-production-servers-n-cloud-platforms-n" title="Link to this heading">#</a></h2>
+<section id="containers-vs-vms-n-n-n-n-container-vm-n-n-app-1app-2-app-n-n-guest-os-n-container-n-runtime-n-hypervisor-n-n-host-os-n-host-os-n-n-lightweight-resource-heavy-n-start-in-ms-start-in-minutes-n-mb-in-size-gb-in-size-n">
+<h3>Containers vs VMs\n\n<code class="docutils literal notranslate"><span class="pre">\n┌─────────────────┐</span>&#160;&#160; <span class="pre">┌─────────────────┐\n│</span>&#160;&#160; <span class="pre">Container</span>&#160;&#160;&#160;&#160; <span class="pre">│</span>&#160;&#160; <span class="pre">│</span>&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">VM</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">│\n│</span> <span class="pre">┌─────┬─────┐</span>&#160; <span class="pre">│</span>&#160;&#160; <span class="pre">│</span>&#160; <span class="pre">┌──────────┐</span>&#160;&#160; <span class="pre">│\n│</span> <span class="pre">│App</span> <span class="pre">1│App</span> <span class="pre">2│</span>&#160; <span class="pre">│</span>&#160;&#160; <span class="pre">│</span>&#160; <span class="pre">│</span>&#160;&#160; <span class="pre">App</span>&#160;&#160;&#160; <span class="pre">│</span>&#160;&#160; <span class="pre">│\n│</span> <span class="pre">└─────┴─────┘</span>&#160; <span class="pre">│</span>&#160;&#160; <span class="pre">│</span>&#160; <span class="pre">├──────────┤</span>&#160;&#160; <span class="pre">│\n│</span> <span class="pre">┌───────────┐</span>&#160; <span class="pre">│</span>&#160;&#160; <span class="pre">│</span>&#160; <span class="pre">│Guest</span> <span class="pre">OS</span>&#160; <span class="pre">│</span>&#160;&#160; <span class="pre">│\n│</span> <span class="pre">│Container</span>&#160; <span class="pre">│</span>&#160; <span class="pre">│</span>&#160;&#160; <span class="pre">│</span>&#160; <span class="pre">└──────────┘</span>&#160;&#160; <span class="pre">│\n│</span> <span class="pre">│</span> <span class="pre">Runtime</span>&#160;&#160; <span class="pre">│</span>&#160; <span class="pre">│</span>&#160;&#160; <span class="pre">│</span>&#160; <span class="pre">┌──────────┐</span>&#160;&#160; <span class="pre">│\n│</span> <span class="pre">└───────────┘</span>&#160; <span class="pre">│</span>&#160;&#160; <span class="pre">│</span>&#160; <span class="pre">│Hypervisor│</span>&#160;&#160; <span class="pre">│\n│</span> <span class="pre">┌───────────┐</span>&#160; <span class="pre">│</span>&#160;&#160; <span class="pre">│</span>&#160; <span class="pre">└──────────┘</span>&#160;&#160; <span class="pre">│\n│</span> <span class="pre">│</span>&#160; <span class="pre">Host</span> <span class="pre">OS</span>&#160; <span class="pre">│</span>&#160; <span class="pre">│</span>&#160;&#160; <span class="pre">│</span>&#160; <span class="pre">┌──────────┐</span>&#160;&#160; <span class="pre">│\n│</span> <span class="pre">└───────────┘</span>&#160; <span class="pre">│</span>&#160;&#160; <span class="pre">│</span>&#160; <span class="pre">│</span> <span class="pre">Host</span> <span class="pre">OS</span>&#160; <span class="pre">│</span>&#160;&#160; <span class="pre">│\n└─────────────────┘</span>&#160;&#160; <span class="pre">└─────────────────┘\n</span>&#160; <span class="pre">Lightweight</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">Resource</span> <span class="pre">Heavy\n</span>&#160; <span class="pre">Start</span> <span class="pre">in</span> <span class="pre">ms</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">Start</span> <span class="pre">in</span> <span class="pre">minutes\n</span>&#160; <span class="pre">MB</span> <span class="pre">in</span> <span class="pre">size</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">GB</span> <span class="pre">in</span> <span class="pre">size\n</span></code><a class="headerlink" href="#containers-vs-vms-n-n-n-n-container-vm-n-n-app-1app-2-app-n-n-guest-os-n-container-n-runtime-n-hypervisor-n-n-host-os-n-host-os-n-n-lightweight-resource-heavy-n-start-in-ms-start-in-minutes-n-mb-in-size-gb-in-size-n" title="Link to this heading">#</a></h3>
+</section>
+</section>
+<section id="docker-basics-n-n-installation-n-nbash-n-ubuntu-debian-ncurl-fssl-https-get-docker-com-sh-n-n-add-user-to-docker-group-no-sudo-needed-nsudo-usermod-ag-docker-user-n-n-verify-ndocker-version-ndocker-run-hello-world-n">
+<h2>2. Docker Basics\n\n### Installation\n\n<code class="docutils literal notranslate"><span class="pre">bash\n#</span> <span class="pre">Ubuntu/Debian\ncurl</span> <span class="pre">-fsSL</span> <span class="pre">https://get.docker.com</span> <span class="pre">|</span> <span class="pre">sh\n\n#</span> <span class="pre">Add</span> <span class="pre">user</span> <span class="pre">to</span> <span class="pre">docker</span> <span class="pre">group</span> <span class="pre">(no</span> <span class="pre">sudo</span> <span class="pre">needed)\nsudo</span> <span class="pre">usermod</span> <span class="pre">-aG</span> <span class="pre">docker</span> <span class="pre">$USER\n\n#</span> <span class="pre">Verify\ndocker</span> <span class="pre">--version\ndocker</span> <span class="pre">run</span> <span class="pre">hello-world\n</span></code><a class="headerlink" href="#docker-basics-n-n-installation-n-nbash-n-ubuntu-debian-ncurl-fssl-https-get-docker-com-sh-n-n-add-user-to-docker-group-no-sudo-needed-nsudo-usermod-ag-docker-user-n-n-verify-ndocker-version-ndocker-run-hello-world-n" title="Link to this heading">#</a></h2>
+<section id="core-concepts-n-nimage-blueprint-like-a-class-ncontainer-running-instance-like-an-object-n-nbash-n-pull-image-from-docker-hub-ndocker-pull-python-3-11-n-n-list-images-ndocker-images-n-n-run-container-ndocker-run-python-3-11-python-version-n-n-run-interactively-ndocker-run-it-python-3-11-bash-n-n-run-in-background-detached-ndocker-run-d-nginx-n-n-list-running-containers-ndocker-ps-n-n-list-all-containers-ndocker-ps-a-n">
+<h3>Core Concepts\n\n<strong>Image:</strong> Blueprint (like a class)\n<strong>Container:</strong> Running instance (like an object)\n\n<code class="docutils literal notranslate"><span class="pre">bash\n#</span> <span class="pre">Pull</span> <span class="pre">image</span> <span class="pre">from</span> <span class="pre">Docker</span> <span class="pre">Hub\ndocker</span> <span class="pre">pull</span> <span class="pre">python:3.11\n\n#</span> <span class="pre">List</span> <span class="pre">images\ndocker</span> <span class="pre">images\n\n#</span> <span class="pre">Run</span> <span class="pre">container\ndocker</span> <span class="pre">run</span> <span class="pre">python:3.11</span> <span class="pre">python</span> <span class="pre">--version\n\n#</span> <span class="pre">Run</span> <span class="pre">interactively\ndocker</span> <span class="pre">run</span> <span class="pre">-it</span> <span class="pre">python:3.11</span> <span class="pre">bash\n\n#</span> <span class="pre">Run</span> <span class="pre">in</span> <span class="pre">background</span> <span class="pre">(detached)\ndocker</span> <span class="pre">run</span> <span class="pre">-d</span> <span class="pre">nginx\n\n#</span> <span class="pre">List</span> <span class="pre">running</span> <span class="pre">containers\ndocker</span> <span class="pre">ps\n\n#</span> <span class="pre">List</span> <span class="pre">all</span> <span class="pre">containers\ndocker</span> <span class="pre">ps</span> <span class="pre">-a\n</span></code><a class="headerlink" href="#core-concepts-n-nimage-blueprint-like-a-class-ncontainer-running-instance-like-an-object-n-nbash-n-pull-image-from-docker-hub-ndocker-pull-python-3-11-n-n-list-images-ndocker-images-n-n-run-container-ndocker-run-python-3-11-python-version-n-n-run-interactively-ndocker-run-it-python-3-11-bash-n-n-run-in-background-detached-ndocker-run-d-nginx-n-n-list-running-containers-ndocker-ps-n-n-list-all-containers-ndocker-ps-a-n" title="Link to this heading">#</a></h3>
+</section>
+</section>
+<section id="creating-docker-images-n-n-dockerfile-n-nsimple-python-app">
+<h2>3. Creating Docker Images\n\n### Dockerfile\n\n<strong>Simple Python app:</strong><a class="headerlink" href="#creating-docker-images-n-n-dockerfile-n-nsimple-python-app" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create sample app\n!mkdir -p docker_demo\n!cat &gt; docker_demo/app.py &lt;&lt; &#39;EOF&#39;\nfrom flask import Flask\napp = Flask(__name__)\n\n@app.route(&#39;/&#39;)\ndef hello():\n    return &#39;Hello from Docker!&#39;\n\nif __name__ == &#39;__main__&#39;:\n    app.run(host=&#39;0.0.0.0&#39;, port=5000)\nEOF\n\n!cat &gt; docker_demo/requirements.txt &lt;&lt; &#39;EOF&#39;\nFlask==2.3.0\nEOF\n\nprint(&#39;✅ Created app files&#39;)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create Dockerfile\n!cat &gt; docker_demo/Dockerfile &lt;&lt; &#39;EOF&#39;\n# Base image\nFROM python:3.11-slim\n\n# Set working directory\nWORKDIR /app\n\n# Copy requirements\nCOPY requirements.txt .\n\n# Install dependencies\nRUN pip install --no-cache-dir -r requirements.txt\n\n# Copy application\nCOPY app.py .\n\n# Expose port\nEXPOSE 5000\n\n# Run application\nCMD [\&quot;python\&quot;, \&quot;app.py\&quot;]\nEOF\n\nprint(&#39;✅ Created Dockerfile&#39;)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="build-and-run-n-nbash-n-build-image-ndocker-build-t-my-app-1-0-n-n-run-container-ndocker-run-d-p-5000-5000-name-myapp-my-app-1-0-n-n-test-ncurl-http-localhost-5000-n-n-view-logs-ndocker-logs-myapp-n-n-stop-container-ndocker-stop-myapp-n-n-remove-container-ndocker-rm-myapp-n">
+<h3>Build and Run\n\n<code class="docutils literal notranslate"><span class="pre">bash\n#</span> <span class="pre">Build</span> <span class="pre">image\ndocker</span> <span class="pre">build</span> <span class="pre">-t</span> <span class="pre">my-app:1.0</span> <span class="pre">.\n\n#</span> <span class="pre">Run</span> <span class="pre">container\ndocker</span> <span class="pre">run</span> <span class="pre">-d</span> <span class="pre">-p</span> <span class="pre">5000:5000</span> <span class="pre">--name</span> <span class="pre">myapp</span> <span class="pre">my-app:1.0\n\n#</span> <span class="pre">Test\ncurl</span> <span class="pre">http://localhost:5000\n\n#</span> <span class="pre">View</span> <span class="pre">logs\ndocker</span> <span class="pre">logs</span> <span class="pre">myapp\n\n#</span> <span class="pre">Stop</span> <span class="pre">container\ndocker</span> <span class="pre">stop</span> <span class="pre">myapp\n\n#</span> <span class="pre">Remove</span> <span class="pre">container\ndocker</span> <span class="pre">rm</span> <span class="pre">myapp\n</span></code><a class="headerlink" href="#build-and-run-n-nbash-n-build-image-ndocker-build-t-my-app-1-0-n-n-run-container-ndocker-run-d-p-5000-5000-name-myapp-my-app-1-0-n-n-test-ncurl-http-localhost-5000-n-n-view-logs-ndocker-logs-myapp-n-n-stop-container-ndocker-stop-myapp-n-n-remove-container-ndocker-rm-myapp-n" title="Link to this heading">#</a></h3>
+</section>
+</section>
+<section id="dockerfile-best-practices-n-n-multi-stage-builds-n-ndockerfile-n-build-stage-nfrom-node-18-as-builder-nworkdir-app-ncopy-package-json-nrun-npm-install-ncopy-nrun-npm-run-build-n-n-production-stage-nfrom-nginx-alpine-ncopy-from-builder-app-dist-usr-share-nginx-html-nexpose-80-ncmd-nginx-g-daemon-off-n-n-nbenefits-n-smaller-final-image-n-no-build-tools-in-production-n-more-secure">
+<h2>4. Dockerfile Best Practices\n\n### Multi-Stage Builds\n\n<code class="docutils literal notranslate"><span class="pre">dockerfile\n#</span> <span class="pre">Build</span> <span class="pre">stage\nFROM</span> <span class="pre">node:18</span> <span class="pre">AS</span> <span class="pre">builder\nWORKDIR</span> <span class="pre">/app\nCOPY</span> <span class="pre">package*.json</span> <span class="pre">./\nRUN</span> <span class="pre">npm</span> <span class="pre">install\nCOPY</span> <span class="pre">.</span> <span class="pre">.\nRUN</span> <span class="pre">npm</span> <span class="pre">run</span> <span class="pre">build\n\n#</span> <span class="pre">Production</span> <span class="pre">stage\nFROM</span> <span class="pre">nginx:alpine\nCOPY</span> <span class="pre">--from=builder</span> <span class="pre">/app/dist</span> <span class="pre">/usr/share/nginx/html\nEXPOSE</span> <span class="pre">80\nCMD</span> <span class="pre">[\&quot;nginx\&quot;,</span> <span class="pre">\&quot;-g\&quot;,</span> <span class="pre">\&quot;daemon</span> <span class="pre">off;\&quot;]\n</span></code>\n\n<strong>Benefits:</strong>\n- Smaller final image\n- No build tools in production\n- More secure<a class="headerlink" href="#dockerfile-best-practices-n-n-multi-stage-builds-n-ndockerfile-n-build-stage-nfrom-node-18-as-builder-nworkdir-app-ncopy-package-json-nrun-npm-install-ncopy-nrun-npm-run-build-n-n-production-stage-nfrom-nginx-alpine-ncopy-from-builder-app-dist-usr-share-nginx-html-nexpose-80-ncmd-nginx-g-daemon-off-n-n-nbenefits-n-smaller-final-image-n-no-build-tools-in-production-n-more-secure" title="Link to this heading">#</a></h2>
+<section id="layer-caching-n-ndockerfile-n-bad-cache-busted-on-any-code-change-ncopy-nrun-pip-install-r-requirements-txt-n-n-good-dependencies-cached-separately-ncopy-requirements-txt-nrun-pip-install-r-requirements-txt-ncopy-n">
+<h3>Layer Caching\n\n<code class="docutils literal notranslate"><span class="pre">dockerfile\n#</span> <span class="pre">❌</span> <span class="pre">Bad:</span> <span class="pre">Cache</span> <span class="pre">busted</span> <span class="pre">on</span> <span class="pre">any</span> <span class="pre">code</span> <span class="pre">change\nCOPY</span> <span class="pre">.</span> <span class="pre">.\nRUN</span> <span class="pre">pip</span> <span class="pre">install</span> <span class="pre">-r</span> <span class="pre">requirements.txt\n\n#</span> <span class="pre">✅</span> <span class="pre">Good:</span> <span class="pre">Dependencies</span> <span class="pre">cached</span> <span class="pre">separately\nCOPY</span> <span class="pre">requirements.txt</span> <span class="pre">.\nRUN</span> <span class="pre">pip</span> <span class="pre">install</span> <span class="pre">-r</span> <span class="pre">requirements.txt\nCOPY</span> <span class="pre">.</span> <span class="pre">.\n</span></code><a class="headerlink" href="#layer-caching-n-ndockerfile-n-bad-cache-busted-on-any-code-change-ncopy-nrun-pip-install-r-requirements-txt-n-n-good-dependencies-cached-separately-ncopy-requirements-txt-nrun-pip-install-r-requirements-txt-ncopy-n" title="Link to this heading">#</a></h3>
+</section>
+<section id="security-n-ndockerfile-n-don-t-run-as-root-nrun-adduser-d-myuser-nuser-myuser-n-n-use-specific-versions-nfrom-python-3-11-4-slim-not-latest-n-n-scan-for-vulnerabilities-n-docker-scan-my-app-1-0-n">
+<h3>Security\n\n<code class="docutils literal notranslate"><span class="pre">dockerfile\n#</span> <span class="pre">Don't</span> <span class="pre">run</span> <span class="pre">as</span> <span class="pre">root\nRUN</span> <span class="pre">adduser</span> <span class="pre">-D</span> <span class="pre">myuser\nUSER</span> <span class="pre">myuser\n\n#</span> <span class="pre">Use</span> <span class="pre">specific</span> <span class="pre">versions\nFROM</span> <span class="pre">python:3.11.4-slim</span>&#160; <span class="pre">#</span> <span class="pre">Not</span> <span class="pre">'latest'\n\n#</span> <span class="pre">Scan</span> <span class="pre">for</span> <span class="pre">vulnerabilities\n#</span> <span class="pre">docker</span> <span class="pre">scan</span> <span class="pre">my-app:1.0\n</span></code><a class="headerlink" href="#security-n-ndockerfile-n-don-t-run-as-root-nrun-adduser-d-myuser-nuser-myuser-n-n-use-specific-versions-nfrom-python-3-11-4-slim-not-latest-n-n-scan-for-vulnerabilities-n-docker-scan-my-app-1-0-n" title="Link to this heading">#</a></h3>
+</section>
+</section>
+<section id="docker-compose-n-n-multi-container-apps-n-ndocker-compose-yml">
+<h2>5. Docker Compose\n\n### Multi-Container Apps\n\n<strong>docker-compose.yml:</strong><a class="headerlink" href="#docker-compose-n-n-multi-container-apps-n-ndocker-compose-yml" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="err">!</span><span class="n">cat</span> <span class="o">&gt;</span> <span class="n">docker_demo</span><span class="o">/</span><span class="n">docker</span><span class="o">-</span><span class="n">compose</span><span class="o">.</span><span class="n">yml</span> <span class="o">&lt;&lt;</span> <span class="s1">&#39;EOF&#39;</span>\<span class="n">nversion</span><span class="p">:</span> <span class="s1">&#39;3.8&#39;</span>\<span class="n">n</span>\<span class="n">nservices</span><span class="p">:</span>\<span class="n">n</span>  <span class="n">web</span><span class="p">:</span>\<span class="n">n</span>    <span class="n">build</span><span class="p">:</span> <span class="o">.</span>\<span class="n">n</span>    <span class="n">ports</span><span class="p">:</span>\<span class="n">n</span>      <span class="o">-</span> \<span class="s2">&quot;5000:5000</span><span class="se">\&quot;\n</span><span class="s2">    environment:</span><span class="se">\n</span><span class="s2">      - DATABASE_URL=postgresql://db:5432/myapp</span><span class="se">\n</span><span class="s2">    depends_on:</span><span class="se">\n</span><span class="s2">      - db</span><span class="se">\n</span><span class="s2">  </span><span class="se">\n</span><span class="s2">  db:</span><span class="se">\n</span><span class="s2">    image: postgres:15</span><span class="se">\n</span><span class="s2">    environment:</span><span class="se">\n</span><span class="s2">      - POSTGRES_PASSWORD=secret</span><span class="se">\n</span><span class="s2">      - POSTGRES_DB=myapp</span><span class="se">\n</span><span class="s2">    volumes:</span><span class="se">\n</span><span class="s2">      - postgres_data:/var/lib/postgresql/data</span><span class="se">\n</span><span class="s2">  </span><span class="se">\n</span><span class="s2">  redis:</span><span class="se">\n</span><span class="s2">    image: redis:7-alpine</span><span class="se">\n</span><span class="s2">    </span><span class="se">\n</span><span class="s2">volumes:</span><span class="se">\n</span><span class="s2">  postgres_data:</span><span class="se">\n</span><span class="s2">EOF</span><span class="se">\n\n</span><span class="s2">print(&#39;✅ Created docker-compose.yml&#39;)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="docker-compose-commands-n-nbash-n-start-all-services-ndocker-compose-up-d-n-n-view-logs-ndocker-compose-logs-f-n-n-stop-services-ndocker-compose-down-n-n-rebuild-images-ndocker-compose-build-n-n-scale-service-ndocker-compose-up-d-scale-web-3-n">
+<h3>Docker Compose Commands\n\n<code class="docutils literal notranslate"><span class="pre">bash\n#</span> <span class="pre">Start</span> <span class="pre">all</span> <span class="pre">services\ndocker-compose</span> <span class="pre">up</span> <span class="pre">-d\n\n#</span> <span class="pre">View</span> <span class="pre">logs\ndocker-compose</span> <span class="pre">logs</span> <span class="pre">-f\n\n#</span> <span class="pre">Stop</span> <span class="pre">services\ndocker-compose</span> <span class="pre">down\n\n#</span> <span class="pre">Rebuild</span> <span class="pre">images\ndocker-compose</span> <span class="pre">build\n\n#</span> <span class="pre">Scale</span> <span class="pre">service\ndocker-compose</span> <span class="pre">up</span> <span class="pre">-d</span> <span class="pre">--scale</span> <span class="pre">web=3\n</span></code><a class="headerlink" href="#docker-compose-commands-n-nbash-n-start-all-services-ndocker-compose-up-d-n-n-view-logs-ndocker-compose-logs-f-n-n-stop-services-ndocker-compose-down-n-n-rebuild-images-ndocker-compose-build-n-n-scale-service-ndocker-compose-up-d-scale-web-3-n" title="Link to this heading">#</a></h3>
+</section>
+</section>
+<section id="volumes-data-persistence-n-nbash-n-named-volume-ndocker-run-v-mydata-app-data-myapp-n-n-bind-mount-local-directory-ndocker-run-v-pwd-data-app-data-myapp-n-n-read-only-ndocker-run-v-pwd-config-app-config-ro-myapp-n-n-list-volumes-ndocker-volume-ls-n-n-inspect-volume-ndocker-volume-inspect-mydata-n">
+<h2>6. Volumes &amp; Data Persistence\n\n<code class="docutils literal notranslate"><span class="pre">bash\n#</span> <span class="pre">Named</span> <span class="pre">volume\ndocker</span> <span class="pre">run</span> <span class="pre">-v</span> <span class="pre">mydata:/app/data</span> <span class="pre">myapp\n\n#</span> <span class="pre">Bind</span> <span class="pre">mount</span> <span class="pre">(local</span> <span class="pre">directory)\ndocker</span> <span class="pre">run</span> <span class="pre">-v</span> <span class="pre">$(pwd)/data:/app/data</span> <span class="pre">myapp\n\n#</span> <span class="pre">Read-only\ndocker</span> <span class="pre">run</span> <span class="pre">-v</span> <span class="pre">$(pwd)/config:/app/config:ro</span> <span class="pre">myapp\n\n#</span> <span class="pre">List</span> <span class="pre">volumes\ndocker</span> <span class="pre">volume</span> <span class="pre">ls\n\n#</span> <span class="pre">Inspect</span> <span class="pre">volume\ndocker</span> <span class="pre">volume</span> <span class="pre">inspect</span> <span class="pre">mydata\n</span></code><a class="headerlink" href="#volumes-data-persistence-n-nbash-n-named-volume-ndocker-run-v-mydata-app-data-myapp-n-n-bind-mount-local-directory-ndocker-run-v-pwd-data-app-data-myapp-n-n-read-only-ndocker-run-v-pwd-config-app-config-ro-myapp-n-n-list-volumes-ndocker-volume-ls-n-n-inspect-volume-ndocker-volume-inspect-mydata-n" title="Link to this heading">#</a></h2>
+</section>
+<section id="networking-n-nbash-n-create-network-ndocker-network-create-mynetwork-n-n-run-containers-in-network-ndocker-run-network-mynetwork-name-web-myapp-ndocker-run-network-mynetwork-name-db-postgres-n-n-now-web-can-reach-db-by-name-n-database-url-postgresql-db-5432-myapp-n-n-list-networks-ndocker-network-ls-n">
+<h2>7. Networking\n\n<code class="docutils literal notranslate"><span class="pre">bash\n#</span> <span class="pre">Create</span> <span class="pre">network\ndocker</span> <span class="pre">network</span> <span class="pre">create</span> <span class="pre">mynetwork\n\n#</span> <span class="pre">Run</span> <span class="pre">containers</span> <span class="pre">in</span> <span class="pre">network\ndocker</span> <span class="pre">run</span> <span class="pre">--network</span> <span class="pre">mynetwork</span> <span class="pre">--name</span> <span class="pre">web</span> <span class="pre">myapp\ndocker</span> <span class="pre">run</span> <span class="pre">--network</span> <span class="pre">mynetwork</span> <span class="pre">--name</span> <span class="pre">db</span> <span class="pre">postgres\n\n#</span> <span class="pre">Now</span> <span class="pre">'web'</span> <span class="pre">can</span> <span class="pre">reach</span> <span class="pre">'db'</span> <span class="pre">by</span> <span class="pre">name!\n#</span> <span class="pre">DATABASE_URL=postgresql://db:5432/myapp\n\n#</span> <span class="pre">List</span> <span class="pre">networks\ndocker</span> <span class="pre">network</span> <span class="pre">ls\n</span></code><a class="headerlink" href="#networking-n-nbash-n-create-network-ndocker-network-create-mynetwork-n-n-run-containers-in-network-ndocker-run-network-mynetwork-name-web-myapp-ndocker-run-network-mynetwork-name-db-postgres-n-n-now-web-can-reach-db-by-name-n-database-url-postgresql-db-5432-myapp-n-n-list-networks-ndocker-network-ls-n" title="Link to this heading">#</a></h2>
+</section>
+<section id="container-orchestration-n-n-kubernetes-k8s-n-nfor-production-n-auto-scaling-n-self-healing-n-load-balancing-n-rolling-updates-n-service-discovery-n-nalternatives-n-docker-swarm-simpler-n-amazon-ecs-n-google-cloud-run-n-azure-container-instances">
+<h2>8. Container Orchestration\n\n### Kubernetes (K8s)\n\n<strong>For production:</strong>\n- Auto-scaling\n- Self-healing\n- Load balancing\n- Rolling updates\n- Service discovery\n\n<strong>Alternatives:</strong>\n- Docker Swarm (simpler)\n- Amazon ECS\n- Google Cloud Run\n- Azure Container Instances<a class="headerlink" href="#container-orchestration-n-n-kubernetes-k8s-n-nfor-production-n-auto-scaling-n-self-healing-n-load-balancing-n-rolling-updates-n-service-discovery-n-nalternatives-n-docker-swarm-simpler-n-amazon-ecs-n-google-cloud-run-n-azure-container-instances" title="Link to this heading">#</a></h2>
+</section>
+<section id="exercises-n-n1-create-dockerfile-for-python-app-n2-build-and-run-container-n3-write-docker-compose-yml-with-database-n4-implement-multi-stage-build-n5-set-up-volume-for-persistence-n-n-key-takeaways-n-n-containers-ensure-consistency-n-dockerfile-reproducible-builds-n-multi-stage-builds-smaller-images-n-docker-compose-multi-container-apps-n-volumes-for-data-persistence-n-networks-for-container-communication">
+<h2>🎯 Exercises\n\n1. Create Dockerfile for Python app\n2. Build and run container\n3. Write docker-compose.yml with database\n4. Implement multi-stage build\n5. Set up volume for persistence\n\n## 🎓 Key Takeaways\n\n- Containers ensure consistency\n- Dockerfile = reproducible builds\n- Multi-stage builds = smaller images\n- Docker Compose = multi-container apps\n- Volumes for data persistence\n- Networks for container communication<a class="headerlink" href="#exercises-n-n1-create-dockerfile-for-python-app-n2-build-and-run-container-n3-write-docker-compose-yml-with-database-n4-implement-multi-stage-build-n5-set-up-volume-for-persistence-n-n-key-takeaways-n-n-containers-ensure-consistency-n-dockerfile-reproducible-builds-n-multi-stage-builds-smaller-images-n-docker-compose-multi-container-apps-n-volumes-for-data-persistence-n-networks-for-container-communication" title="Link to this heading">#</a></h2>
+</section>
+<section id="next-steps-n-n1-learn-kubernetes-basics-n2-ci-cd-with-containers-n3-security-scanning-n4-container-monitoring-n-n-resources-n-n-docker-docs-n-docker-hub-n-kubernetes-n-play-with-docker">
+<h2>🚀 Next Steps\n\n1. Learn Kubernetes basics\n2. CI/CD with containers\n3. Security scanning\n4. Container monitoring\n\n## 📚 Resources\n\n- <a class="reference external" href="https://docs.docker.com/">Docker Docs</a>\n- <a class="reference external" href="https://hub.docker.com/">Docker Hub</a>\n- <a class="reference external" href="https://kubernetes.io/">Kubernetes</a>\n- <a class="reference external" href="https://labs.play-with-docker.com/">Play with Docker</a><a class="headerlink" href="#next-steps-n-n1-learn-kubernetes-basics-n2-ci-cd-with-containers-n3-security-scanning-n4-container-monitoring-n-n-resources-n-n-docker-docs-n-docker-hub-n-kubernetes-n-play-with-docker" title="Link to this heading">#</a></h2>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./tools"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="09_ssh_remote_systems.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">SSH &amp; Remote Systems\n\n## Secure Remote Access\n\n<strong>What you’ll learn:</strong>\n- SSH fundamentals\n- Key-based authentication\n- SSH config\n- Remote command execution\n- File transfer (scp, rsync)\n- Port forwarding &amp; tunneling\n- tmux for persistent sessions\n\n<strong>Time:</strong> 75-90 minutes</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../solutions/README_SOLUTIONS.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">📝 Solutions</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-containers-n-n-the-problem-n-ntraditional-n-n-it-works-on-my-machine-n-ndeveloper-python-3-10-ubuntu-20-04-nproduction-python-3-8-centos-7-n-different-behavior-bugs-in-production-n-n-nwith-containers-n-nsame-image-runs-everywhere-n-developer-laptop-n-ci-cd-pipeline-n-production-servers-n-cloud-platforms-n">1. Why Containers?\n\n### The Problem\n\n<strong>Traditional:</strong>\n<code class="docutils literal notranslate"><span class="pre">\n\"It</span> <span class="pre">works</span> <span class="pre">on</span> <span class="pre">my</span> <span class="pre">machine!\"\n\nDeveloper:</span> <span class="pre">Python</span> <span class="pre">3.10,</span> <span class="pre">Ubuntu</span> <span class="pre">20.04\nProduction:</span> <span class="pre">Python</span> <span class="pre">3.8,</span> <span class="pre">CentOS</span> <span class="pre">7\n→</span> <span class="pre">Different</span> <span class="pre">behavior,</span> <span class="pre">bugs</span> <span class="pre">in</span> <span class="pre">production\n</span></code>\n\n<strong>With Containers:</strong>\n<code class="docutils literal notranslate"><span class="pre">\nSame</span> <span class="pre">image</span> <span class="pre">runs</span> <span class="pre">everywhere:\n-</span> <span class="pre">Developer</span> <span class="pre">laptop\n-</span> <span class="pre">CI/CD</span> <span class="pre">pipeline\n-</span> <span class="pre">Production</span> <span class="pre">servers\n-</span> <span class="pre">Cloud</span> <span class="pre">platforms\n</span></code></a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#containers-vs-vms-n-n-n-n-container-vm-n-n-app-1app-2-app-n-n-guest-os-n-container-n-runtime-n-hypervisor-n-n-host-os-n-host-os-n-n-lightweight-resource-heavy-n-start-in-ms-start-in-minutes-n-mb-in-size-gb-in-size-n">Containers vs VMs\n\n<code class="docutils literal notranslate"><span class="pre">\n┌─────────────────┐</span>   <span class="pre">┌─────────────────┐\n│</span>   <span class="pre">Container</span>     <span class="pre">│</span>   <span class="pre">│</span>       <span class="pre">VM</span>        <span class="pre">│\n│</span> <span class="pre">┌─────┬─────┐</span>  <span class="pre">│</span>   <span class="pre">│</span>  <span class="pre">┌──────────┐</span>   <span class="pre">│\n│</span> <span class="pre">│App</span> <span class="pre">1│App</span> <span class="pre">2│</span>  <span class="pre">│</span>   <span class="pre">│</span>  <span class="pre">│</span>   <span class="pre">App</span>    <span class="pre">│</span>   <span class="pre">│\n│</span> <span class="pre">└─────┴─────┘</span>  <span class="pre">│</span>   <span class="pre">│</span>  <span class="pre">├──────────┤</span>   <span class="pre">│\n│</span> <span class="pre">┌───────────┐</span>  <span class="pre">│</span>   <span class="pre">│</span>  <span class="pre">│Guest</span> <span class="pre">OS</span>  <span class="pre">│</span>   <span class="pre">│\n│</span> <span class="pre">│Container</span>  <span class="pre">│</span>  <span class="pre">│</span>   <span class="pre">│</span>  <span class="pre">└──────────┘</span>   <span class="pre">│\n│</span> <span class="pre">│</span> <span class="pre">Runtime</span>   <span class="pre">│</span>  <span class="pre">│</span>   <span class="pre">│</span>  <span class="pre">┌──────────┐</span>   <span class="pre">│\n│</span> <span class="pre">└───────────┘</span>  <span class="pre">│</span>   <span class="pre">│</span>  <span class="pre">│Hypervisor│</span>   <span class="pre">│\n│</span> <span class="pre">┌───────────┐</span>  <span class="pre">│</span>   <span class="pre">│</span>  <span class="pre">└──────────┘</span>   <span class="pre">│\n│</span> <span class="pre">│</span>  <span class="pre">Host</span> <span class="pre">OS</span>  <span class="pre">│</span>  <span class="pre">│</span>   <span class="pre">│</span>  <span class="pre">┌──────────┐</span>   <span class="pre">│\n│</span> <span class="pre">└───────────┘</span>  <span class="pre">│</span>   <span class="pre">│</span>  <span class="pre">│</span> <span class="pre">Host</span> <span class="pre">OS</span>  <span class="pre">│</span>   <span class="pre">│\n└─────────────────┘</span>   <span class="pre">└─────────────────┘\n</span>  <span class="pre">Lightweight</span>         <span class="pre">Resource</span> <span class="pre">Heavy\n</span>  <span class="pre">Start</span> <span class="pre">in</span> <span class="pre">ms</span>         <span class="pre">Start</span> <span class="pre">in</span> <span class="pre">minutes\n</span>  <span class="pre">MB</span> <span class="pre">in</span> <span class="pre">size</span>          <span class="pre">GB</span> <span class="pre">in</span> <span class="pre">size\n</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#docker-basics-n-n-installation-n-nbash-n-ubuntu-debian-ncurl-fssl-https-get-docker-com-sh-n-n-add-user-to-docker-group-no-sudo-needed-nsudo-usermod-ag-docker-user-n-n-verify-ndocker-version-ndocker-run-hello-world-n">2. Docker Basics\n\n### Installation\n\n<code class="docutils literal notranslate"><span class="pre">bash\n#</span> <span class="pre">Ubuntu/Debian\ncurl</span> <span class="pre">-fsSL</span> <span class="pre">https://get.docker.com</span> <span class="pre">|</span> <span class="pre">sh\n\n#</span> <span class="pre">Add</span> <span class="pre">user</span> <span class="pre">to</span> <span class="pre">docker</span> <span class="pre">group</span> <span class="pre">(no</span> <span class="pre">sudo</span> <span class="pre">needed)\nsudo</span> <span class="pre">usermod</span> <span class="pre">-aG</span> <span class="pre">docker</span> <span class="pre">$USER\n\n#</span> <span class="pre">Verify\ndocker</span> <span class="pre">--version\ndocker</span> <span class="pre">run</span> <span class="pre">hello-world\n</span></code></a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#core-concepts-n-nimage-blueprint-like-a-class-ncontainer-running-instance-like-an-object-n-nbash-n-pull-image-from-docker-hub-ndocker-pull-python-3-11-n-n-list-images-ndocker-images-n-n-run-container-ndocker-run-python-3-11-python-version-n-n-run-interactively-ndocker-run-it-python-3-11-bash-n-n-run-in-background-detached-ndocker-run-d-nginx-n-n-list-running-containers-ndocker-ps-n-n-list-all-containers-ndocker-ps-a-n">Core Concepts\n\n<strong>Image:</strong> Blueprint (like a class)\n<strong>Container:</strong> Running instance (like an object)\n\n<code class="docutils literal notranslate"><span class="pre">bash\n#</span> <span class="pre">Pull</span> <span class="pre">image</span> <span class="pre">from</span> <span class="pre">Docker</span> <span class="pre">Hub\ndocker</span> <span class="pre">pull</span> <span class="pre">python:3.11\n\n#</span> <span class="pre">List</span> <span class="pre">images\ndocker</span> <span class="pre">images\n\n#</span> <span class="pre">Run</span> <span class="pre">container\ndocker</span> <span class="pre">run</span> <span class="pre">python:3.11</span> <span class="pre">python</span> <span class="pre">--version\n\n#</span> <span class="pre">Run</span> <span class="pre">interactively\ndocker</span> <span class="pre">run</span> <span class="pre">-it</span> <span class="pre">python:3.11</span> <span class="pre">bash\n\n#</span> <span class="pre">Run</span> <span class="pre">in</span> <span class="pre">background</span> <span class="pre">(detached)\ndocker</span> <span class="pre">run</span> <span class="pre">-d</span> <span class="pre">nginx\n\n#</span> <span class="pre">List</span> <span class="pre">running</span> <span class="pre">containers\ndocker</span> <span class="pre">ps\n\n#</span> <span class="pre">List</span> <span class="pre">all</span> <span class="pre">containers\ndocker</span> <span class="pre">ps</span> <span class="pre">-a\n</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-docker-images-n-n-dockerfile-n-nsimple-python-app">3. Creating Docker Images\n\n### Dockerfile\n\n<strong>Simple Python app:</strong></a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#build-and-run-n-nbash-n-build-image-ndocker-build-t-my-app-1-0-n-n-run-container-ndocker-run-d-p-5000-5000-name-myapp-my-app-1-0-n-n-test-ncurl-http-localhost-5000-n-n-view-logs-ndocker-logs-myapp-n-n-stop-container-ndocker-stop-myapp-n-n-remove-container-ndocker-rm-myapp-n">Build and Run\n\n<code class="docutils literal notranslate"><span class="pre">bash\n#</span> <span class="pre">Build</span> <span class="pre">image\ndocker</span> <span class="pre">build</span> <span class="pre">-t</span> <span class="pre">my-app:1.0</span> <span class="pre">.\n\n#</span> <span class="pre">Run</span> <span class="pre">container\ndocker</span> <span class="pre">run</span> <span class="pre">-d</span> <span class="pre">-p</span> <span class="pre">5000:5000</span> <span class="pre">--name</span> <span class="pre">myapp</span> <span class="pre">my-app:1.0\n\n#</span> <span class="pre">Test\ncurl</span> <span class="pre">http://localhost:5000\n\n#</span> <span class="pre">View</span> <span class="pre">logs\ndocker</span> <span class="pre">logs</span> <span class="pre">myapp\n\n#</span> <span class="pre">Stop</span> <span class="pre">container\ndocker</span> <span class="pre">stop</span> <span class="pre">myapp\n\n#</span> <span class="pre">Remove</span> <span class="pre">container\ndocker</span> <span class="pre">rm</span> <span class="pre">myapp\n</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dockerfile-best-practices-n-n-multi-stage-builds-n-ndockerfile-n-build-stage-nfrom-node-18-as-builder-nworkdir-app-ncopy-package-json-nrun-npm-install-ncopy-nrun-npm-run-build-n-n-production-stage-nfrom-nginx-alpine-ncopy-from-builder-app-dist-usr-share-nginx-html-nexpose-80-ncmd-nginx-g-daemon-off-n-n-nbenefits-n-smaller-final-image-n-no-build-tools-in-production-n-more-secure">4. Dockerfile Best Practices\n\n### Multi-Stage Builds\n\n<code class="docutils literal notranslate"><span class="pre">dockerfile\n#</span> <span class="pre">Build</span> <span class="pre">stage\nFROM</span> <span class="pre">node:18</span> <span class="pre">AS</span> <span class="pre">builder\nWORKDIR</span> <span class="pre">/app\nCOPY</span> <span class="pre">package*.json</span> <span class="pre">./\nRUN</span> <span class="pre">npm</span> <span class="pre">install\nCOPY</span> <span class="pre">.</span> <span class="pre">.\nRUN</span> <span class="pre">npm</span> <span class="pre">run</span> <span class="pre">build\n\n#</span> <span class="pre">Production</span> <span class="pre">stage\nFROM</span> <span class="pre">nginx:alpine\nCOPY</span> <span class="pre">--from=builder</span> <span class="pre">/app/dist</span> <span class="pre">/usr/share/nginx/html\nEXPOSE</span> <span class="pre">80\nCMD</span> <span class="pre">[\"nginx\",</span> <span class="pre">\"-g\",</span> <span class="pre">\"daemon</span> <span class="pre">off;\"]\n</span></code>\n\n<strong>Benefits:</strong>\n- Smaller final image\n- No build tools in production\n- More secure</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#layer-caching-n-ndockerfile-n-bad-cache-busted-on-any-code-change-ncopy-nrun-pip-install-r-requirements-txt-n-n-good-dependencies-cached-separately-ncopy-requirements-txt-nrun-pip-install-r-requirements-txt-ncopy-n">Layer Caching\n\n<code class="docutils literal notranslate"><span class="pre">dockerfile\n#</span> <span class="pre">❌</span> <span class="pre">Bad:</span> <span class="pre">Cache</span> <span class="pre">busted</span> <span class="pre">on</span> <span class="pre">any</span> <span class="pre">code</span> <span class="pre">change\nCOPY</span> <span class="pre">.</span> <span class="pre">.\nRUN</span> <span class="pre">pip</span> <span class="pre">install</span> <span class="pre">-r</span> <span class="pre">requirements.txt\n\n#</span> <span class="pre">✅</span> <span class="pre">Good:</span> <span class="pre">Dependencies</span> <span class="pre">cached</span> <span class="pre">separately\nCOPY</span> <span class="pre">requirements.txt</span> <span class="pre">.\nRUN</span> <span class="pre">pip</span> <span class="pre">install</span> <span class="pre">-r</span> <span class="pre">requirements.txt\nCOPY</span> <span class="pre">.</span> <span class="pre">.\n</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#security-n-ndockerfile-n-don-t-run-as-root-nrun-adduser-d-myuser-nuser-myuser-n-n-use-specific-versions-nfrom-python-3-11-4-slim-not-latest-n-n-scan-for-vulnerabilities-n-docker-scan-my-app-1-0-n">Security\n\n<code class="docutils literal notranslate"><span class="pre">dockerfile\n#</span> <span class="pre">Don't</span> <span class="pre">run</span> <span class="pre">as</span> <span class="pre">root\nRUN</span> <span class="pre">adduser</span> <span class="pre">-D</span> <span class="pre">myuser\nUSER</span> <span class="pre">myuser\n\n#</span> <span class="pre">Use</span> <span class="pre">specific</span> <span class="pre">versions\nFROM</span> <span class="pre">python:3.11.4-slim</span>  <span class="pre">#</span> <span class="pre">Not</span> <span class="pre">'latest'\n\n#</span> <span class="pre">Scan</span> <span class="pre">for</span> <span class="pre">vulnerabilities\n#</span> <span class="pre">docker</span> <span class="pre">scan</span> <span class="pre">my-app:1.0\n</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#docker-compose-n-n-multi-container-apps-n-ndocker-compose-yml">5. Docker Compose\n\n### Multi-Container Apps\n\n<strong>docker-compose.yml:</strong></a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#docker-compose-commands-n-nbash-n-start-all-services-ndocker-compose-up-d-n-n-view-logs-ndocker-compose-logs-f-n-n-stop-services-ndocker-compose-down-n-n-rebuild-images-ndocker-compose-build-n-n-scale-service-ndocker-compose-up-d-scale-web-3-n">Docker Compose Commands\n\n<code class="docutils literal notranslate"><span class="pre">bash\n#</span> <span class="pre">Start</span> <span class="pre">all</span> <span class="pre">services\ndocker-compose</span> <span class="pre">up</span> <span class="pre">-d\n\n#</span> <span class="pre">View</span> <span class="pre">logs\ndocker-compose</span> <span class="pre">logs</span> <span class="pre">-f\n\n#</span> <span class="pre">Stop</span> <span class="pre">services\ndocker-compose</span> <span class="pre">down\n\n#</span> <span class="pre">Rebuild</span> <span class="pre">images\ndocker-compose</span> <span class="pre">build\n\n#</span> <span class="pre">Scale</span> <span class="pre">service\ndocker-compose</span> <span class="pre">up</span> <span class="pre">-d</span> <span class="pre">--scale</span> <span class="pre">web=3\n</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#volumes-data-persistence-n-nbash-n-named-volume-ndocker-run-v-mydata-app-data-myapp-n-n-bind-mount-local-directory-ndocker-run-v-pwd-data-app-data-myapp-n-n-read-only-ndocker-run-v-pwd-config-app-config-ro-myapp-n-n-list-volumes-ndocker-volume-ls-n-n-inspect-volume-ndocker-volume-inspect-mydata-n">6. Volumes &amp; Data Persistence\n\n<code class="docutils literal notranslate"><span class="pre">bash\n#</span> <span class="pre">Named</span> <span class="pre">volume\ndocker</span> <span class="pre">run</span> <span class="pre">-v</span> <span class="pre">mydata:/app/data</span> <span class="pre">myapp\n\n#</span> <span class="pre">Bind</span> <span class="pre">mount</span> <span class="pre">(local</span> <span class="pre">directory)\ndocker</span> <span class="pre">run</span> <span class="pre">-v</span> <span class="pre">$(pwd)/data:/app/data</span> <span class="pre">myapp\n\n#</span> <span class="pre">Read-only\ndocker</span> <span class="pre">run</span> <span class="pre">-v</span> <span class="pre">$(pwd)/config:/app/config:ro</span> <span class="pre">myapp\n\n#</span> <span class="pre">List</span> <span class="pre">volumes\ndocker</span> <span class="pre">volume</span> <span class="pre">ls\n\n#</span> <span class="pre">Inspect</span> <span class="pre">volume\ndocker</span> <span class="pre">volume</span> <span class="pre">inspect</span> <span class="pre">mydata\n</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#networking-n-nbash-n-create-network-ndocker-network-create-mynetwork-n-n-run-containers-in-network-ndocker-run-network-mynetwork-name-web-myapp-ndocker-run-network-mynetwork-name-db-postgres-n-n-now-web-can-reach-db-by-name-n-database-url-postgresql-db-5432-myapp-n-n-list-networks-ndocker-network-ls-n">7. Networking\n\n<code class="docutils literal notranslate"><span class="pre">bash\n#</span> <span class="pre">Create</span> <span class="pre">network\ndocker</span> <span class="pre">network</span> <span class="pre">create</span> <span class="pre">mynetwork\n\n#</span> <span class="pre">Run</span> <span class="pre">containers</span> <span class="pre">in</span> <span class="pre">network\ndocker</span> <span class="pre">run</span> <span class="pre">--network</span> <span class="pre">mynetwork</span> <span class="pre">--name</span> <span class="pre">web</span> <span class="pre">myapp\ndocker</span> <span class="pre">run</span> <span class="pre">--network</span> <span class="pre">mynetwork</span> <span class="pre">--name</span> <span class="pre">db</span> <span class="pre">postgres\n\n#</span> <span class="pre">Now</span> <span class="pre">'web'</span> <span class="pre">can</span> <span class="pre">reach</span> <span class="pre">'db'</span> <span class="pre">by</span> <span class="pre">name!\n#</span> <span class="pre">DATABASE_URL=postgresql://db:5432/myapp\n\n#</span> <span class="pre">List</span> <span class="pre">networks\ndocker</span> <span class="pre">network</span> <span class="pre">ls\n</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#container-orchestration-n-n-kubernetes-k8s-n-nfor-production-n-auto-scaling-n-self-healing-n-load-balancing-n-rolling-updates-n-service-discovery-n-nalternatives-n-docker-swarm-simpler-n-amazon-ecs-n-google-cloud-run-n-azure-container-instances">8. Container Orchestration\n\n### Kubernetes (K8s)\n\n<strong>For production:</strong>\n- Auto-scaling\n- Self-healing\n- Load balancing\n- Rolling updates\n- Service discovery\n\n<strong>Alternatives:</strong>\n- Docker Swarm (simpler)\n- Amazon ECS\n- Google Cloud Run\n- Azure Container Instances</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises-n-n1-create-dockerfile-for-python-app-n2-build-and-run-container-n3-write-docker-compose-yml-with-database-n4-implement-multi-stage-build-n5-set-up-volume-for-persistence-n-n-key-takeaways-n-n-containers-ensure-consistency-n-dockerfile-reproducible-builds-n-multi-stage-builds-smaller-images-n-docker-compose-multi-container-apps-n-volumes-for-data-persistence-n-networks-for-container-communication">🎯 Exercises\n\n1. Create Dockerfile for Python app\n2. Build and run container\n3. Write docker-compose.yml with database\n4. Implement multi-stage build\n5. Set up volume for persistence\n\n## 🎓 Key Takeaways\n\n- Containers ensure consistency\n- Dockerfile = reproducible builds\n- Multi-stage builds = smaller images\n- Docker Compose = multi-container apps\n- Volumes for data persistence\n- Networks for container communication</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#next-steps-n-n1-learn-kubernetes-basics-n2-ci-cd-with-containers-n3-security-scanning-n4-container-monitoring-n-n-resources-n-n-docker-docs-n-docker-hub-n-kubernetes-n-play-with-docker">🚀 Next Steps\n\n1. Learn Kubernetes basics\n2. CI/CD with containers\n3. Security scanning\n4. Container monitoring\n\n## 📚 Resources\n\n- Docker Docs\n- Docker Hub\n- Kubernetes\n- Play with Docker</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Mykolas Perevicius
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

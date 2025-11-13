@@ -1,0 +1,1098 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Lesson 2: Variables and Data Types &#8212; Education Playground</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=0c185eed" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=c73c0f3e"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'easy/02_variables_and_data_types';</script>
+    <script src="../_static/js/onboarding.js?v=557b7536"></script>
+    <link rel="canonical" href="https://mykolas-perevicius.github.io/Education_Playground/easy/02_variables_and_data_types.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Lesson 3: Basic Operations and Conditionals" href="03_basic_operations_and_conditionals.html" />
+    <link rel="prev" title="Lesson 1: Introduction to Python" href="01_introduction_to_python.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../README.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Education Playground</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../00_calibration_test.html">🎯 Calibration Test - Find Your Level</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../beginner_scripts/README.html">🌱 Beginner Scripts (10 Python Files)</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="README_EASY.html">📗 Easy Level - Beginner</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="01_introduction_to_python.html">1. Introduction to Python</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">2. Variables and Data Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03_basic_operations_and_conditionals.html">3. Operations and Conditionals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04_intro_to_ai_and_ml.html">4. Intro to AI and ML</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05_computing_fundamentals.html">5. Computing Fundamentals</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../medium/README_MEDIUM.html">📘 Medium Level - Intermediate</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../medium/01_functions_and_modules.html">1. Functions and Modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../medium/02_data_structures.html">2. Data Structures</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../medium/03_classes_and_oop.html">3. Classes and OOP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../medium/04_machine_learning_basics.html">4. Machine Learning Basics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../medium/05_data_analysis_with_pandas.html">5. Data Analysis with Pandas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../medium/06_algorithms_and_problem_solving.html">6. Algorithms and Problem Solving</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../hard/README_HARD.html">📕 Hard Level - Advanced</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../hard/01_advanced_functions_and_decorators.html">1. Advanced Functions &amp; Decorators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hard/02_generators_and_iterators.html">2. Generators and Iterators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hard/03_algorithms_and_complexity.html">3. Algorithms and Complexity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hard/04_deep_learning_and_neural_networks.html">4. Deep Learning &amp; Neural Networks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hard/05_advanced_ml_and_nlp.html">5. Advanced ML and NLP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hard/06_computer_systems_and_theory.html">6. Computer Systems and Theory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hard/07_project_ideas.html">7. Project Ideas &amp; Implementation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hard/08_classic_problems.html">Lesson 8: Classic Problems Collection</a></li>
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../hard/09_ctf_challenges.html">Lesson 9: Capture The Flag (CTF) - Hacker Training</a></li>
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../hard/10_performance_computing.html">10. Performance Computing ⚡ NEW!</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hard/11_cuda_and_parallel_computing.html">11. CUDA &amp; GPU Computing 🎮 NEW!</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../tools/README.html">🛠️ Developer Tools Track</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../tools/01_shell_basics.html">1. Shell and Command Line</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools/02_command_line_tools.html">2. Command Line Tools</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools/03_git_essentials.html">3. Git Essentials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools/04_text_editors.html">4. Text Editors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools/05_build_systems_cicd.html">5. Build Systems and CI/CD</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools/06_debugging_profiling.html">6. Debugging and Profiling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools/07_security_essentials.html">7. Security Essentials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools/08_package_management.html">8. Package Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools/09_ssh_remote_systems.html">9. SSH and Remote Systems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools/10_docker_containers.html">10. Docker and Containers</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../solutions/README_SOLUTIONS.html">📝 Solutions</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../solutions/easy_solutions.html">Easy Level - Complete Solutions</a></li>
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../solutions/medium_solutions.html">Medium Level - Complete Solutions</a></li>
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../solutions/hard_solutions.html">Hard Level - Complete Solutions</a></li>
+
+
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../solutions/tools_solutions.html">Developer Tools - Complete Solutions</a></li>
+
+
+
+
+
+
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../RESOURCES.html">📚 Learning Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../PYTHON_CHEATSHEET.html">⚡ Python Cheat Sheet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ML_AI_CHEATSHEET.html">🤖 ML/AI Cheat Sheet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../SETUP.html">🔧 Setup Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../RELEASE_NOTES_v2.0.0.html">🎉 Release Notes v2.0.0</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none"></div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Lesson 2: Variables and Data Types</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-you-ll-learn">What You’ll Learn</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#real-world-analogy">💡 Real-World Analogy</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-your-first-variables">1. Creating Your First Variables</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#variable-naming-rules">📝 Variable Naming Rules</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-types-in-python">2. Data Types in Python</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#main-data-types">Main Data Types</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#strings-text-data">Strings (Text Data)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#integers-whole-numbers">Integers (Whole Numbers)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#floats-decimal-numbers">Floats (Decimal Numbers)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#booleans-true-false-values">Booleans (True/False Values)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#checking-variable-types">3. Checking Variable Types</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#watch-out">⚠️ Watch Out!</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#type-conversion">4. Type Conversion</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#converting-to-string">Converting to String</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#converting-to-integer">Converting to Integer</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#converting-to-float">Converting to Float</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#conversion-errors">⚠️ Conversion Errors</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#variable-operations">5. Variable Operations</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#updating-variables">Updating Variables</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#multiple-assignment">Multiple Assignment</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#none-type">6. None Type</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">📝 Exercises</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-1-personal-profile">Exercise 1: Personal Profile</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-2-favorite-book">Exercise 2: Favorite Book</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-3-type-conversions">Exercise 3: Type Conversions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-4-temperature-converter">Exercise 4: Temperature Converter</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-5-variable-swap">Exercise 5: Variable Swap</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-6-shopping-cart">Exercise 6: Shopping Cart</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#self-check-quiz">✅ Self-Check Quiz</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#key-takeaways">🎯 Key Takeaways</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#next-steps">🚀 Next Steps</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pro-tips">💡 Pro Tips</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="lesson-2-variables-and-data-types">
+<h1>Lesson 2: Variables and Data Types<a class="headerlink" href="#lesson-2-variables-and-data-types" title="Link to this heading">#</a></h1>
+<p>Variables are like <strong>labeled boxes</strong> that store information. They’re one of the most fundamental concepts in programming!</p>
+<section id="what-you-ll-learn">
+<h2>What You’ll Learn<a class="headerlink" href="#what-you-ll-learn" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Creating and naming variables</p></li>
+<li><p>Understanding different data types</p></li>
+<li><p>Type checking and conversion</p></li>
+<li><p>Variable operations and best practices</p></li>
+</ul>
+</section>
+<section id="real-world-analogy">
+<h2>💡 Real-World Analogy<a class="headerlink" href="#real-world-analogy" title="Link to this heading">#</a></h2>
+<p>Think of variables like labeled storage containers:</p>
+<ul class="simple">
+<li><p>The <strong>label</strong> is the variable name (e.g., <code class="docutils literal notranslate"><span class="pre">age</span></code>)</p></li>
+<li><p>The <strong>contents</strong> are the value (e.g., <code class="docutils literal notranslate"><span class="pre">25</span></code>)</p></li>
+<li><p>The <strong>type of container</strong> determines what you can store (numbers, text, etc.)</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="creating-your-first-variables">
+<h2>1. Creating Your First Variables<a class="headerlink" href="#creating-your-first-variables" title="Link to this heading">#</a></h2>
+<p>A variable is created when you assign a value using the <code class="docutils literal notranslate"><span class="pre">=</span></code> sign.</p>
+<p><strong>Syntax</strong>: <code class="docutils literal notranslate"><span class="pre">variable_name</span> <span class="pre">=</span> <span class="pre">value</span></code></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Creating variables</span>
+<span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;Alice&quot;</span>
+<span class="n">age</span> <span class="o">=</span> <span class="mi">25</span>
+<span class="n">height</span> <span class="o">=</span> <span class="mf">5.6</span>
+<span class="n">is_student</span> <span class="o">=</span> <span class="kc">True</span>
+
+<span class="c1"># Display the variables</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Name:&quot;</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Age:&quot;</span><span class="p">,</span> <span class="n">age</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Height:&quot;</span><span class="p">,</span> <span class="n">height</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Is student:&quot;</span><span class="p">,</span> <span class="n">is_student</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="variable-naming-rules">
+<h3>📝 Variable Naming Rules<a class="headerlink" href="#variable-naming-rules" title="Link to this heading">#</a></h3>
+<p><strong>Rules you MUST follow:</strong></p>
+<ul class="simple">
+<li><p>Can contain letters, numbers, and underscores</p></li>
+<li><p>Must start with a letter or underscore (not a number)</p></li>
+<li><p>Case-sensitive (<code class="docutils literal notranslate"><span class="pre">age</span></code> and <code class="docutils literal notranslate"><span class="pre">Age</span></code> are different!)</p></li>
+<li><p>Cannot use Python keywords (<code class="docutils literal notranslate"><span class="pre">if</span></code>, <code class="docutils literal notranslate"><span class="pre">for</span></code>, <code class="docutils literal notranslate"><span class="pre">while</span></code>, etc.)</p></li>
+</ul>
+<p><strong>Good naming conventions:</strong></p>
+<ul class="simple">
+<li><p>Use lowercase with underscores: <code class="docutils literal notranslate"><span class="pre">user_name</span></code>, <code class="docutils literal notranslate"><span class="pre">total_score</span></code></p></li>
+<li><p>Be descriptive: <code class="docutils literal notranslate"><span class="pre">age</span></code> is better than <code class="docutils literal notranslate"><span class="pre">a</span></code></p></li>
+<li><p>Avoid single letters (except for loops: <code class="docutils literal notranslate"><span class="pre">i</span></code>, <code class="docutils literal notranslate"><span class="pre">j</span></code>, <code class="docutils literal notranslate"><span class="pre">k</span></code>)</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Good variable names</span>
+<span class="n">user_name</span> <span class="o">=</span> <span class="s2">&quot;Bob&quot;</span>
+<span class="n">total_score</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="n">is_valid</span> <span class="o">=</span> <span class="kc">True</span>
+
+<span class="c1"># Bad variable names (but technically valid)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="s2">&quot;Bob&quot;</span>  <span class="c1"># Too vague</span>
+<span class="n">UsErNaMe</span> <span class="o">=</span> <span class="s2">&quot;Bob&quot;</span>  <span class="c1"># Hard to read</span>
+<span class="n">name123</span> <span class="o">=</span> <span class="s2">&quot;Bob&quot;</span>  <span class="c1"># Numbers are okay, but not meaningful here</span>
+
+<span class="c1"># Invalid variable names (will cause errors if uncommented)</span>
+<span class="c1"># 123name = &quot;Bob&quot;  # Can&#39;t start with number</span>
+<span class="c1"># user-name = &quot;Bob&quot;  # Hyphens not allowed</span>
+<span class="c1"># for = &quot;Bob&quot;  # Can&#39;t use Python keywords</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="data-types-in-python">
+<h2>2. Data Types in Python<a class="headerlink" href="#data-types-in-python" title="Link to this heading">#</a></h2>
+<p>Every value in Python has a <strong>type</strong> that determines what you can do with it.</p>
+<section id="main-data-types">
+<h3>Main Data Types<a class="headerlink" href="#main-data-types" title="Link to this heading">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Type</p></th>
+<th class="head"><p>Description</p></th>
+<th class="head"><p>Example</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>str</strong> (String)</p></td>
+<td><p>Text data</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&quot;Hello&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">'Python'</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>int</strong> (Integer)</p></td>
+<td><p>Whole numbers</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">42</span></code>, <code class="docutils literal notranslate"><span class="pre">-17</span></code>, <code class="docutils literal notranslate"><span class="pre">0</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><strong>float</strong></p></td>
+<td><p>Decimal numbers</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">3.14</span></code>, <code class="docutils literal notranslate"><span class="pre">-0.5</span></code>, <code class="docutils literal notranslate"><span class="pre">2.0</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>bool</strong> (Boolean)</p></td>
+<td><p>True or False</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">True</span></code>, <code class="docutils literal notranslate"><span class="pre">False</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="strings-text-data">
+<h3>Strings (Text Data)<a class="headerlink" href="#strings-text-data" title="Link to this heading">#</a></h3>
+<p>Strings store text and must be wrapped in quotes (single or double).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Both single and double quotes work</span>
+<span class="n">message1</span> <span class="o">=</span> <span class="s2">&quot;Hello, World!&quot;</span>
+<span class="n">message2</span> <span class="o">=</span> <span class="s1">&#39;Hello, World!&#39;</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">message1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">message2</span><span class="p">)</span>
+
+<span class="c1"># Use single quotes if your text contains double quotes</span>
+<span class="n">quote</span> <span class="o">=</span> <span class="s1">&#39;She said, &quot;Python is awesome!&quot;&#39;</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">quote</span><span class="p">)</span>
+
+<span class="c1"># Or use double quotes if your text contains single quotes</span>
+<span class="n">sentence</span> <span class="o">=</span> <span class="s2">&quot;It&#39;s a beautiful day!&quot;</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">sentence</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="integers-whole-numbers">
+<h3>Integers (Whole Numbers)<a class="headerlink" href="#integers-whole-numbers" title="Link to this heading">#</a></h3>
+<p>Integers are whole numbers without decimal points.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">score</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="n">temperature</span> <span class="o">=</span> <span class="o">-</span><span class="mi">5</span>
+<span class="n">year</span> <span class="o">=</span> <span class="mi">2024</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Score:&quot;</span><span class="p">,</span> <span class="n">score</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Temperature:&quot;</span><span class="p">,</span> <span class="n">temperature</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Year:&quot;</span><span class="p">,</span> <span class="n">year</span><span class="p">)</span>
+
+<span class="c1"># You can use underscores for readability in large numbers</span>
+<span class="n">population</span> <span class="o">=</span> <span class="mi">1_000_000</span>  <span class="c1"># Same as 1000000</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Population:&quot;</span><span class="p">,</span> <span class="n">population</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="floats-decimal-numbers">
+<h3>Floats (Decimal Numbers)<a class="headerlink" href="#floats-decimal-numbers" title="Link to this heading">#</a></h3>
+<p>Floats represent numbers with decimal points.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pi</span> <span class="o">=</span> <span class="mf">3.14159</span>
+<span class="n">price</span> <span class="o">=</span> <span class="mf">19.99</span>
+<span class="n">height</span> <span class="o">=</span> <span class="mf">5.8</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Pi:&quot;</span><span class="p">,</span> <span class="n">pi</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Price: $&quot;</span><span class="p">,</span> <span class="n">price</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Height:&quot;</span><span class="p">,</span> <span class="n">height</span><span class="p">,</span> <span class="s2">&quot;feet&quot;</span><span class="p">)</span>
+
+<span class="c1"># Numbers with .0 are also floats</span>
+<span class="n">whole_number_float</span> <span class="o">=</span> <span class="mf">10.0</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">whole_number_float</span><span class="p">))</span>  <span class="c1"># This is a float, not an int!</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="booleans-true-false-values">
+<h3>Booleans (True/False Values)<a class="headerlink" href="#booleans-true-false-values" title="Link to this heading">#</a></h3>
+<p>Booleans represent truth values. <strong>Must be capitalized!</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">is_raining</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="n">is_sunny</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="n">has_umbrella</span> <span class="o">=</span> <span class="kc">True</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Is it raining?&quot;</span><span class="p">,</span> <span class="n">is_raining</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Is it sunny?&quot;</span><span class="p">,</span> <span class="n">is_sunny</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Do I have an umbrella?&quot;</span><span class="p">,</span> <span class="n">has_umbrella</span><span class="p">)</span>
+
+<span class="c1"># Booleans are useful for decisions (we&#39;ll learn more about this later)</span>
+<span class="c1"># Note: True and False must be capitalized</span>
+<span class="c1"># true or false (lowercase) will cause an error</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="checking-variable-types">
+<h2>3. Checking Variable Types<a class="headerlink" href="#checking-variable-types" title="Link to this heading">#</a></h2>
+<p>Use the <code class="docutils literal notranslate"><span class="pre">type()</span></code> function to check what type a variable is.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;Alice&quot;</span>
+<span class="n">age</span> <span class="o">=</span> <span class="mi">25</span>
+<span class="n">height</span> <span class="o">=</span> <span class="mf">5.6</span>
+<span class="n">is_student</span> <span class="o">=</span> <span class="kc">True</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Type of name:&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="p">(</span><span class="n">name</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Type of age:&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="p">(</span><span class="n">age</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Type of height:&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="p">(</span><span class="n">height</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Type of is_student:&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="p">(</span><span class="n">is_student</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="watch-out">
+<h3>⚠️ Watch Out!<a class="headerlink" href="#watch-out" title="Link to this heading">#</a></h3>
+<p>Numbers in quotes are strings, not numbers!</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">number1</span> <span class="o">=</span> <span class="mi">42</span>        <span class="c1"># This is an integer</span>
+<span class="n">number2</span> <span class="o">=</span> <span class="s2">&quot;42&quot;</span>      <span class="c1"># This is a string!</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;number1:&quot;</span><span class="p">,</span> <span class="n">number1</span><span class="p">,</span> <span class="s2">&quot;Type:&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="p">(</span><span class="n">number1</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;number2:&quot;</span><span class="p">,</span> <span class="n">number2</span><span class="p">,</span> <span class="s2">&quot;Type:&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="p">(</span><span class="n">number2</span><span class="p">))</span>
+
+<span class="c1"># They look the same when printed, but they&#39;re different types!</span>
+<span class="c1"># This matters when you try to do math (you can&#39;t do math with strings)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="type-conversion">
+<h2>4. Type Conversion<a class="headerlink" href="#type-conversion" title="Link to this heading">#</a></h2>
+<p>Sometimes you need to convert between types. Python provides functions for this:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">str()</span></code> - Convert to string</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">int()</span></code> - Convert to integer</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">float()</span></code> - Convert to float</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">bool()</span></code> - Convert to boolean</p></li>
+</ul>
+<section id="converting-to-string">
+<h3>Converting to String<a class="headerlink" href="#converting-to-string" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">age</span> <span class="o">=</span> <span class="mi">25</span>
+<span class="n">age_as_string</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">age</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Original age:&quot;</span><span class="p">,</span> <span class="n">age</span><span class="p">,</span> <span class="s2">&quot;Type:&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="p">(</span><span class="n">age</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Age as string:&quot;</span><span class="p">,</span> <span class="n">age_as_string</span><span class="p">,</span> <span class="s2">&quot;Type:&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="p">(</span><span class="n">age_as_string</span><span class="p">))</span>
+
+<span class="c1"># This is useful when combining text and numbers</span>
+<span class="n">message</span> <span class="o">=</span> <span class="s2">&quot;I am &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">age</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; years old.&quot;</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="converting-to-integer">
+<h3>Converting to Integer<a class="headerlink" href="#converting-to-integer" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># String to integer</span>
+<span class="n">text_number</span> <span class="o">=</span> <span class="s2">&quot;100&quot;</span>
+<span class="n">actual_number</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">text_number</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Text number:&quot;</span><span class="p">,</span> <span class="n">text_number</span><span class="p">,</span> <span class="s2">&quot;Type:&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="p">(</span><span class="n">text_number</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Actual number:&quot;</span><span class="p">,</span> <span class="n">actual_number</span><span class="p">,</span> <span class="s2">&quot;Type:&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="p">(</span><span class="n">actual_number</span><span class="p">))</span>
+
+<span class="c1"># Now we can do math with it!</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">actual_number</span> <span class="o">+</span> <span class="mi">50</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;100 + 50 =&quot;</span><span class="p">,</span> <span class="n">result</span><span class="p">)</span>
+
+<span class="c1"># Float to integer (removes decimal part)</span>
+<span class="n">decimal</span> <span class="o">=</span> <span class="mf">3.99</span>
+<span class="n">whole</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">decimal</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">decimal</span><span class="si">}</span><span class="s2"> as integer: </span><span class="si">{</span><span class="n">whole</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>  <span class="c1"># Note: it doesn&#39;t round, just truncates!</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="converting-to-float">
+<h3>Converting to Float<a class="headerlink" href="#converting-to-float" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Integer to float</span>
+<span class="n">whole_number</span> <span class="o">=</span> <span class="mi">42</span>
+<span class="n">decimal_number</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">whole_number</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">whole_number</span><span class="si">}</span><span class="s2"> as float: </span><span class="si">{</span><span class="n">decimal_number</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># String to float</span>
+<span class="n">price_text</span> <span class="o">=</span> <span class="s2">&quot;19.99&quot;</span>
+<span class="n">price</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">price_text</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Price: $</span><span class="si">{</span><span class="n">price</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Now we can calculate</span>
+<span class="n">with_tax</span> <span class="o">=</span> <span class="n">price</span> <span class="o">*</span> <span class="mf">1.08</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Price with tax: $</span><span class="si">{</span><span class="n">with_tax</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>  <span class="c1"># .2f means 2 decimal places</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="conversion-errors">
+<h3>⚠️ Conversion Errors<a class="headerlink" href="#conversion-errors" title="Link to this heading">#</a></h3>
+<p>Not all conversions work! Be careful:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># This works:</span>
+<span class="n">number1</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="s2">&quot;123&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Success:&quot;</span><span class="p">,</span> <span class="n">number1</span><span class="p">)</span>
+
+<span class="c1"># Uncomment to see errors:</span>
+<span class="c1"># number2 = int(&quot;Hello&quot;)  # Error! Can&#39;t convert text to number</span>
+<span class="c1"># number3 = int(&quot;12.5&quot;)   # Error! Can&#39;t convert decimal string to int</span>
+                           <span class="c1"># Use float() first, then int()</span>
+
+<span class="c1"># The correct way for decimal strings:</span>
+<span class="n">decimal_string</span> <span class="o">=</span> <span class="s2">&quot;12.5&quot;</span>
+<span class="n">correct</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">decimal_string</span><span class="p">))</span>  <span class="c1"># First to float, then to int</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Correct conversion:&quot;</span><span class="p">,</span> <span class="n">correct</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="variable-operations">
+<h2>5. Variable Operations<a class="headerlink" href="#variable-operations" title="Link to this heading">#</a></h2>
+<section id="updating-variables">
+<h3>Updating Variables<a class="headerlink" href="#updating-variables" title="Link to this heading">#</a></h3>
+<p>Variables can change their values!</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">score</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Initial score:&quot;</span><span class="p">,</span> <span class="n">score</span><span class="p">)</span>
+
+<span class="n">score</span> <span class="o">=</span> <span class="mi">20</span>  <span class="c1"># Change the value</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;New score:&quot;</span><span class="p">,</span> <span class="n">score</span><span class="p">)</span>
+
+<span class="n">score</span> <span class="o">=</span> <span class="n">score</span> <span class="o">+</span> <span class="mi">5</span>  <span class="c1"># Use the old value to calculate the new value</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Updated score:&quot;</span><span class="p">,</span> <span class="n">score</span><span class="p">)</span>
+
+<span class="c1"># Shorthand for updating</span>
+<span class="n">score</span> <span class="o">+=</span> <span class="mi">10</span>  <span class="c1"># Same as: score = score + 10</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Final score:&quot;</span><span class="p">,</span> <span class="n">score</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="multiple-assignment">
+<h3>Multiple Assignment<a class="headerlink" href="#multiple-assignment" title="Link to this heading">#</a></h3>
+<p>You can assign multiple variables in one line!</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Assign multiple variables at once</span>
+<span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;x:&quot;</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;y:&quot;</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;z:&quot;</span><span class="p">,</span> <span class="n">z</span><span class="p">)</span>
+
+<span class="c1"># Assign same value to multiple variables</span>
+<span class="n">a</span> <span class="o">=</span> <span class="n">b</span> <span class="o">=</span> <span class="n">c</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;a:&quot;</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="s2">&quot;b:&quot;</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="s2">&quot;c:&quot;</span><span class="p">,</span> <span class="n">c</span><span class="p">)</span>
+
+<span class="c1"># Swap values (Python makes this easy!)</span>
+<span class="n">first</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="n">second</span> <span class="o">=</span> <span class="mi">200</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Before swap:&quot;</span><span class="p">,</span> <span class="n">first</span><span class="p">,</span> <span class="n">second</span><span class="p">)</span>
+
+<span class="n">first</span><span class="p">,</span> <span class="n">second</span> <span class="o">=</span> <span class="n">second</span><span class="p">,</span> <span class="n">first</span>  <span class="c1"># Swap!</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;After swap:&quot;</span><span class="p">,</span> <span class="n">first</span><span class="p">,</span> <span class="n">second</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="none-type">
+<h2>6. None Type<a class="headerlink" href="#none-type" title="Link to this heading">#</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">None</span></code> represents “no value” or “nothing”. It’s useful for placeholders.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Variable with no value yet</span>
+<span class="n">user_input</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="n">result</span> <span class="o">=</span> <span class="kc">None</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;user_input:&quot;</span><span class="p">,</span> <span class="n">user_input</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Type:&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="p">(</span><span class="n">user_input</span><span class="p">))</span>
+
+<span class="c1"># You can check if a variable is None</span>
+<span class="k">if</span> <span class="n">user_input</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;No input received yet!&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="exercises">
+<h2>📝 Exercises<a class="headerlink" href="#exercises" title="Link to this heading">#</a></h2>
+<section id="exercise-1-personal-profile">
+<h3>Exercise 1: Personal Profile<a class="headerlink" href="#exercise-1-personal-profile" title="Link to this heading">#</a></h3>
+<p>Create variables to store your information:</p>
+<ul class="simple">
+<li><p>Your name (string)</p></li>
+<li><p>Your age (integer)</p></li>
+<li><p>Your height in feet (float)</p></li>
+<li><p>Whether you like Python (boolean)</p></li>
+</ul>
+<p>Print all of them with labels.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="exercise-2-favorite-book">
+<h3>Exercise 2: Favorite Book<a class="headerlink" href="#exercise-2-favorite-book" title="Link to this heading">#</a></h3>
+<p>Create variables about your favorite book:</p>
+<ul class="simple">
+<li><p>Title (string)</p></li>
+<li><p>Number of pages (integer)</p></li>
+<li><p>Your rating out of 5 (float)</p></li>
+<li><p>Have you finished reading it? (boolean)</p></li>
+</ul>
+<p>Print them all in a readable format.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="exercise-3-type-conversions">
+<h3>Exercise 3: Type Conversions<a class="headerlink" href="#exercise-3-type-conversions" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p>Create a string variable with the value <code class="docutils literal notranslate"><span class="pre">&quot;100&quot;</span></code></p></li>
+<li><p>Convert it to an integer</p></li>
+<li><p>Add 50 to it</p></li>
+<li><p>Convert the result to a string</p></li>
+<li><p>Print the final result and its type</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="exercise-4-temperature-converter">
+<h3>Exercise 4: Temperature Converter<a class="headerlink" href="#exercise-4-temperature-converter" title="Link to this heading">#</a></h3>
+<p>Create a variable for temperature in Fahrenheit (e.g., 72.5), then:</p>
+<ol class="arabic simple">
+<li><p>Convert it to Celsius using the formula: <code class="docutils literal notranslate"><span class="pre">(F</span> <span class="pre">-</span> <span class="pre">32)</span> <span class="pre">*</span> <span class="pre">5/9</span></code></p></li>
+<li><p>Print both temperatures with labels</p></li>
+<li><p>Convert the Celsius temperature to an integer (whole number)</p></li>
+<li><p>Print the rounded temperature</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="exercise-5-variable-swap">
+<h3>Exercise 5: Variable Swap<a class="headerlink" href="#exercise-5-variable-swap" title="Link to this heading">#</a></h3>
+<p>Create two variables:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">first</span> <span class="pre">=</span> <span class="pre">&quot;Python&quot;</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">second</span> <span class="pre">=</span> <span class="pre">&quot;Programming&quot;</span></code></p></li>
+</ul>
+<p>Swap their values so that <code class="docutils literal notranslate"><span class="pre">first</span></code> contains “Programming” and <code class="docutils literal notranslate"><span class="pre">second</span></code> contains “Python”.
+Print before and after.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="exercise-6-shopping-cart">
+<h3>Exercise 6: Shopping Cart<a class="headerlink" href="#exercise-6-shopping-cart" title="Link to this heading">#</a></h3>
+<p>You’re building a shopping cart. Create variables for:</p>
+<ul class="simple">
+<li><p>Item name (string)</p></li>
+<li><p>Price (float)</p></li>
+<li><p>Quantity (integer)</p></li>
+<li><p>In stock? (boolean)</p></li>
+</ul>
+<p>Calculate the total cost (price * quantity) and print a summary.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="self-check-quiz">
+<h2>✅ Self-Check Quiz<a class="headerlink" href="#self-check-quiz" title="Link to this heading">#</a></h2>
+<p>Before moving on, make sure you can answer these:</p>
+<ol class="arabic simple">
+<li><p>What is a variable?</p></li>
+<li><p>What are the four main data types in Python?</p></li>
+<li><p>How do you check the type of a variable?</p></li>
+<li><p>What’s the difference between <code class="docutils literal notranslate"><span class="pre">42</span></code> and <code class="docutils literal notranslate"><span class="pre">&quot;42&quot;</span></code>?</p></li>
+<li><p>How do you convert a string to an integer?</p></li>
+<li><p>Can variable names start with numbers?</p></li>
+<li><p>What does <code class="docutils literal notranslate"><span class="pre">None</span></code> represent?</p></li>
+<li><p>How do you swap two variables in Python?</p></li>
+</ol>
+</section>
+<hr class="docutils" />
+<section id="key-takeaways">
+<h2>🎯 Key Takeaways<a class="headerlink" href="#key-takeaways" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><strong>Variables</strong> store data that you can use and modify</p></li>
+<li><p><strong>Data types</strong> determine what you can do with values:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">str</span></code> for text</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">int</span></code> for whole numbers</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">float</span></code> for decimals</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">bool</span></code> for True/False</p></li>
+</ul>
+</li>
+<li><p>Use <code class="docutils literal notranslate"><span class="pre">type()</span></code> to check a variable’s type</p></li>
+<li><p>Convert types with <code class="docutils literal notranslate"><span class="pre">str()</span></code>, <code class="docutils literal notranslate"><span class="pre">int()</span></code>, <code class="docutils literal notranslate"><span class="pre">float()</span></code>, <code class="docutils literal notranslate"><span class="pre">bool()</span></code></p></li>
+<li><p>Choose descriptive variable names</p></li>
+<li><p>Variables can change their values</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="next-steps">
+<h2>🚀 Next Steps<a class="headerlink" href="#next-steps" title="Link to this heading">#</a></h2>
+<p>Great work! You now know how to store and work with data in Python.</p>
+<p>Next, you’ll learn about <strong>operations and conditionals</strong> - how to do math and make decisions in your code!</p>
+<p>Continue to: <code class="docutils literal notranslate"><span class="pre">03_basic_operations_and_conditionals.ipynb</span></code></p>
+</section>
+<hr class="docutils" />
+<section id="pro-tips">
+<h2>💡 Pro Tips<a class="headerlink" href="#pro-tips" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p><strong>Use meaningful names</strong>: <code class="docutils literal notranslate"><span class="pre">user_age</span></code> is better than <code class="docutils literal notranslate"><span class="pre">x</span></code></p></li>
+<li><p><strong>Be consistent</strong>: Stick to one naming style (we use <code class="docutils literal notranslate"><span class="pre">snake_case</span></code>)</p></li>
+<li><p><strong>Watch your types</strong>: Can’t do math with strings!</p></li>
+<li><p><strong>Check types when debugging</strong>: <code class="docutils literal notranslate"><span class="pre">print(type(variable))</span></code> is your friend</p></li>
+<li><p><strong>Practice type conversion</strong>: You’ll use it all the time in real programs</p></li>
+</ol>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./easy"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="01_introduction_to_python.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Lesson 1: Introduction to Python</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="03_basic_operations_and_conditionals.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Lesson 3: Basic Operations and Conditionals</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-you-ll-learn">What You’ll Learn</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#real-world-analogy">💡 Real-World Analogy</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-your-first-variables">1. Creating Your First Variables</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#variable-naming-rules">📝 Variable Naming Rules</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-types-in-python">2. Data Types in Python</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#main-data-types">Main Data Types</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#strings-text-data">Strings (Text Data)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#integers-whole-numbers">Integers (Whole Numbers)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#floats-decimal-numbers">Floats (Decimal Numbers)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#booleans-true-false-values">Booleans (True/False Values)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#checking-variable-types">3. Checking Variable Types</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#watch-out">⚠️ Watch Out!</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#type-conversion">4. Type Conversion</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#converting-to-string">Converting to String</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#converting-to-integer">Converting to Integer</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#converting-to-float">Converting to Float</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#conversion-errors">⚠️ Conversion Errors</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#variable-operations">5. Variable Operations</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#updating-variables">Updating Variables</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#multiple-assignment">Multiple Assignment</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#none-type">6. None Type</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">📝 Exercises</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-1-personal-profile">Exercise 1: Personal Profile</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-2-favorite-book">Exercise 2: Favorite Book</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-3-type-conversions">Exercise 3: Type Conversions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-4-temperature-converter">Exercise 4: Temperature Converter</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-5-variable-swap">Exercise 5: Variable Swap</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-6-shopping-cart">Exercise 6: Shopping Cart</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#self-check-quiz">✅ Self-Check Quiz</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#key-takeaways">🎯 Key Takeaways</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#next-steps">🚀 Next Steps</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pro-tips">💡 Pro Tips</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Mykolas Perevicius
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

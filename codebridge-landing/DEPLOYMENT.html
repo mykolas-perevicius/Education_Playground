@@ -1,0 +1,809 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>🚀 Deployment Guide &#8212; Education Playground</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=0c185eed" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=c73c0f3e"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'codebridge-landing/DEPLOYMENT';</script>
+    <script src="../_static/js/onboarding.js?v=557b7536"></script>
+    <link rel="canonical" href="https://mykolas-perevicius.github.io/Education_Playground/codebridge-landing/DEPLOYMENT.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../README.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Education Playground</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../00_calibration_test.html">🎯 Calibration Test - Find Your Level</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../beginner_scripts/README.html">🌱 Beginner Scripts (10 Python Files)</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../easy/README_EASY.html">📗 Easy Level - Beginner</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../easy/01_introduction_to_python.html">1. Introduction to Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../easy/02_variables_and_data_types.html">2. Variables and Data Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../easy/03_basic_operations_and_conditionals.html">3. Operations and Conditionals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../easy/04_intro_to_ai_and_ml.html">4. Intro to AI and ML</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../easy/05_computing_fundamentals.html">5. Computing Fundamentals</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../medium/README_MEDIUM.html">📘 Medium Level - Intermediate</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../medium/01_functions_and_modules.html">1. Functions and Modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../medium/02_data_structures.html">2. Data Structures</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../medium/03_classes_and_oop.html">3. Classes and OOP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../medium/04_machine_learning_basics.html">4. Machine Learning Basics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../medium/05_data_analysis_with_pandas.html">5. Data Analysis with Pandas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../medium/06_algorithms_and_problem_solving.html">6. Algorithms and Problem Solving</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../hard/README_HARD.html">📕 Hard Level - Advanced</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../hard/01_advanced_functions_and_decorators.html">1. Advanced Functions &amp; Decorators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hard/02_generators_and_iterators.html">2. Generators and Iterators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hard/03_algorithms_and_complexity.html">3. Algorithms and Complexity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hard/04_deep_learning_and_neural_networks.html">4. Deep Learning &amp; Neural Networks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hard/05_advanced_ml_and_nlp.html">5. Advanced ML and NLP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hard/06_computer_systems_and_theory.html">6. Computer Systems and Theory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hard/07_project_ideas.html">7. Project Ideas &amp; Implementation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hard/08_classic_problems.html">Lesson 8: Classic Problems Collection</a></li>
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../hard/09_ctf_challenges.html">Lesson 9: Capture The Flag (CTF) - Hacker Training</a></li>
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../hard/10_performance_computing.html">10. Performance Computing ⚡ NEW!</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hard/11_cuda_and_parallel_computing.html">11. CUDA &amp; GPU Computing 🎮 NEW!</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../tools/README.html">🛠️ Developer Tools Track</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../tools/01_shell_basics.html">1. Shell and Command Line</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools/02_command_line_tools.html">2. Command Line Tools</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools/03_git_essentials.html">3. Git Essentials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools/04_text_editors.html">4. Text Editors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools/05_build_systems_cicd.html">5. Build Systems and CI/CD</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools/06_debugging_profiling.html">6. Debugging and Profiling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools/07_security_essentials.html">7. Security Essentials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools/08_package_management.html">8. Package Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools/09_ssh_remote_systems.html">9. SSH and Remote Systems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools/10_docker_containers.html">10. Docker and Containers</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../solutions/README_SOLUTIONS.html">📝 Solutions</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../solutions/easy_solutions.html">Easy Level - Complete Solutions</a></li>
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../solutions/medium_solutions.html">Medium Level - Complete Solutions</a></li>
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../solutions/hard_solutions.html">Hard Level - Complete Solutions</a></li>
+
+
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../solutions/tools_solutions.html">Developer Tools - Complete Solutions</a></li>
+
+
+
+
+
+
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../RESOURCES.html">📚 Learning Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../PYTHON_CHEATSHEET.html">⚡ Python Cheat Sheet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ML_AI_CHEATSHEET.html">🤖 ML/AI Cheat Sheet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../SETUP.html">🔧 Setup Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../RELEASE_NOTES_v2.0.0.html">🎉 Release Notes v2.0.0</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none"></div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>🚀 Deployment Guide</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quick-deploy-to-vercel-recommended">Quick Deploy to Vercel (Recommended)</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#option-1-deploy-via-vercel-dashboard-easiest">Option 1: Deploy via Vercel Dashboard (Easiest)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#option-2-deploy-via-cli">Option 2: Deploy via CLI</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#post-deployment-setup">🔧 Post-Deployment Setup</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#configure-analytics">1. Configure Analytics</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#posthog-setup-5-minutes">PostHog Setup (5 minutes)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#vercel-analytics-automatic">Vercel Analytics (Automatic)</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#set-up-custom-domain-optional">2. Set Up Custom Domain (Optional)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#verify-everything-works">📊 Verify Everything Works</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#test-analytics">1. Test Analytics</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#test-a-b-testing">2. Test A/B Testing</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#test-funnel-tracking">3. Test Funnel Tracking</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#alternative-deployment-options">🌐 Alternative Deployment Options</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#netlify">Netlify</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#github-pages-static-export">GitHub Pages (Static Export)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#continuous-deployment">🔄 Continuous Deployment</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#troubleshooting-deployment">🐛 Troubleshooting Deployment</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#build-fails">Build Fails</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#analytics-not-working">Analytics Not Working</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#site-loading-slowly">Site Loading Slowly</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#monitoring-maintenance">📈 Monitoring &amp; Maintenance</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#daily-checks">Daily Checks</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#weekly-reviews">Weekly Reviews</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#monthly-actions">Monthly Actions</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#security-best-practices">🔐 Security Best Practices</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#get-help">📞 Get Help</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#you-re-live">🎉 You’re Live!</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="deployment-guide">
+<h1>🚀 Deployment Guide<a class="headerlink" href="#deployment-guide" title="Link to this heading">#</a></h1>
+<section id="quick-deploy-to-vercel-recommended">
+<h2>Quick Deploy to Vercel (Recommended)<a class="headerlink" href="#quick-deploy-to-vercel-recommended" title="Link to this heading">#</a></h2>
+<section id="option-1-deploy-via-vercel-dashboard-easiest">
+<h3>Option 1: Deploy via Vercel Dashboard (Easiest)<a class="headerlink" href="#option-1-deploy-via-vercel-dashboard-easiest" title="Link to this heading">#</a></h3>
+<ol class="arabic">
+<li><p><strong>Go to</strong> <a class="reference external" href="https://vercel.com/new">https://vercel.com/new</a></p></li>
+<li><p><strong>Import your GitHub repository</strong>:</p>
+<ul class="simple">
+<li><p>Click “Import Project”</p></li>
+<li><p>Select “Import Git Repository”</p></li>
+<li><p>Find <code class="docutils literal notranslate"><span class="pre">codebridge-landing</span></code></p></li>
+<li><p>Click “Import”</p></li>
+</ul>
+</li>
+<li><p><strong>Configure</strong>:</p>
+<ul class="simple">
+<li><p><strong>Project Name</strong>: <code class="docutils literal notranslate"><span class="pre">codebridge-landing</span></code> (or your choice)</p></li>
+<li><p><strong>Framework Preset</strong>: Next.js (auto-detected)</p></li>
+<li><p><strong>Root Directory</strong>: <code class="docutils literal notranslate"><span class="pre">./</span></code></p></li>
+<li><p><strong>Build Command</strong>: <code class="docutils literal notranslate"><span class="pre">npm</span> <span class="pre">run</span> <span class="pre">build</span></code> (auto-filled)</p></li>
+<li><p><strong>Output Directory</strong>: <code class="docutils literal notranslate"><span class="pre">.next</span></code> (auto-filled)</p></li>
+</ul>
+</li>
+<li><p><strong>Add Environment Variables</strong> (Optional but recommended):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">NEXT_PUBLIC_POSTHOG_KEY</span><span class="o">=</span><span class="n">your_posthog_api_key</span>
+<span class="n">NEXT_PUBLIC_POSTHOG_HOST</span><span class="o">=</span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">app</span><span class="o">.</span><span class="n">posthog</span><span class="o">.</span><span class="n">com</span>
+</pre></div>
+</div>
+<p><em>(Get PostHog API key from <a class="reference external" href="https://app.posthog.com">app.posthog.com</a>)</em></p>
+</li>
+<li><p><strong>Click “Deploy”</strong> 🎉</p></li>
+</ol>
+<p>Your site will be live at: <code class="docutils literal notranslate"><span class="pre">https://codebridge-landing.vercel.app</span></code> (or custom domain)</p>
+<p><strong>Deployment takes ~2-3 minutes</strong></p>
+</section>
+<hr class="docutils" />
+<section id="option-2-deploy-via-cli">
+<h3>Option 2: Deploy via CLI<a class="headerlink" href="#option-2-deploy-via-cli" title="Link to this heading">#</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Login to Vercel</span>
+vercel<span class="w"> </span>login
+
+<span class="c1"># Deploy to production</span>
+vercel<span class="w"> </span>--prod
+
+<span class="c1"># Follow the prompts:</span>
+<span class="c1"># - Set up and deploy: Y</span>
+<span class="c1"># - Which scope: Your account</span>
+<span class="c1"># - Link to existing project: N</span>
+<span class="c1"># - Project name: codebridge-landing</span>
+<span class="c1"># - Directory: ./</span>
+<span class="c1"># - Override settings: N</span>
+</pre></div>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="post-deployment-setup">
+<h2>🔧 Post-Deployment Setup<a class="headerlink" href="#post-deployment-setup" title="Link to this heading">#</a></h2>
+<section id="configure-analytics">
+<h3>1. Configure Analytics<a class="headerlink" href="#configure-analytics" title="Link to this heading">#</a></h3>
+<section id="posthog-setup-5-minutes">
+<h4>PostHog Setup (5 minutes)<a class="headerlink" href="#posthog-setup-5-minutes" title="Link to this heading">#</a></h4>
+<ol class="arabic">
+<li><p>Sign up at <a class="reference external" href="https://app.posthog.com/signup">https://app.posthog.com/signup</a></p></li>
+<li><p>Create a new project: “CodeBridge Landing”</p></li>
+<li><p>Copy your <strong>Project API Key</strong></p></li>
+<li><p>In Vercel Dashboard:</p>
+<ul>
+<li><p>Go to Project Settings → Environment Variables</p></li>
+<li><p>Add:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Name</span><span class="p">:</span> <span class="n">NEXT_PUBLIC_POSTHOG_KEY</span>
+<span class="n">Value</span><span class="p">:</span> <span class="n">phc_your_api_key_here</span>
+</pre></div>
+</div>
+</li>
+<li><p>Add:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Name</span><span class="p">:</span> <span class="n">NEXT_PUBLIC_POSTHOG_HOST</span>
+<span class="n">Value</span><span class="p">:</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">app</span><span class="o">.</span><span class="n">posthog</span><span class="o">.</span><span class="n">com</span>
+</pre></div>
+</div>
+</li>
+<li><p>Click “Save”</p></li>
+</ul>
+</li>
+<li><p>Redeploy your site (Vercel → Deployments → Click “…” → Redeploy)</p></li>
+</ol>
+</section>
+<section id="vercel-analytics-automatic">
+<h4>Vercel Analytics (Automatic)<a class="headerlink" href="#vercel-analytics-automatic" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p>Enabled automatically on all Vercel deployments</p></li>
+<li><p>View at: <code class="docutils literal notranslate"><span class="pre">https://vercel.com/your-team/codebridge-landing/analytics</span></code></p></li>
+</ul>
+</section>
+</section>
+<section id="set-up-custom-domain-optional">
+<h3>2. Set Up Custom Domain (Optional)<a class="headerlink" href="#set-up-custom-domain-optional" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p>In Vercel Dashboard → Project Settings → Domains</p></li>
+<li><p>Add your domain: <code class="docutils literal notranslate"><span class="pre">landing.codebridge.com</span></code> or <code class="docutils literal notranslate"><span class="pre">codebridge.com</span></code></p></li>
+<li><p>Follow DNS configuration instructions</p></li>
+<li><p>SSL certificate auto-generated</p></li>
+</ol>
+</section>
+</section>
+<hr class="docutils" />
+<section id="verify-everything-works">
+<h2>📊 Verify Everything Works<a class="headerlink" href="#verify-everything-works" title="Link to this heading">#</a></h2>
+<section id="test-analytics">
+<h3>1. Test Analytics<a class="headerlink" href="#test-analytics" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p>Visit your deployed site</p></li>
+<li><p>Open browser console (F12)</p></li>
+<li><p>Look for: <code class="docutils literal notranslate"><span class="pre">PostHog</span> <span class="pre">initialized</span> <span class="pre">successfully</span></code></p></li>
+<li><p>Click a CTA button</p></li>
+<li><p>Check PostHog Dashboard → Live Events</p></li>
+</ol>
+</section>
+<section id="test-a-b-testing">
+<h3>2. Test A/B Testing<a class="headerlink" href="#test-a-b-testing" title="Link to this heading">#</a></h3>
+<ol class="arabic">
+<li><p>Visit site in incognito window (fresh session)</p></li>
+<li><p>Refresh multiple times</p></li>
+<li><p>You should see different headlines/CTAs</p></li>
+<li><p>Check localStorage in console:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nb">Object</span><span class="p">.</span><span class="nx">keys</span><span class="p">(</span><span class="nx">localStorage</span><span class="p">)</span>
+<span class="w">  </span><span class="p">.</span><span class="nx">filter</span><span class="p">(</span><span class="nx">k</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">k</span><span class="p">.</span><span class="nx">startsWith</span><span class="p">(</span><span class="s1">&#39;experiment_&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+<section id="test-funnel-tracking">
+<h3>3. Test Funnel Tracking<a class="headerlink" href="#test-funnel-tracking" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p>Scroll through entire page</p></li>
+<li><p>Click CTAs</p></li>
+<li><p>Check PostHog → Live Events → Filter by “funnel”</p></li>
+<li><p>Should see: page_view, hero_view, courses_view, etc.</p></li>
+</ol>
+</section>
+</section>
+<hr class="docutils" />
+<section id="alternative-deployment-options">
+<h2>🌐 Alternative Deployment Options<a class="headerlink" href="#alternative-deployment-options" title="Link to this heading">#</a></h2>
+<section id="netlify">
+<h3>Netlify<a class="headerlink" href="#netlify" title="Link to this heading">#</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Install Netlify CLI</span>
+npm<span class="w"> </span>install<span class="w"> </span>-g<span class="w"> </span>netlify-cli
+
+<span class="c1"># Login</span>
+netlify<span class="w"> </span>login
+
+<span class="c1"># Deploy</span>
+netlify<span class="w"> </span>deploy<span class="w"> </span>--prod
+
+<span class="c1"># Follow prompts, publish directory: .next</span>
+</pre></div>
+</div>
+</section>
+<section id="github-pages-static-export">
+<h3>GitHub Pages (Static Export)<a class="headerlink" href="#github-pages-static-export" title="Link to this heading">#</a></h3>
+<ol class="arabic">
+<li><p>Update <code class="docutils literal notranslate"><span class="pre">next.config.ts</span></code>:</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">nextConfig</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">output</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;export&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">basePath</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;/codebridge-landing&#39;</span><span class="p">,</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+</li>
+<li><p>Build and export:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>npm<span class="w"> </span>run<span class="w"> </span>build
+</pre></div>
+</div>
+</li>
+<li><p>Deploy <code class="docutils literal notranslate"><span class="pre">.next</span></code> folder to GitHub Pages</p></li>
+</ol>
+</section>
+</section>
+<hr class="docutils" />
+<section id="continuous-deployment">
+<h2>🔄 Continuous Deployment<a class="headerlink" href="#continuous-deployment" title="Link to this heading">#</a></h2>
+<p>Vercel automatically deploys on every git push to <code class="docutils literal notranslate"><span class="pre">main</span></code>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Make changes</span>
+git<span class="w"> </span>add<span class="w"> </span>.
+git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;Update landing page&quot;</span>
+git<span class="w"> </span>push<span class="w"> </span>origin<span class="w"> </span>main
+
+<span class="c1"># Vercel deploys automatically!</span>
+<span class="c1"># Check status: https://vercel.com/your-team/codebridge-landing/deployments</span>
+</pre></div>
+</div>
+<p><strong>Preview Deployments</strong>: Every branch gets a unique URL for testing</p>
+</section>
+<hr class="docutils" />
+<section id="troubleshooting-deployment">
+<h2>🐛 Troubleshooting Deployment<a class="headerlink" href="#troubleshooting-deployment" title="Link to this heading">#</a></h2>
+<section id="build-fails">
+<h3>Build Fails<a class="headerlink" href="#build-fails" title="Link to this heading">#</a></h3>
+<p><strong>Error</strong>: “Module not found”</p>
+<ul class="simple">
+<li><p><strong>Fix</strong>: Run <code class="docutils literal notranslate"><span class="pre">npm</span> <span class="pre">install</span></code> locally and commit <code class="docutils literal notranslate"><span class="pre">package-lock.json</span></code></p></li>
+</ul>
+<p><strong>Error</strong>: “Type error in component”</p>
+<ul class="simple">
+<li><p><strong>Fix</strong>: Run <code class="docutils literal notranslate"><span class="pre">npm</span> <span class="pre">run</span> <span class="pre">build</span></code> locally to catch errors</p></li>
+<li><p>Fix TypeScript errors before pushing</p></li>
+</ul>
+</section>
+<section id="analytics-not-working">
+<h3>Analytics Not Working<a class="headerlink" href="#analytics-not-working" title="Link to this heading">#</a></h3>
+<p><strong>PostHog events not showing</strong></p>
+<ul class="simple">
+<li><p>Verify API key in Environment Variables</p></li>
+<li><p>Check browser console for errors</p></li>
+<li><p>Disable ad blockers</p></li>
+<li><p>Try incognito mode</p></li>
+</ul>
+<p><strong>Vercel Analytics empty</strong></p>
+<ul class="simple">
+<li><p>Wait 24 hours for data to accumulate</p></li>
+<li><p>Verify Analytics is enabled in Project Settings</p></li>
+</ul>
+</section>
+<section id="site-loading-slowly">
+<h3>Site Loading Slowly<a class="headerlink" href="#site-loading-slowly" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Check Vercel Speed Insights for bottlenecks</p></li>
+<li><p>Optimize images with Next.js Image component</p></li>
+<li><p>Review PostHog session recordings for UX issues</p></li>
+</ul>
+</section>
+</section>
+<hr class="docutils" />
+<section id="monitoring-maintenance">
+<h2>📈 Monitoring &amp; Maintenance<a class="headerlink" href="#monitoring-maintenance" title="Link to this heading">#</a></h2>
+<section id="daily-checks">
+<h3>Daily Checks<a class="headerlink" href="#daily-checks" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p><strong>Vercel Analytics</strong>: Traffic, errors, performance</p></li>
+<li><p><strong>PostHog Live Events</strong>: Real-time user activity</p></li>
+<li><p><strong>Conversion Funnel</strong>: Drop-off rates</p></li>
+</ol>
+</section>
+<section id="weekly-reviews">
+<h3>Weekly Reviews<a class="headerlink" href="#weekly-reviews" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p><strong>A/B Test Results</strong>: Statistical significance reached?</p></li>
+<li><p><strong>Top Conversion Paths</strong>: What’s working?</p></li>
+<li><p><strong>Session Recordings</strong>: UX improvements needed?</p></li>
+</ol>
+</section>
+<section id="monthly-actions">
+<h3>Monthly Actions<a class="headerlink" href="#monthly-actions" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p><strong>Implement winning A/B test variants</strong></p></li>
+<li><p><strong>Launch new experiments</strong></p></li>
+<li><p><strong>Review and optimize slowest pages</strong></p></li>
+</ol>
+</section>
+</section>
+<hr class="docutils" />
+<section id="security-best-practices">
+<h2>🔐 Security Best Practices<a class="headerlink" href="#security-best-practices" title="Link to this heading">#</a></h2>
+<p>✅ <strong>Do</strong>:</p>
+<ul class="simple">
+<li><p>Keep environment variables in Vercel dashboard only</p></li>
+<li><p>Never commit <code class="docutils literal notranslate"><span class="pre">.env.local</span></code> to git</p></li>
+<li><p>Use <code class="docutils literal notranslate"><span class="pre">.env.local.example</span></code> for documentation</p></li>
+<li><p>Regenerate API keys if accidentally exposed</p></li>
+</ul>
+<p>❌ <strong>Don’t</strong>:</p>
+<ul class="simple">
+<li><p>Expose API keys in client-side code</p></li>
+<li><p>Commit sensitive data to GitHub</p></li>
+<li><p>Use production keys in local development</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="get-help">
+<h2>📞 Get Help<a class="headerlink" href="#get-help" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><strong>Vercel Support</strong>: <a class="reference external" href="https://vercel.com/support">https://vercel.com/support</a></p></li>
+<li><p><strong>PostHog Community</strong>: <a class="reference external" href="https://posthog.com/questions">https://posthog.com/questions</a></p></li>
+<li><p><strong>GitHub Issues</strong>: <a class="github reference external" href="https://github.com/mykolas-perevicius/codebridge-landing/issues">mykolas-perevicius/codebridge-landing#issues</a></p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="you-re-live">
+<h2>🎉 You’re Live!<a class="headerlink" href="#you-re-live" title="Link to this heading">#</a></h2>
+<p>Your CodeBridge Labs landing page is now:</p>
+<ul class="simple">
+<li><p>✅ Deployed and accessible worldwide</p></li>
+<li><p>✅ Tracking every user interaction</p></li>
+<li><p>✅ Running A/B tests automatically</p></li>
+<li><p>✅ Optimized for conversions</p></li>
+<li><p>✅ Auto-deploying on every push</p></li>
+</ul>
+<p><strong>Next Steps</strong>:</p>
+<ol class="arabic simple">
+<li><p>Share your live URL with stakeholders</p></li>
+<li><p>Set up PostHog funnels (see ANALYTICS_SETUP.md)</p></li>
+<li><p>Monitor conversion rates</p></li>
+<li><p>Launch to your target audience! 🚀</p></li>
+</ol>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./codebridge-landing"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quick-deploy-to-vercel-recommended">Quick Deploy to Vercel (Recommended)</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#option-1-deploy-via-vercel-dashboard-easiest">Option 1: Deploy via Vercel Dashboard (Easiest)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#option-2-deploy-via-cli">Option 2: Deploy via CLI</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#post-deployment-setup">🔧 Post-Deployment Setup</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#configure-analytics">1. Configure Analytics</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#posthog-setup-5-minutes">PostHog Setup (5 minutes)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#vercel-analytics-automatic">Vercel Analytics (Automatic)</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#set-up-custom-domain-optional">2. Set Up Custom Domain (Optional)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#verify-everything-works">📊 Verify Everything Works</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#test-analytics">1. Test Analytics</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#test-a-b-testing">2. Test A/B Testing</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#test-funnel-tracking">3. Test Funnel Tracking</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#alternative-deployment-options">🌐 Alternative Deployment Options</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#netlify">Netlify</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#github-pages-static-export">GitHub Pages (Static Export)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#continuous-deployment">🔄 Continuous Deployment</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#troubleshooting-deployment">🐛 Troubleshooting Deployment</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#build-fails">Build Fails</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#analytics-not-working">Analytics Not Working</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#site-loading-slowly">Site Loading Slowly</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#monitoring-maintenance">📈 Monitoring &amp; Maintenance</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#daily-checks">Daily Checks</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#weekly-reviews">Weekly Reviews</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#monthly-actions">Monthly Actions</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#security-best-practices">🔐 Security Best Practices</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#get-help">📞 Get Help</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#you-re-live">🎉 You’re Live!</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Mykolas Perevicius
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

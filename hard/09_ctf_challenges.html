@@ -1,0 +1,1581 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Lesson 9: Capture The Flag (CTF) - Hacker Training &#8212; Education Playground</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=0c185eed" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=c73c0f3e"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'hard/09_ctf_challenges';</script>
+    <script src="../_static/js/onboarding.js?v=557b7536"></script>
+    <link rel="canonical" href="https://mykolas-perevicius.github.io/Education_Playground/hard/09_ctf_challenges.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Hard Level: High-Performance Python Computing" href="10_performance_computing.html" />
+    <link rel="prev" title="Lesson 8: Classic Problems Collection" href="08_classic_problems.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../README.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Education Playground</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../00_calibration_test.html">🎯 Calibration Test - Find Your Level</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../beginner_scripts/README.html">🌱 Beginner Scripts (10 Python Files)</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../easy/README_EASY.html">📗 Easy Level - Beginner</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../easy/01_introduction_to_python.html">1. Introduction to Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../easy/02_variables_and_data_types.html">2. Variables and Data Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../easy/03_basic_operations_and_conditionals.html">3. Operations and Conditionals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../easy/04_intro_to_ai_and_ml.html">4. Intro to AI and ML</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../easy/05_computing_fundamentals.html">5. Computing Fundamentals</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../medium/README_MEDIUM.html">📘 Medium Level - Intermediate</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../medium/01_functions_and_modules.html">1. Functions and Modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../medium/02_data_structures.html">2. Data Structures</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../medium/03_classes_and_oop.html">3. Classes and OOP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../medium/04_machine_learning_basics.html">4. Machine Learning Basics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../medium/05_data_analysis_with_pandas.html">5. Data Analysis with Pandas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../medium/06_algorithms_and_problem_solving.html">6. Algorithms and Problem Solving</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="README_HARD.html">📕 Hard Level - Advanced</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="01_advanced_functions_and_decorators.html">1. Advanced Functions &amp; Decorators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02_generators_and_iterators.html">2. Generators and Iterators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03_algorithms_and_complexity.html">3. Algorithms and Complexity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04_deep_learning_and_neural_networks.html">4. Deep Learning &amp; Neural Networks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05_advanced_ml_and_nlp.html">5. Advanced ML and NLP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="06_computer_systems_and_theory.html">6. Computer Systems and Theory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="07_project_ideas.html">7. Project Ideas &amp; Implementation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="08_classic_problems.html">Lesson 8: Classic Problems Collection</a></li>
+
+
+
+
+
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Lesson 9: Capture The Flag (CTF) - Hacker Training</a></li>
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="10_performance_computing.html">10. Performance Computing ⚡ NEW!</a></li>
+<li class="toctree-l2"><a class="reference internal" href="11_cuda_and_parallel_computing.html">11. CUDA &amp; GPU Computing 🎮 NEW!</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../tools/README.html">🛠️ Developer Tools Track</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../tools/01_shell_basics.html">1. Shell and Command Line</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools/02_command_line_tools.html">2. Command Line Tools</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools/03_git_essentials.html">3. Git Essentials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools/04_text_editors.html">4. Text Editors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools/05_build_systems_cicd.html">5. Build Systems and CI/CD</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools/06_debugging_profiling.html">6. Debugging and Profiling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools/07_security_essentials.html">7. Security Essentials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools/08_package_management.html">8. Package Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools/09_ssh_remote_systems.html">9. SSH and Remote Systems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools/10_docker_containers.html">10. Docker and Containers</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../solutions/README_SOLUTIONS.html">📝 Solutions</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../solutions/easy_solutions.html">Easy Level - Complete Solutions</a></li>
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../solutions/medium_solutions.html">Medium Level - Complete Solutions</a></li>
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../solutions/hard_solutions.html">Hard Level - Complete Solutions</a></li>
+
+
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../solutions/tools_solutions.html">Developer Tools - Complete Solutions</a></li>
+
+
+
+
+
+
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../RESOURCES.html">📚 Learning Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../PYTHON_CHEATSHEET.html">⚡ Python Cheat Sheet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ML_AI_CHEATSHEET.html">🤖 ML/AI Cheat Sheet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../SETUP.html">🔧 Setup Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../RELEASE_NOTES_v2.0.0.html">🎉 Release Notes v2.0.0</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none"></div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Lesson 9: Capture The Flag (CTF) - Hacker Training</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Lesson 9: Capture The Flag (CTF) - Hacker Training</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-ctf">What is CTF?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-ctf">Why CTF?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#legal-ethical-notice">🚨 Legal &amp; Ethical Notice</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#part-1-web-exploitation">Part 1: Web Exploitation</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#challenge-1-1-sql-injection-sqli">Challenge 1.1: SQL Injection (SQLi)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#challenge-1-2-cross-site-scripting-xss">Challenge 1.2: Cross-Site Scripting (XSS)</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#common-xss-payloads">Common XSS Payloads</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#defense">Defense</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#part-2-binary-exploitation-pwn">Part 2: Binary Exploitation (Pwn)</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#challenge-2-1-buffer-overflow-basics">Challenge 2.1: Buffer Overflow Basics</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#challenge-2-2-format-string-vulnerability">Challenge 2.2: Format String Vulnerability</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modern-protections">Modern Protections</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#part-3-reverse-engineering">Part 3: Reverse Engineering</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#challenge-3-1-decompiling-python-bytecode">Challenge 3.1: Decompiling Python Bytecode</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#challenge-3-2-simple-crackme">Challenge 3.2: Simple Crackme</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reverse-engineering-tools">Reverse Engineering Tools</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#part-4-forensics">Part 4: Forensics</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#challenge-4-1-steganography-hidden-in-plain-sight">Challenge 4.1: Steganography - Hidden in Plain Sight</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#challenge-4-2-file-carving">Challenge 4.2: File Carving</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#part-5-osint-open-source-intelligence">Part 5: OSINT (Open Source Intelligence)</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#challenge-5-1-metadata-extraction">Challenge 5.1: Metadata Extraction</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#osint-tools-techniques">OSINT Tools &amp; Techniques</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#part-6-misc-challenges">Part 6: Misc Challenges</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#challenge-6-1-encoding-madness">Challenge 6.1: Encoding Madness</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#common-encodings-in-ctf">Common Encodings in CTF</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ctf-platforms-for-practice">🏆 CTF Platforms for Practice</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#beginner-friendly">Beginner-Friendly</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#intermediate">Intermediate</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#advanced">Advanced</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#essential-ctf-tools">🛠️ Essential CTF Tools</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#general">General</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#web">Web</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#binary-pwn">Binary/Pwn</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reversing">Reversing</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#forensics">Forensics</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#crypto">Crypto</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ctf-mindset">🎯 CTF Mindset</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-resources">📚 Learning Resources</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#books">Books</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#youtube-channels">YouTube Channels</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#communities">Communities</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#career-paths">🎓 Career Paths</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quick-win-checklist">⚡ Quick Win Checklist</a></li>
+</ul>
+</li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="lesson-9-capture-the-flag-ctf-hacker-training">
+<h1>Lesson 9: Capture The Flag (CTF) - Hacker Training<a class="headerlink" href="#lesson-9-capture-the-flag-ctf-hacker-training" title="Link to this heading">#</a></h1>
+<p>Welcome to the world of <strong>Capture The Flag</strong> - competitive hacking competitions where you solve security challenges to find “flags” (secret strings).</p>
+<section id="what-is-ctf">
+<h2>What is CTF?<a class="headerlink" href="#what-is-ctf" title="Link to this heading">#</a></h2>
+<p>CTF competitions test your skills across:</p>
+<ul class="simple">
+<li><p><strong>Web Exploitation</strong>: Finding vulnerabilities in websites</p></li>
+<li><p><strong>Binary Exploitation (Pwn)</strong>: Breaking programs to get shell access</p></li>
+<li><p><strong>Reverse Engineering</strong>: Understanding how programs work without source code</p></li>
+<li><p><strong>Cryptography</strong>: Breaking encryption and encoding</p></li>
+<li><p><strong>Forensics</strong>: Digital detective work</p></li>
+<li><p><strong>OSINT</strong>: Open Source Intelligence gathering</p></li>
+<li><p><strong>Misc</strong>: Everything else (steganography, programming, etc.)</p></li>
+</ul>
+</section>
+<section id="why-ctf">
+<h2>Why CTF?<a class="headerlink" href="#why-ctf" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><strong>Career</strong>: Cybersecurity skills are in high demand</p></li>
+<li><p><strong>Bug Bounties</strong>: Find real bugs, earn $$$ (ethical hacking)</p></li>
+<li><p><strong>Penetration Testing</strong>: Become a professional pentester</p></li>
+<li><p><strong>Problem Solving</strong>: Some of the most challenging puzzles you’ll encounter</p></li>
+<li><p><strong>Community</strong>: Meet hackers worldwide</p></li>
+</ul>
+</section>
+<section id="legal-ethical-notice">
+<h2>🚨 Legal &amp; Ethical Notice<a class="headerlink" href="#legal-ethical-notice" title="Link to this heading">#</a></h2>
+<p><strong>IMPORTANT</strong>: Only hack systems you have permission to hack!</p>
+<ul class="simple">
+<li><p>✅ CTF challenges and practice platforms</p></li>
+<li><p>✅ Your own systems and labs</p></li>
+<li><p>✅ Bug bounty programs with explicit permission</p></li>
+<li><p>❌ Other people’s systems without permission (this is illegal!)</p></li>
+</ul>
+<p>This notebook is for <strong>educational and authorized testing only</strong>.</p>
+</section>
+</section>
+<hr class="docutils" />
+<section class="tex2jax_ignore mathjax_ignore" id="part-1-web-exploitation">
+<h1>Part 1: Web Exploitation<a class="headerlink" href="#part-1-web-exploitation" title="Link to this heading">#</a></h1>
+<p>Web challenges involve finding and exploiting vulnerabilities in web applications.</p>
+<section id="challenge-1-1-sql-injection-sqli">
+<h2>Challenge 1.1: SQL Injection (SQLi)<a class="headerlink" href="#challenge-1-1-sql-injection-sqli" title="Link to this heading">#</a></h2>
+<p><strong>OWASP Top 10 #3</strong> - One of the most common and dangerous web vulnerabilities</p>
+<p><strong>Concept</strong>: Injecting SQL code into queries to bypass authentication or extract data.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sqlite3</span>
+
+<span class="c1"># Vulnerable login function (DO NOT USE IN PRODUCTION!)</span>
+<span class="k">def</span> <span class="nf">vulnerable_login</span><span class="p">(</span><span class="n">username</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">password</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    VULNERABLE: Never build SQL queries with string concatenation!</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">conn</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s1">&#39;:memory:&#39;</span><span class="p">)</span>
+    <span class="n">cursor</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+    
+    <span class="c1"># Create users table</span>
+    <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s1">&#39;&#39;&#39;</span>
+<span class="s1">        CREATE TABLE users (</span>
+<span class="s1">            id INTEGER PRIMARY KEY,</span>
+<span class="s1">            username TEXT,</span>
+<span class="s1">            password TEXT,</span>
+<span class="s1">            is_admin INTEGER</span>
+<span class="s1">        )</span>
+<span class="s1">    &#39;&#39;&#39;</span><span class="p">)</span>
+    
+    <span class="c1"># Add test users</span>
+    <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;INSERT INTO users VALUES (1, &#39;admin&#39;, &#39;sup3rs3cr3t&#39;, 1)&quot;</span><span class="p">)</span>
+    <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;INSERT INTO users VALUES (2, &#39;user&#39;, &#39;password123&#39;, 0)&quot;</span><span class="p">)</span>
+    <span class="n">conn</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
+    
+    <span class="c1"># VULNERABLE QUERY - concatenating user input directly!</span>
+    <span class="n">query</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;SELECT * FROM users WHERE username=&#39;</span><span class="si">{</span><span class="n">username</span><span class="si">}</span><span class="s2">&#39; AND password=&#39;</span><span class="si">{</span><span class="n">password</span><span class="si">}</span><span class="s2">&#39;&quot;</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Query: </span><span class="si">{</span><span class="n">query</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    
+    <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">cursor</span><span class="o">.</span><span class="n">fetchone</span><span class="p">()</span>
+    
+    <span class="n">conn</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">result</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+
+<span class="c1"># Normal login</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=== Normal Login ===&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Valid login: </span><span class="si">{</span><span class="n">vulnerable_login</span><span class="p">(</span><span class="s1">&#39;admin&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;sup3rs3cr3t&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Invalid login: </span><span class="si">{</span><span class="n">vulnerable_login</span><span class="p">(</span><span class="s1">&#39;admin&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;wrongpassword&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># SQL Injection attack!</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">=== SQL Injection Attack ===&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Username: admin&#39; OR &#39;1&#39;=&#39;1&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Password: (anything)&quot;</span><span class="p">)</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">vulnerable_login</span><span class="p">(</span><span class="s2">&quot;admin&#39; OR &#39;1&#39;=&#39;1&quot;</span><span class="p">,</span> <span class="s2">&quot;anything&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Bypassed authentication: </span><span class="si">{</span><span class="n">result</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">🚨 Explanation:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The injected query becomes:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;SELECT * FROM users WHERE username=&#39;admin&#39; OR &#39;1&#39;=&#39;1&#39; AND password=&#39;anything&#39;&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Since &#39;1&#39;=&#39;1&#39; is always true, we bypass the password check!&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Secure version using parameterized queries</span>
+<span class="k">def</span> <span class="nf">secure_login</span><span class="p">(</span><span class="n">username</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">password</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    SECURE: Always use parameterized queries!</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">conn</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s1">&#39;:memory:&#39;</span><span class="p">)</span>
+    <span class="n">cursor</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+    
+    <span class="c1"># Setup (same as before)</span>
+    <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s1">&#39;&#39;&#39;</span>
+<span class="s1">        CREATE TABLE users (</span>
+<span class="s1">            id INTEGER PRIMARY KEY,</span>
+<span class="s1">            username TEXT,</span>
+<span class="s1">            password TEXT</span>
+<span class="s1">        )</span>
+<span class="s1">    &#39;&#39;&#39;</span><span class="p">)</span>
+    <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;INSERT INTO users VALUES (1, &#39;admin&#39;, &#39;sup3rs3cr3t&#39;)&quot;</span><span class="p">)</span>
+    <span class="n">conn</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
+    
+    <span class="c1"># SECURE QUERY - using parameterized query</span>
+    <span class="n">query</span> <span class="o">=</span> <span class="s2">&quot;SELECT * FROM users WHERE username=? AND password=?&quot;</span>
+    <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="p">(</span><span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">))</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">cursor</span><span class="o">.</span><span class="n">fetchone</span><span class="p">()</span>
+    
+    <span class="n">conn</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">result</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+
+<span class="c1"># Try SQL injection on secure version</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=== Trying Injection on Secure Version ===&quot;</span><span class="p">)</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">secure_login</span><span class="p">(</span><span class="s2">&quot;admin&#39; OR &#39;1&#39;=&#39;1&quot;</span><span class="p">,</span> <span class="s2">&quot;anything&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Injection blocked: </span><span class="si">{</span><span class="ow">not</span><span class="w"> </span><span class="n">result</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">✓ The parameterized query treats input as data, not code!&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="challenge-1-2-cross-site-scripting-xss">
+<h2>Challenge 1.2: Cross-Site Scripting (XSS)<a class="headerlink" href="#challenge-1-2-cross-site-scripting-xss" title="Link to this heading">#</a></h2>
+<p><strong>OWASP Top 10 #2</strong> - Inject malicious JavaScript into web pages</p>
+<p><strong>Types</strong>:</p>
+<ul class="simple">
+<li><p><strong>Reflected XSS</strong>: Payload in URL, reflects back immediately</p></li>
+<li><p><strong>Stored XSS</strong>: Payload stored in database, affects all users</p></li>
+<li><p><strong>DOM-based XSS</strong>: Manipulation of page DOM</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">html</span>
+
+<span class="k">def</span> <span class="nf">vulnerable_comment_system</span><span class="p">(</span><span class="n">comment</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    VULNERABLE: Renders user input without sanitization</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">html_page</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    &lt;html&gt;</span>
+<span class="s2">        &lt;body&gt;</span>
+<span class="s2">            &lt;h1&gt;Comment Section&lt;/h1&gt;</span>
+<span class="s2">            &lt;div class=&quot;comment&quot;&gt;</span><span class="si">{</span><span class="n">comment</span><span class="si">}</span><span class="s2">&lt;/div&gt;</span>
+<span class="s2">        &lt;/body&gt;</span>
+<span class="s2">    &lt;/html&gt;</span>
+<span class="s2">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">html_page</span>
+
+<span class="k">def</span> <span class="nf">secure_comment_system</span><span class="p">(</span><span class="n">comment</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    SECURE: Escapes HTML special characters</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">safe_comment</span> <span class="o">=</span> <span class="n">html</span><span class="o">.</span><span class="n">escape</span><span class="p">(</span><span class="n">comment</span><span class="p">)</span>
+    <span class="n">html_page</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    &lt;html&gt;</span>
+<span class="s2">        &lt;body&gt;</span>
+<span class="s2">            &lt;h1&gt;Comment Section&lt;/h1&gt;</span>
+<span class="s2">            &lt;div class=&quot;comment&quot;&gt;</span><span class="si">{</span><span class="n">safe_comment</span><span class="si">}</span><span class="s2">&lt;/div&gt;</span>
+<span class="s2">        &lt;/body&gt;</span>
+<span class="s2">    &lt;/html&gt;</span>
+<span class="s2">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">html_page</span>
+
+<span class="c1"># XSS payload</span>
+<span class="n">xss_payload</span> <span class="o">=</span> <span class="s2">&quot;&lt;script&gt;alert(&#39;XSS Attack! Cookie: &#39; + document.cookie)&lt;/script&gt;&quot;</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=== Vulnerable Version ===&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">vulnerable_comment_system</span><span class="p">(</span><span class="n">xss_payload</span><span class="p">))</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">=== Secure Version ===&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">secure_comment_system</span><span class="p">(</span><span class="n">xss_payload</span><span class="p">))</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">💡 Notice: The secure version escapes &lt; and &gt; to &amp;lt; and &amp;gt;&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;This prevents the browser from executing the script!&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="common-xss-payloads">
+<h3>Common XSS Payloads<a class="headerlink" href="#common-xss-payloads" title="Link to this heading">#</a></h3>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span><span class="nx">alert</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">cookie</span><span class="p">)&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">img</span> <span class="na">src</span><span class="o">=</span><span class="s">x</span> <span class="na">onerror</span><span class="o">=</span><span class="s">alert(&#39;XSS&#39;)</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">svg</span> <span class="na">onload</span><span class="o">=</span><span class="s">alert(&#39;XSS&#39;)</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">iframe</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;javascript:alert(&#39;XSS&#39;)&quot;</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+</section>
+<section id="defense">
+<h3>Defense<a class="headerlink" href="#defense" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p><strong>Escape output</strong>: Use proper HTML encoding</p></li>
+<li><p><strong>Content Security Policy (CSP)</strong>: Restrict script sources</p></li>
+<li><p><strong>HttpOnly cookies</strong>: JavaScript can’t access cookies</p></li>
+<li><p><strong>Input validation</strong>: Whitelist allowed characters</p></li>
+</ol>
+</section>
+</section>
+</section>
+<hr class="docutils" />
+<section class="tex2jax_ignore mathjax_ignore" id="part-2-binary-exploitation-pwn">
+<h1>Part 2: Binary Exploitation (Pwn)<a class="headerlink" href="#part-2-binary-exploitation-pwn" title="Link to this heading">#</a></h1>
+<p>Pwn challenges involve exploiting binary programs, often to get shell access.</p>
+<section id="challenge-2-1-buffer-overflow-basics">
+<h2>Challenge 2.1: Buffer Overflow Basics<a class="headerlink" href="#challenge-2-1-buffer-overflow-basics" title="Link to this heading">#</a></h2>
+<p><strong>Classic</strong>: One of the most famous security vulnerabilities</p>
+<p><strong>Concept</strong>: Write beyond array boundaries to overwrite memory.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Python simulation of buffer overflow concept</span>
+<span class="c1"># (In real scenarios, this happens in C/C++ with memory corruption)</span>
+
+<span class="k">class</span> <span class="nc">VulnerableProgram</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">is_admin</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">buffer</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="mi">8</span>  <span class="c1"># 8-byte buffer</span>
+    
+    <span class="k">def</span> <span class="nf">copy_input</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">user_input</span><span class="p">:</span> <span class="nb">bytes</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        VULNERABLE: No bounds checking!</span>
+<span class="sd">        In C: strcpy(buffer, user_input) without length check</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Buffer size: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">buffer</span><span class="p">)</span><span class="si">}</span><span class="s2"> bytes&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Input size: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">user_input</span><span class="p">)</span><span class="si">}</span><span class="s2"> bytes&quot;</span><span class="p">)</span>
+        
+        <span class="c1"># Simulate memory layout</span>
+        <span class="c1"># [buffer (8 bytes)][is_admin (1 byte)]</span>
+        
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">byte</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">user_input</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">buffer</span><span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">buffer</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">byte</span>
+            <span class="k">elif</span> <span class="n">i</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">buffer</span><span class="p">):</span>  <span class="c1"># Overflow into is_admin!</span>
+                <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;⚠️  OVERFLOW: Writing beyond buffer!&quot;</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">byte</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">is_admin</span> <span class="o">=</span> <span class="kc">True</span>
+        
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Buffer: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">buffer</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;is_admin: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">is_admin</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_admin</span>
+
+<span class="c1"># Normal input (safe)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=== Normal Input ===&quot;</span><span class="p">)</span>
+<span class="n">prog1</span> <span class="o">=</span> <span class="n">VulnerableProgram</span><span class="p">()</span>
+<span class="n">normal_input</span> <span class="o">=</span> <span class="sa">b</span><span class="s2">&quot;hello&quot;</span>  <span class="c1"># 5 bytes, fits in buffer</span>
+<span class="n">prog1</span><span class="o">.</span><span class="n">copy_input</span><span class="p">(</span><span class="n">normal_input</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Admin access: </span><span class="si">{</span><span class="n">prog1</span><span class="o">.</span><span class="n">is_admin</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Buffer overflow attack!</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=== Buffer Overflow Attack ===&quot;</span><span class="p">)</span>
+<span class="n">prog2</span> <span class="o">=</span> <span class="n">VulnerableProgram</span><span class="p">()</span>
+<span class="n">overflow_input</span> <span class="o">=</span> <span class="sa">b</span><span class="s2">&quot;A&quot;</span> <span class="o">*</span> <span class="mi">8</span> <span class="o">+</span> <span class="sa">b</span><span class="s2">&quot;</span><span class="se">\x01</span><span class="s2">&quot;</span>  <span class="c1"># 8 bytes + 1 byte overflow</span>
+<span class="n">prog2</span><span class="o">.</span><span class="n">copy_input</span><span class="p">(</span><span class="n">overflow_input</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Admin access gained: </span><span class="si">{</span><span class="n">prog2</span><span class="o">.</span><span class="n">is_admin</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">🚨 In real C programs, this could overwrite:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;   - Return addresses (control program flow)&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;   - Function pointers (execute arbitrary code)&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;   - Security flags (bypass authentication)&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="challenge-2-2-format-string-vulnerability">
+<h2>Challenge 2.2: Format String Vulnerability<a class="headerlink" href="#challenge-2-2-format-string-vulnerability" title="Link to this heading">#</a></h2>
+<p><strong>Concept</strong>: Exploit printf-style functions to read/write arbitrary memory.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Simulating format string vulnerability</span>
+
+<span class="k">def</span> <span class="nf">vulnerable_printf</span><span class="p">(</span><span class="n">user_input</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    VULNERABLE: Using user input directly as format string</span>
+<span class="sd">    In C: printf(user_input) instead of printf(&quot;%s&quot;, user_input)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">secret_value</span> <span class="o">=</span> <span class="mh">0xDEADBEEF</span>
+    <span class="n">password</span> <span class="o">=</span> <span class="s2">&quot;sup3rs3cr3t&quot;</span>
+    
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Debug info:&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  secret_value at: id=</span><span class="si">{</span><span class="nb">id</span><span class="p">(</span><span class="n">secret_value</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  password at: id=</span><span class="si">{</span><span class="nb">id</span><span class="p">(</span><span class="n">password</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">()</span>
+    
+    <span class="c1"># Vulnerable printf simulation</span>
+    <span class="k">if</span> <span class="s2">&quot;</span><span class="si">%x</span><span class="s2">&quot;</span> <span class="ow">in</span> <span class="n">user_input</span> <span class="ow">or</span> <span class="s2">&quot;%p&quot;</span> <span class="ow">in</span> <span class="n">user_input</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;⚠️  Format string detected! Leaking memory...&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Leaked value: </span><span class="si">{</span><span class="nb">hex</span><span class="p">(</span><span class="n">secret_value</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Leaked password: </span><span class="si">{</span><span class="n">password</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">user_input</span><span class="p">)</span>
+
+<span class="c1"># Normal use</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=== Normal Input ===&quot;</span><span class="p">)</span>
+<span class="n">vulnerable_printf</span><span class="p">(</span><span class="s2">&quot;Hello, World!&quot;</span><span class="p">)</span>
+
+<span class="c1"># Format string attack</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">=== Format String Attack ===&quot;</span><span class="p">)</span>
+<span class="n">vulnerable_printf</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%x</span><span class="s2"> </span><span class="si">%x</span><span class="s2"> </span><span class="si">%x</span><span class="s2"> </span><span class="si">%x</span><span class="s2"> </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">💡 Real format string exploits can:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;   - Read arbitrary memory (</span><span class="si">%x</span><span class="s2">, </span><span class="si">%s</span><span class="s2">)&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;   - Write arbitrary memory (%n)&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;   - Leak stack canaries&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;   - Bypass ASLR (Address Space Layout Randomization)&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="modern-protections">
+<h3>Modern Protections<a class="headerlink" href="#modern-protections" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Stack Canaries</strong>: Detect buffer overflows</p></li>
+<li><p><strong>DEP/NX</strong>: Data Execution Prevention</p></li>
+<li><p><strong>ASLR</strong>: Randomize memory addresses</p></li>
+<li><p><strong>PIE</strong>: Position Independent Executable</p></li>
+<li><p><strong>RELRO</strong>: Read-Only Relocations</p></li>
+</ul>
+<p>Advanced CTF pwn challenges involve bypassing these protections!</p>
+</section>
+</section>
+</section>
+<hr class="docutils" />
+<section class="tex2jax_ignore mathjax_ignore" id="part-3-reverse-engineering">
+<h1>Part 3: Reverse Engineering<a class="headerlink" href="#part-3-reverse-engineering" title="Link to this heading">#</a></h1>
+<p>Analyze programs without source code to understand their behavior.</p>
+<section id="challenge-3-1-decompiling-python-bytecode">
+<h2>Challenge 3.1: Decompiling Python Bytecode<a class="headerlink" href="#challenge-3-1-decompiling-python-bytecode" title="Link to this heading">#</a></h2>
+<p><strong>Concept</strong>: Python code compiles to bytecode (.pyc files). Can we reverse it?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">dis</span>
+
+<span class="c1"># Secret function</span>
+<span class="k">def</span> <span class="nf">check_password</span><span class="p">(</span><span class="n">password</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+    <span class="n">secret</span> <span class="o">=</span> <span class="s2">&quot;CTF</span><span class="si">{r3v3rs3_3ng1n33r1ng}</span><span class="s2">&quot;</span>
+    <span class="k">return</span> <span class="n">password</span> <span class="o">==</span> <span class="n">secret</span>
+
+<span class="c1"># Disassemble the bytecode</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=== Disassembled Bytecode ===&quot;</span><span class="p">)</span>
+<span class="n">dis</span><span class="o">.</span><span class="n">dis</span><span class="p">(</span><span class="n">check_password</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">💡 Notice: You can see the string &#39;CTF</span><span class="si">{r3v3rs3_3ng1n33r1ng}</span><span class="s2">&#39; in the bytecode!&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;This is why hardcoded secrets are a bad idea.&quot;</span><span class="p">)</span>
+
+<span class="c1"># Extract the secret from bytecode</span>
+<span class="kn">import</span> <span class="nn">inspect</span>
+<span class="n">source</span> <span class="o">=</span> <span class="n">inspect</span><span class="o">.</span><span class="n">getsource</span><span class="p">(</span><span class="n">check_password</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">=== Recovered Source ===&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">source</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="challenge-3-2-simple-crackme">
+<h2>Challenge 3.2: Simple Crackme<a class="headerlink" href="#challenge-3-2-simple-crackme" title="Link to this heading">#</a></h2>
+<p><strong>Concept</strong>: Reverse a program to find the correct input.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">crackme</span><span class="p">(</span><span class="n">serial</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Simple serial key checker.</span>
+<span class="sd">    Can you find the correct serial?</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">serial</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">16</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">False</span>
+    
+    <span class="c1"># Check 1: First 4 chars must be &#39;CTF{&#39;</span>
+    <span class="k">if</span> <span class="n">serial</span><span class="p">[:</span><span class="mi">4</span><span class="p">]</span> <span class="o">!=</span> <span class="s1">&#39;CTF{&#39;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">False</span>
+    
+    <span class="c1"># Check 2: Last char must be &#39;}&#39;</span>
+    <span class="k">if</span> <span class="n">serial</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">!=</span> <span class="s1">&#39;}&#39;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">False</span>
+    
+    <span class="c1"># Check 3: Middle part checksum</span>
+    <span class="n">middle</span> <span class="o">=</span> <span class="n">serial</span><span class="p">[</span><span class="mi">4</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">checksum</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="nb">ord</span><span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">middle</span><span class="p">)</span>
+    
+    <span class="c1"># Secret checksum value</span>
+    <span class="k">if</span> <span class="n">checksum</span> <span class="o">!=</span> <span class="mi">1089</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">False</span>
+    
+    <span class="c1"># Check 4: Specific characters</span>
+    <span class="k">if</span> <span class="n">middle</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">!=</span> <span class="s1">&#39;h&#39;</span> <span class="ow">or</span> <span class="n">middle</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">!=</span> <span class="s1">&#39;d&#39;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">False</span>
+    
+    <span class="k">return</span> <span class="kc">True</span>
+
+<span class="c1"># Test some serials</span>
+<span class="n">test_serials</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;CTF</span><span class="si">{wrong_key}</span><span class="s2">&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;CTF</span><span class="si">{h4ck3r0wn3d}</span><span class="s2">&quot;</span><span class="p">,</span>
+<span class="p">]</span>
+
+<span class="k">for</span> <span class="n">serial</span> <span class="ow">in</span> <span class="n">test_serials</span><span class="p">:</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">crackme</span><span class="p">(</span><span class="n">serial</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Serial: </span><span class="si">{</span><span class="n">serial</span><span class="si">:</span><span class="s2">20s</span><span class="si">}</span><span class="s2"> -&gt; </span><span class="si">{</span><span class="s1">&#39;✓ Valid!&#39;</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">result</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="s1">&#39;✗ Invalid&#39;</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Solve it programmatically!</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">=== Solving Programmatically ===&quot;</span><span class="p">)</span>
+<span class="c1"># We know: CTF{h????????d} and sum of middle = 1089</span>
+<span class="c1"># Let&#39;s brute force!</span>
+
+<span class="kn">import</span> <span class="nn">string</span>
+
+<span class="k">def</span> <span class="nf">solve_crackme</span><span class="p">():</span>
+    <span class="n">target_sum</span> <span class="o">=</span> <span class="mi">1089</span>
+    <span class="c1"># We know first is &#39;h&#39;, last is &#39;d&#39;</span>
+    <span class="n">fixed_chars</span> <span class="o">=</span> <span class="nb">ord</span><span class="p">(</span><span class="s1">&#39;h&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="nb">ord</span><span class="p">(</span><span class="s1">&#39;d&#39;</span><span class="p">)</span>
+    <span class="n">needed_sum</span> <span class="o">=</span> <span class="n">target_sum</span> <span class="o">-</span> <span class="n">fixed_chars</span>
+    
+    <span class="c1"># Try common patterns</span>
+    <span class="n">patterns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;4ck3r0wn3&#39;</span><span class="p">,</span> <span class="s1">&#39;4x0r_1337&#39;</span><span class="p">,</span> <span class="s1">&#39;ack_the_d&#39;</span><span class="p">]</span>
+    
+    <span class="k">for</span> <span class="n">pattern</span> <span class="ow">in</span> <span class="n">patterns</span><span class="p">:</span>
+        <span class="n">middle</span> <span class="o">=</span> <span class="s1">&#39;h&#39;</span> <span class="o">+</span> <span class="n">pattern</span> <span class="o">+</span> <span class="s1">&#39;d&#39;</span>
+        <span class="n">serial</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;CTF</span><span class="se">{{</span><span class="si">{</span><span class="n">middle</span><span class="si">}</span><span class="se">}}</span><span class="s2">&quot;</span>
+        <span class="k">if</span> <span class="n">crackme</span><span class="p">(</span><span class="n">serial</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">serial</span>
+    
+    <span class="k">return</span> <span class="kc">None</span>
+
+<span class="n">solution</span> <span class="o">=</span> <span class="n">solve_crackme</span><span class="p">()</span>
+<span class="k">if</span> <span class="n">solution</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Found valid serial: </span><span class="si">{</span><span class="n">solution</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="reverse-engineering-tools">
+<h3>Reverse Engineering Tools<a class="headerlink" href="#reverse-engineering-tools" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Ghidra</strong>: NSA’s free decompiler (supports many architectures)</p></li>
+<li><p><strong>IDA Pro</strong>: Industry standard (expensive, but free version available)</p></li>
+<li><p><strong>radare2</strong>: Open-source reverse engineering framework</p></li>
+<li><p><strong>Binary Ninja</strong>: Modern RE platform</p></li>
+<li><p><strong>gdb/pwndbg</strong>: Debuggers for dynamic analysis</p></li>
+<li><p><strong>strings</strong>: Extract readable strings from binaries</p></li>
+<li><p><strong>objdump</strong>: Display object file info</p></li>
+<li><p><strong>strace/ltrace</strong>: System call tracing</p></li>
+</ul>
+</section>
+</section>
+</section>
+<hr class="docutils" />
+<section class="tex2jax_ignore mathjax_ignore" id="part-4-forensics">
+<h1>Part 4: Forensics<a class="headerlink" href="#part-4-forensics" title="Link to this heading">#</a></h1>
+<p>Digital detective work - analyze files, memory dumps, network captures.</p>
+<section id="challenge-4-1-steganography-hidden-in-plain-sight">
+<h2>Challenge 4.1: Steganography - Hidden in Plain Sight<a class="headerlink" href="#challenge-4-1-steganography-hidden-in-plain-sight" title="Link to this heading">#</a></h2>
+<p><strong>Concept</strong>: Hide data inside images, audio, or other files.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># LSB (Least Significant Bit) Steganography</span>
+
+<span class="k">def</span> <span class="nf">text_to_binary</span><span class="p">(</span><span class="n">text</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Convert text to binary string&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">format</span><span class="p">(</span><span class="nb">ord</span><span class="p">(</span><span class="n">char</span><span class="p">),</span> <span class="s1">&#39;08b&#39;</span><span class="p">)</span> <span class="k">for</span> <span class="n">char</span> <span class="ow">in</span> <span class="n">text</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">binary_to_text</span><span class="p">(</span><span class="n">binary</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Convert binary string to text&quot;&quot;&quot;</span>
+    <span class="n">chars</span> <span class="o">=</span> <span class="p">[</span><span class="n">binary</span><span class="p">[</span><span class="n">i</span><span class="p">:</span><span class="n">i</span><span class="o">+</span><span class="mi">8</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">binary</span><span class="p">),</span> <span class="mi">8</span><span class="p">)]</span>
+    <span class="k">return</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">chr</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">char</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span> <span class="k">for</span> <span class="n">char</span> <span class="ow">in</span> <span class="n">chars</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">hide_message_in_pixels</span><span class="p">(</span><span class="n">pixels</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span> <span class="n">message</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Hide message in least significant bits of pixel values</span>
+<span class="sd">    </span>
+<span class="sd">    LSB steganography: Modify the last bit of each pixel</span>
+<span class="sd">    Human eye can&#39;t notice the difference!</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">binary_message</span> <span class="o">=</span> <span class="n">text_to_binary</span><span class="p">(</span><span class="n">message</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;00000000&#39;</span>  <span class="c1"># Add delimiter</span>
+    
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">binary_message</span><span class="p">)</span> <span class="o">&gt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">pixels</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Message too long for pixel array&quot;</span><span class="p">)</span>
+    
+    <span class="n">stego_pixels</span> <span class="o">=</span> <span class="n">pixels</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">bit</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">binary_message</span><span class="p">):</span>
+        <span class="c1"># Clear LSB and set to message bit</span>
+        <span class="n">stego_pixels</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">pixels</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&amp;</span> <span class="mh">0xFE</span><span class="p">)</span> <span class="o">|</span> <span class="nb">int</span><span class="p">(</span><span class="n">bit</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">stego_pixels</span>
+
+<span class="k">def</span> <span class="nf">extract_message_from_pixels</span><span class="p">(</span><span class="n">pixels</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Extract hidden message from pixels</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">binary_message</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">pixel</span> <span class="o">&amp;</span> <span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">pixel</span> <span class="ow">in</span> <span class="n">pixels</span><span class="p">)</span>
+    
+    <span class="c1"># Find delimiter (00000000)</span>
+    <span class="n">end</span> <span class="o">=</span> <span class="n">binary_message</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;00000000&#39;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">end</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
+        <span class="n">end</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">binary_message</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">binary_to_text</span><span class="p">(</span><span class="n">binary_message</span><span class="p">[:</span><span class="n">end</span><span class="p">])</span>
+
+<span class="c1"># Demo</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=== LSB Steganography Demo ===&quot;</span><span class="p">)</span>
+
+<span class="c1"># Simulate image pixels (normally 0-255)</span>
+<span class="n">original_pixels</span> <span class="o">=</span> <span class="p">[</span><span class="mi">154</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">123</span><span class="p">,</span> <span class="mi">89</span><span class="p">,</span> <span class="mi">234</span><span class="p">,</span> <span class="mi">156</span><span class="p">,</span> <span class="mi">78</span><span class="p">,</span> <span class="mi">199</span><span class="p">,</span> <span class="mi">145</span><span class="p">,</span> <span class="mi">223</span><span class="p">,</span>
+                   <span class="mi">100</span><span class="p">,</span> <span class="mi">180</span><span class="p">,</span> <span class="mi">91</span><span class="p">,</span> <span class="mi">205</span><span class="p">,</span> <span class="mi">134</span><span class="p">,</span> <span class="mi">167</span><span class="p">,</span> <span class="mi">198</span><span class="p">,</span> <span class="mi">143</span><span class="p">,</span> <span class="mi">211</span><span class="p">,</span> <span class="mi">176</span><span class="p">]</span> <span class="o">*</span> <span class="mi">5</span>
+
+<span class="n">secret_message</span> <span class="o">=</span> <span class="s2">&quot;CTF</span><span class="si">{h1dd3n_1n_p1x3ls}</span><span class="s2">&quot;</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Original message: </span><span class="si">{</span><span class="n">secret_message</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Message length: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">secret_message</span><span class="p">)</span><span class="si">}</span><span class="s2"> characters&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Binary length: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">text_to_binary</span><span class="p">(</span><span class="n">secret_message</span><span class="p">))</span><span class="si">}</span><span class="s2"> bits</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Hide message</span>
+<span class="n">stego_pixels</span> <span class="o">=</span> <span class="n">hide_message_in_pixels</span><span class="p">(</span><span class="n">original_pixels</span><span class="p">,</span> <span class="n">secret_message</span><span class="p">)</span>
+
+<span class="c1"># Show pixel changes</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Pixel changes (first 10):&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
+    <span class="n">change</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">original_pixels</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="n">stego_pixels</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Pixel </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">original_pixels</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="si">:</span><span class="s2">3d</span><span class="si">}</span><span class="s2"> -&gt; </span><span class="si">{</span><span class="n">stego_pixels</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="si">:</span><span class="s2">3d</span><span class="si">}</span><span class="s2"> (change: </span><span class="si">{</span><span class="n">change</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
+
+<span class="c1"># Extract message</span>
+<span class="n">extracted</span> <span class="o">=</span> <span class="n">extract_message_from_pixels</span><span class="p">(</span><span class="n">stego_pixels</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Extracted message: </span><span class="si">{</span><span class="n">extracted</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;✓ Success!&quot;</span> <span class="k">if</span> <span class="n">extracted</span> <span class="o">==</span> <span class="n">secret_message</span> <span class="k">else</span> <span class="s2">&quot;✗ Failed&quot;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">💡 In real images:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;   - Changes are invisible to human eye&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;   - Can hide large amounts of data&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;   - Detection requires statistical analysis&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="challenge-4-2-file-carving">
+<h2>Challenge 4.2: File Carving<a class="headerlink" href="#challenge-4-2-file-carving" title="Link to this heading">#</a></h2>
+<p><strong>Concept</strong>: Extract files from binary data using file signatures (magic bytes).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># File signatures (magic bytes)</span>
+<span class="n">FILE_SIGNATURES</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="sa">b</span><span class="s1">&#39;</span><span class="se">\x89</span><span class="s1">PNG</span><span class="se">\r\n\x1a\n</span><span class="s1">&#39;</span><span class="p">:</span> <span class="p">(</span><span class="s1">&#39;PNG Image&#39;</span><span class="p">,</span> <span class="s1">&#39;.png&#39;</span><span class="p">),</span>
+    <span class="sa">b</span><span class="s1">&#39;</span><span class="se">\xff\xd8\xff</span><span class="s1">&#39;</span><span class="p">:</span> <span class="p">(</span><span class="s1">&#39;JPEG Image&#39;</span><span class="p">,</span> <span class="s1">&#39;.jpg&#39;</span><span class="p">),</span>
+    <span class="sa">b</span><span class="s1">&#39;GIF89a&#39;</span><span class="p">:</span> <span class="p">(</span><span class="s1">&#39;GIF Image&#39;</span><span class="p">,</span> <span class="s1">&#39;.gif&#39;</span><span class="p">),</span>
+    <span class="sa">b</span><span class="s1">&#39;PK</span><span class="se">\x03\x04</span><span class="s1">&#39;</span><span class="p">:</span> <span class="p">(</span><span class="s1">&#39;ZIP Archive&#39;</span><span class="p">,</span> <span class="s1">&#39;.zip&#39;</span><span class="p">),</span>
+    <span class="sa">b</span><span class="s1">&#39;%PDF&#39;</span><span class="p">:</span> <span class="p">(</span><span class="s1">&#39;PDF Document&#39;</span><span class="p">,</span> <span class="s1">&#39;.pdf&#39;</span><span class="p">),</span>
+    <span class="sa">b</span><span class="s1">&#39;</span><span class="se">\x1f\x8b\x08</span><span class="s1">&#39;</span><span class="p">:</span> <span class="p">(</span><span class="s1">&#39;GZIP Archive&#39;</span><span class="p">,</span> <span class="s1">&#39;.gz&#39;</span><span class="p">),</span>
+<span class="p">}</span>
+
+<span class="k">def</span> <span class="nf">identify_file_type</span><span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="nb">bytes</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Identify file type by magic bytes</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">for</span> <span class="n">signature</span><span class="p">,</span> <span class="p">(</span><span class="n">file_type</span><span class="p">,</span> <span class="n">extension</span><span class="p">)</span> <span class="ow">in</span> <span class="n">FILE_SIGNATURES</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="k">if</span> <span class="n">data</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="n">signature</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">file_type</span><span class="p">,</span> <span class="n">extension</span>
+    <span class="k">return</span> <span class="s1">&#39;Unknown&#39;</span><span class="p">,</span> <span class="s1">&#39;.bin&#39;</span>
+
+<span class="k">def</span> <span class="nf">carve_files</span><span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="nb">bytes</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span> <span class="nb">bytes</span><span class="p">]]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Find and extract embedded files</span>
+<span class="sd">    Returns: [(offset, file_type, extension, data), ...]</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">found_files</span> <span class="o">=</span> <span class="p">[]</span>
+    
+    <span class="k">for</span> <span class="n">signature</span><span class="p">,</span> <span class="p">(</span><span class="n">file_type</span><span class="p">,</span> <span class="n">extension</span><span class="p">)</span> <span class="ow">in</span> <span class="n">FILE_SIGNATURES</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="n">offset</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+            <span class="n">offset</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">signature</span><span class="p">,</span> <span class="n">offset</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">offset</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
+                <span class="k">break</span>
+            
+            <span class="c1"># In real file carving, you&#39;d determine file size</span>
+            <span class="c1"># For demo, just grab next 100 bytes</span>
+            <span class="n">file_data</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">offset</span><span class="p">:</span><span class="n">offset</span><span class="o">+</span><span class="mi">100</span><span class="p">]</span>
+            <span class="n">found_files</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">offset</span><span class="p">,</span> <span class="n">file_type</span><span class="p">,</span> <span class="n">extension</span><span class="p">,</span> <span class="n">file_data</span><span class="p">))</span>
+            <span class="n">offset</span> <span class="o">+=</span> <span class="mi">1</span>
+    
+    <span class="k">return</span> <span class="n">found_files</span>
+
+<span class="c1"># Demo: Hide files in random data</span>
+<span class="kn">import</span> <span class="nn">os</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=== File Carving Demo ===&quot;</span><span class="p">)</span>
+
+<span class="c1"># Create binary blob with hidden files</span>
+<span class="n">blob</span> <span class="o">=</span> <span class="sa">b</span><span class="s1">&#39;</span><span class="se">\x00</span><span class="s1">&#39;</span> <span class="o">*</span> <span class="mi">100</span>  <span class="c1"># Random data</span>
+<span class="n">blob</span> <span class="o">+=</span> <span class="sa">b</span><span class="s1">&#39;</span><span class="se">\x89</span><span class="s1">PNG</span><span class="se">\r\n\x1a\n</span><span class="s1">&#39;</span> <span class="o">+</span> <span class="sa">b</span><span class="s1">&#39;PNG_DATA_HERE&#39;</span> <span class="o">+</span> <span class="sa">b</span><span class="s1">&#39;</span><span class="se">\x00</span><span class="s1">&#39;</span> <span class="o">*</span> <span class="mi">50</span>
+<span class="n">blob</span> <span class="o">+=</span> <span class="sa">b</span><span class="s1">&#39;</span><span class="se">\x00</span><span class="s1">&#39;</span> <span class="o">*</span> <span class="mi">100</span>
+<span class="n">blob</span> <span class="o">+=</span> <span class="sa">b</span><span class="s1">&#39;%PDF-1.4&#39;</span> <span class="o">+</span> <span class="sa">b</span><span class="s1">&#39;PDF_CONTENT_HERE&#39;</span> <span class="o">+</span> <span class="sa">b</span><span class="s1">&#39;</span><span class="se">\x00</span><span class="s1">&#39;</span> <span class="o">*</span> <span class="mi">50</span>
+<span class="n">blob</span> <span class="o">+=</span> <span class="sa">b</span><span class="s1">&#39;</span><span class="se">\x00</span><span class="s1">&#39;</span> <span class="o">*</span> <span class="mi">100</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Binary blob size: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">blob</span><span class="p">)</span><span class="si">}</span><span class="s2"> bytes&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Searching for embedded files...</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="n">found</span> <span class="o">=</span> <span class="n">carve_files</span><span class="p">(</span><span class="n">blob</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">offset</span><span class="p">,</span> <span class="n">file_type</span><span class="p">,</span> <span class="n">ext</span><span class="p">,</span> <span class="n">data</span> <span class="ow">in</span> <span class="n">found</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Found </span><span class="si">{</span><span class="n">file_type</span><span class="si">}</span><span class="s2"> at offset </span><span class="si">{</span><span class="n">offset</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Magic bytes: </span><span class="si">{</span><span class="n">data</span><span class="p">[:</span><span class="mi">10</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Extension: </span><span class="si">{</span><span class="n">ext</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;💡 Real forensics tools:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;   - binwalk: Analyze firmware and binary blobs&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;   - foremost: File carving tool&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;   - scalpel: Another file carving tool&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;   - volatility: Memory forensics&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section class="tex2jax_ignore mathjax_ignore" id="part-5-osint-open-source-intelligence">
+<h1>Part 5: OSINT (Open Source Intelligence)<a class="headerlink" href="#part-5-osint-open-source-intelligence" title="Link to this heading">#</a></h1>
+<p>Find information from public sources.</p>
+<section id="challenge-5-1-metadata-extraction">
+<h2>Challenge 5.1: Metadata Extraction<a class="headerlink" href="#challenge-5-1-metadata-extraction" title="Link to this heading">#</a></h2>
+<p><strong>Concept</strong>: Files contain hidden metadata (EXIF, author, timestamps, GPS coordinates).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Simulate EXIF data (normally extracted with libraries like Pillow or ExifRead)</span>
+
+<span class="n">sample_exif</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;Image&#39;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">&#39;Make&#39;</span><span class="p">:</span> <span class="s1">&#39;Canon&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;Model&#39;</span><span class="p">:</span> <span class="s1">&#39;Canon EOS 5D&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;DateTime&#39;</span><span class="p">:</span> <span class="s1">&#39;2024:01:15 10:30:45&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;Software&#39;</span><span class="p">:</span> <span class="s1">&#39;Adobe Photoshop CS6&#39;</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="s1">&#39;GPS&#39;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">&#39;GPSLatitude&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">40</span><span class="p">,</span> <span class="mi">44</span><span class="p">,</span> <span class="mf">54.36</span><span class="p">],</span>
+        <span class="s1">&#39;GPSLongitude&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">73</span><span class="p">,</span> <span class="mi">59</span><span class="p">,</span> <span class="mf">8.40</span><span class="p">],</span>
+        <span class="s1">&#39;GPSLatitudeRef&#39;</span><span class="p">:</span> <span class="s1">&#39;N&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;GPSLongitudeRef&#39;</span><span class="p">:</span> <span class="s1">&#39;W&#39;</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="s1">&#39;Author&#39;</span><span class="p">:</span> <span class="s1">&#39;John Doe&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Copyright&#39;</span><span class="p">:</span> <span class="s1">&#39;Copyright 2024&#39;</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="k">def</span> <span class="nf">extract_sensitive_info</span><span class="p">(</span><span class="n">exif_data</span><span class="p">:</span> <span class="nb">dict</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Extract potentially sensitive information from EXIF</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=== Metadata Analysis ===&quot;</span><span class="p">)</span>
+    
+    <span class="c1"># Camera info</span>
+    <span class="k">if</span> <span class="s1">&#39;Image&#39;</span> <span class="ow">in</span> <span class="n">exif_data</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Camera: </span><span class="si">{</span><span class="n">exif_data</span><span class="p">[</span><span class="s1">&#39;Image&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;Make&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">exif_data</span><span class="p">[</span><span class="s1">&#39;Image&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;Model&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Date: </span><span class="si">{</span><span class="n">exif_data</span><span class="p">[</span><span class="s1">&#39;Image&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;DateTime&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Software: </span><span class="si">{</span><span class="n">exif_data</span><span class="p">[</span><span class="s1">&#39;Image&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;Software&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    
+    <span class="c1"># GPS coordinates</span>
+    <span class="k">if</span> <span class="s1">&#39;GPS&#39;</span> <span class="ow">in</span> <span class="n">exif_data</span><span class="p">:</span>
+        <span class="n">gps</span> <span class="o">=</span> <span class="n">exif_data</span><span class="p">[</span><span class="s1">&#39;GPS&#39;</span><span class="p">]</span>
+        <span class="n">lat</span> <span class="o">=</span> <span class="n">gps</span><span class="p">[</span><span class="s1">&#39;GPSLatitude&#39;</span><span class="p">]</span>
+        <span class="n">lon</span> <span class="o">=</span> <span class="n">gps</span><span class="p">[</span><span class="s1">&#39;GPSLongitude&#39;</span><span class="p">]</span>
+        
+        <span class="c1"># Convert to decimal degrees</span>
+        <span class="n">lat_decimal</span> <span class="o">=</span> <span class="n">lat</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">lat</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">/</span><span class="mi">60</span> <span class="o">+</span> <span class="n">lat</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">/</span><span class="mi">3600</span>
+        <span class="n">lon_decimal</span> <span class="o">=</span> <span class="n">lon</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">lon</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">/</span><span class="mi">60</span> <span class="o">+</span> <span class="n">lon</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">/</span><span class="mi">3600</span>
+        
+        <span class="k">if</span> <span class="n">gps</span><span class="p">[</span><span class="s1">&#39;GPSLatitudeRef&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;S&#39;</span><span class="p">:</span>
+            <span class="n">lat_decimal</span> <span class="o">*=</span> <span class="o">-</span><span class="mi">1</span>
+        <span class="k">if</span> <span class="n">gps</span><span class="p">[</span><span class="s1">&#39;GPSLongitudeRef&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;W&#39;</span><span class="p">:</span>
+            <span class="n">lon_decimal</span> <span class="o">*=</span> <span class="o">-</span><span class="mi">1</span>
+        
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">⚠️  GPS Location Found:&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Latitude: </span><span class="si">{</span><span class="n">lat_decimal</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2">°&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Longitude: </span><span class="si">{</span><span class="n">lon_decimal</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2">°&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Google Maps: https://maps.google.com/?q=</span><span class="si">{</span><span class="n">lat_decimal</span><span class="si">}</span><span class="s2">,</span><span class="si">{</span><span class="n">lon_decimal</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Location: Times Square, New York City&quot;</span><span class="p">)</span>
+    
+    <span class="c1"># Author info</span>
+    <span class="k">if</span> <span class="s1">&#39;Author&#39;</span> <span class="ow">in</span> <span class="n">exif_data</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Author: </span><span class="si">{</span><span class="n">exif_data</span><span class="p">[</span><span class="s1">&#39;Author&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">💡 Privacy Risk:&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;   - Photos reveal where you&#39;ve been&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;   - Timestamps show when you were there&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;   - Can be used for stalking or doxxing&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">🛡️  Defense: Strip EXIF before posting online!&quot;</span><span class="p">)</span>
+
+<span class="n">extract_sensitive_info</span><span class="p">(</span><span class="n">sample_exif</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="osint-tools-techniques">
+<h3>OSINT Tools &amp; Techniques<a class="headerlink" href="#osint-tools-techniques" title="Link to this heading">#</a></h3>
+<p><strong>Search Engines</strong>:</p>
+<ul class="simple">
+<li><p>Google Dorks: <code class="docutils literal notranslate"><span class="pre">site:example.com</span> <span class="pre">filetype:pdf</span></code></p></li>
+<li><p>Shodan: Search for IoT devices and exposed services</p></li>
+<li><p>Wayback Machine: View historical versions of websites</p></li>
+</ul>
+<p><strong>Social Media</strong>:</p>
+<ul class="simple">
+<li><p>Username search across platforms</p></li>
+<li><p>Profile analysis</p></li>
+<li><p>Connection mapping</p></li>
+</ul>
+<p><strong>Tools</strong>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">theHarvester</span></code>: Email/subdomain harvesting</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">recon-ng</span></code>: OSINT framework</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Maltego</span></code>: Visual link analysis</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">SpiderFoot</span></code>: Automated OSINT</p></li>
+</ul>
+<p><strong>Remember</strong>: Use OSINT ethically and legally!</p>
+</section>
+</section>
+</section>
+<hr class="docutils" />
+<section class="tex2jax_ignore mathjax_ignore" id="part-6-misc-challenges">
+<h1>Part 6: Misc Challenges<a class="headerlink" href="#part-6-misc-challenges" title="Link to this heading">#</a></h1>
+<section id="challenge-6-1-encoding-madness">
+<h2>Challenge 6.1: Encoding Madness<a class="headerlink" href="#challenge-6-1-encoding-madness" title="Link to this heading">#</a></h2>
+<p><strong>Concept</strong>: Data is often encoded multiple times. Recognize and decode!</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">base64</span>
+<span class="kn">import</span> <span class="nn">codecs</span>
+
+<span class="k">def</span> <span class="nf">identify_encoding</span><span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Try to identify encoding type</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Base64: Only a-zA-Z0-9+/= characters</span>
+    <span class="k">if</span> <span class="nb">all</span><span class="p">(</span><span class="n">c</span> <span class="ow">in</span> <span class="s1">&#39;ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=&#39;</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">data</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span> <span class="o">%</span> <span class="mi">4</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>  <span class="c1"># Base64 is always multiple of 4</span>
+            <span class="k">return</span> <span class="s1">&#39;base64&#39;</span>
+    
+    <span class="c1"># Hex: Only 0-9a-f</span>
+    <span class="k">if</span> <span class="nb">all</span><span class="p">(</span><span class="n">c</span> <span class="ow">in</span> <span class="s1">&#39;0123456789abcdefABCDEF&#39;</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">data</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">return</span> <span class="s1">&#39;hex&#39;</span>
+    
+    <span class="c1"># ROT13: Looks like English but garbled</span>
+    <span class="k">if</span> <span class="n">data</span><span class="o">.</span><span class="n">isalpha</span><span class="p">():</span>
+        <span class="k">return</span> <span class="s1">&#39;maybe_rot13&#39;</span>
+    
+    <span class="k">return</span> <span class="s1">&#39;unknown&#39;</span>
+
+<span class="k">def</span> <span class="nf">decode_layers</span><span class="p">(</span><span class="n">encoded</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Recursively decode multiple encoding layers</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Input: </span><span class="si">{</span><span class="n">encoded</span><span class="p">[:</span><span class="mi">50</span><span class="p">]</span><span class="si">}</span><span class="s2">...&quot;</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">encoded</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">50</span> <span class="k">else</span> <span class="sa">f</span><span class="s2">&quot;Input: </span><span class="si">{</span><span class="n">encoded</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    
+    <span class="n">encoding</span> <span class="o">=</span> <span class="n">identify_encoding</span><span class="p">(</span><span class="n">encoded</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Detected encoding: </span><span class="si">{</span><span class="n">encoding</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">encoding</span> <span class="o">==</span> <span class="s1">&#39;base64&#39;</span><span class="p">:</span>
+            <span class="n">decoded</span> <span class="o">=</span> <span class="n">base64</span><span class="o">.</span><span class="n">b64decode</span><span class="p">(</span><span class="n">encoded</span><span class="p">)</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Decoded: </span><span class="si">{</span><span class="n">decoded</span><span class="p">[:</span><span class="mi">50</span><span class="p">]</span><span class="si">}</span><span class="s2">...&quot;</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">decoded</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">50</span> <span class="k">else</span> <span class="sa">f</span><span class="s2">&quot;Decoded: </span><span class="si">{</span><span class="n">decoded</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            
+            <span class="c1"># Check if still encoded</span>
+            <span class="k">if</span> <span class="n">identify_encoding</span><span class="p">(</span><span class="n">decoded</span><span class="p">)</span> <span class="o">!=</span> <span class="s1">&#39;unknown&#39;</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Still encoded! Decoding again...</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+                <span class="k">return</span> <span class="n">decode_layers</span><span class="p">(</span><span class="n">decoded</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">decoded</span>
+        
+        <span class="k">elif</span> <span class="n">encoding</span> <span class="o">==</span> <span class="s1">&#39;hex&#39;</span><span class="p">:</span>
+            <span class="n">decoded</span> <span class="o">=</span> <span class="nb">bytes</span><span class="o">.</span><span class="n">fromhex</span><span class="p">(</span><span class="n">encoded</span><span class="p">)</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Decoded: </span><span class="si">{</span><span class="n">decoded</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            
+            <span class="k">if</span> <span class="n">identify_encoding</span><span class="p">(</span><span class="n">decoded</span><span class="p">)</span> <span class="o">!=</span> <span class="s1">&#39;unknown&#39;</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Still encoded! Decoding again...</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+                <span class="k">return</span> <span class="n">decode_layers</span><span class="p">(</span><span class="n">decoded</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">decoded</span>
+        
+        <span class="k">elif</span> <span class="n">encoding</span> <span class="o">==</span> <span class="s1">&#39;maybe_rot13&#39;</span><span class="p">:</span>
+            <span class="n">decoded</span> <span class="o">=</span> <span class="n">codecs</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="n">encoded</span><span class="p">,</span> <span class="s1">&#39;rot_13&#39;</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Decoded: </span><span class="si">{</span><span class="n">decoded</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">decoded</span>
+        
+    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Decoding failed: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">encoded</span>
+    
+    <span class="k">return</span> <span class="n">encoded</span>
+
+<span class="c1"># Multi-layer encoded flag</span>
+<span class="n">flag</span> <span class="o">=</span> <span class="s2">&quot;CTF</span><span class="si">{3nc0d1ng_1s_n0t_encrypt10n}</span><span class="s2">&quot;</span>
+
+<span class="c1"># Encode multiple times</span>
+<span class="n">encoded1</span> <span class="o">=</span> <span class="n">flag</span><span class="o">.</span><span class="n">encode</span><span class="p">()</span><span class="o">.</span><span class="n">hex</span><span class="p">()</span>  <span class="c1"># To hex</span>
+<span class="n">encoded2</span> <span class="o">=</span> <span class="n">base64</span><span class="o">.</span><span class="n">b64encode</span><span class="p">(</span><span class="n">encoded1</span><span class="o">.</span><span class="n">encode</span><span class="p">())</span><span class="o">.</span><span class="n">decode</span><span class="p">()</span>  <span class="c1"># To base64</span>
+<span class="n">encoded3</span> <span class="o">=</span> <span class="n">base64</span><span class="o">.</span><span class="n">b64encode</span><span class="p">(</span><span class="n">encoded2</span><span class="o">.</span><span class="n">encode</span><span class="p">())</span><span class="o">.</span><span class="n">decode</span><span class="p">()</span>  <span class="c1"># To base64 again</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=== Multi-Layer Encoding Challenge ===&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Triple-encoded flag:</span><span class="se">\n</span><span class="si">{</span><span class="n">encoded3</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Decoding...</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="s2">&quot;=&quot;</span><span class="o">*</span><span class="mi">50</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="n">result</span> <span class="o">=</span> <span class="n">decode_layers</span><span class="p">(</span><span class="n">encoded3</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="s2">&quot;=&quot;</span><span class="o">*</span><span class="mi">50</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">✓ Final result: </span><span class="si">{</span><span class="n">result</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="common-encodings-in-ctf">
+<h2>Common Encodings in CTF<a class="headerlink" href="#common-encodings-in-ctf" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><strong>Base64</strong>: <code class="docutils literal notranslate"><span class="pre">VGhpcyBpcyBiYXNlNjQ=</span></code></p></li>
+<li><p><strong>Hex</strong>: <code class="docutils literal notranslate"><span class="pre">54686973206973206865</span> <span class="pre">78</span></code></p></li>
+<li><p><strong>ROT13</strong>: <code class="docutils literal notranslate"><span class="pre">Guvf</span> <span class="pre">vf</span> <span class="pre">EBG13</span></code></p></li>
+<li><p><strong>URL encoding</strong>: <code class="docutils literal notranslate"><span class="pre">This%20is%20URL%20encoded</span></code></p></li>
+<li><p><strong>Binary</strong>: <code class="docutils literal notranslate"><span class="pre">01010100</span> <span class="pre">01101000</span></code></p></li>
+<li><p><strong>Morse</strong>: <code class="docutils literal notranslate"><span class="pre">-</span> <span class="pre">....</span> <span class="pre">..</span> <span class="pre">...</span> <span class="pre">/</span> <span class="pre">..</span> <span class="pre">...</span> <span class="pre">/</span> <span class="pre">--</span> <span class="pre">---</span> <span class="pre">.-.</span> <span class="pre">...</span> <span class="pre">.</span></code></p></li>
+<li><p><strong>ASCII85</strong>: <code class="docutils literal notranslate"><span class="pre">&lt;~9jqo^BlbD~&gt;</span></code></p></li>
+</ul>
+<p><strong>Tool</strong>: CyberChef - The ultimate encoding/decoding tool!</p>
+</section>
+<hr class="docutils" />
+<section id="ctf-platforms-for-practice">
+<h2>🏆 CTF Platforms for Practice<a class="headerlink" href="#ctf-platforms-for-practice" title="Link to this heading">#</a></h2>
+<section id="beginner-friendly">
+<h3>Beginner-Friendly<a class="headerlink" href="#beginner-friendly" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>picoCTF</strong>: Educational CTF by Carnegie Mellon</p></li>
+<li><p><strong>OverTheWire</strong>: Wargames (Bandit for Linux, Natas for web)</p></li>
+<li><p><strong>HackTheBox</strong>: Boxes and challenges (free tier)</p></li>
+<li><p><strong>TryHackMe</strong>: Guided learning paths</p></li>
+</ul>
+</section>
+<section id="intermediate">
+<h3>Intermediate<a class="headerlink" href="#intermediate" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>CTFtime</strong>: Calendar of upcoming CTFs</p></li>
+<li><p><strong>HackThisSite</strong>: Various challenge types</p></li>
+<li><p><strong>Root-Me</strong>: 400+ challenges</p></li>
+<li><p><strong>Ringzer0 CTF</strong>: All categories</p></li>
+</ul>
+</section>
+<section id="advanced">
+<h3>Advanced<a class="headerlink" href="#advanced" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong><a class="reference external" href="http://pwnable.kr/tw">pwnable.kr/tw</a></strong>: Binary exploitation</p></li>
+<li><p><strong>CryptoHack</strong>: Cryptography focused</p></li>
+<li><p><strong>Damn Vulnerable Web Application (DVWA)</strong>: Web exploitation lab</p></li>
+<li><p><strong>DEF CON CTF</strong>: The Olympics of hacking</p></li>
+</ul>
+</section>
+</section>
+<hr class="docutils" />
+<section id="essential-ctf-tools">
+<h2>🛠️ Essential CTF Tools<a class="headerlink" href="#essential-ctf-tools" title="Link to this heading">#</a></h2>
+<section id="general">
+<h3>General<a class="headerlink" href="#general" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Kali Linux</strong>: Pre-loaded with hacking tools</p></li>
+<li><p><strong>CyberChef</strong>: The ultimate data transformation tool</p></li>
+<li><p><strong>pwntools</strong>: Python CTF library</p></li>
+</ul>
+</section>
+<section id="web">
+<h3>Web<a class="headerlink" href="#web" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Burp Suite</strong>: Web proxy and scanner</p></li>
+<li><p><strong>sqlmap</strong>: Automated SQL injection</p></li>
+<li><p><strong>nikto</strong>: Web server scanner</p></li>
+</ul>
+</section>
+<section id="binary-pwn">
+<h3>Binary/Pwn<a class="headerlink" href="#binary-pwn" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>gdb-peda/pwndbg</strong>: Enhanced debugger</p></li>
+<li><p><strong>ROPgadget</strong>: ROP chain builder</p></li>
+<li><p><strong>checksec</strong>: Binary security checker</p></li>
+</ul>
+</section>
+<section id="reversing">
+<h3>Reversing<a class="headerlink" href="#reversing" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Ghidra</strong>: Free decompiler</p></li>
+<li><p><strong>radare2/Cutter</strong>: RE framework</p></li>
+<li><p><strong>ltrace/strace</strong>: Dynamic analysis</p></li>
+</ul>
+</section>
+<section id="forensics">
+<h3>Forensics<a class="headerlink" href="#forensics" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>binwalk</strong>: Firmware analysis</p></li>
+<li><p><strong>volatility</strong>: Memory forensics</p></li>
+<li><p><strong>Wireshark</strong>: Network analysis</p></li>
+<li><p><strong>exiftool</strong>: Metadata extraction</p></li>
+</ul>
+</section>
+<section id="crypto">
+<h3>Crypto<a class="headerlink" href="#crypto" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>RsaCtfTool</strong>: RSA attacks</p></li>
+<li><p><strong>hashcat</strong>: Hash cracking</p></li>
+<li><p><strong>john</strong>: John the Ripper password cracker</p></li>
+</ul>
+</section>
+</section>
+<hr class="docutils" />
+<section id="ctf-mindset">
+<h2>🎯 CTF Mindset<a class="headerlink" href="#ctf-mindset" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p><strong>Try Everything</strong>: Even stupid ideas sometimes work</p></li>
+<li><p><strong>Google Fu</strong>: Half of CTF is knowing what to search</p></li>
+<li><p><strong>Read Error Messages</strong>: They often contain hints</p></li>
+<li><p><strong>Low-Hanging Fruit</strong>: Check for common mistakes first</p></li>
+<li><p><strong>Think Like a Defender</strong>: What would you protect?</p></li>
+<li><p><strong>Ask for Help</strong>: CTF communities are friendly</p></li>
+<li><p><strong>Write Writeups</strong>: Teaching solidifies learning</p></li>
+<li><p><strong>Stay Curious</strong>: Always be learning new techniques</p></li>
+</ol>
+</section>
+<hr class="docutils" />
+<section id="learning-resources">
+<h2>📚 Learning Resources<a class="headerlink" href="#learning-resources" title="Link to this heading">#</a></h2>
+<section id="books">
+<h3>Books<a class="headerlink" href="#books" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><em>The Web Application Hacker’s Handbook</em></p></li>
+<li><p><em>Hacking: The Art of Exploitation</em></p></li>
+<li><p><em>Practical Malware Analysis</em></p></li>
+<li><p><em>The Shellcoder’s Handbook</em></p></li>
+</ul>
+</section>
+<section id="youtube-channels">
+<h3>YouTube Channels<a class="headerlink" href="#youtube-channels" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>LiveOverflow</strong>: CTF writeups and RE</p></li>
+<li><p><strong>John Hammond</strong>: Beginner-friendly walkthroughs</p></li>
+<li><p><strong>IppSec</strong>: HackTheBox writeups</p></li>
+<li><p><strong>PwnFunction</strong>: Animated security explanations</p></li>
+</ul>
+</section>
+<section id="communities">
+<h3>Communities<a class="headerlink" href="#communities" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>CTFtime Forums</strong>: Discuss challenges</p></li>
+<li><p><strong>r/securityCTF</strong>: Reddit community</p></li>
+<li><p><strong>Discord Servers</strong>: Join CTF team discords</p></li>
+</ul>
+</section>
+</section>
+<hr class="docutils" />
+<section id="career-paths">
+<h2>🎓 Career Paths<a class="headerlink" href="#career-paths" title="Link to this heading">#</a></h2>
+<p>CTF skills lead to:</p>
+<ul class="simple">
+<li><p><strong>Penetration Tester</strong>: Break into systems (legally)</p></li>
+<li><p><strong>Security Researcher</strong>: Find 0-days, publish papers</p></li>
+<li><p><strong>Bug Bounty Hunter</strong>: Full-time or side hustle</p></li>
+<li><p><strong>Malware Analyst</strong>: Reverse engineer malware</p></li>
+<li><p><strong>Incident Responder</strong>: Handle security breaches</p></li>
+<li><p><strong>Red Team</strong>: Offensive security for companies</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="quick-win-checklist">
+<h2>⚡ Quick Win Checklist<a class="headerlink" href="#quick-win-checklist" title="Link to this heading">#</a></h2>
+<p>When stuck on a CTF challenge:</p>
+<ul class="contains-task-list simple">
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> Run <code class="docutils literal notranslate"><span class="pre">strings</span></code> on binary files</p></li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> Check source code / view-source:URL</p></li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> Look for hidden files (.git, robots.txt, .htaccess)</p></li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> Try common credentials (admin/admin, root/toor)</p></li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> Decode suspicious strings (base64, hex, rot13)</p></li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> Run <code class="docutils literal notranslate"><span class="pre">binwalk</span></code> on unknown files</p></li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> Google the exact error message</p></li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> Check for SQL injection: <code class="docutils literal notranslate"><span class="pre">'</span> <span class="pre">OR</span> <span class="pre">1=1--</span></code></p></li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> Test for XSS: <code class="docutils literal notranslate"><span class="pre">&lt;script&gt;alert(1)&lt;/script&gt;</span></code></p></li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> Try directory brute forcing</p></li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> Check file extensions (change .jpg to .txt)</p></li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> Look at HTTP headers and cookies</p></li>
+</ul>
+<hr class="docutils" />
+<p><strong>Welcome to the hacker community! Now go break things (legally) and capture those flags! 🚩</strong></p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./hard"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="08_classic_problems.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Lesson 8: Classic Problems Collection</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="10_performance_computing.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Hard Level: High-Performance Python Computing</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Lesson 9: Capture The Flag (CTF) - Hacker Training</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-ctf">What is CTF?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-ctf">Why CTF?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#legal-ethical-notice">🚨 Legal &amp; Ethical Notice</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#part-1-web-exploitation">Part 1: Web Exploitation</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#challenge-1-1-sql-injection-sqli">Challenge 1.1: SQL Injection (SQLi)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#challenge-1-2-cross-site-scripting-xss">Challenge 1.2: Cross-Site Scripting (XSS)</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#common-xss-payloads">Common XSS Payloads</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#defense">Defense</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#part-2-binary-exploitation-pwn">Part 2: Binary Exploitation (Pwn)</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#challenge-2-1-buffer-overflow-basics">Challenge 2.1: Buffer Overflow Basics</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#challenge-2-2-format-string-vulnerability">Challenge 2.2: Format String Vulnerability</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modern-protections">Modern Protections</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#part-3-reverse-engineering">Part 3: Reverse Engineering</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#challenge-3-1-decompiling-python-bytecode">Challenge 3.1: Decompiling Python Bytecode</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#challenge-3-2-simple-crackme">Challenge 3.2: Simple Crackme</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reverse-engineering-tools">Reverse Engineering Tools</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#part-4-forensics">Part 4: Forensics</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#challenge-4-1-steganography-hidden-in-plain-sight">Challenge 4.1: Steganography - Hidden in Plain Sight</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#challenge-4-2-file-carving">Challenge 4.2: File Carving</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#part-5-osint-open-source-intelligence">Part 5: OSINT (Open Source Intelligence)</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#challenge-5-1-metadata-extraction">Challenge 5.1: Metadata Extraction</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#osint-tools-techniques">OSINT Tools &amp; Techniques</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#part-6-misc-challenges">Part 6: Misc Challenges</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#challenge-6-1-encoding-madness">Challenge 6.1: Encoding Madness</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#common-encodings-in-ctf">Common Encodings in CTF</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ctf-platforms-for-practice">🏆 CTF Platforms for Practice</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#beginner-friendly">Beginner-Friendly</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#intermediate">Intermediate</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#advanced">Advanced</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#essential-ctf-tools">🛠️ Essential CTF Tools</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#general">General</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#web">Web</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#binary-pwn">Binary/Pwn</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reversing">Reversing</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#forensics">Forensics</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#crypto">Crypto</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ctf-mindset">🎯 CTF Mindset</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-resources">📚 Learning Resources</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#books">Books</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#youtube-channels">YouTube Channels</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#communities">Communities</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#career-paths">🎓 Career Paths</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quick-win-checklist">⚡ Quick Win Checklist</a></li>
+</ul>
+</li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Mykolas Perevicius
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

@@ -1,0 +1,1472 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Design Iterations &amp; Visual Evolution &#8212; Education Playground</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="_static/css/custom.css?v=0c185eed" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=c73c0f3e"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'DESIGN_ITERATIONS';</script>
+    <script src="_static/js/onboarding.js?v=557b7536"></script>
+    <link rel="canonical" href="https://mykolas-perevicius.github.io/Education_Playground/DESIGN_ITERATIONS.html" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="README.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Education Playground</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="00_calibration_test.html">🎯 Calibration Test - Find Your Level</a></li>
+<li class="toctree-l1"><a class="reference internal" href="beginner_scripts/README.html">🌱 Beginner Scripts (10 Python Files)</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="easy/README_EASY.html">📗 Easy Level - Beginner</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="easy/01_introduction_to_python.html">1. Introduction to Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="easy/02_variables_and_data_types.html">2. Variables and Data Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="easy/03_basic_operations_and_conditionals.html">3. Operations and Conditionals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="easy/04_intro_to_ai_and_ml.html">4. Intro to AI and ML</a></li>
+<li class="toctree-l2"><a class="reference internal" href="easy/05_computing_fundamentals.html">5. Computing Fundamentals</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="medium/README_MEDIUM.html">📘 Medium Level - Intermediate</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="medium/01_functions_and_modules.html">1. Functions and Modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="medium/02_data_structures.html">2. Data Structures</a></li>
+<li class="toctree-l2"><a class="reference internal" href="medium/03_classes_and_oop.html">3. Classes and OOP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="medium/04_machine_learning_basics.html">4. Machine Learning Basics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="medium/05_data_analysis_with_pandas.html">5. Data Analysis with Pandas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="medium/06_algorithms_and_problem_solving.html">6. Algorithms and Problem Solving</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="hard/README_HARD.html">📕 Hard Level - Advanced</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="hard/01_advanced_functions_and_decorators.html">1. Advanced Functions &amp; Decorators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hard/02_generators_and_iterators.html">2. Generators and Iterators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hard/03_algorithms_and_complexity.html">3. Algorithms and Complexity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hard/04_deep_learning_and_neural_networks.html">4. Deep Learning &amp; Neural Networks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hard/05_advanced_ml_and_nlp.html">5. Advanced ML and NLP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hard/06_computer_systems_and_theory.html">6. Computer Systems and Theory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hard/07_project_ideas.html">7. Project Ideas &amp; Implementation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hard/08_classic_problems.html">Lesson 8: Classic Problems Collection</a></li>
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="hard/09_ctf_challenges.html">Lesson 9: Capture The Flag (CTF) - Hacker Training</a></li>
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="hard/10_performance_computing.html">10. Performance Computing ⚡ NEW!</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hard/11_cuda_and_parallel_computing.html">11. CUDA &amp; GPU Computing 🎮 NEW!</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="tools/README.html">🛠️ Developer Tools Track</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="tools/01_shell_basics.html">1. Shell and Command Line</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools/02_command_line_tools.html">2. Command Line Tools</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools/03_git_essentials.html">3. Git Essentials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools/04_text_editors.html">4. Text Editors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools/05_build_systems_cicd.html">5. Build Systems and CI/CD</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools/06_debugging_profiling.html">6. Debugging and Profiling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools/07_security_essentials.html">7. Security Essentials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools/08_package_management.html">8. Package Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools/09_ssh_remote_systems.html">9. SSH and Remote Systems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools/10_docker_containers.html">10. Docker and Containers</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="solutions/README_SOLUTIONS.html">📝 Solutions</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="solutions/easy_solutions.html">Easy Level - Complete Solutions</a></li>
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="solutions/medium_solutions.html">Medium Level - Complete Solutions</a></li>
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="solutions/hard_solutions.html">Hard Level - Complete Solutions</a></li>
+
+
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="solutions/tools_solutions.html">Developer Tools - Complete Solutions</a></li>
+
+
+
+
+
+
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="RESOURCES.html">📚 Learning Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="PYTHON_CHEATSHEET.html">⚡ Python Cheat Sheet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ML_AI_CHEATSHEET.html">🤖 ML/AI Cheat Sheet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="SETUP.html">🔧 Setup Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="RELEASE_NOTES_v2.0.0.html">🎉 Release Notes v2.0.0</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none"></div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Design Iterations & Visual Evolution</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#design-philosophy">Design Philosophy</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#core-principles">Core Principles</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#iteration-1-original-jupyter-book-functional-foundation">Iteration 1: Original Jupyter Book (Functional Foundation)</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#design-characteristics">Design Characteristics</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#strengths">Strengths</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#weaknesses">Weaknesses</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#user-feedback">User Feedback</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#iteration-2-custom-styling-onboarding-personalization">Iteration 2: Custom Styling + Onboarding (Personalization)</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#design-changes">Design Changes</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#key-features">Key Features</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#visual-improvements">Visual Improvements</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Strengths</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Weaknesses</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#iteration-3-landing-page-integration-professional-presence">Iteration 3: Landing Page Integration (Professional Presence)</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-problem">The Problem</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-solution-codebridge-labs-landing-page">The Solution: CodeBridge Labs Landing Page</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#visual-design">Visual Design</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#design-system">Design System</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#section-design-patterns">Section Design Patterns</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#visual-hierarchy">Visual Hierarchy</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Strengths</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Weaknesses</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#iteration-4-color-unification-brand-consistency">Iteration 4: Color Unification (Brand Consistency)</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-color-problem">The Color Problem</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-solution-green-purple">The Solution: Green + Purple</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#color-psychology">Color Psychology</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#application">Application</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#visual-impact">Visual Impact</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#iteration-5-layout-refinement-perfect-alignment">Iteration 5: Layout Refinement (Perfect Alignment)</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-alignment-problem">The Alignment Problem</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-solution-flexbox-patterns">The Solution: Flexbox Patterns</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#before-after">Before &amp; After</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gap-standardization">Gap Standardization</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">Visual Impact</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#iteration-6-dark-mode-implementation-accessibility">Iteration 6: Dark Mode Implementation (Accessibility)</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-dark-mode-problem">The Dark Mode Problem</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-solution-automatic-detection">The Solution: Automatic Detection</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dark-mode-palette">Dark Mode Palette</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#component-coverage">Component Coverage</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#landing-page-decision">Landing Page Decision</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">Visual Impact</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#iteration-7-layout-optimization-content-excellence">Iteration 7: Layout Optimization (Content Excellence)</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-layout-problem">The Layout Problem</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-solution-typography-driven-layout">The Solution: Typography-Driven Layout</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#typography-standards">Typography Standards</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">Visual Impact</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#design-system-current-state">Design System (Current State)</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#color-palette">Color Palette</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#typography-scale">Typography Scale</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spacing-scale">Spacing Scale</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#border-radius-scale">Border Radius Scale</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#shadow-system">Shadow System</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#responsive-breakpoints">Responsive Breakpoints</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mobile-first-approach">Mobile First Approach</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#key-responsive-patterns">Key Responsive Patterns</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#component-library">Component Library</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#buttons">Buttons</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cards">Cards</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interactive-elements">Interactive Elements</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#design-metrics">Design Metrics</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#before-vs-after">Before vs After</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#design-principles-applied">Design Principles Applied</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">1. Visual Hierarchy</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#consistency">2. Consistency</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#accessibility">3. Accessibility</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#usability">4. Usability</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#delight">5. Delight</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lessons-learned">Lessons Learned</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-worked-well">What Worked Well</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-we-d-do-differently">What We’d Do Differently</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#key-insights">Key Insights</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#future-design-directions">Future Design Directions</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#potential-enhancements">Potential Enhancements</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#research-areas">Research Areas</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="design-iterations-visual-evolution">
+<h1>Design Iterations &amp; Visual Evolution<a class="headerlink" href="#design-iterations-visual-evolution" title="Link to this heading">#</a></h1>
+<p>This document chronicles the visual and UX design evolution of the Education Playground project, capturing the “why” behind each design decision and the problems each iteration solved.</p>
+<hr class="docutils" />
+<section id="design-philosophy">
+<h2>Design Philosophy<a class="headerlink" href="#design-philosophy" title="Link to this heading">#</a></h2>
+<section id="core-principles">
+<h3>Core Principles<a class="headerlink" href="#core-principles" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p><strong>Education First</strong> - Design should enhance learning, not distract</p></li>
+<li><p><strong>Accessibility</strong> - Must work for all users, all abilities, all devices</p></li>
+<li><p><strong>Professional Polish</strong> - Suitable for both students and institutional buyers</p></li>
+<li><p><strong>Consistency</strong> - Unified experience across landing page and learning platform</p></li>
+<li><p><strong>Performance</strong> - Fast, responsive, no unnecessary complexity</p></li>
+</ol>
+</section>
+</section>
+<hr class="docutils" />
+<section id="iteration-1-original-jupyter-book-functional-foundation">
+<h2>Iteration 1: Original Jupyter Book (Functional Foundation)<a class="headerlink" href="#iteration-1-original-jupyter-book-functional-foundation" title="Link to this heading">#</a></h2>
+<section id="design-characteristics">
+<h3>Design Characteristics<a class="headerlink" href="#design-characteristics" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Visual Style:</strong> Clean, minimal, academic</p></li>
+<li><p><strong>Color Scheme:</strong> Jupyter Book defaults (blue accents, white background)</p></li>
+<li><p><strong>Typography:</strong> Default system fonts</p></li>
+<li><p><strong>Layout:</strong> Standard Jupyter Book sidebar + content layout</p></li>
+</ul>
+</section>
+<section id="strengths">
+<h3>Strengths<a class="headerlink" href="#strengths" title="Link to this heading">#</a></h3>
+<p>✅ Fast to implement
+✅ Content-focused
+✅ Familiar to developers
+✅ Mobile responsive (default)</p>
+</section>
+<section id="weaknesses">
+<h3>Weaknesses<a class="headerlink" href="#weaknesses" title="Link to this heading">#</a></h3>
+<p>❌ Generic appearance
+❌ No brand identity
+❌ Limited customization
+❌ Not optimized for B2B marketing
+❌ No onboarding for new users
+❌ Dark mode not supported</p>
+</section>
+<section id="user-feedback">
+<h3>User Feedback<a class="headerlink" href="#user-feedback" title="Link to this heading">#</a></h3>
+<blockquote>
+<div><p>“The content is great, but it looks like every other Jupyter Book site”
+“Hard to know where to start as a beginner”</p>
+</div></blockquote>
+</section>
+</section>
+<hr class="docutils" />
+<section id="iteration-2-custom-styling-onboarding-personalization">
+<h2>Iteration 2: Custom Styling + Onboarding (Personalization)<a class="headerlink" href="#iteration-2-custom-styling-onboarding-personalization" title="Link to this heading">#</a></h2>
+<section id="design-changes">
+<h3>Design Changes<a class="headerlink" href="#design-changes" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Added:</strong> Interactive onboarding modal with skill assessment</p></li>
+<li><p><strong>Custom CSS:</strong> 813 lines of custom styling</p></li>
+<li><p><strong>Color Palette:</strong> Introduced blue (#3A86FF) as primary color</p></li>
+<li><p><strong>Typography:</strong> Custom font stack with better hierarchy</p></li>
+<li><p><strong>Interactive Elements:</strong> Choice cards, progress tracking, badges</p></li>
+</ul>
+</section>
+<section id="key-features">
+<h3>Key Features<a class="headerlink" href="#key-features" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Welcome modal with 3-step onboarding flow</p></li>
+<li><p>Skill level assessment (Never → A Little → Yes)</p></li>
+<li><p>Personalized learning path recommendations</p></li>
+<li><p>Continue Learning banner for returning users</p></li>
+<li><p>Progress tracking with localStorage</p></li>
+<li><p>“Mark as Complete” buttons on lessons</p></li>
+</ul>
+</section>
+<section id="visual-improvements">
+<h3>Visual Improvements<a class="headerlink" href="#visual-improvements" title="Link to this heading">#</a></h3>
+<div class="highlight-css notranslate"><div class="highlight"><pre><span></span><span class="c">/* Custom Onboarding Modal */</span>
+<span class="p">.</span><span class="nc">onboarding-content</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">border-radius</span><span class="p">:</span><span class="w"> </span><span class="mi">16</span><span class="kt">px</span><span class="p">;</span>
+<span class="w">    </span><span class="k">max-width</span><span class="p">:</span><span class="w"> </span><span class="mi">600</span><span class="kt">px</span><span class="p">;</span>
+<span class="w">    </span><span class="k">padding</span><span class="p">:</span><span class="w"> </span><span class="mi">40</span><span class="kt">px</span><span class="p">;</span>
+<span class="w">    </span><span class="k">box-shadow</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="mi">8</span><span class="kt">px</span><span class="w"> </span><span class="mi">20</span><span class="kt">px</span><span class="w"> </span><span class="nb">rgba</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.2</span><span class="p">);</span>
+<span class="w">    </span><span class="k">animation</span><span class="p">:</span><span class="w"> </span><span class="n">slideUp</span><span class="w"> </span><span class="mf">0.4</span><span class="kt">s</span><span class="w"> </span><span class="kc">ease</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c">/* Choice Cards */</span>
+<span class="p">.</span><span class="nc">choice-card</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">background</span><span class="p">:</span><span class="w"> </span><span class="mh">#f8f9fa</span><span class="p">;</span>
+<span class="w">    </span><span class="k">border</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="kt">px</span><span class="w"> </span><span class="kc">solid</span><span class="w"> </span><span class="mh">#e0e0e0</span><span class="p">;</span>
+<span class="w">    </span><span class="k">border-radius</span><span class="p">:</span><span class="w"> </span><span class="mi">12</span><span class="kt">px</span><span class="p">;</span>
+<span class="w">    </span><span class="k">transition</span><span class="p">:</span><span class="w"> </span><span class="kc">all</span><span class="w"> </span><span class="mf">0.2</span><span class="kt">s</span><span class="w"> </span><span class="kc">ease</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="id1">
+<h3>Strengths<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
+<p>✅ Unique, branded appearance
+✅ Guides new users effectively
+✅ Tracks user progress
+✅ More engaging than defaults</p>
+</section>
+<section id="id2">
+<h3>Weaknesses<a class="headerlink" href="#id2" title="Link to this heading">#</a></h3>
+<p>❌ Still no B2B marketing presence
+❌ Blue color not distinctive
+❌ No dark mode support
+❌ Some layout inconsistencies</p>
+</section>
+</section>
+<hr class="docutils" />
+<section id="iteration-3-landing-page-integration-professional-presence">
+<h2>Iteration 3: Landing Page Integration (Professional Presence)<a class="headerlink" href="#iteration-3-landing-page-integration-professional-presence" title="Link to this heading">#</a></h2>
+<section id="the-problem">
+<h3>The Problem<a class="headerlink" href="#the-problem" title="Link to this heading">#</a></h3>
+<p>How do schools discover and evaluate the platform? We needed:</p>
+<ul class="simple">
+<li><p>Professional marketing presence</p></li>
+<li><p>Clear value proposition for decision-makers</p></li>
+<li><p>Course catalog visibility</p></li>
+<li><p>Social proof (testimonials)</p></li>
+<li><p>Easy contact/inquiry process</p></li>
+</ul>
+</section>
+<section id="the-solution-codebridge-labs-landing-page">
+<h3>The Solution: CodeBridge Labs Landing Page<a class="headerlink" href="#the-solution-codebridge-labs-landing-page" title="Link to this heading">#</a></h3>
+<section id="visual-design">
+<h4>Visual Design<a class="headerlink" href="#visual-design" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>Hero:</strong> Gradient navy background with glowing orbs</p></li>
+<li><p><strong>Layout:</strong> Modern card-based sections</p></li>
+<li><p><strong>Typography:</strong> Bold headings, readable body text</p></li>
+<li><p><strong>CTAs:</strong> Prominent green buttons with hover effects</p></li>
+</ul>
+</section>
+<section id="design-system">
+<h4>Design System<a class="headerlink" href="#design-system" title="Link to this heading">#</a></h4>
+<div class="highlight-css notranslate"><div class="highlight"><pre><span></span><span class="p">:</span><span class="nd">root</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nv">--navy</span><span class="p">:</span><span class="w"> </span><span class="mh">#0D1B2A</span><span class="p">;</span>
+<span class="w">  </span><span class="nv">--sky-blue</span><span class="p">:</span><span class="w"> </span><span class="mh">#3A86FF</span><span class="p">;</span>
+<span class="w">  </span><span class="nv">--soft-gray</span><span class="p">:</span><span class="w"> </span><span class="mh">#F3F4F6</span><span class="p">;</span>
+<span class="w">  </span><span class="nv">--white</span><span class="p">:</span><span class="w"> </span><span class="mh">#FFFFFF</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="section-design-patterns">
+<h4>Section Design Patterns<a class="headerlink" href="#section-design-patterns" title="Link to this heading">#</a></h4>
+<p><strong>Hero Section:</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>[Gradient Background]
+    ├── Large Heading
+    ├── Subheading
+    ├── Primary CTA (solid)
+    └── Secondary CTA (outline)
+</pre></div>
+</div>
+<p><strong>Content Sections:</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>[White/Gray Background]
+    ├── Section Heading
+    ├── Subheading
+    └── 3-Column Card Grid
+</pre></div>
+</div>
+</section>
+</section>
+<section id="visual-hierarchy">
+<h3>Visual Hierarchy<a class="headerlink" href="#visual-hierarchy" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p><strong>Level 1:</strong> Hero - Immediate value proposition</p></li>
+<li><p><strong>Level 2:</strong> Problems - Pain points we solve</p></li>
+<li><p><strong>Level 3:</strong> How It Works - Simple 3-step process</p></li>
+<li><p><strong>Level 4:</strong> Courses - Detailed catalog</p></li>
+<li><p><strong>Level 5:</strong> Results - Social proof</p></li>
+<li><p><strong>Level 6:</strong> Pricing - Call to action</p></li>
+</ol>
+</section>
+<section id="id3">
+<h3>Strengths<a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
+<p>✅ Professional B2B appearance
+✅ Clear value proposition
+✅ Complete course catalog
+✅ Builds trust with testimonials
+✅ Easy inquiry process</p>
+</section>
+<section id="id4">
+<h3>Weaknesses<a class="headerlink" href="#id4" title="Link to this heading">#</a></h3>
+<p>❌ Color scheme not unified with Jupyter Book
+❌ Card heights inconsistent
+❌ Some alignment issues
+❌ Dark mode causing mixed appearance</p>
+</section>
+</section>
+<hr class="docutils" />
+<section id="iteration-4-color-unification-brand-consistency">
+<h2>Iteration 4: Color Unification (Brand Consistency)<a class="headerlink" href="#iteration-4-color-unification-brand-consistency" title="Link to this heading">#</a></h2>
+<section id="the-color-problem">
+<h3>The Color Problem<a class="headerlink" href="#the-color-problem" title="Link to this heading">#</a></h3>
+<p><strong>Before:</strong></p>
+<ul class="simple">
+<li><p>Landing Page: Blue (#3A86FF) primary</p></li>
+<li><p>Jupyter Book: Blue (#3A86FF) primary</p></li>
+<li><p>Result: Generic “tech blue” aesthetic</p></li>
+</ul>
+<p><strong>Design Question:</strong> What color represents education, growth, and success?</p>
+</section>
+<section id="the-solution-green-purple">
+<h3>The Solution: Green + Purple<a class="headerlink" href="#the-solution-green-purple" title="Link to this heading">#</a></h3>
+<div class="highlight-css notranslate"><div class="highlight"><pre><span></span><span class="c">/* New Unified Palette */</span>
+<span class="nt">--primary-color</span><span class="o">:</span><span class="w"> </span><span class="p">#</span><span class="nn">4CAF50</span><span class="o">;</span><span class="w">        </span><span class="c">/* Green - Growth, learning, success */</span>
+<span class="nt">--primary-hover</span><span class="o">:</span><span class="w"> </span><span class="p">#</span><span class="nn">45a049</span><span class="o">;</span><span class="w">        </span><span class="c">/* Darker green */</span>
+<span class="nt">--secondary-color</span><span class="o">:</span><span class="w"> </span><span class="p">#</span><span class="nn">667eea</span><span class="o">;</span><span class="w">      </span><span class="c">/* Purple - Creativity, innovation */</span>
+<span class="nt">--secondary-dark</span><span class="o">:</span><span class="w"> </span><span class="p">#</span><span class="nn">764ba2</span><span class="o">;</span><span class="w">       </span><span class="c">/* Deep purple */</span>
+<span class="nt">--navy</span><span class="o">:</span><span class="w"> </span><span class="p">#</span><span class="nn">0D1B2A</span><span class="o">;</span><span class="w">                </span><span class="c">/* Navy - Professional, trustworthy */</span>
+</pre></div>
+</div>
+</section>
+<section id="color-psychology">
+<h3>Color Psychology<a class="headerlink" href="#color-psychology" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Green (#4CAF50)</strong></p>
+<ul>
+<li><p>Represents growth and progress</p></li>
+<li><p>Positive, encouraging</p></li>
+<li><p>Good contrast for accessibility</p></li>
+<li><p>Less common in tech = more distinctive</p></li>
+</ul>
+</li>
+<li><p><strong>Purple Gradient (#667eea → #764ba2)</strong></p>
+<ul>
+<li><p>Creative and innovative</p></li>
+<li><p>Luxurious, premium feel</p></li>
+<li><p>Great for hero sections</p></li>
+<li><p>Complements green without clashing</p></li>
+</ul>
+</li>
+<li><p><strong>Navy (#0D1B2A)</strong></p>
+<ul>
+<li><p>Professional and trustworthy</p></li>
+<li><p>Excellent readability</p></li>
+<li><p>Corporate-friendly</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="application">
+<h3>Application<a class="headerlink" href="#application" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Buttons:</strong> Green primary</p></li>
+<li><p><strong>Hero Sections:</strong> Purple gradient</p></li>
+<li><p><strong>Headings:</strong> Navy</p></li>
+<li><p><strong>Links:</strong> Green</p></li>
+<li><p><strong>Highlights:</strong> Purple</p></li>
+</ul>
+</section>
+<section id="visual-impact">
+<h3>Visual Impact<a class="headerlink" href="#visual-impact" title="Link to this heading">#</a></h3>
+<p>✅ Distinctive brand identity
+✅ Better accessibility
+✅ Warmer, more approachable
+✅ Consistent across both sites</p>
+</section>
+</section>
+<hr class="docutils" />
+<section id="iteration-5-layout-refinement-perfect-alignment">
+<h2>Iteration 5: Layout Refinement (Perfect Alignment)<a class="headerlink" href="#iteration-5-layout-refinement-perfect-alignment" title="Link to this heading">#</a></h2>
+<section id="the-alignment-problem">
+<h3>The Alignment Problem<a class="headerlink" href="#the-alignment-problem" title="Link to this heading">#</a></h3>
+<p>Visual inspection revealed:</p>
+<ul class="simple">
+<li><p>Cards in grid layouts had varying heights</p></li>
+<li><p>Content floating awkwardly within cards</p></li>
+<li><p>Testimonial author info not anchored properly</p></li>
+<li><p>Inconsistent gap spacing (gap-12 vs gap-8)</p></li>
+</ul>
+</section>
+<section id="the-solution-flexbox-patterns">
+<h3>The Solution: Flexbox Patterns<a class="headerlink" href="#the-solution-flexbox-patterns" title="Link to this heading">#</a></h3>
+<p><strong>Equal-Height Cards:</strong></p>
+<div class="highlight-tsx notranslate"><div class="highlight"><pre><span></span>&lt;div className=&quot;... flex flex-col h-full&quot;&gt;
+  {/* Card content */}
+&lt;/div&gt;
+</pre></div>
+</div>
+<p><strong>Expandable Content:</strong></p>
+<div class="highlight-tsx notranslate"><div class="highlight"><pre><span></span>&lt;p className=&quot;flex-1&quot;&gt;
+  {/* Content that expands to fill available space */}
+&lt;/p&gt;
+</pre></div>
+</div>
+<p><strong>Bottom-Anchored Elements:</strong></p>
+<div class="highlight-tsx notranslate"><div class="highlight"><pre><span></span>&lt;div className=&quot;mt-auto&quot;&gt;
+  {/* Always sits at bottom of card */}
+&lt;/div&gt;
+</pre></div>
+</div>
+</section>
+<section id="before-after">
+<h3>Before &amp; After<a class="headerlink" href="#before-after" title="Link to this heading">#</a></h3>
+<p><strong>Before:</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>[Card 1 - Short]   [Card 2 - Medium]   [Card 3 - Tall]
+┌────────────┐     ┌────────────┐      ┌────────────┐
+│ Content    │     │ Content    │      │ Content    │
+│            │     │            │      │            │
+│ [Bottom]   │     │            │      │            │
+└────────────┘     │ [Bottom]   │      │            │
+                   └────────────┘      │ [Bottom]   │
+                                       └────────────┘
+</pre></div>
+</div>
+<p><strong>After:</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>[Card 1]           [Card 2]            [Card 3]
+┌────────────┐     ┌────────────┐      ┌────────────┐
+│ Content    │     │ Content    │      │ Content    │
+│            │     │            │      │            │
+│            │     │            │      │            │
+│            │     │            │      │            │
+│ [Bottom]   │     │ [Bottom]   │      │ [Bottom]   │
+└────────────┘     └────────────┘      └────────────┘
+</pre></div>
+</div>
+</section>
+<section id="gap-standardization">
+<h3>Gap Standardization<a class="headerlink" href="#gap-standardization" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Before: <code class="docutils literal notranslate"><span class="pre">gap-12</span> <span class="pre">lg:gap-8</span></code> (inconsistent)</p></li>
+<li><p>After: <code class="docutils literal notranslate"><span class="pre">gap-8</span></code> (consistent across all breakpoints)</p></li>
+</ul>
+</section>
+<section id="id5">
+<h3>Visual Impact<a class="headerlink" href="#id5" title="Link to this heading">#</a></h3>
+<p>✅ Perfect visual symmetry
+✅ Professional appearance
+✅ Predictable layout
+✅ No awkward white space</p>
+</section>
+</section>
+<hr class="docutils" />
+<section id="iteration-6-dark-mode-implementation-accessibility">
+<h2>Iteration 6: Dark Mode Implementation (Accessibility)<a class="headerlink" href="#iteration-6-dark-mode-implementation-accessibility" title="Link to this heading">#</a></h2>
+<section id="the-dark-mode-problem">
+<h3>The Dark Mode Problem<a class="headerlink" href="#the-dark-mode-problem" title="Link to this heading">#</a></h3>
+<p><strong>Issue:</strong> CSS had dark mode styles but they were never activated</p>
+<ul class="simple">
+<li><p>Variables defined but not applied</p></li>
+<li><p>No <code class="docutils literal notranslate"><span class="pre">&#64;media</span> <span class="pre">(prefers-color-scheme:</span> <span class="pre">dark)</span></code> queries</p></li>
+<li><p>No JavaScript to set <code class="docutils literal notranslate"><span class="pre">data-theme</span></code> attribute</p></li>
+</ul>
+</section>
+<section id="the-solution-automatic-detection">
+<h3>The Solution: Automatic Detection<a class="headerlink" href="#the-solution-automatic-detection" title="Link to this heading">#</a></h3>
+<p><strong>CSS Architecture:</strong></p>
+<div class="highlight-css notranslate"><div class="highlight"><pre><span></span><span class="c">/* Light Mode (Default) */</span>
+<span class="p">:</span><span class="nd">root</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nv">--bg-primary</span><span class="p">:</span><span class="w"> </span><span class="mh">#ffffff</span><span class="p">;</span>
+<span class="w">    </span><span class="nv">--text-primary</span><span class="p">:</span><span class="w"> </span><span class="mh">#1a1a1a</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c">/* Dark Mode (Auto-Detect) */</span>
+<span class="p">@</span><span class="k">media</span><span class="w"> </span><span class="o">(</span><span class="nt">prefers-color-scheme</span><span class="o">:</span><span class="w"> </span><span class="nt">dark</span><span class="o">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="p">:</span><span class="nd">root</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nv">--bg-primary</span><span class="p">:</span><span class="w"> </span><span class="mh">#1a1a1a</span><span class="p">;</span>
+<span class="w">        </span><span class="nv">--text-primary</span><span class="p">:</span><span class="w"> </span><span class="mh">#e0e0e0</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c">/* Manual Override Support */</span>
+<span class="nt">html</span><span class="o">[</span><span class="nt">data-theme</span><span class="o">=</span><span class="s2">&quot;dark&quot;</span><span class="o">]</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nv">--bg-primary</span><span class="p">:</span><span class="w"> </span><span class="mh">#1a1a1a</span><span class="p">;</span>
+<span class="w">    </span><span class="nv">--text-primary</span><span class="p">:</span><span class="w"> </span><span class="mh">#e0e0e0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="dark-mode-palette">
+<h3>Dark Mode Palette<a class="headerlink" href="#dark-mode-palette" title="Link to this heading">#</a></h3>
+<div class="highlight-css notranslate"><div class="highlight"><pre><span></span><span class="c">/* Dark Mode Colors */</span>
+<span class="nt">--primary-color</span><span class="o">:</span><span class="w"> </span><span class="p">#</span><span class="nn">66bb6a</span><span class="o">;</span><span class="w">        </span><span class="c">/* Lighter green for dark bg */</span>
+<span class="nt">--bg-primary</span><span class="o">:</span><span class="w"> </span><span class="p">#</span><span class="nn">1a1a1a</span><span class="o">;</span><span class="w">          </span><span class="c">/* Almost black */</span>
+<span class="nt">--bg-secondary</span><span class="o">:</span><span class="w"> </span><span class="p">#</span><span class="nn">242424</span><span class="o">;</span><span class="w">         </span><span class="c">/* Dark gray */</span>
+<span class="nt">--bg-tertiary</span><span class="o">:</span><span class="w"> </span><span class="p">#</span><span class="nn">2d2d2d</span><span class="o">;</span><span class="w">         </span><span class="c">/* Medium gray */</span>
+<span class="nt">--text-primary</span><span class="o">:</span><span class="w"> </span><span class="p">#</span><span class="nn">e0e0e0</span><span class="o">;</span><span class="w">        </span><span class="c">/* Light gray */</span>
+<span class="nt">--text-secondary</span><span class="o">:</span><span class="w"> </span><span class="p">#</span><span class="nn">b0b0b0</span><span class="o">;</span><span class="w">      </span><span class="c">/* Medium gray */</span>
+<span class="nt">--border-color</span><span class="o">:</span><span class="w"> </span><span class="p">#</span><span class="nn">404040</span><span class="o">;</span><span class="w">         </span><span class="c">/* Subtle borders */</span>
+</pre></div>
+</div>
+</section>
+<section id="component-coverage">
+<h3>Component Coverage<a class="headerlink" href="#component-coverage" title="Link to this heading">#</a></h3>
+<p>✅ Body and main content
+✅ Onboarding modal
+✅ Choice cards
+✅ Code blocks
+✅ Tables
+✅ Sidebar navigation
+✅ All interactive elements</p>
+</section>
+<section id="landing-page-decision">
+<h3>Landing Page Decision<a class="headerlink" href="#landing-page-decision" title="Link to this heading">#</a></h3>
+<p><strong>Choice:</strong> Force light mode only
+<strong>Rationale:</strong></p>
+<ul class="simple">
+<li><p>B2B sites need consistent appearance</p></li>
+<li><p>Professional/corporate environments expect light themes</p></li>
+<li><p>Avoids mixed light/dark sections</p></li>
+<li><p>Simpler A/B testing and screenshots</p></li>
+</ul>
+</section>
+<section id="id6">
+<h3>Visual Impact<a class="headerlink" href="#id6" title="Link to this heading">#</a></h3>
+<p>✅ Reduces eye strain in low light
+✅ Respects user system preferences
+✅ Maintains readability in both modes
+✅ Professional on Playground, consistent on Landing</p>
+</section>
+</section>
+<hr class="docutils" />
+<section id="iteration-7-layout-optimization-content-excellence">
+<h2>Iteration 7: Layout Optimization (Content Excellence)<a class="headerlink" href="#iteration-7-layout-optimization-content-excellence" title="Link to this heading">#</a></h2>
+<section id="the-layout-problem">
+<h3>The Layout Problem<a class="headerlink" href="#the-layout-problem" title="Link to this heading">#</a></h3>
+<p>Content felt cramped or too wide depending on screen size:</p>
+<ul class="simple">
+<li><p>No max-width constraint on main content</p></li>
+<li><p>Inconsistent padding</p></li>
+<li><p>Long lines hard to read on large screens</p></li>
+<li><p>Images not properly centered</p></li>
+</ul>
+</section>
+<section id="the-solution-typography-driven-layout">
+<h3>The Solution: Typography-Driven Layout<a class="headerlink" href="#the-solution-typography-driven-layout" title="Link to this heading">#</a></h3>
+<p><strong>Optimal Reading Width:</strong></p>
+<div class="highlight-css notranslate"><div class="highlight"><pre><span></span><span class="p">.</span><span class="nc">bd-article</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">max-width</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="kt">px</span><span class="p">;</span><span class="w">      </span><span class="c">/* ~75 characters per line */</span>
+<span class="w">    </span><span class="k">margin</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="kc">auto</span><span class="p">;</span><span class="w">         </span><span class="c">/* Centered */</span>
+<span class="w">    </span><span class="k">padding</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="kt">rem</span><span class="p">;</span><span class="w">          </span><span class="c">/* Breathing room */</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>Content Container:</strong></p>
+<div class="highlight-css notranslate"><div class="highlight"><pre><span></span><span class="p">.</span><span class="nc">bd-container__inner</span><span class="p">.</span><span class="nc">bd-page-width</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">max-width</span><span class="p">:</span><span class="w"> </span><span class="mi">1400</span><span class="kt">px</span><span class="p">;</span><span class="w">      </span><span class="c">/* Overall page width */</span>
+<span class="w">    </span><span class="k">margin</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="kc">auto</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>Section Spacing:</strong></p>
+<div class="highlight-css notranslate"><div class="highlight"><pre><span></span><span class="p">.</span><span class="nc">bd-article</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="nt">section</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">margin-bottom</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="kt">rem</span><span class="p">;</span><span class="w">    </span><span class="c">/* Clear section breaks */</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>Image Handling:</strong></p>
+<div class="highlight-css notranslate"><div class="highlight"><pre><span></span><span class="p">.</span><span class="nc">bd-article</span><span class="w"> </span><span class="nt">img</span><span class="o">,</span>
+<span class="p">.</span><span class="nc">bd-article</span><span class="w"> </span><span class="nt">figure</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">max-width</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="kt">%</span><span class="p">;</span>
+<span class="w">    </span><span class="k">height</span><span class="p">:</span><span class="w"> </span><span class="kc">auto</span><span class="p">;</span>
+<span class="w">    </span><span class="k">display</span><span class="p">:</span><span class="w"> </span><span class="kc">block</span><span class="p">;</span>
+<span class="w">    </span><span class="k">margin</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="kt">rem</span><span class="w"> </span><span class="kc">auto</span><span class="p">;</span><span class="w">      </span><span class="c">/* Centered with spacing */</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>List Improvements:</strong></p>
+<div class="highlight-css notranslate"><div class="highlight"><pre><span></span><span class="p">.</span><span class="nc">bd-article</span><span class="w"> </span><span class="nt">ul</span><span class="o">,</span>
+<span class="p">.</span><span class="nc">bd-article</span><span class="w"> </span><span class="nt">ol</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">margin</span><span class="p">:</span><span class="w"> </span><span class="mf">1.5</span><span class="kt">rem</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">    </span><span class="k">padding-left</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="kt">rem</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="p">.</span><span class="nc">bd-article</span><span class="w"> </span><span class="nt">li</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">margin-bottom</span><span class="p">:</span><span class="w"> </span><span class="mf">0.5</span><span class="kt">rem</span><span class="p">;</span><span class="w">  </span><span class="c">/* Breathing room */</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="typography-standards">
+<h3>Typography Standards<a class="headerlink" href="#typography-standards" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Line Length:</strong> 45-75 characters (optimal readability)</p></li>
+<li><p><strong>Line Height:</strong> 1.7 for body text (comfortable reading)</p></li>
+<li><p><strong>Heading Hierarchy:</strong> Clear size differentiation</p></li>
+<li><p><strong>Paragraph Spacing:</strong> 1rem for visual breaks</p></li>
+</ul>
+</section>
+<section id="id7">
+<h3>Visual Impact<a class="headerlink" href="#id7" title="Link to this heading">#</a></h3>
+<p>✅ Comfortable reading experience
+✅ Professional typography
+✅ Clear visual hierarchy
+✅ Proper white space usage
+✅ Responsive across all screens</p>
+</section>
+</section>
+<hr class="docutils" />
+<section id="design-system-current-state">
+<h2>Design System (Current State)<a class="headerlink" href="#design-system-current-state" title="Link to this heading">#</a></h2>
+<section id="color-palette">
+<h3>Color Palette<a class="headerlink" href="#color-palette" title="Link to this heading">#</a></h3>
+<p><strong>Primary Actions:</strong></p>
+<ul class="simple">
+<li><p>Green #4CAF50 (buttons, links, primary actions)</p></li>
+<li><p>Green Hover #45a049 (hover states)</p></li>
+<li><p>Green Light #e8f5e9 (backgrounds)</p></li>
+</ul>
+<p><strong>Secondary Highlights:</strong></p>
+<ul class="simple">
+<li><p>Purple #667eea (gradients start)</p></li>
+<li><p>Purple Dark #764ba2 (gradients end)</p></li>
+</ul>
+<p><strong>Text:</strong></p>
+<ul class="simple">
+<li><p>Navy #0D1B2A (headings, important text)</p></li>
+<li><p>Dark Gray #1a1a1a (body text light mode)</p></li>
+<li><p>Light Gray #e0e0e0 (body text dark mode)</p></li>
+</ul>
+<p><strong>Backgrounds:</strong></p>
+<ul class="simple">
+<li><p>White #FFFFFF (primary)</p></li>
+<li><p>Soft Gray #F3F4F6 (secondary)</p></li>
+<li><p>Dark #1a1a1a (dark mode primary)</p></li>
+<li><p>Dark Gray #242424 (dark mode secondary)</p></li>
+</ul>
+</section>
+<section id="typography-scale">
+<h3>Typography Scale<a class="headerlink" href="#typography-scale" title="Link to this heading">#</a></h3>
+<div class="highlight-css notranslate"><div class="highlight"><pre><span></span><span class="nt">h1</span><span class="o">:</span><span class="w"> </span><span class="nt">2</span><span class="p">.</span><span class="nc">5rem</span><span class="w"> </span><span class="o">(</span><span class="nt">40px</span><span class="o">)</span><span class="w">  </span><span class="nt">-</span><span class="w"> </span><span class="nt">Page</span><span class="w"> </span><span class="nt">titles</span>
+<span class="nt">h2</span><span class="o">:</span><span class="w"> </span><span class="nt">2rem</span><span class="w"> </span><span class="o">(</span><span class="nt">32px</span><span class="o">)</span><span class="w">    </span><span class="nt">-</span><span class="w"> </span><span class="nt">Section</span><span class="w"> </span><span class="nt">headings</span>
+<span class="nt">h3</span><span class="o">:</span><span class="w"> </span><span class="nt">1</span><span class="p">.</span><span class="nc">5rem</span><span class="w"> </span><span class="o">(</span><span class="nt">24px</span><span class="o">)</span><span class="w">  </span><span class="nt">-</span><span class="w"> </span><span class="nt">Subsection</span><span class="w"> </span><span class="nt">headings</span>
+<span class="nt">h4</span><span class="o">:</span><span class="w"> </span><span class="nt">1</span><span class="p">.</span><span class="nc">25rem</span><span class="w"> </span><span class="o">(</span><span class="nt">20px</span><span class="o">)</span><span class="w"> </span><span class="nt">-</span><span class="w"> </span><span class="nt">Minor</span><span class="w"> </span><span class="nt">headings</span>
+<span class="nt">body</span><span class="o">:</span><span class="w"> </span><span class="nt">1rem</span><span class="w"> </span><span class="o">(</span><span class="nt">16px</span><span class="o">)</span><span class="w">  </span><span class="nt">-</span><span class="w"> </span><span class="nt">Body</span><span class="w"> </span><span class="nt">text</span>
+<span class="nt">small</span><span class="o">:</span><span class="w"> </span><span class="nt">0</span><span class="p">.</span><span class="nc">875rem</span><span class="w">    </span><span class="nt">-</span><span class="w"> </span><span class="nt">Captions</span><span class="o">,</span><span class="w"> </span><span class="nt">metadata</span>
+</pre></div>
+</div>
+</section>
+<section id="spacing-scale">
+<h3>Spacing Scale<a class="headerlink" href="#spacing-scale" title="Link to this heading">#</a></h3>
+<div class="highlight-css notranslate"><div class="highlight"><pre><span></span><span class="nt">--spacing-xs</span><span class="o">:</span><span class="w"> </span><span class="nt">0</span><span class="p">.</span><span class="nc">25rem</span><span class="w">  </span><span class="o">(</span><span class="nt">4px</span><span class="o">)</span>
+<span class="nt">--spacing-sm</span><span class="o">:</span><span class="w"> </span><span class="nt">0</span><span class="p">.</span><span class="nc">5rem</span><span class="w">   </span><span class="o">(</span><span class="nt">8px</span><span class="o">)</span>
+<span class="nt">--spacing-md</span><span class="o">:</span><span class="w"> </span><span class="nt">1rem</span><span class="w">     </span><span class="o">(</span><span class="nt">16px</span><span class="o">)</span>
+<span class="nt">--spacing-lg</span><span class="o">:</span><span class="w"> </span><span class="nt">1</span><span class="p">.</span><span class="nc">5rem</span><span class="w">   </span><span class="o">(</span><span class="nt">24px</span><span class="o">)</span>
+<span class="nt">--spacing-xl</span><span class="o">:</span><span class="w"> </span><span class="nt">2rem</span><span class="w">     </span><span class="o">(</span><span class="nt">32px</span><span class="o">)</span>
+<span class="nt">--spacing-2xl</span><span class="o">:</span><span class="w"> </span><span class="nt">3rem</span><span class="w">    </span><span class="o">(</span><span class="nt">48px</span><span class="o">)</span>
+</pre></div>
+</div>
+</section>
+<section id="border-radius-scale">
+<h3>Border Radius Scale<a class="headerlink" href="#border-radius-scale" title="Link to this heading">#</a></h3>
+<div class="highlight-css notranslate"><div class="highlight"><pre><span></span><span class="nt">--radius-sm</span><span class="o">:</span><span class="w"> </span><span class="nt">4px</span><span class="w">    </span><span class="nt">-</span><span class="w"> </span><span class="nt">Small</span><span class="w"> </span><span class="nt">elements</span>
+<span class="nt">--radius-md</span><span class="o">:</span><span class="w"> </span><span class="nt">8px</span><span class="w">    </span><span class="nt">-</span><span class="w"> </span><span class="nt">Cards</span><span class="o">,</span><span class="w"> </span><span class="nt">buttons</span>
+<span class="nt">--radius-lg</span><span class="o">:</span><span class="w"> </span><span class="nt">12px</span><span class="w">   </span><span class="nt">-</span><span class="w"> </span><span class="nt">Large</span><span class="w"> </span><span class="nt">cards</span>
+<span class="nt">--radius-xl</span><span class="o">:</span><span class="w"> </span><span class="nt">16px</span><span class="w">   </span><span class="nt">-</span><span class="w"> </span><span class="nt">Modals</span>
+<span class="nt">--radius-2xl</span><span class="o">:</span><span class="w"> </span><span class="nt">20px</span><span class="w">  </span><span class="nt">-</span><span class="w"> </span><span class="nt">Hero</span><span class="w"> </span><span class="nt">sections</span>
+</pre></div>
+</div>
+</section>
+<section id="shadow-system">
+<h3>Shadow System<a class="headerlink" href="#shadow-system" title="Link to this heading">#</a></h3>
+<div class="highlight-css notranslate"><div class="highlight"><pre><span></span><span class="nt">--shadow-sm</span><span class="o">:</span><span class="w"> </span><span class="nt">0</span><span class="w"> </span><span class="nt">2px</span><span class="w"> </span><span class="nt">4px</span><span class="w"> </span><span class="nt">rgba</span><span class="o">(</span><span class="nt">0</span><span class="o">,</span><span class="nt">0</span><span class="o">,</span><span class="nt">0</span><span class="o">,</span><span class="nt">0</span><span class="p">.</span><span class="nc">1</span><span class="o">)</span><span class="w">    </span><span class="nt">-</span><span class="w"> </span><span class="nt">Subtle</span><span class="w"> </span><span class="nt">elevation</span>
+<span class="nt">--shadow-md</span><span class="o">:</span><span class="w"> </span><span class="nt">0</span><span class="w"> </span><span class="nt">4px</span><span class="w"> </span><span class="nt">12px</span><span class="w"> </span><span class="nt">rgba</span><span class="o">(</span><span class="nt">0</span><span class="o">,</span><span class="nt">0</span><span class="o">,</span><span class="nt">0</span><span class="o">,</span><span class="nt">0</span><span class="p">.</span><span class="nc">15</span><span class="o">)</span><span class="w">  </span><span class="nt">-</span><span class="w"> </span><span class="nt">Cards</span>
+<span class="nt">--shadow-lg</span><span class="o">:</span><span class="w"> </span><span class="nt">0</span><span class="w"> </span><span class="nt">8px</span><span class="w"> </span><span class="nt">20px</span><span class="w"> </span><span class="nt">rgba</span><span class="o">(</span><span class="nt">0</span><span class="o">,</span><span class="nt">0</span><span class="o">,</span><span class="nt">0</span><span class="o">,</span><span class="nt">0</span><span class="p">.</span><span class="nc">2</span><span class="o">)</span><span class="w">   </span><span class="nt">-</span><span class="w"> </span><span class="nt">Modals</span><span class="o">,</span><span class="w"> </span><span class="nt">popovers</span>
+</pre></div>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="responsive-breakpoints">
+<h2>Responsive Breakpoints<a class="headerlink" href="#responsive-breakpoints" title="Link to this heading">#</a></h2>
+<section id="mobile-first-approach">
+<h3>Mobile First Approach<a class="headerlink" href="#mobile-first-approach" title="Link to this heading">#</a></h3>
+<div class="highlight-css notranslate"><div class="highlight"><pre><span></span><span class="c">/* Base Styles (Mobile) */</span>
+<span class="c">/* 320px - 767px */</span>
+
+<span class="c">/* Tablet */</span>
+<span class="p">@</span><span class="k">media</span><span class="w"> </span><span class="o">(</span><span class="nt">min-width</span><span class="o">:</span><span class="w"> </span><span class="nt">768px</span><span class="o">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">}</span>
+
+<span class="c">/* Desktop */</span>
+<span class="p">@</span><span class="k">media</span><span class="w"> </span><span class="o">(</span><span class="nt">min-width</span><span class="o">:</span><span class="w"> </span><span class="nt">1024px</span><span class="o">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">}</span>
+
+<span class="c">/* Large Desktop */</span>
+<span class="p">@</span><span class="k">media</span><span class="w"> </span><span class="o">(</span><span class="nt">min-width</span><span class="o">:</span><span class="w"> </span><span class="nt">1440px</span><span class="o">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="key-responsive-patterns">
+<h3>Key Responsive Patterns<a class="headerlink" href="#key-responsive-patterns" title="Link to this heading">#</a></h3>
+<p><strong>Grid Layouts:</strong></p>
+<div class="highlight-css notranslate"><div class="highlight"><pre><span></span><span class="c">/* Mobile: 1 column */</span>
+<span class="nt">grid-template-columns</span><span class="o">:</span><span class="w"> </span><span class="nt">1fr</span><span class="o">;</span>
+
+<span class="c">/* Tablet: 2 columns */</span>
+<span class="p">@</span><span class="k">media</span><span class="w"> </span><span class="o">(</span><span class="nt">min-width</span><span class="o">:</span><span class="w"> </span><span class="nt">768px</span><span class="o">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">grid-template-columns</span><span class="o">:</span><span class="w"> </span><span class="nt">repeat</span><span class="o">(</span><span class="nt">2</span><span class="o">,</span><span class="w"> </span><span class="nt">1fr</span><span class="o">);</span>
+<span class="p">}</span>
+
+<span class="c">/* Desktop: 3 columns */</span>
+<span class="p">@</span><span class="k">media</span><span class="w"> </span><span class="o">(</span><span class="nt">min-width</span><span class="o">:</span><span class="w"> </span><span class="nt">1024px</span><span class="o">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">grid-template-columns</span><span class="o">:</span><span class="w"> </span><span class="nt">repeat</span><span class="o">(</span><span class="nt">3</span><span class="o">,</span><span class="w"> </span><span class="nt">1fr</span><span class="o">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>Typography Scaling:</strong></p>
+<div class="highlight-css notranslate"><div class="highlight"><pre><span></span><span class="c">/* Mobile */</span>
+<span class="nt">h1</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">font-size</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="kt">rem</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+
+<span class="c">/* Tablet */</span>
+<span class="p">@</span><span class="k">media</span><span class="w"> </span><span class="o">(</span><span class="nt">min-width</span><span class="o">:</span><span class="w"> </span><span class="nt">768px</span><span class="o">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">h1</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">font-size</span><span class="p">:</span><span class="w"> </span><span class="mf">2.25</span><span class="kt">rem</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c">/* Desktop */</span>
+<span class="p">@</span><span class="k">media</span><span class="w"> </span><span class="o">(</span><span class="nt">min-width</span><span class="o">:</span><span class="w"> </span><span class="nt">1024px</span><span class="o">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">h1</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">font-size</span><span class="p">:</span><span class="w"> </span><span class="mf">2.5</span><span class="kt">rem</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="component-library">
+<h2>Component Library<a class="headerlink" href="#component-library" title="Link to this heading">#</a></h2>
+<section id="buttons">
+<h3>Buttons<a class="headerlink" href="#buttons" title="Link to this heading">#</a></h3>
+<p><strong>Primary Button:</strong></p>
+<div class="highlight-tsx notranslate"><div class="highlight"><pre><span></span>&lt;button className=&quot;px-8 py-4 bg-primary-color text-white rounded-lg
+                   font-semibold shadow-lg hover:bg-primary-hover
+                   transition-all duration-300 hover:scale-105&quot;&gt;
+  Start Learning
+&lt;/button&gt;
+</pre></div>
+</div>
+<p><strong>Secondary Button:</strong></p>
+<div class="highlight-tsx notranslate"><div class="highlight"><pre><span></span>&lt;button className=&quot;px-8 py-4 bg-transparent border-2 border-white
+                   text-white rounded-lg font-semibold
+                   hover:bg-white hover:text-navy transition-all duration-300&quot;&gt;
+  Learn More
+&lt;/button&gt;
+</pre></div>
+</div>
+</section>
+<section id="cards">
+<h3>Cards<a class="headerlink" href="#cards" title="Link to this heading">#</a></h3>
+<p><strong>Standard Card:</strong></p>
+<div class="highlight-tsx notranslate"><div class="highlight"><pre><span></span>&lt;div className=&quot;bg-white rounded-xl p-8 shadow-md hover:shadow-xl
+                transition-shadow duration-300 border border-gray-100
+                flex flex-col h-full&quot;&gt;
+  {/* Card content */}
+&lt;/div&gt;
+</pre></div>
+</div>
+<p><strong>Featured Card:</strong></p>
+<div class="highlight-tsx notranslate"><div class="highlight"><pre><span></span>&lt;div className=&quot;bg-gradient-to-br from-navy to-[#1a2f4a]
+                rounded-xl p-8 text-white shadow-xl&quot;&gt;
+  {/* Featured content */}
+&lt;/div&gt;
+</pre></div>
+</div>
+</section>
+<section id="interactive-elements">
+<h3>Interactive Elements<a class="headerlink" href="#interactive-elements" title="Link to this heading">#</a></h3>
+<p><strong>Choice Card:</strong></p>
+<div class="highlight-tsx notranslate"><div class="highlight"><pre><span></span>&lt;button className=&quot;bg-soft-gray rounded-xl p-6 border-2
+                   border-transparent hover:border-primary-color
+                   hover:shadow-lg transition-all duration-300
+                   flex flex-col items-center gap-4&quot;&gt;
+  &lt;span className=&quot;text-4xl&quot;&gt;{icon}&lt;/span&gt;
+  &lt;h3 className=&quot;font-bold&quot;&gt;{title}&lt;/h3&gt;
+  &lt;p className=&quot;text-sm&quot;&gt;{description}&lt;/p&gt;
+&lt;/button&gt;
+</pre></div>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="design-metrics">
+<h2>Design Metrics<a class="headerlink" href="#design-metrics" title="Link to this heading">#</a></h2>
+<section id="before-vs-after">
+<h3>Before vs After<a class="headerlink" href="#before-vs-after" title="Link to this heading">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Metric</p></th>
+<th class="head"><p>v1.0</p></th>
+<th class="head"><p>v3.0</p></th>
+<th class="head"><p>Improvement</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Load Time</strong></p></td>
+<td><p>~1.2s</p></td>
+<td><p>~1.1s</p></td>
+<td><p>✅ 8% faster</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Custom CSS</strong></p></td>
+<td><p>0 lines</p></td>
+<td><p>1,247 lines</p></td>
+<td><p>✅ Full customization</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Color Palette</strong></p></td>
+<td><p>Default</p></td>
+<td><p>Unified 5-color</p></td>
+<td><p>✅ Brand identity</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Dark Mode</strong></p></td>
+<td><p>❌</p></td>
+<td><p>✅ Auto-detect</p></td>
+<td><p>✅ Accessibility</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Responsive</strong></p></td>
+<td><p>✅ Basic</p></td>
+<td><p>✅ Optimized</p></td>
+<td><p>✅ Better mobile</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Alignment</strong></p></td>
+<td><p>⚠️ Inconsistent</p></td>
+<td><p>✅ Perfect</p></td>
+<td><p>✅ Professional</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Typography</strong></p></td>
+<td><p>Default</p></td>
+<td><p>Optimized</p></td>
+<td><p>✅ Readability</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>User Onboarding</strong></p></td>
+<td><p>❌</p></td>
+<td><p>✅ Interactive</p></td>
+<td><p>✅ Guidance</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="design-principles-applied">
+<h2>Design Principles Applied<a class="headerlink" href="#design-principles-applied" title="Link to this heading">#</a></h2>
+<section id="id8">
+<h3>1. Visual Hierarchy<a class="headerlink" href="#id8" title="Link to this heading">#</a></h3>
+<p>✅ Clear heading structure (h1 → h2 → h3)
+✅ Size and weight communicate importance
+✅ Consistent spacing creates rhythm
+✅ Color draws attention to actions</p>
+</section>
+<section id="consistency">
+<h3>2. Consistency<a class="headerlink" href="#consistency" title="Link to this heading">#</a></h3>
+<p>✅ Unified color palette across both sites
+✅ Consistent spacing and sizing
+✅ Predictable interaction patterns
+✅ Reusable component patterns</p>
+</section>
+<section id="accessibility">
+<h3>3. Accessibility<a class="headerlink" href="#accessibility" title="Link to this heading">#</a></h3>
+<p>✅ Sufficient color contrast (WCAG AA)
+✅ Dark mode support
+✅ Semantic HTML structure
+✅ Keyboard navigation support
+✅ Mobile responsive</p>
+</section>
+<section id="usability">
+<h3>4. Usability<a class="headerlink" href="#usability" title="Link to this heading">#</a></h3>
+<p>✅ Clear CTAs with hover states
+✅ Logical information architecture
+✅ Intuitive navigation
+✅ Fast load times
+✅ Minimal cognitive load</p>
+</section>
+<section id="delight">
+<h3>5. Delight<a class="headerlink" href="#delight" title="Link to this heading">#</a></h3>
+<p>✅ Smooth animations and transitions
+✅ Satisfying hover effects
+✅ Progress indicators
+✅ Achievement feedback
+✅ Polished micro-interactions</p>
+</section>
+</section>
+<hr class="docutils" />
+<section id="lessons-learned">
+<h2>Lessons Learned<a class="headerlink" href="#lessons-learned" title="Link to this heading">#</a></h2>
+<section id="what-worked-well">
+<h3>What Worked Well<a class="headerlink" href="#what-worked-well" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p><strong>Iterative approach</strong> - Small, focused improvements</p></li>
+<li><p><strong>User feedback</strong> - Identifying real pain points</p></li>
+<li><p><strong>Design systems</strong> - CSS variables for consistency</p></li>
+<li><p><strong>Flexbox patterns</strong> - Reliable layout solutions</p></li>
+<li><p><strong>Auto dark mode</strong> - No JavaScript required</p></li>
+</ol>
+</section>
+<section id="what-we-d-do-differently">
+<h3>What We’d Do Differently<a class="headerlink" href="#what-we-d-do-differently" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p><strong>Earlier brand identity</strong> - Should have unified colors from start</p></li>
+<li><p><strong>Mobile-first design</strong> - Some responsive issues required fixing</p></li>
+<li><p><strong>Accessibility testing</strong> - Should have tested dark mode earlier</p></li>
+<li><p><strong>Component library</strong> - Would benefit from earlier standardization</p></li>
+</ol>
+</section>
+<section id="key-insights">
+<h3>Key Insights<a class="headerlink" href="#key-insights" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>B2B vs B2C design</strong> - Different needs (landing page vs app)</p></li>
+<li><p><strong>Color psychology matters</strong> - Green &gt; Blue for education</p></li>
+<li><p><strong>Layout perfection</strong> - Alignment issues are very noticeable</p></li>
+<li><p><strong>Dark mode is complex</strong> - Many edge cases to consider</p></li>
+<li><p><strong>Typography is foundation</strong> - Good text = good design</p></li>
+</ul>
+</section>
+</section>
+<hr class="docutils" />
+<section id="future-design-directions">
+<h2>Future Design Directions<a class="headerlink" href="#future-design-directions" title="Link to this heading">#</a></h2>
+<section id="potential-enhancements">
+<h3>Potential Enhancements<a class="headerlink" href="#potential-enhancements" title="Link to this heading">#</a></h3>
+<ul class="contains-task-list simple">
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> Custom illustrations for hero and sections</p></li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> Animated icons and micro-interactions</p></li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> Video background in hero section</p></li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> Interactive course previews</p></li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> Gamification elements (badges, achievements)</p></li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> Personalized dashboard</p></li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> Theme customization options</p></li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> Print-optimized styles</p></li>
+</ul>
+</section>
+<section id="research-areas">
+<h3>Research Areas<a class="headerlink" href="#research-areas" title="Link to this heading">#</a></h3>
+<ul class="contains-task-list simple">
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> A/B test color variations</p></li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> User testing for navigation</p></li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> Heat map analysis</p></li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> Conversion rate optimization</p></li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> Accessibility audit (WCAG AAA)</p></li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> Performance optimization</p></li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> Animation performance testing</p></li>
+</ul>
+<hr class="docutils" />
+<p><strong>Maintained by:</strong> Mykolas Perevicius
+<strong>Last Updated:</strong> November 13, 2025
+<strong>Current Design Version:</strong> 3.0
+<strong>Status:</strong> Production Ready ✅</p>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#design-philosophy">Design Philosophy</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#core-principles">Core Principles</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#iteration-1-original-jupyter-book-functional-foundation">Iteration 1: Original Jupyter Book (Functional Foundation)</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#design-characteristics">Design Characteristics</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#strengths">Strengths</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#weaknesses">Weaknesses</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#user-feedback">User Feedback</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#iteration-2-custom-styling-onboarding-personalization">Iteration 2: Custom Styling + Onboarding (Personalization)</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#design-changes">Design Changes</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#key-features">Key Features</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#visual-improvements">Visual Improvements</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Strengths</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Weaknesses</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#iteration-3-landing-page-integration-professional-presence">Iteration 3: Landing Page Integration (Professional Presence)</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-problem">The Problem</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-solution-codebridge-labs-landing-page">The Solution: CodeBridge Labs Landing Page</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#visual-design">Visual Design</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#design-system">Design System</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#section-design-patterns">Section Design Patterns</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#visual-hierarchy">Visual Hierarchy</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Strengths</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Weaknesses</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#iteration-4-color-unification-brand-consistency">Iteration 4: Color Unification (Brand Consistency)</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-color-problem">The Color Problem</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-solution-green-purple">The Solution: Green + Purple</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#color-psychology">Color Psychology</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#application">Application</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#visual-impact">Visual Impact</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#iteration-5-layout-refinement-perfect-alignment">Iteration 5: Layout Refinement (Perfect Alignment)</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-alignment-problem">The Alignment Problem</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-solution-flexbox-patterns">The Solution: Flexbox Patterns</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#before-after">Before &amp; After</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gap-standardization">Gap Standardization</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">Visual Impact</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#iteration-6-dark-mode-implementation-accessibility">Iteration 6: Dark Mode Implementation (Accessibility)</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-dark-mode-problem">The Dark Mode Problem</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-solution-automatic-detection">The Solution: Automatic Detection</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dark-mode-palette">Dark Mode Palette</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#component-coverage">Component Coverage</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#landing-page-decision">Landing Page Decision</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">Visual Impact</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#iteration-7-layout-optimization-content-excellence">Iteration 7: Layout Optimization (Content Excellence)</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-layout-problem">The Layout Problem</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-solution-typography-driven-layout">The Solution: Typography-Driven Layout</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#typography-standards">Typography Standards</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">Visual Impact</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#design-system-current-state">Design System (Current State)</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#color-palette">Color Palette</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#typography-scale">Typography Scale</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spacing-scale">Spacing Scale</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#border-radius-scale">Border Radius Scale</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#shadow-system">Shadow System</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#responsive-breakpoints">Responsive Breakpoints</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mobile-first-approach">Mobile First Approach</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#key-responsive-patterns">Key Responsive Patterns</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#component-library">Component Library</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#buttons">Buttons</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cards">Cards</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interactive-elements">Interactive Elements</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#design-metrics">Design Metrics</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#before-vs-after">Before vs After</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#design-principles-applied">Design Principles Applied</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">1. Visual Hierarchy</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#consistency">2. Consistency</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#accessibility">3. Accessibility</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#usability">4. Usability</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#delight">5. Delight</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lessons-learned">Lessons Learned</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-worked-well">What Worked Well</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-we-d-do-differently">What We’d Do Differently</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#key-insights">Key Insights</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#future-design-directions">Future Design Directions</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#potential-enhancements">Potential Enhancements</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#research-areas">Research Areas</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Mykolas Perevicius
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

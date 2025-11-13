@@ -1,0 +1,1816 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Hard Lesson 02: Generators and Iterators - Memory-Efficient Data Processing &#8212; Education Playground</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=0c185eed" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=c73c0f3e"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'hard/02_generators_and_iterators';</script>
+    <script src="../_static/js/onboarding.js?v=557b7536"></script>
+    <link rel="canonical" href="https://mykolas-perevicius.github.io/Education_Playground/hard/02_generators_and_iterators.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Hard Lesson 03: Algorithms and Complexity Analysis" href="03_algorithms_and_complexity.html" />
+    <link rel="prev" title="Lesson 1: Advanced Functions and Decorators" href="01_advanced_functions_and_decorators.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../README.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Education Playground</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../00_calibration_test.html">🎯 Calibration Test - Find Your Level</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../beginner_scripts/README.html">🌱 Beginner Scripts (10 Python Files)</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../easy/README_EASY.html">📗 Easy Level - Beginner</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../easy/01_introduction_to_python.html">1. Introduction to Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../easy/02_variables_and_data_types.html">2. Variables and Data Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../easy/03_basic_operations_and_conditionals.html">3. Operations and Conditionals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../easy/04_intro_to_ai_and_ml.html">4. Intro to AI and ML</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../easy/05_computing_fundamentals.html">5. Computing Fundamentals</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../medium/README_MEDIUM.html">📘 Medium Level - Intermediate</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../medium/01_functions_and_modules.html">1. Functions and Modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../medium/02_data_structures.html">2. Data Structures</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../medium/03_classes_and_oop.html">3. Classes and OOP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../medium/04_machine_learning_basics.html">4. Machine Learning Basics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../medium/05_data_analysis_with_pandas.html">5. Data Analysis with Pandas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../medium/06_algorithms_and_problem_solving.html">6. Algorithms and Problem Solving</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="README_HARD.html">📕 Hard Level - Advanced</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="01_advanced_functions_and_decorators.html">1. Advanced Functions &amp; Decorators</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">2. Generators and Iterators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03_algorithms_and_complexity.html">3. Algorithms and Complexity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04_deep_learning_and_neural_networks.html">4. Deep Learning &amp; Neural Networks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05_advanced_ml_and_nlp.html">5. Advanced ML and NLP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="06_computer_systems_and_theory.html">6. Computer Systems and Theory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="07_project_ideas.html">7. Project Ideas &amp; Implementation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="08_classic_problems.html">Lesson 8: Classic Problems Collection</a></li>
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="09_ctf_challenges.html">Lesson 9: Capture The Flag (CTF) - Hacker Training</a></li>
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="10_performance_computing.html">10. Performance Computing ⚡ NEW!</a></li>
+<li class="toctree-l2"><a class="reference internal" href="11_cuda_and_parallel_computing.html">11. CUDA &amp; GPU Computing 🎮 NEW!</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../tools/README.html">🛠️ Developer Tools Track</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../tools/01_shell_basics.html">1. Shell and Command Line</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools/02_command_line_tools.html">2. Command Line Tools</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools/03_git_essentials.html">3. Git Essentials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools/04_text_editors.html">4. Text Editors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools/05_build_systems_cicd.html">5. Build Systems and CI/CD</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools/06_debugging_profiling.html">6. Debugging and Profiling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools/07_security_essentials.html">7. Security Essentials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools/08_package_management.html">8. Package Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools/09_ssh_remote_systems.html">9. SSH and Remote Systems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools/10_docker_containers.html">10. Docker and Containers</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../solutions/README_SOLUTIONS.html">📝 Solutions</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../solutions/easy_solutions.html">Easy Level - Complete Solutions</a></li>
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../solutions/medium_solutions.html">Medium Level - Complete Solutions</a></li>
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../solutions/hard_solutions.html">Hard Level - Complete Solutions</a></li>
+
+
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../solutions/tools_solutions.html">Developer Tools - Complete Solutions</a></li>
+
+
+
+
+
+
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../RESOURCES.html">📚 Learning Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../PYTHON_CHEATSHEET.html">⚡ Python Cheat Sheet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ML_AI_CHEATSHEET.html">🤖 ML/AI Cheat Sheet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../SETUP.html">🔧 Setup Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../RELEASE_NOTES_v2.0.0.html">🎉 Release Notes v2.0.0</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none"></div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Hard Lesson 02: Generators and Iterators - Memory-Efficient Data Processing</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-objectives">Learning Objectives</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prerequisites">Prerequisites</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-generators-and-iterators-matter">Why Generators and Iterators Matter</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-1-the-iterator-protocol-building-blocks-of-iteration">Part 1: The Iterator Protocol - Building Blocks of Iteration</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-an-iterator">What is an Iterator?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-a-custom-iterator">Creating a Custom Iterator</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#iterable-vs-iterator">Iterable vs Iterator</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-2-generator-functions-elegant-iterators">Part 2: Generator Functions - Elegant Iterators</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#why-generators">Why Generators?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#how-generators-work-execution-flow">How Generators Work: Execution Flow</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#classic-example-fibonacci-sequence">Classic Example: Fibonacci Sequence</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-3-memory-efficiency-the-power-of-lazy-evaluation">Part 3: Memory Efficiency - The Power of Lazy Evaluation</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#list-vs-generator-memory-comparison">List vs Generator: Memory Comparison</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#generator-expressions">Generator Expressions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#real-world-example-processing-large-files">Real-World Example: Processing Large Files</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-4-generator-pipelines-composing-data-transformations">Part 4: Generator Pipelines - Composing Data Transformations</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#building-data-pipelines">Building Data Pipelines</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pipeline-pattern-etl-extract-transform-load">Pipeline Pattern: ETL (Extract, Transform, Load)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-5-infinite-generators-unbounded-sequences">Part 5: Infinite Generators - Unbounded Sequences</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-infinite-sequences">Creating Infinite Sequences</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#practical-use-cycle-and-repeat-patterns">Practical Use: Cycle and Repeat Patterns</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-6-advanced-generator-features">Part 6: Advanced Generator Features</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#generator-methods-send-throw-close">Generator Methods: send(), throw(), close()</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-throw-to-send-exceptions">Using throw() to Send Exceptions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-close-to-stop-a-generator">Using close() to Stop a Generator</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-7-yield-from-delegating-to-subgenerators">Part 7: yield from - Delegating to Subgenerators</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#generator-delegation">Generator Delegation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#flattening-nested-structures">Flattening Nested Structures</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-8-real-world-applications">Part 8: Real-World Applications</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-1-batch-processing-for-machine-learning">Example 1: Batch Processing for Machine Learning</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-2-api-pagination-handler">Example 2: API Pagination Handler</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-3-moving-average-calculator">Example 3: Moving Average Calculator</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-9-performance-comparison">Part 9: Performance Comparison</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#benchmark-list-vs-generator">Benchmark: List vs Generator</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">Exercises</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-1-custom-range-iterator">Exercise 1: Custom Range Iterator</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-2-generator-pipeline-for-data-processing">Exercise 2: Generator Pipeline for Data Processing</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-3-file-processing-with-generators">Exercise 3: File Processing with Generators</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-4-coroutine-based-logger">Exercise 4: Coroutine-Based Logger</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pro-tips">Pro Tips</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#best-practices">🎯 Best Practices</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#common-mistakes">⚠️ Common Mistakes</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#when-to-use-what">🔍 When to Use What</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#key-takeaways">Key Takeaways</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#next-steps">Next Steps</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="hard-lesson-02-generators-and-iterators-memory-efficient-data-processing">
+<h1>Hard Lesson 02: Generators and Iterators - Memory-Efficient Data Processing<a class="headerlink" href="#hard-lesson-02-generators-and-iterators-memory-efficient-data-processing" title="Link to this heading">#</a></h1>
+<p>Master the art of memory-efficient data processing using generators, iterators, and coroutines.</p>
+<section id="learning-objectives">
+<h2>Learning Objectives<a class="headerlink" href="#learning-objectives" title="Link to this heading">#</a></h2>
+<p>By the end of this lesson, you will be able to:</p>
+<ul class="simple">
+<li><p>✅ Understand the iterator protocol and implement custom iterators</p></li>
+<li><p>✅ Create generator functions using <code class="docutils literal notranslate"><span class="pre">yield</span></code> for lazy evaluation</p></li>
+<li><p>✅ Build memory-efficient data pipelines with generator expressions</p></li>
+<li><p>✅ Use advanced generator patterns: <code class="docutils literal notranslate"><span class="pre">yield</span> <span class="pre">from</span></code>, <code class="docutils literal notranslate"><span class="pre">send()</span></code>, <code class="docutils literal notranslate"><span class="pre">throw()</span></code>, <code class="docutils literal notranslate"><span class="pre">close()</span></code></p></li>
+<li><p>✅ Implement coroutines for cooperative multitasking</p></li>
+<li><p>✅ Create infinite sequences and bounded iterators</p></li>
+<li><p>✅ Apply generators to real-world problems (file processing, data streaming)</p></li>
+<li><p>✅ Analyze memory and performance tradeoffs</p></li>
+</ul>
+</section>
+<section id="prerequisites">
+<h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Strong understanding of Python functions and scope</p></li>
+<li><p>Familiarity with decorators and closures</p></li>
+<li><p>Knowledge of list comprehensions</p></li>
+<li><p>Understanding of memory management concepts</p></li>
+</ul>
+</section>
+<section id="why-generators-and-iterators-matter">
+<h2>Why Generators and Iterators Matter<a class="headerlink" href="#why-generators-and-iterators-matter" title="Link to this heading">#</a></h2>
+<p><strong>Real-World Applications</strong>:</p>
+<ul class="simple">
+<li><p><strong>Big Data Processing</strong>: Stream terabytes of data without loading into memory</p></li>
+<li><p><strong>Web Scraping</strong>: Process paginated results efficiently</p></li>
+<li><p><strong>Log Analysis</strong>: Parse multi-gigabyte log files line by line</p></li>
+<li><p><strong>Machine Learning</strong>: Generate training batches on-the-fly</p></li>
+<li><p><strong>ETL Pipelines</strong>: Transform data streams in real-time</p></li>
+<li><p><strong>API Rate Limiting</strong>: Control request timing with generator-based delays</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="part-1-the-iterator-protocol-building-blocks-of-iteration">
+<h2>Part 1: The Iterator Protocol - Building Blocks of Iteration<a class="headerlink" href="#part-1-the-iterator-protocol-building-blocks-of-iteration" title="Link to this heading">#</a></h2>
+<section id="what-is-an-iterator">
+<h3>What is an Iterator?<a class="headerlink" href="#what-is-an-iterator" title="Link to this heading">#</a></h3>
+<p>An <strong>iterator</strong> is an object that implements two methods:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">__iter__()</span></code>: Returns the iterator object itself</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">__next__()</span></code>: Returns the next value or raises <code class="docutils literal notranslate"><span class="pre">StopIteration</span></code></p></li>
+</ul>
+<p>This protocol enables the <code class="docutils literal notranslate"><span class="pre">for</span></code> loop and other iteration contexts.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Understanding how iteration works under the hood</span>
+<span class="n">numbers</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
+
+<span class="c1"># When you use &#39;for&#39;, Python calls iter() to get an iterator</span>
+<span class="n">iterator</span> <span class="o">=</span> <span class="nb">iter</span><span class="p">(</span><span class="n">numbers</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Iterator object: </span><span class="si">{</span><span class="n">iterator</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Type: </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">iterator</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Then repeatedly calls next() until StopIteration</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Manual iteration:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">next</span><span class="p">(</span><span class="n">iterator</span><span class="p">))</span>  <span class="c1"># 1</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">next</span><span class="p">(</span><span class="n">iterator</span><span class="p">))</span>  <span class="c1"># 2</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">next</span><span class="p">(</span><span class="n">iterator</span><span class="p">))</span>  <span class="c1"># 3</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">next</span><span class="p">(</span><span class="n">iterator</span><span class="p">))</span>  <span class="c1"># 4</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">next</span><span class="p">(</span><span class="n">iterator</span><span class="p">))</span>  <span class="c1"># 5</span>
+<span class="c1"># print(next(iterator))  # Would raise StopIteration</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="creating-a-custom-iterator">
+<h3>Creating a Custom Iterator<a class="headerlink" href="#creating-a-custom-iterator" title="Link to this heading">#</a></h3>
+<p>Let’s build a custom iterator from scratch:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Countdown</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Custom iterator that counts down from a number.</span>
+<span class="sd">    </span>
+<span class="sd">    This demonstrates the iterator protocol:</span>
+<span class="sd">    - __iter__() returns self (the iterator object)</span>
+<span class="sd">    - __next__() returns next value or raises StopIteration</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">start</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">current</span> <span class="o">=</span> <span class="n">start</span>
+    
+    <span class="k">def</span> <span class="fm">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return the iterator object (self).&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span>
+    
+    <span class="k">def</span> <span class="fm">__next__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return the next value or raise StopIteration.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">current</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">StopIteration</span>
+        
+        <span class="n">value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">current</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">current</span> <span class="o">-=</span> <span class="mi">1</span>
+        <span class="k">return</span> <span class="n">value</span>
+
+<span class="c1"># Using the custom iterator</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Countdown from 5:&quot;</span><span class="p">)</span>
+<span class="n">counter</span> <span class="o">=</span> <span class="n">Countdown</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">num</span> <span class="ow">in</span> <span class="n">counter</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">num</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot; &quot;</span><span class="p">)</span>
+
+<span class="c1"># Can&#39;t iterate again (iterator is exhausted)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n\n</span><span class="s2">Trying to iterate again:&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">num</span> <span class="ow">in</span> <span class="n">counter</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">num</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot; &quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;(Nothing printed - iterator exhausted)&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="iterable-vs-iterator">
+<h3>Iterable vs Iterator<a class="headerlink" href="#iterable-vs-iterator" title="Link to this heading">#</a></h3>
+<p><strong>Important distinction</strong>:</p>
+<ul class="simple">
+<li><p><strong>Iterable</strong>: Object that can return an iterator (has <code class="docutils literal notranslate"><span class="pre">__iter__()</span></code>)</p></li>
+<li><p><strong>Iterator</strong>: Object that produces values (has <code class="docutils literal notranslate"><span class="pre">__iter__()</span></code> and <code class="docutils literal notranslate"><span class="pre">__next__()</span></code>)</p></li>
+</ul>
+<p>An iterable can be iterated multiple times, an iterator is single-use.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">CountdownIterable</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    An ITERABLE (not iterator) that creates new iterators.</span>
+<span class="sd">    This allows multiple iterations.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">start</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">start</span> <span class="o">=</span> <span class="n">start</span>
+    
+    <span class="k">def</span> <span class="fm">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return a NEW iterator each time.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">CountdownIterator</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">start</span><span class="p">)</span>
+
+<span class="k">class</span> <span class="nc">CountdownIterator</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;The actual iterator.&quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">start</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">current</span> <span class="o">=</span> <span class="n">start</span>
+    
+    <span class="k">def</span> <span class="fm">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span>
+    
+    <span class="k">def</span> <span class="fm">__next__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">current</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">StopIteration</span>
+        <span class="n">value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">current</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">current</span> <span class="o">-=</span> <span class="mi">1</span>
+        <span class="k">return</span> <span class="n">value</span>
+
+<span class="c1"># Now we can iterate multiple times</span>
+<span class="n">countdown</span> <span class="o">=</span> <span class="n">CountdownIterable</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;First iteration:&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">num</span> <span class="ow">in</span> <span class="n">countdown</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">num</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot; &quot;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n\n</span><span class="s2">Second iteration:&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">num</span> <span class="ow">in</span> <span class="n">countdown</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">num</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot; &quot;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n\n</span><span class="s2">Works because each &#39;for&#39; gets a fresh iterator!&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="part-2-generator-functions-elegant-iterators">
+<h2>Part 2: Generator Functions - Elegant Iterators<a class="headerlink" href="#part-2-generator-functions-elegant-iterators" title="Link to this heading">#</a></h2>
+<section id="why-generators">
+<h3>Why Generators?<a class="headerlink" href="#why-generators" title="Link to this heading">#</a></h3>
+<p>Writing custom iterator classes is verbose. <strong>Generators</strong> provide a simpler syntax using the <code class="docutils literal notranslate"><span class="pre">yield</span></code> keyword.</p>
+<p><strong>Key Benefits</strong>:</p>
+<ul class="simple">
+<li><p><strong>Simple Syntax</strong>: No need for <code class="docutils literal notranslate"><span class="pre">__iter__()</span></code> and <code class="docutils literal notranslate"><span class="pre">__next__()</span></code></p></li>
+<li><p><strong>Automatic State Management</strong>: Local variables are preserved between calls</p></li>
+<li><p><strong>Memory Efficient</strong>: Values are generated on-demand</p></li>
+<li><p><strong>Lazy Evaluation</strong>: Compute only what’s needed</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">countdown</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Generator function for counting down.</span>
+<span class="sd">    </span>
+<span class="sd">    Much simpler than the class-based iterator!</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">while</span> <span class="n">n</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">yield</span> <span class="n">n</span>  <span class="c1"># Pause here and return n</span>
+        <span class="n">n</span> <span class="o">-=</span> <span class="mi">1</span>   <span class="c1"># Resume here on next call</span>
+
+<span class="c1"># Using the generator</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Countdown from 5:&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">num</span> <span class="ow">in</span> <span class="n">countdown</span><span class="p">(</span><span class="mi">5</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">num</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot; &quot;</span><span class="p">)</span>
+
+<span class="c1"># Generators are single-use (like iterators)</span>
+<span class="n">gen</span> <span class="o">=</span> <span class="n">countdown</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n\n</span><span class="s2">First iteration:&quot;</span><span class="p">,</span> <span class="nb">list</span><span class="p">(</span><span class="n">gen</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Second iteration:&quot;</span><span class="p">,</span> <span class="nb">list</span><span class="p">(</span><span class="n">gen</span><span class="p">))</span>  <span class="c1"># Empty!</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="how-generators-work-execution-flow">
+<h3>How Generators Work: Execution Flow<a class="headerlink" href="#how-generators-work-execution-flow" title="Link to this heading">#</a></h3>
+<p>When you call a generator function:</p>
+<ol class="arabic simple">
+<li><p>It returns a <strong>generator object</strong> (doesn’t execute the body)</p></li>
+<li><p>Calling <code class="docutils literal notranslate"><span class="pre">next()</span></code> executes until the first <code class="docutils literal notranslate"><span class="pre">yield</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">yield</span></code> pauses execution and returns a value</p></li>
+<li><p>Next <code class="docutils literal notranslate"><span class="pre">next()</span></code> call resumes after the <code class="docutils literal notranslate"><span class="pre">yield</span></code></p></li>
+<li><p>When function ends, raises <code class="docutils literal notranslate"><span class="pre">StopIteration</span></code></p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">demo_generator</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Demonstrate generator execution flow.&quot;&quot;&quot;</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;  [Generator started]&quot;</span><span class="p">)</span>
+    
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;  [About to yield 1]&quot;</span><span class="p">)</span>
+    <span class="k">yield</span> <span class="mi">1</span>
+    
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;  [Resumed after yield 1]&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;  [About to yield 2]&quot;</span><span class="p">)</span>
+    <span class="k">yield</span> <span class="mi">2</span>
+    
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;  [Resumed after yield 2]&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;  [About to yield 3]&quot;</span><span class="p">)</span>
+    <span class="k">yield</span> <span class="mi">3</span>
+    
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;  [Generator ending]&quot;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Creating generator:&quot;</span><span class="p">)</span>
+<span class="n">gen</span> <span class="o">=</span> <span class="n">demo_generator</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Type: </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">gen</span><span class="p">)</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;First next():&quot;</span><span class="p">)</span>
+<span class="n">value</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="n">gen</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Got value: </span><span class="si">{</span><span class="n">value</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Second next():&quot;</span><span class="p">)</span>
+<span class="n">value</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="n">gen</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Got value: </span><span class="si">{</span><span class="n">value</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Third next():&quot;</span><span class="p">)</span>
+<span class="n">value</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="n">gen</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Got value: </span><span class="si">{</span><span class="n">value</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Fourth next() (will raise StopIteration):&quot;</span><span class="p">)</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="nb">next</span><span class="p">(</span><span class="n">gen</span><span class="p">)</span>
+<span class="k">except</span> <span class="ne">StopIteration</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;StopIteration raised!&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="classic-example-fibonacci-sequence">
+<h3>Classic Example: Fibonacci Sequence<a class="headerlink" href="#classic-example-fibonacci-sequence" title="Link to this heading">#</a></h3>
+<p>Generators shine when producing sequences:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">fibonacci</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Generate the first n Fibonacci numbers.</span>
+<span class="sd">    </span>
+<span class="sd">    Memory efficient: doesn&#39;t store all numbers in a list.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span>
+    <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+        <span class="k">yield</span> <span class="n">a</span>
+        <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="n">b</span><span class="p">,</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;First 15 Fibonacci numbers:&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">fib</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">fibonacci</span><span class="p">(</span><span class="mi">15</span><span class="p">),</span> <span class="mi">1</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;F(</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">) = </span><span class="si">{</span><span class="n">fib</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Can convert to list if needed</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">As a list:&quot;</span><span class="p">,</span> <span class="nb">list</span><span class="p">(</span><span class="n">fibonacci</span><span class="p">(</span><span class="mi">10</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="part-3-memory-efficiency-the-power-of-lazy-evaluation">
+<h2>Part 3: Memory Efficiency - The Power of Lazy Evaluation<a class="headerlink" href="#part-3-memory-efficiency-the-power-of-lazy-evaluation" title="Link to this heading">#</a></h2>
+<section id="list-vs-generator-memory-comparison">
+<h3>List vs Generator: Memory Comparison<a class="headerlink" href="#list-vs-generator-memory-comparison" title="Link to this heading">#</a></h3>
+<p>Let’s see why generators are memory-efficient:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
+
+<span class="c1"># List approach: stores all values in memory</span>
+<span class="k">def</span> <span class="nf">squares_list</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Return list of squares from 0 to n-1.&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">)]</span>
+
+<span class="c1"># Generator approach: computes on-demand</span>
+<span class="k">def</span> <span class="nf">squares_generator</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Yield squares from 0 to n-1.&quot;&quot;&quot;</span>
+    <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+        <span class="k">yield</span> <span class="n">x</span><span class="o">**</span><span class="mi">2</span>
+
+<span class="c1"># Compare memory usage</span>
+<span class="n">n</span> <span class="o">=</span> <span class="mi">100000</span>
+
+<span class="c1"># List version</span>
+<span class="n">squares_l</span> <span class="o">=</span> <span class="n">squares_list</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+<span class="n">list_size</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">getsizeof</span><span class="p">(</span><span class="n">squares_l</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;List of </span><span class="si">{</span><span class="n">n</span><span class="si">:</span><span class="s2">,</span><span class="si">}</span><span class="s2"> squares:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Memory: </span><span class="si">{</span><span class="n">list_size</span><span class="si">:</span><span class="s2">,</span><span class="si">}</span><span class="s2"> bytes (</span><span class="si">{</span><span class="n">list_size</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">1024</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">1024</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> MB)&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  First 5: </span><span class="si">{</span><span class="n">squares_l</span><span class="p">[:</span><span class="mi">5</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Generator version</span>
+<span class="n">squares_g</span> <span class="o">=</span> <span class="n">squares_generator</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+<span class="n">gen_size</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">getsizeof</span><span class="p">(</span><span class="n">squares_g</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Generator for </span><span class="si">{</span><span class="n">n</span><span class="si">:</span><span class="s2">,</span><span class="si">}</span><span class="s2"> squares:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Memory: </span><span class="si">{</span><span class="n">gen_size</span><span class="si">:</span><span class="s2">,</span><span class="si">}</span><span class="s2"> bytes (</span><span class="si">{</span><span class="n">gen_size</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">1024</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> KB)&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  First 5: </span><span class="si">{</span><span class="p">[</span><span class="nb">next</span><span class="p">(</span><span class="n">squares_g</span><span class="p">)</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">_</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">)]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Memory savings</span>
+<span class="n">savings</span> <span class="o">=</span> <span class="p">(</span><span class="n">list_size</span> <span class="o">-</span> <span class="n">gen_size</span><span class="p">)</span> <span class="o">/</span> <span class="n">list_size</span> <span class="o">*</span> <span class="mi">100</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">🎯 Memory savings: </span><span class="si">{</span><span class="n">savings</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">%&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;   (</span><span class="si">{</span><span class="n">list_size</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">gen_size</span><span class="si">:</span><span class="s2">.0f</span><span class="si">}</span><span class="s2">x smaller)&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="generator-expressions">
+<h3>Generator Expressions<a class="headerlink" href="#generator-expressions" title="Link to this heading">#</a></h3>
+<p>Like list comprehensions, but with <code class="docutils literal notranslate"><span class="pre">()</span></code> instead of <code class="docutils literal notranslate"><span class="pre">[]</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># List comprehension - creates entire list</span>
+<span class="n">list_comp</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)]</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;List comprehension: </span><span class="si">{</span><span class="n">list_comp</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Type: </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">list_comp</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Size: </span><span class="si">{</span><span class="n">sys</span><span class="o">.</span><span class="n">getsizeof</span><span class="p">(</span><span class="n">list_comp</span><span class="p">)</span><span class="si">}</span><span class="s2"> bytes</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Generator expression - creates generator</span>
+<span class="n">gen_exp</span> <span class="o">=</span> <span class="p">(</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Generator expression: </span><span class="si">{</span><span class="n">gen_exp</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Type: </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">gen_exp</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Size: </span><span class="si">{</span><span class="n">sys</span><span class="o">.</span><span class="n">getsizeof</span><span class="p">(</span><span class="n">gen_exp</span><span class="p">)</span><span class="si">}</span><span class="s2"> bytes&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Values: </span><span class="si">{</span><span class="nb">list</span><span class="p">(</span><span class="n">gen_exp</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Perfect for operations that don&#39;t need the full list</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">🎯 Use cases for generator expressions:&quot;</span><span class="p">)</span>
+
+<span class="c1"># Sum (only needs one value at a time)</span>
+<span class="n">total</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1000000</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Sum of first million squares: </span><span class="si">{</span><span class="n">total</span><span class="si">:</span><span class="s2">,</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Any/all (can short-circuit)</span>
+<span class="n">has_large</span> <span class="o">=</span> <span class="nb">any</span><span class="p">(</span><span class="n">x</span> <span class="o">&gt;</span> <span class="mi">50</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Has number &gt; 50: </span><span class="si">{</span><span class="n">has_large</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Max/min</span>
+<span class="n">largest</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1000</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Largest square: </span><span class="si">{</span><span class="n">largest</span><span class="si">:</span><span class="s2">,</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="real-world-example-processing-large-files">
+<h3>Real-World Example: Processing Large Files<a class="headerlink" href="#real-world-example-processing-large-files" title="Link to this heading">#</a></h3>
+<p>Generators excel at processing large files line by line:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">process_large_file</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Generator that processes file line by line.</span>
+<span class="sd">    </span>
+<span class="sd">    Memory-efficient: doesn&#39;t load entire file into memory.</span>
+<span class="sd">    Useful for multi-gigabyte log files.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">f</span><span class="p">:</span>  <span class="c1"># File objects are iterators!</span>
+            <span class="c1"># Process each line</span>
+            <span class="n">cleaned</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">cleaned</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">cleaned</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;#&#39;</span><span class="p">):</span>
+                <span class="k">yield</span> <span class="n">cleaned</span>
+
+<span class="k">def</span> <span class="nf">count_errors_in_log</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Count ERROR lines in a log file (memory-efficient).&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="nb">sum</span><span class="p">(</span><span class="mi">1</span> <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">process_large_file</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span> 
+               <span class="k">if</span> <span class="s1">&#39;ERROR&#39;</span> <span class="ow">in</span> <span class="n">line</span><span class="p">)</span>
+
+<span class="c1"># Example simulation (without actual file)</span>
+<span class="k">def</span> <span class="nf">simulate_log_lines</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Simulate log file processing.&quot;&quot;&quot;</span>
+    <span class="n">logs</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="s2">&quot;INFO: Application started&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;DEBUG: Loading config&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;ERROR: Failed to connect to database&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;INFO: Retrying connection&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;ERROR: Connection timeout&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;INFO: Using fallback database&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;# This is a comment&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;ERROR: Invalid user input&quot;</span><span class="p">,</span>
+    <span class="p">]</span>
+    <span class="k">for</span> <span class="n">log</span> <span class="ow">in</span> <span class="n">logs</span><span class="p">:</span>
+        <span class="k">yield</span> <span class="n">log</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Processing log file:&quot;</span><span class="p">)</span>
+<span class="n">error_count</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="mi">1</span> <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">simulate_log_lines</span><span class="p">()</span> 
+                  <span class="k">if</span> <span class="n">line</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">line</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;#&#39;</span><span class="p">)</span> <span class="ow">and</span> <span class="s1">&#39;ERROR&#39;</span> <span class="ow">in</span> <span class="n">line</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Found </span><span class="si">{</span><span class="n">error_count</span><span class="si">}</span><span class="s2"> errors&quot;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">📊 Log summary:&quot;</span><span class="p">)</span>
+<span class="n">log_types</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">simulate_log_lines</span><span class="p">():</span>
+    <span class="k">if</span> <span class="n">line</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">line</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;#&#39;</span><span class="p">):</span>
+        <span class="n">log_type</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;:&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="k">if</span> <span class="s1">&#39;:&#39;</span> <span class="ow">in</span> <span class="n">line</span> <span class="k">else</span> <span class="s1">&#39;UNKNOWN&#39;</span>
+        <span class="n">log_types</span><span class="p">[</span><span class="n">log_type</span><span class="p">]</span> <span class="o">=</span> <span class="n">log_types</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">log_type</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
+
+<span class="k">for</span> <span class="n">log_type</span><span class="p">,</span> <span class="n">count</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">log_types</span><span class="o">.</span><span class="n">items</span><span class="p">()):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  </span><span class="si">{</span><span class="n">log_type</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">count</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="part-4-generator-pipelines-composing-data-transformations">
+<h2>Part 4: Generator Pipelines - Composing Data Transformations<a class="headerlink" href="#part-4-generator-pipelines-composing-data-transformations" title="Link to this heading">#</a></h2>
+<section id="building-data-pipelines">
+<h3>Building Data Pipelines<a class="headerlink" href="#building-data-pipelines" title="Link to this heading">#</a></h3>
+<p>Generators can be chained to create elegant data processing pipelines:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">read_data</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">20</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Stage 1: Generate data source.&quot;&quot;&quot;</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;[Stage 1: Generating data]&quot;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+        <span class="k">yield</span> <span class="n">i</span>
+
+<span class="k">def</span> <span class="nf">filter_even</span><span class="p">(</span><span class="n">numbers</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Stage 2: Filter only even numbers.&quot;&quot;&quot;</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;[Stage 2: Filtering even numbers]&quot;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">num</span> <span class="ow">in</span> <span class="n">numbers</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">num</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  ✓ </span><span class="si">{</span><span class="n">num</span><span class="si">}</span><span class="s2"> is even&quot;</span><span class="p">)</span>
+            <span class="k">yield</span> <span class="n">num</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  ✗ </span><span class="si">{</span><span class="n">num</span><span class="si">}</span><span class="s2"> is odd (skipped)&quot;</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">square</span><span class="p">(</span><span class="n">numbers</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Stage 3: Square each number.&quot;&quot;&quot;</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;[Stage 3: Squaring numbers]&quot;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">num</span> <span class="ow">in</span> <span class="n">numbers</span><span class="p">:</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">num</span> <span class="o">**</span> <span class="mi">2</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  </span><span class="si">{</span><span class="n">num</span><span class="si">}</span><span class="s2">² = </span><span class="si">{</span><span class="n">result</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">yield</span> <span class="n">result</span>
+
+<span class="k">def</span> <span class="nf">take</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">iterable</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Stage 4: Take only first n items.&quot;&quot;&quot;</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;[Stage 4: Taking first </span><span class="si">{</span><span class="n">n</span><span class="si">}</span><span class="s2"> items]&quot;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">item</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">iterable</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">i</span> <span class="o">&gt;=</span> <span class="n">n</span><span class="p">:</span>
+            <span class="k">break</span>
+        <span class="k">yield</span> <span class="n">item</span>
+
+<span class="c1"># Build the pipeline</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Building pipeline: data → filter_even → square → take(5)</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">pipeline</span> <span class="o">=</span> <span class="n">take</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="n">square</span><span class="p">(</span><span class="n">filter_even</span><span class="p">(</span><span class="n">read_data</span><span class="p">(</span><span class="mi">20</span><span class="p">))))</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Executing pipeline (lazy evaluation):&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=&quot;</span><span class="o">*</span><span class="mi">50</span><span class="p">)</span>
+<span class="n">result</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">pipeline</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=&quot;</span><span class="o">*</span><span class="mi">50</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Final result: </span><span class="si">{</span><span class="n">result</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">🎯 Notice: Each stage processes on-demand!&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="pipeline-pattern-etl-extract-transform-load">
+<h3>Pipeline Pattern: ETL (Extract, Transform, Load)<a class="headerlink" href="#pipeline-pattern-etl-extract-transform-load" title="Link to this heading">#</a></h3>
+<p>A common pattern in data engineering:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">extract_records</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Extract: Simulate reading from data source.&quot;&quot;&quot;</span>
+    <span class="n">records</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="p">{</span><span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Alice&quot;</span><span class="p">,</span> <span class="s2">&quot;age&quot;</span><span class="p">:</span> <span class="mi">30</span><span class="p">,</span> <span class="s2">&quot;city&quot;</span><span class="p">:</span> <span class="s2">&quot;NYC&quot;</span><span class="p">},</span>
+        <span class="p">{</span><span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Bob&quot;</span><span class="p">,</span> <span class="s2">&quot;age&quot;</span><span class="p">:</span> <span class="mi">25</span><span class="p">,</span> <span class="s2">&quot;city&quot;</span><span class="p">:</span> <span class="s2">&quot;LA&quot;</span><span class="p">},</span>
+        <span class="p">{</span><span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Charlie&quot;</span><span class="p">,</span> <span class="s2">&quot;age&quot;</span><span class="p">:</span> <span class="mi">35</span><span class="p">,</span> <span class="s2">&quot;city&quot;</span><span class="p">:</span> <span class="s2">&quot;NYC&quot;</span><span class="p">},</span>
+        <span class="p">{</span><span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span> <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;David&quot;</span><span class="p">,</span> <span class="s2">&quot;age&quot;</span><span class="p">:</span> <span class="mi">28</span><span class="p">,</span> <span class="s2">&quot;city&quot;</span><span class="p">:</span> <span class="s2">&quot;SF&quot;</span><span class="p">},</span>
+        <span class="p">{</span><span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span> <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Eve&quot;</span><span class="p">,</span> <span class="s2">&quot;age&quot;</span><span class="p">:</span> <span class="mi">32</span><span class="p">,</span> <span class="s2">&quot;city&quot;</span><span class="p">:</span> <span class="s2">&quot;NYC&quot;</span><span class="p">},</span>
+    <span class="p">]</span>
+    <span class="k">for</span> <span class="n">record</span> <span class="ow">in</span> <span class="n">records</span><span class="p">:</span>
+        <span class="k">yield</span> <span class="n">record</span>
+
+<span class="k">def</span> <span class="nf">transform_filter_city</span><span class="p">(</span><span class="n">records</span><span class="p">,</span> <span class="n">city</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Transform: Filter by city.&quot;&quot;&quot;</span>
+    <span class="k">for</span> <span class="n">record</span> <span class="ow">in</span> <span class="n">records</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">record</span><span class="p">[</span><span class="s1">&#39;city&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">city</span><span class="p">:</span>
+            <span class="k">yield</span> <span class="n">record</span>
+
+<span class="k">def</span> <span class="nf">transform_add_category</span><span class="p">(</span><span class="n">records</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Transform: Add age category.&quot;&quot;&quot;</span>
+    <span class="k">for</span> <span class="n">record</span> <span class="ow">in</span> <span class="n">records</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">record</span><span class="p">[</span><span class="s1">&#39;age&#39;</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">30</span><span class="p">:</span>
+            <span class="n">record</span><span class="p">[</span><span class="s1">&#39;category&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;Young&#39;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">record</span><span class="p">[</span><span class="s1">&#39;category&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;Senior&#39;</span>
+        <span class="k">yield</span> <span class="n">record</span>
+
+<span class="k">def</span> <span class="nf">load_to_storage</span><span class="p">(</span><span class="n">records</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Load: Simulate saving to database.&quot;&quot;&quot;</span>
+    <span class="n">results</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">record</span> <span class="ow">in</span> <span class="n">records</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Saving: </span><span class="si">{</span><span class="n">record</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="n">results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">record</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">results</span>
+
+<span class="c1"># ETL Pipeline</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;ETL Pipeline: Extract → Filter(NYC) → Add Category → Load</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">pipeline</span> <span class="o">=</span> <span class="n">transform_add_category</span><span class="p">(</span>
+    <span class="n">transform_filter_city</span><span class="p">(</span>
+        <span class="n">extract_records</span><span class="p">(),</span>
+        <span class="n">city</span><span class="o">=</span><span class="s1">&#39;NYC&#39;</span>
+    <span class="p">)</span>
+<span class="p">)</span>
+
+<span class="n">saved_records</span> <span class="o">=</span> <span class="n">load_to_storage</span><span class="p">(</span><span class="n">pipeline</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">✅ Loaded </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">saved_records</span><span class="p">)</span><span class="si">}</span><span class="s2"> records&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="part-5-infinite-generators-unbounded-sequences">
+<h2>Part 5: Infinite Generators - Unbounded Sequences<a class="headerlink" href="#part-5-infinite-generators-unbounded-sequences" title="Link to this heading">#</a></h2>
+<section id="creating-infinite-sequences">
+<h3>Creating Infinite Sequences<a class="headerlink" href="#creating-infinite-sequences" title="Link to this heading">#</a></h3>
+<p>Generators can represent infinite sequences (use with caution!):</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">infinite_counter</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Generate infinite sequence of integers.&quot;&quot;&quot;</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="n">start</span>
+    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>  <span class="c1"># Infinite loop!</span>
+        <span class="k">yield</span> <span class="n">n</span>
+        <span class="n">n</span> <span class="o">+=</span> <span class="mi">1</span>
+
+<span class="c1"># Safe: use with a limit</span>
+<span class="n">counter</span> <span class="o">=</span> <span class="n">infinite_counter</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;First 10 numbers starting from 100:&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="nb">next</span><span class="p">(</span><span class="n">counter</span><span class="p">),</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot; &quot;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n\n</span><span class="s2">🔁 Infinite Fibonacci:&quot;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">fibonacci_infinite</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Generate Fibonacci numbers forever.&quot;&quot;&quot;</span>
+    <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span>
+    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="k">yield</span> <span class="n">a</span>
+        <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="n">b</span><span class="p">,</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span>
+
+<span class="c1"># Take only what you need</span>
+<span class="n">fib</span> <span class="o">=</span> <span class="n">fibonacci_infinite</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;First 20 Fibonacci numbers:&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">num</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">fib</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">i</span> <span class="o">&gt;=</span> <span class="mi">20</span><span class="p">:</span>
+        <span class="k">break</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">num</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot; &quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="practical-use-cycle-and-repeat-patterns">
+<h3>Practical Use: Cycle and Repeat Patterns<a class="headerlink" href="#practical-use-cycle-and-repeat-patterns" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">cycle</span><span class="p">,</span> <span class="n">repeat</span><span class="p">,</span> <span class="n">islice</span>
+
+<span class="c1"># Cycle: repeat sequence infinitely</span>
+<span class="n">colors</span> <span class="o">=</span> <span class="n">cycle</span><span class="p">([</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="s1">&#39;green&#39;</span><span class="p">,</span> <span class="s1">&#39;blue&#39;</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Cycling through colors (first 10):&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">color</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">colors</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">i</span> <span class="o">&gt;=</span> <span class="mi">10</span><span class="p">:</span>
+        <span class="k">break</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">color</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Repeat: repeat single value</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Repeat &#39;X&#39; 5 times:&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">val</span> <span class="ow">in</span> <span class="n">repeat</span><span class="p">(</span><span class="s1">&#39;X&#39;</span><span class="p">,</span> <span class="mi">5</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">val</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot; &quot;</span><span class="p">)</span>
+
+<span class="c1"># Combining with zip for padding</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n\n</span><span class="s2">Zipping with infinite repeat:&quot;</span><span class="p">)</span>
+<span class="n">names</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Alice&#39;</span><span class="p">,</span> <span class="s1">&#39;Bob&#39;</span><span class="p">,</span> <span class="s1">&#39;Charlie&#39;</span><span class="p">]</span>
+<span class="n">scores</span> <span class="o">=</span> <span class="p">[</span><span class="mi">95</span><span class="p">,</span> <span class="mi">87</span><span class="p">]</span>  <span class="c1"># Fewer scores than names</span>
+
+<span class="c1"># Pad scores with 0</span>
+<span class="n">padded_scores</span> <span class="o">=</span> <span class="n">islice</span><span class="p">(</span><span class="nb">iter</span><span class="p">(</span><span class="n">scores</span> <span class="o">+</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">names</span><span class="p">)),</span> <span class="nb">len</span><span class="p">(</span><span class="n">names</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">score</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">names</span><span class="p">,</span> <span class="n">scores</span> <span class="o">+</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">names</span><span class="p">)):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">score</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="part-6-advanced-generator-features">
+<h2>Part 6: Advanced Generator Features<a class="headerlink" href="#part-6-advanced-generator-features" title="Link to this heading">#</a></h2>
+<section id="generator-methods-send-throw-close">
+<h3>Generator Methods: send(), throw(), close()<a class="headerlink" href="#generator-methods-send-throw-close" title="Link to this heading">#</a></h3>
+<p>Generators can receive values and exceptions:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">running_average</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Coroutine that maintains a running average.</span>
+<span class="sd">    </span>
+<span class="sd">    Uses send() to receive values.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">total</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">average</span> <span class="o">=</span> <span class="kc">None</span>
+    
+    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="c1"># Receive value sent via send()</span>
+        <span class="n">value</span> <span class="o">=</span> <span class="k">yield</span> <span class="n">average</span>
+        
+        <span class="k">if</span> <span class="n">value</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">break</span>
+        
+        <span class="n">total</span> <span class="o">+=</span> <span class="n">value</span>
+        <span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="n">average</span> <span class="o">=</span> <span class="n">total</span> <span class="o">/</span> <span class="n">count</span>
+
+<span class="c1"># Create coroutine</span>
+<span class="n">avg</span> <span class="o">=</span> <span class="n">running_average</span><span class="p">()</span>
+
+<span class="c1"># MUST call next() or send(None) to prime the coroutine</span>
+<span class="nb">next</span><span class="p">(</span><span class="n">avg</span><span class="p">)</span>  <span class="c1"># Advance to first yield</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Running average coroutine:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Send 10: </span><span class="si">{</span><span class="n">avg</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Send 20: </span><span class="si">{</span><span class="n">avg</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Send 30: </span><span class="si">{</span><span class="n">avg</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Send 40: </span><span class="si">{</span><span class="n">avg</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="mi">40</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">✅ Average of [10, 20, 30, 40] = </span><span class="si">{</span><span class="n">avg</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="using-throw-to-send-exceptions">
+<h3>Using throw() to Send Exceptions<a class="headerlink" href="#using-throw-to-send-exceptions" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">generator_with_exception_handling</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Generator that can handle exceptions sent via throw().</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+            <span class="n">value</span> <span class="o">=</span> <span class="k">yield</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Received: </span><span class="si">{</span><span class="n">value</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">ValueError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  ⚠️  Caught ValueError: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">yield</span> <span class="s2">&quot;Error handled&quot;</span>
+    <span class="k">finally</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;  🔚 Generator closing&quot;</span><span class="p">)</span>
+
+<span class="n">gen</span> <span class="o">=</span> <span class="n">generator_with_exception_handling</span><span class="p">()</span>
+<span class="nb">next</span><span class="p">(</span><span class="n">gen</span><span class="p">)</span>  <span class="c1"># Prime</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Sending values:&quot;</span><span class="p">)</span>
+<span class="n">gen</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">gen</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Throwing exception:&quot;</span><span class="p">)</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">gen</span><span class="o">.</span><span class="n">throw</span><span class="p">(</span><span class="ne">ValueError</span><span class="p">,</span> <span class="s2">&quot;Invalid input!&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Result after exception: </span><span class="si">{</span><span class="n">result</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="k">except</span> <span class="ne">StopIteration</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;  Generator stopped&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="using-close-to-stop-a-generator">
+<h3>Using close() to Stop a Generator<a class="headerlink" href="#using-close-to-stop-a-generator" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">generator_with_cleanup</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Generator with cleanup logic.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;  🔧 Setting up resources...&quot;</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
+            <span class="k">yield</span> <span class="n">i</span>
+    <span class="k">finally</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;  🧹 Cleaning up resources...&quot;</span><span class="p">)</span>
+
+<span class="n">gen</span> <span class="o">=</span> <span class="n">generator_with_cleanup</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Getting first 3 values:&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Value: </span><span class="si">{</span><span class="nb">next</span><span class="p">(</span><span class="n">gen</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Closing generator early:&quot;</span><span class="p">)</span>
+<span class="n">gen</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Trying to use closed generator:&quot;</span><span class="p">)</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="nb">next</span><span class="p">(</span><span class="n">gen</span><span class="p">)</span>
+<span class="k">except</span> <span class="ne">StopIteration</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;  ❌ Generator is closed!&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="part-7-yield-from-delegating-to-subgenerators">
+<h2>Part 7: yield from - Delegating to Subgenerators<a class="headerlink" href="#part-7-yield-from-delegating-to-subgenerators" title="Link to this heading">#</a></h2>
+<section id="generator-delegation">
+<h3>Generator Delegation<a class="headerlink" href="#generator-delegation" title="Link to this heading">#</a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">yield</span> <span class="pre">from</span></code> syntax delegates to another generator:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">generator1</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;First generator.&quot;&quot;&quot;</span>
+    <span class="k">yield</span> <span class="mi">1</span>
+    <span class="k">yield</span> <span class="mi">2</span>
+    <span class="k">yield</span> <span class="mi">3</span>
+
+<span class="k">def</span> <span class="nf">generator2</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Second generator.&quot;&quot;&quot;</span>
+    <span class="k">yield</span> <span class="s1">&#39;a&#39;</span>
+    <span class="k">yield</span> <span class="s1">&#39;b&#39;</span>
+    <span class="k">yield</span> <span class="s1">&#39;c&#39;</span>
+
+<span class="c1"># Without yield from (manual delegation)</span>
+<span class="k">def</span> <span class="nf">combined_manual</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Manually combine generators.&quot;&quot;&quot;</span>
+    <span class="k">for</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">generator1</span><span class="p">():</span>
+        <span class="k">yield</span> <span class="n">value</span>
+    <span class="k">for</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">generator2</span><span class="p">():</span>
+        <span class="k">yield</span> <span class="n">value</span>
+
+<span class="c1"># With yield from (cleaner)</span>
+<span class="k">def</span> <span class="nf">combined_yield_from</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Use yield from for delegation.&quot;&quot;&quot;</span>
+    <span class="k">yield from</span> <span class="n">generator1</span><span class="p">()</span>
+    <span class="k">yield from</span> <span class="n">generator2</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Manual delegation:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">combined_manual</span><span class="p">()))</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Using yield from:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">combined_yield_from</span><span class="p">()))</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="flattening-nested-structures">
+<h3>Flattening Nested Structures<a class="headerlink" href="#flattening-nested-structures" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">flatten</span><span class="p">(</span><span class="n">nested_list</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Recursively flatten a nested list.</span>
+<span class="sd">    </span>
+<span class="sd">    Uses yield from for elegant recursion.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">nested_list</span><span class="p">:</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
+            <span class="c1"># Recursively flatten sublists</span>
+            <span class="k">yield from</span> <span class="n">flatten</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">yield</span> <span class="n">item</span>
+
+<span class="n">nested</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]],</span> <span class="mi">6</span><span class="p">,</span> <span class="p">[</span><span class="mi">7</span><span class="p">,</span> <span class="p">[</span><span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">]]]</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Nested: </span><span class="si">{</span><span class="n">nested</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Flattened: </span><span class="si">{</span><span class="nb">list</span><span class="p">(</span><span class="n">flatten</span><span class="p">(</span><span class="n">nested</span><span class="p">))</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># More complex example</span>
+<span class="n">complex_nested</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="mi">1</span><span class="p">,</span>
+    <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span>
+    <span class="p">[[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span> <span class="p">[</span><span class="mi">6</span><span class="p">]],</span>
+    <span class="p">[[[</span><span class="mi">7</span><span class="p">]],</span> <span class="mi">8</span><span class="p">],</span>
+    <span class="mi">9</span>
+<span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Complex nested: </span><span class="si">{</span><span class="n">complex_nested</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Flattened: </span><span class="si">{</span><span class="nb">list</span><span class="p">(</span><span class="n">flatten</span><span class="p">(</span><span class="n">complex_nested</span><span class="p">))</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="part-8-real-world-applications">
+<h2>Part 8: Real-World Applications<a class="headerlink" href="#part-8-real-world-applications" title="Link to this heading">#</a></h2>
+<section id="example-1-batch-processing-for-machine-learning">
+<h3>Example 1: Batch Processing for Machine Learning<a class="headerlink" href="#example-1-batch-processing-for-machine-learning" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">batch_generator</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">batch_size</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Generate batches for training neural networks.</span>
+<span class="sd">    </span>
+<span class="sd">    Memory-efficient: doesn&#39;t load all batches at once.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">),</span> <span class="n">batch_size</span><span class="p">):</span>
+        <span class="k">yield</span> <span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">:</span><span class="n">i</span> <span class="o">+</span> <span class="n">batch_size</span><span class="p">]</span>
+
+<span class="c1"># Simulate training data</span>
+<span class="n">training_data</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">101</span><span class="p">))</span>  <span class="c1"># 100 samples</span>
+<span class="n">batch_size</span> <span class="o">=</span> <span class="mi">10</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Training on </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">training_data</span><span class="p">)</span><span class="si">}</span><span class="s2"> samples in batches of </span><span class="si">{</span><span class="n">batch_size</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">epoch</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">):</span>  <span class="c1"># 2 epochs</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Epoch </span><span class="si">{</span><span class="n">epoch</span><span class="si">}</span><span class="s2">:&quot;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">batch_num</span><span class="p">,</span> <span class="n">batch</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">batch_generator</span><span class="p">(</span><span class="n">training_data</span><span class="p">,</span> <span class="n">batch_size</span><span class="p">),</span> <span class="mi">1</span><span class="p">):</span>
+        <span class="c1"># Simulate training</span>
+        <span class="n">avg</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">batch</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">batch</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Batch </span><span class="si">{</span><span class="n">batch_num</span><span class="si">}</span><span class="s2">: size=</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">batch</span><span class="p">)</span><span class="si">}</span><span class="s2">, avg=</span><span class="si">{</span><span class="n">avg</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="example-2-api-pagination-handler">
+<h3>Example 2: API Pagination Handler<a class="headerlink" href="#example-2-api-pagination-handler" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">fetch_paginated_api</span><span class="p">(</span><span class="n">max_pages</span><span class="o">=</span><span class="mi">5</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Simulate fetching paginated API results.</span>
+<span class="sd">    </span>
+<span class="sd">    In real code, this would make HTTP requests.</span>
+<span class="sd">    Generator allows processing results as they arrive.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">page</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="k">while</span> <span class="n">page</span> <span class="o">&lt;=</span> <span class="n">max_pages</span><span class="p">:</span>
+        <span class="c1"># Simulate API response</span>
+        <span class="n">results</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="p">{</span><span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="p">(</span><span class="n">page</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="mi">10</span> <span class="o">+</span> <span class="n">i</span><span class="p">,</span> <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;Item </span><span class="si">{</span><span class="p">(</span><span class="n">page</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">10</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">i</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">}</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">11</span><span class="p">)</span>
+        <span class="p">]</span>
+        
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  📥 Fetched page </span><span class="si">{</span><span class="n">page</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        
+        <span class="c1"># Yield each result</span>
+        <span class="k">for</span> <span class="n">result</span> <span class="ow">in</span> <span class="n">results</span><span class="p">:</span>
+            <span class="k">yield</span> <span class="n">result</span>
+        
+        <span class="n">page</span> <span class="o">+=</span> <span class="mi">1</span>
+        
+        <span class="c1"># Check if there are more pages (in real code, check API response)</span>
+        <span class="k">if</span> <span class="n">page</span> <span class="o">&gt;</span> <span class="n">max_pages</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  ✅ No more pages</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="k">break</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Fetching API results:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">item</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">fetch_paginated_api</span><span class="p">(</span><span class="n">max_pages</span><span class="o">=</span><span class="mi">3</span><span class="p">),</span> <span class="mi">1</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="mi">5</span> <span class="ow">or</span> <span class="n">i</span> <span class="o">&gt;</span> <span class="mi">25</span><span class="p">:</span>  <span class="c1"># Show first and last few</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Item </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">item</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">6</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  ... (processing items 6-25) ...&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="example-3-moving-average-calculator">
+<h3>Example 3: Moving Average Calculator<a class="headerlink" href="#example-3-moving-average-calculator" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">deque</span>
+
+<span class="k">def</span> <span class="nf">moving_average</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">window_size</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Calculate moving average over a sliding window.</span>
+<span class="sd">    </span>
+<span class="sd">    Memory-efficient for large datasets.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">window</span> <span class="o">=</span> <span class="n">deque</span><span class="p">(</span><span class="n">maxlen</span><span class="o">=</span><span class="n">window_size</span><span class="p">)</span>
+    
+    <span class="k">for</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
+        <span class="n">window</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">window</span><span class="p">)</span> <span class="o">==</span> <span class="n">window_size</span><span class="p">:</span>
+            <span class="k">yield</span> <span class="nb">sum</span><span class="p">(</span><span class="n">window</span><span class="p">)</span> <span class="o">/</span> <span class="n">window_size</span>
+
+<span class="c1"># Stock prices simulation</span>
+<span class="n">prices</span> <span class="o">=</span> <span class="p">[</span><span class="mi">100</span><span class="p">,</span> <span class="mi">102</span><span class="p">,</span> <span class="mi">98</span><span class="p">,</span> <span class="mi">105</span><span class="p">,</span> <span class="mi">110</span><span class="p">,</span> <span class="mi">108</span><span class="p">,</span> <span class="mi">112</span><span class="p">,</span> <span class="mi">115</span><span class="p">,</span> <span class="mi">111</span><span class="p">,</span> <span class="mi">114</span><span class="p">]</span>
+<span class="n">window</span> <span class="o">=</span> <span class="mi">3</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Stock prices: </span><span class="si">{</span><span class="n">prices</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Moving average (window=</span><span class="si">{</span><span class="n">window</span><span class="si">}</span><span class="s2">):&quot;</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">avg</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">moving_average</span><span class="p">(</span><span class="n">prices</span><span class="p">,</span> <span class="n">window</span><span class="p">),</span> <span class="n">window</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Day </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">: $</span><span class="si">{</span><span class="n">avg</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="part-9-performance-comparison">
+<h2>Part 9: Performance Comparison<a class="headerlink" href="#part-9-performance-comparison" title="Link to this heading">#</a></h2>
+<section id="benchmark-list-vs-generator">
+<h3>Benchmark: List vs Generator<a class="headerlink" href="#benchmark-list-vs-generator" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+
+<span class="k">def</span> <span class="nf">benchmark_list_vs_generator</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Compare performance of list vs generator.&quot;&quot;&quot;</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="mi">1000000</span>
+    
+    <span class="c1"># List approach</span>
+    <span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+    <span class="n">list_result</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">)]</span>
+    <span class="n">first_10_list</span> <span class="o">=</span> <span class="n">list_result</span><span class="p">[:</span><span class="mi">10</span><span class="p">]</span>
+    <span class="n">list_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">start</span>
+    <span class="n">list_memory</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">getsizeof</span><span class="p">(</span><span class="n">list_result</span><span class="p">)</span>
+    
+    <span class="c1"># Generator approach</span>
+    <span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+    <span class="n">gen_result</span> <span class="o">=</span> <span class="p">(</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">))</span>
+    <span class="n">first_10_gen</span> <span class="o">=</span> <span class="p">[</span><span class="nb">next</span><span class="p">(</span><span class="n">gen_result</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)]</span>
+    <span class="n">gen_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">start</span>
+    <span class="n">gen_memory</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">getsizeof</span><span class="p">(</span><span class="n">gen_result</span><span class="p">)</span>
+    
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Computing first 10 squares from </span><span class="si">{</span><span class="n">n</span><span class="si">:</span><span class="s2">,</span><span class="si">}</span><span class="s2"> numbers:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+    
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;List Comprehension:&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Time: </span><span class="si">{</span><span class="n">list_time</span><span class="o">*</span><span class="mi">1000</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> ms&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Memory: </span><span class="si">{</span><span class="n">list_memory</span><span class="si">:</span><span class="s2">,</span><span class="si">}</span><span class="s2"> bytes (</span><span class="si">{</span><span class="n">list_memory</span><span class="o">/</span><span class="mi">1024</span><span class="o">/</span><span class="mi">1024</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> MB)&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Result: </span><span class="si">{</span><span class="n">first_10_list</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Generator Expression:&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Time: </span><span class="si">{</span><span class="n">gen_time</span><span class="o">*</span><span class="mi">1000</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2"> ms&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Memory: </span><span class="si">{</span><span class="n">gen_memory</span><span class="si">:</span><span class="s2">,</span><span class="si">}</span><span class="s2"> bytes&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Result: </span><span class="si">{</span><span class="n">first_10_gen</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">📊 Comparison:&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Speed: Generator is </span><span class="si">{</span><span class="n">list_time</span><span class="o">/</span><span class="n">gen_time</span><span class="si">:</span><span class="s2">.0f</span><span class="si">}</span><span class="s2">x faster&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Memory: Generator uses </span><span class="si">{</span><span class="n">list_memory</span><span class="o">/</span><span class="n">gen_memory</span><span class="si">:</span><span class="s2">.0f</span><span class="si">}</span><span class="s2">x less memory&quot;</span><span class="p">)</span>
+
+<span class="n">benchmark_list_vs_generator</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="exercises">
+<h2>Exercises<a class="headerlink" href="#exercises" title="Link to this heading">#</a></h2>
+<section id="exercise-1-custom-range-iterator">
+<h3>Exercise 1: Custom Range Iterator<a class="headerlink" href="#exercise-1-custom-range-iterator" title="Link to this heading">#</a></h3>
+<p>Implement a custom <code class="docutils literal notranslate"><span class="pre">MyRange</span></code> class that mimics Python’s <code class="docutils literal notranslate"><span class="pre">range()</span></code> behavior using the iterator protocol.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Your code here</span>
+<span class="k">class</span> <span class="nc">MyRange</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Custom range implementation.</span>
+<span class="sd">    </span>
+<span class="sd">    Should support:</span>
+<span class="sd">    - MyRange(stop)</span>
+<span class="sd">    - MyRange(start, stop)</span>
+<span class="sd">    - MyRange(start, stop, step)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="c1"># TODO: Implement __init__</span>
+        <span class="k">pass</span>
+    
+    <span class="k">def</span> <span class="fm">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># TODO: Return iterator</span>
+        <span class="k">pass</span>
+    
+    <span class="k">def</span> <span class="fm">__next__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># TODO: Return next value or raise StopIteration</span>
+        <span class="k">pass</span>
+
+<span class="c1"># Test your implementation</span>
+<span class="c1"># print(&quot;MyRange(5):&quot;, list(MyRange(5)))</span>
+<span class="c1"># print(&quot;MyRange(2, 8):&quot;, list(MyRange(2, 8)))</span>
+<span class="c1"># print(&quot;MyRange(0, 10, 2):&quot;, list(MyRange(0, 10, 2)))</span>
+<span class="c1"># print(&quot;MyRange(10, 0, -1):&quot;, list(MyRange(10, 0, -1)))</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="exercise-2-generator-pipeline-for-data-processing">
+<h3>Exercise 2: Generator Pipeline for Data Processing<a class="headerlink" href="#exercise-2-generator-pipeline-for-data-processing" title="Link to this heading">#</a></h3>
+<p>Build the generator pipeline from the original exercise:</p>
+<ol class="arabic simple">
+<li><p>Generate random numbers between 1 and 100</p></li>
+<li><p>Filter numbers divisible by both 3 and 5 (divisible by 15)</p></li>
+<li><p>Transform each number by multiplying by 2</p></li>
+<li><p>Stop after finding 10 numbers that meet the criteria</p></li>
+</ol>
+<p>Compare memory usage to a list-based approach.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Your code here</span>
+<span class="kn">import</span> <span class="nn">random</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+
+<span class="c1"># TODO: Implement generator pipeline</span>
+
+<span class="k">def</span> <span class="nf">generate_random_numbers</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Generate infinite stream of random numbers between 1 and 100.&quot;&quot;&quot;</span>
+    <span class="k">pass</span>  <span class="c1"># TODO</span>
+
+<span class="k">def</span> <span class="nf">filter_divisible_by_15</span><span class="p">(</span><span class="n">numbers</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Filter numbers divisible by 15.&quot;&quot;&quot;</span>
+    <span class="k">pass</span>  <span class="c1"># TODO</span>
+
+<span class="k">def</span> <span class="nf">multiply_by_2</span><span class="p">(</span><span class="n">numbers</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Multiply each number by 2.&quot;&quot;&quot;</span>
+    <span class="k">pass</span>  <span class="c1"># TODO</span>
+
+<span class="k">def</span> <span class="nf">take_n</span><span class="p">(</span><span class="n">iterable</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Take first n items from iterable.&quot;&quot;&quot;</span>
+    <span class="k">pass</span>  <span class="c1"># TODO</span>
+
+<span class="c1"># Build pipeline</span>
+<span class="c1"># pipeline = ...</span>
+<span class="c1"># result = list(pipeline)</span>
+<span class="c1"># print(f&quot;Result: {result}&quot;)</span>
+
+<span class="c1"># Compare with list-based approach</span>
+<span class="c1"># TODO: Implement list-based version and compare memory usage</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="exercise-3-file-processing-with-generators">
+<h3>Exercise 3: File Processing with Generators<a class="headerlink" href="#exercise-3-file-processing-with-generators" title="Link to this heading">#</a></h3>
+<p>Create a generator function that:</p>
+<ol class="arabic simple">
+<li><p>Reads a CSV-like string (simulate file reading)</p></li>
+<li><p>Parses each line into a dictionary</p></li>
+<li><p>Filters rows where a specific column meets a condition</p></li>
+<li><p>Yields the processed records</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Your code here</span>
+
+<span class="c1"># Sample CSV data</span>
+<span class="n">csv_data</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;name,age,city,salary</span>
+<span class="s2">Alice,30,NYC,80000</span>
+<span class="s2">Bob,25,LA,65000</span>
+<span class="s2">Charlie,35,NYC,95000</span>
+<span class="s2">David,28,SF,75000</span>
+<span class="s2">Eve,32,NYC,88000</span>
+<span class="s2">Frank,29,LA,70000&quot;&quot;&quot;</span>
+
+<span class="k">def</span> <span class="nf">parse_csv_lines</span><span class="p">(</span><span class="n">csv_string</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Generator that parses CSV string into dictionaries.</span>
+<span class="sd">    </span>
+<span class="sd">    Yields one dictionary per row.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">pass</span>  <span class="c1"># TODO</span>
+
+<span class="k">def</span> <span class="nf">filter_records</span><span class="p">(</span><span class="n">records</span><span class="p">,</span> <span class="n">column</span><span class="p">,</span> <span class="n">condition</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Filter records based on condition.</span>
+<span class="sd">    </span>
+<span class="sd">    Args:</span>
+<span class="sd">        records: Generator of dictionaries</span>
+<span class="sd">        column: Column name to check</span>
+<span class="sd">        condition: Function that returns True/False</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">pass</span>  <span class="c1"># TODO</span>
+
+<span class="c1"># Test your implementation</span>
+<span class="c1"># records = parse_csv_lines(csv_data)</span>
+<span class="c1"># high_earners = filter_records(records, &#39;salary&#39;, lambda x: int(x) &gt; 75000)</span>
+<span class="c1"># for record in high_earners:</span>
+<span class="c1">#     print(record)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="exercise-4-coroutine-based-logger">
+<h3>Exercise 4: Coroutine-Based Logger<a class="headerlink" href="#exercise-4-coroutine-based-logger" title="Link to this heading">#</a></h3>
+<p>Create a coroutine that receives log messages via <code class="docutils literal notranslate"><span class="pre">send()</span></code> and:</p>
+<ul class="simple">
+<li><p>Categorizes them by level (INFO, WARNING, ERROR)</p></li>
+<li><p>Maintains counts for each level</p></li>
+<li><p>Returns summary statistics when receiving <code class="docutils literal notranslate"><span class="pre">None</span></code></p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Your code here</span>
+
+<span class="k">def</span> <span class="nf">log_analyzer</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Coroutine that analyzes log messages.</span>
+<span class="sd">    </span>
+<span class="sd">    Send log messages like: &quot;ERROR: Connection failed&quot;</span>
+<span class="sd">    Send None to get summary statistics.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">pass</span>  <span class="c1"># TODO</span>
+
+<span class="c1"># Test your implementation</span>
+<span class="c1"># logger = log_analyzer()</span>
+<span class="c1"># next(logger)  # Prime the coroutine</span>
+
+<span class="c1"># logger.send(&quot;INFO: Application started&quot;)</span>
+<span class="c1"># logger.send(&quot;ERROR: Connection failed&quot;)</span>
+<span class="c1"># logger.send(&quot;WARNING: High memory usage&quot;)</span>
+<span class="c1"># logger.send(&quot;ERROR: Timeout occurred&quot;)</span>
+<span class="c1"># logger.send(&quot;INFO: Request completed&quot;)</span>
+
+<span class="c1"># summary = logger.send(None)</span>
+<span class="c1"># print(f&quot;Summary: {summary}&quot;)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="pro-tips">
+<h2>Pro Tips<a class="headerlink" href="#pro-tips" title="Link to this heading">#</a></h2>
+<section id="best-practices">
+<h3>🎯 Best Practices<a class="headerlink" href="#best-practices" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p><strong>Use generators for large datasets</strong>: When data doesn’t fit in memory</p></li>
+<li><p><strong>Prefer generator expressions</strong>: More concise than generator functions for simple transformations</p></li>
+<li><p><strong>Prime coroutines</strong>: Always call <code class="docutils literal notranslate"><span class="pre">next()</span></code> or <code class="docutils literal notranslate"><span class="pre">send(None)</span></code> before using <code class="docutils literal notranslate"><span class="pre">send()</span></code></p></li>
+<li><p><strong>Be careful with infinite generators</strong>: Always use limiting mechanisms (take_n, islice, break)</p></li>
+<li><p><strong>Use <code class="docutils literal notranslate"><span class="pre">yield</span> <span class="pre">from</span></code> for delegation</strong>: Cleaner than manual for-loop delegation</p></li>
+<li><p><strong>Consider itertools</strong>: Built-in module with powerful generator utilities</p></li>
+<li><p><strong>Document generator state</strong>: Make clear if generator is single-use or reusable</p></li>
+<li><p><strong>Use generators for pipelines</strong>: Chain operations for readable, efficient code</p></li>
+</ol>
+</section>
+<section id="common-mistakes">
+<h3>⚠️ Common Mistakes<a class="headerlink" href="#common-mistakes" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p><strong>Forgetting generators are single-use</strong>: Can’t iterate twice without recreating</p></li>
+<li><p><strong>Not priming coroutines</strong>: Must call <code class="docutils literal notranslate"><span class="pre">next()</span></code> before <code class="docutils literal notranslate"><span class="pre">send()</span></code></p></li>
+<li><p><strong>Converting to list unnecessarily</strong>: Defeats the purpose of lazy evaluation</p></li>
+<li><p><strong>Infinite generators without limits</strong>: Can cause infinite loops</p></li>
+<li><p><strong>Ignoring StopIteration</strong>: Should be handled in manual iteration</p></li>
+<li><p><strong>Mixing iteration protocols</strong>: Don’t mix <code class="docutils literal notranslate"><span class="pre">__iter__</span></code>/<code class="docutils literal notranslate"><span class="pre">__next__</span></code> with <code class="docutils literal notranslate"><span class="pre">yield</span></code> in same class</p></li>
+<li><p><strong>Not using <code class="docutils literal notranslate"><span class="pre">yield</span> <span class="pre">from</span></code></strong>: Manual delegation is more error-prone</p></li>
+<li><p><strong>Forgetting cleanup</strong>: Use try/finally or context managers for resource cleanup</p></li>
+</ol>
+</section>
+<section id="when-to-use-what">
+<h3>🔍 When to Use What<a class="headerlink" href="#when-to-use-what" title="Link to this heading">#</a></h3>
+<p><strong>Use Lists When</strong>:</p>
+<ul class="simple">
+<li><p>Data fits comfortably in memory</p></li>
+<li><p>Need random access or indexing</p></li>
+<li><p>Need to iterate multiple times</p></li>
+<li><p>Want to modify elements in-place</p></li>
+</ul>
+<p><strong>Use Generators When</strong>:</p>
+<ul class="simple">
+<li><p>Data is very large or infinite</p></li>
+<li><p>Only need to iterate once</p></li>
+<li><p>Processing data in a pipeline</p></li>
+<li><p>Want to minimize memory usage</p></li>
+<li><p>Implementing iteration protocol</p></li>
+</ul>
+</section>
+</section>
+<hr class="docutils" />
+<section id="key-takeaways">
+<h2>Key Takeaways<a class="headerlink" href="#key-takeaways" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p><strong>Iterators</strong> implement <code class="docutils literal notranslate"><span class="pre">__iter__()</span></code> and <code class="docutils literal notranslate"><span class="pre">__next__()</span></code> for custom iteration logic</p></li>
+<li><p><strong>Generators</strong> provide elegant iterator creation using <code class="docutils literal notranslate"><span class="pre">yield</span></code> keyword</p></li>
+<li><p><strong>Lazy evaluation</strong> means values are computed on-demand, saving memory</p></li>
+<li><p><strong>Generator expressions</strong> offer memory-efficient alternative to list comprehensions</p></li>
+<li><p><strong>Pipelines</strong> chain generators for readable, efficient data processing</p></li>
+<li><p><strong>Infinite sequences</strong> are possible with generators (use carefully)</p></li>
+<li><p><strong>Coroutines</strong> use <code class="docutils literal notranslate"><span class="pre">send()</span></code>, <code class="docutils literal notranslate"><span class="pre">throw()</span></code>, and <code class="docutils literal notranslate"><span class="pre">close()</span></code> for bidirectional communication</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">yield</span> <span class="pre">from</span></code></strong> simplifies generator delegation and subgenerator handling</p></li>
+<li><p><strong>Performance</strong>: Generators often faster and always more memory-efficient for large data</p></li>
+<li><p><strong>Real-world</strong>: Essential for big data, streaming, ETL, ML batching, and API handling</p></li>
+</ol>
+</section>
+<hr class="docutils" />
+<section id="next-steps">
+<h2>Next Steps<a class="headerlink" href="#next-steps" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p><strong>Explore itertools</strong>: Study <code class="docutils literal notranslate"><span class="pre">itertools</span></code> module (chain, product, permutations, etc.)</p></li>
+<li><p><strong>Async generators</strong>: Learn about <code class="docutils literal notranslate"><span class="pre">async</span> <span class="pre">def</span></code> and <code class="docutils literal notranslate"><span class="pre">async</span> <span class="pre">for</span></code> for asynchronous iteration</p></li>
+<li><p><strong>Context managers</strong>: Combine generators with context managers using <code class="docutils literal notranslate"><span class="pre">contextlib.contextmanager</span></code></p></li>
+<li><p><strong>Data streaming</strong>: Build real-time data processing pipelines</p></li>
+<li><p><strong>Performance profiling</strong>: Use <code class="docutils literal notranslate"><span class="pre">timeit</span></code> and <code class="docutils literal notranslate"><span class="pre">memory_profiler</span></code> to measure improvements</p></li>
+<li><p><strong>Practice with large datasets</strong>: Process real CSV files, logs, or API data</p></li>
+</ol>
+<p><strong>Resources</strong>:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.python.org/dev/peps/pep-0255/">PEP 255 - Simple Generators</a></p></li>
+<li><p><a class="reference external" href="https://www.python.org/dev/peps/pep-0342/">PEP 342 - Coroutines via Enhanced Generators</a></p></li>
+<li><p><a class="reference external" href="https://www.python.org/dev/peps/pep-0380/">PEP 380 - Syntax for Delegating to a Subgenerator</a></p></li>
+<li><p><a class="reference external" href="https://docs.python.org/3/library/itertools.html">itertools documentation</a></p></li>
+</ul>
+<hr class="docutils" />
+<p><em>Continue to the next lesson on <strong>Algorithms and Complexity</strong> to apply these concepts to algorithm design!</em></p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./hard"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="01_advanced_functions_and_decorators.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Lesson 1: Advanced Functions and Decorators</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="03_algorithms_and_complexity.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Hard Lesson 03: Algorithms and Complexity Analysis</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-objectives">Learning Objectives</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prerequisites">Prerequisites</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-generators-and-iterators-matter">Why Generators and Iterators Matter</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-1-the-iterator-protocol-building-blocks-of-iteration">Part 1: The Iterator Protocol - Building Blocks of Iteration</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-an-iterator">What is an Iterator?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-a-custom-iterator">Creating a Custom Iterator</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#iterable-vs-iterator">Iterable vs Iterator</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-2-generator-functions-elegant-iterators">Part 2: Generator Functions - Elegant Iterators</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#why-generators">Why Generators?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#how-generators-work-execution-flow">How Generators Work: Execution Flow</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#classic-example-fibonacci-sequence">Classic Example: Fibonacci Sequence</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-3-memory-efficiency-the-power-of-lazy-evaluation">Part 3: Memory Efficiency - The Power of Lazy Evaluation</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#list-vs-generator-memory-comparison">List vs Generator: Memory Comparison</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#generator-expressions">Generator Expressions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#real-world-example-processing-large-files">Real-World Example: Processing Large Files</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-4-generator-pipelines-composing-data-transformations">Part 4: Generator Pipelines - Composing Data Transformations</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#building-data-pipelines">Building Data Pipelines</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pipeline-pattern-etl-extract-transform-load">Pipeline Pattern: ETL (Extract, Transform, Load)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-5-infinite-generators-unbounded-sequences">Part 5: Infinite Generators - Unbounded Sequences</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-infinite-sequences">Creating Infinite Sequences</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#practical-use-cycle-and-repeat-patterns">Practical Use: Cycle and Repeat Patterns</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-6-advanced-generator-features">Part 6: Advanced Generator Features</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#generator-methods-send-throw-close">Generator Methods: send(), throw(), close()</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-throw-to-send-exceptions">Using throw() to Send Exceptions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-close-to-stop-a-generator">Using close() to Stop a Generator</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-7-yield-from-delegating-to-subgenerators">Part 7: yield from - Delegating to Subgenerators</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#generator-delegation">Generator Delegation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#flattening-nested-structures">Flattening Nested Structures</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-8-real-world-applications">Part 8: Real-World Applications</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-1-batch-processing-for-machine-learning">Example 1: Batch Processing for Machine Learning</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-2-api-pagination-handler">Example 2: API Pagination Handler</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-3-moving-average-calculator">Example 3: Moving Average Calculator</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-9-performance-comparison">Part 9: Performance Comparison</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#benchmark-list-vs-generator">Benchmark: List vs Generator</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">Exercises</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-1-custom-range-iterator">Exercise 1: Custom Range Iterator</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-2-generator-pipeline-for-data-processing">Exercise 2: Generator Pipeline for Data Processing</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-3-file-processing-with-generators">Exercise 3: File Processing with Generators</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-4-coroutine-based-logger">Exercise 4: Coroutine-Based Logger</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pro-tips">Pro Tips</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#best-practices">🎯 Best Practices</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#common-mistakes">⚠️ Common Mistakes</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#when-to-use-what">🔍 When to Use What</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#key-takeaways">Key Takeaways</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#next-steps">Next Steps</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Mykolas Perevicius
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

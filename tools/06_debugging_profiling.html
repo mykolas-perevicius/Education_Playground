@@ -1,0 +1,1582 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Debugging and Profiling: Finding and Fixing Bugs &#8212; Education Playground</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=0c185eed" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=c73c0f3e"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'tools/06_debugging_profiling';</script>
+    <script src="../_static/js/onboarding.js?v=557b7536"></script>
+    <link rel="canonical" href="https://mykolas-perevicius.github.io/Education_Playground/tools/06_debugging_profiling.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Security Essentials for Developers" href="07_security_essentials.html" />
+    <link rel="prev" title="Build Systems &amp; CI/CD" href="05_build_systems_cicd.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../README.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Education Playground</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../00_calibration_test.html">🎯 Calibration Test - Find Your Level</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../beginner_scripts/README.html">🌱 Beginner Scripts (10 Python Files)</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../easy/README_EASY.html">📗 Easy Level - Beginner</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../easy/01_introduction_to_python.html">1. Introduction to Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../easy/02_variables_and_data_types.html">2. Variables and Data Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../easy/03_basic_operations_and_conditionals.html">3. Operations and Conditionals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../easy/04_intro_to_ai_and_ml.html">4. Intro to AI and ML</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../easy/05_computing_fundamentals.html">5. Computing Fundamentals</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../medium/README_MEDIUM.html">📘 Medium Level - Intermediate</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../medium/01_functions_and_modules.html">1. Functions and Modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../medium/02_data_structures.html">2. Data Structures</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../medium/03_classes_and_oop.html">3. Classes and OOP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../medium/04_machine_learning_basics.html">4. Machine Learning Basics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../medium/05_data_analysis_with_pandas.html">5. Data Analysis with Pandas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../medium/06_algorithms_and_problem_solving.html">6. Algorithms and Problem Solving</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../hard/README_HARD.html">📕 Hard Level - Advanced</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../hard/01_advanced_functions_and_decorators.html">1. Advanced Functions &amp; Decorators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hard/02_generators_and_iterators.html">2. Generators and Iterators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hard/03_algorithms_and_complexity.html">3. Algorithms and Complexity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hard/04_deep_learning_and_neural_networks.html">4. Deep Learning &amp; Neural Networks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hard/05_advanced_ml_and_nlp.html">5. Advanced ML and NLP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hard/06_computer_systems_and_theory.html">6. Computer Systems and Theory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hard/07_project_ideas.html">7. Project Ideas &amp; Implementation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hard/08_classic_problems.html">Lesson 8: Classic Problems Collection</a></li>
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../hard/09_ctf_challenges.html">Lesson 9: Capture The Flag (CTF) - Hacker Training</a></li>
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../hard/10_performance_computing.html">10. Performance Computing ⚡ NEW!</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hard/11_cuda_and_parallel_computing.html">11. CUDA &amp; GPU Computing 🎮 NEW!</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="README.html">🛠️ Developer Tools Track</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="01_shell_basics.html">1. Shell and Command Line</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02_command_line_tools.html">2. Command Line Tools</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03_git_essentials.html">3. Git Essentials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04_text_editors.html">4. Text Editors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05_build_systems_cicd.html">5. Build Systems and CI/CD</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">6. Debugging and Profiling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="07_security_essentials.html">7. Security Essentials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="08_package_management.html">8. Package Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="09_ssh_remote_systems.html">9. SSH and Remote Systems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="10_docker_containers.html">10. Docker and Containers</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../solutions/README_SOLUTIONS.html">📝 Solutions</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../solutions/easy_solutions.html">Easy Level - Complete Solutions</a></li>
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../solutions/medium_solutions.html">Medium Level - Complete Solutions</a></li>
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../solutions/hard_solutions.html">Hard Level - Complete Solutions</a></li>
+
+
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../solutions/tools_solutions.html">Developer Tools - Complete Solutions</a></li>
+
+
+
+
+
+
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../RESOURCES.html">📚 Learning Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../PYTHON_CHEATSHEET.html">⚡ Python Cheat Sheet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ML_AI_CHEATSHEET.html">🤖 ML/AI Cheat Sheet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../SETUP.html">🔧 Setup Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../RELEASE_NOTES_v2.0.0.html">🎉 Release Notes v2.0.0</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none"></div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Debugging and Profiling: Finding and Fixing Bugs</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-you-ll-learn">What You’ll Learn</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#real-world-analogy">💡 Real-World Analogy</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-debugging-mindset">1. The Debugging Mindset</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#accept-that-bugs-are-normal">Accept That Bugs Are Normal</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-scientific-method">The Scientific Method</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#common-debugging-mistakes">Common Debugging Mistakes</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reading-error-messages">2. Reading Error Messages</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#anatomy-of-a-stack-trace">Anatomy of a Stack Trace</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#common-python-exceptions">Common Python Exceptions</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#print-debugging">3. Print Debugging</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-print-debugging">Basic Print Debugging</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#better-print-debugging">Better Print Debugging</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-f-strings-for-debugging-python-3-8">Using f-strings for Debugging (Python 3.8+)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#conditional-debug-prints">Conditional Debug Prints</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#python-debugger-pdb">4. Python Debugger (pdb)</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-pdb-usage">Basic pdb Usage</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pdb-commands">pdb Commands</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#breakpoint-modern-way-python-3-7">Breakpoint() - Modern Way (Python 3.7+)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#post-mortem-debugging">Post-Mortem Debugging</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#logging">5. Logging</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-logging">Basic Logging</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#log-levels">Log Levels</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#logging-to-file">Logging to File</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#assert-statements">6. Assert Statements</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#performance-profiling">7. Performance Profiling</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#timing-code-simple-way">Timing Code - Simple Way</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-timeit-module">Using timeit Module</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#jupyter-magic-commands">Jupyter Magic Commands</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cprofile-detailed-profiling">cProfile - Detailed Profiling</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#line-profiler-line-by-line-profiling">line_profiler - Line-by-Line Profiling</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#memory-profiling">8. Memory Profiling</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#checking-memory-usage">Checking Memory Usage</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#memory-profiler">memory_profiler</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#debugging-strategies">9. Debugging Strategies</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#binary-search-debugging">Binary Search Debugging</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rubber-duck-debugging">Rubber Duck Debugging</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#wolf-fence-debugging">Wolf Fence Debugging</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#minimal-reproducible-example">Minimal Reproducible Example</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#writing-debuggable-code">10. Writing Debuggable Code</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#make-code-easy-to-debug">Make Code Easy to Debug</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#use-type-hints">Use Type Hints</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#defensive-programming">Defensive Programming</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#early-returns">Early Returns</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">📝 Exercises</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-1-debug-this-code">Exercise 1: Debug This Code</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-2-add-logging">Exercise 2: Add Logging</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-3-profile-performance">Exercise 3: Profile Performance</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-4-write-assertions">Exercise 4: Write Assertions</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#self-check-quiz">✅ Self-Check Quiz</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#key-takeaways">🎯 Key Takeaways</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#next-steps">🚀 Next Steps</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pro-tips">💡 Pro Tips</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resources">📚 Resources</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="debugging-and-profiling-finding-and-fixing-bugs">
+<h1>Debugging and Profiling: Finding and Fixing Bugs<a class="headerlink" href="#debugging-and-profiling-finding-and-fixing-bugs" title="Link to this heading">#</a></h1>
+<p><strong>Debugging is a superpower.</strong> Professional developers spend 50%+ of their time debugging. Learning to debug effectively will make you 10x more productive.</p>
+<section id="what-you-ll-learn">
+<h2>What You’ll Learn<a class="headerlink" href="#what-you-ll-learn" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Debugging mindset and strategies</p></li>
+<li><p>Using print statements effectively</p></li>
+<li><p>Python’s built-in debugger (pdb)</p></li>
+<li><p>IDE debugging tools</p></li>
+<li><p>Reading stack traces</p></li>
+<li><p>Performance profiling</p></li>
+<li><p>Memory profiling</p></li>
+<li><p>Best practices for bug-free code</p></li>
+</ul>
+</section>
+<section id="real-world-analogy">
+<h2>💡 Real-World Analogy<a class="headerlink" href="#real-world-analogy" title="Link to this heading">#</a></h2>
+<p>Debugging is like being a <strong>detective</strong>:</p>
+<ul class="simple">
+<li><p>🔍 <strong>Gather clues</strong> (error messages, logs)</p></li>
+<li><p>🧪 <strong>Form hypotheses</strong> (what might be wrong?)</p></li>
+<li><p>🔬 <strong>Test theories</strong> (add print statements, use debugger)</p></li>
+<li><p>✅ <strong>Solve the case</strong> (fix the bug!)</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="the-debugging-mindset">
+<h2>1. The Debugging Mindset<a class="headerlink" href="#the-debugging-mindset" title="Link to this heading">#</a></h2>
+<section id="accept-that-bugs-are-normal">
+<h3>Accept That Bugs Are Normal<a class="headerlink" href="#accept-that-bugs-are-normal" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Everyone writes bugs</strong> - even senior engineers!</p></li>
+<li><p>Bugs are learning opportunities</p></li>
+<li><p>The best developers are the best debuggers</p></li>
+</ul>
+</section>
+<section id="the-scientific-method">
+<h3>The Scientific Method<a class="headerlink" href="#the-scientific-method" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p><strong>Observe</strong> - What’s happening? What’s expected?</p></li>
+<li><p><strong>Hypothesize</strong> - What could cause this?</p></li>
+<li><p><strong>Test</strong> - Add logging, use debugger</p></li>
+<li><p><strong>Analyze</strong> - Were you right? If not, new hypothesis!</p></li>
+<li><p><strong>Fix</strong> - Apply the solution</p></li>
+<li><p><strong>Verify</strong> - Does it work now?</p></li>
+</ol>
+</section>
+<section id="common-debugging-mistakes">
+<h3>Common Debugging Mistakes<a class="headerlink" href="#common-debugging-mistakes" title="Link to this heading">#</a></h3>
+<p>❌ <strong>Random code changes</strong> - “Maybe if I change this…”
+❌ <strong>Assuming</strong> - “This can’t be the problem”
+❌ <strong>Not reading error messages</strong> - They tell you exactly what’s wrong!
+❌ <strong>Debugging tired</strong> - Take breaks!</p>
+<p>✅ <strong>Read error messages carefully</strong>
+✅ <strong>Reproduce the bug consistently</strong>
+✅ <strong>Isolate the problem</strong> - Binary search through code
+✅ <strong>Use version control</strong> - Revert if needed
+✅ <strong>Rubber duck debugging</strong> - Explain to someone/something</p>
+</section>
+</section>
+<hr class="docutils" />
+<section id="reading-error-messages">
+<h2>2. Reading Error Messages<a class="headerlink" href="#reading-error-messages" title="Link to this heading">#</a></h2>
+<p><strong>Error messages are your friends!</strong> They tell you exactly what’s wrong.</p>
+<section id="anatomy-of-a-stack-trace">
+<h3>Anatomy of a Stack Trace<a class="headerlink" href="#anatomy-of-a-stack-trace" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">divide_numbers</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">a</span> <span class="o">/</span> <span class="n">b</span>
+
+<span class="k">def</span> <span class="nf">calculate_average</span><span class="p">(</span><span class="n">numbers</span><span class="p">):</span>
+    <span class="n">total</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">numbers</span><span class="p">)</span>
+    <span class="n">count</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">numbers</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">divide_numbers</span><span class="p">(</span><span class="n">total</span><span class="p">,</span> <span class="n">count</span><span class="p">)</span>
+
+<span class="c1"># This will error!</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">calculate_average</span><span class="p">([])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Reading the traceback:</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Traceback (most recent call last):              ← Start here
+  File &quot;script.py&quot;, line 10, in &lt;module&gt;        ← Where you called it
+    result = calculate_average([])              ← The line that failed
+  File &quot;script.py&quot;, line 7, in calculate_average
+    return divide_numbers(total, count)         ← Function that called the error
+  File &quot;script.py&quot;, line 2, in divide_numbers
+    return a / b                                ← The actual error location
+ZeroDivisionError: division by zero             ← What went wrong
+</pre></div>
+</div>
+<p><strong>How to read it:</strong></p>
+<ol class="arabic simple">
+<li><p><strong>Bottom</strong>: The actual error type and message</p></li>
+<li><p><strong>Work upward</strong>: See the call stack</p></li>
+<li><p><strong>Find YOUR code</strong>: Focus on files you wrote</p></li>
+</ol>
+</section>
+<section id="common-python-exceptions">
+<h3>Common Python Exceptions<a class="headerlink" href="#common-python-exceptions" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># SyntaxError - Code won&#39;t even run</span>
+<span class="c1"># if x &gt; 5  # Missing colon!</span>
+
+<span class="c1"># NameError - Variable doesn&#39;t exist</span>
+<span class="c1"># print(undefined_variable)</span>
+
+<span class="c1"># TypeError - Wrong type for operation</span>
+<span class="c1"># result = &quot;hello&quot; + 5</span>
+
+<span class="c1"># AttributeError - Object doesn&#39;t have that attribute</span>
+<span class="c1"># numbers = [1, 2, 3]</span>
+<span class="c1"># numbers.append_item(4)  # Should be append()</span>
+
+<span class="c1"># IndexError - List index out of range</span>
+<span class="c1"># numbers = [1, 2, 3]</span>
+<span class="c1"># print(numbers[10])</span>
+
+<span class="c1"># KeyError - Dictionary key doesn&#39;t exist</span>
+<span class="c1"># person = {&quot;name&quot;: &quot;Alice&quot;}</span>
+<span class="c1"># print(person[&quot;age&quot;])</span>
+
+<span class="c1"># ValueError - Right type, wrong value</span>
+<span class="c1"># number = int(&quot;hello&quot;)</span>
+
+<span class="c1"># ZeroDivisionError - Division by zero</span>
+<span class="c1"># result = 10 / 0</span>
+
+<span class="c1"># FileNotFoundError - File doesn&#39;t exist</span>
+<span class="c1"># with open(&quot;nonexistent.txt&quot;) as f:</span>
+<span class="c1">#     content = f.read()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;All errors are commented out to prevent crashes&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="print-debugging">
+<h2>3. Print Debugging<a class="headerlink" href="#print-debugging" title="Link to this heading">#</a></h2>
+<p><strong>The most common debugging technique!</strong> Simple but effective.</p>
+<section id="basic-print-debugging">
+<h3>Basic Print Debugging<a class="headerlink" href="#basic-print-debugging" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">buggy_function</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;DEBUG: Input data = </span><span class="si">{</span><span class="n">data</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>  <span class="c1"># What did we receive?</span>
+    
+    <span class="n">result</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;DEBUG: Processing item = </span><span class="si">{</span><span class="n">item</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>  <span class="c1"># Track progress</span>
+        
+        <span class="k">if</span> <span class="n">item</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">value</span> <span class="o">=</span> <span class="n">item</span> <span class="o">*</span> <span class="mi">2</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;DEBUG: Calculated value = </span><span class="si">{</span><span class="n">value</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>  <span class="c1"># Check calculation</span>
+            <span class="n">result</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+    
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;DEBUG: Final result = </span><span class="si">{</span><span class="n">result</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>  <span class="c1"># What are we returning?</span>
+    <span class="k">return</span> <span class="n">result</span>
+
+<span class="n">buggy_function</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="better-print-debugging">
+<h3>Better Print Debugging<a class="headerlink" href="#better-print-debugging" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
+
+<span class="k">def</span> <span class="nf">debug_print</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Enhanced print for debugging.</span>
+<span class="sd">    Prints to stderr (won&#39;t interfere with normal output)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;[DEBUG]&quot;</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">calculate</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+    <span class="n">debug_print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;calculate called with x=</span><span class="si">{</span><span class="n">x</span><span class="si">}</span><span class="s2">, y=</span><span class="si">{</span><span class="n">y</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="n">y</span>
+    <span class="n">debug_print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;result = </span><span class="si">{</span><span class="n">result</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">result</span>
+
+<span class="n">calculate</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="using-f-strings-for-debugging-python-3-8">
+<h3>Using f-strings for Debugging (Python 3.8+)<a class="headerlink" href="#using-f-strings-for-debugging-python-3-8" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="mi">42</span>
+<span class="n">y</span> <span class="o">=</span> <span class="s2">&quot;hello&quot;</span>
+<span class="n">z</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+
+<span class="c1"># The = sign shows variable name AND value!</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">x</span><span class="si">=}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">y</span><span class="si">=}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">z</span><span class="si">=}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Works with expressions too</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">z</span><span class="p">)</span><span class="si">=}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">x</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">2</span><span class="si">=}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="conditional-debug-prints">
+<h3>Conditional Debug Prints<a class="headerlink" href="#conditional-debug-prints" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">DEBUG</span> <span class="o">=</span> <span class="kc">True</span>  <span class="c1"># Toggle this to enable/disable debug output</span>
+
+<span class="k">def</span> <span class="nf">debug_log</span><span class="p">(</span><span class="n">message</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">DEBUG</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;[DEBUG] </span><span class="si">{</span><span class="n">message</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">process_data</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="n">debug_log</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Starting processing with </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span><span class="si">}</span><span class="s2"> items&quot;</span><span class="p">)</span>
+    
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">item</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+        <span class="n">debug_log</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Item </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">item</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="c1"># ... processing ...</span>
+    
+    <span class="n">debug_log</span><span class="p">(</span><span class="s2">&quot;Processing complete&quot;</span><span class="p">)</span>
+
+<span class="n">process_data</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="python-debugger-pdb">
+<h2>4. Python Debugger (pdb)<a class="headerlink" href="#python-debugger-pdb" title="Link to this heading">#</a></h2>
+<p><strong>pdb</strong> is Python’s built-in interactive debugger. It’s like pausing time and inspecting everything!</p>
+<section id="basic-pdb-usage">
+<h3>Basic pdb Usage<a class="headerlink" href="#basic-pdb-usage" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pdb</span>
+
+<span class="k">def</span> <span class="nf">calculate_total</span><span class="p">(</span><span class="n">prices</span><span class="p">):</span>
+    <span class="n">total</span> <span class="o">=</span> <span class="mi">0</span>
+    
+    <span class="n">pdb</span><span class="o">.</span><span class="n">set_trace</span><span class="p">()</span>  <span class="c1"># ← Execution pauses here!</span>
+    
+    <span class="k">for</span> <span class="n">price</span> <span class="ow">in</span> <span class="n">prices</span><span class="p">:</span>
+        <span class="n">total</span> <span class="o">+=</span> <span class="n">price</span>
+    
+    <span class="k">return</span> <span class="n">total</span>
+
+<span class="c1"># Uncomment to try (won&#39;t work well in notebook):</span>
+<span class="c1"># calculate_total([10, 20, 30])</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="pdb-commands">
+<h3>pdb Commands<a class="headerlink" href="#pdb-commands" title="Link to this heading">#</a></h3>
+<p>When pdb pauses, you get an interactive prompt:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>(Pdb) ?
+</pre></div>
+</div>
+<p><strong>Navigation:</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">n</span></code> (next) - Execute current line, move to next</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">s</span></code> (step) - Step INTO function calls</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">c</span></code> (continue) - Continue until next breakpoint</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">r</span></code> (return) - Continue until current function returns</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">q</span></code> (quit) - Exit debugger</p></li>
+</ul>
+<p><strong>Inspection:</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">p</span> <span class="pre">variable</span></code> - Print variable value</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pp</span> <span class="pre">variable</span></code> - Pretty-print variable</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">l</span></code> (list) - Show current code context</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ll</span></code> (longlist) - Show whole function</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">w</span></code> (where) - Show stack trace</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">a</span></code> (args) - Show function arguments</p></li>
+</ul>
+<p><strong>Execution:</strong></p>
+<ul class="simple">
+<li><p>Any Python code! - <code class="docutils literal notranslate"><span class="pre">total</span> <span class="pre">=</span> <span class="pre">100</span></code>, <code class="docutils literal notranslate"><span class="pre">len(prices)</span></code>, etc.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">!</span></code> prefix for commands: <code class="docutils literal notranslate"><span class="pre">!n</span> <span class="pre">=</span> <span class="pre">5</span></code> (set n to 5, not next)</p></li>
+</ul>
+<p><strong>Breakpoints:</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">b</span> <span class="pre">line_number</span></code> - Set breakpoint at line</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">b</span> <span class="pre">function_name</span></code> - Break when function is called</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">b</span> <span class="pre">file.py:20</span></code> - Break at line 20 in <a class="reference external" href="http://file.py">file.py</a></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cl</span></code> (clear) - Remove all breakpoints</p></li>
+</ul>
+</section>
+<section id="breakpoint-modern-way-python-3-7">
+<h3>Breakpoint() - Modern Way (Python 3.7+)<a class="headerlink" href="#breakpoint-modern-way-python-3-7" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">process_user_data</span><span class="p">(</span><span class="n">users</span><span class="p">):</span>
+    <span class="n">results</span> <span class="o">=</span> <span class="p">[]</span>
+    
+    <span class="k">for</span> <span class="n">user</span> <span class="ow">in</span> <span class="n">users</span><span class="p">:</span>
+        <span class="c1"># Modern way - cleaner than pdb.set_trace()</span>
+        <span class="nb">breakpoint</span><span class="p">()</span>  <span class="c1"># ← Pauses here</span>
+        
+        <span class="n">name</span> <span class="o">=</span> <span class="n">user</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;name&quot;</span><span class="p">,</span> <span class="s2">&quot;Unknown&quot;</span><span class="p">)</span>
+        <span class="n">age</span> <span class="o">=</span> <span class="n">user</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;age&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="n">results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2"> is </span><span class="si">{</span><span class="n">age</span><span class="si">}</span><span class="s2"> years old&quot;</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">results</span>
+
+<span class="c1"># Uncomment to try:</span>
+<span class="c1"># process_user_data([{&quot;name&quot;: &quot;Alice&quot;, &quot;age&quot;: 30}])</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="post-mortem-debugging">
+<h3>Post-Mortem Debugging<a class="headerlink" href="#post-mortem-debugging" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pdb</span>
+
+<span class="k">def</span> <span class="nf">buggy_code</span><span class="p">():</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="mi">10</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">return</span> <span class="n">x</span> <span class="o">/</span> <span class="n">y</span>  <span class="c1"># This will crash!</span>
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">buggy_code</span><span class="p">()</span>
+<span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+    <span class="c1"># Enter debugger at the point of exception</span>
+    <span class="n">pdb</span><span class="o">.</span><span class="n">post_mortem</span><span class="p">()</span>
+    <span class="c1"># Now you can inspect variables at crash time!</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="logging">
+<h2>5. Logging<a class="headerlink" href="#logging" title="Link to this heading">#</a></h2>
+<p><strong>Better than print statements</strong> for production code!</p>
+<section id="basic-logging">
+<h3>Basic Logging<a class="headerlink" href="#basic-logging" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">logging</span>
+
+<span class="c1"># Configure logging</span>
+<span class="n">logging</span><span class="o">.</span><span class="n">basicConfig</span><span class="p">(</span>
+    <span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">,</span>
+    <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;</span><span class="si">%(asctime)s</span><span class="s1"> - </span><span class="si">%(name)s</span><span class="s1"> - </span><span class="si">%(levelname)s</span><span class="s1"> - </span><span class="si">%(message)s</span><span class="s1">&#39;</span>
+<span class="p">)</span>
+
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">divide</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;divide called with a=</span><span class="si">{</span><span class="n">a</span><span class="si">}</span><span class="s2">, b=</span><span class="si">{</span><span class="n">b</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    
+    <span class="k">if</span> <span class="n">b</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;Attempted division by zero!&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="kc">None</span>
+    
+    <span class="n">result</span> <span class="o">=</span> <span class="n">a</span> <span class="o">/</span> <span class="n">b</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Result: </span><span class="si">{</span><span class="n">result</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">result</span>
+
+<span class="n">divide</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">divide</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="log-levels">
+<h3>Log Levels<a class="headerlink" href="#log-levels" title="Link to this heading">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Detailed info for debugging&quot;</span><span class="p">)</span>      <span class="c1"># DEBUG</span>
+<span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;General information&quot;</span><span class="p">)</span>               <span class="c1"># INFO</span>
+<span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Warning - something unexpected&quot;</span><span class="p">)</span>  <span class="c1"># WARNING</span>
+<span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;Error occurred&quot;</span><span class="p">)</span>                   <span class="c1"># ERROR</span>
+<span class="n">logger</span><span class="o">.</span><span class="n">critical</span><span class="p">(</span><span class="s2">&quot;Critical failure!&quot;</span><span class="p">)</span>             <span class="c1"># CRITICAL</span>
+</pre></div>
+</div>
+<p><strong>When to use:</strong></p>
+<ul class="simple">
+<li><p><strong>DEBUG</strong>: Detailed diagnostic info</p></li>
+<li><p><strong>INFO</strong>: Confirm things are working</p></li>
+<li><p><strong>WARNING</strong>: Something unexpected but handled</p></li>
+<li><p><strong>ERROR</strong>: Serious problem, function failed</p></li>
+<li><p><strong>CRITICAL</strong>: Program may crash</p></li>
+</ul>
+</section>
+<section id="logging-to-file">
+<h3>Logging to File<a class="headerlink" href="#logging-to-file" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">logging</span>
+
+<span class="c1"># Log to file instead of console</span>
+<span class="n">logging</span><span class="o">.</span><span class="n">basicConfig</span><span class="p">(</span>
+    <span class="n">filename</span><span class="o">=</span><span class="s1">&#39;app.log&#39;</span><span class="p">,</span>
+    <span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">,</span>
+    <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;</span><span class="si">%(asctime)s</span><span class="s1"> - </span><span class="si">%(levelname)s</span><span class="s1"> - </span><span class="si">%(message)s</span><span class="s1">&#39;</span>
+<span class="p">)</span>
+
+<span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Application started&quot;</span><span class="p">)</span>
+<span class="n">logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Processing user data&quot;</span><span class="p">)</span>
+<span class="n">logging</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Low memory&quot;</span><span class="p">)</span>
+<span class="n">logging</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;Failed to connect to database&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="assert-statements">
+<h2>6. Assert Statements<a class="headerlink" href="#assert-statements" title="Link to this heading">#</a></h2>
+<p><strong>Catch bugs early</strong> by asserting what should be true.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">calculate_average</span><span class="p">(</span><span class="n">numbers</span><span class="p">):</span>
+    <span class="c1"># Assertions help catch bugs during development</span>
+    <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">numbers</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;Cannot calculate average of empty list&quot;</span>
+    <span class="k">assert</span> <span class="nb">all</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="nb">float</span><span class="p">))</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">numbers</span><span class="p">),</span> <span class="s2">&quot;All items must be numbers&quot;</span>
+    
+    <span class="k">return</span> <span class="nb">sum</span><span class="p">(</span><span class="n">numbers</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">numbers</span><span class="p">)</span>
+
+<span class="c1"># This works</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">calculate_average</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]))</span>
+
+<span class="c1"># These will fail with helpful messages</span>
+<span class="c1"># calculate_average([])  # AssertionError: Cannot calculate average of empty list</span>
+<span class="c1"># calculate_average([1, &quot;two&quot;, 3])  # AssertionError: All items must be numbers</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Best Practices:</strong></p>
+<ul class="simple">
+<li><p>Use for <strong>internal checks</strong> (sanity checks)</p></li>
+<li><p>NOT for <strong>user input validation</strong> (use exceptions)</p></li>
+<li><p>Can be disabled with <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">-O</span></code> (optimize flag)</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="performance-profiling">
+<h2>7. Performance Profiling<a class="headerlink" href="#performance-profiling" title="Link to this heading">#</a></h2>
+<p><strong>“Premature optimization is the root of all evil”</strong> - Donald Knuth</p>
+<p>But when you DO need to optimize, profile first!</p>
+<section id="timing-code-simple-way">
+<h3>Timing Code - Simple Way<a class="headerlink" href="#timing-code-simple-way" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">time</span>
+
+<span class="k">def</span> <span class="nf">slow_function</span><span class="p">():</span>
+    <span class="n">total</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1000000</span><span class="p">):</span>
+        <span class="n">total</span> <span class="o">+=</span> <span class="n">i</span>
+    <span class="k">return</span> <span class="n">total</span>
+
+<span class="c1"># Time it</span>
+<span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">slow_function</span><span class="p">()</span>
+<span class="n">end</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Took </span><span class="si">{</span><span class="n">end</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">start</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2"> seconds&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="using-timeit-module">
+<h3>Using timeit Module<a class="headerlink" href="#using-timeit-module" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">timeit</span>
+
+<span class="c1"># Time a snippet (runs multiple times for accuracy)</span>
+<span class="n">time_taken</span> <span class="o">=</span> <span class="n">timeit</span><span class="o">.</span><span class="n">timeit</span><span class="p">(</span>
+    <span class="n">stmt</span><span class="o">=</span><span class="s2">&quot;sum(range(1000))&quot;</span><span class="p">,</span>
+    <span class="n">number</span><span class="o">=</span><span class="mi">10000</span>  <span class="c1"># Run 10000 times</span>
+<span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Average time: </span><span class="si">{</span><span class="n">time_taken</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">10000</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2"> seconds&quot;</span><span class="p">)</span>
+
+<span class="c1"># Compare two approaches</span>
+<span class="n">approach1</span> <span class="o">=</span> <span class="n">timeit</span><span class="o">.</span><span class="n">timeit</span><span class="p">(</span><span class="s2">&quot;[i**2 for i in range(100)]&quot;</span><span class="p">,</span> <span class="n">number</span><span class="o">=</span><span class="mi">10000</span><span class="p">)</span>
+<span class="n">approach2</span> <span class="o">=</span> <span class="n">timeit</span><span class="o">.</span><span class="n">timeit</span><span class="p">(</span><span class="s2">&quot;list(map(lambda x: x**2, range(100)))&quot;</span><span class="p">,</span> <span class="n">number</span><span class="o">=</span><span class="mi">10000</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;List comprehension: </span><span class="si">{</span><span class="n">approach1</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2">s&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Map/lambda: </span><span class="si">{</span><span class="n">approach2</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2">s&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Winner: </span><span class="si">{</span><span class="s1">&#39;List comprehension&#39;</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">approach1</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">approach2</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="s1">&#39;Map/lambda&#39;</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="jupyter-magic-commands">
+<h3>Jupyter Magic Commands<a class="headerlink" href="#jupyter-magic-commands" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Time a single line</span>
+<span class="o">%</span><span class="n">timeit</span> <span class="nb">sum</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1000</span><span class="p">))</span>
+
+<span class="c1"># Time a cell</span>
+<span class="o">%%</span><span class="n">timeit</span>
+<span class="n">total</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1000</span><span class="p">):</span>
+    <span class="n">total</span> <span class="o">+=</span> <span class="n">i</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="cprofile-detailed-profiling">
+<h3>cProfile - Detailed Profiling<a class="headerlink" href="#cprofile-detailed-profiling" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">cProfile</span>
+<span class="kn">import</span> <span class="nn">pstats</span>
+<span class="kn">from</span> <span class="nn">io</span> <span class="kn">import</span> <span class="n">StringIO</span>
+
+<span class="k">def</span> <span class="nf">fibonacci</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">n</span> <span class="o">&lt;=</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">n</span>
+    <span class="k">return</span> <span class="n">fibonacci</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="n">fibonacci</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">calculate_fibs</span><span class="p">():</span>
+    <span class="n">results</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">20</span><span class="p">):</span>
+        <span class="n">results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">fibonacci</span><span class="p">(</span><span class="n">i</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">results</span>
+
+<span class="c1"># Profile the function</span>
+<span class="n">profiler</span> <span class="o">=</span> <span class="n">cProfile</span><span class="o">.</span><span class="n">Profile</span><span class="p">()</span>
+<span class="n">profiler</span><span class="o">.</span><span class="n">enable</span><span class="p">()</span>
+
+<span class="n">calculate_fibs</span><span class="p">()</span>
+
+<span class="n">profiler</span><span class="o">.</span><span class="n">disable</span><span class="p">()</span>
+
+<span class="c1"># Print stats</span>
+<span class="n">s</span> <span class="o">=</span> <span class="n">StringIO</span><span class="p">()</span>
+<span class="n">ps</span> <span class="o">=</span> <span class="n">pstats</span><span class="o">.</span><span class="n">Stats</span><span class="p">(</span><span class="n">profiler</span><span class="p">,</span> <span class="n">stream</span><span class="o">=</span><span class="n">s</span><span class="p">)</span><span class="o">.</span><span class="n">sort_stats</span><span class="p">(</span><span class="s1">&#39;cumulative&#39;</span><span class="p">)</span>
+<span class="n">ps</span><span class="o">.</span><span class="n">print_stats</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>  <span class="c1"># Top 10 functions</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">getvalue</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Reading cProfile output:</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">ncalls</span></code> - Number of times called</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">tottime</span></code> - Total time in this function (excluding sub-calls)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cumtime</span></code> - Total time including sub-calls</p></li>
+<li><p>Focus on functions with high <code class="docutils literal notranslate"><span class="pre">cumtime</span></code>!</p></li>
+</ul>
+</section>
+<section id="line-profiler-line-by-line-profiling">
+<h3>line_profiler - Line-by-Line Profiling<a class="headerlink" href="#line-profiler-line-by-line-profiling" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Install: pip install line_profiler</span>
+
+<span class="c1"># Use with @profile decorator</span>
+<span class="c1"># Then run: kernprof -l -v script.py</span>
+
+<span class="c1"># Example:</span>
+<span class="c1"># @profile</span>
+<span class="c1"># def slow_function():</span>
+<span class="c1">#     for i in range(1000):</span>
+<span class="c1">#         x = i ** 2</span>
+<span class="c1">#     return x</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="memory-profiling">
+<h2>8. Memory Profiling<a class="headerlink" href="#memory-profiling" title="Link to this heading">#</a></h2>
+<section id="checking-memory-usage">
+<h3>Checking Memory Usage<a class="headerlink" href="#checking-memory-usage" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
+
+<span class="c1"># Size of objects</span>
+<span class="n">numbers</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1000</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;List size: </span><span class="si">{</span><span class="n">sys</span><span class="o">.</span><span class="n">getsizeof</span><span class="p">(</span><span class="n">numbers</span><span class="p">)</span><span class="si">}</span><span class="s2"> bytes&quot;</span><span class="p">)</span>
+
+<span class="n">text</span> <span class="o">=</span> <span class="s2">&quot;Hello&quot;</span> <span class="o">*</span> <span class="mi">1000</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;String size: </span><span class="si">{</span><span class="n">sys</span><span class="o">.</span><span class="n">getsizeof</span><span class="p">(</span><span class="n">text</span><span class="p">)</span><span class="si">}</span><span class="s2"> bytes&quot;</span><span class="p">)</span>
+
+<span class="c1"># Memory-efficient alternatives</span>
+<span class="kn">import</span> <span class="nn">array</span>
+<span class="n">efficient_numbers</span> <span class="o">=</span> <span class="n">array</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="s1">&#39;i&#39;</span><span class="p">,</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1000</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Array size: </span><span class="si">{</span><span class="n">sys</span><span class="o">.</span><span class="n">getsizeof</span><span class="p">(</span><span class="n">efficient_numbers</span><span class="p">)</span><span class="si">}</span><span class="s2"> bytes&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Savings: </span><span class="si">{</span><span class="n">sys</span><span class="o">.</span><span class="n">getsizeof</span><span class="p">(</span><span class="n">numbers</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">sys</span><span class="o">.</span><span class="n">getsizeof</span><span class="p">(</span><span class="n">efficient_numbers</span><span class="p">)</span><span class="si">}</span><span class="s2"> bytes&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="memory-profiler">
+<h3>memory_profiler<a class="headerlink" href="#memory-profiler" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Install: pip install memory_profiler</span>
+
+<span class="c1"># Use with @profile decorator</span>
+<span class="c1"># Run: python -m memory_profiler script.py</span>
+
+<span class="c1"># Example:</span>
+<span class="c1"># @profile</span>
+<span class="c1"># def memory_hog():</span>
+<span class="c1">#     big_list = [0] * (10 ** 6)</span>
+<span class="c1">#     return sum(big_list)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="debugging-strategies">
+<h2>9. Debugging Strategies<a class="headerlink" href="#debugging-strategies" title="Link to this heading">#</a></h2>
+<section id="binary-search-debugging">
+<h3>Binary Search Debugging<a class="headerlink" href="#binary-search-debugging" title="Link to this heading">#</a></h3>
+<p><strong>Problem:</strong> Code worked yesterday, broken today. 1000 lines changed.</p>
+<p><strong>Solution:</strong></p>
+<ol class="arabic simple">
+<li><p>Comment out half the code</p></li>
+<li><p>Does it work? Bug is in commented half. Uncomment it.</p></li>
+<li><p>Repeat until you find the buggy line</p></li>
+</ol>
+<p>With Git:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>bisect<span class="w"> </span>start
+git<span class="w"> </span>bisect<span class="w"> </span>bad<span class="w">           </span><span class="c1"># Current commit is broken</span>
+git<span class="w"> </span>bisect<span class="w"> </span>good<span class="w"> </span>abc123<span class="w">   </span><span class="c1"># This old commit worked</span>
+<span class="c1"># Git checks out middle commit</span>
+<span class="c1"># Test it...</span>
+git<span class="w"> </span>bisect<span class="w"> </span>good<span class="w">  </span><span class="c1"># or bad</span>
+<span class="c1"># Repeat until bug is found</span>
+</pre></div>
+</div>
+</section>
+<section id="rubber-duck-debugging">
+<h3>Rubber Duck Debugging<a class="headerlink" href="#rubber-duck-debugging" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p>Get a rubber duck (or colleague, or pet)</p></li>
+<li><p>Explain your code line by line</p></li>
+<li><p>Often you’ll spot the bug while explaining!</p></li>
+</ol>
+<p><strong>Why it works:</strong> Forces you to think clearly about what code does</p>
+</section>
+<section id="wolf-fence-debugging">
+<h3>Wolf Fence Debugging<a class="headerlink" href="#wolf-fence-debugging" title="Link to this heading">#</a></h3>
+<p><strong>“There’s a wolf in Alaska. How do you find it?”</strong></p>
+<ol class="arabic simple">
+<li><p>Build a fence across middle of Alaska</p></li>
+<li><p>Wolf is on one side</p></li>
+<li><p>Build fence across middle of that half</p></li>
+<li><p>Repeat until you find the wolf</p></li>
+</ol>
+<p><strong>Applied to debugging:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Code is 100 lines, bug somewhere</span>
+<span class="c1"># Line 50</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Checkpoint A&quot;</span><span class="p">)</span>
+
+<span class="c1"># Does it print? If yes, bug is after line 50</span>
+<span class="c1"># If no, bug is before line 50</span>
+<span class="c1"># Repeat in that half!</span>
+</pre></div>
+</div>
+</section>
+<section id="minimal-reproducible-example">
+<h3>Minimal Reproducible Example<a class="headerlink" href="#minimal-reproducible-example" title="Link to this heading">#</a></h3>
+<p><strong>Remove everything not related to the bug:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Original: 500 lines, 10 functions</span>
+<span class="c1"># Minimal example:</span>
+<span class="k">def</span> <span class="nf">buggy</span><span class="p">():</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">x</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span>  <span class="c1"># Bug found!</span>
+</pre></div>
+</div>
+<p><strong>Benefits:</strong></p>
+<ul class="simple">
+<li><p>Often find bug while creating minimal example</p></li>
+<li><p>Easy to share for help (Stack Overflow)</p></li>
+<li><p>Easy to write test case</p></li>
+</ul>
+</section>
+</section>
+<hr class="docutils" />
+<section id="writing-debuggable-code">
+<h2>10. Writing Debuggable Code<a class="headerlink" href="#writing-debuggable-code" title="Link to this heading">#</a></h2>
+<section id="make-code-easy-to-debug">
+<h3>Make Code Easy to Debug<a class="headerlink" href="#make-code-easy-to-debug" title="Link to this heading">#</a></h3>
+<p><strong>Bad:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span><span class="p">):</span> <span class="k">return</span> <span class="n">x</span><span class="o">+</span><span class="n">y</span><span class="o">*</span><span class="n">z</span> <span class="k">if</span> <span class="n">x</span><span class="o">&gt;</span><span class="mi">0</span> <span class="k">else</span> <span class="n">y</span><span class="o">-</span><span class="n">z</span>
+</pre></div>
+</div>
+<p><strong>Good:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">calculate_result</span><span class="p">(</span><span class="n">base</span><span class="p">,</span> <span class="n">multiplier</span><span class="p">,</span> <span class="n">offset</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Calculate result based on base value.&quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">base</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">base</span> <span class="o">+</span> <span class="p">(</span><span class="n">multiplier</span> <span class="o">*</span> <span class="n">offset</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">multiplier</span> <span class="o">-</span> <span class="n">offset</span>
+    <span class="k">return</span> <span class="n">result</span>
+</pre></div>
+</div>
+</section>
+<section id="use-type-hints">
+<h3>Use Type Hints<a class="headerlink" href="#use-type-hints" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">process_user</span><span class="p">(</span><span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">age</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Process user data and return formatted dict.&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="p">{</span>
+        <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="n">name</span><span class="o">.</span><span class="n">upper</span><span class="p">(),</span>
+        <span class="s2">&quot;age&quot;</span><span class="p">:</span> <span class="n">age</span><span class="p">,</span>
+        <span class="s2">&quot;is_adult&quot;</span><span class="p">:</span> <span class="n">age</span> <span class="o">&gt;=</span> <span class="mi">18</span>
+    <span class="p">}</span>
+
+<span class="c1"># Type hints help catch bugs with mypy:</span>
+<span class="c1"># mypy script.py</span>
+<span class="c1"># error: Argument 1 to &quot;process_user&quot; has incompatible type &quot;int&quot;; expected &quot;str&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="defensive-programming">
+<h3>Defensive Programming<a class="headerlink" href="#defensive-programming" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">safe_divide</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Safely divide two numbers.</span>
+<span class="sd">    </span>
+<span class="sd">    Args:</span>
+<span class="sd">        a: Numerator</span>
+<span class="sd">        b: Denominator</span>
+<span class="sd">    </span>
+<span class="sd">    Returns:</span>
+<span class="sd">        Result of division or None if invalid</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Validate inputs</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="nb">float</span><span class="p">)):</span>
+        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;a must be a number, got </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">a</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="nb">float</span><span class="p">)):</span>
+        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;b must be a number, got </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">b</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    
+    <span class="c1"># Check for division by zero</span>
+    <span class="k">if</span> <span class="n">b</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">logging</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Attempted division by zero&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="kc">None</span>
+    
+    <span class="n">result</span> <span class="o">=</span> <span class="n">a</span> <span class="o">/</span> <span class="n">b</span>
+    
+    <span class="c1"># Validate output</span>
+    <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="nb">float</span><span class="p">)),</span> <span class="s2">&quot;Result must be a number&quot;</span>
+    
+    <span class="k">return</span> <span class="n">result</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">safe_divide</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">safe_divide</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="early-returns">
+<h3>Early Returns<a class="headerlink" href="#early-returns" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">process_data</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Process data with early validation.&quot;&quot;&quot;</span>
+    
+    <span class="c1"># Validate early, return early</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">data</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">[]</span>
+    
+    <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;Data must be a list&quot;</span><span class="p">)</span>
+    
+    <span class="c1"># Now we know data is a non-empty list</span>
+    <span class="n">results</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
+        <span class="c1"># ... process item ...</span>
+        <span class="n">results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">item</span> <span class="o">*</span> <span class="mi">2</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">results</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="exercises">
+<h2>📝 Exercises<a class="headerlink" href="#exercises" title="Link to this heading">#</a></h2>
+<section id="exercise-1-debug-this-code">
+<h3>Exercise 1: Debug This Code<a class="headerlink" href="#exercise-1-debug-this-code" title="Link to this heading">#</a></h3>
+<p>Find and fix the bugs:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">calculate_average</span><span class="p">(</span><span class="n">numbers</span><span class="p">):</span>
+    <span class="n">total</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">number</span> <span class="ow">in</span> <span class="n">numbers</span><span class="p">:</span>
+        <span class="n">total</span> <span class="o">+=</span> <span class="n">number</span>
+    <span class="n">average</span> <span class="o">=</span> <span class="n">total</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">numbers</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">average</span>
+
+<span class="c1"># Test cases - which ones fail?</span>
+<span class="c1"># print(calculate_average([1, 2, 3, 4, 5]))</span>
+<span class="c1"># print(calculate_average([]))</span>
+<span class="c1"># print(calculate_average([1, &quot;two&quot;, 3]))</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="exercise-2-add-logging">
+<h3>Exercise 2: Add Logging<a class="headerlink" href="#exercise-2-add-logging" title="Link to this heading">#</a></h3>
+<p>Add appropriate logging to this function:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">fetch_user_data</span><span class="p">(</span><span class="n">user_id</span><span class="p">):</span>
+    <span class="c1"># Add logging here!</span>
+    
+    <span class="n">users</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="mi">1</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Alice&quot;</span><span class="p">,</span> <span class="s2">&quot;email&quot;</span><span class="p">:</span> <span class="s2">&quot;alice@example.com&quot;</span><span class="p">},</span>
+        <span class="mi">2</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Bob&quot;</span><span class="p">,</span> <span class="s2">&quot;email&quot;</span><span class="p">:</span> <span class="s2">&quot;bob@example.com&quot;</span><span class="p">}</span>
+    <span class="p">}</span>
+    
+    <span class="k">if</span> <span class="n">user_id</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">users</span><span class="p">:</span>
+        <span class="c1"># Log error</span>
+        <span class="k">return</span> <span class="kc">None</span>
+    
+    <span class="n">user</span> <span class="o">=</span> <span class="n">users</span><span class="p">[</span><span class="n">user_id</span><span class="p">]</span>
+    <span class="c1"># Log success</span>
+    <span class="k">return</span> <span class="n">user</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="exercise-3-profile-performance">
+<h3>Exercise 3: Profile Performance<a class="headerlink" href="#exercise-3-profile-performance" title="Link to this heading">#</a></h3>
+<p>Which approach is faster?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">approach1</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Using list comprehension.&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">i</span> <span class="o">**</span> <span class="mi">2</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">)]</span>
+
+<span class="k">def</span> <span class="nf">approach2</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Using loop.&quot;&quot;&quot;</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+        <span class="n">result</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">result</span>
+
+<span class="c1"># Use timeit to compare them!</span>
+<span class="c1"># Your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="exercise-4-write-assertions">
+<h3>Exercise 4: Write Assertions<a class="headerlink" href="#exercise-4-write-assertions" title="Link to this heading">#</a></h3>
+<p>Add assertions to validate inputs:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">calculate_grade</span><span class="p">(</span><span class="n">score</span><span class="p">,</span> <span class="n">max_score</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Calculate percentage grade.&quot;&quot;&quot;</span>
+    <span class="c1"># Add assertions here!</span>
+    <span class="c1"># - score should be &gt;= 0</span>
+    <span class="c1"># - max_score should be &gt; 0</span>
+    <span class="c1"># - score should be &lt;= max_score</span>
+    
+    <span class="n">percentage</span> <span class="o">=</span> <span class="p">(</span><span class="n">score</span> <span class="o">/</span> <span class="n">max_score</span><span class="p">)</span> <span class="o">*</span> <span class="mi">100</span>
+    <span class="k">return</span> <span class="n">percentage</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="self-check-quiz">
+<h2>✅ Self-Check Quiz<a class="headerlink" href="#self-check-quiz" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p>What’s the first thing to do when you encounter a bug?</p></li>
+<li><p>How do you read a Python traceback?</p></li>
+<li><p>What’s the difference between <code class="docutils literal notranslate"><span class="pre">print()</span></code> and <code class="docutils literal notranslate"><span class="pre">logging</span></code>?</p></li>
+<li><p>What does <code class="docutils literal notranslate"><span class="pre">pdb.set_trace()</span></code> do?</p></li>
+<li><p>Name 3 pdb commands and what they do</p></li>
+<li><p>When should you use assertions?</p></li>
+<li><p>What’s the purpose of profiling?</p></li>
+<li><p>What is rubber duck debugging?</p></li>
+<li><p>Why write type hints?</p></li>
+<li><p>What makes code easy to debug?</p></li>
+</ol>
+</section>
+<hr class="docutils" />
+<section id="key-takeaways">
+<h2>🎯 Key Takeaways<a class="headerlink" href="#key-takeaways" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><strong>Read error messages</strong> - They tell you what’s wrong!</p></li>
+<li><p><strong>Print debugging</strong> works, but logging is better</p></li>
+<li><p><strong>pdb</strong> is powerful for interactive debugging</p></li>
+<li><p><strong>Profile before optimizing</strong> - Don’t guess!</p></li>
+<li><p><strong>Assertions</strong> catch bugs during development</p></li>
+<li><p><strong>Type hints</strong> help find bugs before runtime</p></li>
+<li><p><strong>Defensive programming</strong> prevents bugs</p></li>
+<li><p><strong>Binary search</strong> debugging saves time</p></li>
+<li><p><strong>Minimal examples</strong> help isolate bugs</p></li>
+<li><p><strong>Good code</strong> is easy to debug</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="next-steps">
+<h2>🚀 Next Steps<a class="headerlink" href="#next-steps" title="Link to this heading">#</a></h2>
+<p><strong>Debugging is a skill that improves with practice!</strong></p>
+<p><strong>Practice by:</strong></p>
+<ul class="simple">
+<li><p>Debugging every bug you encounter</p></li>
+<li><p>Using pdb instead of print sometimes</p></li>
+<li><p>Reading other people’s stack traces</p></li>
+<li><p>Profiling your slow code</p></li>
+</ul>
+<p><strong>Continue learning:</strong></p>
+<ul class="simple">
+<li><p><strong>Security Essentials</strong>: <code class="docutils literal notranslate"><span class="pre">tools/07_security_essentials.ipynb</span></code></p></li>
+<li><p><strong>Build Systems</strong>: <code class="docutils literal notranslate"><span class="pre">tools/08_build_and_automation.ipynb</span></code></p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="pro-tips">
+<h2>💡 Pro Tips<a class="headerlink" href="#pro-tips" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p><strong>Read the error</strong> - Don’t skim, read carefully</p></li>
+<li><p><strong>Reproduce consistently</strong> - Can’t fix what you can’t reproduce</p></li>
+<li><p><strong>Use version control</strong> - Know what changed</p></li>
+<li><p><strong>Take breaks</strong> - Fresh eyes find bugs faster</p></li>
+<li><p><strong>Ask for help</strong> - After you’ve tried (rubber duck first!)</p></li>
+<li><p><strong>Write tests</strong> - Catch bugs before users do</p></li>
+<li><p><strong>Keep it simple</strong> - Complex code has more bugs</p></li>
+<li><p><strong>Log, don’t print</strong> - Production code needs logging</p></li>
+</ol>
+</section>
+<hr class="docutils" />
+<section id="resources">
+<h2>📚 Resources<a class="headerlink" href="#resources" title="Link to this heading">#</a></h2>
+<p><strong>Documentation:</strong></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://docs.python.org/3/library/pdb.html">pdb Official Docs</a></p></li>
+<li><p><a class="reference external" href="https://docs.python.org/3/library/logging.html">logging Module</a></p></li>
+<li><p><a class="reference external" href="https://docs.python.org/3/library/profile.html">Python Profilers</a></p></li>
+</ul>
+<p><strong>Tools:</strong></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://pytest.org">pytest</a> - Testing framework</p></li>
+<li><p><a class="reference external" href="http://mypy-lang.org/">mypy</a> - Static type checker</p></li>
+<li><p><a class="reference external" href="https://black.readthedocs.io/">black</a> - Code formatter</p></li>
+<li><p><a class="reference external" href="https://pylint.org/">pylint</a> - Code analyzer</p></li>
+</ul>
+<p><strong>Learning:</strong></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://effectivepython.com/">“Effective Python” by Brett Slatkin</a></p></li>
+<li><p><a class="reference external" href="https://pragprog.com/titles/tpp20/">“The Pragmatic Programmer”</a></p></li>
+</ul>
+<hr class="docutils" />
+<p><strong>“Debugging is twice as hard as writing code in the first place. Therefore, if you write code as cleverly as possible, you are, by definition, not smart enough to debug it.”</strong> - Brian Kernighan</p>
+<p>Write simple, debuggable code! 🐛✨</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./tools"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="05_build_systems_cicd.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Build Systems &amp; CI/CD</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="07_security_essentials.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Security Essentials for Developers</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-you-ll-learn">What You’ll Learn</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#real-world-analogy">💡 Real-World Analogy</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-debugging-mindset">1. The Debugging Mindset</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#accept-that-bugs-are-normal">Accept That Bugs Are Normal</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-scientific-method">The Scientific Method</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#common-debugging-mistakes">Common Debugging Mistakes</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reading-error-messages">2. Reading Error Messages</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#anatomy-of-a-stack-trace">Anatomy of a Stack Trace</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#common-python-exceptions">Common Python Exceptions</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#print-debugging">3. Print Debugging</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-print-debugging">Basic Print Debugging</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#better-print-debugging">Better Print Debugging</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-f-strings-for-debugging-python-3-8">Using f-strings for Debugging (Python 3.8+)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#conditional-debug-prints">Conditional Debug Prints</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#python-debugger-pdb">4. Python Debugger (pdb)</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-pdb-usage">Basic pdb Usage</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pdb-commands">pdb Commands</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#breakpoint-modern-way-python-3-7">Breakpoint() - Modern Way (Python 3.7+)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#post-mortem-debugging">Post-Mortem Debugging</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#logging">5. Logging</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-logging">Basic Logging</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#log-levels">Log Levels</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#logging-to-file">Logging to File</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#assert-statements">6. Assert Statements</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#performance-profiling">7. Performance Profiling</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#timing-code-simple-way">Timing Code - Simple Way</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-timeit-module">Using timeit Module</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#jupyter-magic-commands">Jupyter Magic Commands</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cprofile-detailed-profiling">cProfile - Detailed Profiling</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#line-profiler-line-by-line-profiling">line_profiler - Line-by-Line Profiling</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#memory-profiling">8. Memory Profiling</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#checking-memory-usage">Checking Memory Usage</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#memory-profiler">memory_profiler</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#debugging-strategies">9. Debugging Strategies</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#binary-search-debugging">Binary Search Debugging</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rubber-duck-debugging">Rubber Duck Debugging</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#wolf-fence-debugging">Wolf Fence Debugging</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#minimal-reproducible-example">Minimal Reproducible Example</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#writing-debuggable-code">10. Writing Debuggable Code</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#make-code-easy-to-debug">Make Code Easy to Debug</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#use-type-hints">Use Type Hints</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#defensive-programming">Defensive Programming</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#early-returns">Early Returns</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">📝 Exercises</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-1-debug-this-code">Exercise 1: Debug This Code</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-2-add-logging">Exercise 2: Add Logging</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-3-profile-performance">Exercise 3: Profile Performance</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-4-write-assertions">Exercise 4: Write Assertions</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#self-check-quiz">✅ Self-Check Quiz</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#key-takeaways">🎯 Key Takeaways</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#next-steps">🚀 Next Steps</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pro-tips">💡 Pro Tips</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resources">📚 Resources</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Mykolas Perevicius
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

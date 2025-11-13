@@ -1,0 +1,1652 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Hard Level: High-Performance Python Computing &#8212; Education Playground</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=0c185eed" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=c73c0f3e"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'hard/10_performance_computing';</script>
+    <script src="../_static/js/onboarding.js?v=557b7536"></script>
+    <link rel="canonical" href="https://mykolas-perevicius.github.io/Education_Playground/hard/10_performance_computing.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Hard Level: CUDA &amp; GPU Parallel Computing" href="11_cuda_and_parallel_computing.html" />
+    <link rel="prev" title="Lesson 9: Capture The Flag (CTF) - Hacker Training" href="09_ctf_challenges.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../README.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Education Playground</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../00_calibration_test.html">🎯 Calibration Test - Find Your Level</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../beginner_scripts/README.html">🌱 Beginner Scripts (10 Python Files)</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../easy/README_EASY.html">📗 Easy Level - Beginner</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../easy/01_introduction_to_python.html">1. Introduction to Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../easy/02_variables_and_data_types.html">2. Variables and Data Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../easy/03_basic_operations_and_conditionals.html">3. Operations and Conditionals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../easy/04_intro_to_ai_and_ml.html">4. Intro to AI and ML</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../easy/05_computing_fundamentals.html">5. Computing Fundamentals</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../medium/README_MEDIUM.html">📘 Medium Level - Intermediate</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../medium/01_functions_and_modules.html">1. Functions and Modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../medium/02_data_structures.html">2. Data Structures</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../medium/03_classes_and_oop.html">3. Classes and OOP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../medium/04_machine_learning_basics.html">4. Machine Learning Basics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../medium/05_data_analysis_with_pandas.html">5. Data Analysis with Pandas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../medium/06_algorithms_and_problem_solving.html">6. Algorithms and Problem Solving</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="README_HARD.html">📕 Hard Level - Advanced</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="01_advanced_functions_and_decorators.html">1. Advanced Functions &amp; Decorators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02_generators_and_iterators.html">2. Generators and Iterators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03_algorithms_and_complexity.html">3. Algorithms and Complexity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04_deep_learning_and_neural_networks.html">4. Deep Learning &amp; Neural Networks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05_advanced_ml_and_nlp.html">5. Advanced ML and NLP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="06_computer_systems_and_theory.html">6. Computer Systems and Theory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="07_project_ideas.html">7. Project Ideas &amp; Implementation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="08_classic_problems.html">Lesson 8: Classic Problems Collection</a></li>
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="09_ctf_challenges.html">Lesson 9: Capture The Flag (CTF) - Hacker Training</a></li>
+
+
+
+
+
+
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">10. Performance Computing ⚡ NEW!</a></li>
+<li class="toctree-l2"><a class="reference internal" href="11_cuda_and_parallel_computing.html">11. CUDA &amp; GPU Computing 🎮 NEW!</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../tools/README.html">🛠️ Developer Tools Track</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../tools/01_shell_basics.html">1. Shell and Command Line</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools/02_command_line_tools.html">2. Command Line Tools</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools/03_git_essentials.html">3. Git Essentials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools/04_text_editors.html">4. Text Editors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools/05_build_systems_cicd.html">5. Build Systems and CI/CD</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools/06_debugging_profiling.html">6. Debugging and Profiling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools/07_security_essentials.html">7. Security Essentials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools/08_package_management.html">8. Package Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools/09_ssh_remote_systems.html">9. SSH and Remote Systems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools/10_docker_containers.html">10. Docker and Containers</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../solutions/README_SOLUTIONS.html">📝 Solutions</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../solutions/easy_solutions.html">Easy Level - Complete Solutions</a></li>
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../solutions/medium_solutions.html">Medium Level - Complete Solutions</a></li>
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../solutions/hard_solutions.html">Hard Level - Complete Solutions</a></li>
+
+
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../solutions/tools_solutions.html">Developer Tools - Complete Solutions</a></li>
+
+
+
+
+
+
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../RESOURCES.html">📚 Learning Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../PYTHON_CHEATSHEET.html">⚡ Python Cheat Sheet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ML_AI_CHEATSHEET.html">🤖 ML/AI Cheat Sheet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../SETUP.html">🔧 Setup Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../RELEASE_NOTES_v2.0.0.html">🎉 Release Notes v2.0.0</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none"></div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Hard Level: High-Performance Python Computing</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#real-world-context">Real-World Context</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-1-profiling-finding-the-bottleneck">Part 1: Profiling - Finding the Bottleneck</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#profiling-tools">Profiling Tools</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#key-profiling-insights">Key Profiling Insights</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-2-memory-optimization">Part 2: Memory Optimization</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#memory-profiling">Memory Profiling</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#memory-optimization-techniques">Memory Optimization Techniques</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-3-numpy-vectorization">Part 3: NumPy Vectorization</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vectorization-best-practices">Vectorization Best Practices</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-4-just-in-time-compilation-with-numba">Part 4: Just-In-Time Compilation with Numba</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#numba-guidelines">Numba Guidelines</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-5-multiprocessing-and-threading">Part 5: Multiprocessing and Threading</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-global-interpreter-lock-gil">The Global Interpreter Lock (GIL)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#concurrency-decision-tree">Concurrency Decision Tree</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-6-asynchronous-i-o-with-asyncio">Part 6: Asynchronous I/O with asyncio</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#async-best-practices">Async Best Practices</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-7-cython-c-extension-speed">Part 7: Cython - C Extension Speed</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cython-example-pseudocode">Cython Example (Pseudocode)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-8-performance-optimization-checklist">Part 8: Performance Optimization Checklist</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#profile-first">1. Profile First ✓</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#algorithm-optimization">2. Algorithm Optimization ✓</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-structure-choice">3. Data Structure Choice ✓</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vectorization">4. Vectorization ✓</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#compilation">5. Compilation ✓</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#concurrency">6. Concurrency ✓</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#memory-optimization">7. Memory Optimization ✓</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#i-o-optimization">8. I/O Optimization ✓</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#string-operations">9. String Operations ✓</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#measure-results">10. Measure Results ✓</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-9-exercises">Part 9: Exercises</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-1-optimize-matrix-multiplication-difficulty">Exercise 1: Optimize Matrix Multiplication (Difficulty: ★★★☆☆)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-2-parallel-file-processing-difficulty">Exercise 2: Parallel File Processing (Difficulty: ★★★★☆)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-3-memory-efficient-data-processing-difficulty">Exercise 3: Memory-Efficient Data Processing (Difficulty: ★★★☆☆)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-4-async-web-scraper-difficulty">Exercise 4: Async Web Scraper (Difficulty: ★★★★☆)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-5-cache-decorator-difficulty">Exercise 5: Cache Decorator (Difficulty: ★★★☆☆)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-6-profile-and-optimize-difficulty">Exercise 6: Profile and Optimize (Difficulty: ★★★★★)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-10-self-check-quiz">Part 10: Self-Check Quiz</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#question-1">Question 1</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#question-2">Question 2</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#question-3">Question 3</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#question-4">Question 4</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#question-5">Question 5</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#key-takeaways">Key Takeaways</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#common-mistakes-to-avoid">Common Mistakes to Avoid</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pro-tips">Pro Tips</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-s-next">What’s Next?</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="hard-level-high-performance-python-computing">
+<h1>Hard Level: High-Performance Python Computing<a class="headerlink" href="#hard-level-high-performance-python-computing" title="Link to this heading">#</a></h1>
+<section id="real-world-context">
+<h2>Real-World Context<a class="headerlink" href="#real-world-context" title="Link to this heading">#</a></h2>
+<p><strong>The Problem</strong>: Python is often criticized for being “slow” compared to C/C++. In reality, proper optimization can make Python competitive for many tasks, and understanding performance is crucial for:</p>
+<ul class="simple">
+<li><p>Processing large datasets (millions/billions of records)</p></li>
+<li><p>Real-time systems (trading, gaming, streaming)</p></li>
+<li><p>Scientific computing and simulations</p></li>
+<li><p>Machine learning model training</p></li>
+<li><p>Web services handling millions of requests</p></li>
+</ul>
+<p><strong>Why This Matters</strong>:</p>
+<ul class="simple">
+<li><p><strong>Cost Savings</strong>: 10x faster code = 10x fewer servers</p></li>
+<li><p><strong>User Experience</strong>: Fast responses keep users engaged</p></li>
+<li><p><strong>Scalability</strong>: Efficient code handles more load</p></li>
+<li><p><strong>Energy</strong>: Less computation = lower power consumption</p></li>
+</ul>
+<p><strong>What You’ll Learn</strong>:</p>
+<ul class="simple">
+<li><p>How to profile and find bottlenecks</p></li>
+<li><p>Memory and CPU optimization techniques</p></li>
+<li><p>Just-In-Time (JIT) compilation with Numba</p></li>
+<li><p>Vectorization with NumPy</p></li>
+<li><p>Multiprocessing and threading</p></li>
+<li><p>Asynchronous I/O for concurrency</p></li>
+<li><p>Cython for C-speed Python</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="part-1-profiling-finding-the-bottleneck">
+<h2>Part 1: Profiling - Finding the Bottleneck<a class="headerlink" href="#part-1-profiling-finding-the-bottleneck" title="Link to this heading">#</a></h2>
+<p><strong>Golden Rule</strong>: “Premature optimization is the root of all evil” - Donald Knuth</p>
+<p>Always profile first! 90% of execution time is typically spent in 10% of the code.</p>
+<section id="profiling-tools">
+<h3>Profiling Tools<a class="headerlink" href="#profiling-tools" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p><strong>time/timeit</strong>: Simple timing</p></li>
+<li><p><strong>cProfile</strong>: Built-in Python profiler</p></li>
+<li><p><strong>line_profiler</strong>: Line-by-line profiling</p></li>
+<li><p><strong>memory_profiler</strong>: Track memory usage</p></li>
+<li><p><strong>py-spy</strong>: Sampling profiler (no code changes needed)</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">import</span> <span class="nn">cProfile</span>
+<span class="kn">import</span> <span class="nn">pstats</span>
+<span class="kn">from</span> <span class="nn">io</span> <span class="kn">import</span> <span class="n">StringIO</span>
+
+<span class="c1"># Example: Slow vs Fast String Concatenation</span>
+
+<span class="k">def</span> <span class="nf">slow_concat</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Slow: O(n²) due to string immutability.&quot;&quot;&quot;</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+        <span class="n">result</span> <span class="o">+=</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>  <span class="c1"># Creates new string each time</span>
+    <span class="k">return</span> <span class="n">result</span>
+
+<span class="k">def</span> <span class="nf">fast_concat</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Fast: O(n) using list join.&quot;&quot;&quot;</span>
+    <span class="n">parts</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+        <span class="n">parts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">))</span>
+    <span class="k">return</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">parts</span><span class="p">)</span>
+
+<span class="c1"># Timing comparison</span>
+<span class="n">n</span> <span class="o">=</span> <span class="mi">10000</span>
+
+<span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span>
+<span class="n">slow_result</span> <span class="o">=</span> <span class="n">slow_concat</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+<span class="n">slow_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span> <span class="o">-</span> <span class="n">start</span>
+
+<span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span>
+<span class="n">fast_result</span> <span class="o">=</span> <span class="n">fast_concat</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+<span class="n">fast_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span> <span class="o">-</span> <span class="n">start</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Slow concat: </span><span class="si">{</span><span class="n">slow_time</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">s&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Fast concat: </span><span class="si">{</span><span class="n">fast_time</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">s&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Speedup: </span><span class="si">{</span><span class="n">slow_time</span><span class="o">/</span><span class="n">fast_time</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">x faster&quot;</span><span class="p">)</span>
+
+<span class="c1"># Using timeit for more accurate measurements</span>
+<span class="kn">import</span> <span class="nn">timeit</span>
+
+<span class="n">slow_avg</span> <span class="o">=</span> <span class="n">timeit</span><span class="o">.</span><span class="n">timeit</span><span class="p">(</span><span class="k">lambda</span><span class="p">:</span> <span class="n">slow_concat</span><span class="p">(</span><span class="mi">1000</span><span class="p">),</span> <span class="n">number</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span> <span class="o">/</span> <span class="mi">100</span>
+<span class="n">fast_avg</span> <span class="o">=</span> <span class="n">timeit</span><span class="o">.</span><span class="n">timeit</span><span class="p">(</span><span class="k">lambda</span><span class="p">:</span> <span class="n">fast_concat</span><span class="p">(</span><span class="mi">1000</span><span class="p">),</span> <span class="n">number</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span> <span class="o">/</span> <span class="mi">100</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Average over 100 runs (n=1000):&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Slow: </span><span class="si">{</span><span class="n">slow_avg</span><span class="o">*</span><span class="mi">1000</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">ms&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Fast: </span><span class="si">{</span><span class="n">fast_avg</span><span class="o">*</span><span class="mi">1000</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">ms&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># cProfile Example: Finding hotspots</span>
+
+<span class="k">def</span> <span class="nf">fibonacci_recursive</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Inefficient recursive fibonacci.&quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">n</span> <span class="o">&lt;=</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">n</span>
+    <span class="k">return</span> <span class="n">fibonacci_recursive</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="n">fibonacci_recursive</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">fibonacci_iterative</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Efficient iterative fibonacci.&quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">n</span> <span class="o">&lt;=</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">n</span>
+    <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span>
+    <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+        <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="n">b</span><span class="p">,</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span>
+    <span class="k">return</span> <span class="n">b</span>
+
+<span class="c1"># Profile the recursive version</span>
+<span class="n">profiler</span> <span class="o">=</span> <span class="n">cProfile</span><span class="o">.</span><span class="n">Profile</span><span class="p">()</span>
+<span class="n">profiler</span><span class="o">.</span><span class="n">enable</span><span class="p">()</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">fibonacci_recursive</span><span class="p">(</span><span class="mi">25</span><span class="p">)</span>
+<span class="n">profiler</span><span class="o">.</span><span class="n">disable</span><span class="p">()</span>
+
+<span class="c1"># Print stats</span>
+<span class="n">s</span> <span class="o">=</span> <span class="n">StringIO</span><span class="p">()</span>
+<span class="n">ps</span> <span class="o">=</span> <span class="n">pstats</span><span class="o">.</span><span class="n">Stats</span><span class="p">(</span><span class="n">profiler</span><span class="p">,</span> <span class="n">stream</span><span class="o">=</span><span class="n">s</span><span class="p">)</span><span class="o">.</span><span class="n">sort_stats</span><span class="p">(</span><span class="s1">&#39;cumulative&#39;</span><span class="p">)</span>
+<span class="n">ps</span><span class="o">.</span><span class="n">print_stats</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>  <span class="c1"># Top 10 functions</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Recursive Fibonacci Profile:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">getvalue</span><span class="p">())</span>
+
+<span class="c1"># Compare execution times</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Performance Comparison:&quot;</span><span class="p">)</span>
+<span class="n">n</span> <span class="o">=</span> <span class="mi">30</span>
+
+<span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span>
+<span class="n">rec_result</span> <span class="o">=</span> <span class="n">fibonacci_recursive</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+<span class="n">rec_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span> <span class="o">-</span> <span class="n">start</span>
+
+<span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span>
+<span class="n">iter_result</span> <span class="o">=</span> <span class="n">fibonacci_iterative</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+<span class="n">iter_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span> <span class="o">-</span> <span class="n">start</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Recursive: </span><span class="si">{</span><span class="n">rec_time</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">s&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Iterative: </span><span class="si">{</span><span class="n">iter_time</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2">s&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Speedup: </span><span class="si">{</span><span class="n">rec_time</span><span class="o">/</span><span class="n">iter_time</span><span class="si">:</span><span class="s2">.0f</span><span class="si">}</span><span class="s2">x faster!&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="key-profiling-insights">
+<h3>Key Profiling Insights<a class="headerlink" href="#key-profiling-insights" title="Link to this heading">#</a></h3>
+<p><strong>What to Look For:</strong></p>
+<ol class="arabic simple">
+<li><p><strong>High cumulative time</strong>: Functions called often or running long</p></li>
+<li><p><strong>Number of calls</strong>: Unexpectedly high call counts indicate inefficiency</p></li>
+<li><p><strong>Per-call time</strong>: Individual function slowness</p></li>
+</ol>
+<p><strong>Common Bottlenecks:</strong></p>
+<ul class="simple">
+<li><p>String concatenation in loops</p></li>
+<li><p>Nested loops (O(n²) or worse)</p></li>
+<li><p>Repeated file I/O</p></li>
+<li><p>Database queries in loops (N+1 problem)</p></li>
+<li><p>Inefficient algorithms (bubble sort vs quicksort)</p></li>
+</ul>
+</section>
+</section>
+<hr class="docutils" />
+<section id="part-2-memory-optimization">
+<h2>Part 2: Memory Optimization<a class="headerlink" href="#part-2-memory-optimization" title="Link to this heading">#</a></h2>
+<p>Memory is often the limiting factor in data processing. Understanding memory usage prevents crashes and improves performance.</p>
+<section id="memory-profiling">
+<h3>Memory Profiling<a class="headerlink" href="#memory-profiling" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">namedtuple</span>
+
+<span class="c1"># Memory comparison: List vs Tuple vs Generator</span>
+
+<span class="k">def</span> <span class="nf">memory_usage_demo</span><span class="p">():</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="mi">1_000_000</span>
+    
+    <span class="c1"># List: stores all elements in memory</span>
+    <span class="n">list_data</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">)]</span>
+    <span class="n">list_size</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">getsizeof</span><span class="p">(</span><span class="n">list_data</span><span class="p">)</span>
+    
+    <span class="c1"># Tuple: slightly more memory efficient</span>
+    <span class="n">tuple_data</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">))</span>
+    <span class="n">tuple_size</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">getsizeof</span><span class="p">(</span><span class="n">tuple_data</span><span class="p">)</span>
+    
+    <span class="c1"># Generator: minimal memory (just stores state)</span>
+    <span class="n">gen_data</span> <span class="o">=</span> <span class="p">(</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">))</span>
+    <span class="n">gen_size</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">getsizeof</span><span class="p">(</span><span class="n">gen_data</span><span class="p">)</span>
+    
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Memory Usage for </span><span class="si">{</span><span class="n">n</span><span class="si">:</span><span class="s2">,</span><span class="si">}</span><span class="s2"> integers:&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;List:      </span><span class="si">{</span><span class="n">list_size</span><span class="si">:</span><span class="s2">&gt;12,</span><span class="si">}</span><span class="s2"> bytes (</span><span class="si">{</span><span class="n">list_size</span><span class="o">/</span><span class="mi">1024</span><span class="o">/</span><span class="mi">1024</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> MB)&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Tuple:     </span><span class="si">{</span><span class="n">tuple_size</span><span class="si">:</span><span class="s2">&gt;12,</span><span class="si">}</span><span class="s2"> bytes (</span><span class="si">{</span><span class="n">tuple_size</span><span class="o">/</span><span class="mi">1024</span><span class="o">/</span><span class="mi">1024</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> MB)&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Generator: </span><span class="si">{</span><span class="n">gen_size</span><span class="si">:</span><span class="s2">&gt;12,</span><span class="si">}</span><span class="s2"> bytes (</span><span class="si">{</span><span class="n">gen_size</span><span class="o">/</span><span class="mi">1024</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> KB)&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Generator is </span><span class="si">{</span><span class="n">list_size</span><span class="o">/</span><span class="n">gen_size</span><span class="si">:</span><span class="s2">.0f</span><span class="si">}</span><span class="s2">x more memory efficient!&quot;</span><span class="p">)</span>
+
+<span class="n">memory_usage_demo</span><span class="p">()</span>
+
+<span class="c1"># Slots for memory-efficient classes</span>
+<span class="k">class</span> <span class="nc">Point</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Regular class with __dict__.&quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">x</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="n">y</span>
+
+<span class="k">class</span> <span class="nc">PointSlots</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Memory-efficient class with __slots__.&quot;&quot;&quot;</span>
+    <span class="vm">__slots__</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">]</span>
+    
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">x</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="n">y</span>
+
+<span class="c1"># Named tuple: even more efficient</span>
+<span class="n">PointNT</span> <span class="o">=</span> <span class="n">namedtuple</span><span class="p">(</span><span class="s1">&#39;PointNT&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">])</span>
+
+<span class="c1"># Compare memory usage</span>
+<span class="n">p1</span> <span class="o">=</span> <span class="n">Point</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">p2</span> <span class="o">=</span> <span class="n">PointSlots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">p3</span> <span class="o">=</span> <span class="n">PointNT</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Class Memory Comparison:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Regular class: </span><span class="si">{</span><span class="n">sys</span><span class="o">.</span><span class="n">getsizeof</span><span class="p">(</span><span class="n">p1</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">sys</span><span class="o">.</span><span class="n">getsizeof</span><span class="p">(</span><span class="nb">vars</span><span class="p">(</span><span class="n">p1</span><span class="p">))</span><span class="si">}</span><span class="s2"> bytes&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;With __slots__: </span><span class="si">{</span><span class="n">sys</span><span class="o">.</span><span class="n">getsizeof</span><span class="p">(</span><span class="n">p2</span><span class="p">)</span><span class="si">}</span><span class="s2"> bytes&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Named tuple: </span><span class="si">{</span><span class="n">sys</span><span class="o">.</span><span class="n">getsizeof</span><span class="p">(</span><span class="n">p3</span><span class="p">)</span><span class="si">}</span><span class="s2"> bytes&quot;</span><span class="p">)</span>
+
+<span class="c1"># For millions of objects, this difference is massive!</span>
+<span class="n">n_objects</span> <span class="o">=</span> <span class="mi">1_000_000</span>
+<span class="n">regular_memory</span> <span class="o">=</span> <span class="n">n_objects</span> <span class="o">*</span> <span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">getsizeof</span><span class="p">(</span><span class="n">p1</span><span class="p">)</span> <span class="o">+</span> <span class="n">sys</span><span class="o">.</span><span class="n">getsizeof</span><span class="p">(</span><span class="nb">vars</span><span class="p">(</span><span class="n">p1</span><span class="p">)))</span>
+<span class="n">slots_memory</span> <span class="o">=</span> <span class="n">n_objects</span> <span class="o">*</span> <span class="n">sys</span><span class="o">.</span><span class="n">getsizeof</span><span class="p">(</span><span class="n">p2</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">For </span><span class="si">{</span><span class="n">n_objects</span><span class="si">:</span><span class="s2">,</span><span class="si">}</span><span class="s2"> objects:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Regular: </span><span class="si">{</span><span class="n">regular_memory</span><span class="o">/</span><span class="mi">1024</span><span class="o">/</span><span class="mi">1024</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> MB&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Slots: </span><span class="si">{</span><span class="n">slots_memory</span><span class="o">/</span><span class="mi">1024</span><span class="o">/</span><span class="mi">1024</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> MB&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Savings: </span><span class="si">{</span><span class="p">(</span><span class="n">regular_memory</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">slots_memory</span><span class="p">)</span><span class="o">/</span><span class="mi">1024</span><span class="o">/</span><span class="mi">1024</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> MB&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="memory-optimization-techniques">
+<h3>Memory Optimization Techniques<a class="headerlink" href="#memory-optimization-techniques" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p><strong>Use generators</strong> for large sequences</p></li>
+<li><p><strong><strong>slots</strong></strong> for classes with many instances</p></li>
+<li><p><strong>del</strong> unused variables in long-running functions</p></li>
+<li><p><strong>gc.collect()</strong> to force garbage collection</p></li>
+<li><p><strong>Array/NumPy</strong> for homogeneous numeric data</p></li>
+<li><p><strong>Memory-mapped files</strong> for huge datasets</p></li>
+<li><p><strong>Lazy loading</strong> - load data only when needed</p></li>
+</ol>
+</section>
+</section>
+<hr class="docutils" />
+<section id="part-3-numpy-vectorization">
+<h2>Part 3: NumPy Vectorization<a class="headerlink" href="#part-3-numpy-vectorization" title="Link to this heading">#</a></h2>
+<p>NumPy operations are 10-100x faster than pure Python because they:</p>
+<ol class="arabic simple">
+<li><p>Use compiled C code</p></li>
+<li><p>Operate on contiguous memory blocks</p></li>
+<li><p>Avoid Python interpreter overhead</p></li>
+<li><p>Use SIMD instructions when possible</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="c1"># Example: Sum of squares</span>
+
+<span class="k">def</span> <span class="nf">sum_of_squares_python</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Pure Python implementation.&quot;&quot;&quot;</span>
+    <span class="n">total</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+        <span class="n">total</span> <span class="o">+=</span> <span class="n">i</span> <span class="o">**</span> <span class="mi">2</span>
+    <span class="k">return</span> <span class="n">total</span>
+
+<span class="k">def</span> <span class="nf">sum_of_squares_numpy</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Vectorized NumPy implementation.&quot;&quot;&quot;</span>
+    <span class="n">arr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">arr</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
+
+<span class="c1"># Benchmark</span>
+<span class="n">n</span> <span class="o">=</span> <span class="mi">1_000_000</span>
+
+<span class="c1"># Python version</span>
+<span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span>
+<span class="n">result_py</span> <span class="o">=</span> <span class="n">sum_of_squares_python</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+<span class="n">time_py</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span> <span class="o">-</span> <span class="n">start</span>
+
+<span class="c1"># NumPy version</span>
+<span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span>
+<span class="n">result_np</span> <span class="o">=</span> <span class="n">sum_of_squares_numpy</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+<span class="n">time_np</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span> <span class="o">-</span> <span class="n">start</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Sum of squares for </span><span class="si">{</span><span class="n">n</span><span class="si">:</span><span class="s2">,</span><span class="si">}</span><span class="s2"> numbers:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Python: </span><span class="si">{</span><span class="n">time_py</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">s&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;NumPy:  </span><span class="si">{</span><span class="n">time_np</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">s&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Speedup: </span><span class="si">{</span><span class="n">time_py</span><span class="o">/</span><span class="n">time_np</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">x faster!&quot;</span><span class="p">)</span>
+
+<span class="c1"># More complex example: Distance matrix</span>
+<span class="k">def</span> <span class="nf">euclidean_distance_python</span><span class="p">(</span><span class="n">points</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Compute pairwise distances - Python loops.&quot;&quot;&quot;</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">points</span><span class="p">)</span>
+    <span class="n">distances</span> <span class="o">=</span> <span class="p">[[</span><span class="mf">0.0</span><span class="p">]</span> <span class="o">*</span> <span class="n">n</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">)]</span>
+    
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+            <span class="n">dx</span> <span class="o">=</span> <span class="n">points</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">points</span><span class="p">[</span><span class="n">j</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">dy</span> <span class="o">=</span> <span class="n">points</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">points</span><span class="p">[</span><span class="n">j</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
+            <span class="n">distances</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">dx</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">dy</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="o">**</span> <span class="mf">0.5</span>
+    
+    <span class="k">return</span> <span class="n">distances</span>
+
+<span class="k">def</span> <span class="nf">euclidean_distance_numpy</span><span class="p">(</span><span class="n">points</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Compute pairwise distances - NumPy broadcasting.&quot;&quot;&quot;</span>
+    <span class="c1"># Reshape for broadcasting: (n, 1, 2) - (1, n, 2) = (n, n, 2)</span>
+    <span class="n">diff</span> <span class="o">=</span> <span class="n">points</span><span class="p">[:,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">,</span> <span class="p">:]</span> <span class="o">-</span> <span class="n">points</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">,</span> <span class="p">:,</span> <span class="p">:]</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">diff</span> <span class="o">**</span> <span class="mi">2</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">2</span><span class="p">))</span>
+
+<span class="c1"># Test with random points</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">n_points</span> <span class="o">=</span> <span class="mi">1000</span>
+<span class="n">points_list</span> <span class="o">=</span> <span class="p">[[</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(),</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">()]</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_points</span><span class="p">)]</span>
+<span class="n">points_array</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">points_list</span><span class="p">)</span>
+
+<span class="c1"># Benchmark (use smaller n for Python version)</span>
+<span class="n">n_test</span> <span class="o">=</span> <span class="mi">100</span>
+
+<span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span>
+<span class="n">dist_py</span> <span class="o">=</span> <span class="n">euclidean_distance_python</span><span class="p">(</span><span class="n">points_list</span><span class="p">[:</span><span class="n">n_test</span><span class="p">])</span>
+<span class="n">time_py</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span> <span class="o">-</span> <span class="n">start</span>
+
+<span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span>
+<span class="n">dist_np</span> <span class="o">=</span> <span class="n">euclidean_distance_numpy</span><span class="p">(</span><span class="n">points_array</span><span class="p">[:</span><span class="n">n_test</span><span class="p">])</span>
+<span class="n">time_np</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span> <span class="o">-</span> <span class="n">start</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Distance matrix for </span><span class="si">{</span><span class="n">n_test</span><span class="si">}</span><span class="s2"> points:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Python: </span><span class="si">{</span><span class="n">time_py</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">s&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;NumPy:  </span><span class="si">{</span><span class="n">time_np</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2">s&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Speedup: </span><span class="si">{</span><span class="n">time_py</span><span class="o">/</span><span class="n">time_np</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">x faster!&quot;</span><span class="p">)</span>
+
+<span class="c1"># NumPy can handle much larger datasets</span>
+<span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span>
+<span class="n">dist_large</span> <span class="o">=</span> <span class="n">euclidean_distance_numpy</span><span class="p">(</span><span class="n">points_array</span><span class="p">)</span>  <span class="c1"># All 1000 points</span>
+<span class="n">time_large</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span> <span class="o">-</span> <span class="n">start</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">NumPy with 1000 points: </span><span class="si">{</span><span class="n">time_large</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">s&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Creates </span><span class="si">{</span><span class="mi">1000</span><span class="o">*</span><span class="mi">1000</span><span class="si">:</span><span class="s2">,</span><span class="si">}</span><span class="s2"> distance calculations!&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="vectorization-best-practices">
+<h3>Vectorization Best Practices<a class="headerlink" href="#vectorization-best-practices" title="Link to this heading">#</a></h3>
+<p><strong>Do:</strong></p>
+<ul class="simple">
+<li><p>Use NumPy ufuncs (universal functions) instead of loops</p></li>
+<li><p>Leverage broadcasting for element-wise operations</p></li>
+<li><p>Use built-in aggregations (sum, mean, max, etc.)</p></li>
+<li><p>Preallocate arrays when possible</p></li>
+</ul>
+<p><strong>Don’t:</strong></p>
+<ul class="simple">
+<li><p>Loop over NumPy arrays (defeats the purpose)</p></li>
+<li><p>Use <code class="docutils literal notranslate"><span class="pre">.append()</span></code> in loops (very slow)</p></li>
+<li><p>Mix Python loops with NumPy operations</p></li>
+<li><p>Create unnecessary array copies</p></li>
+</ul>
+</section>
+</section>
+<hr class="docutils" />
+<section id="part-4-just-in-time-compilation-with-numba">
+<h2>Part 4: Just-In-Time Compilation with Numba<a class="headerlink" href="#part-4-just-in-time-compilation-with-numba" title="Link to this heading">#</a></h2>
+<p>Numba compiles Python functions to machine code at runtime, achieving C-like performance with minimal code changes.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Install: pip install numba</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="kn">from</span> <span class="nn">numba</span> <span class="kn">import</span> <span class="n">jit</span><span class="p">,</span> <span class="n">njit</span><span class="p">,</span> <span class="n">prange</span>
+    <span class="n">NUMBA_AVAILABLE</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Numba not installed. Run: pip install numba&quot;</span><span class="p">)</span>
+    <span class="n">NUMBA_AVAILABLE</span> <span class="o">=</span> <span class="kc">False</span>
+
+<span class="k">if</span> <span class="n">NUMBA_AVAILABLE</span><span class="p">:</span>
+    <span class="c1"># Example 1: Simple numerical computation</span>
+    
+    <span class="k">def</span> <span class="nf">monte_carlo_pi_python</span><span class="p">(</span><span class="n">n_samples</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Estimate π using Monte Carlo - Pure Python.&quot;&quot;&quot;</span>
+        <span class="n">inside_circle</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_samples</span><span class="p">):</span>
+            <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">()</span>
+            <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">x</span><span class="o">*</span><span class="n">x</span> <span class="o">+</span> <span class="n">y</span><span class="o">*</span><span class="n">y</span> <span class="o">&lt;=</span> <span class="mf">1.0</span><span class="p">:</span>
+                <span class="n">inside_circle</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">return</span> <span class="mf">4.0</span> <span class="o">*</span> <span class="n">inside_circle</span> <span class="o">/</span> <span class="n">n_samples</span>
+    
+    <span class="nd">@jit</span><span class="p">(</span><span class="n">nopython</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>  <span class="c1"># Compile to machine code</span>
+    <span class="k">def</span> <span class="nf">monte_carlo_pi_numba</span><span class="p">(</span><span class="n">n_samples</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Estimate π using Monte Carlo - Numba JIT.&quot;&quot;&quot;</span>
+        <span class="n">inside_circle</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_samples</span><span class="p">):</span>
+            <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">()</span>
+            <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">x</span><span class="o">*</span><span class="n">x</span> <span class="o">+</span> <span class="n">y</span><span class="o">*</span><span class="n">y</span> <span class="o">&lt;=</span> <span class="mf">1.0</span><span class="p">:</span>
+                <span class="n">inside_circle</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">return</span> <span class="mf">4.0</span> <span class="o">*</span> <span class="n">inside_circle</span> <span class="o">/</span> <span class="n">n_samples</span>
+    
+    <span class="c1"># Benchmark</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="mi">10_000_000</span>
+    
+    <span class="c1"># Warm up Numba (first call compiles)</span>
+    <span class="n">_</span> <span class="o">=</span> <span class="n">monte_carlo_pi_numba</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+    
+    <span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span>
+    <span class="n">pi_python</span> <span class="o">=</span> <span class="n">monte_carlo_pi_python</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+    <span class="n">time_py</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span> <span class="o">-</span> <span class="n">start</span>
+    
+    <span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span>
+    <span class="n">pi_numba</span> <span class="o">=</span> <span class="n">monte_carlo_pi_numba</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+    <span class="n">time_numba</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span> <span class="o">-</span> <span class="n">start</span>
+    
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Monte Carlo π estimation (</span><span class="si">{</span><span class="n">n</span><span class="si">:</span><span class="s2">,</span><span class="si">}</span><span class="s2"> samples):&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Python: </span><span class="si">{</span><span class="n">pi_python</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2"> in </span><span class="si">{</span><span class="n">time_py</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">s&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Numba:  </span><span class="si">{</span><span class="n">pi_numba</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2"> in </span><span class="si">{</span><span class="n">time_numba</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">s&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Speedup: </span><span class="si">{</span><span class="n">time_py</span><span class="o">/</span><span class="n">time_numba</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">x faster!&quot;</span><span class="p">)</span>
+    
+    <span class="c1"># Example 2: Parallel execution</span>
+    
+    <span class="nd">@njit</span><span class="p">(</span><span class="n">parallel</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">parallel_sum_of_squares</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Parallel computation with Numba.&quot;&quot;&quot;</span>
+        <span class="n">total</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">prange</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>  <span class="c1"># Parallel range</span>
+            <span class="n">total</span> <span class="o">+=</span> <span class="n">i</span> <span class="o">*</span> <span class="n">i</span>
+        <span class="k">return</span> <span class="n">total</span>
+    
+    <span class="c1"># Compare with sequential</span>
+    <span class="nd">@njit</span>
+    <span class="k">def</span> <span class="nf">sequential_sum_of_squares</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Sequential Numba computation.&quot;&quot;&quot;</span>
+        <span class="n">total</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+            <span class="n">total</span> <span class="o">+=</span> <span class="n">i</span> <span class="o">*</span> <span class="n">i</span>
+        <span class="k">return</span> <span class="n">total</span>
+    
+    <span class="c1"># Warm up</span>
+    <span class="n">_</span> <span class="o">=</span> <span class="n">parallel_sum_of_squares</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+    <span class="n">_</span> <span class="o">=</span> <span class="n">sequential_sum_of_squares</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+    
+    <span class="n">n</span> <span class="o">=</span> <span class="mi">100_000_000</span>
+    
+    <span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span>
+    <span class="n">result_seq</span> <span class="o">=</span> <span class="n">sequential_sum_of_squares</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+    <span class="n">time_seq</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span> <span class="o">-</span> <span class="n">start</span>
+    
+    <span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span>
+    <span class="n">result_par</span> <span class="o">=</span> <span class="n">parallel_sum_of_squares</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+    <span class="n">time_par</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span> <span class="o">-</span> <span class="n">start</span>
+    
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Sum of squares (</span><span class="si">{</span><span class="n">n</span><span class="si">:</span><span class="s2">,</span><span class="si">}</span><span class="s2">):&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Sequential: </span><span class="si">{</span><span class="n">time_seq</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">s&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Parallel:   </span><span class="si">{</span><span class="n">time_par</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">s&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Speedup: </span><span class="si">{</span><span class="n">time_seq</span><span class="o">/</span><span class="n">time_par</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">x faster!&quot;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Numba examples skipped (not installed)&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="numba-guidelines">
+<h3>Numba Guidelines<a class="headerlink" href="#numba-guidelines" title="Link to this heading">#</a></h3>
+<p><strong>When to use Numba:</strong></p>
+<ul class="simple">
+<li><p>Numerical computations with loops</p></li>
+<li><p>Array operations that can’t be vectorized</p></li>
+<li><p>Physics simulations, Monte Carlo methods</p></li>
+<li><p>Signal processing algorithms</p></li>
+</ul>
+<p><strong>Limitations:</strong></p>
+<ul class="simple">
+<li><p>Limited Python feature support (no complex objects)</p></li>
+<li><p>First call is slow (compilation)</p></li>
+<li><p>Not useful for I/O-bound code</p></li>
+<li><p>NumPy is still faster for pure vectorized ops</p></li>
+</ul>
+<p><strong>Best Practices:</strong></p>
+<ul class="simple">
+<li><p>Use <code class="docutils literal notranslate"><span class="pre">nopython=True</span></code> (or <code class="docutils literal notranslate"><span class="pre">&#64;njit</span></code>) for maximum speed</p></li>
+<li><p>Avoid object mode fallback</p></li>
+<li><p>Use <code class="docutils literal notranslate"><span class="pre">parallel=True</span></code> for CPU-bound loops</p></li>
+<li><p>Cache compiled functions with <code class="docutils literal notranslate"><span class="pre">cache=True</span></code></p></li>
+</ul>
+</section>
+</section>
+<hr class="docutils" />
+<section id="part-5-multiprocessing-and-threading">
+<h2>Part 5: Multiprocessing and Threading<a class="headerlink" href="#part-5-multiprocessing-and-threading" title="Link to this heading">#</a></h2>
+<p>Python has two main concurrency models:</p>
+<ul class="simple">
+<li><p><strong>Threading</strong>: For I/O-bound tasks (GIL limits CPU parallelism)</p></li>
+<li><p><strong>Multiprocessing</strong>: For CPU-bound tasks (bypasses GIL)</p></li>
+</ul>
+<section id="the-global-interpreter-lock-gil">
+<h3>The Global Interpreter Lock (GIL)<a class="headerlink" href="#the-global-interpreter-lock-gil" title="Link to this heading">#</a></h3>
+<p>The GIL prevents multiple threads from executing Python code simultaneously. This means:</p>
+<ul class="simple">
+<li><p><strong>Threads</strong>: Good for I/O (network, disk)</p></li>
+<li><p><strong>Processes</strong>: Needed for CPU parallelism</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">threading</span>
+<span class="kn">import</span> <span class="nn">multiprocessing</span> <span class="k">as</span> <span class="nn">mp</span>
+<span class="kn">from</span> <span class="nn">concurrent.futures</span> <span class="kn">import</span> <span class="n">ThreadPoolExecutor</span><span class="p">,</span> <span class="n">ProcessPoolExecutor</span>
+
+<span class="c1"># CPU-bound task for testing</span>
+<span class="k">def</span> <span class="nf">compute_intensive</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Simulate CPU-intensive work.&quot;&quot;&quot;</span>
+    <span class="n">total</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+        <span class="n">total</span> <span class="o">+=</span> <span class="n">i</span> <span class="o">**</span> <span class="mi">2</span>
+    <span class="k">return</span> <span class="n">total</span>
+
+<span class="c1"># Sequential baseline</span>
+<span class="k">def</span> <span class="nf">sequential_processing</span><span class="p">(</span><span class="n">tasks</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Process tasks sequentially.&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">compute_intensive</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">tasks</span><span class="p">]</span>
+
+<span class="c1"># Threading (won&#39;t help for CPU-bound due to GIL)</span>
+<span class="k">def</span> <span class="nf">threaded_processing</span><span class="p">(</span><span class="n">tasks</span><span class="p">,</span> <span class="n">max_workers</span><span class="o">=</span><span class="mi">4</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Process tasks with threads.&quot;&quot;&quot;</span>
+    <span class="k">with</span> <span class="n">ThreadPoolExecutor</span><span class="p">(</span><span class="n">max_workers</span><span class="o">=</span><span class="n">max_workers</span><span class="p">)</span> <span class="k">as</span> <span class="n">executor</span><span class="p">:</span>
+        <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="n">executor</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">compute_intensive</span><span class="p">,</span> <span class="n">tasks</span><span class="p">))</span>
+
+<span class="c1"># Multiprocessing (bypasses GIL)</span>
+<span class="k">def</span> <span class="nf">multiprocess_processing</span><span class="p">(</span><span class="n">tasks</span><span class="p">,</span> <span class="n">max_workers</span><span class="o">=</span><span class="mi">4</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Process tasks with separate processes.&quot;&quot;&quot;</span>
+    <span class="k">with</span> <span class="n">ProcessPoolExecutor</span><span class="p">(</span><span class="n">max_workers</span><span class="o">=</span><span class="n">max_workers</span><span class="p">)</span> <span class="k">as</span> <span class="n">executor</span><span class="p">:</span>
+        <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="n">executor</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">compute_intensive</span><span class="p">,</span> <span class="n">tasks</span><span class="p">))</span>
+
+<span class="c1"># Benchmark</span>
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">tasks</span> <span class="o">=</span> <span class="p">[</span><span class="mi">5_000_000</span><span class="p">]</span> <span class="o">*</span> <span class="mi">8</span>  <span class="c1"># 8 CPU-intensive tasks</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Processing 8 CPU-intensive tasks:&quot;</span><span class="p">)</span>
+
+    <span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span>
+    <span class="n">result_seq</span> <span class="o">=</span> <span class="n">sequential_processing</span><span class="p">(</span><span class="n">tasks</span><span class="p">)</span>
+    <span class="n">time_seq</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span> <span class="o">-</span> <span class="n">start</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Sequential:      </span><span class="si">{</span><span class="n">time_seq</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">s&quot;</span><span class="p">)</span>
+
+    <span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span>
+    <span class="n">result_thread</span> <span class="o">=</span> <span class="n">threaded_processing</span><span class="p">(</span><span class="n">tasks</span><span class="p">,</span> <span class="n">max_workers</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+    <span class="n">time_thread</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span> <span class="o">-</span> <span class="n">start</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Threading (4):   </span><span class="si">{</span><span class="n">time_thread</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">s (Speedup: </span><span class="si">{</span><span class="n">time_seq</span><span class="o">/</span><span class="n">time_thread</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">x)&quot;</span><span class="p">)</span>
+
+    <span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span>
+    <span class="n">result_multi</span> <span class="o">=</span> <span class="n">multiprocess_processing</span><span class="p">(</span><span class="n">tasks</span><span class="p">,</span> <span class="n">max_workers</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+    <span class="n">time_multi</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span> <span class="o">-</span> <span class="n">start</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Multiprocess(4): </span><span class="si">{</span><span class="n">time_multi</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">s (Speedup: </span><span class="si">{</span><span class="n">time_seq</span><span class="o">/</span><span class="n">time_multi</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">x)&quot;</span><span class="p">)</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Key Insight: Multiprocessing provides real CPU parallelism!&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># I/O-bound example: Threading shines here</span>
+<span class="kn">import</span> <span class="nn">urllib.request</span>
+
+<span class="k">def</span> <span class="nf">fetch_url</span><span class="p">(</span><span class="n">url</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Simulate I/O-bound operation.&quot;&quot;&quot;</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">with</span> <span class="n">urllib</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span> <span class="k">as</span> <span class="n">response</span><span class="p">:</span>
+            <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
+    <span class="k">except</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">0</span>
+
+<span class="n">urls</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;http://www.example.com&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;http://www.python.org&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;http://www.github.com&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;http://www.stackoverflow.com&#39;</span><span class="p">,</span>
+<span class="p">]</span> <span class="o">*</span> <span class="mi">3</span>  <span class="c1"># 12 requests total</span>
+
+<span class="c1"># Sequential</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Fetching 12 URLs:&quot;</span><span class="p">)</span>
+<span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span>
+<span class="n">sizes_seq</span> <span class="o">=</span> <span class="p">[</span><span class="n">fetch_url</span><span class="p">(</span><span class="n">url</span><span class="p">)</span> <span class="k">for</span> <span class="n">url</span> <span class="ow">in</span> <span class="n">urls</span><span class="p">]</span>
+<span class="n">time_seq</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span> <span class="o">-</span> <span class="n">start</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Sequential: </span><span class="si">{</span><span class="n">time_seq</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">s&quot;</span><span class="p">)</span>
+
+<span class="c1"># Threaded (much better for I/O)</span>
+<span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span>
+<span class="k">with</span> <span class="n">ThreadPoolExecutor</span><span class="p">(</span><span class="n">max_workers</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span> <span class="k">as</span> <span class="n">executor</span><span class="p">:</span>
+    <span class="n">sizes_thread</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">executor</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">fetch_url</span><span class="p">,</span> <span class="n">urls</span><span class="p">))</span>
+<span class="n">time_thread</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span> <span class="o">-</span> <span class="n">start</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Threading:  </span><span class="si">{</span><span class="n">time_thread</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">s (Speedup: </span><span class="si">{</span><span class="n">time_seq</span><span class="o">/</span><span class="n">time_thread</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">x)&quot;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">For I/O-bound tasks, threading is ideal!&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="concurrency-decision-tree">
+<h3>Concurrency Decision Tree<a class="headerlink" href="#concurrency-decision-tree" title="Link to this heading">#</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Is your task CPU-bound or I/O-bound?
+│
+├─ CPU-bound (computation, data processing)
+│  │
+│  ├─ Vectorizable? → Use NumPy
+│  ├─ Loops required? → Use Numba
+│  └─ Multiple cores? → Use multiprocessing
+│
+└─ I/O-bound (network, disk, database)
+   │
+   ├─ Many concurrent operations? → Use asyncio
+   └─ Mixed I/O and CPU? → Use threading
+</pre></div>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="part-6-asynchronous-i-o-with-asyncio">
+<h2>Part 6: Asynchronous I/O with asyncio<a class="headerlink" href="#part-6-asynchronous-i-o-with-asyncio" title="Link to this heading">#</a></h2>
+<p>asyncio enables concurrent I/O without threading overhead. Perfect for:</p>
+<ul class="simple">
+<li><p>Web scraping</p></li>
+<li><p>API calls</p></li>
+<li><p>Database queries</p></li>
+<li><p>Real-time applications</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">asyncio</span>
+
+<span class="c1"># Basic async example</span>
+<span class="k">async</span> <span class="k">def</span> <span class="nf">fetch_data</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">delay</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Simulate async data fetching.&quot;&quot;&quot;</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Fetching </span><span class="si">{</span><span class="n">url</span><span class="si">}</span><span class="s2">...&quot;</span><span class="p">)</span>
+    <span class="k">await</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="n">delay</span><span class="p">)</span>  <span class="c1"># Simulate network delay</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Completed </span><span class="si">{</span><span class="n">url</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;Data from </span><span class="si">{</span><span class="n">url</span><span class="si">}</span><span class="s2">&quot;</span>
+
+<span class="k">async</span> <span class="k">def</span> <span class="nf">sequential_async</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Fetch sequentially (awaits each).&quot;&quot;&quot;</span>
+    <span class="n">result1</span> <span class="o">=</span> <span class="k">await</span> <span class="n">fetch_data</span><span class="p">(</span><span class="s2">&quot;API1&quot;</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="n">result2</span> <span class="o">=</span> <span class="k">await</span> <span class="n">fetch_data</span><span class="p">(</span><span class="s2">&quot;API2&quot;</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="n">result3</span> <span class="o">=</span> <span class="k">await</span> <span class="n">fetch_data</span><span class="p">(</span><span class="s2">&quot;API3&quot;</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">result1</span><span class="p">,</span> <span class="n">result2</span><span class="p">,</span> <span class="n">result3</span><span class="p">]</span>
+
+<span class="k">async</span> <span class="k">def</span> <span class="nf">concurrent_async</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Fetch concurrently (gather).&quot;&quot;&quot;</span>
+    <span class="n">tasks</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="n">fetch_data</span><span class="p">(</span><span class="s2">&quot;API1&quot;</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span>
+        <span class="n">fetch_data</span><span class="p">(</span><span class="s2">&quot;API2&quot;</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span>
+        <span class="n">fetch_data</span><span class="p">(</span><span class="s2">&quot;API3&quot;</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span>
+    <span class="p">]</span>
+    <span class="k">return</span> <span class="k">await</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">gather</span><span class="p">(</span><span class="o">*</span><span class="n">tasks</span><span class="p">)</span>
+
+<span class="c1"># Run in Jupyter (handles event loop)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Sequential async (total: ~6 seconds):&quot;</span><span class="p">)</span>
+<span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span>
+<span class="n">results_seq</span> <span class="o">=</span> <span class="k">await</span> <span class="n">sequential_async</span><span class="p">()</span>
+<span class="n">time_seq</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span> <span class="o">-</span> <span class="n">start</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Completed in </span><span class="si">{</span><span class="n">time_seq</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">s</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Concurrent async (total: ~2 seconds):&quot;</span><span class="p">)</span>
+<span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span>
+<span class="n">results_con</span> <span class="o">=</span> <span class="k">await</span> <span class="n">concurrent_async</span><span class="p">()</span>
+<span class="n">time_con</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span> <span class="o">-</span> <span class="n">start</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Completed in </span><span class="si">{</span><span class="n">time_con</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">s&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Speedup: </span><span class="si">{</span><span class="n">time_seq</span><span class="o">/</span><span class="n">time_con</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">x faster!&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Real-world async pattern: Rate-limited API calls</span>
+
+<span class="k">async</span> <span class="k">def</span> <span class="nf">rate_limited_fetch</span><span class="p">(</span><span class="n">semaphore</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">delay</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Fetch with concurrency limit.&quot;&quot;&quot;</span>
+    <span class="k">async</span> <span class="k">with</span> <span class="n">semaphore</span><span class="p">:</span>  <span class="c1"># Limit concurrent requests</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Starting </span><span class="si">{</span><span class="n">url</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">await</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="n">delay</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Finished </span><span class="si">{</span><span class="n">url</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;Data from </span><span class="si">{</span><span class="n">url</span><span class="si">}</span><span class="s2">&quot;</span>
+
+<span class="k">async</span> <span class="k">def</span> <span class="nf">fetch_many_with_limit</span><span class="p">(</span><span class="n">urls</span><span class="p">,</span> <span class="n">max_concurrent</span><span class="o">=</span><span class="mi">3</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Fetch many URLs with concurrency limit.&quot;&quot;&quot;</span>
+    <span class="n">semaphore</span> <span class="o">=</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">Semaphore</span><span class="p">(</span><span class="n">max_concurrent</span><span class="p">)</span>
+    <span class="n">tasks</span> <span class="o">=</span> <span class="p">[</span><span class="n">rate_limited_fetch</span><span class="p">(</span><span class="n">semaphore</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">url</span> <span class="ow">in</span> <span class="n">urls</span><span class="p">]</span>
+    <span class="k">return</span> <span class="k">await</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">gather</span><span class="p">(</span><span class="o">*</span><span class="n">tasks</span><span class="p">)</span>
+
+<span class="c1"># Fetch 10 URLs but only 3 at a time</span>
+<span class="n">urls</span> <span class="o">=</span> <span class="p">[</span><span class="sa">f</span><span class="s2">&quot;URL</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Fetching 10 URLs with max 3 concurrent:&quot;</span><span class="p">)</span>
+<span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span>
+<span class="n">results</span> <span class="o">=</span> <span class="k">await</span> <span class="n">fetch_many_with_limit</span><span class="p">(</span><span class="n">urls</span><span class="p">,</span> <span class="n">max_concurrent</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">elapsed</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span> <span class="o">-</span> <span class="n">start</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Completed in </span><span class="si">{</span><span class="n">elapsed</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">s&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;With 3 concurrent, 10 URLs take ~4 batches: ceil(10/3) = 4 seconds&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="async-best-practices">
+<h3>Async Best Practices<a class="headerlink" href="#async-best-practices" title="Link to this heading">#</a></h3>
+<p><strong>Do:</strong></p>
+<ul class="simple">
+<li><p>Use async for I/O-bound concurrent operations</p></li>
+<li><p>Use <code class="docutils literal notranslate"><span class="pre">asyncio.gather()</span></code> for parallel awaits</p></li>
+<li><p>Use <code class="docutils literal notranslate"><span class="pre">asyncio.Semaphore()</span></code> for rate limiting</p></li>
+<li><p>Use <code class="docutils literal notranslate"><span class="pre">aiohttp</span></code> for async HTTP requests</p></li>
+</ul>
+<p><strong>Don’t:</strong></p>
+<ul class="simple">
+<li><p>Use async for CPU-bound tasks (blocks event loop)</p></li>
+<li><p>Mix sync and async APIs carelessly</p></li>
+<li><p>Forget to await async functions</p></li>
+<li><p>Use <code class="docutils literal notranslate"><span class="pre">time.sleep()</span></code> instead of <code class="docutils literal notranslate"><span class="pre">asyncio.sleep()</span></code></p></li>
+</ul>
+</section>
+</section>
+<hr class="docutils" />
+<section id="part-7-cython-c-extension-speed">
+<h2>Part 7: Cython - C Extension Speed<a class="headerlink" href="#part-7-cython-c-extension-speed" title="Link to this heading">#</a></h2>
+<p>Cython compiles Python-like code to C extensions for maximum performance.</p>
+<p><strong>When to use Cython:</strong></p>
+<ul class="simple">
+<li><p>Need C-level performance</p></li>
+<li><p>Interfacing with C libraries</p></li>
+<li><p>Tight loops that can’t be vectorized</p></li>
+<li><p>Numba isn’t enough</p></li>
+</ul>
+<section id="cython-example-pseudocode">
+<h3>Cython Example (Pseudocode)<a class="headerlink" href="#cython-example-pseudocode" title="Link to this heading">#</a></h3>
+<div class="highlight-cython notranslate"><div class="highlight"><pre><span></span><span class="c"># fibonacci.pyx</span>
+<span class="k">def</span> <span class="nf">fib_cython</span><span class="p">(</span><span class="nb">int</span> <span class="n">n</span><span class="p">):</span>
+    <span class="k">cdef</span> <span class="kt">int</span> <span class="nf">a</span> <span class="o">=</span> <span class="mf">0</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="mf">1</span><span class="p">,</span> <span class="n">temp</span>
+    <span class="k">cdef</span> <span class="kt">int</span> <span class="nf">i</span>
+    
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mf">1</span><span class="p">):</span>
+        <span class="n">temp</span> <span class="o">=</span> <span class="n">a</span>
+        <span class="n">a</span> <span class="o">=</span> <span class="n">b</span>
+        <span class="n">b</span> <span class="o">=</span> <span class="n">temp</span> <span class="o">+</span> <span class="n">b</span>
+    
+    <span class="k">return</span> <span class="n">b</span>
+</pre></div>
+</div>
+<p>Compile with:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cython<span class="w"> </span>fibonacci.pyx
+gcc<span class="w"> </span>-shared<span class="w"> </span>-pthread<span class="w"> </span>-fPIC<span class="w"> </span>-fwrapv<span class="w"> </span>-O2<span class="w"> </span>-Wall<span class="w"> </span>-fno-strict-aliasing<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>-I/usr/include/python3.x<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>-o<span class="w"> </span>fibonacci.so<span class="w"> </span>fibonacci.c
+</pre></div>
+</div>
+<p><strong>Performance</strong>: 10-100x faster than pure Python for numerical code.</p>
+</section>
+</section>
+<hr class="docutils" />
+<section id="part-8-performance-optimization-checklist">
+<h2>Part 8: Performance Optimization Checklist<a class="headerlink" href="#part-8-performance-optimization-checklist" title="Link to this heading">#</a></h2>
+<section id="profile-first">
+<h3>1. Profile First ✓<a class="headerlink" href="#profile-first" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Use cProfile to find hotspots</p></li>
+<li><p>Use line_profiler for detailed analysis</p></li>
+<li><p>Use memory_profiler for memory issues</p></li>
+</ul>
+</section>
+<section id="algorithm-optimization">
+<h3>2. Algorithm Optimization ✓<a class="headerlink" href="#algorithm-optimization" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Choose right data structure (dict vs list vs set)</p></li>
+<li><p>Use appropriate algorithm (O(n log n) vs O(n²))</p></li>
+<li><p>Cache repeated calculations</p></li>
+<li><p>Avoid premature optimization</p></li>
+</ul>
+</section>
+<section id="data-structure-choice">
+<h3>3. Data Structure Choice ✓<a class="headerlink" href="#data-structure-choice" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Use <code class="docutils literal notranslate"><span class="pre">set</span></code> for membership testing</p></li>
+<li><p>Use <code class="docutils literal notranslate"><span class="pre">dict</span></code> for lookups</p></li>
+<li><p>Use <code class="docutils literal notranslate"><span class="pre">collections.deque</span></code> for queues</p></li>
+<li><p>Use <code class="docutils literal notranslate"><span class="pre">collections.Counter</span></code> for counting</p></li>
+</ul>
+</section>
+<section id="vectorization">
+<h3>4. Vectorization ✓<a class="headerlink" href="#vectorization" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Replace loops with NumPy operations</p></li>
+<li><p>Use broadcasting for element-wise ops</p></li>
+<li><p>Avoid mixing loops and NumPy</p></li>
+</ul>
+</section>
+<section id="compilation">
+<h3>5. Compilation ✓<a class="headerlink" href="#compilation" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Use Numba for numerical code</p></li>
+<li><p>Use Cython for C-level performance</p></li>
+<li><p>Consider PyPy for long-running services</p></li>
+</ul>
+</section>
+<section id="concurrency">
+<h3>6. Concurrency ✓<a class="headerlink" href="#concurrency" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Multiprocessing for CPU-bound</p></li>
+<li><p>Threading for I/O-bound (with caution)</p></li>
+<li><p>Asyncio for high-concurrency I/O</p></li>
+</ul>
+</section>
+<section id="memory-optimization">
+<h3>7. Memory Optimization ✓<a class="headerlink" href="#memory-optimization" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Use generators for large sequences</p></li>
+<li><p>Use <strong>slots</strong> for many objects</p></li>
+<li><p>Del unused variables</p></li>
+<li><p>Use memory-mapped files for huge data</p></li>
+</ul>
+</section>
+<section id="i-o-optimization">
+<h3>8. I/O Optimization ✓<a class="headerlink" href="#i-o-optimization" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Batch database queries</p></li>
+<li><p>Use connection pooling</p></li>
+<li><p>Cache file reads</p></li>
+<li><p>Use binary formats (pickle, parquet)</p></li>
+</ul>
+</section>
+<section id="string-operations">
+<h3>9. String Operations ✓<a class="headerlink" href="#string-operations" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Use join() instead of += in loops</p></li>
+<li><p>Use f-strings for formatting</p></li>
+<li><p>Use str.format() for templates</p></li>
+<li><p>Compile regex patterns once</p></li>
+</ul>
+</section>
+<section id="measure-results">
+<h3>10. Measure Results ✓<a class="headerlink" href="#measure-results" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Always benchmark optimizations</p></li>
+<li><p>Use realistic data sizes</p></li>
+<li><p>Test edge cases</p></li>
+<li><p>Document performance characteristics</p></li>
+</ul>
+</section>
+</section>
+<hr class="docutils" />
+<section id="part-9-exercises">
+<h2>Part 9: Exercises<a class="headerlink" href="#part-9-exercises" title="Link to this heading">#</a></h2>
+<section id="exercise-1-optimize-matrix-multiplication-difficulty">
+<h3>Exercise 1: Optimize Matrix Multiplication (Difficulty: ★★★☆☆)<a class="headerlink" href="#exercise-1-optimize-matrix-multiplication-difficulty" title="Link to this heading">#</a></h3>
+<p><strong>Task</strong>: Implement matrix multiplication three ways and compare performance:</p>
+<ol class="arabic simple">
+<li><p>Pure Python with nested loops</p></li>
+<li><p>NumPy vectorized</p></li>
+<li><p>Numba JIT compiled</p></li>
+</ol>
+<p>Test with 500×500 matrices and measure speedup.</p>
+<p><strong>Expected outcome</strong>: NumPy should be 50-100x faster, Numba similar to NumPy.</p>
+</section>
+<hr class="docutils" />
+<section id="exercise-2-parallel-file-processing-difficulty">
+<h3>Exercise 2: Parallel File Processing (Difficulty: ★★★★☆)<a class="headerlink" href="#exercise-2-parallel-file-processing-difficulty" title="Link to this heading">#</a></h3>
+<p><strong>Task</strong>: Process 100 text files in parallel:</p>
+<ol class="arabic simple">
+<li><p>Read each file</p></li>
+<li><p>Count word frequency</p></li>
+<li><p>Return top 10 words</p></li>
+</ol>
+<p>Implement using:</p>
+<ul class="simple">
+<li><p>Sequential processing</p></li>
+<li><p>ThreadPoolExecutor</p></li>
+<li><p>ProcessPoolExecutor</p></li>
+</ul>
+<p>Which is faster and why?</p>
+</section>
+<hr class="docutils" />
+<section id="exercise-3-memory-efficient-data-processing-difficulty">
+<h3>Exercise 3: Memory-Efficient Data Processing (Difficulty: ★★★☆☆)<a class="headerlink" href="#exercise-3-memory-efficient-data-processing-difficulty" title="Link to this heading">#</a></h3>
+<p><strong>Task</strong>: Process a 1GB CSV file:</p>
+<ol class="arabic simple">
+<li><p>Read and parse without loading entire file</p></li>
+<li><p>Calculate statistics (mean, median, std)</p></li>
+<li><p>Use generator-based approach</p></li>
+</ol>
+<p>Compare memory usage vs loading all data.</p>
+</section>
+<hr class="docutils" />
+<section id="exercise-4-async-web-scraper-difficulty">
+<h3>Exercise 4: Async Web Scraper (Difficulty: ★★★★☆)<a class="headerlink" href="#exercise-4-async-web-scraper-difficulty" title="Link to this heading">#</a></h3>
+<p><strong>Task</strong>: Build an async web scraper:</p>
+<ol class="arabic simple">
+<li><p>Fetch 50 URLs concurrently</p></li>
+<li><p>Limit to 10 concurrent connections</p></li>
+<li><p>Handle errors gracefully</p></li>
+<li><p>Track completion time</p></li>
+</ol>
+<p>Compare with sequential approach.</p>
+</section>
+<hr class="docutils" />
+<section id="exercise-5-cache-decorator-difficulty">
+<h3>Exercise 5: Cache Decorator (Difficulty: ★★★☆☆)<a class="headerlink" href="#exercise-5-cache-decorator-difficulty" title="Link to this heading">#</a></h3>
+<p><strong>Task</strong>: Implement a caching decorator with:</p>
+<ol class="arabic simple">
+<li><p>LRU cache (max size)</p></li>
+<li><p>TTL (time-to-live)</p></li>
+<li><p>Cache statistics (hits/misses)</p></li>
+</ol>
+<p>Test with expensive function calls.</p>
+</section>
+<hr class="docutils" />
+<section id="exercise-6-profile-and-optimize-difficulty">
+<h3>Exercise 6: Profile and Optimize (Difficulty: ★★★★★)<a class="headerlink" href="#exercise-6-profile-and-optimize-difficulty" title="Link to this heading">#</a></h3>
+<p><strong>Task</strong>: Given this slow code, optimize it:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">slow_function</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">item</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">result</span><span class="p">:</span>
+            <span class="n">result</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+    <span class="k">return</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+</pre></div>
+</div>
+<ol class="arabic simple">
+<li><p>Profile to find bottlenecks</p></li>
+<li><p>Optimize (hint: use set)</p></li>
+<li><p>Measure speedup</p></li>
+<li><p>Document complexity improvement</p></li>
+</ol>
+</section>
+</section>
+<hr class="docutils" />
+<section id="part-10-self-check-quiz">
+<h2>Part 10: Self-Check Quiz<a class="headerlink" href="#part-10-self-check-quiz" title="Link to this heading">#</a></h2>
+<section id="question-1">
+<h3>Question 1<a class="headerlink" href="#question-1" title="Link to this heading">#</a></h3>
+<p>What is the primary advantage of using generators over lists for large datasets?</p>
+<p>A) Generators are faster<br />
+B) Generators use less memory<br />
+C) Generators are easier to write<br />
+D) Generators can be pickled</p>
+<details>
+<summary>Answer</summary>
+B) Generators use less memory
+<p><strong>Explanation</strong>: Generators compute values on-demand and don’t store all elements in memory, making them ideal for large or infinite sequences.</p>
+</details>
+</section>
+<hr class="docutils" />
+<section id="question-2">
+<h3>Question 2<a class="headerlink" href="#question-2" title="Link to this heading">#</a></h3>
+<p>When should you use multiprocessing instead of threading in Python?</p>
+<p>A) For I/O-bound tasks<br />
+B) For CPU-bound tasks<br />
+C) When you need shared memory<br />
+D) When you want faster startup</p>
+<details>
+<summary>Answer</summary>
+B) For CPU-bound tasks
+<p><strong>Explanation</strong>: The GIL prevents threads from executing Python code in parallel on multiple cores. Multiprocessing bypasses the GIL by using separate processes.</p>
+</details>
+</section>
+<hr class="docutils" />
+<section id="question-3">
+<h3>Question 3<a class="headerlink" href="#question-3" title="Link to this heading">#</a></h3>
+<p>What makes NumPy significantly faster than pure Python for numerical operations?</p>
+<p>A) It’s written in a faster language<br />
+B) It uses compiled C code and operates on contiguous memory<br />
+C) It automatically parallelizes operations<br />
+D) It caches all results</p>
+<details>
+<summary>Answer</summary>
+B) It uses compiled C code and operates on contiguous memory
+<p><strong>Explanation</strong>: NumPy operations are implemented in C and work on contiguous memory blocks, avoiding Python interpreter overhead and enabling CPU cache efficiency.</p>
+</details>
+</section>
+<hr class="docutils" />
+<section id="question-4">
+<h3>Question 4<a class="headerlink" href="#question-4" title="Link to this heading">#</a></h3>
+<p>What is the main limitation of asyncio in Python?</p>
+<p>A) It’s too complex<br />
+B) It doesn’t work with CPU-bound tasks<br />
+C) It requires special hardware<br />
+D) It only works on Linux</p>
+<details>
+<summary>Answer</summary>
+B) It doesn't work with CPU-bound tasks
+<p><strong>Explanation</strong>: Asyncio is designed for I/O-bound concurrency. CPU-bound tasks block the event loop, preventing other tasks from running.</p>
+</details>
+</section>
+<hr class="docutils" />
+<section id="question-5">
+<h3>Question 5<a class="headerlink" href="#question-5" title="Link to this heading">#</a></h3>
+<p>What does the &#64;jit decorator in Numba do?</p>
+<p>A) Distributes code across multiple machines<br />
+B) Compiles Python functions to machine code at runtime<br />
+C) Caches function results<br />
+D) Converts code to JavaScript</p>
+<details>
+<summary>Answer</summary>
+B) Compiles Python functions to machine code at runtime
+<p><strong>Explanation</strong>: Numba’s JIT (Just-In-Time) compiler translates Python functions to optimized machine code when first called, achieving C-like performance.</p>
+</details></section>
+</section>
+<hr class="docutils" />
+<section id="key-takeaways">
+<h2>Key Takeaways<a class="headerlink" href="#key-takeaways" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p><strong>Profile first</strong>: Don’t guess where the bottleneck is</p></li>
+<li><p><strong>Algorithm matters</strong>: O(n) vs O(n²) beats any micro-optimization</p></li>
+<li><p><strong>Use the right tool</strong>: NumPy for arrays, Numba for loops, asyncio for I/O</p></li>
+<li><p><strong>Memory is finite</strong>: Use generators and streaming for large data</p></li>
+<li><p><strong>GIL awareness</strong>: Multiprocessing for CPU, threading for I/O</p></li>
+<li><p><strong>Vectorization wins</strong>: Avoid Python loops on arrays when possible</p></li>
+<li><p><strong>Measure everything</strong>: Benchmark before and after optimization</p></li>
+<li><p><strong>Premature optimization</strong>: Focus on correctness first, then optimize</p></li>
+<li><p><strong>Compiled beats interpreted</strong>: Numba/Cython for critical hot paths</p></li>
+<li><p><strong>Concurrency ≠ Parallelism</strong>: Understand the difference</p></li>
+</ol>
+</section>
+<hr class="docutils" />
+<section id="common-mistakes-to-avoid">
+<h2>Common Mistakes to Avoid<a class="headerlink" href="#common-mistakes-to-avoid" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p><strong>Optimizing before profiling</strong> - Wasting time on non-bottlenecks</p></li>
+<li><p><strong>Using threads for CPU-bound work</strong> - GIL prevents speedup</p></li>
+<li><p><strong>Loops on NumPy arrays</strong> - Defeats vectorization benefits</p></li>
+<li><p><strong>Blocking asyncio event loop</strong> - CPU work in async functions</p></li>
+<li><p><strong>Premature multiprocessing</strong> - Process overhead can be worse</p></li>
+<li><p><strong>Ignoring memory usage</strong> - OOM kills vs slow execution</p></li>
+<li><p><strong>Not caching expensive calls</strong> - Repeated work</p></li>
+<li><p><strong>String concatenation in loops</strong> - O(n²) behavior</p></li>
+<li><p><strong>Wrong data structure</strong> - list vs set for membership testing</p></li>
+<li><p><strong>Not testing at scale</strong> - Small data hides problems</p></li>
+</ol>
+</section>
+<hr class="docutils" />
+<section id="pro-tips">
+<h2>Pro Tips<a class="headerlink" href="#pro-tips" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p><strong>Use cProfile + SnakeViz</strong>: Visual profiling is enlightening</p></li>
+<li><p><strong>Try PyPy</strong>: 5-10x speedup for long-running pure Python code</p></li>
+<li><p><strong>Learn NumPy broadcasting</strong>: Eliminates many loops</p></li>
+<li><p><strong>Cache expensive I/O</strong>: Redis, memcached, or functools.lru_cache</p></li>
+<li><p><strong>Use binary formats</strong>: Pickle, HDF5, Parquet beat JSON/CSV</p></li>
+<li><p><strong>Batch operations</strong>: Database queries, API calls</p></li>
+<li><p>**Measure memory: sys.getsizeof(), memory_profiler</p></li>
+<li><p><strong>Use <strong>slots</strong></strong>: For classes with many instances</p></li>
+<li><p><strong>Compile regexes</strong>: re.compile() once, use many times</p></li>
+<li><p><strong>Monitor production</strong>: Profile in real environments</p></li>
+</ol>
+</section>
+<hr class="docutils" />
+<section id="what-s-next">
+<h2>What’s Next?<a class="headerlink" href="#what-s-next" title="Link to this heading">#</a></h2>
+<p><strong>You’ve mastered high-performance Python!</strong> Next topics:</p>
+<ol class="arabic simple">
+<li><p><strong>GPU Computing</strong>: CUDA, CuPy, JAX (next notebook!)</p></li>
+<li><p><strong>Distributed Computing</strong>: Dask, Ray, Spark</p></li>
+<li><p><strong>Advanced Profiling</strong>: perf, valgrind, flame graphs</p></li>
+<li><p><strong>C Extensions</strong>: ctypes, CFFI, Cython mastery</p></li>
+<li><p><strong>Alternative Runtimes</strong>: PyPy, GraalPython</p></li>
+</ol>
+<p><strong>Practice Projects:</strong></p>
+<ul class="simple">
+<li><p>Optimize a real application (10x+ speedup possible!)</p></li>
+<li><p>Build a parallel data processing pipeline</p></li>
+<li><p>Create a high-performance web service</p></li>
+<li><p>Implement numerical algorithms in Numba</p></li>
+</ul>
+<p><strong>Remember</strong>: Fast code is good. Correct code is better. Maintainable code is best. Optimize where it matters!</p>
+<p><strong>Ready for GPU computing? Proceed to the CUDA &amp; Parallel Computing notebook!</strong> 🚀</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./hard"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="09_ctf_challenges.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Lesson 9: Capture The Flag (CTF) - Hacker Training</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="11_cuda_and_parallel_computing.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Hard Level: CUDA &amp; GPU Parallel Computing</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#real-world-context">Real-World Context</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-1-profiling-finding-the-bottleneck">Part 1: Profiling - Finding the Bottleneck</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#profiling-tools">Profiling Tools</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#key-profiling-insights">Key Profiling Insights</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-2-memory-optimization">Part 2: Memory Optimization</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#memory-profiling">Memory Profiling</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#memory-optimization-techniques">Memory Optimization Techniques</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-3-numpy-vectorization">Part 3: NumPy Vectorization</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vectorization-best-practices">Vectorization Best Practices</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-4-just-in-time-compilation-with-numba">Part 4: Just-In-Time Compilation with Numba</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#numba-guidelines">Numba Guidelines</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-5-multiprocessing-and-threading">Part 5: Multiprocessing and Threading</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-global-interpreter-lock-gil">The Global Interpreter Lock (GIL)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#concurrency-decision-tree">Concurrency Decision Tree</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-6-asynchronous-i-o-with-asyncio">Part 6: Asynchronous I/O with asyncio</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#async-best-practices">Async Best Practices</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-7-cython-c-extension-speed">Part 7: Cython - C Extension Speed</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cython-example-pseudocode">Cython Example (Pseudocode)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-8-performance-optimization-checklist">Part 8: Performance Optimization Checklist</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#profile-first">1. Profile First ✓</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#algorithm-optimization">2. Algorithm Optimization ✓</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-structure-choice">3. Data Structure Choice ✓</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vectorization">4. Vectorization ✓</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#compilation">5. Compilation ✓</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#concurrency">6. Concurrency ✓</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#memory-optimization">7. Memory Optimization ✓</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#i-o-optimization">8. I/O Optimization ✓</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#string-operations">9. String Operations ✓</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#measure-results">10. Measure Results ✓</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-9-exercises">Part 9: Exercises</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-1-optimize-matrix-multiplication-difficulty">Exercise 1: Optimize Matrix Multiplication (Difficulty: ★★★☆☆)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-2-parallel-file-processing-difficulty">Exercise 2: Parallel File Processing (Difficulty: ★★★★☆)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-3-memory-efficient-data-processing-difficulty">Exercise 3: Memory-Efficient Data Processing (Difficulty: ★★★☆☆)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-4-async-web-scraper-difficulty">Exercise 4: Async Web Scraper (Difficulty: ★★★★☆)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-5-cache-decorator-difficulty">Exercise 5: Cache Decorator (Difficulty: ★★★☆☆)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-6-profile-and-optimize-difficulty">Exercise 6: Profile and Optimize (Difficulty: ★★★★★)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-10-self-check-quiz">Part 10: Self-Check Quiz</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#question-1">Question 1</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#question-2">Question 2</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#question-3">Question 3</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#question-4">Question 4</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#question-5">Question 5</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#key-takeaways">Key Takeaways</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#common-mistakes-to-avoid">Common Mistakes to Avoid</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pro-tips">Pro Tips</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-s-next">What’s Next?</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Mykolas Perevicius
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

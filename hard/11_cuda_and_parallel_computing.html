@@ -1,0 +1,1549 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Hard Level: CUDA &amp; GPU Parallel Computing &#8212; Education Playground</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=0c185eed" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=c73c0f3e"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'hard/11_cuda_and_parallel_computing';</script>
+    <script src="../_static/js/onboarding.js?v=557b7536"></script>
+    <link rel="canonical" href="https://mykolas-perevicius.github.io/Education_Playground/hard/11_cuda_and_parallel_computing.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="The Missing Semester: Essential Developer Tools" href="../tools/README.html" />
+    <link rel="prev" title="Hard Level: High-Performance Python Computing" href="10_performance_computing.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../README.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Education Playground</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../00_calibration_test.html">🎯 Calibration Test - Find Your Level</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../beginner_scripts/README.html">🌱 Beginner Scripts (10 Python Files)</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../easy/README_EASY.html">📗 Easy Level - Beginner</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../easy/01_introduction_to_python.html">1. Introduction to Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../easy/02_variables_and_data_types.html">2. Variables and Data Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../easy/03_basic_operations_and_conditionals.html">3. Operations and Conditionals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../easy/04_intro_to_ai_and_ml.html">4. Intro to AI and ML</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../easy/05_computing_fundamentals.html">5. Computing Fundamentals</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../medium/README_MEDIUM.html">📘 Medium Level - Intermediate</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../medium/01_functions_and_modules.html">1. Functions and Modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../medium/02_data_structures.html">2. Data Structures</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../medium/03_classes_and_oop.html">3. Classes and OOP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../medium/04_machine_learning_basics.html">4. Machine Learning Basics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../medium/05_data_analysis_with_pandas.html">5. Data Analysis with Pandas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../medium/06_algorithms_and_problem_solving.html">6. Algorithms and Problem Solving</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="README_HARD.html">📕 Hard Level - Advanced</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="01_advanced_functions_and_decorators.html">1. Advanced Functions &amp; Decorators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02_generators_and_iterators.html">2. Generators and Iterators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03_algorithms_and_complexity.html">3. Algorithms and Complexity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04_deep_learning_and_neural_networks.html">4. Deep Learning &amp; Neural Networks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05_advanced_ml_and_nlp.html">5. Advanced ML and NLP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="06_computer_systems_and_theory.html">6. Computer Systems and Theory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="07_project_ideas.html">7. Project Ideas &amp; Implementation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="08_classic_problems.html">Lesson 8: Classic Problems Collection</a></li>
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="09_ctf_challenges.html">Lesson 9: Capture The Flag (CTF) - Hacker Training</a></li>
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="10_performance_computing.html">10. Performance Computing ⚡ NEW!</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">11. CUDA &amp; GPU Computing 🎮 NEW!</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../tools/README.html">🛠️ Developer Tools Track</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../tools/01_shell_basics.html">1. Shell and Command Line</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools/02_command_line_tools.html">2. Command Line Tools</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools/03_git_essentials.html">3. Git Essentials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools/04_text_editors.html">4. Text Editors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools/05_build_systems_cicd.html">5. Build Systems and CI/CD</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools/06_debugging_profiling.html">6. Debugging and Profiling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools/07_security_essentials.html">7. Security Essentials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools/08_package_management.html">8. Package Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools/09_ssh_remote_systems.html">9. SSH and Remote Systems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools/10_docker_containers.html">10. Docker and Containers</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../solutions/README_SOLUTIONS.html">📝 Solutions</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../solutions/easy_solutions.html">Easy Level - Complete Solutions</a></li>
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../solutions/medium_solutions.html">Medium Level - Complete Solutions</a></li>
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../solutions/hard_solutions.html">Hard Level - Complete Solutions</a></li>
+
+
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../solutions/tools_solutions.html">Developer Tools - Complete Solutions</a></li>
+
+
+
+
+
+
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../RESOURCES.html">📚 Learning Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../PYTHON_CHEATSHEET.html">⚡ Python Cheat Sheet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ML_AI_CHEATSHEET.html">🤖 ML/AI Cheat Sheet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../SETUP.html">🔧 Setup Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../RELEASE_NOTES_v2.0.0.html">🎉 Release Notes v2.0.0</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none"></div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Hard Level: CUDA & GPU Parallel Computing</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#real-world-context">Real-World Context</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-1-gpu-architecture-fundamentals">Part 1: GPU Architecture Fundamentals</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cpu-vs-gpu-different-design-philosophy">CPU vs GPU: Different Design Philosophy</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nvidia-gpu-architecture">NVIDIA GPU Architecture</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cuda-programming-model">CUDA Programming Model</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-2-checking-gpu-availability">Part 2: Checking GPU Availability</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-3-cupy-numpy-for-gpus">Part 3: CuPy - NumPy for GPUs</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cupy-best-practices">CuPy Best Practices</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-4-pytorch-gpu-acceleration">Part 4: PyTorch GPU Acceleration</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-5-parallel-algorithm-patterns">Part 5: Parallel Algorithm Patterns</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pattern-1-map-element-wise-operations">Pattern 1: Map (Element-wise Operations)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pattern-2-reduce-aggregation">Pattern 2: Reduce (Aggregation)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pattern-3-scan-prefix-sum">Pattern 3: Scan (Prefix Sum)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pattern-4-stencil-neighbor-operations">Pattern 4: Stencil (Neighbor Operations)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-6-gpu-memory-management">Part 6: GPU Memory Management</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-7-multi-gpu-programming">Part 7: Multi-GPU Programming</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-8-real-world-gpu-applications">Part 8: Real-World GPU Applications</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#application-1-image-processing">Application 1: Image Processing</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#application-2-monte-carlo-simulation">Application 2: Monte Carlo Simulation</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-9-gpu-optimization-techniques">Part 9: GPU Optimization Techniques</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#coalesced-memory-access">1. Coalesced Memory Access</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#shared-memory">2. Shared Memory</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#occupancy-optimization">3. Occupancy Optimization</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kernel-fusion">4. Kernel Fusion</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mixed-precision">5. Mixed Precision</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-10-exercises">Part 10: Exercises</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-1-vector-addition-difficulty">Exercise 1: Vector Addition (Difficulty: ★★☆☆☆)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-2-matrix-multiplication-optimization-difficulty">Exercise 2: Matrix Multiplication Optimization (Difficulty: ★★★★☆)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-3-image-convolution-difficulty">Exercise 3: Image Convolution (Difficulty: ★★★★☆)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-4-parallel-reduction-difficulty">Exercise 4: Parallel Reduction (Difficulty: ★★★★☆)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-5-multi-gpu-training-difficulty">Exercise 5: Multi-GPU Training (Difficulty: ★★★★★)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-6-memory-bandwidth-test-difficulty">Exercise 6: Memory Bandwidth Test (Difficulty: ★★★☆☆)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-11-self-check-quiz">Part 11: Self-Check Quiz</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#question-1">Question 1</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#question-2">Question 2</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#question-3">Question 3</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#question-4">Question 4</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#question-5">Question 5</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#key-takeaways">Key Takeaways</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#common-mistakes">Common Mistakes</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pro-tips">Pro Tips</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-s-next">What’s Next?</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="hard-level-cuda-gpu-parallel-computing">
+<h1>Hard Level: CUDA &amp; GPU Parallel Computing<a class="headerlink" href="#hard-level-cuda-gpu-parallel-computing" title="Link to this heading">#</a></h1>
+<section id="real-world-context">
+<h2>Real-World Context<a class="headerlink" href="#real-world-context" title="Link to this heading">#</a></h2>
+<p><strong>The Problem</strong>: Modern CPUs have 4-16 cores. Modern GPUs have thousands of cores. For the right workloads, GPUs can be 10-100x faster than CPUs.</p>
+<p><strong>Where GPUs Dominate</strong>:</p>
+<ul class="simple">
+<li><p><strong>Deep Learning</strong>: Training neural networks (PyTorch, TensorFlow)</p></li>
+<li><p><strong>Scientific Computing</strong>: Physics simulations, climate modeling</p></li>
+<li><p><strong>Image/Video Processing</strong>: Real-time rendering, computer vision</p></li>
+<li><p><strong>Cryptography</strong>: Password cracking, blockchain mining</p></li>
+<li><p><strong>Financial Modeling</strong>: Monte Carlo simulations, risk analysis</p></li>
+<li><p><strong>Bioinformatics</strong>: Gene sequencing, protein folding</p></li>
+</ul>
+<p><strong>Why This Matters</strong>:</p>
+<ul class="simple">
+<li><p><strong>Speed</strong>: Train models in hours instead of weeks</p></li>
+<li><p><strong>Scale</strong>: Process billions of data points in real-time</p></li>
+<li><p><strong>Cost</strong>: One GPU can replace dozens of CPU cores</p></li>
+<li><p><strong>Energy</strong>: Higher performance per watt</p></li>
+</ul>
+<p><strong>What You’ll Learn</strong>:</p>
+<ul class="simple">
+<li><p>GPU architecture and CUDA programming model</p></li>
+<li><p>PyCUDA for Python-CUDA integration</p></li>
+<li><p>CuPy - NumPy for GPUs</p></li>
+<li><p>Parallel algorithms and patterns</p></li>
+<li><p>GPU memory management</p></li>
+<li><p>Multi-GPU programming</p></li>
+<li><p>Real-world optimization techniques</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="part-1-gpu-architecture-fundamentals">
+<h2>Part 1: GPU Architecture Fundamentals<a class="headerlink" href="#part-1-gpu-architecture-fundamentals" title="Link to this heading">#</a></h2>
+<section id="cpu-vs-gpu-different-design-philosophy">
+<h3>CPU vs GPU: Different Design Philosophy<a class="headerlink" href="#cpu-vs-gpu-different-design-philosophy" title="Link to this heading">#</a></h3>
+<p><strong>CPU (Central Processing Unit)</strong>:</p>
+<ul class="simple">
+<li><p><strong>Few powerful cores</strong> (4-16)</p></li>
+<li><p><strong>High clock speed</strong> (3-5 GHz)</p></li>
+<li><p><strong>Large cache</strong> (MB of L1/L2/L3)</p></li>
+<li><p><strong>Low latency</strong>: Optimized for sequential tasks</p></li>
+<li><p><strong>Complex control logic</strong>: Branch prediction, out-of-order execution</p></li>
+</ul>
+<p><strong>GPU (Graphics Processing Unit)</strong>:</p>
+<ul class="simple">
+<li><p><strong>Thousands of simple cores</strong> (2,000-10,000+)</p></li>
+<li><p><strong>Lower clock speed</strong> (1-2 GHz)</p></li>
+<li><p><strong>Small cache per core</strong>: Focus on throughput</p></li>
+<li><p><strong>High throughput</strong>: Optimized for parallel tasks</p></li>
+<li><p><strong>Simple control</strong>: SIMT (Single Instruction, Multiple Threads)</p></li>
+</ul>
+</section>
+<section id="nvidia-gpu-architecture">
+<h3>NVIDIA GPU Architecture<a class="headerlink" href="#nvidia-gpu-architecture" title="Link to this heading">#</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>GPU
+│
+├─ Streaming Multiprocessor (SM) × 80-100+
+│  │
+│  ├─ CUDA Cores × 64-128 per SM
+│  ├─ Tensor Cores (for AI)
+│  ├─ Shared Memory (fast, 48-96 KB)
+│  ├─ L1 Cache
+│  └─ Registers
+│
+├─ L2 Cache (shared, several MB)
+│
+└─ Global Memory (VRAM, 8-80 GB)
+   - High bandwidth (1000+ GB/s)
+   - High latency (100s of cycles)
+</pre></div>
+</div>
+</section>
+<section id="cuda-programming-model">
+<h3>CUDA Programming Model<a class="headerlink" href="#cuda-programming-model" title="Link to this heading">#</a></h3>
+<p><strong>Key Concepts</strong>:</p>
+<ol class="arabic simple">
+<li><p><strong>Kernel</strong>: Function that runs on GPU</p></li>
+<li><p><strong>Thread</strong>: Smallest execution unit</p></li>
+<li><p><strong>Block</strong>: Group of threads (up to 1024)</p></li>
+<li><p><strong>Grid</strong>: Collection of blocks</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Grid
+├─ Block(0,0)     Block(1,0)     Block(2,0)
+│  ├─ Thread(0,0) ├─ Thread(0,0) ├─ Thread(0,0)
+│  ├─ Thread(1,0) ├─ Thread(1,0) ├─ Thread(1,0)
+│  ├─ Thread(2,0) ├─ Thread(2,0) ├─ Thread(2,0)
+│  └─ ...         └─ ...         └─ ...
+│
+├─ Block(0,1)     Block(1,1)     Block(2,1)
+   └─ ...         └─ ...         └─ ...
+</pre></div>
+</div>
+<p><strong>Memory Hierarchy</strong> (fast to slow):</p>
+<ol class="arabic simple">
+<li><p><strong>Registers</strong>: Per-thread, fastest (1 cycle)</p></li>
+<li><p><strong>Shared Memory</strong>: Per-block, very fast (1-2 cycles)</p></li>
+<li><p><strong>L1/L2 Cache</strong>: Automatic, fast</p></li>
+<li><p><strong>Global Memory</strong>: Slowest (100s of cycles) but largest</p></li>
+</ol>
+</section>
+</section>
+<hr class="docutils" />
+<section id="part-2-checking-gpu-availability">
+<h2>Part 2: Checking GPU Availability<a class="headerlink" href="#part-2-checking-gpu-availability" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check if CUDA is available</span>
+<span class="kn">import</span> <span class="nn">subprocess</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+
+<span class="k">def</span> <span class="nf">check_cuda</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Check CUDA and GPU availability.&quot;&quot;&quot;</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=&quot;</span> <span class="o">*</span> <span class="mi">60</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;CUDA &amp; GPU Availability Check&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=&quot;</span> <span class="o">*</span> <span class="mi">60</span><span class="p">)</span>
+    
+    <span class="c1"># Check nvidia-smi</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">run</span><span class="p">([</span><span class="s1">&#39;nvidia-smi&#39;</span><span class="p">],</span> <span class="n">capture_output</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">result</span><span class="o">.</span><span class="n">returncode</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">✓ NVIDIA GPU detected!</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">stdout</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">✗ nvidia-smi not available&quot;</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">FileNotFoundError</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">✗ NVIDIA drivers not installed&quot;</span><span class="p">)</span>
+    
+    <span class="c1"># Check PyTorch CUDA</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="kn">import</span> <span class="nn">torch</span>
+        <span class="n">cuda_available</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">is_available</span><span class="p">()</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">PyTorch CUDA available: </span><span class="si">{</span><span class="n">cuda_available</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">cuda_available</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;GPU Device: </span><span class="si">{</span><span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">get_device_name</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;CUDA Version: </span><span class="si">{</span><span class="n">torch</span><span class="o">.</span><span class="n">version</span><span class="o">.</span><span class="n">cuda</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Number of GPUs: </span><span class="si">{</span><span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">device_count</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">PyTorch not installed. Install with: pip install torch&quot;</span><span class="p">)</span>
+    
+    <span class="c1"># Check CuPy</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="kn">import</span> <span class="nn">cupy</span> <span class="k">as</span> <span class="nn">cp</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">CuPy available: True&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;CuPy CUDA version: </span><span class="si">{</span><span class="n">cp</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">runtime</span><span class="o">.</span><span class="n">runtimeGetVersion</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">CuPy not installed. Install with: pip install cupy-cuda11x&quot;</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">CuPy error: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="s2">&quot;=&quot;</span> <span class="o">*</span> <span class="mi">60</span><span class="p">)</span>
+
+<span class="n">check_cuda</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Note</strong>: If you don’t have a GPU, many cloud platforms offer GPU access:</p>
+<ul class="simple">
+<li><p><strong>Google Colab</strong>: Free T4 GPU (15GB VRAM)</p></li>
+<li><p><strong>Kaggle</strong>: Free P100 GPU (30 hours/week)</p></li>
+<li><p><strong>AWS/GCP/Azure</strong>: Pay-per-use GPU instances</p></li>
+<li><p><strong>Lambda Labs</strong>: Specialized GPU cloud</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="part-3-cupy-numpy-for-gpus">
+<h2>Part 3: CuPy - NumPy for GPUs<a class="headerlink" href="#part-3-cupy-numpy-for-gpus" title="Link to this heading">#</a></h2>
+<p>CuPy is a NumPy-compatible library that runs on NVIDIA GPUs. It’s the easiest way to start GPU computing in Python.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># CuPy basics (pseudocode if GPU not available)</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">time</span>
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="kn">import</span> <span class="nn">cupy</span> <span class="k">as</span> <span class="nn">cp</span>
+    <span class="n">GPU_AVAILABLE</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;CuPy not available. Showing pseudocode examples.&quot;</span><span class="p">)</span>
+    <span class="n">GPU_AVAILABLE</span> <span class="o">=</span> <span class="kc">False</span>
+
+<span class="k">if</span> <span class="n">GPU_AVAILABLE</span><span class="p">:</span>
+    <span class="c1"># Example 1: Array creation and operations</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Example 1: Basic Operations&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=&quot;</span> <span class="o">*</span> <span class="mi">40</span><span class="p">)</span>
+    
+    <span class="c1"># CPU (NumPy)</span>
+    <span class="n">x_cpu</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">])</span>
+    <span class="n">y_cpu</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">10</span><span class="p">])</span>
+    <span class="n">z_cpu</span> <span class="o">=</span> <span class="n">x_cpu</span> <span class="o">+</span> <span class="n">y_cpu</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;NumPy result: </span><span class="si">{</span><span class="n">z_cpu</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    
+    <span class="c1"># GPU (CuPy) - Same syntax!</span>
+    <span class="n">x_gpu</span> <span class="o">=</span> <span class="n">cp</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">])</span>
+    <span class="n">y_gpu</span> <span class="o">=</span> <span class="n">cp</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">10</span><span class="p">])</span>
+    <span class="n">z_gpu</span> <span class="o">=</span> <span class="n">x_gpu</span> <span class="o">+</span> <span class="n">y_gpu</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;CuPy result: </span><span class="si">{</span><span class="n">z_gpu</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    
+    <span class="c1"># Transfer between CPU and GPU</span>
+    <span class="n">cpu_array</span> <span class="o">=</span> <span class="n">cp</span><span class="o">.</span><span class="n">asnumpy</span><span class="p">(</span><span class="n">z_gpu</span><span class="p">)</span>  <span class="c1"># GPU → CPU</span>
+    <span class="n">gpu_array</span> <span class="o">=</span> <span class="n">cp</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">z_cpu</span><span class="p">)</span>  <span class="c1"># CPU → GPU</span>
+    
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Example 2: Performance Comparison&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=&quot;</span> <span class="o">*</span> <span class="mi">40</span><span class="p">)</span>
+    
+    <span class="c1"># Large matrix operations</span>
+    <span class="n">size</span> <span class="o">=</span> <span class="mi">10000</span>
+    
+    <span class="c1"># CPU</span>
+    <span class="n">a_cpu</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="n">size</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+    <span class="n">b_cpu</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="n">size</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+    
+    <span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span>
+    <span class="n">c_cpu</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">a_cpu</span><span class="p">,</span> <span class="n">b_cpu</span><span class="p">)</span>
+    <span class="n">time_cpu</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span> <span class="o">-</span> <span class="n">start</span>
+    
+    <span class="c1"># GPU</span>
+    <span class="n">a_gpu</span> <span class="o">=</span> <span class="n">cp</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="n">size</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">cp</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+    <span class="n">b_gpu</span> <span class="o">=</span> <span class="n">cp</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="n">size</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">cp</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+    
+    <span class="c1"># Warm up</span>
+    <span class="n">_</span> <span class="o">=</span> <span class="n">cp</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">a_gpu</span><span class="p">,</span> <span class="n">b_gpu</span><span class="p">)</span>
+    <span class="n">cp</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">Stream</span><span class="o">.</span><span class="n">null</span><span class="o">.</span><span class="n">synchronize</span><span class="p">()</span>  <span class="c1"># Wait for GPU</span>
+    
+    <span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span>
+    <span class="n">c_gpu</span> <span class="o">=</span> <span class="n">cp</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">a_gpu</span><span class="p">,</span> <span class="n">b_gpu</span><span class="p">)</span>
+    <span class="n">cp</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">Stream</span><span class="o">.</span><span class="n">null</span><span class="o">.</span><span class="n">synchronize</span><span class="p">()</span>  <span class="c1"># Important: wait for GPU to finish!</span>
+    <span class="n">time_gpu</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span> <span class="o">-</span> <span class="n">start</span>
+    
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Matrix multiplication (</span><span class="si">{</span><span class="n">size</span><span class="si">}</span><span class="s2">×</span><span class="si">{</span><span class="n">size</span><span class="si">}</span><span class="s2">):&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;NumPy (CPU): </span><span class="si">{</span><span class="n">time_cpu</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">s&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;CuPy (GPU):  </span><span class="si">{</span><span class="n">time_gpu</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">s&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Speedup: </span><span class="si">{</span><span class="n">time_cpu</span><span class="o">/</span><span class="n">time_gpu</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">x faster!&quot;</span><span class="p">)</span>
+    
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    CuPy Example (Pseudocode):</span>
+<span class="s2">    </span>
+<span class="s2">    import cupy as cp</span>
+<span class="s2">    </span>
+<span class="s2">    # Create arrays on GPU</span>
+<span class="s2">    x_gpu = cp.array([1, 2, 3, 4, 5])</span>
+<span class="s2">    y_gpu = cp.array([6, 7, 8, 9, 10])</span>
+<span class="s2">    </span>
+<span class="s2">    # Operations run on GPU automatically</span>
+<span class="s2">    z_gpu = x_gpu + y_gpu</span>
+<span class="s2">    </span>
+<span class="s2">    # Transfer data: GPU ↔ CPU</span>
+<span class="s2">    cpu_array = cp.asnumpy(z_gpu)  # GPU → CPU</span>
+<span class="s2">    gpu_array = cp.asarray(cpu_array)  # CPU → GPU</span>
+<span class="s2">    </span>
+<span class="s2">    # All NumPy operations work!</span>
+<span class="s2">    result = cp.mean(x_gpu)</span>
+<span class="s2">    </span>
+<span class="s2">    Speedup: Typically 10-100x for large arrays</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="cupy-best-practices">
+<h3>CuPy Best Practices<a class="headerlink" href="#cupy-best-practices" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p><strong>Minimize CPU ↔ GPU transfers</strong>: Keep data on GPU</p></li>
+<li><p><strong>Use synchronize()</strong>: GPU operations are async</p></li>
+<li><p><strong>Batch operations</strong>: Single large operation &gt; many small ones</p></li>
+<li><p><strong>Use float32</strong>: Twice as fast as float64 on most GPUs</p></li>
+<li><p><strong>Reuse arrays</strong>: Avoid frequent allocation/deallocation</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Advanced CuPy: Custom kernels</span>
+<span class="k">if</span> <span class="n">GPU_AVAILABLE</span><span class="p">:</span>
+    <span class="c1"># Element-wise kernel (like NumPy ufunc)</span>
+    <span class="kn">from</span> <span class="nn">cupy</span> <span class="kn">import</span> <span class="n">ElementwiseKernel</span>
+    
+    <span class="c1"># Kernel definition (C++ syntax)</span>
+    <span class="n">add_kernel</span> <span class="o">=</span> <span class="n">ElementwiseKernel</span><span class="p">(</span>
+        <span class="s1">&#39;float32 x, float32 y&#39;</span><span class="p">,</span>  <span class="c1"># Input types</span>
+        <span class="s1">&#39;float32 z&#39;</span><span class="p">,</span>  <span class="c1"># Output type</span>
+        <span class="s1">&#39;z = x + y&#39;</span><span class="p">,</span>  <span class="c1"># Operation</span>
+        <span class="s1">&#39;add_kernel&#39;</span>  <span class="c1"># Name</span>
+    <span class="p">)</span>
+    
+    <span class="c1"># Use it</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">cp</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1000000</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">cp</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">cp</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1000000</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">cp</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+    <span class="n">z</span> <span class="o">=</span> <span class="n">add_kernel</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+    
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Custom kernel result: </span><span class="si">{</span><span class="n">z</span><span class="p">[:</span><span class="mi">5</span><span class="p">]</span><span class="si">}</span><span class="s2">...&quot;</span><span class="p">)</span>
+    
+    <span class="c1"># More complex: squared difference</span>
+    <span class="n">squared_diff_kernel</span> <span class="o">=</span> <span class="n">ElementwiseKernel</span><span class="p">(</span>
+        <span class="s1">&#39;float32 x, float32 y&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;float32 z&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;z = (x - y) * (x - y)&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;squared_diff&#39;</span>
+    <span class="p">)</span>
+    
+    <span class="n">result</span> <span class="o">=</span> <span class="n">squared_diff_kernel</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Squared difference: </span><span class="si">{</span><span class="n">result</span><span class="p">[:</span><span class="mi">5</span><span class="p">]</span><span class="si">}</span><span class="s2">...&quot;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Custom CuPy kernels allow writing GPU code in C++ syntax!&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="part-4-pytorch-gpu-acceleration">
+<h2>Part 4: PyTorch GPU Acceleration<a class="headerlink" href="#part-4-pytorch-gpu-acceleration" title="Link to this heading">#</a></h2>
+<p>PyTorch provides the easiest path to GPU computing for deep learning and scientific computing.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">try</span><span class="p">:</span>
+    <span class="kn">import</span> <span class="nn">torch</span>
+    <span class="n">TORCH_AVAILABLE</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;PyTorch not installed. Install with: pip install torch&quot;</span><span class="p">)</span>
+    <span class="n">TORCH_AVAILABLE</span> <span class="o">=</span> <span class="kc">False</span>
+
+<span class="k">if</span> <span class="n">TORCH_AVAILABLE</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;PyTorch GPU Example&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=&quot;</span> <span class="o">*</span> <span class="mi">40</span><span class="p">)</span>
+    
+    <span class="c1"># Check device</span>
+    <span class="n">device</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">device</span><span class="p">(</span><span class="s1">&#39;cuda&#39;</span> <span class="k">if</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">is_available</span><span class="p">()</span> <span class="k">else</span> <span class="s1">&#39;cpu&#39;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Using device: </span><span class="si">{</span><span class="n">device</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    
+    <span class="k">if</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">is_available</span><span class="p">():</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;GPU: </span><span class="si">{</span><span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">get_device_name</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Memory: </span><span class="si">{</span><span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">get_device_properties</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">total_memory</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">1024</span><span class="o">**</span><span class="mi">3</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2"> GB&quot;</span><span class="p">)</span>
+    
+    <span class="c1"># Create tensors on GPU</span>
+    <span class="n">size</span> <span class="o">=</span> <span class="mi">5000</span>
+    
+    <span class="c1"># Method 1: Create on GPU directly</span>
+    <span class="n">x_gpu</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="n">size</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="s1">&#39;cuda&#39;</span> <span class="k">if</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">is_available</span><span class="p">()</span> <span class="k">else</span> <span class="s1">&#39;cpu&#39;</span><span class="p">)</span>
+    <span class="n">y_gpu</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="n">size</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="s1">&#39;cuda&#39;</span> <span class="k">if</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">is_available</span><span class="p">()</span> <span class="k">else</span> <span class="s1">&#39;cpu&#39;</span><span class="p">)</span>
+    
+    <span class="c1"># Method 2: Create on CPU then move</span>
+    <span class="n">x_cpu</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="n">size</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">is_available</span><span class="p">():</span>
+        <span class="n">x_gpu</span> <span class="o">=</span> <span class="n">x_cpu</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="s1">&#39;cuda&#39;</span><span class="p">)</span>  <span class="c1"># or .cuda()</span>
+    
+    <span class="c1"># Benchmark</span>
+    <span class="k">if</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">is_available</span><span class="p">():</span>
+        <span class="c1"># GPU</span>
+        <span class="n">start</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">Event</span><span class="p">(</span><span class="n">enable_timing</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">end</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">Event</span><span class="p">(</span><span class="n">enable_timing</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        
+        <span class="n">start</span><span class="o">.</span><span class="n">record</span><span class="p">()</span>
+        <span class="n">z_gpu</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">mm</span><span class="p">(</span><span class="n">x_gpu</span><span class="p">,</span> <span class="n">y_gpu</span><span class="p">)</span>  <span class="c1"># Matrix multiply</span>
+        <span class="n">end</span><span class="o">.</span><span class="n">record</span><span class="p">()</span>
+        <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">synchronize</span><span class="p">()</span>
+        
+        <span class="n">time_gpu</span> <span class="o">=</span> <span class="n">start</span><span class="o">.</span><span class="n">elapsed_time</span><span class="p">(</span><span class="n">end</span><span class="p">)</span> <span class="o">/</span> <span class="mi">1000</span>  <span class="c1"># ms to seconds</span>
+        
+        <span class="c1"># CPU</span>
+        <span class="n">x_cpu</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="n">size</span><span class="p">)</span>
+        <span class="n">y_cpu</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="n">size</span><span class="p">)</span>
+        
+        <span class="n">start_cpu</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span>
+        <span class="n">z_cpu</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">mm</span><span class="p">(</span><span class="n">x_cpu</span><span class="p">,</span> <span class="n">y_cpu</span><span class="p">)</span>
+        <span class="n">time_cpu</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span> <span class="o">-</span> <span class="n">start_cpu</span>
+        
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Matrix multiplication (</span><span class="si">{</span><span class="n">size</span><span class="si">}</span><span class="s2">×</span><span class="si">{</span><span class="n">size</span><span class="si">}</span><span class="s2">):&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;CPU: </span><span class="si">{</span><span class="n">time_cpu</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">s&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;GPU: </span><span class="si">{</span><span class="n">time_gpu</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">s&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Speedup: </span><span class="si">{</span><span class="n">time_cpu</span><span class="o">/</span><span class="n">time_gpu</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">x faster!&quot;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">No GPU available for benchmarking&quot;</span><span class="p">)</span>
+        
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    PyTorch GPU Example (Pseudocode):</span>
+<span class="s2">    </span>
+<span class="s2">    import torch</span>
+<span class="s2">    </span>
+<span class="s2">    # Check GPU availability</span>
+<span class="s2">    device = torch.device(&#39;cuda&#39; if torch.cuda.is_available() else &#39;cpu&#39;)</span>
+<span class="s2">    </span>
+<span class="s2">    # Create tensor on GPU</span>
+<span class="s2">    x = torch.rand(1000, 1000, device=&#39;cuda&#39;)</span>
+<span class="s2">    y = torch.rand(1000, 1000, device=&#39;cuda&#39;)</span>
+<span class="s2">    </span>
+<span class="s2">    # All operations run on GPU</span>
+<span class="s2">    z = torch.mm(x, y)</span>
+<span class="s2">    </span>
+<span class="s2">    # Move between devices</span>
+<span class="s2">    x_cpu = x.cpu()  # GPU → CPU</span>
+<span class="s2">    x_gpu = x_cpu.cuda()  # CPU → GPU</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="part-5-parallel-algorithm-patterns">
+<h2>Part 5: Parallel Algorithm Patterns<a class="headerlink" href="#part-5-parallel-algorithm-patterns" title="Link to this heading">#</a></h2>
+<p>Certain algorithms are naturally parallel and map perfectly to GPUs.</p>
+<section id="pattern-1-map-element-wise-operations">
+<h3>Pattern 1: Map (Element-wise Operations)<a class="headerlink" href="#pattern-1-map-element-wise-operations" title="Link to this heading">#</a></h3>
+<p>Apply same operation to each element independently.</p>
+<p><strong>Examples</strong>: Array addition, sigmoid activation, image filters</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># CPU: Sequential</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="n">output</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">func</span><span class="p">(</span><span class="nb">input</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+
+<span class="c1"># GPU: Parallel (each thread handles one element)</span>
+<span class="n">thread_id</span> <span class="o">=</span> <span class="n">blockIdx</span><span class="o">.</span><span class="n">x</span> <span class="o">*</span> <span class="n">blockDim</span><span class="o">.</span><span class="n">x</span> <span class="o">+</span> <span class="n">threadIdx</span><span class="o">.</span><span class="n">x</span>
+<span class="k">if</span> <span class="n">thread_id</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">:</span>
+    <span class="n">output</span><span class="p">[</span><span class="n">thread_id</span><span class="p">]</span> <span class="o">=</span> <span class="n">func</span><span class="p">(</span><span class="nb">input</span><span class="p">[</span><span class="n">thread_id</span><span class="p">])</span>
+</pre></div>
+</div>
+</section>
+<section id="pattern-2-reduce-aggregation">
+<h3>Pattern 2: Reduce (Aggregation)<a class="headerlink" href="#pattern-2-reduce-aggregation" title="Link to this heading">#</a></h3>
+<p>Combine all elements into single value.</p>
+<p><strong>Examples</strong>: Sum, max, min, mean</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Tree-based reduction:
+[1, 2, 3, 4, 5, 6, 7, 8]
+ └─┬─┘ └─┬─┘ └─┬─┘ └─┬─┘   Step 1: Pair-wise
+   3     7     11    15
+   └──┬──┘     └──┬──┘      Step 2: Pair-wise
+      10          26
+      └─────┬─────┘          Step 3: Final
+            36
+</pre></div>
+</div>
+</section>
+<section id="pattern-3-scan-prefix-sum">
+<h3>Pattern 3: Scan (Prefix Sum)<a class="headerlink" href="#pattern-3-scan-prefix-sum" title="Link to this heading">#</a></h3>
+<p>Compute running aggregation.</p>
+<p><strong>Examples</strong>: Cumulative sum, histogram, sorting</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Input</span><span class="p">:</span>  <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
+<span class="n">Output</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">15</span><span class="p">]</span>  <span class="p">(</span><span class="n">cumulative</span> <span class="nb">sum</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="pattern-4-stencil-neighbor-operations">
+<h3>Pattern 4: Stencil (Neighbor Operations)<a class="headerlink" href="#pattern-4-stencil-neighbor-operations" title="Link to this heading">#</a></h3>
+<p>Compute based on neighbors in structured grid.</p>
+<p><strong>Examples</strong>: Convolution, blur, diffusion</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>3×3 kernel:
+  ┌───┬───┬───┐
+  │ 1 │ 2 │ 1 │
+  ├───┼───┼───┤
+  │ 2 │ 4 │ 2 │  Apply to each pixel
+  ├───┼───┼───┤
+  │ 1 │ 2 │ 1 │
+  └───┴───┴───┘
+</pre></div>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="part-6-gpu-memory-management">
+<h2>Part 6: GPU Memory Management<a class="headerlink" href="#part-6-gpu-memory-management" title="Link to this heading">#</a></h2>
+<p>Efficient memory usage is crucial for GPU performance.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">TORCH_AVAILABLE</span> <span class="ow">and</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">is_available</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;GPU Memory Management&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=&quot;</span> <span class="o">*</span> <span class="mi">40</span><span class="p">)</span>
+    
+    <span class="c1"># Memory stats</span>
+    <span class="k">def</span> <span class="nf">print_gpu_memory</span><span class="p">():</span>
+        <span class="n">allocated</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">memory_allocated</span><span class="p">()</span> <span class="o">/</span> <span class="mi">1024</span><span class="o">**</span><span class="mi">3</span>
+        <span class="n">reserved</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">memory_reserved</span><span class="p">()</span> <span class="o">/</span> <span class="mi">1024</span><span class="o">**</span><span class="mi">3</span>
+        <span class="n">total</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">get_device_properties</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">total_memory</span> <span class="o">/</span> <span class="mi">1024</span><span class="o">**</span><span class="mi">3</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Allocated: </span><span class="si">{</span><span class="n">allocated</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> GB&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Reserved:  </span><span class="si">{</span><span class="n">reserved</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> GB&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Total:     </span><span class="si">{</span><span class="n">total</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> GB&quot;</span><span class="p">)</span>
+    
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Initial state:&quot;</span><span class="p">)</span>
+    <span class="n">print_gpu_memory</span><span class="p">()</span>
+    
+    <span class="c1"># Allocate memory</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">After creating 5000×5000 tensor:&quot;</span><span class="p">)</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">5000</span><span class="p">,</span> <span class="mi">5000</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="s1">&#39;cuda&#39;</span><span class="p">)</span>
+    <span class="n">print_gpu_memory</span><span class="p">()</span>
+    
+    <span class="c1"># Free memory</span>
+    <span class="k">del</span> <span class="n">x</span>
+    <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">empty_cache</span><span class="p">()</span>  <span class="c1"># Release reserved memory</span>
+    
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">After deleting tensor and clearing cache:&quot;</span><span class="p">)</span>
+    <span class="n">print_gpu_memory</span><span class="p">()</span>
+    
+    <span class="c1"># Memory-efficient operations</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="s2">&quot;=&quot;</span><span class="o">*</span><span class="mi">40</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Memory-Efficient Patterns:&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=&quot;</span><span class="o">*</span><span class="mi">40</span><span class="p">)</span>
+    
+    <span class="c1"># In-place operations save memory</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">1000</span><span class="p">,</span> <span class="mi">1000</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="s1">&#39;cuda&#39;</span><span class="p">)</span>
+    
+    <span class="c1"># Bad: Creates new tensor</span>
+    <span class="c1"># y = x + 1</span>
+    
+    <span class="c1"># Good: In-place (appends underscore)</span>
+    <span class="n">x</span><span class="o">.</span><span class="n">add_</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>  <span class="c1"># Modifies x directly</span>
+    
+    <span class="c1"># Context manager for automatic cleanup</span>
+    <span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">device</span><span class="p">(</span><span class="mi">0</span><span class="p">):</span>
+        <span class="n">temp</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">1000</span><span class="p">,</span> <span class="mi">1000</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="s1">&#39;cuda&#39;</span><span class="p">)</span>
+        <span class="c1"># Automatically freed when exiting context</span>
+    
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Memory Best Practices:&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;1. Use in-place operations: tensor.add_() vs tensor + 1&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;2. Delete large tensors when done: del tensor&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;3. Clear cache periodically: torch.cuda.empty_cache()&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;4. Use mixed precision (float16): Halves memory usage&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;5. Batch processing: Process data in chunks&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;6. Gradient checkpointing: Trade compute for memory&quot;</span><span class="p">)</span>
+    
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;GPU Memory Management (Conceptual):&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    GPU memory is limited (8-80 GB typical).</span>
+<span class="s2">    </span>
+<span class="s2">    Best Practices:</span>
+<span class="s2">    1. Monitor: torch.cuda.memory_allocated()</span>
+<span class="s2">    2. Free: del tensor, torch.cuda.empty_cache()</span>
+<span class="s2">    3. In-place ops: tensor.add_(1) instead of tensor + 1</span>
+<span class="s2">    4. Mixed precision: Use float16 when possible</span>
+<span class="s2">    5. Batch processing: Don&#39;t load all data at once</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="part-7-multi-gpu-programming">
+<h2>Part 7: Multi-GPU Programming<a class="headerlink" href="#part-7-multi-gpu-programming" title="Link to this heading">#</a></h2>
+<p>Scale to multiple GPUs for even more performance.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">TORCH_AVAILABLE</span><span class="p">:</span>
+    <span class="n">n_gpus</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">device_count</span><span class="p">()</span> <span class="k">if</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">is_available</span><span class="p">()</span> <span class="k">else</span> <span class="mi">0</span>
+    
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Multi-GPU Programming (Found </span><span class="si">{</span><span class="n">n_gpus</span><span class="si">}</span><span class="s2"> GPU(s))&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=&quot;</span> <span class="o">*</span> <span class="mi">40</span><span class="p">)</span>
+    
+    <span class="k">if</span> <span class="n">n_gpus</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="c1"># Data Parallel: Same model, split data</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Data Parallelism Example:&quot;</span><span class="p">)</span>
+        
+        <span class="c1"># Simple model</span>
+        <span class="k">class</span> <span class="nc">SimpleModel</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+            <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+                <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">linear</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">1000</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>
+            
+            <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+                <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">linear</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        
+        <span class="n">model</span> <span class="o">=</span> <span class="n">SimpleModel</span><span class="p">()</span>
+        
+        <span class="c1"># Wrap with DataParallel</span>
+        <span class="n">model</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">DataParallel</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
+        <span class="n">model</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">cuda</span><span class="p">()</span>
+        
+        <span class="c1"># Forward pass automatically splits across GPUs</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">128</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span><span class="o">.</span><span class="n">cuda</span><span class="p">()</span>  <span class="c1"># Batch size 128</span>
+        <span class="n">output</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>  <span class="c1"># Splits batch across GPUs</span>
+        
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Model on </span><span class="si">{</span><span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">device_count</span><span class="p">()</span><span class="si">}</span><span class="s2"> GPUs&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Input: </span><span class="si">{</span><span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">, Output: </span><span class="si">{</span><span class="n">output</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        
+        <span class="c1"># DistributedDataParallel (better for multi-node)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">For production, use DistributedDataParallel:&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">        from torch.nn.parallel import DistributedDataParallel as DDP</span>
+<span class="s2">        </span>
+<span class="s2">        # Initialize process group</span>
+<span class="s2">        torch.distributed.init_process_group(backend=&#39;nccl&#39;)</span>
+<span class="s2">        </span>
+<span class="s2">        # Wrap model</span>
+<span class="s2">        model = DDP(model, device_ids=[local_rank])</span>
+<span class="s2">        &quot;&quot;&quot;</span><span class="p">)</span>
+        
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">        Multi-GPU Strategies:</span>
+<span class="s2">        </span>
+<span class="s2">        1. Data Parallelism:</span>
+<span class="s2">           - Same model replicated on each GPU</span>
+<span class="s2">           - Different data batches</span>
+<span class="s2">           - Most common approach</span>
+<span class="s2">           </span>
+<span class="s2">        2. Model Parallelism:</span>
+<span class="s2">           - Split model across GPUs</span>
+<span class="s2">           - For models too large for single GPU</span>
+<span class="s2">           - More complex implementation</span>
+<span class="s2">           </span>
+<span class="s2">        3. Pipeline Parallelism:</span>
+<span class="s2">           - Different stages on different GPUs</span>
+<span class="s2">           - Overlaps computation</span>
+<span class="s2">           </span>
+<span class="s2">        Example:</span>
+<span class="s2">        model = torch.nn.DataParallel(model)  # Simple!</span>
+<span class="s2">        &quot;&quot;&quot;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Multi-GPU programming requires PyTorch&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="part-8-real-world-gpu-applications">
+<h2>Part 8: Real-World GPU Applications<a class="headerlink" href="#part-8-real-world-gpu-applications" title="Link to this heading">#</a></h2>
+<section id="application-1-image-processing">
+<h3>Application 1: Image Processing<a class="headerlink" href="#application-1-image-processing" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># GPU-accelerated image filtering</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="k">if</span> <span class="n">GPU_AVAILABLE</span><span class="p">:</span>
+    <span class="kn">import</span> <span class="nn">cupy</span> <span class="k">as</span> <span class="nn">cp</span>
+    
+    <span class="c1"># Create fake image (1920×1080, RGB)</span>
+    <span class="n">image_cpu</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">1080</span><span class="p">,</span> <span class="mi">1920</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+    <span class="n">image_gpu</span> <span class="o">=</span> <span class="n">cp</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">image_cpu</span><span class="p">)</span>
+    
+    <span class="c1"># Gaussian blur kernel</span>
+    <span class="k">def</span> <span class="nf">gaussian_blur_cpu</span><span class="p">(</span><span class="n">image</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;CPU version.&quot;&quot;&quot;</span>
+        <span class="n">kernel</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+                          <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span>
+                          <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">]],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span> <span class="o">/</span> <span class="mi">16</span>
+        
+        <span class="c1"># Simplified convolution (real version would use scipy)</span>
+        <span class="k">return</span> <span class="n">image</span>  <span class="c1"># Placeholder</span>
+    
+    <span class="c1"># Custom GPU kernel for blur</span>
+    <span class="n">blur_kernel</span> <span class="o">=</span> <span class="n">cp</span><span class="o">.</span><span class="n">ElementwiseKernel</span><span class="p">(</span>
+        <span class="s1">&#39;float32 x&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;float32 y&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;y = x * 0.8&#39;</span><span class="p">,</span>  <span class="c1"># Simplified</span>
+        <span class="s1">&#39;blur&#39;</span>
+    <span class="p">)</span>
+    
+    <span class="c1"># Benchmark</span>
+    <span class="n">n_iter</span> <span class="o">=</span> <span class="mi">100</span>
+    
+    <span class="c1"># GPU</span>
+    <span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_iter</span><span class="p">):</span>
+        <span class="n">result_gpu</span> <span class="o">=</span> <span class="n">blur_kernel</span><span class="p">(</span><span class="n">image_gpu</span><span class="p">)</span>
+    <span class="n">cp</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">Stream</span><span class="o">.</span><span class="n">null</span><span class="o">.</span><span class="n">synchronize</span><span class="p">()</span>
+    <span class="n">time_gpu</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span> <span class="o">-</span> <span class="n">start</span>
+    
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Image Processing (</span><span class="si">{</span><span class="n">n_iter</span><span class="si">}</span><span class="s2"> iterations):&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;GPU: </span><span class="si">{</span><span class="n">time_gpu</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">s (</span><span class="si">{</span><span class="n">time_gpu</span><span class="o">/</span><span class="n">n_iter</span><span class="o">*</span><span class="mi">1000</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">ms per frame)&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;FPS: </span><span class="si">{</span><span class="n">n_iter</span><span class="o">/</span><span class="n">time_gpu</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2"> frames/second&quot;</span><span class="p">)</span>
+    
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;GPU image processing can achieve 100+ FPS for HD video!&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="application-2-monte-carlo-simulation">
+<h3>Application 2: Monte Carlo Simulation<a class="headerlink" href="#application-2-monte-carlo-simulation" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># GPU-accelerated Monte Carlo</span>
+<span class="k">if</span> <span class="n">TORCH_AVAILABLE</span> <span class="ow">and</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">is_available</span><span class="p">():</span>
+    <span class="k">def</span> <span class="nf">monte_carlo_pi_gpu</span><span class="p">(</span><span class="n">n_samples</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Estimate π using GPU Monte Carlo.&quot;&quot;&quot;</span>
+        <span class="c1"># Generate random points on GPU</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="n">n_samples</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="s1">&#39;cuda&#39;</span><span class="p">)</span>
+        <span class="n">y</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="n">n_samples</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="s1">&#39;cuda&#39;</span><span class="p">)</span>
+        
+        <span class="c1"># Check if inside unit circle</span>
+        <span class="n">inside</span> <span class="o">=</span> <span class="p">(</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">y</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="mf">1.0</span>
+        
+        <span class="c1"># Estimate π</span>
+        <span class="n">pi_estimate</span> <span class="o">=</span> <span class="mf">4.0</span> <span class="o">*</span> <span class="n">inside</span><span class="o">.</span><span class="n">float</span><span class="p">()</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">pi_estimate</span>
+    
+    <span class="c1"># Run simulation</span>
+    <span class="n">n_samples</span> <span class="o">=</span> <span class="mi">100_000_000</span>  <span class="c1"># 100 million!</span>
+    
+    <span class="n">start</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">Event</span><span class="p">(</span><span class="n">enable_timing</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">end</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">Event</span><span class="p">(</span><span class="n">enable_timing</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    
+    <span class="n">start</span><span class="o">.</span><span class="n">record</span><span class="p">()</span>
+    <span class="n">pi</span> <span class="o">=</span> <span class="n">monte_carlo_pi_gpu</span><span class="p">(</span><span class="n">n_samples</span><span class="p">)</span>
+    <span class="n">end</span><span class="o">.</span><span class="n">record</span><span class="p">()</span>
+    <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">synchronize</span><span class="p">()</span>
+    
+    <span class="n">elapsed</span> <span class="o">=</span> <span class="n">start</span><span class="o">.</span><span class="n">elapsed_time</span><span class="p">(</span><span class="n">end</span><span class="p">)</span> <span class="o">/</span> <span class="mi">1000</span>
+    
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Monte Carlo π Estimation:&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Samples: </span><span class="si">{</span><span class="n">n_samples</span><span class="si">:</span><span class="s2">,</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Result: π ≈ </span><span class="si">{</span><span class="n">pi</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2"> (true: 3.141593)&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error: </span><span class="si">{</span><span class="nb">abs</span><span class="p">(</span><span class="n">pi</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mf">3.141593</span><span class="p">)</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Time: </span><span class="si">{</span><span class="n">elapsed</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">s&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Throughput: </span><span class="si">{</span><span class="n">n_samples</span><span class="o">/</span><span class="n">elapsed</span><span class="o">/</span><span class="mf">1e6</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2"> million samples/second&quot;</span><span class="p">)</span>
+    
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Monte Carlo simulations benefit hugely from GPU parallelism!&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="part-9-gpu-optimization-techniques">
+<h2>Part 9: GPU Optimization Techniques<a class="headerlink" href="#part-9-gpu-optimization-techniques" title="Link to this heading">#</a></h2>
+<section id="coalesced-memory-access">
+<h3>1. Coalesced Memory Access<a class="headerlink" href="#coalesced-memory-access" title="Link to this heading">#</a></h3>
+<p><strong>Problem</strong>: GPUs load memory in 128-byte chunks. Random access wastes bandwidth.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Bad (Strided):
+Thread 0: array[0]
+Thread 1: array[100]
+Thread 2: array[200]  → Many memory transactions
+
+Good (Coalesced):
+Thread 0: array[0]
+Thread 1: array[1]
+Thread 2: array[2]  → One memory transaction
+</pre></div>
+</div>
+</section>
+<section id="shared-memory">
+<h3>2. Shared Memory<a class="headerlink" href="#shared-memory" title="Link to this heading">#</a></h3>
+<p>Use fast shared memory (48-96 KB per SM) for data reuse.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># CUDA kernel (pseudocode)</span>
+<span class="n">__shared__</span> <span class="nb">float</span> <span class="n">tile</span><span class="p">[</span><span class="n">TILE_SIZE</span><span class="p">][</span><span class="n">TILE_SIZE</span><span class="p">];</span>
+
+<span class="c1"># Load from global → shared (once)</span>
+<span class="n">tile</span><span class="p">[</span><span class="n">ty</span><span class="p">][</span><span class="n">tx</span><span class="p">]</span> <span class="o">=</span> <span class="n">global_mem</span><span class="p">[</span><span class="o">...</span><span class="p">]</span>
+<span class="n">__syncthreads</span><span class="p">()</span>
+
+<span class="c1"># Compute using shared memory (fast!)</span>
+<span class="n">result</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">for</span> <span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">TILE_SIZE</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+    <span class="n">result</span> <span class="o">+=</span> <span class="n">tile</span><span class="p">[</span><span class="n">ty</span><span class="p">][</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="n">tile</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">tx</span><span class="p">]</span>
+</pre></div>
+</div>
+</section>
+<section id="occupancy-optimization">
+<h3>3. Occupancy Optimization<a class="headerlink" href="#occupancy-optimization" title="Link to this heading">#</a></h3>
+<p><strong>Occupancy</strong> = Active warps / Maximum possible warps</p>
+<p>Higher occupancy hides memory latency better.</p>
+<p><strong>Factors</strong>:</p>
+<ul class="simple">
+<li><p>Threads per block (multiple of 32)</p></li>
+<li><p>Registers per thread (fewer is better)</p></li>
+<li><p>Shared memory usage (less is better)</p></li>
+</ul>
+<p><strong>Sweet spot</strong>: 128-256 threads per block</p>
+</section>
+<section id="kernel-fusion">
+<h3>4. Kernel Fusion<a class="headerlink" href="#kernel-fusion" title="Link to this heading">#</a></h3>
+<p>Combine multiple operations to reduce kernel launches.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Bad: Multiple kernel launches</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="mi">1</span>
+<span class="n">z</span> <span class="o">=</span> <span class="n">y</span> <span class="o">*</span> <span class="mi">2</span>
+<span class="n">w</span> <span class="o">=</span> <span class="n">z</span> <span class="o">-</span> <span class="mi">3</span>
+
+<span class="c1"># Good: Fused operation</span>
+<span class="n">w</span> <span class="o">=</span> <span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">-</span> <span class="mi">3</span>  <span class="c1"># One kernel</span>
+</pre></div>
+</div>
+</section>
+<section id="mixed-precision">
+<h3>5. Mixed Precision<a class="headerlink" href="#mixed-precision" title="Link to this heading">#</a></h3>
+<p>Use float16 when possible:</p>
+<ul class="simple">
+<li><p>2x less memory</p></li>
+<li><p>2x faster on Tensor Cores</p></li>
+<li><p>Minimal accuracy loss</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">half</span><span class="p">()</span>  <span class="c1"># Convert to float16</span>
+</pre></div>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="part-10-exercises">
+<h2>Part 10: Exercises<a class="headerlink" href="#part-10-exercises" title="Link to this heading">#</a></h2>
+<section id="exercise-1-vector-addition-difficulty">
+<h3>Exercise 1: Vector Addition (Difficulty: ★★☆☆☆)<a class="headerlink" href="#exercise-1-vector-addition-difficulty" title="Link to this heading">#</a></h3>
+<p><strong>Task</strong>: Implement vector addition on GPU using CuPy or PyTorch:</p>
+<ol class="arabic simple">
+<li><p>Create two large vectors (10 million elements)</p></li>
+<li><p>Add them on CPU and GPU</p></li>
+<li><p>Measure and compare performance</p></li>
+<li><p>Verify results are identical</p></li>
+</ol>
+</section>
+<hr class="docutils" />
+<section id="exercise-2-matrix-multiplication-optimization-difficulty">
+<h3>Exercise 2: Matrix Multiplication Optimization (Difficulty: ★★★★☆)<a class="headerlink" href="#exercise-2-matrix-multiplication-optimization-difficulty" title="Link to this heading">#</a></h3>
+<p><strong>Task</strong>: Compare different matrix multiplication methods:</p>
+<ol class="arabic simple">
+<li><p>Pure Python (nested loops)</p></li>
+<li><p>NumPy (CPU)</p></li>
+<li><p>CuPy or PyTorch (GPU)</p></li>
+<li><p>Mixed precision (float16 on GPU)</p></li>
+</ol>
+<p>Test with various sizes and plot speedup vs matrix size.</p>
+</section>
+<hr class="docutils" />
+<section id="exercise-3-image-convolution-difficulty">
+<h3>Exercise 3: Image Convolution (Difficulty: ★★★★☆)<a class="headerlink" href="#exercise-3-image-convolution-difficulty" title="Link to this heading">#</a></h3>
+<p><strong>Task</strong>: Implement 2D convolution on GPU:</p>
+<ol class="arabic simple">
+<li><p>Load an image</p></li>
+<li><p>Apply various filters (blur, sharpen, edge detection)</p></li>
+<li><p>Compare CPU vs GPU performance</p></li>
+<li><p>Implement as custom CuPy kernel</p></li>
+</ol>
+</section>
+<hr class="docutils" />
+<section id="exercise-4-parallel-reduction-difficulty">
+<h3>Exercise 4: Parallel Reduction (Difficulty: ★★★★☆)<a class="headerlink" href="#exercise-4-parallel-reduction-difficulty" title="Link to this heading">#</a></h3>
+<p><strong>Task</strong>: Implement parallel sum reduction:</p>
+<ol class="arabic simple">
+<li><p>Create array of 100 million numbers</p></li>
+<li><p>Implement tree-based reduction</p></li>
+<li><p>Compare with built-in sum</p></li>
+<li><p>Measure throughput (GB/s)</p></li>
+</ol>
+</section>
+<hr class="docutils" />
+<section id="exercise-5-multi-gpu-training-difficulty">
+<h3>Exercise 5: Multi-GPU Training (Difficulty: ★★★★★)<a class="headerlink" href="#exercise-5-multi-gpu-training-difficulty" title="Link to this heading">#</a></h3>
+<p><strong>Task</strong>: If you have multiple GPUs:</p>
+<ol class="arabic simple">
+<li><p>Create a simple neural network</p></li>
+<li><p>Implement data-parallel training</p></li>
+<li><p>Measure speedup vs single GPU</p></li>
+<li><p>Monitor GPU utilization</p></li>
+</ol>
+</section>
+<hr class="docutils" />
+<section id="exercise-6-memory-bandwidth-test-difficulty">
+<h3>Exercise 6: Memory Bandwidth Test (Difficulty: ★★★☆☆)<a class="headerlink" href="#exercise-6-memory-bandwidth-test-difficulty" title="Link to this heading">#</a></h3>
+<p><strong>Task</strong>: Measure GPU memory bandwidth:</p>
+<ol class="arabic simple">
+<li><p>Copy large arrays between CPU and GPU</p></li>
+<li><p>Measure transfer speed (GB/s)</p></li>
+<li><p>Compare with GPU specs</p></li>
+<li><p>Identify bottlenecks (PCIe vs GPU memory)</p></li>
+</ol>
+</section>
+</section>
+<hr class="docutils" />
+<section id="part-11-self-check-quiz">
+<h2>Part 11: Self-Check Quiz<a class="headerlink" href="#part-11-self-check-quiz" title="Link to this heading">#</a></h2>
+<section id="question-1">
+<h3>Question 1<a class="headerlink" href="#question-1" title="Link to this heading">#</a></h3>
+<p>Why are GPUs faster than CPUs for parallel workloads?</p>
+<p>A) Higher clock speed<br />
+B) Thousands of cores for massive parallelism<br />
+C) Larger cache<br />
+D) Better branch prediction</p>
+<details>
+<summary>Answer</summary>
+B) Thousands of cores for massive parallelism
+<p><strong>Explanation</strong>: GPUs sacrifice per-core performance for massive parallelism, with thousands of simpler cores that excel at data-parallel tasks.</p>
+</details>
+</section>
+<hr class="docutils" />
+<section id="question-2">
+<h3>Question 2<a class="headerlink" href="#question-2" title="Link to this heading">#</a></h3>
+<p>What is the main bottleneck when using GPUs?</p>
+<p>A) Computation speed<br />
+B) Data transfer between CPU and GPU<br />
+C) Power consumption<br />
+D) Programming difficulty</p>
+<details>
+<summary>Answer</summary>
+B) Data transfer between CPU and GPU
+<p><strong>Explanation</strong>: PCIe bandwidth is limited (16-32 GB/s), much slower than GPU memory bandwidth (1000+ GB/s). Minimize CPU ↔ GPU transfers!</p>
+</details>
+</section>
+<hr class="docutils" />
+<section id="question-3">
+<h3>Question 3<a class="headerlink" href="#question-3" title="Link to this heading">#</a></h3>
+<p>What does synchronize() do in GPU programming?</p>
+<p>A) Copies data to GPU<br />
+B) Waits for GPU operations to complete<br />
+C) Frees GPU memory<br />
+D) Compiles kernels</p>
+<details>
+<summary>Answer</summary>
+B) Waits for GPU operations to complete
+<p><strong>Explanation</strong>: GPU operations are asynchronous. synchronize() ensures operations finish before continuing, necessary for accurate timing.</p>
+</details>
+</section>
+<hr class="docutils" />
+<section id="question-4">
+<h3>Question 4<a class="headerlink" href="#question-4" title="Link to this heading">#</a></h3>
+<p>When should you use float16 instead of float32 on GPU?</p>
+<p>A) Always, it’s always faster<br />
+B) Never, it’s less accurate<br />
+C) When memory is limited and precision loss is acceptable<br />
+D) Only for integer operations</p>
+<details>
+<summary>Answer</summary>
+C) When memory is limited and precision loss is acceptable
+<p><strong>Explanation</strong>: float16 uses half the memory and is faster on Tensor Cores, but has less precision. Good for deep learning, check carefully for other applications.</p>
+</details>
+</section>
+<hr class="docutils" />
+<section id="question-5">
+<h3>Question 5<a class="headerlink" href="#question-5" title="Link to this heading">#</a></h3>
+<p>What is DataParallel used for?</p>
+<p>A) Training different models on different GPUs<br />
+B) Splitting same model across multiple GPUs<br />
+C) Distributing data batches across multiple GPUs with same model<br />
+D) Compressing model size</p>
+<details>
+<summary>Answer</summary>
+C) Distributing data batches across multiple GPUs with same model
+<p><strong>Explanation</strong>: DataParallel replicates the model on each GPU and splits the batch across GPUs, then combines results. Most common multi-GPU approach.</p>
+</details></section>
+</section>
+<hr class="docutils" />
+<section id="key-takeaways">
+<h2>Key Takeaways<a class="headerlink" href="#key-takeaways" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p><strong>GPUs excel at parallelism</strong>: Thousands of cores for data-parallel tasks</p></li>
+<li><p><strong>Transfer is expensive</strong>: Keep data on GPU, minimize CPU ↔ GPU copies</p></li>
+<li><p><strong>CuPy = NumPy on GPU</strong>: Easiest way to start GPU computing</p></li>
+<li><p><strong>PyTorch for deep learning</strong>: Seamless GPU acceleration</p></li>
+<li><p><strong>Memory is limited</strong>: Monitor usage, use float16 when possible</p></li>
+<li><p><strong>Synchronization matters</strong>: GPU ops are async, synchronize for timing</p></li>
+<li><p><strong>Batch operations</strong>: Large batches amortize launch overhead</p></li>
+<li><p><strong>Coalesced access</strong>: Contiguous memory access is critical</p></li>
+<li><p><strong>Multi-GPU scales</strong>: DataParallel for easy multi-GPU training</p></li>
+<li><p><strong>Right tool for job</strong>: GPU for parallel, CPU for sequential</p></li>
+</ol>
+</section>
+<hr class="docutils" />
+<section id="common-mistakes">
+<h2>Common Mistakes<a class="headerlink" href="#common-mistakes" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p><strong>Frequent CPU ↔ GPU transfers</strong>: Keep data on GPU</p></li>
+<li><p><strong>Small workloads</strong>: Overhead dominates, GPU slower than CPU</p></li>
+<li><p><strong>Forgetting synchronize()</strong>: Timing without sync is wrong</p></li>
+<li><p><strong>Memory leaks</strong>: Delete tensors, clear cache</p></li>
+<li><p><strong>Wrong precision</strong>: float64 on GPU is slow</p></li>
+<li><p><strong>Sequential operations</strong>: GPU needs parallelism</p></li>
+<li><p><strong>Not profiling</strong>: Assumptions about bottlenecks</p></li>
+<li><p><strong>Ignoring occupancy</strong>: Too many/few threads per block</p></li>
+</ol>
+</section>
+<hr class="docutils" />
+<section id="pro-tips">
+<h2>Pro Tips<a class="headerlink" href="#pro-tips" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p><strong>Use Google Colab</strong>: Free GPU access for learning</p></li>
+<li><p><strong>Profile with nvprof</strong>: Identify kernel bottlenecks</p></li>
+<li><p><strong>Torch.cuda.amp</strong>: Automatic mixed precision</p></li>
+<li><p><strong>Pin memory</strong>: Faster CPU → GPU transfers</p></li>
+<li><p><strong>Async transfers</strong>: Overlap compute and transfer</p></li>
+<li><p><strong>NVIDIA Nsight</strong>: Visual profiling tool</p></li>
+<li><p><strong>Benchmarking</strong>: Warm up kernels, multiple runs</p></li>
+<li><p><strong>GPU utils</strong>: nvidia-smi for monitoring</p></li>
+</ol>
+</section>
+<hr class="docutils" />
+<section id="what-s-next">
+<h2>What’s Next?<a class="headerlink" href="#what-s-next" title="Link to this heading">#</a></h2>
+<p><strong>You’re now ready for GPU-accelerated computing!</strong></p>
+<p><strong>Advanced Topics</strong>:</p>
+<ol class="arabic simple">
+<li><p><strong>CUDA C++</strong>: Write custom kernels for maximum performance</p></li>
+<li><p><strong>JAX</strong>: Composable transformations for ML research</p></li>
+<li><p><strong>TensorRT</strong>: Optimize models for inference</p></li>
+<li><p><strong>Distributed Training</strong>: Multi-node GPU clusters</p></li>
+<li><p><strong>GPU Optimization</strong>: Advanced memory patterns</p></li>
+</ol>
+<p><strong>Projects to Build</strong>:</p>
+<ul class="simple">
+<li><p>Real-time image processing pipeline</p></li>
+<li><p>GPU-accelerated data science workflow</p></li>
+<li><p>Deep learning model from scratch</p></li>
+<li><p>Physics simulation (N-body, fluid dynamics)</p></li>
+<li><p>Cryptocurrency miner (educational!)</p></li>
+</ul>
+<p><strong>Remember</strong>: GPUs are powerful but not magic. Profile first, optimize bottlenecks, and use the right tool for each task!</p>
+<p><strong>Congratulations on completing the Education Playground curriculum!</strong> 🎓🚀</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./hard"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="10_performance_computing.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Hard Level: High-Performance Python Computing</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../tools/README.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">The Missing Semester: Essential Developer Tools</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#real-world-context">Real-World Context</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-1-gpu-architecture-fundamentals">Part 1: GPU Architecture Fundamentals</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cpu-vs-gpu-different-design-philosophy">CPU vs GPU: Different Design Philosophy</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nvidia-gpu-architecture">NVIDIA GPU Architecture</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cuda-programming-model">CUDA Programming Model</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-2-checking-gpu-availability">Part 2: Checking GPU Availability</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-3-cupy-numpy-for-gpus">Part 3: CuPy - NumPy for GPUs</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cupy-best-practices">CuPy Best Practices</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-4-pytorch-gpu-acceleration">Part 4: PyTorch GPU Acceleration</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-5-parallel-algorithm-patterns">Part 5: Parallel Algorithm Patterns</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pattern-1-map-element-wise-operations">Pattern 1: Map (Element-wise Operations)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pattern-2-reduce-aggregation">Pattern 2: Reduce (Aggregation)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pattern-3-scan-prefix-sum">Pattern 3: Scan (Prefix Sum)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pattern-4-stencil-neighbor-operations">Pattern 4: Stencil (Neighbor Operations)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-6-gpu-memory-management">Part 6: GPU Memory Management</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-7-multi-gpu-programming">Part 7: Multi-GPU Programming</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-8-real-world-gpu-applications">Part 8: Real-World GPU Applications</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#application-1-image-processing">Application 1: Image Processing</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#application-2-monte-carlo-simulation">Application 2: Monte Carlo Simulation</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-9-gpu-optimization-techniques">Part 9: GPU Optimization Techniques</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#coalesced-memory-access">1. Coalesced Memory Access</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#shared-memory">2. Shared Memory</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#occupancy-optimization">3. Occupancy Optimization</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kernel-fusion">4. Kernel Fusion</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mixed-precision">5. Mixed Precision</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-10-exercises">Part 10: Exercises</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-1-vector-addition-difficulty">Exercise 1: Vector Addition (Difficulty: ★★☆☆☆)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-2-matrix-multiplication-optimization-difficulty">Exercise 2: Matrix Multiplication Optimization (Difficulty: ★★★★☆)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-3-image-convolution-difficulty">Exercise 3: Image Convolution (Difficulty: ★★★★☆)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-4-parallel-reduction-difficulty">Exercise 4: Parallel Reduction (Difficulty: ★★★★☆)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-5-multi-gpu-training-difficulty">Exercise 5: Multi-GPU Training (Difficulty: ★★★★★)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-6-memory-bandwidth-test-difficulty">Exercise 6: Memory Bandwidth Test (Difficulty: ★★★☆☆)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-11-self-check-quiz">Part 11: Self-Check Quiz</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#question-1">Question 1</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#question-2">Question 2</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#question-3">Question 3</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#question-4">Question 4</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#question-5">Question 5</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#key-takeaways">Key Takeaways</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#common-mistakes">Common Mistakes</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pro-tips">Pro Tips</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-s-next">What’s Next?</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Mykolas Perevicius
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

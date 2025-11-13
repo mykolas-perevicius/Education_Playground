@@ -1,0 +1,2051 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Lesson 5: Advanced Machine Learning and NLP &#8212; Education Playground</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=0c185eed" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=c73c0f3e"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'hard/05_advanced_ml_and_nlp';</script>
+    <script src="../_static/js/onboarding.js?v=557b7536"></script>
+    <link rel="canonical" href="https://mykolas-perevicius.github.io/Education_Playground/hard/05_advanced_ml_and_nlp.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Lesson 6: Computer Systems and Theory" href="06_computer_systems_and_theory.html" />
+    <link rel="prev" title="Lesson 4: Deep Learning and Neural Networks" href="04_deep_learning_and_neural_networks.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../README.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Education Playground</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../00_calibration_test.html">🎯 Calibration Test - Find Your Level</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../beginner_scripts/README.html">🌱 Beginner Scripts (10 Python Files)</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../easy/README_EASY.html">📗 Easy Level - Beginner</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../easy/01_introduction_to_python.html">1. Introduction to Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../easy/02_variables_and_data_types.html">2. Variables and Data Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../easy/03_basic_operations_and_conditionals.html">3. Operations and Conditionals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../easy/04_intro_to_ai_and_ml.html">4. Intro to AI and ML</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../easy/05_computing_fundamentals.html">5. Computing Fundamentals</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../medium/README_MEDIUM.html">📘 Medium Level - Intermediate</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../medium/01_functions_and_modules.html">1. Functions and Modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../medium/02_data_structures.html">2. Data Structures</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../medium/03_classes_and_oop.html">3. Classes and OOP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../medium/04_machine_learning_basics.html">4. Machine Learning Basics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../medium/05_data_analysis_with_pandas.html">5. Data Analysis with Pandas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../medium/06_algorithms_and_problem_solving.html">6. Algorithms and Problem Solving</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="README_HARD.html">📕 Hard Level - Advanced</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="01_advanced_functions_and_decorators.html">1. Advanced Functions &amp; Decorators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02_generators_and_iterators.html">2. Generators and Iterators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03_algorithms_and_complexity.html">3. Algorithms and Complexity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04_deep_learning_and_neural_networks.html">4. Deep Learning &amp; Neural Networks</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">5. Advanced ML and NLP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="06_computer_systems_and_theory.html">6. Computer Systems and Theory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="07_project_ideas.html">7. Project Ideas &amp; Implementation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="08_classic_problems.html">Lesson 8: Classic Problems Collection</a></li>
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="09_ctf_challenges.html">Lesson 9: Capture The Flag (CTF) - Hacker Training</a></li>
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="10_performance_computing.html">10. Performance Computing ⚡ NEW!</a></li>
+<li class="toctree-l2"><a class="reference internal" href="11_cuda_and_parallel_computing.html">11. CUDA &amp; GPU Computing 🎮 NEW!</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../tools/README.html">🛠️ Developer Tools Track</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../tools/01_shell_basics.html">1. Shell and Command Line</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools/02_command_line_tools.html">2. Command Line Tools</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools/03_git_essentials.html">3. Git Essentials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools/04_text_editors.html">4. Text Editors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools/05_build_systems_cicd.html">5. Build Systems and CI/CD</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools/06_debugging_profiling.html">6. Debugging and Profiling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools/07_security_essentials.html">7. Security Essentials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools/08_package_management.html">8. Package Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools/09_ssh_remote_systems.html">9. SSH and Remote Systems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools/10_docker_containers.html">10. Docker and Containers</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../solutions/README_SOLUTIONS.html">📝 Solutions</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../solutions/easy_solutions.html">Easy Level - Complete Solutions</a></li>
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../solutions/medium_solutions.html">Medium Level - Complete Solutions</a></li>
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../solutions/hard_solutions.html">Hard Level - Complete Solutions</a></li>
+
+
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../solutions/tools_solutions.html">Developer Tools - Complete Solutions</a></li>
+
+
+
+
+
+
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../RESOURCES.html">📚 Learning Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../PYTHON_CHEATSHEET.html">⚡ Python Cheat Sheet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ML_AI_CHEATSHEET.html">🤖 ML/AI Cheat Sheet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../SETUP.html">🔧 Setup Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../RELEASE_NOTES_v2.0.0.html">🎉 Release Notes v2.0.0</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none"></div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Lesson 5: Advanced Machine Learning and NLP</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#real-world-context">Real-World Context</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-you-ll-learn">What You’ll Learn</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-1-ensemble-learning-fundamentals">Part 1: Ensemble Learning Fundamentals</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#why-ensemble-methods">Why Ensemble Methods?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#three-main-approaches">Three Main Approaches</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bias-variance-tradeoff">Bias-Variance Tradeoff</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-2-bagging-methods">Part 2: Bagging Methods</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#random-forest">Random Forest</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-3-boosting-methods">Part 3: Boosting Methods</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gradient-boosting">Gradient Boosting</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#xgboost-vs-lightgbm-vs-catboost">XGBoost vs LightGBM vs CatBoost</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-4-stacking-and-voting">Part 4: Stacking and Voting</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#voting-classifier">Voting Classifier</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#stacking">Stacking</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-5-natural-language-processing-fundamentals">Part 5: Natural Language Processing Fundamentals</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#text-preprocessing-pipeline">Text Preprocessing Pipeline</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#text-vectorization">Text Vectorization</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#understanding-tf-idf">Understanding TF-IDF</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-6-sentiment-analysis-with-real-data">Part 6: Sentiment Analysis with Real Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-7-word-embeddings">Part 7: Word Embeddings</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#from-sparse-to-dense-representations">From Sparse to Dense Representations</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#word2vec-magic">Word2Vec Magic</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#understanding-lstm">Understanding LSTM</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-8-introduction-to-transformers">Part 8: Introduction to Transformers</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-revolution-attention-is-all-you-need-2017">The Revolution: Attention is All You Need (2017)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#architecture-overview">Architecture Overview</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#self-attention-simplified">Self-Attention Simplified</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#major-transformer-models">Major Transformer Models</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bert-vs-gpt">BERT vs GPT</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-9-hyperparameter-optimization">Part 9: Hyperparameter Optimization</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#strategies">Strategies</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#search-space-example">Search Space Example</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-10-model-interpretation-with-shap">Part 10: Model Interpretation with SHAP</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#why-interpretability-matters">Why Interpretability Matters</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#shap-shapley-additive-explanations">SHAP (SHapley Additive exPlanations)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-11-production-ml-considerations">Part 11: Production ML Considerations</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#deployment-checklist">Deployment Checklist</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#model-monitoring">Model Monitoring</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-12-exercises">Part 12: Exercises</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-1-ensemble-comparison">Exercise 1: Ensemble Comparison (⭐⭐)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-2-advanced-text-classification">Exercise 2: Advanced Text Classification (⭐⭐⭐)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-3-hyperparameter-tuning">Exercise 3: Hyperparameter Tuning (⭐⭐)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-4-lstm-sentiment-analysis">Exercise 4: LSTM Sentiment Analysis (⭐⭐⭐)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-5-model-interpretability">Exercise 5: Model Interpretability (⭐⭐⭐⭐)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-6-production-api">Exercise 6: Production API (⭐⭐⭐)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#self-check-quiz">Self-Check Quiz</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#key-takeaways">Key Takeaways</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ensemble-learning">Ensemble Learning</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nlp-fundamentals">NLP Fundamentals</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modern-nlp">Modern NLP</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#production-ml">Production ML</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pro-tips">Pro Tips</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#common-mistakes">Common Mistakes</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#debug-checklist">Debug Checklist</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-s-next">What’s Next?</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#continue-in-hard-track">Continue in Hard Track:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#deepen-your-nlp-knowledge">Deepen Your NLP Knowledge:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#practice-projects">Practice Projects:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#resources">Resources:</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="lesson-5-advanced-machine-learning-and-nlp">
+<h1>Lesson 5: Advanced Machine Learning and NLP<a class="headerlink" href="#lesson-5-advanced-machine-learning-and-nlp" title="Link to this heading">#</a></h1>
+<p><strong>Master ensemble methods, modern NLP, and production ML techniques</strong></p>
+<section id="real-world-context">
+<h2>Real-World Context<a class="headerlink" href="#real-world-context" title="Link to this heading">#</a></h2>
+<p>This lesson covers the techniques used at top tech companies: ensemble methods power Kaggle winning solutions, transformers revolutionized NLP (GPT, BERT, ChatGPT), and hyperparameter optimization is crucial for production systems. You’ll learn the same approaches used at Google, OpenAI, and Meta.</p>
+</section>
+<section id="what-you-ll-learn">
+<h2>What You’ll Learn<a class="headerlink" href="#what-you-ll-learn" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p><strong>Ensemble Learning</strong>: Bagging, boosting, stacking, and voting</p></li>
+<li><p><strong>Advanced Tree Methods</strong>: XGBoost, LightGBM, CatBoost</p></li>
+<li><p><strong>NLP Fundamentals</strong>: Tokenization, vectorization, TF-IDF</p></li>
+<li><p><strong>Word Embeddings</strong>: Word2Vec, GloVe, contextual embeddings</p></li>
+<li><p><strong>Modern NLP</strong>: Transformers, BERT, GPT architecture explained</p></li>
+<li><p><strong>Text Classification</strong>: Sentiment analysis, topic modeling</p></li>
+<li><p><strong>Hyperparameter Optimization</strong>: Grid search, random search, Bayesian optimization</p></li>
+<li><p><strong>Model Interpretability</strong>: SHAP, LIME, feature importance</p></li>
+<li><p><strong>Production ML</strong>: Deployment, monitoring, A/B testing</p></li>
+</ol>
+<p><strong>Prerequisites</strong>: Python, scikit-learn, basic ML knowledge</p>
+<p><strong>Time</strong>: 4-5 hours</p>
+</section>
+<section id="part-1-ensemble-learning-fundamentals">
+<h2>Part 1: Ensemble Learning Fundamentals<a class="headerlink" href="#part-1-ensemble-learning-fundamentals" title="Link to this heading">#</a></h2>
+<section id="why-ensemble-methods">
+<h3>Why Ensemble Methods?<a class="headerlink" href="#why-ensemble-methods" title="Link to this heading">#</a></h3>
+<p><strong>“Wisdom of crowds”</strong>: Multiple weak models can create a strong model.</p>
+<p><strong>Example</strong>: Single decision tree = 85% accuracy, 100 trees = 95% accuracy</p>
+</section>
+<section id="three-main-approaches">
+<h3>Three Main Approaches<a class="headerlink" href="#three-main-approaches" title="Link to this heading">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Method</p></th>
+<th class="head"><p>How It Works</p></th>
+<th class="head"><p>Best For</p></th>
+<th class="head"><p>Examples</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Bagging</strong></p></td>
+<td><p>Train models on random subsets (parallel)</p></td>
+<td><p>Reduce variance</p></td>
+<td><p>Random Forest</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Boosting</strong></p></td>
+<td><p>Train models sequentially, focus on errors</p></td>
+<td><p>Reduce bias</p></td>
+<td><p>XGBoost, AdaBoost</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Stacking</strong></p></td>
+<td><p>Use model outputs as features for meta-model</p></td>
+<td><p>Maximum performance</p></td>
+<td><p>Netflix Prize winner</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="bias-variance-tradeoff">
+<h3>Bias-Variance Tradeoff<a class="headerlink" href="#bias-variance-tradeoff" title="Link to this heading">#</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Error = Bias² + Variance + Irreducible Error
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>High bias</strong>: Model too simple (underfit)</p></li>
+<li><p><strong>High variance</strong>: Model too complex (overfit)</p></li>
+<li><p><strong>Bagging</strong>: Reduces variance</p></li>
+<li><p><strong>Boosting</strong>: Reduces bias</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Install required packages (uncomment if needed):</span>
+<span class="c1"># !pip install scikit-learn xgboost lightgbm catboost nltk transformers torch</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">make_classification</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span><span class="p">,</span> <span class="n">cross_val_score</span>
+<span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">RandomForestClassifier</span><span class="p">,</span> 
+    <span class="n">GradientBoostingClassifier</span><span class="p">,</span>
+    <span class="n">VotingClassifier</span><span class="p">,</span>
+    <span class="n">BaggingClassifier</span><span class="p">,</span>
+    <span class="n">AdaBoostClassifier</span>
+<span class="p">)</span>
+<span class="kn">from</span> <span class="nn">sklearn.tree</span> <span class="kn">import</span> <span class="n">DecisionTreeClassifier</span>
+<span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LogisticRegression</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">accuracy_score</span><span class="p">,</span> <span class="n">classification_report</span><span class="p">,</span> <span class="n">confusion_matrix</span>
+<span class="kn">import</span> <span class="nn">xgboost</span> <span class="k">as</span> <span class="nn">xgb</span>
+
+<span class="c1"># Set random seeds</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;📦 Libraries loaded successfully!&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Generate classification dataset</span>
+<span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">make_classification</span><span class="p">(</span>
+    <span class="n">n_samples</span><span class="o">=</span><span class="mi">2000</span><span class="p">,</span> 
+    <span class="n">n_features</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> 
+    <span class="n">n_informative</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> 
+    <span class="n">n_redundant</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
+    <span class="n">n_classes</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+    <span class="n">weights</span><span class="o">=</span><span class="p">[</span><span class="mf">0.6</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">],</span>  <span class="c1"># Imbalanced classes</span>
+    <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span>
+<span class="p">)</span>
+
+<span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span>
+    <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">,</span> <span class="n">stratify</span><span class="o">=</span><span class="n">y</span>
+<span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Dataset: </span><span class="si">{</span><span class="n">X_train</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2"> training, </span><span class="si">{</span><span class="n">X_test</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2"> test samples&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Features: </span><span class="si">{</span><span class="n">X_train</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Class distribution: </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">bincount</span><span class="p">(</span><span class="n">y_train</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="part-2-bagging-methods">
+<h2>Part 2: Bagging Methods<a class="headerlink" href="#part-2-bagging-methods" title="Link to this heading">#</a></h2>
+<section id="random-forest">
+<h3>Random Forest<a class="headerlink" href="#random-forest" title="Link to this heading">#</a></h3>
+<p><strong>Algorithm:</strong></p>
+<ol class="arabic simple">
+<li><p>Bootstrap samples from training data (sample with replacement)</p></li>
+<li><p>Train decision tree on each sample</p></li>
+<li><p>At each split, consider random subset of features</p></li>
+<li><p>Average predictions (regression) or vote (classification)</p></li>
+</ol>
+<p><strong>Key Parameters:</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">n_estimators</span></code>: Number of trees (100-1000)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">max_depth</span></code>: Maximum tree depth (control overfitting)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">max_features</span></code>: Features to consider per split (√n for classification)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">min_samples_split</span></code>: Minimum samples to split a node</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Train Random Forest</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;🌲 Training Random Forest...</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="n">rf_model</span> <span class="o">=</span> <span class="n">RandomForestClassifier</span><span class="p">(</span>
+    <span class="n">n_estimators</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
+    <span class="n">max_depth</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+    <span class="n">max_features</span><span class="o">=</span><span class="s1">&#39;sqrt&#39;</span><span class="p">,</span>
+    <span class="n">min_samples_split</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
+    <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">,</span>
+    <span class="n">n_jobs</span><span class="o">=-</span><span class="mi">1</span>  <span class="c1"># Use all CPU cores</span>
+<span class="p">)</span>
+
+<span class="n">rf_model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+
+<span class="c1"># Predictions</span>
+<span class="n">rf_pred</span> <span class="o">=</span> <span class="n">rf_model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+<span class="n">rf_acc</span> <span class="o">=</span> <span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">rf_pred</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;✅ Random Forest Accuracy: </span><span class="si">{</span><span class="n">rf_acc</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">100</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">%</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Feature importance</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;📊 Top 5 Important Features:&quot;</span><span class="p">)</span>
+<span class="n">feature_importance</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span>
+    <span class="nb">enumerate</span><span class="p">(</span><span class="n">rf_model</span><span class="o">.</span><span class="n">feature_importances_</span><span class="p">),</span> 
+    <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> 
+    <span class="n">reverse</span><span class="o">=</span><span class="kc">True</span>
+<span class="p">)[:</span><span class="mi">5</span><span class="p">]</span>
+
+<span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="p">(</span><span class="n">feat</span><span class="p">,</span> <span class="n">importance</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">feature_importance</span><span class="p">,</span> <span class="mi">1</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  </span><span class="si">{</span><span class="n">idx</span><span class="si">}</span><span class="s2">. Feature </span><span class="si">{</span><span class="n">feat</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">importance</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Visualize feature importance</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">barh</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">),</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">rf_model</span><span class="o">.</span><span class="n">feature_importances_</span><span class="p">,</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">)[:</span><span class="mi">10</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;steelblue&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Importance&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Feature Rank&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Top 10 Feature Importances (Random Forest)&#39;</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span><span class="o">.</span><span class="n">invert_yaxis</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="part-3-boosting-methods">
+<h2>Part 3: Boosting Methods<a class="headerlink" href="#part-3-boosting-methods" title="Link to this heading">#</a></h2>
+<section id="gradient-boosting">
+<h3>Gradient Boosting<a class="headerlink" href="#gradient-boosting" title="Link to this heading">#</a></h3>
+<p><strong>Algorithm:</strong></p>
+<ol class="arabic simple">
+<li><p>Start with simple model (e.g., predicting mean)</p></li>
+<li><p>Calculate residuals (errors)</p></li>
+<li><p>Train new model to predict residuals</p></li>
+<li><p>Add scaled prediction to ensemble</p></li>
+<li><p>Repeat for N iterations</p></li>
+</ol>
+<p><strong>Mathematics:</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>F₀(x) = initial prediction
+For m = 1 to M:
+    rₘ = y - F_{m-1}(x)           # Calculate residuals
+    hₘ = train_tree(rₘ)           # Fit to residuals
+    Fₘ(x) = F_{m-1}(x) + α·hₘ(x)  # Update ensemble
+</pre></div>
+</div>
+</section>
+<section id="xgboost-vs-lightgbm-vs-catboost">
+<h3>XGBoost vs LightGBM vs CatBoost<a class="headerlink" href="#xgboost-vs-lightgbm-vs-catboost" title="Link to this heading">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Library</p></th>
+<th class="head"><p>Speed</p></th>
+<th class="head"><p>Memory</p></th>
+<th class="head"><p>GPU Support</p></th>
+<th class="head"><p>Categorical Features</p></th>
+<th class="head"><p>Use Case</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>XGBoost</strong></p></td>
+<td><p>Medium</p></td>
+<td><p>Medium</p></td>
+<td><p>Yes</p></td>
+<td><p>Manual encoding</p></td>
+<td><p>General purpose</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>LightGBM</strong></p></td>
+<td><p>Fast</p></td>
+<td><p>Low</p></td>
+<td><p>Yes</p></td>
+<td><p>Manual encoding</p></td>
+<td><p>Large datasets</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>CatBoost</strong></p></td>
+<td><p>Slow</p></td>
+<td><p>Medium</p></td>
+<td><p>Yes</p></td>
+<td><p>Native support</p></td>
+<td><p>Categorical data</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Compare Boosting Methods</span>
+<span class="n">boosting_models</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;GradientBoosting&#39;</span><span class="p">:</span> <span class="n">GradientBoostingClassifier</span><span class="p">(</span>
+        <span class="n">n_estimators</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> 
+        <span class="n">learning_rate</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span>
+        <span class="n">max_depth</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
+        <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span>
+    <span class="p">),</span>
+    <span class="s1">&#39;XGBoost&#39;</span><span class="p">:</span> <span class="n">xgb</span><span class="o">.</span><span class="n">XGBClassifier</span><span class="p">(</span>
+        <span class="n">n_estimators</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
+        <span class="n">learning_rate</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span>
+        <span class="n">max_depth</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
+        <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">,</span>
+        <span class="n">eval_metric</span><span class="o">=</span><span class="s1">&#39;logloss&#39;</span>
+    <span class="p">),</span>
+    <span class="s1">&#39;AdaBoost&#39;</span><span class="p">:</span> <span class="n">AdaBoostClassifier</span><span class="p">(</span>
+        <span class="n">n_estimators</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
+        <span class="n">learning_rate</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span>
+        <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span>
+    <span class="p">)</span>
+<span class="p">}</span>
+
+<span class="n">results</span> <span class="o">=</span> <span class="p">{}</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;⚡ Comparing Boosting Algorithms...</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">model</span> <span class="ow">in</span> <span class="n">boosting_models</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Training </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">...&quot;</span><span class="p">)</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+    <span class="n">pred</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+    <span class="n">acc</span> <span class="o">=</span> <span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">pred</span><span class="p">)</span>
+    <span class="n">results</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">acc</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  ✅ Accuracy: </span><span class="si">{</span><span class="n">acc</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">100</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">%</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Plot comparison</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">results</span><span class="o">.</span><span class="n">keys</span><span class="p">(),</span> <span class="p">[</span><span class="n">v</span> <span class="o">*</span> <span class="mi">100</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">results</span><span class="o">.</span><span class="n">values</span><span class="p">()],</span> <span class="n">color</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;#1f77b4&#39;</span><span class="p">,</span> <span class="s1">&#39;#ff7f0e&#39;</span><span class="p">,</span> <span class="s1">&#39;#2ca02c&#39;</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Accuracy (%)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Boosting Algorithms Comparison&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">([</span><span class="mi">85</span><span class="p">,</span> <span class="mi">100</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="s1">&#39;y&#39;</span><span class="p">)</span>
+
+<span class="c1"># Add value labels on bars</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">acc</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">results</span><span class="o">.</span><span class="n">items</span><span class="p">()):</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">acc</span> <span class="o">*</span> <span class="mi">100</span> <span class="o">+</span> <span class="mf">0.5</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">acc</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">100</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1">%&#39;</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">🏆 Best Model: XGBoost typically wins on structured data&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="part-4-stacking-and-voting">
+<h2>Part 4: Stacking and Voting<a class="headerlink" href="#part-4-stacking-and-voting" title="Link to this heading">#</a></h2>
+<section id="voting-classifier">
+<h3>Voting Classifier<a class="headerlink" href="#voting-classifier" title="Link to this heading">#</a></h3>
+<p><strong>Hard Voting</strong>: Majority vote (classification)</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Model A: Class 1, Model B: Class 0, Model C: Class 1 → Prediction: Class 1
+</pre></div>
+</div>
+<p><strong>Soft Voting</strong>: Average probabilities</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Model A: [0.7, 0.3], Model B: [0.4, 0.6], Model C: [0.8, 0.2]
+Average: [0.63, 0.37] → Prediction: Class 0
+</pre></div>
+</div>
+</section>
+<section id="stacking">
+<h3>Stacking<a class="headerlink" href="#stacking" title="Link to this heading">#</a></h3>
+<p><strong>Level 0</strong>: Base models train on data
+<strong>Level 1</strong>: Meta-model trains on base model predictions</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Voting Ensemble</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;🗳️  Building Voting Ensemble...</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="n">voting_model</span> <span class="o">=</span> <span class="n">VotingClassifier</span><span class="p">(</span>
+    <span class="n">estimators</span><span class="o">=</span><span class="p">[</span>
+        <span class="p">(</span><span class="s1">&#39;rf&#39;</span><span class="p">,</span> <span class="n">RandomForestClassifier</span><span class="p">(</span><span class="n">n_estimators</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)),</span>
+        <span class="p">(</span><span class="s1">&#39;xgb&#39;</span><span class="p">,</span> <span class="n">xgb</span><span class="o">.</span><span class="n">XGBClassifier</span><span class="p">(</span><span class="n">n_estimators</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">,</span> <span class="n">eval_metric</span><span class="o">=</span><span class="s1">&#39;logloss&#39;</span><span class="p">)),</span>
+        <span class="p">(</span><span class="s1">&#39;lr&#39;</span><span class="p">,</span> <span class="n">LogisticRegression</span><span class="p">(</span><span class="n">max_iter</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">))</span>
+    <span class="p">],</span>
+    <span class="n">voting</span><span class="o">=</span><span class="s1">&#39;soft&#39;</span>  <span class="c1"># Use probability averaging</span>
+<span class="p">)</span>
+
+<span class="n">voting_model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+<span class="n">voting_pred</span> <span class="o">=</span> <span class="n">voting_model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+<span class="n">voting_acc</span> <span class="o">=</span> <span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">voting_pred</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;📊 Results Comparison:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Random Forest:     </span><span class="si">{</span><span class="n">rf_acc</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">100</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">%&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  XGBoost:           </span><span class="si">{</span><span class="n">results</span><span class="p">[</span><span class="s1">&#39;XGBoost&#39;</span><span class="p">]</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">100</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">%&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Voting Ensemble:   </span><span class="si">{</span><span class="n">voting_acc</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">100</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">%&quot;</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">voting_acc</span> <span class="o">&gt;</span> <span class="nb">max</span><span class="p">(</span><span class="n">rf_acc</span><span class="p">,</span> <span class="n">results</span><span class="p">[</span><span class="s1">&#39;XGBoost&#39;</span><span class="p">]):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">✅ Ensemble improved over individual models!&quot;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">⚠️  Individual model performed better (not always the case)&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="part-5-natural-language-processing-fundamentals">
+<h2>Part 5: Natural Language Processing Fundamentals<a class="headerlink" href="#part-5-natural-language-processing-fundamentals" title="Link to this heading">#</a></h2>
+<section id="text-preprocessing-pipeline">
+<h3>Text Preprocessing Pipeline<a class="headerlink" href="#text-preprocessing-pipeline" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p><strong>Tokenization</strong>: Split into words/sentences</p></li>
+<li><p><strong>Lowercasing</strong>: Normalize capitalization</p></li>
+<li><p><strong>Remove punctuation/special characters</strong></p></li>
+<li><p><strong>Remove stop words</strong>: Common words (“the”, “is”, “and”)</p></li>
+<li><p><strong>Stemming/Lemmatization</strong>: Reduce to root form</p>
+<ul class="simple">
+<li><p>Stemming: “running” → “run” (crude)</p></li>
+<li><p>Lemmatization: “better” → “good” (linguistic)</p></li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="text-vectorization">
+<h3>Text Vectorization<a class="headerlink" href="#text-vectorization" title="Link to this heading">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Method</p></th>
+<th class="head"><p>Description</p></th>
+<th class="head"><p>Pros</p></th>
+<th class="head"><p>Cons</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Bag of Words</strong></p></td>
+<td><p>Count word occurrences</p></td>
+<td><p>Simple, fast</p></td>
+<td><p>Ignores order, large sparse matrices</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>TF-IDF</strong></p></td>
+<td><p>Weight by importance</p></td>
+<td><p>Reduces common word impact</p></td>
+<td><p>Still sparse, no semantics</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Word2Vec</strong></p></td>
+<td><p>Dense embeddings</p></td>
+<td><p>Captures semantics</p></td>
+<td><p>Requires large data</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>BERT</strong></p></td>
+<td><p>Contextual embeddings</p></td>
+<td><p>SOTA, context-aware</p></td>
+<td><p>Slow, requires GPUs</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># NLP Libraries</span>
+<span class="kn">from</span> <span class="nn">sklearn.feature_extraction.text</span> <span class="kn">import</span> <span class="n">TfidfVectorizer</span><span class="p">,</span> <span class="n">CountVectorizer</span>
+<span class="kn">from</span> <span class="nn">sklearn.naive_bayes</span> <span class="kn">import</span> <span class="n">MultinomialNB</span>
+<span class="kn">from</span> <span class="nn">sklearn.pipeline</span> <span class="kn">import</span> <span class="n">Pipeline</span>
+<span class="kn">import</span> <span class="nn">re</span>
+
+<span class="c1"># Sample movie reviews dataset</span>
+<span class="n">movie_reviews</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;This movie was absolutely amazing! Best film I&#39;ve ever seen.&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Terrible movie, complete waste of time and money. Very disappointing.&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Great acting and plot. Highly recommend this movie to everyone!&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Boring and predictable. Would not watch again. Save your money.&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Excellent cinematography and soundtrack. A true masterpiece!&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Worst movie ever made. Don&#39;t waste your time on this garbage.&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Absolutely loved it! The cast was perfect and story engaging.&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Disappointing ending ruined the whole experience for me.&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Brilliant direction and storytelling. Oscar-worthy performance!&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Terrible acting and weak plot. Couldn&#39;t finish watching it.&quot;</span>
+<span class="p">]</span>
+
+<span class="n">sentiments</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>  <span class="c1"># 1=positive, 0=negative</span>
+
+<span class="k">def</span> <span class="nf">preprocess_text</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Clean and normalize text.&quot;&quot;&quot;</span>
+    <span class="n">text</span> <span class="o">=</span> <span class="n">text</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>  <span class="c1"># Lowercase</span>
+    <span class="n">text</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;[^a-z\s]&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">text</span><span class="p">)</span>  <span class="c1"># Remove punctuation</span>
+    <span class="n">text</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;\s+&#39;</span><span class="p">,</span> <span class="s1">&#39; &#39;</span><span class="p">,</span> <span class="n">text</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>  <span class="c1"># Remove extra spaces</span>
+    <span class="k">return</span> <span class="n">text</span>
+
+<span class="c1"># Preprocess</span>
+<span class="n">processed_reviews</span> <span class="o">=</span> <span class="p">[</span><span class="n">preprocess_text</span><span class="p">(</span><span class="n">review</span><span class="p">)</span> <span class="k">for</span> <span class="n">review</span> <span class="ow">in</span> <span class="n">movie_reviews</span><span class="p">]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;📝 Original Review:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  </span><span class="si">{</span><span class="n">movie_reviews</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;🔧 Preprocessed:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  </span><span class="si">{</span><span class="n">processed_reviews</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># TF-IDF Vectorization</span>
+<span class="n">tfidf</span> <span class="o">=</span> <span class="n">TfidfVectorizer</span><span class="p">(</span><span class="n">max_features</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">stop_words</span><span class="o">=</span><span class="s1">&#39;english&#39;</span><span class="p">)</span>
+<span class="n">X_tfidf</span> <span class="o">=</span> <span class="n">tfidf</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">processed_reviews</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;TF-IDF Matrix Shape: </span><span class="si">{</span><span class="n">X_tfidf</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Vocabulary Size: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">tfidf</span><span class="o">.</span><span class="n">vocabulary_</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Top 15 Features: </span><span class="si">{</span><span class="nb">list</span><span class="p">(</span><span class="n">tfidf</span><span class="o">.</span><span class="n">get_feature_names_out</span><span class="p">()[:</span><span class="mi">15</span><span class="p">])</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="understanding-tf-idf">
+<h3>Understanding TF-IDF<a class="headerlink" href="#understanding-tf-idf" title="Link to this heading">#</a></h3>
+<p><strong>TF (Term Frequency):</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">TF</span><span class="p">(</span><span class="n">word</span><span class="p">)</span> <span class="o">=</span> <span class="p">(</span><span class="n">Number</span> <span class="n">of</span> <span class="n">times</span> <span class="n">word</span> <span class="n">appears</span> <span class="ow">in</span> <span class="n">document</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">Total</span> <span class="n">words</span> <span class="ow">in</span> <span class="n">document</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>IDF (Inverse Document Frequency):</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">IDF</span><span class="p">(</span><span class="n">word</span><span class="p">)</span> <span class="o">=</span> <span class="n">log</span><span class="p">(</span><span class="n">Total</span> <span class="n">documents</span> <span class="o">/</span> <span class="n">Documents</span> <span class="n">containing</span> <span class="n">word</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>TF-IDF Score:</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>TF-IDF = TF × IDF
+</pre></div>
+</div>
+<p><strong>Effect</strong>: Common words (“the”, “is”) get low scores, rare important words get high scores.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Visualize TF-IDF scores for a document</span>
+<span class="n">doc_idx</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">feature_names</span> <span class="o">=</span> <span class="n">tfidf</span><span class="o">.</span><span class="n">get_feature_names_out</span><span class="p">()</span>
+<span class="n">doc_vector</span> <span class="o">=</span> <span class="n">X_tfidf</span><span class="p">[</span><span class="n">doc_idx</span><span class="p">]</span><span class="o">.</span><span class="n">toarray</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="c1"># Get top words</span>
+<span class="n">top_indices</span> <span class="o">=</span> <span class="n">doc_vector</span><span class="o">.</span><span class="n">argsort</span><span class="p">()[</span><span class="o">-</span><span class="mi">10</span><span class="p">:][::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">top_words</span> <span class="o">=</span> <span class="p">[(</span><span class="n">feature_names</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">doc_vector</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">top_indices</span> <span class="k">if</span> <span class="n">doc_vector</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">]</span>
+
+<span class="k">if</span> <span class="n">top_words</span><span class="p">:</span>
+    <span class="n">words</span><span class="p">,</span> <span class="n">scores</span> <span class="o">=</span> <span class="nb">zip</span><span class="p">(</span><span class="o">*</span><span class="n">top_words</span><span class="p">)</span>
+    
+    <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">barh</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">words</span><span class="p">)),</span> <span class="n">scores</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;coral&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">words</span><span class="p">)),</span> <span class="n">words</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;TF-IDF Score&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Top Words in Review: &quot;</span><span class="si">{</span><span class="n">movie_reviews</span><span class="p">[</span><span class="n">doc_idx</span><span class="p">][:</span><span class="mi">50</span><span class="p">]</span><span class="si">}</span><span class="s1">...&quot;&#39;</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span><span class="o">.</span><span class="n">invert_yaxis</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">📊 Observation: Important, rare words get higher scores&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="part-6-sentiment-analysis-with-real-data">
+<h2>Part 6: Sentiment Analysis with Real Data<a class="headerlink" href="#part-6-sentiment-analysis-with-real-data" title="Link to this heading">#</a></h2>
+<p>Let’s build a production-quality sentiment classifier.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Expanded dataset (simulating real-world data)</span>
+<span class="n">positive_reviews</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;Excellent product, highly recommended!&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Love it! Best purchase I&#39;ve ever made.&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Amazing quality and very fast delivery.&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Perfect! Exactly what I was looking for.&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Outstanding customer service and great product.&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Fantastic! Exceeded all my expectations.&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Wonderful experience from start to finish.&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Brilliant product, works like a charm!&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Superb quality, definitely worth the price.&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Absolutely satisfied with my purchase!&quot;</span>
+<span class="p">]</span>
+
+<span class="n">negative_reviews</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;Terrible quality, very disappointed with purchase.&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Complete waste of money, do not buy this.&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Poor customer service and defective product.&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Not as described at all, requesting full refund.&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Awful experience, would give zero stars if possible.&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Broke within days, cheap materials used.&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Horrible product, does not work as advertised.&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Disappointed and frustrated with this purchase.&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Very poor quality, fell apart immediately.&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Worst purchase ever, complete rip-off!&quot;</span>
+<span class="p">]</span>
+
+<span class="c1"># Combine and create labels</span>
+<span class="n">all_reviews</span> <span class="o">=</span> <span class="n">positive_reviews</span> <span class="o">+</span> <span class="n">negative_reviews</span>
+<span class="n">labels</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">positive_reviews</span><span class="p">)</span> <span class="o">+</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">negative_reviews</span><span class="p">))</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;📊 Dataset: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">all_reviews</span><span class="p">)</span><span class="si">}</span><span class="s2"> reviews&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Positive: </span><span class="si">{</span><span class="nb">sum</span><span class="p">(</span><span class="n">labels</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Negative: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">labels</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nb">sum</span><span class="p">(</span><span class="n">labels</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Build sentiment analysis pipeline</span>
+<span class="n">sentiment_pipeline</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">([</span>
+    <span class="p">(</span><span class="s1">&#39;vectorizer&#39;</span><span class="p">,</span> <span class="n">TfidfVectorizer</span><span class="p">(</span><span class="n">max_features</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">stop_words</span><span class="o">=</span><span class="s1">&#39;english&#39;</span><span class="p">)),</span>
+    <span class="p">(</span><span class="s1">&#39;classifier&#39;</span><span class="p">,</span> <span class="n">MultinomialNB</span><span class="p">())</span>
+<span class="p">])</span>
+
+<span class="c1"># Train</span>
+<span class="n">sentiment_pipeline</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">all_reviews</span><span class="p">,</span> <span class="n">labels</span><span class="p">)</span>
+
+<span class="c1"># Test on new reviews</span>
+<span class="n">test_reviews</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;This is absolutely fantastic and amazing!&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Very poor quality and terrible customer service&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Good value for money, happy with purchase&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Disappointed with the product, not worth it&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Excellent! Will definitely buy again!&quot;</span>
+<span class="p">]</span>
+
+<span class="n">predictions</span> <span class="o">=</span> <span class="n">sentiment_pipeline</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">test_reviews</span><span class="p">)</span>
+<span class="n">probabilities</span> <span class="o">=</span> <span class="n">sentiment_pipeline</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">test_reviews</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">🎯 Sentiment Predictions:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">review</span><span class="p">,</span> <span class="n">pred</span><span class="p">,</span> <span class="n">prob</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">test_reviews</span><span class="p">,</span> <span class="n">predictions</span><span class="p">,</span> <span class="n">probabilities</span><span class="p">):</span>
+    <span class="n">sentiment</span> <span class="o">=</span> <span class="s2">&quot;😊 Positive&quot;</span> <span class="k">if</span> <span class="n">pred</span> <span class="o">==</span> <span class="mi">1</span> <span class="k">else</span> <span class="s2">&quot;😞 Negative&quot;</span>
+    <span class="n">confidence</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">prob</span><span class="p">)</span> <span class="o">*</span> <span class="mi">100</span>
+    <span class="n">bar</span> <span class="o">=</span> <span class="s1">&#39;█&#39;</span> <span class="o">*</span> <span class="nb">int</span><span class="p">(</span><span class="n">confidence</span> <span class="o">/</span> <span class="mi">10</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Review: </span><span class="se">\&quot;</span><span class="si">{</span><span class="n">review</span><span class="si">}</span><span class="se">\&quot;</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  → </span><span class="si">{</span><span class="n">sentiment</span><span class="si">}</span><span class="s2"> (</span><span class="si">{</span><span class="n">confidence</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">% confident) </span><span class="si">{</span><span class="n">bar</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="part-7-word-embeddings">
+<h2>Part 7: Word Embeddings<a class="headerlink" href="#part-7-word-embeddings" title="Link to this heading">#</a></h2>
+<section id="from-sparse-to-dense-representations">
+<h3>From Sparse to Dense Representations<a class="headerlink" href="#from-sparse-to-dense-representations" title="Link to this heading">#</a></h3>
+<p><strong>Traditional (Sparse):</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>&quot;king&quot;  → [0, 0, 1, 0, 0, ..., 0]  (10,000 dimensions, mostly zeros)
+&quot;queen&quot; → [0, 0, 0, 1, 0, ..., 0]
+</pre></div>
+</div>
+<p><strong>Embeddings (Dense):</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>&quot;king&quot;  → [0.2, -0.5, 0.8, ..., 0.3]  (300 dimensions, all meaningful)
+&quot;queen&quot; → [0.1, -0.6, 0.7, ..., 0.4]  (semantically similar)
+</pre></div>
+</div>
+</section>
+<section id="word2vec-magic">
+<h3>Word2Vec Magic<a class="headerlink" href="#word2vec-magic" title="Link to this heading">#</a></h3>
+<p>Famous equation:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>king - man + woman ≈ queen
+</pre></div>
+</div>
+<p>This works because embeddings capture semantic relationships!</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Word embeddings with Keras</span>
+<span class="kn">import</span> <span class="nn">tensorflow</span> <span class="k">as</span> <span class="nn">tf</span>
+<span class="kn">from</span> <span class="nn">tensorflow.keras.preprocessing.text</span> <span class="kn">import</span> <span class="n">Tokenizer</span>
+<span class="kn">from</span> <span class="nn">tensorflow.keras.preprocessing.sequence</span> <span class="kn">import</span> <span class="n">pad_sequences</span>
+<span class="kn">from</span> <span class="nn">tensorflow.keras.layers</span> <span class="kn">import</span> <span class="n">Embedding</span><span class="p">,</span> <span class="n">LSTM</span><span class="p">,</span> <span class="n">Dense</span><span class="p">,</span> <span class="n">Dropout</span><span class="p">,</span> <span class="n">Bidirectional</span>
+<span class="kn">from</span> <span class="nn">tensorflow.keras.models</span> <span class="kn">import</span> <span class="n">Sequential</span>
+
+<span class="c1"># Prepare text data</span>
+<span class="n">tokenizer</span> <span class="o">=</span> <span class="n">Tokenizer</span><span class="p">(</span><span class="n">num_words</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">oov_token</span><span class="o">=</span><span class="s1">&#39;&lt;OOV&gt;&#39;</span><span class="p">)</span>
+<span class="n">tokenizer</span><span class="o">.</span><span class="n">fit_on_texts</span><span class="p">(</span><span class="n">all_reviews</span><span class="p">)</span>
+
+<span class="c1"># Convert to sequences</span>
+<span class="n">sequences</span> <span class="o">=</span> <span class="n">tokenizer</span><span class="o">.</span><span class="n">texts_to_sequences</span><span class="p">(</span><span class="n">all_reviews</span><span class="p">)</span>
+<span class="n">padded_sequences</span> <span class="o">=</span> <span class="n">pad_sequences</span><span class="p">(</span><span class="n">sequences</span><span class="p">,</span> <span class="n">maxlen</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="s1">&#39;post&#39;</span><span class="p">,</span> <span class="n">truncating</span><span class="o">=</span><span class="s1">&#39;post&#39;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Vocabulary size: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">tokenizer</span><span class="o">.</span><span class="n">word_index</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Padded sequence shape: </span><span class="si">{</span><span class="n">padded_sequences</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Example:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Original: &#39;</span><span class="si">{</span><span class="n">all_reviews</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2">&#39;&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Tokenized: </span><span class="si">{</span><span class="n">sequences</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Padded: </span><span class="si">{</span><span class="n">padded_sequences</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Build LSTM model with embeddings</span>
+<span class="n">embedding_dim</span> <span class="o">=</span> <span class="mi">32</span>
+<span class="n">vocab_size</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="mi">1000</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">tokenizer</span><span class="o">.</span><span class="n">word_index</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="n">lstm_model</span> <span class="o">=</span> <span class="n">Sequential</span><span class="p">([</span>
+    <span class="c1"># Embedding layer: Converts word indices to dense vectors</span>
+    <span class="n">Embedding</span><span class="p">(</span><span class="n">vocab_size</span><span class="p">,</span> <span class="n">embedding_dim</span><span class="p">,</span> <span class="n">input_length</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;embedding&#39;</span><span class="p">),</span>
+    
+    <span class="c1"># Bidirectional LSTM: Processes text forward and backward</span>
+    <span class="n">Bidirectional</span><span class="p">(</span><span class="n">LSTM</span><span class="p">(</span><span class="mi">64</span><span class="p">,</span> <span class="n">return_sequences</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;bi_lstm_1&#39;</span><span class="p">),</span>
+    <span class="n">Dropout</span><span class="p">(</span><span class="mf">0.3</span><span class="p">),</span>
+    
+    <span class="c1"># Second LSTM layer</span>
+    <span class="n">Bidirectional</span><span class="p">(</span><span class="n">LSTM</span><span class="p">(</span><span class="mi">32</span><span class="p">),</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;bi_lstm_2&#39;</span><span class="p">),</span>
+    <span class="n">Dropout</span><span class="p">(</span><span class="mf">0.3</span><span class="p">),</span>
+    
+    <span class="c1"># Dense layers</span>
+    <span class="n">Dense</span><span class="p">(</span><span class="mi">64</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;relu&#39;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;dense_1&#39;</span><span class="p">),</span>
+    <span class="n">Dropout</span><span class="p">(</span><span class="mf">0.3</span><span class="p">),</span>
+    <span class="n">Dense</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;sigmoid&#39;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;output&#39;</span><span class="p">)</span>
+<span class="p">],</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;sentiment_lstm&#39;</span><span class="p">)</span>
+
+<span class="n">lstm_model</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span>
+    <span class="n">optimizer</span><span class="o">=</span><span class="s1">&#39;adam&#39;</span><span class="p">,</span>
+    <span class="n">loss</span><span class="o">=</span><span class="s1">&#39;binary_crossentropy&#39;</span><span class="p">,</span>
+    <span class="n">metrics</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;accuracy&#39;</span><span class="p">]</span>
+<span class="p">)</span>
+
+<span class="n">lstm_model</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">📊 Total parameters: </span><span class="si">{</span><span class="n">lstm_model</span><span class="o">.</span><span class="n">count_params</span><span class="p">()</span><span class="si">:</span><span class="s2">,</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;📊 Embedding matrix shape: (vocab=</span><span class="si">{</span><span class="n">vocab_size</span><span class="si">}</span><span class="s2">, dim=</span><span class="si">{</span><span class="n">embedding_dim</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="understanding-lstm">
+<h3>Understanding LSTM<a class="headerlink" href="#understanding-lstm" title="Link to this heading">#</a></h3>
+<p><strong>Why LSTM for text?</strong></p>
+<ul class="simple">
+<li><p>Captures long-range dependencies</p></li>
+<li><p>Handles variable-length sequences</p></li>
+<li><p>Understands context</p></li>
+</ul>
+<p><strong>LSTM Cell:</strong></p>
+<ul class="simple">
+<li><p><strong>Forget gate</strong>: What to forget from memory</p></li>
+<li><p><strong>Input gate</strong>: What new information to store</p></li>
+<li><p><strong>Output gate</strong>: What to output</p></li>
+</ul>
+<p><strong>Bidirectional</strong>: Reads text forward and backward for better context understanding</p>
+</section>
+</section>
+<section id="part-8-introduction-to-transformers">
+<h2>Part 8: Introduction to Transformers<a class="headerlink" href="#part-8-introduction-to-transformers" title="Link to this heading">#</a></h2>
+<section id="the-revolution-attention-is-all-you-need-2017">
+<h3>The Revolution: Attention is All You Need (2017)<a class="headerlink" href="#the-revolution-attention-is-all-you-need-2017" title="Link to this heading">#</a></h3>
+<p><strong>Before Transformers:</strong></p>
+<ul class="simple">
+<li><p>RNNs/LSTMs: Sequential processing (slow)</p></li>
+<li><p>Limited context window</p></li>
+<li><p>Hard to parallelize</p></li>
+</ul>
+<p><strong>Transformers:</strong></p>
+<ul class="simple">
+<li><p>Parallel processing (fast!)</p></li>
+<li><p>Unlimited context (practically)</p></li>
+<li><p>Attention mechanism: Focus on relevant words</p></li>
+</ul>
+</section>
+<section id="architecture-overview">
+<h3>Architecture Overview<a class="headerlink" href="#architecture-overview" title="Link to this heading">#</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Input Text → Tokenization → Embeddings → Positional Encoding
+                                ↓
+                    Multi-Head Self-Attention
+                                ↓
+                    Feed-Forward Network
+                                ↓
+                            Repeat N times
+                                ↓
+                            Output
+</pre></div>
+</div>
+</section>
+<section id="self-attention-simplified">
+<h3>Self-Attention Simplified<a class="headerlink" href="#self-attention-simplified" title="Link to this heading">#</a></h3>
+<p><strong>Example</strong>: “The animal didn’t cross the street because <strong>it</strong> was too tired.”</p>
+<p><strong>Question</strong>: What does “it” refer to?</p>
+<p><strong>Attention weights</strong>:</p>
+<ul class="simple">
+<li><p>“it” → “animal”: 0.8 ✅</p></li>
+<li><p>“it” → “street”: 0.1</p></li>
+<li><p>“it” → “cross”: 0.1</p></li>
+</ul>
+<p>The model learns to focus on “animal”!</p>
+</section>
+<section id="major-transformer-models">
+<h3>Major Transformer Models<a class="headerlink" href="#major-transformer-models" title="Link to this heading">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Model</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Parameters</p></th>
+<th class="head"><p>Training Data</p></th>
+<th class="head"><p>Use Case</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>BERT</strong></p></td>
+<td><p>Encoder-only</p></td>
+<td><p>110M - 340M</p></td>
+<td><p>Books + Wikipedia</p></td>
+<td><p>Classification, NER, QA</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>GPT-3/4</strong></p></td>
+<td><p>Decoder-only</p></td>
+<td><p>175B+</p></td>
+<td><p>Internet text</p></td>
+<td><p>Text generation, ChatGPT</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>T5</strong></p></td>
+<td><p>Encoder-Decoder</p></td>
+<td><p>60M - 11B</p></td>
+<td><p>C4 dataset</p></td>
+<td><p>Translation, summarization</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>RoBERTa</strong></p></td>
+<td><p>Encoder-only</p></td>
+<td><p>125M - 355M</p></td>
+<td><p>Improved BERT data</p></td>
+<td><p>Better than BERT</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>BART</strong></p></td>
+<td><p>Encoder-Decoder</p></td>
+<td><p>140M - 400M</p></td>
+<td><p>Denoising</p></td>
+<td><p>Summarization</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="bert-vs-gpt">
+<h3>BERT vs GPT<a class="headerlink" href="#bert-vs-gpt" title="Link to this heading">#</a></h3>
+<p><strong>BERT (Bidirectional)</strong>:</p>
+<ul class="simple">
+<li><p>Reads text in both directions</p></li>
+<li><p>Great for understanding (classification, QA)</p></li>
+<li><p>Pre-training: Masked Language Modeling</p>
+<ul>
+<li><p>Input: “The [MASK] sat on the mat”</p></li>
+<li><p>Task: Predict [MASK] = “cat”</p></li>
+</ul>
+</li>
+</ul>
+<p><strong>GPT (Autoregressive)</strong>:</p>
+<ul class="simple">
+<li><p>Reads text left-to-right only</p></li>
+<li><p>Great for generation (writing, chat)</p></li>
+<li><p>Pre-training: Next Token Prediction</p>
+<ul>
+<li><p>Input: “The cat sat on the”</p></li>
+<li><p>Task: Predict next word = “mat”</p></li>
+</ul>
+</li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Simplified Attention Mechanism (educational)</span>
+<span class="k">def</span> <span class="nf">simple_attention</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">keys</span><span class="p">,</span> <span class="n">values</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Simplified attention mechanism.</span>
+<span class="sd">    </span>
+<span class="sd">    Args:</span>
+<span class="sd">        query: What we&#39;re looking for</span>
+<span class="sd">        keys: What&#39;s available</span>
+<span class="sd">        values: Actual information</span>
+<span class="sd">    </span>
+<span class="sd">    Returns:</span>
+<span class="sd">        Weighted combination of values</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Calculate attention scores</span>
+    <span class="n">scores</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">keys</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>  <span class="c1"># Dot product</span>
+    
+    <span class="c1"># Apply softmax to get weights (sum to 1)</span>
+    <span class="n">weights</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">scores</span><span class="p">)</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">scores</span><span class="p">))</span>
+    
+    <span class="c1"># Weighted sum of values</span>
+    <span class="n">output</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">weights</span><span class="p">,</span> <span class="n">values</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">output</span><span class="p">,</span> <span class="n">weights</span>
+
+<span class="c1"># Example: Sentence &quot;I love NLP&quot;</span>
+<span class="c1"># Simple word embeddings (normally 300-768 dimensions)</span>
+<span class="n">embeddings</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
+    <span class="p">[</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">],</span>  <span class="c1"># &quot;I&quot;</span>
+    <span class="p">[</span><span class="mf">0.4</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">],</span>  <span class="c1"># &quot;love&quot;</span>
+    <span class="p">[</span><span class="mf">0.7</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.9</span><span class="p">],</span>  <span class="c1"># &quot;NLP&quot;</span>
+<span class="p">])</span>
+
+<span class="c1"># Calculate attention for word &quot;love&quot; (index 1)</span>
+<span class="n">query</span> <span class="o">=</span> <span class="n">embeddings</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">keys</span> <span class="o">=</span> <span class="n">embeddings</span>
+<span class="n">values</span> <span class="o">=</span> <span class="n">embeddings</span>
+
+<span class="n">output</span><span class="p">,</span> <span class="n">weights</span> <span class="o">=</span> <span class="n">simple_attention</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">keys</span><span class="p">,</span> <span class="n">values</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;🔍 Attention Mechanism Demo</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Query word: &#39;love&#39;&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Attention weights:&quot;</span><span class="p">)</span>
+<span class="n">words</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;I&quot;</span><span class="p">,</span> <span class="s2">&quot;love&quot;</span><span class="p">,</span> <span class="s2">&quot;NLP&quot;</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">word</span><span class="p">,</span> <span class="n">weight</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">words</span><span class="p">,</span> <span class="n">weights</span><span class="p">):</span>
+    <span class="n">bar</span> <span class="o">=</span> <span class="s1">&#39;█&#39;</span> <span class="o">*</span> <span class="nb">int</span><span class="p">(</span><span class="n">weight</span> <span class="o">*</span> <span class="mi">50</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  </span><span class="si">{</span><span class="n">word</span><span class="si">:</span><span class="s2">6s</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">weight</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">bar</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Context-aware representation: </span><span class="si">{</span><span class="n">output</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">💡 The model learned which words to focus on!&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="part-9-hyperparameter-optimization">
+<h2>Part 9: Hyperparameter Optimization<a class="headerlink" href="#part-9-hyperparameter-optimization" title="Link to this heading">#</a></h2>
+<section id="strategies">
+<h3>Strategies<a class="headerlink" href="#strategies" title="Link to this heading">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Method</p></th>
+<th class="head"><p>How It Works</p></th>
+<th class="head"><p>Speed</p></th>
+<th class="head"><p>Effectiveness</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Manual</strong></p></td>
+<td><p>Try values by hand</p></td>
+<td><p>Slow</p></td>
+<td><p>Poor</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Grid Search</strong></p></td>
+<td><p>Try all combinations</p></td>
+<td><p>Very slow</p></td>
+<td><p>Good</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Random Search</strong></p></td>
+<td><p>Random sampling</p></td>
+<td><p>Medium</p></td>
+<td><p>Good</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Bayesian Optimization</strong></p></td>
+<td><p>Smart sampling</p></td>
+<td><p>Fast</p></td>
+<td><p>Best</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Hyperband</strong></p></td>
+<td><p>Adaptive allocation</p></td>
+<td><p>Fast</p></td>
+<td><p>Best</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="search-space-example">
+<h3>Search Space Example<a class="headerlink" href="#search-space-example" title="Link to this heading">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">param_grid</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;n_estimators&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">50</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">200</span><span class="p">],</span>     <span class="c1"># 3 options</span>
+    <span class="s1">&#39;max_depth&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="kc">None</span><span class="p">],</span>     <span class="c1"># 4 options</span>
+    <span class="s1">&#39;learning_rate&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">]</span>   <span class="c1"># 3 options</span>
+<span class="p">}</span>
+<span class="c1"># Grid Search: 3 × 4 × 3 = 36 combinations!</span>
+<span class="c1"># Random Search: Sample N combinations (e.g., 10)</span>
+</pre></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">GridSearchCV</span><span class="p">,</span> <span class="n">RandomizedSearchCV</span>
+<span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">uniform</span><span class="p">,</span> <span class="n">randint</span>
+
+<span class="c1"># Define parameter grid</span>
+<span class="n">param_grid</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;n_estimators&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">50</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">200</span><span class="p">],</span>
+    <span class="s1">&#39;max_depth&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="kc">None</span><span class="p">],</span>
+    <span class="s1">&#39;min_samples_split&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">],</span>
+    <span class="s1">&#39;min_samples_leaf&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
+<span class="p">}</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;🔍 Hyperparameter Tuning Comparison</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Random Search (faster)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;⚡ Running Random Search...&quot;</span><span class="p">)</span>
+<span class="n">rf_random</span> <span class="o">=</span> <span class="n">RandomForestClassifier</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">random_search</span> <span class="o">=</span> <span class="n">RandomizedSearchCV</span><span class="p">(</span>
+    <span class="n">rf_random</span><span class="p">,</span>
+    <span class="n">param_distributions</span><span class="o">=</span><span class="n">param_grid</span><span class="p">,</span>
+    <span class="n">n_iter</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>  <span class="c1"># Try 10 random combinations</span>
+    <span class="n">cv</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>  <span class="c1"># 3-fold cross-validation</span>
+    <span class="n">scoring</span><span class="o">=</span><span class="s1">&#39;accuracy&#39;</span><span class="p">,</span>
+    <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">,</span>
+    <span class="n">n_jobs</span><span class="o">=-</span><span class="mi">1</span>
+<span class="p">)</span>
+
+<span class="n">random_search</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;✅ Random Search Complete&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Best Score: </span><span class="si">{</span><span class="n">random_search</span><span class="o">.</span><span class="n">best_score_</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">100</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">%&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Best Params: </span><span class="si">{</span><span class="n">random_search</span><span class="o">.</span><span class="n">best_params_</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Test on holdout set</span>
+<span class="n">best_model</span> <span class="o">=</span> <span class="n">random_search</span><span class="o">.</span><span class="n">best_estimator_</span>
+<span class="n">test_score</span> <span class="o">=</span> <span class="n">best_model</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Test Accuracy: </span><span class="si">{</span><span class="n">test_score</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">100</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">%&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="part-10-model-interpretation-with-shap">
+<h2>Part 10: Model Interpretation with SHAP<a class="headerlink" href="#part-10-model-interpretation-with-shap" title="Link to this heading">#</a></h2>
+<section id="why-interpretability-matters">
+<h3>Why Interpretability Matters<a class="headerlink" href="#why-interpretability-matters" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Trust</strong>: Understand why model makes predictions</p></li>
+<li><p><strong>Debugging</strong>: Find biases and errors</p></li>
+<li><p><strong>Compliance</strong>: Regulations (GDPR, healthcare)</p></li>
+<li><p><strong>Science</strong>: Discover insights</p></li>
+</ul>
+</section>
+<section id="shap-shapley-additive-explanations">
+<h3>SHAP (SHapley Additive exPlanations)<a class="headerlink" href="#shap-shapley-additive-explanations" title="Link to this heading">#</a></h3>
+<p><strong>Idea</strong>: How much does each feature contribute to prediction?</p>
+<p><strong>Example</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Base</span> <span class="n">prediction</span><span class="p">:</span> <span class="mf">0.5</span>
+<span class="n">Feature</span> <span class="s1">&#39;price&#39;</span><span class="p">:</span>     <span class="o">+</span><span class="mf">0.2</span>  <span class="p">(</span><span class="n">pushes</span> <span class="n">toward</span> <span class="n">positive</span><span class="p">)</span>
+<span class="n">Feature</span> <span class="s1">&#39;rating&#39;</span><span class="p">:</span>    <span class="o">+</span><span class="mf">0.15</span> <span class="p">(</span><span class="n">pushes</span> <span class="n">toward</span> <span class="n">positive</span><span class="p">)</span>
+<span class="n">Feature</span> <span class="s1">&#39;shipping&#39;</span><span class="p">:</span> <span class="o">-</span><span class="mf">0.05</span> <span class="p">(</span><span class="n">pushes</span> <span class="n">toward</span> <span class="n">negative</span><span class="p">)</span>
+<span class="n">Final</span> <span class="n">prediction</span><span class="p">:</span>    <span class="mf">0.8</span>   <span class="p">(</span><span class="n">positive</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Model Interpretation (Feature Importance)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;📊 Feature Importance Analysis</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Get feature importances from best model</span>
+<span class="n">importances</span> <span class="o">=</span> <span class="n">best_model</span><span class="o">.</span><span class="n">feature_importances_</span>
+<span class="n">indices</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argsort</span><span class="p">(</span><span class="n">importances</span><span class="p">)[::</span><span class="o">-</span><span class="mi">1</span><span class="p">][:</span><span class="mi">10</span><span class="p">]</span>  <span class="c1"># Top 10</span>
+
+<span class="c1"># Plot</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Top 10 Feature Importances&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">),</span> <span class="n">importances</span><span class="p">[</span><span class="n">indices</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;steelblue&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">),</span> <span class="p">[</span><span class="sa">f</span><span class="s1">&#39;Feature </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s1">&#39;</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">indices</span><span class="p">],</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">45</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Importance&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Feature&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="s1">&#39;y&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Top 5 Features:&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">rank</span><span class="p">,</span> <span class="n">idx</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">indices</span><span class="p">[:</span><span class="mi">5</span><span class="p">],</span> <span class="mi">1</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  </span><span class="si">{</span><span class="n">rank</span><span class="si">}</span><span class="s2">. Feature </span><span class="si">{</span><span class="n">idx</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">importances</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="part-11-production-ml-considerations">
+<h2>Part 11: Production ML Considerations<a class="headerlink" href="#part-11-production-ml-considerations" title="Link to this heading">#</a></h2>
+<section id="deployment-checklist">
+<h3>Deployment Checklist<a class="headerlink" href="#deployment-checklist" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>✅ <strong>Model Serialization</strong>: Save with pickle/joblib</p></li>
+<li><p>✅ <strong>API Endpoint</strong>: Flask/FastAPI wrapper</p></li>
+<li><p>✅ <strong>Input Validation</strong>: Check data types, ranges</p></li>
+<li><p>✅ <strong>Monitoring</strong>: Track accuracy, latency, errors</p></li>
+<li><p>✅ <strong>Versioning</strong>: Model version control</p></li>
+<li><p>✅ <strong>A/B Testing</strong>: Compare models in production</p></li>
+<li><p>✅ <strong>Rollback Plan</strong>: Revert to previous version</p></li>
+<li><p>✅ <strong>Documentation</strong>: API docs, model card</p></li>
+</ul>
+</section>
+<section id="model-monitoring">
+<h3>Model Monitoring<a class="headerlink" href="#model-monitoring" title="Link to this heading">#</a></h3>
+<p><strong>Key Metrics:</strong></p>
+<ul class="simple">
+<li><p>Prediction latency (p50, p95, p99)</p></li>
+<li><p>Accuracy over time</p></li>
+<li><p>Data drift detection</p></li>
+<li><p>Error rate</p></li>
+<li><p>Traffic volume</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Save model for production</span>
+<span class="kn">import</span> <span class="nn">joblib</span>
+<span class="kn">import</span> <span class="nn">os</span>
+
+<span class="c1"># Create models directory</span>
+<span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="s1">&#39;production_models&#39;</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># Save best model</span>
+<span class="n">model_path</span> <span class="o">=</span> <span class="s1">&#39;production_models/best_rf_model.pkl&#39;</span>
+<span class="n">joblib</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">best_model</span><span class="p">,</span> <span class="n">model_path</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;✅ Model saved to </span><span class="si">{</span><span class="n">model_path</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Save preprocessing pipeline</span>
+<span class="n">pipeline_path</span> <span class="o">=</span> <span class="s1">&#39;production_models/sentiment_pipeline.pkl&#39;</span>
+<span class="n">joblib</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">sentiment_pipeline</span><span class="p">,</span> <span class="n">pipeline_path</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;✅ Sentiment pipeline saved to </span><span class="si">{</span><span class="n">pipeline_path</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># File sizes</span>
+<span class="n">model_size</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">getsize</span><span class="p">(</span><span class="n">model_path</span><span class="p">)</span> <span class="o">/</span> <span class="mi">1024</span>  <span class="c1"># KB</span>
+<span class="n">pipeline_size</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">getsize</span><span class="p">(</span><span class="n">pipeline_path</span><span class="p">)</span> <span class="o">/</span> <span class="mi">1024</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">📦 Model sizes:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  RF Model: </span><span class="si">{</span><span class="n">model_size</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2"> KB&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Sentiment Pipeline: </span><span class="si">{</span><span class="n">pipeline_size</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2"> KB&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load and use model (production simulation)</span>
+<span class="n">loaded_model</span> <span class="o">=</span> <span class="n">joblib</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">model_path</span><span class="p">)</span>
+
+<span class="c1"># Make prediction</span>
+<span class="n">sample_data</span> <span class="o">=</span> <span class="n">X_test</span><span class="p">[:</span><span class="mi">5</span><span class="p">]</span>
+<span class="n">predictions</span> <span class="o">=</span> <span class="n">loaded_model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">sample_data</span><span class="p">)</span>
+<span class="n">probabilities</span> <span class="o">=</span> <span class="n">loaded_model</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">sample_data</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;🚀 Production Model Inference:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">pred</span><span class="p">,</span> <span class="n">prob</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">predictions</span><span class="p">,</span> <span class="n">probabilities</span><span class="p">)):</span>
+    <span class="n">confidence</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">prob</span><span class="p">)</span> <span class="o">*</span> <span class="mi">100</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Sample </span><span class="si">{</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s2">: Class </span><span class="si">{</span><span class="n">pred</span><span class="si">}</span><span class="s2"> (confidence: </span><span class="si">{</span><span class="n">confidence</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">%)&quot;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">✅ Model loaded and working correctly!&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="part-12-exercises">
+<h2>Part 12: Exercises<a class="headerlink" href="#part-12-exercises" title="Link to this heading">#</a></h2>
+<section id="exercise-1-ensemble-comparison">
+<h3>Exercise 1: Ensemble Comparison (⭐⭐)<a class="headerlink" href="#exercise-1-ensemble-comparison" title="Link to this heading">#</a></h3>
+<p>Compare ensemble methods on a real dataset:</p>
+<ol class="arabic simple">
+<li><p>Load the Iris or Wine dataset</p></li>
+<li><p>Train 5 different models:</p>
+<ul class="simple">
+<li><p>Single Decision Tree</p></li>
+<li><p>Random Forest</p></li>
+<li><p>XGBoost</p></li>
+<li><p>AdaBoost</p></li>
+<li><p>Voting Ensemble (combine RF, XGB, LogReg)</p></li>
+</ul>
+</li>
+<li><p>Use cross-validation for all</p></li>
+<li><p>Plot comparison bar chart</p></li>
+<li><p>Identify which performs best</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Exercise 1: Your code here</span>
+<span class="c1"># Hint: from sklearn.datasets import load_wine</span>
+<span class="c1"># Hint: Use cross_val_score for each model</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="exercise-2-advanced-text-classification">
+<h3>Exercise 2: Advanced Text Classification (⭐⭐⭐)<a class="headerlink" href="#exercise-2-advanced-text-classification" title="Link to this heading">#</a></h3>
+<p>Build a multi-class text classifier:</p>
+<ol class="arabic simple">
+<li><p>Create/find a dataset with 3+ categories (news topics, product categories, etc.)</p></li>
+<li><p>Implement preprocessing: lowercasing, stop words, stemming</p></li>
+<li><p>Compare vectorization methods:</p>
+<ul class="simple">
+<li><p>Bag of Words (CountVectorizer)</p></li>
+<li><p>TF-IDF</p></li>
+<li><p>Word embeddings + LSTM</p></li>
+</ul>
+</li>
+<li><p>Train classifiers on each</p></li>
+<li><p>Plot confusion matrix for best model</p></li>
+<li><p>Identify misclassified examples</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Exercise 2: Your code here</span>
+<span class="c1"># Hint: Use 20 Newsgroups dataset: fetch_20newsgroups()</span>
+<span class="c1"># Hint: from nltk.stem import PorterStemmer</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="exercise-3-hyperparameter-tuning">
+<h3>Exercise 3: Hyperparameter Tuning (⭐⭐)<a class="headerlink" href="#exercise-3-hyperparameter-tuning" title="Link to this heading">#</a></h3>
+<p>Optimize XGBoost with different search strategies:</p>
+<ol class="arabic simple">
+<li><p>Define comprehensive parameter grid</p></li>
+<li><p>Run Grid Search (small grid)</p></li>
+<li><p>Run Random Search (larger space, 20 iterations)</p></li>
+<li><p>Compare time taken and best scores</p></li>
+<li><p>Plot search history (score vs iteration)</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Exercise 3: Your code here</span>
+<span class="c1"># Hint: Track time with time.time()</span>
+<span class="c1"># Hint: Access cv_results_ for search history</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="exercise-4-lstm-sentiment-analysis">
+<h3>Exercise 4: LSTM Sentiment Analysis (⭐⭐⭐)<a class="headerlink" href="#exercise-4-lstm-sentiment-analysis" title="Link to this heading">#</a></h3>
+<p>Build LSTM model from scratch:</p>
+<ol class="arabic simple">
+<li><p>Collect larger sentiment dataset (IMDB or custom)</p></li>
+<li><p>Implement full preprocessing pipeline</p></li>
+<li><p>Build LSTM with:</p>
+<ul class="simple">
+<li><p>Embedding layer (trainable)</p></li>
+<li><p>2 LSTM layers</p></li>
+<li><p>Dropout regularization</p></li>
+<li><p>Dense output</p></li>
+</ul>
+</li>
+<li><p>Train with early stopping</p></li>
+<li><p>Plot training curves</p></li>
+<li><p>Compare with traditional ML (Naive Bayes, SVM)</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Exercise 4: Your code here</span>
+<span class="c1"># Hint: keras.datasets.imdb.load_data()</span>
+<span class="c1"># Hint: Use callbacks=[EarlyStopping()]</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="exercise-5-model-interpretability">
+<h3>Exercise 5: Model Interpretability (⭐⭐⭐⭐)<a class="headerlink" href="#exercise-5-model-interpretability" title="Link to this heading">#</a></h3>
+<p>Analyze model decisions:</p>
+<ol class="arabic simple">
+<li><p>Train Random Forest or XGBoost</p></li>
+<li><p>Extract feature importances</p></li>
+<li><p>Visualize top 20 features</p></li>
+<li><p>For text model: Find most important words per class</p></li>
+<li><p><strong>Bonus</strong>: Implement LIME for local explanations</p></li>
+<li><p>Compare global vs local importance</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Exercise 5: Your code here</span>
+<span class="c1"># Hint: !pip install lime</span>
+<span class="c1"># Hint: from lime.lime_text import LimeTextExplainer</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="exercise-6-production-api">
+<h3>Exercise 6: Production API (⭐⭐⭐)<a class="headerlink" href="#exercise-6-production-api" title="Link to this heading">#</a></h3>
+<p>Build deployment-ready prediction service:</p>
+<ol class="arabic simple">
+<li><p>Save trained model with joblib</p></li>
+<li><p>Create Flask/FastAPI endpoint</p></li>
+<li><p>Implement input validation</p></li>
+<li><p>Add error handling</p></li>
+<li><p>Return predictions with confidence scores</p></li>
+<li><p><strong>Bonus</strong>: Add simple logging</p></li>
+<li><p>Test with curl/Postman</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Exercise 6: Your code here</span>
+<span class="c1"># Hint: from flask import Flask, request, jsonify</span>
+<span class="c1"># Hint: Validate input before prediction</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="self-check-quiz">
+<h2>Self-Check Quiz<a class="headerlink" href="#self-check-quiz" title="Link to this heading">#</a></h2>
+<p>Test your understanding:</p>
+<ol class="arabic simple">
+<li><p><strong>What is the main difference between bagging and boosting?</strong></p>
+<ul class="simple">
+<li><p>A) Bagging is faster</p></li>
+<li><p>B) Bagging trains models in parallel, boosting sequentially</p></li>
+<li><p>C) Boosting uses fewer models</p></li>
+<li><p>D) No difference</p></li>
+</ul>
+</li>
+<li><p><strong>Which boosting algorithm is fastest for large datasets?</strong></p>
+<ul class="simple">
+<li><p>A) AdaBoost</p></li>
+<li><p>B) Gradient Boosting</p></li>
+<li><p>C) LightGBM</p></li>
+<li><p>D) Random Forest</p></li>
+</ul>
+</li>
+<li><p><strong>What does TF-IDF stand for?</strong></p>
+<ul class="simple">
+<li><p>A) Text Frequency - Important Document Frequency</p></li>
+<li><p>B) Term Frequency - Inverse Document Frequency</p></li>
+<li><p>C) Total Frequency - Indexed Document Frequency</p></li>
+<li><p>D) Token Frequency - Information Document Frequency</p></li>
+</ul>
+</li>
+<li><p><strong>What is the main advantage of word embeddings over TF-IDF?</strong></p>
+<ul class="simple">
+<li><p>A) Faster computation</p></li>
+<li><p>B) Captures semantic relationships</p></li>
+<li><p>C) Requires less data</p></li>
+<li><p>D) Always performs better</p></li>
+</ul>
+</li>
+<li><p><strong>What is the key innovation of transformers?</strong></p>
+<ul class="simple">
+<li><p>A) Recurrent connections</p></li>
+<li><p>B) Convolutional layers</p></li>
+<li><p>C) Self-attention mechanism</p></li>
+<li><p>D) Dropout regularization</p></li>
+</ul>
+</li>
+<li><p><strong>Which model is best for text generation?</strong></p>
+<ul class="simple">
+<li><p>A) BERT</p></li>
+<li><p>B) GPT</p></li>
+<li><p>C) Random Forest</p></li>
+<li><p>D) Naive Bayes</p></li>
+</ul>
+</li>
+<li><p><strong>What is the purpose of hyperparameter tuning?</strong></p>
+<ul class="simple">
+<li><p>A) Train model faster</p></li>
+<li><p>B) Reduce overfitting only</p></li>
+<li><p>C) Find optimal model configuration</p></li>
+<li><p>D) Increase model size</p></li>
+</ul>
+</li>
+<li><p><strong>Which search method is most efficient?</strong></p>
+<ul class="simple">
+<li><p>A) Manual</p></li>
+<li><p>B) Grid Search</p></li>
+<li><p>C) Random Search</p></li>
+<li><p>D) Bayesian Optimization</p></li>
+</ul>
+</li>
+<li><p><strong>Why is model interpretability important?</strong></p>
+<ul class="simple">
+<li><p>A) Makes models faster</p></li>
+<li><p>B) Increases accuracy</p></li>
+<li><p>C) Builds trust and enables debugging</p></li>
+<li><p>D) Reduces model size</p></li>
+</ul>
+</li>
+<li><p><strong>What should you monitor in production?</strong></p>
+<ul class="simple">
+<li><p>A) Accuracy only</p></li>
+<li><p>B) Latency only</p></li>
+<li><p>C) Accuracy, latency, and data drift</p></li>
+<li><p>D) Nothing after deployment</p></li>
+</ul>
+</li>
+</ol>
+<p><strong>Answers</strong>: 1-B, 2-C, 3-B, 4-B, 5-C, 6-B, 7-C, 8-D, 9-C, 10-C</p>
+</section>
+<section id="key-takeaways">
+<h2>Key Takeaways<a class="headerlink" href="#key-takeaways" title="Link to this heading">#</a></h2>
+<section id="ensemble-learning">
+<h3>Ensemble Learning<a class="headerlink" href="#ensemble-learning" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>✅ Ensemble methods combine multiple models for better performance</p></li>
+<li><p>✅ Bagging reduces variance (Random Forest)</p></li>
+<li><p>✅ Boosting reduces bias (XGBoost, LightGBM)</p></li>
+<li><p>✅ XGBoost wins most Kaggle competitions</p></li>
+</ul>
+</section>
+<section id="nlp-fundamentals">
+<h3>NLP Fundamentals<a class="headerlink" href="#nlp-fundamentals" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>✅ Text preprocessing is critical (tokenization, cleaning, normalization)</p></li>
+<li><p>✅ TF-IDF weights words by importance</p></li>
+<li><p>✅ Word embeddings capture semantic meaning</p></li>
+<li><p>✅ LSTMs handle sequential text data</p></li>
+</ul>
+</section>
+<section id="modern-nlp">
+<h3>Modern NLP<a class="headerlink" href="#modern-nlp" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>✅ Transformers revolutionized NLP (parallel processing)</p></li>
+<li><p>✅ Self-attention focuses on relevant context</p></li>
+<li><p>✅ BERT for understanding, GPT for generation</p></li>
+<li><p>✅ Pre-trained models save time and data</p></li>
+</ul>
+</section>
+<section id="production-ml">
+<h3>Production ML<a class="headerlink" href="#production-ml" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>✅ Hyperparameter tuning improves performance</p></li>
+<li><p>✅ Model interpretability builds trust</p></li>
+<li><p>✅ Monitor models in production</p></li>
+<li><p>✅ Version control models like code</p></li>
+</ul>
+</section>
+</section>
+<section id="pro-tips">
+<h2>Pro Tips<a class="headerlink" href="#pro-tips" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p><strong>Start with XGBoost</strong>: It works well out-of-the-box for structured data</p></li>
+<li><p><strong>Always try ensembles</strong>: Combining models rarely hurts</p></li>
+<li><p><strong>Text preprocessing matters</strong>: Clean data = better results</p></li>
+<li><p><strong>Use pre-trained embeddings</strong>: Don’t train Word2Vec from scratch with small data</p></li>
+<li><p><strong>Fine-tune transformers</strong>: BERT/GPT transfer learning beats training from scratch</p></li>
+<li><p><strong>Random search before grid</strong>: Sample 10-20 random configs, then refine</p></li>
+<li><p><strong>Cross-validation always</strong>: Never trust single train/test split</p></li>
+<li><p><strong>Monitor data drift</strong>: Production data changes over time</p></li>
+<li><p><strong>Start simple</strong>: Logistic Regression baseline, then add complexity</p></li>
+<li><p><strong>Document everything</strong>: Model cards, API docs, decision rationale</p></li>
+</ol>
+<section id="common-mistakes">
+<h3>Common Mistakes<a class="headerlink" href="#common-mistakes" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>❌ Skipping text preprocessing</p></li>
+<li><p>❌ Not removing stop words for classification</p></li>
+<li><p>❌ Training Word2Vec on small datasets</p></li>
+<li><p>❌ Using BERT for generation (use GPT)</p></li>
+<li><p>❌ Grid searching huge spaces</p></li>
+<li><p>❌ Not validating production inputs</p></li>
+<li><p>❌ Ignoring class imbalance</p></li>
+<li><p>❌ Overfitting to validation set</p></li>
+</ul>
+</section>
+<section id="debug-checklist">
+<h3>Debug Checklist<a class="headerlink" href="#debug-checklist" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>⚠️ Low accuracy → Check preprocessing, try ensemble</p></li>
+<li><p>⚠️ High variance → Add regularization, more data</p></li>
+<li><p>⚠️ High bias → More complex model, better features</p></li>
+<li><p>⚠️ Slow inference → Reduce model size, optimize code</p></li>
+<li><p>⚠️ Production accuracy drops → Data drift, retrain model</p></li>
+</ul>
+</section>
+</section>
+<section id="what-s-next">
+<h2>What’s Next?<a class="headerlink" href="#what-s-next" title="Link to this heading">#</a></h2>
+<section id="continue-in-hard-track">
+<h3>Continue in Hard Track:<a class="headerlink" href="#continue-in-hard-track" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Lesson 6</strong>: Computer Systems and Theory</p></li>
+<li><p><strong>Lesson 7</strong>: Project Ideas (apply everything!)</p></li>
+<li><p><strong>Lesson 8</strong>: Classic Problems (interview preparation)</p></li>
+</ul>
+</section>
+<section id="deepen-your-nlp-knowledge">
+<h3>Deepen Your NLP Knowledge:<a class="headerlink" href="#deepen-your-nlp-knowledge" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Hugging Face Transformers</strong>: Pre-trained models library</p></li>
+<li><p><strong><a class="reference external" href="http://fast.ai">fast.ai</a> NLP</strong>: Practical deep learning for text</p></li>
+<li><p><strong>spaCy</strong>: Industrial-strength NLP</p></li>
+<li><p><strong>Papers With Code</strong>: Latest NLP research</p></li>
+</ul>
+</section>
+<section id="practice-projects">
+<h3>Practice Projects:<a class="headerlink" href="#practice-projects" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p>Sentiment analysis on Twitter data</p></li>
+<li><p>News article classifier (Reuters, 20 Newsgroups)</p></li>
+<li><p>Chatbot with GPT-2/3</p></li>
+<li><p>Named Entity Recognition (NER)</p></li>
+<li><p>Text summarization with T5</p></li>
+<li><p>Deploy ML API with FastAPI</p></li>
+</ol>
+</section>
+<section id="resources">
+<h3>Resources:<a class="headerlink" href="#resources" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Books</strong>: “Speech and Language Processing” (Jurafsky &amp; Martin)</p></li>
+<li><p><strong>Courses</strong>: Stanford CS224N (NLP with Deep Learning)</p></li>
+<li><p><strong>Competitions</strong>: Kaggle NLP challenges</p></li>
+<li><p><strong>Tools</strong>: Weights &amp; Biases (experiment tracking)</p></li>
+</ul>
+<hr class="docutils" />
+<p><strong>Congratulations!</strong> You now understand advanced ML and modern NLP. You can build ensemble models, process text, and deploy production systems! 🚀</p>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./hard"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="04_deep_learning_and_neural_networks.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Lesson 4: Deep Learning and Neural Networks</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="06_computer_systems_and_theory.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Lesson 6: Computer Systems and Theory</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#real-world-context">Real-World Context</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-you-ll-learn">What You’ll Learn</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-1-ensemble-learning-fundamentals">Part 1: Ensemble Learning Fundamentals</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#why-ensemble-methods">Why Ensemble Methods?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#three-main-approaches">Three Main Approaches</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bias-variance-tradeoff">Bias-Variance Tradeoff</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-2-bagging-methods">Part 2: Bagging Methods</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#random-forest">Random Forest</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-3-boosting-methods">Part 3: Boosting Methods</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gradient-boosting">Gradient Boosting</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#xgboost-vs-lightgbm-vs-catboost">XGBoost vs LightGBM vs CatBoost</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-4-stacking-and-voting">Part 4: Stacking and Voting</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#voting-classifier">Voting Classifier</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#stacking">Stacking</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-5-natural-language-processing-fundamentals">Part 5: Natural Language Processing Fundamentals</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#text-preprocessing-pipeline">Text Preprocessing Pipeline</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#text-vectorization">Text Vectorization</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#understanding-tf-idf">Understanding TF-IDF</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-6-sentiment-analysis-with-real-data">Part 6: Sentiment Analysis with Real Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-7-word-embeddings">Part 7: Word Embeddings</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#from-sparse-to-dense-representations">From Sparse to Dense Representations</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#word2vec-magic">Word2Vec Magic</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#understanding-lstm">Understanding LSTM</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-8-introduction-to-transformers">Part 8: Introduction to Transformers</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-revolution-attention-is-all-you-need-2017">The Revolution: Attention is All You Need (2017)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#architecture-overview">Architecture Overview</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#self-attention-simplified">Self-Attention Simplified</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#major-transformer-models">Major Transformer Models</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bert-vs-gpt">BERT vs GPT</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-9-hyperparameter-optimization">Part 9: Hyperparameter Optimization</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#strategies">Strategies</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#search-space-example">Search Space Example</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-10-model-interpretation-with-shap">Part 10: Model Interpretation with SHAP</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#why-interpretability-matters">Why Interpretability Matters</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#shap-shapley-additive-explanations">SHAP (SHapley Additive exPlanations)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-11-production-ml-considerations">Part 11: Production ML Considerations</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#deployment-checklist">Deployment Checklist</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#model-monitoring">Model Monitoring</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-12-exercises">Part 12: Exercises</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-1-ensemble-comparison">Exercise 1: Ensemble Comparison (⭐⭐)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-2-advanced-text-classification">Exercise 2: Advanced Text Classification (⭐⭐⭐)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-3-hyperparameter-tuning">Exercise 3: Hyperparameter Tuning (⭐⭐)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-4-lstm-sentiment-analysis">Exercise 4: LSTM Sentiment Analysis (⭐⭐⭐)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-5-model-interpretability">Exercise 5: Model Interpretability (⭐⭐⭐⭐)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-6-production-api">Exercise 6: Production API (⭐⭐⭐)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#self-check-quiz">Self-Check Quiz</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#key-takeaways">Key Takeaways</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ensemble-learning">Ensemble Learning</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nlp-fundamentals">NLP Fundamentals</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modern-nlp">Modern NLP</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#production-ml">Production ML</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pro-tips">Pro Tips</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#common-mistakes">Common Mistakes</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#debug-checklist">Debug Checklist</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-s-next">What’s Next?</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#continue-in-hard-track">Continue in Hard Track:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#deepen-your-nlp-knowledge">Deepen Your NLP Knowledge:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#practice-projects">Practice Projects:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#resources">Resources:</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Mykolas Perevicius
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

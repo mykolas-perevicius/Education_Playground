@@ -1,0 +1,1645 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Security Essentials for Developers &#8212; Education Playground</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=0c185eed" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=c73c0f3e"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'tools/07_security_essentials';</script>
+    <script src="../_static/js/onboarding.js?v=557b7536"></script>
+    <link rel="canonical" href="https://mykolas-perevicius.github.io/Education_Playground/tools/07_security_essentials.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Package Management\n\n## Managing Dependencies Like a Pro\n\nWhat you’ll learn:\n- Python: pip, conda, poetry, pipenv\n- Node.js: npm, yarn, pnpm\n- System packages: apt, yum, brew\n- Version pinning and lock files\n- Virtual environments\n- Security and auditing\n\nTime: 60-90 minutes" href="08_package_management.html" />
+    <link rel="prev" title="Debugging and Profiling: Finding and Fixing Bugs" href="06_debugging_profiling.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../README.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Education Playground</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../00_calibration_test.html">🎯 Calibration Test - Find Your Level</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../beginner_scripts/README.html">🌱 Beginner Scripts (10 Python Files)</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../easy/README_EASY.html">📗 Easy Level - Beginner</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../easy/01_introduction_to_python.html">1. Introduction to Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../easy/02_variables_and_data_types.html">2. Variables and Data Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../easy/03_basic_operations_and_conditionals.html">3. Operations and Conditionals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../easy/04_intro_to_ai_and_ml.html">4. Intro to AI and ML</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../easy/05_computing_fundamentals.html">5. Computing Fundamentals</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../medium/README_MEDIUM.html">📘 Medium Level - Intermediate</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../medium/01_functions_and_modules.html">1. Functions and Modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../medium/02_data_structures.html">2. Data Structures</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../medium/03_classes_and_oop.html">3. Classes and OOP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../medium/04_machine_learning_basics.html">4. Machine Learning Basics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../medium/05_data_analysis_with_pandas.html">5. Data Analysis with Pandas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../medium/06_algorithms_and_problem_solving.html">6. Algorithms and Problem Solving</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../hard/README_HARD.html">📕 Hard Level - Advanced</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../hard/01_advanced_functions_and_decorators.html">1. Advanced Functions &amp; Decorators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hard/02_generators_and_iterators.html">2. Generators and Iterators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hard/03_algorithms_and_complexity.html">3. Algorithms and Complexity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hard/04_deep_learning_and_neural_networks.html">4. Deep Learning &amp; Neural Networks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hard/05_advanced_ml_and_nlp.html">5. Advanced ML and NLP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hard/06_computer_systems_and_theory.html">6. Computer Systems and Theory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hard/07_project_ideas.html">7. Project Ideas &amp; Implementation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hard/08_classic_problems.html">Lesson 8: Classic Problems Collection</a></li>
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../hard/09_ctf_challenges.html">Lesson 9: Capture The Flag (CTF) - Hacker Training</a></li>
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../hard/10_performance_computing.html">10. Performance Computing ⚡ NEW!</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hard/11_cuda_and_parallel_computing.html">11. CUDA &amp; GPU Computing 🎮 NEW!</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="README.html">🛠️ Developer Tools Track</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="01_shell_basics.html">1. Shell and Command Line</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02_command_line_tools.html">2. Command Line Tools</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03_git_essentials.html">3. Git Essentials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04_text_editors.html">4. Text Editors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05_build_systems_cicd.html">5. Build Systems and CI/CD</a></li>
+<li class="toctree-l2"><a class="reference internal" href="06_debugging_profiling.html">6. Debugging and Profiling</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">7. Security Essentials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="08_package_management.html">8. Package Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="09_ssh_remote_systems.html">9. SSH and Remote Systems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="10_docker_containers.html">10. Docker and Containers</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../solutions/README_SOLUTIONS.html">📝 Solutions</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../solutions/easy_solutions.html">Easy Level - Complete Solutions</a></li>
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../solutions/medium_solutions.html">Medium Level - Complete Solutions</a></li>
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../solutions/hard_solutions.html">Hard Level - Complete Solutions</a></li>
+
+
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../solutions/tools_solutions.html">Developer Tools - Complete Solutions</a></li>
+
+
+
+
+
+
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../RESOURCES.html">📚 Learning Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../PYTHON_CHEATSHEET.html">⚡ Python Cheat Sheet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ML_AI_CHEATSHEET.html">🤖 ML/AI Cheat Sheet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../SETUP.html">🔧 Setup Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../RELEASE_NOTES_v2.0.0.html">🎉 Release Notes v2.0.0</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none"></div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Security Essentials for Developers</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-you-ll-learn">What You’ll Learn</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#real-world-analogy">💡 Real-World Analogy</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-security-matters">1. Why Security Matters</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#real-world-breaches">Real-World Breaches</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-cost-of-insecurity">The Cost of Insecurity</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#your-responsibility">Your Responsibility</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#owasp-top-10-vulnerabilities">2. OWASP Top 10 Vulnerabilities</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#broken-access-control">1. Broken Access Control</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cryptographic-failures">2. Cryptographic Failures</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#injection">3. Injection</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#insecure-design">4. Insecure Design</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#security-misconfiguration">5. Security Misconfiguration</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vulnerable-and-outdated-components">6. Vulnerable and Outdated Components</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#identification-and-authentication-failures">7. Identification and Authentication Failures</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#software-and-data-integrity-failures">8. Software and Data Integrity Failures</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#security-logging-and-monitoring-failures">9. Security Logging and Monitoring Failures</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#server-side-request-forgery-ssrf">10. Server-Side Request Forgery (SSRF)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#input-validation">3. Input Validation</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#validation-strategies">Validation Strategies</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-pydantic-for-validation">Using Pydantic for Validation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sanitization-preventing-xss">Sanitization - Preventing XSS</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#password-security">4. Password Security</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-not-to-do">What NOT to Do</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-to-do">What to Do</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#password-strength-requirements">Password Strength Requirements</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#authentication-authorization">5. Authentication &amp; Authorization</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#authentication-vs-authorization">Authentication vs Authorization</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#jwt-json-web-tokens">JWT (JSON Web Tokens)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rate-limiting">Rate Limiting</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#secrets-management">6. Secrets Management</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#never-hardcode-secrets">Never Hardcode Secrets!</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#use-environment-variables">Use Environment Variables</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#env-file-example">.env File Example</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#env-example-for-documentation">.env.example for Documentation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#production-secrets-management">Production Secrets Management</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#https-and-encryption">7. HTTPS and Encryption</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#why-https">Why HTTPS?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#force-https">Force HTTPS</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#security-headers">Security Headers</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#secure-coding-practices">8. Secure Coding Practices</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#principle-of-least-privilege">Principle of Least Privilege</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#defense-in-depth">Defense in Depth</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fail-securely">Fail Securely</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#keep-security-simple">Keep Security Simple</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#security-tools">9. Security Tools</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#static-analysis">Static Analysis</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dependency-scanning">Dependency Scanning</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#secret-scanning">Secret Scanning</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">📝 Exercises</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-1-fix-security-issues">Exercise 1: Fix Security Issues</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-2-input-validation">Exercise 2: Input Validation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-3-secure-api-key-storage">Exercise 3: Secure API Key Storage</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#self-check-quiz">✅ Self-Check Quiz</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#key-takeaways">🎯 Key Takeaways</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#next-steps">🚀 Next Steps</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pro-tips">💡 Pro Tips</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resources">📚 Resources</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="security-essentials-for-developers">
+<h1>Security Essentials for Developers<a class="headerlink" href="#security-essentials-for-developers" title="Link to this heading">#</a></h1>
+<p><strong>Security is everyone’s responsibility.</strong> A single security flaw can compromise an entire system. Every developer needs to know security basics.</p>
+<section id="what-you-ll-learn">
+<h2>What You’ll Learn<a class="headerlink" href="#what-you-ll-learn" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Why security matters</p></li>
+<li><p>Common vulnerabilities (OWASP Top 10)</p></li>
+<li><p>Input validation and sanitization</p></li>
+<li><p>Authentication and authorization</p></li>
+<li><p>Password security and hashing</p></li>
+<li><p>Secure coding practices</p></li>
+<li><p>HTTPS and encryption</p></li>
+<li><p>API security</p></li>
+<li><p>Secrets management</p></li>
+<li><p>Security tools and resources</p></li>
+</ul>
+</section>
+<section id="real-world-analogy">
+<h2>💡 Real-World Analogy<a class="headerlink" href="#real-world-analogy" title="Link to this heading">#</a></h2>
+<p>Security is like <strong>locking your house</strong>:</p>
+<ul class="simple">
+<li><p>🔒 <strong>Locks</strong> = Authentication (who can enter?)</p></li>
+<li><p>🚪 <strong>Doors</strong> = Access points that need protection</p></li>
+<li><p>🔑 <strong>Keys</strong> = Credentials that must be protected</p></li>
+<li><p>📹 <strong>Cameras</strong> = Logging and monitoring</p></li>
+<li><p>🏰 <strong>Fence</strong> = Firewall and network security</p></li>
+</ul>
+<p><strong>One weak point compromises everything!</strong></p>
+</section>
+<hr class="docutils" />
+<section id="why-security-matters">
+<h2>1. Why Security Matters<a class="headerlink" href="#why-security-matters" title="Link to this heading">#</a></h2>
+<section id="real-world-breaches">
+<h3>Real-World Breaches<a class="headerlink" href="#real-world-breaches" title="Link to this heading">#</a></h3>
+<p><strong>Equifax (2017)</strong></p>
+<ul class="simple">
+<li><p>147 million people’s data stolen</p></li>
+<li><p>Cause: Unpatched vulnerability</p></li>
+<li><p>Cost: $700+ million in settlements</p></li>
+</ul>
+<p><strong>Sony PlayStation (2011)</strong></p>
+<ul class="simple">
+<li><p>77 million accounts compromised</p></li>
+<li><p>23 days of downtime</p></li>
+<li><p>Cost: $171 million</p></li>
+</ul>
+<p><strong>Target (2013)</strong></p>
+<ul class="simple">
+<li><p>40 million credit cards stolen</p></li>
+<li><p>Entry point: HVAC vendor’s credentials</p></li>
+<li><p>Cost: $252 million</p></li>
+</ul>
+</section>
+<section id="the-cost-of-insecurity">
+<h3>The Cost of Insecurity<a class="headerlink" href="#the-cost-of-insecurity" title="Link to this heading">#</a></h3>
+<p><strong>Direct Costs:</strong></p>
+<ul class="simple">
+<li><p>Fines and penalties</p></li>
+<li><p>Legal fees</p></li>
+<li><p>Notification costs</p></li>
+<li><p>Credit monitoring for victims</p></li>
+</ul>
+<p><strong>Indirect Costs:</strong></p>
+<ul class="simple">
+<li><p>Brand damage</p></li>
+<li><p>Customer trust lost</p></li>
+<li><p>Stock price impact</p></li>
+<li><p>Employee morale</p></li>
+</ul>
+</section>
+<section id="your-responsibility">
+<h3>Your Responsibility<a class="headerlink" href="#your-responsibility" title="Link to this heading">#</a></h3>
+<p>As a developer:</p>
+<ul class="simple">
+<li><p>✅ You handle user data</p></li>
+<li><p>✅ You write code that could be exploited</p></li>
+<li><p>✅ You make architectural decisions</p></li>
+<li><p>✅ You’re the first line of defense</p></li>
+</ul>
+<p><strong>“Security is not a feature, it’s a requirement.”</strong></p>
+</section>
+</section>
+<hr class="docutils" />
+<section id="owasp-top-10-vulnerabilities">
+<h2>2. OWASP Top 10 Vulnerabilities<a class="headerlink" href="#owasp-top-10-vulnerabilities" title="Link to this heading">#</a></h2>
+<p><strong>OWASP</strong> (Open Web Application Security Project) maintains the <strong>Top 10 most critical web application security risks</strong>.</p>
+<section id="broken-access-control">
+<h3>1. Broken Access Control<a class="headerlink" href="#broken-access-control" title="Link to this heading">#</a></h3>
+<p><strong>Problem:</strong> Users can access resources they shouldn’t.</p>
+<p><strong>Example:</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># INSECURE: Anyone can access any user&#39;s data</span>
+<span class="k">def</span> <span class="nf">get_user_data</span><span class="p">(</span><span class="n">user_id</span><span class="p">):</span>
+    <span class="c1"># No check if current user can access this user_id!</span>
+    <span class="k">return</span> <span class="n">database</span><span class="o">.</span><span class="n">get_user</span><span class="p">(</span><span class="n">user_id</span><span class="p">)</span>
+
+<span class="c1"># SECURE: Verify authorization</span>
+<span class="k">def</span> <span class="nf">get_user_data_secure</span><span class="p">(</span><span class="n">user_id</span><span class="p">,</span> <span class="n">current_user</span><span class="p">):</span>
+    <span class="c1"># Check if user is authorized</span>
+    <span class="k">if</span> <span class="n">current_user</span><span class="o">.</span><span class="n">id</span> <span class="o">!=</span> <span class="n">user_id</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">current_user</span><span class="o">.</span><span class="n">is_admin</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">PermissionError</span><span class="p">(</span><span class="s2">&quot;Not authorized to access this user&#39;s data&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">database</span><span class="o">.</span><span class="n">get_user</span><span class="p">(</span><span class="n">user_id</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="cryptographic-failures">
+<h3>2. Cryptographic Failures<a class="headerlink" href="#cryptographic-failures" title="Link to this heading">#</a></h3>
+<p><strong>Problem:</strong> Sensitive data not encrypted or poorly encrypted.</p>
+<p><strong>Example:</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># INSECURE: Plaintext passwords!</span>
+<span class="n">users</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;alice&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;password&quot;</span><span class="p">:</span> <span class="s2">&quot;secret123&quot;</span><span class="p">}</span>  <span class="c1"># ❌ NEVER DO THIS!</span>
+<span class="p">}</span>
+
+<span class="c1"># SECURE: Hash passwords</span>
+<span class="kn">import</span> <span class="nn">hashlib</span>
+<span class="kn">import</span> <span class="nn">secrets</span>
+
+<span class="k">def</span> <span class="nf">hash_password</span><span class="p">(</span><span class="n">password</span><span class="p">,</span> <span class="n">salt</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Securely hash a password with salt.&quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">salt</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">salt</span> <span class="o">=</span> <span class="n">secrets</span><span class="o">.</span><span class="n">token_hex</span><span class="p">(</span><span class="mi">16</span><span class="p">)</span>
+    
+    <span class="c1"># Use a strong hashing algorithm</span>
+    <span class="n">hash_obj</span> <span class="o">=</span> <span class="n">hashlib</span><span class="o">.</span><span class="n">pbkdf2_hmac</span><span class="p">(</span>
+        <span class="s1">&#39;sha256&#39;</span><span class="p">,</span>
+        <span class="n">password</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">),</span>
+        <span class="n">salt</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">),</span>
+        <span class="mi">100000</span>  <span class="c1"># iterations</span>
+    <span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">salt</span> <span class="o">+</span> <span class="n">hash_obj</span><span class="o">.</span><span class="n">hex</span><span class="p">()</span>
+
+<span class="c1"># Store this instead!</span>
+<span class="n">hashed</span> <span class="o">=</span> <span class="n">hash_password</span><span class="p">(</span><span class="s2">&quot;secret123&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Hashed password: </span><span class="si">{</span><span class="n">hashed</span><span class="p">[:</span><span class="mi">50</span><span class="p">]</span><span class="si">}</span><span class="s2">...&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="injection">
+<h3>3. Injection<a class="headerlink" href="#injection" title="Link to this heading">#</a></h3>
+<p><strong>Problem:</strong> Untrusted data executed as code.</p>
+<p><strong>SQL Injection Example:</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># INSECURE: SQL Injection vulnerability!</span>
+<span class="k">def</span> <span class="nf">get_user_insecure</span><span class="p">(</span><span class="n">username</span><span class="p">):</span>
+    <span class="n">query</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;SELECT * FROM users WHERE username = &#39;</span><span class="si">{</span><span class="n">username</span><span class="si">}</span><span class="s2">&#39;&quot;</span>
+    <span class="c1"># If username = &quot;admin&#39; OR &#39;1&#39;=&#39;1&quot; → returns ALL users!</span>
+    <span class="k">return</span> <span class="n">database</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
+
+<span class="c1"># SECURE: Use parameterized queries</span>
+<span class="k">def</span> <span class="nf">get_user_secure</span><span class="p">(</span><span class="n">username</span><span class="p">):</span>
+    <span class="n">query</span> <span class="o">=</span> <span class="s2">&quot;SELECT * FROM users WHERE username = ?&quot;</span>
+    <span class="k">return</span> <span class="n">database</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="p">(</span><span class="n">username</span><span class="p">,))</span>
+
+<span class="c1"># Even better: Use an ORM</span>
+<span class="c1"># user = User.objects.get(username=username)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="insecure-design">
+<h3>4. Insecure Design<a class="headerlink" href="#insecure-design" title="Link to this heading">#</a></h3>
+<p><strong>Problem:</strong> Architecture lacks security from the start.</p>
+<p><strong>Prevention:</strong></p>
+<ul class="simple">
+<li><p>Threat modeling during design</p></li>
+<li><p>Security requirements</p></li>
+<li><p>Defense in depth (multiple layers)</p></li>
+<li><p>Principle of least privilege</p></li>
+</ul>
+</section>
+<section id="security-misconfiguration">
+<h3>5. Security Misconfiguration<a class="headerlink" href="#security-misconfiguration" title="Link to this heading">#</a></h3>
+<p><strong>Problem:</strong> Default settings, unnecessary features, verbose errors.</p>
+<p><strong>Example:</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># INSECURE: Debug mode in production!</span>
+<span class="n">app</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s1">&#39;DEBUG&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>  <span class="c1"># ❌ Shows stack traces to attackers!</span>
+
+<span class="c1"># SECURE: Production configuration</span>
+<span class="kn">import</span> <span class="nn">os</span>
+
+<span class="n">app</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s1">&#39;DEBUG&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s1">&#39;DEBUG&#39;</span><span class="p">,</span> <span class="s1">&#39;False&#39;</span><span class="p">)</span> <span class="o">==</span> <span class="s1">&#39;True&#39;</span>
+<span class="n">app</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s1">&#39;SECRET_KEY&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s1">&#39;SECRET_KEY&#39;</span><span class="p">)</span>  <span class="c1"># From environment</span>
+<span class="n">app</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s1">&#39;DATABASE_URL&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s1">&#39;DATABASE_URL&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="vulnerable-and-outdated-components">
+<h3>6. Vulnerable and Outdated Components<a class="headerlink" href="#vulnerable-and-outdated-components" title="Link to this heading">#</a></h3>
+<p><strong>Problem:</strong> Using libraries with known vulnerabilities.</p>
+<p><strong>Prevention:</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check for vulnerabilities</span>
+<span class="c1"># pip install safety</span>
+<span class="c1"># safety check</span>
+
+<span class="c1"># Or use pip-audit</span>
+<span class="c1"># pip install pip-audit</span>
+<span class="c1"># pip-audit</span>
+
+<span class="c1"># Keep dependencies updated</span>
+<span class="c1"># pip list --outdated</span>
+<span class="c1"># pip install --upgrade package-name</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="identification-and-authentication-failures">
+<h3>7. Identification and Authentication Failures<a class="headerlink" href="#identification-and-authentication-failures" title="Link to this heading">#</a></h3>
+<p><strong>Problem:</strong> Weak authentication, session management issues.</p>
+<p><strong>Prevention:</strong></p>
+<ul class="simple">
+<li><p>Multi-factor authentication (MFA)</p></li>
+<li><p>Strong password requirements</p></li>
+<li><p>Rate limiting on login attempts</p></li>
+<li><p>Secure session management</p></li>
+</ul>
+</section>
+<section id="software-and-data-integrity-failures">
+<h3>8. Software and Data Integrity Failures<a class="headerlink" href="#software-and-data-integrity-failures" title="Link to this heading">#</a></h3>
+<p><strong>Problem:</strong> Code and infrastructure don’t verify integrity.</p>
+<p><strong>Example:</strong> CI/CD pipeline without verification, deserializing untrusted data.</p>
+</section>
+<section id="security-logging-and-monitoring-failures">
+<h3>9. Security Logging and Monitoring Failures<a class="headerlink" href="#security-logging-and-monitoring-failures" title="Link to this heading">#</a></h3>
+<p><strong>Problem:</strong> Can’t detect or respond to breaches.</p>
+<p><strong>Prevention:</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">logging</span>
+
+<span class="c1"># Log security events</span>
+<span class="n">security_logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s1">&#39;security&#39;</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">login_attempt</span><span class="p">(</span><span class="n">username</span><span class="p">,</span> <span class="n">success</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">success</span><span class="p">:</span>
+        <span class="n">security_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Successful login: </span><span class="si">{</span><span class="n">username</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">security_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Failed login attempt: </span><span class="si">{</span><span class="n">username</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">access_denied</span><span class="p">(</span><span class="n">user</span><span class="p">,</span> <span class="n">resource</span><span class="p">):</span>
+    <span class="n">security_logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span>
+        <span class="sa">f</span><span class="s2">&quot;Access denied: </span><span class="si">{</span><span class="n">user</span><span class="si">}</span><span class="s2"> attempted to access </span><span class="si">{</span><span class="n">resource</span><span class="si">}</span><span class="s2">&quot;</span>
+    <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="server-side-request-forgery-ssrf">
+<h3>10. Server-Side Request Forgery (SSRF)<a class="headerlink" href="#server-side-request-forgery-ssrf" title="Link to this heading">#</a></h3>
+<p><strong>Problem:</strong> Application fetches remote resource without validation.</p>
+<p><strong>Example:</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">from</span> <span class="nn">urllib.parse</span> <span class="kn">import</span> <span class="n">urlparse</span>
+
+<span class="c1"># INSECURE: User can make server request internal resources!</span>
+<span class="k">def</span> <span class="nf">fetch_url_insecure</span><span class="p">(</span><span class="n">url</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span><span class="o">.</span><span class="n">text</span>  <span class="c1"># ❌ url could be http://localhost:6379</span>
+
+<span class="c1"># SECURE: Validate URL</span>
+<span class="k">def</span> <span class="nf">fetch_url_secure</span><span class="p">(</span><span class="n">url</span><span class="p">):</span>
+    <span class="n">parsed</span> <span class="o">=</span> <span class="n">urlparse</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+    
+    <span class="c1"># Block internal/private IPs</span>
+    <span class="k">if</span> <span class="n">parsed</span><span class="o">.</span><span class="n">hostname</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;localhost&#39;</span><span class="p">,</span> <span class="s1">&#39;127.0.0.1&#39;</span><span class="p">,</span> <span class="s1">&#39;0.0.0.0&#39;</span><span class="p">]:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Cannot access internal resources&quot;</span><span class="p">)</span>
+    
+    <span class="c1"># Whitelist allowed domains</span>
+    <span class="n">allowed_domains</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;example.com&#39;</span><span class="p">,</span> <span class="s1">&#39;api.example.com&#39;</span><span class="p">]</span>
+    <span class="k">if</span> <span class="n">parsed</span><span class="o">.</span><span class="n">hostname</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">allowed_domains</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Domain not allowed&quot;</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span><span class="o">.</span><span class="n">text</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="input-validation">
+<h2>3. Input Validation<a class="headerlink" href="#input-validation" title="Link to this heading">#</a></h2>
+<p><strong>Never trust user input!</strong> Always validate, sanitize, and escape.</p>
+<section id="validation-strategies">
+<h3>Validation Strategies<a class="headerlink" href="#validation-strategies" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">re</span>
+
+<span class="k">def</span> <span class="nf">validate_email</span><span class="p">(</span><span class="n">email</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Validate email format.&quot;&quot;&quot;</span>
+    <span class="n">pattern</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$&#39;</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">pattern</span><span class="p">,</span> <span class="n">email</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Invalid email format&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">email</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+
+<span class="k">def</span> <span class="nf">validate_username</span><span class="p">(</span><span class="n">username</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Validate username.&quot;&quot;&quot;</span>
+    <span class="c1"># Whitelist approach: only allow specific characters</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;^[a-zA-Z0-9_-]{3,20}$&#39;</span><span class="p">,</span> <span class="n">username</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+            <span class="s2">&quot;Username must be 3-20 characters, letters/numbers/underscore/dash only&quot;</span>
+        <span class="p">)</span>
+    <span class="k">return</span> <span class="n">username</span>
+
+<span class="k">def</span> <span class="nf">validate_age</span><span class="p">(</span><span class="n">age</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Validate age input.&quot;&quot;&quot;</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">age</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">age</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Age must be a number&quot;</span><span class="p">)</span>
+    
+    <span class="k">if</span> <span class="n">age</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">age</span> <span class="o">&gt;</span> <span class="mi">150</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Age must be between 0 and 150&quot;</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">age</span>
+
+<span class="c1"># Test validations</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">validate_email</span><span class="p">(</span><span class="s2">&quot;alice@example.com&quot;</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">validate_username</span><span class="p">(</span><span class="s2">&quot;alice_123&quot;</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">validate_age</span><span class="p">(</span><span class="s2">&quot;25&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="using-pydantic-for-validation">
+<h3>Using Pydantic for Validation<a class="headerlink" href="#using-pydantic-for-validation" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pydantic</span> <span class="kn">import</span> <span class="n">BaseModel</span><span class="p">,</span> <span class="n">EmailStr</span><span class="p">,</span> <span class="n">Field</span><span class="p">,</span> <span class="n">validator</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Optional</span>
+
+<span class="k">class</span> <span class="nc">UserInput</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Validated user input model.&quot;&quot;&quot;</span>
+    <span class="n">username</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">min_length</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">max_length</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">regex</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;^[a-zA-Z0-9_-]+$&#39;</span><span class="p">)</span>
+    <span class="n">email</span><span class="p">:</span> <span class="n">EmailStr</span>
+    <span class="n">age</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">ge</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">le</span><span class="o">=</span><span class="mi">150</span><span class="p">)</span>
+    <span class="n">website</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    
+    <span class="nd">@validator</span><span class="p">(</span><span class="s1">&#39;username&#39;</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">username_no_admin</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">v</span><span class="p">):</span>
+        <span class="k">if</span> <span class="s1">&#39;admin&#39;</span> <span class="ow">in</span> <span class="n">v</span><span class="o">.</span><span class="n">lower</span><span class="p">():</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Username cannot contain &quot;admin&quot;&#39;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">v</span>
+
+<span class="c1"># Valid input</span>
+<span class="n">user</span> <span class="o">=</span> <span class="n">UserInput</span><span class="p">(</span>
+    <span class="n">username</span><span class="o">=</span><span class="s2">&quot;alice123&quot;</span><span class="p">,</span>
+    <span class="n">email</span><span class="o">=</span><span class="s2">&quot;alice@example.com&quot;</span><span class="p">,</span>
+    <span class="n">age</span><span class="o">=</span><span class="mi">25</span>
+<span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">user</span><span class="p">)</span>
+
+<span class="c1"># Invalid input will raise ValidationError</span>
+<span class="c1"># UserInput(username=&quot;al&quot;, email=&quot;bad-email&quot;, age=200)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="sanitization-preventing-xss">
+<h3>Sanitization - Preventing XSS<a class="headerlink" href="#sanitization-preventing-xss" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">html</span>
+
+<span class="k">def</span> <span class="nf">sanitize_html</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Escape HTML to prevent XSS.&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">html</span><span class="o">.</span><span class="n">escape</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+
+<span class="c1"># User input</span>
+<span class="n">user_comment</span> <span class="o">=</span> <span class="s1">&#39;&lt;script&gt;alert(&quot;XSS&quot;)&lt;/script&gt;&#39;</span>
+
+<span class="c1"># INSECURE: Direct insertion</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;&lt;div&gt;</span><span class="si">{</span><span class="n">user_comment</span><span class="si">}</span><span class="s2">&lt;/div&gt;&quot;</span><span class="p">)</span>  <span class="c1"># ❌ Script would execute!</span>
+
+<span class="c1"># SECURE: Sanitized</span>
+<span class="n">safe_comment</span> <span class="o">=</span> <span class="n">sanitize_html</span><span class="p">(</span><span class="n">user_comment</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;&lt;div&gt;</span><span class="si">{</span><span class="n">safe_comment</span><span class="si">}</span><span class="s2">&lt;/div&gt;&quot;</span><span class="p">)</span>  <span class="c1"># ✅ Rendered as text</span>
+
+<span class="c1"># Modern frameworks (React, Vue, etc.) do this automatically!</span>
+<span class="c1"># But be careful with dangerouslySetInnerHTML or v-html</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="password-security">
+<h2>4. Password Security<a class="headerlink" href="#password-security" title="Link to this heading">#</a></h2>
+<section id="what-not-to-do">
+<h3>What NOT to Do<a class="headerlink" href="#what-not-to-do" title="Link to this heading">#</a></h3>
+<p>❌ Store passwords in plaintext
+❌ Use simple hashing (MD5, SHA1)
+❌ Use encryption (passwords should be one-way)
+❌ Implement your own crypto</p>
+</section>
+<section id="what-to-do">
+<h3>What to Do<a class="headerlink" href="#what-to-do" title="Link to this heading">#</a></h3>
+<p>✅ Use battle-tested libraries
+✅ Use bcrypt, scrypt, or Argon2
+✅ Use a unique salt per password
+✅ Enforce strong password requirements</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Install: pip install bcrypt</span>
+<span class="kn">import</span> <span class="nn">bcrypt</span>
+
+<span class="k">def</span> <span class="nf">hash_password_bcrypt</span><span class="p">(</span><span class="n">password</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bytes</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Hash password using bcrypt.&quot;&quot;&quot;</span>
+    <span class="c1"># Generate salt and hash</span>
+    <span class="n">salt</span> <span class="o">=</span> <span class="n">bcrypt</span><span class="o">.</span><span class="n">gensalt</span><span class="p">()</span>
+    <span class="n">hashed</span> <span class="o">=</span> <span class="n">bcrypt</span><span class="o">.</span><span class="n">hashpw</span><span class="p">(</span><span class="n">password</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">),</span> <span class="n">salt</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">hashed</span>
+
+<span class="k">def</span> <span class="nf">verify_password</span><span class="p">(</span><span class="n">password</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">hashed</span><span class="p">:</span> <span class="nb">bytes</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Verify password against hash.&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">bcrypt</span><span class="o">.</span><span class="n">checkpw</span><span class="p">(</span><span class="n">password</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">),</span> <span class="n">hashed</span><span class="p">)</span>
+
+<span class="c1"># Usage</span>
+<span class="n">password</span> <span class="o">=</span> <span class="s2">&quot;MySecurePassword123!&quot;</span>
+<span class="n">hashed</span> <span class="o">=</span> <span class="n">hash_password_bcrypt</span><span class="p">(</span><span class="n">password</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Hashed: </span><span class="si">{</span><span class="n">hashed</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Correct password: </span><span class="si">{</span><span class="n">verify_password</span><span class="p">(</span><span class="n">password</span><span class="p">,</span><span class="w"> </span><span class="n">hashed</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Wrong password: </span><span class="si">{</span><span class="n">verify_password</span><span class="p">(</span><span class="s1">&#39;wrong&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">hashed</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="password-strength-requirements">
+<h3>Password Strength Requirements<a class="headerlink" href="#password-strength-requirements" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">re</span>
+
+<span class="k">def</span> <span class="nf">check_password_strength</span><span class="p">(</span><span class="n">password</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Check password strength.</span>
+<span class="sd">    </span>
+<span class="sd">    Requirements:</span>
+<span class="sd">    - At least 8 characters</span>
+<span class="sd">    - At least one uppercase letter</span>
+<span class="sd">    - At least one lowercase letter</span>
+<span class="sd">    - At least one number</span>
+<span class="sd">    - At least one special character</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">password</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">8</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">False</span><span class="p">,</span> <span class="s2">&quot;Password must be at least 8 characters&quot;</span>
+    
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;[A-Z]&#39;</span><span class="p">,</span> <span class="n">password</span><span class="p">):</span>
+        <span class="k">return</span> <span class="kc">False</span><span class="p">,</span> <span class="s2">&quot;Password must contain uppercase letter&quot;</span>
+    
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;[a-z]&#39;</span><span class="p">,</span> <span class="n">password</span><span class="p">):</span>
+        <span class="k">return</span> <span class="kc">False</span><span class="p">,</span> <span class="s2">&quot;Password must contain lowercase letter&quot;</span>
+    
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;[0-9]&#39;</span><span class="p">,</span> <span class="n">password</span><span class="p">):</span>
+        <span class="k">return</span> <span class="kc">False</span><span class="p">,</span> <span class="s2">&quot;Password must contain a number&quot;</span>
+    
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;[!@#$%^&amp;*(),.?&quot;:</span><span class="si">{}</span><span class="s1">|&lt;&gt;]&#39;</span><span class="p">,</span> <span class="n">password</span><span class="p">):</span>
+        <span class="k">return</span> <span class="kc">False</span><span class="p">,</span> <span class="s2">&quot;Password must contain special character&quot;</span>
+    
+    <span class="c1"># Check against common passwords (simplified)</span>
+    <span class="n">common_passwords</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Password123!&#39;</span><span class="p">,</span> <span class="s1">&#39;Admin123!&#39;</span><span class="p">,</span> <span class="s1">&#39;Welcome123!&#39;</span><span class="p">]</span>
+    <span class="k">if</span> <span class="n">password</span> <span class="ow">in</span> <span class="n">common_passwords</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">False</span><span class="p">,</span> <span class="s2">&quot;Password is too common&quot;</span>
+    
+    <span class="k">return</span> <span class="kc">True</span><span class="p">,</span> <span class="s2">&quot;Password is strong&quot;</span>
+
+<span class="c1"># Test</span>
+<span class="n">passwords</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;weak&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Password123&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;MySecureP@ss123&quot;</span>
+<span class="p">]</span>
+
+<span class="k">for</span> <span class="n">pwd</span> <span class="ow">in</span> <span class="n">passwords</span><span class="p">:</span>
+    <span class="n">valid</span><span class="p">,</span> <span class="n">message</span> <span class="o">=</span> <span class="n">check_password_strength</span><span class="p">(</span><span class="n">pwd</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">pwd</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">message</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="authentication-authorization">
+<h2>5. Authentication &amp; Authorization<a class="headerlink" href="#authentication-authorization" title="Link to this heading">#</a></h2>
+<section id="authentication-vs-authorization">
+<h3>Authentication vs Authorization<a class="headerlink" href="#authentication-vs-authorization" title="Link to this heading">#</a></h3>
+<p><strong>Authentication</strong> (Who are you?)</p>
+<ul class="simple">
+<li><p>Login with username/password</p></li>
+<li><p>Multi-factor authentication (MFA)</p></li>
+<li><p>Social login (OAuth)</p></li>
+<li><p>API keys, tokens</p></li>
+</ul>
+<p><strong>Authorization</strong> (What can you do?)</p>
+<ul class="simple">
+<li><p>Role-based access control (RBAC)</p></li>
+<li><p>Permission checks</p></li>
+<li><p>Resource-level permissions</p></li>
+</ul>
+</section>
+<section id="jwt-json-web-tokens">
+<h3>JWT (JSON Web Tokens)<a class="headerlink" href="#jwt-json-web-tokens" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Install: pip install pyjwt</span>
+<span class="kn">import</span> <span class="nn">jwt</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span><span class="p">,</span> <span class="n">timedelta</span>
+
+<span class="n">SECRET_KEY</span> <span class="o">=</span> <span class="s2">&quot;your-secret-key-keep-this-safe&quot;</span>  <span class="c1"># Should be in environment variable!</span>
+
+<span class="k">def</span> <span class="nf">create_token</span><span class="p">(</span><span class="n">user_id</span><span class="p">,</span> <span class="n">username</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Create JWT token for user.&quot;&quot;&quot;</span>
+    <span class="n">payload</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;user_id&#39;</span><span class="p">:</span> <span class="n">user_id</span><span class="p">,</span>
+        <span class="s1">&#39;username&#39;</span><span class="p">:</span> <span class="n">username</span><span class="p">,</span>
+        <span class="s1">&#39;exp&#39;</span><span class="p">:</span> <span class="n">datetime</span><span class="o">.</span><span class="n">utcnow</span><span class="p">()</span> <span class="o">+</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">hours</span><span class="o">=</span><span class="mi">24</span><span class="p">),</span>  <span class="c1"># Expires in 24 hours</span>
+        <span class="s1">&#39;iat&#39;</span><span class="p">:</span> <span class="n">datetime</span><span class="o">.</span><span class="n">utcnow</span><span class="p">()</span>  <span class="c1"># Issued at</span>
+    <span class="p">}</span>
+    
+    <span class="n">token</span> <span class="o">=</span> <span class="n">jwt</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="n">payload</span><span class="p">,</span> <span class="n">SECRET_KEY</span><span class="p">,</span> <span class="n">algorithm</span><span class="o">=</span><span class="s1">&#39;HS256&#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">token</span>
+
+<span class="k">def</span> <span class="nf">verify_token</span><span class="p">(</span><span class="n">token</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Verify and decode JWT token.&quot;&quot;&quot;</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">payload</span> <span class="o">=</span> <span class="n">jwt</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="n">token</span><span class="p">,</span> <span class="n">SECRET_KEY</span><span class="p">,</span> <span class="n">algorithms</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;HS256&#39;</span><span class="p">])</span>
+        <span class="k">return</span> <span class="n">payload</span>
+    <span class="k">except</span> <span class="n">jwt</span><span class="o">.</span><span class="n">ExpiredSignatureError</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Token has expired&quot;</span><span class="p">)</span>
+    <span class="k">except</span> <span class="n">jwt</span><span class="o">.</span><span class="n">InvalidTokenError</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Invalid token&quot;</span><span class="p">)</span>
+
+<span class="c1"># Usage</span>
+<span class="n">token</span> <span class="o">=</span> <span class="n">create_token</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;alice&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Token: </span><span class="si">{</span><span class="n">token</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="n">decoded</span> <span class="o">=</span> <span class="n">verify_token</span><span class="p">(</span><span class="n">token</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Decoded: </span><span class="si">{</span><span class="n">decoded</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="rate-limiting">
+<h3>Rate Limiting<a class="headerlink" href="#rate-limiting" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">time</span> <span class="kn">import</span> <span class="n">time</span>
+<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span>
+
+<span class="k">class</span> <span class="nc">RateLimiter</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Simple rate limiter.&quot;&quot;&quot;</span>
+    
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">max_requests</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">window</span><span class="o">=</span><span class="mi">60</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Args:</span>
+<span class="sd">            max_requests: Maximum requests allowed</span>
+<span class="sd">            window: Time window in seconds</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">max_requests</span> <span class="o">=</span> <span class="n">max_requests</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">window</span> <span class="o">=</span> <span class="n">window</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">requests</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
+    
+    <span class="k">def</span> <span class="nf">is_allowed</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">identifier</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Check if request is allowed.&quot;&quot;&quot;</span>
+        <span class="n">now</span> <span class="o">=</span> <span class="n">time</span><span class="p">()</span>
+        
+        <span class="c1"># Clean old requests</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">requests</span><span class="p">[</span><span class="n">identifier</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="n">req_time</span> <span class="k">for</span> <span class="n">req_time</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">requests</span><span class="p">[</span><span class="n">identifier</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">now</span> <span class="o">-</span> <span class="n">req_time</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">window</span>
+        <span class="p">]</span>
+        
+        <span class="c1"># Check limit</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">requests</span><span class="p">[</span><span class="n">identifier</span><span class="p">])</span> <span class="o">&gt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">max_requests</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        
+        <span class="c1"># Record request</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">requests</span><span class="p">[</span><span class="n">identifier</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">now</span><span class="p">)</span>
+        <span class="k">return</span> <span class="kc">True</span>
+
+<span class="c1"># Usage</span>
+<span class="n">limiter</span> <span class="o">=</span> <span class="n">RateLimiter</span><span class="p">(</span><span class="n">max_requests</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">window</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>  <span class="c1"># 3 requests per 10 seconds</span>
+
+<span class="k">def</span> <span class="nf">login</span><span class="p">(</span><span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">):</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">limiter</span><span class="o">.</span><span class="n">is_allowed</span><span class="p">(</span><span class="n">username</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s2">&quot;Rate limit exceeded. Try again later.&quot;</span>
+    
+    <span class="c1"># ... actual login logic ...</span>
+    <span class="k">return</span> <span class="s2">&quot;Login successful&quot;</span>
+
+<span class="c1"># Test</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Attempt </span><span class="si">{</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">login</span><span class="p">(</span><span class="s1">&#39;alice&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;password&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="secrets-management">
+<h2>6. Secrets Management<a class="headerlink" href="#secrets-management" title="Link to this heading">#</a></h2>
+<section id="never-hardcode-secrets">
+<h3>Never Hardcode Secrets!<a class="headerlink" href="#never-hardcode-secrets" title="Link to this heading">#</a></h3>
+<p>❌ <strong>Don’t do this:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">DATABASE_URL</span> <span class="o">=</span> <span class="s2">&quot;postgresql://user:password@localhost/db&quot;</span>
+<span class="n">API_KEY</span> <span class="o">=</span> <span class="s2">&quot;sk-1234567890abcdef&quot;</span>
+<span class="n">SECRET_KEY</span> <span class="o">=</span> <span class="s2">&quot;my-secret-key&quot;</span>
+</pre></div>
+</div>
+</section>
+<section id="use-environment-variables">
+<h3>Use Environment Variables<a class="headerlink" href="#use-environment-variables" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">from</span> <span class="nn">dotenv</span> <span class="kn">import</span> <span class="n">load_dotenv</span>
+
+<span class="c1"># Load from .env file (don&#39;t commit this file!)</span>
+<span class="n">load_dotenv</span><span class="p">()</span>
+
+<span class="c1"># Get secrets from environment</span>
+<span class="n">DATABASE_URL</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s1">&#39;DATABASE_URL&#39;</span><span class="p">)</span>
+<span class="n">API_KEY</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s1">&#39;API_KEY&#39;</span><span class="p">)</span>
+<span class="n">SECRET_KEY</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s1">&#39;SECRET_KEY&#39;</span><span class="p">)</span>
+
+<span class="c1"># With defaults for development</span>
+<span class="n">DEBUG</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s1">&#39;DEBUG&#39;</span><span class="p">,</span> <span class="s1">&#39;False&#39;</span><span class="p">)</span> <span class="o">==</span> <span class="s1">&#39;True&#39;</span>
+<span class="n">PORT</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s1">&#39;PORT&#39;</span><span class="p">,</span> <span class="s1">&#39;5000&#39;</span><span class="p">))</span>
+
+<span class="c1"># Validate required secrets</span>
+<span class="k">if</span> <span class="ow">not</span> <span class="n">SECRET_KEY</span><span class="p">:</span>
+    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;SECRET_KEY environment variable not set!&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="env-file-example">
+<h3>.env File Example<a class="headerlink" href="#env-file-example" title="Link to this heading">#</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># .env (add to .gitignore!)</span>
+<span class="nv">DATABASE_URL</span><span class="o">=</span>postgresql://user:pass@localhost/db
+<span class="nv">API_KEY</span><span class="o">=</span>sk-1234567890abcdef
+<span class="nv">SECRET_KEY</span><span class="o">=</span>randomly-generated-secret-key
+<span class="nv">DEBUG</span><span class="o">=</span>False
+</pre></div>
+</div>
+</section>
+<section id="env-example-for-documentation">
+<h3>.env.example for Documentation<a class="headerlink" href="#env-example-for-documentation" title="Link to this heading">#</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># .env.example (commit this!)</span>
+<span class="nv">DATABASE_URL</span><span class="o">=</span>postgresql://user:pass@localhost/dbname
+<span class="nv">API_KEY</span><span class="o">=</span>your-api-key-here
+<span class="nv">SECRET_KEY</span><span class="o">=</span>your-secret-key-here
+<span class="nv">DEBUG</span><span class="o">=</span>False
+</pre></div>
+</div>
+</section>
+<section id="production-secrets-management">
+<h3>Production Secrets Management<a class="headerlink" href="#production-secrets-management" title="Link to this heading">#</a></h3>
+<p>For production, use:</p>
+<ul class="simple">
+<li><p><strong>AWS Secrets Manager</strong></p></li>
+<li><p><strong>HashiCorp Vault</strong></p></li>
+<li><p><strong>Azure Key Vault</strong></p></li>
+<li><p><strong>Google Secret Manager</strong></p></li>
+<li><p><strong>Kubernetes Secrets</strong></p></li>
+</ul>
+</section>
+</section>
+<hr class="docutils" />
+<section id="https-and-encryption">
+<h2>7. HTTPS and Encryption<a class="headerlink" href="#https-and-encryption" title="Link to this heading">#</a></h2>
+<section id="why-https">
+<h3>Why HTTPS?<a class="headerlink" href="#why-https" title="Link to this heading">#</a></h3>
+<p><strong>HTTP</strong> (unencrypted):</p>
+<ul class="simple">
+<li><p>Passwords visible in plaintext</p></li>
+<li><p>Data can be modified in transit</p></li>
+<li><p>Man-in-the-middle attacks</p></li>
+</ul>
+<p><strong>HTTPS</strong> (encrypted):</p>
+<ul class="simple">
+<li><p>✅ Encrypted communication</p></li>
+<li><p>✅ Verified server identity</p></li>
+<li><p>✅ Data integrity</p></li>
+</ul>
+</section>
+<section id="force-https">
+<h3>Force HTTPS<a class="headerlink" href="#force-https" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">redirect</span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">before_request</span>
+<span class="k">def</span> <span class="nf">force_https</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Redirect HTTP to HTTPS.&quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">request</span><span class="o">.</span><span class="n">is_secure</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">app</span><span class="o">.</span><span class="n">debug</span><span class="p">:</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">url</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;http://&#39;</span><span class="p">,</span> <span class="s1">&#39;https://&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">code</span><span class="o">=</span><span class="mi">301</span><span class="p">)</span>
+
+<span class="c1"># Or use HSTS (HTTP Strict Transport Security)</span>
+<span class="nd">@app</span><span class="o">.</span><span class="n">after_request</span>
+<span class="k">def</span> <span class="nf">set_hsts</span><span class="p">(</span><span class="n">response</span><span class="p">):</span>
+    <span class="n">response</span><span class="o">.</span><span class="n">headers</span><span class="p">[</span><span class="s1">&#39;Strict-Transport-Security&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;max-age=31536000; includeSubDomains&#39;</span>
+    <span class="k">return</span> <span class="n">response</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="security-headers">
+<h3>Security Headers<a class="headerlink" href="#security-headers" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@app</span><span class="o">.</span><span class="n">after_request</span>
+<span class="k">def</span> <span class="nf">set_security_headers</span><span class="p">(</span><span class="n">response</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Set security headers.&quot;&quot;&quot;</span>
+    
+    <span class="c1"># Prevent clickjacking</span>
+    <span class="n">response</span><span class="o">.</span><span class="n">headers</span><span class="p">[</span><span class="s1">&#39;X-Frame-Options&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;SAMEORIGIN&#39;</span>
+    
+    <span class="c1"># Prevent MIME sniffing</span>
+    <span class="n">response</span><span class="o">.</span><span class="n">headers</span><span class="p">[</span><span class="s1">&#39;X-Content-Type-Options&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;nosniff&#39;</span>
+    
+    <span class="c1"># Enable XSS protection</span>
+    <span class="n">response</span><span class="o">.</span><span class="n">headers</span><span class="p">[</span><span class="s1">&#39;X-XSS-Protection&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;1; mode=block&#39;</span>
+    
+    <span class="c1"># Content Security Policy</span>
+    <span class="n">response</span><span class="o">.</span><span class="n">headers</span><span class="p">[</span><span class="s1">&#39;Content-Security-Policy&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;default-src &#39;self&#39;&quot;</span>
+    
+    <span class="c1"># Referrer policy</span>
+    <span class="n">response</span><span class="o">.</span><span class="n">headers</span><span class="p">[</span><span class="s1">&#39;Referrer-Policy&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;strict-origin-when-cross-origin&#39;</span>
+    
+    <span class="k">return</span> <span class="n">response</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="secure-coding-practices">
+<h2>8. Secure Coding Practices<a class="headerlink" href="#secure-coding-practices" title="Link to this heading">#</a></h2>
+<section id="principle-of-least-privilege">
+<h3>Principle of Least Privilege<a class="headerlink" href="#principle-of-least-privilege" title="Link to this heading">#</a></h3>
+<p><strong>Give minimum permissions needed:</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># BAD: Database user has all permissions</span>
+<span class="c1"># db_user = &quot;admin&quot;  # Can DROP tables!</span>
+
+<span class="c1"># GOOD: Different users for different tasks</span>
+<span class="c1"># read_only_user = &quot;app_readonly&quot;  # SELECT only</span>
+<span class="c1"># app_user = &quot;app_write&quot;           # SELECT, INSERT, UPDATE</span>
+<span class="c1"># admin_user = &quot;db_admin&quot;          # Only for migrations</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="defense-in-depth">
+<h3>Defense in Depth<a class="headerlink" href="#defense-in-depth" title="Link to this heading">#</a></h3>
+<p><strong>Multiple layers of security:</strong></p>
+<ol class="arabic simple">
+<li><p><strong>Network layer</strong>: Firewall, VPN</p></li>
+<li><p><strong>Application layer</strong>: Input validation, authentication</p></li>
+<li><p><strong>Database layer</strong>: Parameterized queries, least privilege</p></li>
+<li><p><strong>Logging layer</strong>: Audit trails, monitoring</p></li>
+</ol>
+</section>
+<section id="fail-securely">
+<h3>Fail Securely<a class="headerlink" href="#fail-securely" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">check_permission</span><span class="p">(</span><span class="n">user</span><span class="p">,</span> <span class="n">resource</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Check if user has permission.&quot;&quot;&quot;</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="c1"># Query permission system</span>
+        <span class="n">has_permission</span> <span class="o">=</span> <span class="n">permission_db</span><span class="o">.</span><span class="n">check</span><span class="p">(</span><span class="n">user</span><span class="p">,</span> <span class="n">resource</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">has_permission</span>
+    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="c1"># FAIL SECURELY: Deny access on error</span>
+        <span class="n">logging</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Permission check failed: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="kc">False</span>  <span class="c1"># ✅ Deny by default</span>
+        <span class="c1"># return True  # ❌ NEVER do this!</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="keep-security-simple">
+<h3>Keep Security Simple<a class="headerlink" href="#keep-security-simple" title="Link to this heading">#</a></h3>
+<p><strong>Complex code → More bugs → More vulnerabilities</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Complex (harder to audit)</span>
+<span class="k">def</span> <span class="nf">auth</span><span class="p">(</span><span class="n">u</span><span class="p">,</span><span class="n">p</span><span class="p">):</span> <span class="k">return</span> <span class="n">h</span><span class="p">(</span><span class="n">p</span><span class="p">)</span><span class="o">==</span><span class="n">db</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">u</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;h&#39;</span><span class="p">)</span> <span class="k">if</span> <span class="n">db</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">u</span><span class="p">)</span> <span class="k">else</span> <span class="kc">False</span>
+
+<span class="c1"># Simple (easier to audit)</span>
+<span class="k">def</span> <span class="nf">authenticate</span><span class="p">(</span><span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Authenticate user with password.&quot;&quot;&quot;</span>
+    <span class="n">user</span> <span class="o">=</span> <span class="n">database</span><span class="o">.</span><span class="n">get_user</span><span class="p">(</span><span class="n">username</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">user</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">False</span>
+    
+    <span class="n">password_hash</span> <span class="o">=</span> <span class="n">hash_password</span><span class="p">(</span><span class="n">password</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">password_hash</span> <span class="o">==</span> <span class="n">user</span><span class="o">.</span><span class="n">password_hash</span>
+</pre></div>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="security-tools">
+<h2>9. Security Tools<a class="headerlink" href="#security-tools" title="Link to this heading">#</a></h2>
+<section id="static-analysis">
+<h3>Static Analysis<a class="headerlink" href="#static-analysis" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Install security linters</span>
+<span class="c1"># pip install bandit safety semgrep</span>
+
+<span class="c1"># Bandit - Python security linter</span>
+<span class="c1"># bandit -r .</span>
+
+<span class="c1"># Safety - Check dependencies for vulnerabilities</span>
+<span class="c1"># safety check</span>
+
+<span class="c1"># Semgrep - Static analysis</span>
+<span class="c1"># semgrep --config=auto .</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="dependency-scanning">
+<h3>Dependency Scanning<a class="headerlink" href="#dependency-scanning" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># pip-audit - Scan for known vulnerabilities</span>
+<span class="c1"># pip install pip-audit</span>
+<span class="c1"># pip-audit</span>
+
+<span class="c1"># Or use GitHub&#39;s Dependabot</span>
+<span class="c1"># Automatically creates PRs for vulnerable dependencies</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="secret-scanning">
+<h3>Secret Scanning<a class="headerlink" href="#secret-scanning" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># gitleaks - Scan for secrets in git history</span>
+<span class="c1"># brew install gitleaks</span>
+<span class="c1"># gitleaks detect</span>
+
+<span class="c1"># truffleHog - Find secrets in code</span>
+<span class="c1"># pip install truffleHog</span>
+<span class="c1"># trufflehog filesystem .</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="exercises">
+<h2>📝 Exercises<a class="headerlink" href="#exercises" title="Link to this heading">#</a></h2>
+<section id="exercise-1-fix-security-issues">
+<h3>Exercise 1: Fix Security Issues<a class="headerlink" href="#exercise-1-fix-security-issues" title="Link to this heading">#</a></h3>
+<p>Find and fix all security issues:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># This code has multiple security issues!</span>
+<span class="k">def</span> <span class="nf">login</span><span class="p">(</span><span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">):</span>
+    <span class="n">query</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;SELECT * FROM users WHERE username=&#39;</span><span class="si">{</span><span class="n">username</span><span class="si">}</span><span class="s2">&#39; AND password=&#39;</span><span class="si">{</span><span class="n">password</span><span class="si">}</span><span class="s2">&#39;&quot;</span>
+    <span class="n">user</span> <span class="o">=</span> <span class="n">database</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">user</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+
+<span class="c1"># Issues:</span>
+<span class="c1"># 1. SQL injection</span>
+<span class="c1"># 2. Plaintext password comparison</span>
+<span class="c1"># 3. No rate limiting</span>
+<span class="c1"># 4. No logging</span>
+
+<span class="c1"># Your fixed version:</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="exercise-2-input-validation">
+<h3>Exercise 2: Input Validation<a class="headerlink" href="#exercise-2-input-validation" title="Link to this heading">#</a></h3>
+<p>Create a validation function for user registration:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">validate_registration</span><span class="p">(</span><span class="n">username</span><span class="p">,</span> <span class="n">email</span><span class="p">,</span> <span class="n">password</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Validate user registration data.</span>
+<span class="sd">    </span>
+<span class="sd">    Requirements:</span>
+<span class="sd">    - Username: 3-20 chars, alphanumeric + underscore</span>
+<span class="sd">    - Email: Valid email format</span>
+<span class="sd">    - Password: Strong (8+ chars, mixed case, numbers, special)</span>
+<span class="sd">    </span>
+<span class="sd">    Returns:</span>
+<span class="sd">        (bool, str): (is_valid, error_message)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Your code here</span>
+    <span class="k">pass</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="exercise-3-secure-api-key-storage">
+<h3>Exercise 3: Secure API Key Storage<a class="headerlink" href="#exercise-3-secure-api-key-storage" title="Link to this heading">#</a></h3>
+<p>Refactor this code to use environment variables:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># INSECURE CODE</span>
+<span class="n">API_KEY</span> <span class="o">=</span> <span class="s2">&quot;sk-1234567890abcdef&quot;</span>
+<span class="n">DATABASE_URL</span> <span class="o">=</span> <span class="s2">&quot;postgresql://admin:password123@localhost/mydb&quot;</span>
+
+<span class="k">def</span> <span class="nf">connect_to_api</span><span class="p">():</span>
+    <span class="k">return</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;https://api.example.com&quot;</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;Authorization&quot;</span><span class="p">:</span> <span class="n">API_KEY</span><span class="p">})</span>
+
+<span class="c1"># Your secure version using environment variables:</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="self-check-quiz">
+<h2>✅ Self-Check Quiz<a class="headerlink" href="#self-check-quiz" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p>What’s the difference between authentication and authorization?</p></li>
+<li><p>What is SQL injection and how do you prevent it?</p></li>
+<li><p>Why should you never store passwords in plaintext?</p></li>
+<li><p>What hashing algorithm should you use for passwords?</p></li>
+<li><p>What is XSS and how do you prevent it?</p></li>
+<li><p>Why use HTTPS instead of HTTP?</p></li>
+<li><p>What is the principle of least privilege?</p></li>
+<li><p>Where should you store API keys and secrets?</p></li>
+<li><p>What is rate limiting and why is it important?</p></li>
+<li><p>Name 3 security headers you should set.</p></li>
+</ol>
+</section>
+<hr class="docutils" />
+<section id="key-takeaways">
+<h2>🎯 Key Takeaways<a class="headerlink" href="#key-takeaways" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><strong>Security is everyone’s job</strong> - Not just security team</p></li>
+<li><p><strong>Never trust user input</strong> - Always validate and sanitize</p></li>
+<li><p><strong>Use parameterized queries</strong> - Prevent SQL injection</p></li>
+<li><p><strong>Hash passwords</strong> - Never store plaintext (use bcrypt)</p></li>
+<li><p><strong>Use HTTPS</strong> - Encrypt all communication</p></li>
+<li><p><strong>Manage secrets properly</strong> - Environment variables, not code</p></li>
+<li><p><strong>Principle of least privilege</strong> - Minimum permissions needed</p></li>
+<li><p><strong>Defense in depth</strong> - Multiple security layers</p></li>
+<li><p><strong>Keep dependencies updated</strong> - Patch vulnerabilities</p></li>
+<li><p><strong>Log security events</strong> - Monitor and respond</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="next-steps">
+<h2>🚀 Next Steps<a class="headerlink" href="#next-steps" title="Link to this heading">#</a></h2>
+<p><strong>Security is a journey, not a destination!</strong></p>
+<p><strong>Continue learning:</strong></p>
+<ul class="simple">
+<li><p><strong>OWASP Top 10</strong> - Read in detail</p></li>
+<li><p><strong>Security testing</strong> - Pen testing, fuzzing</p></li>
+<li><p><strong>Secure DevOps</strong> - CI/CD security</p></li>
+<li><p><strong>Cloud security</strong> - AWS/Azure/GCP best practices</p></li>
+</ul>
+<p><strong>Practice:</strong></p>
+<ul class="simple">
+<li><p>CTF challenges (Capture The Flag)</p></li>
+<li><p>HackTheBox, TryHackMe</p></li>
+<li><p>OWASP WebGoat (intentionally vulnerable app)</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="pro-tips">
+<h2>💡 Pro Tips<a class="headerlink" href="#pro-tips" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p><strong>Security by default</strong> - Make secure choice the easy choice</p></li>
+<li><p><strong>Fail securely</strong> - Deny access on errors</p></li>
+<li><p><strong>Don’t roll your own crypto</strong> - Use tested libraries</p></li>
+<li><p><strong>Keep it simple</strong> - Complex code has more vulnerabilities</p></li>
+<li><p><strong>Assume breach</strong> - Plan for when (not if) you’re hacked</p></li>
+<li><p><strong>Security reviews</strong> - Code review for security</p></li>
+<li><p><strong>Educate team</strong> - Everyone needs security awareness</p></li>
+<li><p><strong>Stay updated</strong> - New vulnerabilities discovered daily</p></li>
+</ol>
+</section>
+<hr class="docutils" />
+<section id="resources">
+<h2>📚 Resources<a class="headerlink" href="#resources" title="Link to this heading">#</a></h2>
+<p><strong>Essential Reading:</strong></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://owasp.org/www-project-top-ten/">OWASP Top 10</a></p></li>
+<li><p><a class="reference external" href="https://cheatsheetseries.owasp.org/">OWASP Cheat Sheet Series</a></p></li>
+<li><p><a class="reference external" href="https://cwe.mitre.org/top25/">CWE Top 25</a></p></li>
+</ul>
+<p><strong>Tools:</strong></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://bandit.readthedocs.io/">Bandit</a> - Python security linter</p></li>
+<li><p><a class="reference external" href="https://pyup.io/safety/">Safety</a> - Dependency scanner</p></li>
+<li><p><a class="reference external" href="https://semgrep.dev/">Semgrep</a> - Static analysis</p></li>
+<li><p><a class="reference external" href="https://github.com/gitleaks/gitleaks">Gitleaks</a> - Secret scanner</p></li>
+</ul>
+<p><strong>Learning Platforms:</strong></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://portswigger.net/web-security">PortSwigger Web Security Academy</a></p></li>
+<li><p><a class="reference external" href="https://www.hackthebox.com/">HackTheBox</a></p></li>
+<li><p><a class="reference external" href="https://tryhackme.com/">TryHackMe</a></p></li>
+<li><p><a class="reference external" href="https://pentesterlab.com/">PentesterLab</a></p></li>
+</ul>
+<hr class="docutils" />
+<p><strong>“Security is not a product, but a process.”</strong> - Bruce Schneier</p>
+<p>Build security into everything you create! 🔒✨</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./tools"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="06_debugging_profiling.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Debugging and Profiling: Finding and Fixing Bugs</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="08_package_management.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Package Management\n\n## Managing Dependencies Like a Pro\n\n<strong>What you’ll learn:</strong>\n- Python: pip, conda, poetry, pipenv\n- Node.js: npm, yarn, pnpm\n- System packages: apt, yum, brew\n- Version pinning and lock files\n- Virtual environments\n- Security and auditing\n\n<strong>Time:</strong> 60-90 minutes</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-you-ll-learn">What You’ll Learn</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#real-world-analogy">💡 Real-World Analogy</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-security-matters">1. Why Security Matters</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#real-world-breaches">Real-World Breaches</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-cost-of-insecurity">The Cost of Insecurity</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#your-responsibility">Your Responsibility</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#owasp-top-10-vulnerabilities">2. OWASP Top 10 Vulnerabilities</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#broken-access-control">1. Broken Access Control</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cryptographic-failures">2. Cryptographic Failures</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#injection">3. Injection</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#insecure-design">4. Insecure Design</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#security-misconfiguration">5. Security Misconfiguration</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vulnerable-and-outdated-components">6. Vulnerable and Outdated Components</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#identification-and-authentication-failures">7. Identification and Authentication Failures</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#software-and-data-integrity-failures">8. Software and Data Integrity Failures</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#security-logging-and-monitoring-failures">9. Security Logging and Monitoring Failures</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#server-side-request-forgery-ssrf">10. Server-Side Request Forgery (SSRF)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#input-validation">3. Input Validation</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#validation-strategies">Validation Strategies</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-pydantic-for-validation">Using Pydantic for Validation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sanitization-preventing-xss">Sanitization - Preventing XSS</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#password-security">4. Password Security</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-not-to-do">What NOT to Do</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-to-do">What to Do</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#password-strength-requirements">Password Strength Requirements</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#authentication-authorization">5. Authentication &amp; Authorization</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#authentication-vs-authorization">Authentication vs Authorization</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#jwt-json-web-tokens">JWT (JSON Web Tokens)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rate-limiting">Rate Limiting</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#secrets-management">6. Secrets Management</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#never-hardcode-secrets">Never Hardcode Secrets!</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#use-environment-variables">Use Environment Variables</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#env-file-example">.env File Example</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#env-example-for-documentation">.env.example for Documentation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#production-secrets-management">Production Secrets Management</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#https-and-encryption">7. HTTPS and Encryption</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#why-https">Why HTTPS?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#force-https">Force HTTPS</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#security-headers">Security Headers</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#secure-coding-practices">8. Secure Coding Practices</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#principle-of-least-privilege">Principle of Least Privilege</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#defense-in-depth">Defense in Depth</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fail-securely">Fail Securely</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#keep-security-simple">Keep Security Simple</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#security-tools">9. Security Tools</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#static-analysis">Static Analysis</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dependency-scanning">Dependency Scanning</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#secret-scanning">Secret Scanning</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">📝 Exercises</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-1-fix-security-issues">Exercise 1: Fix Security Issues</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-2-input-validation">Exercise 2: Input Validation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-3-secure-api-key-storage">Exercise 3: Secure API Key Storage</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#self-check-quiz">✅ Self-Check Quiz</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#key-takeaways">🎯 Key Takeaways</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#next-steps">🚀 Next Steps</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pro-tips">💡 Pro Tips</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resources">📚 Resources</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Mykolas Perevicius
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

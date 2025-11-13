@@ -1,0 +1,1857 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Git Essentials: Version Control for Developers &#8212; Education Playground</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=0c185eed" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=c73c0f3e"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'tools/03_git_essentials';</script>
+    <script src="../_static/js/onboarding.js?v=557b7536"></script>
+    <link rel="canonical" href="https://mykolas-perevicius.github.io/Education_Playground/tools/03_git_essentials.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Text Editors: Vim &amp; Modern Alternatives" href="04_text_editors.html" />
+    <link rel="prev" title="Command Line Tools" href="02_command_line_tools.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../README.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Education Playground</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../00_calibration_test.html">🎯 Calibration Test - Find Your Level</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../beginner_scripts/README.html">🌱 Beginner Scripts (10 Python Files)</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../easy/README_EASY.html">📗 Easy Level - Beginner</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../easy/01_introduction_to_python.html">1. Introduction to Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../easy/02_variables_and_data_types.html">2. Variables and Data Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../easy/03_basic_operations_and_conditionals.html">3. Operations and Conditionals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../easy/04_intro_to_ai_and_ml.html">4. Intro to AI and ML</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../easy/05_computing_fundamentals.html">5. Computing Fundamentals</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../medium/README_MEDIUM.html">📘 Medium Level - Intermediate</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../medium/01_functions_and_modules.html">1. Functions and Modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../medium/02_data_structures.html">2. Data Structures</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../medium/03_classes_and_oop.html">3. Classes and OOP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../medium/04_machine_learning_basics.html">4. Machine Learning Basics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../medium/05_data_analysis_with_pandas.html">5. Data Analysis with Pandas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../medium/06_algorithms_and_problem_solving.html">6. Algorithms and Problem Solving</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../hard/README_HARD.html">📕 Hard Level - Advanced</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../hard/01_advanced_functions_and_decorators.html">1. Advanced Functions &amp; Decorators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hard/02_generators_and_iterators.html">2. Generators and Iterators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hard/03_algorithms_and_complexity.html">3. Algorithms and Complexity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hard/04_deep_learning_and_neural_networks.html">4. Deep Learning &amp; Neural Networks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hard/05_advanced_ml_and_nlp.html">5. Advanced ML and NLP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hard/06_computer_systems_and_theory.html">6. Computer Systems and Theory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hard/07_project_ideas.html">7. Project Ideas &amp; Implementation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hard/08_classic_problems.html">Lesson 8: Classic Problems Collection</a></li>
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../hard/09_ctf_challenges.html">Lesson 9: Capture The Flag (CTF) - Hacker Training</a></li>
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../hard/10_performance_computing.html">10. Performance Computing ⚡ NEW!</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hard/11_cuda_and_parallel_computing.html">11. CUDA &amp; GPU Computing 🎮 NEW!</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="README.html">🛠️ Developer Tools Track</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="01_shell_basics.html">1. Shell and Command Line</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02_command_line_tools.html">2. Command Line Tools</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">3. Git Essentials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04_text_editors.html">4. Text Editors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05_build_systems_cicd.html">5. Build Systems and CI/CD</a></li>
+<li class="toctree-l2"><a class="reference internal" href="06_debugging_profiling.html">6. Debugging and Profiling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="07_security_essentials.html">7. Security Essentials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="08_package_management.html">8. Package Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="09_ssh_remote_systems.html">9. SSH and Remote Systems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="10_docker_containers.html">10. Docker and Containers</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../solutions/README_SOLUTIONS.html">📝 Solutions</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../solutions/easy_solutions.html">Easy Level - Complete Solutions</a></li>
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../solutions/medium_solutions.html">Medium Level - Complete Solutions</a></li>
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../solutions/hard_solutions.html">Hard Level - Complete Solutions</a></li>
+
+
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../solutions/tools_solutions.html">Developer Tools - Complete Solutions</a></li>
+
+
+
+
+
+
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../RESOURCES.html">📚 Learning Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../PYTHON_CHEATSHEET.html">⚡ Python Cheat Sheet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ML_AI_CHEATSHEET.html">🤖 ML/AI Cheat Sheet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../SETUP.html">🔧 Setup Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../RELEASE_NOTES_v2.0.0.html">🎉 Release Notes v2.0.0</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none"></div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Git Essentials: Version Control for Developers</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-you-ll-learn">What You’ll Learn</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#real-world-analogy">💡 Real-World Analogy</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-version-control">1. What is Version Control?</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#why-git">Why Git?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#git-vs-github">Git vs GitHub</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#core-git-concepts">2. Core Git Concepts</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#repository-repo">Repository (Repo)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#commit">Commit</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#branch">Branch</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#working-directory">Working Directory</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#staging-area-index">Staging Area (Index)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#remote">Remote</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-three-states">The Three States</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setting-up-git">3. Setting Up Git</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#installation">Installation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#initial-configuration">Initial Configuration</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-your-first-repository">4. Creating Your First Repository</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#method-1-start-a-new-project">Method 1: Start a New Project</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#method-2-clone-an-existing-repository">Method 2: Clone an Existing Repository</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-git-workflow">5. Basic Git Workflow</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#checking-status">Checking Status</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#staging-changes">Staging Changes</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#committing-changes">Committing Changes</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#writing-good-commit-messages">Writing Good Commit Messages</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#viewing-history">6. Viewing History</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#viewing-changes">Viewing Changes</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#branching-and-merging">7. Branching and Merging</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#why-branch">Why Branch?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#branch-commands">Branch Commands</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#merging-branches">Merging Branches</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#merge-conflicts">Merge Conflicts</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#working-with-remotes-github">8. Working with Remotes (GitHub)</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#adding-a-remote">Adding a Remote</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pushing-changes">Pushing Changes</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pulling-changes">Pulling Changes</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fetching-changes">Fetching Changes</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#undoing-changes">9. Undoing Changes</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#unstaging-files">Unstaging Files</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#discarding-changes">Discarding Changes</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#amending-commits">Amending Commits</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reverting-commits">Reverting Commits</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#resetting">Resetting</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gitignore-ignoring-files">10. .gitignore: Ignoring Files</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-gitignore">Creating .gitignore</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#common-workflows">11. Common Workflows</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#feature-branch-workflow">Feature Branch Workflow</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fork-and-pull-request-open-source">Fork and Pull Request (Open Source)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hotfix-workflow">Hotfix Workflow</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#advanced-tips-tricks">12. Advanced Tips &amp; Tricks</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#stashing-changes">Stashing Changes</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tagging-releases">Tagging Releases</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rebasing-advanced">Rebasing (Advanced)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#useful-aliases">Useful Aliases</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#git-best-practices">13. Git Best Practices</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#commit-often-push-regularly">Commit Often, Push Regularly</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#write-meaningful-commit-messages">Write Meaningful Commit Messages</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#use-branches">Use Branches</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pull-before-push">Pull Before Push</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#never-commit-secrets">Never Commit Secrets</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#review-before-committing">Review Before Committing</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#use-pull-requests">Use Pull Requests</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#troubleshooting-common-issues">14. Troubleshooting Common Issues</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#i-committed-to-the-wrong-branch">“I committed to the wrong branch!”</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#i-need-to-undo-the-last-commit">“I need to undo the last commit!”</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#i-have-merge-conflicts">“I have merge conflicts!”</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#i-accidentally-deleted-a-file">“I accidentally deleted a file!”</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#help-i-broke-everything">“Help! I broke everything!”</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">📝 Exercises</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-1-first-repository">Exercise 1: First Repository</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-2-branching-practice">Exercise 2: Branching Practice</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-3-github-workflow">Exercise 3: GitHub Workflow</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-4-undoing-mistakes">Exercise 4: Undoing Mistakes</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-5-gitignore-practice">Exercise 5: .gitignore Practice</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#self-check-quiz">✅ Self-Check Quiz</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#key-takeaways">🎯 Key Takeaways</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#next-steps">🚀 Next Steps</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pro-tips">💡 Pro Tips</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resources">📚 Resources</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="git-essentials-version-control-for-developers">
+<h1>Git Essentials: Version Control for Developers<a class="headerlink" href="#git-essentials-version-control-for-developers" title="Link to this heading">#</a></h1>
+<p><strong>Git is the most important tool in modern software development.</strong> Whether you’re working solo or on a team of 1000, Git helps you track changes, collaborate, and never lose work.</p>
+<section id="what-you-ll-learn">
+<h2>What You’ll Learn<a class="headerlink" href="#what-you-ll-learn" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>What version control is and why it matters</p></li>
+<li><p>Core Git concepts (commits, branches, repositories)</p></li>
+<li><p>Essential Git commands for daily use</p></li>
+<li><p>Branching and merging workflows</p></li>
+<li><p>Collaborating with GitHub</p></li>
+<li><p>Best practices and common workflows</p></li>
+<li><p>Fixing mistakes and recovering work</p></li>
+</ul>
+</section>
+<section id="real-world-analogy">
+<h2>💡 Real-World Analogy<a class="headerlink" href="#real-world-analogy" title="Link to this heading">#</a></h2>
+<p>Think of Git like <strong>saving your video game progress</strong>:</p>
+<ul class="simple">
+<li><p><strong>Commits</strong> = Save points (you can go back to any save)</p></li>
+<li><p><strong>Branches</strong> = Alternate storylines (try different paths without losing main game)</p></li>
+<li><p><strong>Merge</strong> = Combining storylines when you find the best path</p></li>
+<li><p><strong>Remote</strong> = Cloud save (backup on GitHub/GitLab)</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="what-is-version-control">
+<h2>1. What is Version Control?<a class="headerlink" href="#what-is-version-control" title="Link to this heading">#</a></h2>
+<p><strong>Version Control</strong> tracks changes to your code over time, allowing you to:</p>
+<ul class="simple">
+<li><p>See what changed, when, and by whom</p></li>
+<li><p>Revert to any previous version</p></li>
+<li><p>Work on features without breaking the main code</p></li>
+<li><p>Collaborate with others without overwriting each other’s work</p></li>
+</ul>
+<section id="why-git">
+<h3>Why Git?<a class="headerlink" href="#why-git" title="Link to this heading">#</a></h3>
+<p><strong>Before Git:</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">project_final</span><span class="o">.</span><span class="n">py</span>
+<span class="n">project_final_v2</span><span class="o">.</span><span class="n">py</span>
+<span class="n">project_final_v2_actually_final</span><span class="o">.</span><span class="n">py</span>
+<span class="n">project_final_v2_actually_final_for_real</span><span class="o">.</span><span class="n">py</span>
+</pre></div>
+</div>
+<p>😱 Sound familiar?</p>
+<p><strong>With Git:</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>project.py (one file, full history preserved!)
+</pre></div>
+</div>
+<p>😊 Clean, organized, powerful!</p>
+</section>
+<section id="git-vs-github">
+<h3>Git vs GitHub<a class="headerlink" href="#git-vs-github" title="Link to this heading">#</a></h3>
+<p><strong>Common confusion:</strong></p>
+<ul class="simple">
+<li><p><strong>Git</strong> = Version control tool (runs on your computer)</p></li>
+<li><p><strong>GitHub</strong> = Hosting service for Git repositories (like Google Drive for code)</p></li>
+<li><p><strong>Other hosts</strong>: GitLab, Bitbucket, Gitea</p></li>
+</ul>
+<p>Git works perfectly fine without GitHub, but GitHub adds collaboration features!</p>
+</section>
+</section>
+<hr class="docutils" />
+<section id="core-git-concepts">
+<h2>2. Core Git Concepts<a class="headerlink" href="#core-git-concepts" title="Link to this heading">#</a></h2>
+<section id="repository-repo">
+<h3>Repository (Repo)<a class="headerlink" href="#repository-repo" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>A folder tracked by Git</p></li>
+<li><p>Contains all files + complete history</p></li>
+<li><p>Lives in hidden <code class="docutils literal notranslate"><span class="pre">.git</span></code> folder</p></li>
+</ul>
+</section>
+<section id="commit">
+<h3>Commit<a class="headerlink" href="#commit" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>A <strong>snapshot</strong> of your project at a point in time</p></li>
+<li><p>Like a save point in a video game</p></li>
+<li><p>Has a unique ID (SHA hash)</p></li>
+<li><p>Contains: changes, message, author, timestamp</p></li>
+</ul>
+</section>
+<section id="branch">
+<h3>Branch<a class="headerlink" href="#branch" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>An independent line of development</p></li>
+<li><p>Default branch: <code class="docutils literal notranslate"><span class="pre">main</span></code> (or <code class="docutils literal notranslate"><span class="pre">master</span></code> in older repos)</p></li>
+<li><p>Create branches for new features, experiments</p></li>
+</ul>
+</section>
+<section id="working-directory">
+<h3>Working Directory<a class="headerlink" href="#working-directory" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Your actual files (what you see and edit)</p></li>
+</ul>
+</section>
+<section id="staging-area-index">
+<h3>Staging Area (Index)<a class="headerlink" href="#staging-area-index" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Files ready to be committed</p></li>
+<li><p>Lets you choose what to include in next commit</p></li>
+</ul>
+</section>
+<section id="remote">
+<h3>Remote<a class="headerlink" href="#remote" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>A version of your repo hosted elsewhere (GitHub, GitLab)</p></li>
+<li><p>Named <code class="docutils literal notranslate"><span class="pre">origin</span></code> by default</p></li>
+</ul>
+</section>
+<section id="the-three-states">
+<h3>The Three States<a class="headerlink" href="#the-three-states" title="Link to this heading">#</a></h3>
+<p>Files in Git can be in three states:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Working Directory → Staging Area → Repository
+   (modified)         (staged)      (committed)
+</pre></div>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="setting-up-git">
+<h2>3. Setting Up Git<a class="headerlink" href="#setting-up-git" title="Link to this heading">#</a></h2>
+<section id="installation">
+<h3>Installation<a class="headerlink" href="#installation" title="Link to this heading">#</a></h3>
+<p>Check if Git is installed:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="err">!</span><span class="n">git</span> <span class="o">--</span><span class="n">version</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>If not installed:</p>
+<ul class="simple">
+<li><p><strong>macOS</strong>: <code class="docutils literal notranslate"><span class="pre">brew</span> <span class="pre">install</span> <span class="pre">git</span></code> or comes with Xcode</p></li>
+<li><p><strong>Linux</strong>: <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">apt</span> <span class="pre">install</span> <span class="pre">git</span></code> (Ubuntu/Debian) or <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">yum</span> <span class="pre">install</span> <span class="pre">git</span></code> (RedHat/CentOS)</p></li>
+<li><p><strong>Windows</strong>: Download from <a class="reference external" href="https://git-scm.com">git-scm.com</a></p></li>
+</ul>
+</section>
+<section id="initial-configuration">
+<h3>Initial Configuration<a class="headerlink" href="#initial-configuration" title="Link to this heading">#</a></h3>
+<p>Set your identity (do this once):</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set your name (appears in commits)</span>
+<span class="err">!</span><span class="n">git</span> <span class="n">config</span> <span class="o">--</span><span class="k">global</span> <span class="n">user</span><span class="o">.</span><span class="n">name</span> <span class="s2">&quot;Your Name&quot;</span>
+
+<span class="c1"># Set your email</span>
+<span class="err">!</span><span class="n">git</span> <span class="n">config</span> <span class="o">--</span><span class="k">global</span> <span class="n">user</span><span class="o">.</span><span class="n">email</span> <span class="s2">&quot;your.email@example.com&quot;</span>
+
+<span class="c1"># Set default branch name to &#39;main&#39;</span>
+<span class="err">!</span><span class="n">git</span> <span class="n">config</span> <span class="o">--</span><span class="k">global</span> <span class="n">init</span><span class="o">.</span><span class="n">defaultBranch</span> <span class="n">main</span>
+
+<span class="c1"># Verify configuration</span>
+<span class="err">!</span><span class="n">git</span> <span class="n">config</span> <span class="o">--</span><span class="nb">list</span> <span class="o">|</span> <span class="n">grep</span> <span class="n">user</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Pro Tips:</strong></p>
+<ul class="simple">
+<li><p>Use the same email as your GitHub account for attribution</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--global</span></code> applies to all repos; omit for per-repo settings</p></li>
+</ul>
+</section>
+</section>
+<hr class="docutils" />
+<section id="creating-your-first-repository">
+<h2>4. Creating Your First Repository<a class="headerlink" href="#creating-your-first-repository" title="Link to this heading">#</a></h2>
+<section id="method-1-start-a-new-project">
+<h3>Method 1: Start a New Project<a class="headerlink" href="#method-1-start-a-new-project" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create a new project directory</span>
+<span class="err">!</span><span class="n">mkdir</span> <span class="n">my_project</span>
+<span class="err">!</span><span class="n">cd</span> <span class="n">my_project</span>
+
+<span class="c1"># Initialize Git repository</span>
+<span class="err">!</span><span class="n">git</span> <span class="n">init</span>
+
+<span class="c1"># Creates a .git folder (hidden)</span>
+<span class="err">!</span><span class="n">ls</span> <span class="o">-</span><span class="n">la</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="method-2-clone-an-existing-repository">
+<h3>Method 2: Clone an Existing Repository<a class="headerlink" href="#method-2-clone-an-existing-repository" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Clone from GitHub (example)</span>
+<span class="err">!</span><span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">username</span><span class="o">/</span><span class="n">repo</span><span class="o">-</span><span class="n">name</span><span class="o">.</span><span class="n">git</span>
+
+<span class="c1"># Clone and rename the folder</span>
+<span class="err">!</span><span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">username</span><span class="o">/</span><span class="n">repo</span><span class="o">-</span><span class="n">name</span><span class="o">.</span><span class="n">git</span> <span class="n">my</span><span class="o">-</span><span class="n">folder</span><span class="o">-</span><span class="n">name</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="basic-git-workflow">
+<h2>5. Basic Git Workflow<a class="headerlink" href="#basic-git-workflow" title="Link to this heading">#</a></h2>
+<p>The daily Git cycle:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">1.</span> <span class="n">Make</span> <span class="n">changes</span> <span class="n">to</span> <span class="n">files</span>
+<span class="mf">2.</span> <span class="n">Stage</span> <span class="n">changes</span> <span class="p">(</span><span class="n">git</span> <span class="n">add</span><span class="p">)</span>
+<span class="mf">3.</span> <span class="n">Commit</span> <span class="n">changes</span> <span class="p">(</span><span class="n">git</span> <span class="n">commit</span><span class="p">)</span>
+<span class="mf">4.</span> <span class="n">Push</span> <span class="n">to</span> <span class="n">remote</span> <span class="p">(</span><span class="n">git</span> <span class="n">push</span><span class="p">)</span>
+</pre></div>
+</div>
+<section id="checking-status">
+<h3>Checking Status<a class="headerlink" href="#checking-status" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># See what&#39;s changed</span>
+<span class="err">!</span><span class="n">git</span> <span class="n">status</span>
+
+<span class="c1"># Short format (more concise)</span>
+<span class="err">!</span><span class="n">git</span> <span class="n">status</span> <span class="o">-</span><span class="n">s</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Understanding the output:</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>?? file.txt          # Untracked (new file)
+ M file.txt          # Modified (not staged)
+M  file.txt          # Modified (staged)
+A  file.txt          # Added (new file, staged)
+D  file.txt          # Deleted
+</pre></div>
+</div>
+</section>
+<section id="staging-changes">
+<h3>Staging Changes<a class="headerlink" href="#staging-changes" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Stage a specific file</span>
+<span class="err">!</span><span class="n">git</span> <span class="n">add</span> <span class="n">file</span><span class="o">.</span><span class="n">txt</span>
+
+<span class="c1"># Stage multiple files</span>
+<span class="err">!</span><span class="n">git</span> <span class="n">add</span> <span class="n">file1</span><span class="o">.</span><span class="n">txt</span> <span class="n">file2</span><span class="o">.</span><span class="n">txt</span>
+
+<span class="c1"># Stage all changes in current directory and subdirectories</span>
+<span class="err">!</span><span class="n">git</span> <span class="n">add</span> <span class="o">.</span>
+
+<span class="c1"># Stage all changes in the entire repository</span>
+<span class="err">!</span><span class="n">git</span> <span class="n">add</span> <span class="o">-</span><span class="n">A</span>
+
+<span class="c1"># Stage all modified and deleted files (not new files)</span>
+<span class="err">!</span><span class="n">git</span> <span class="n">add</span> <span class="o">-</span><span class="n">u</span>
+
+<span class="c1"># Interactive staging (choose what to stage)</span>
+<span class="err">!</span><span class="n">git</span> <span class="n">add</span> <span class="o">-</span><span class="n">p</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="committing-changes">
+<h3>Committing Changes<a class="headerlink" href="#committing-changes" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Commit with message</span>
+<span class="err">!</span><span class="n">git</span> <span class="n">commit</span> <span class="o">-</span><span class="n">m</span> <span class="s2">&quot;Add user authentication feature&quot;</span>
+
+<span class="c1"># Commit with multi-line message</span>
+<span class="err">!</span><span class="n">git</span> <span class="n">commit</span> <span class="o">-</span><span class="n">m</span> <span class="s2">&quot;Add user authentication&quot;</span> <span class="o">-</span><span class="n">m</span> <span class="s2">&quot;- Implemented login system&quot;</span> <span class="o">-</span><span class="n">m</span> <span class="s2">&quot;- Added password hashing&quot;</span>
+
+<span class="c1"># Stage all tracked files and commit</span>
+<span class="err">!</span><span class="n">git</span> <span class="n">commit</span> <span class="o">-</span><span class="n">am</span> <span class="s2">&quot;Quick fix for bug&quot;</span>
+
+<span class="c1"># Open editor for detailed commit message</span>
+<span class="err">!</span><span class="n">git</span> <span class="n">commit</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="writing-good-commit-messages">
+<h3>Writing Good Commit Messages<a class="headerlink" href="#writing-good-commit-messages" title="Link to this heading">#</a></h3>
+<p><strong>Bad commits:</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">commit</span> <span class="o">-</span><span class="n">m</span> <span class="s2">&quot;fix&quot;</span>
+<span class="n">git</span> <span class="n">commit</span> <span class="o">-</span><span class="n">m</span> <span class="s2">&quot;updates&quot;</span>
+<span class="n">git</span> <span class="n">commit</span> <span class="o">-</span><span class="n">m</span> <span class="s2">&quot;asdfasdf&quot;</span>
+</pre></div>
+</div>
+<p><strong>Good commits:</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">commit</span> <span class="o">-</span><span class="n">m</span> <span class="s2">&quot;Fix login button alignment on mobile&quot;</span>
+<span class="n">git</span> <span class="n">commit</span> <span class="o">-</span><span class="n">m</span> <span class="s2">&quot;Add user profile page with avatar upload&quot;</span>
+<span class="n">git</span> <span class="n">commit</span> <span class="o">-</span><span class="n">m</span> <span class="s2">&quot;Refactor database queries for better performance&quot;</span>
+</pre></div>
+</div>
+<p><strong>Best Practice Format:</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Short</span> <span class="n">summary</span> <span class="p">(</span><span class="mi">50</span> <span class="n">chars</span> <span class="ow">or</span> <span class="n">less</span><span class="p">)</span>
+
+<span class="n">More</span> <span class="n">detailed</span> <span class="n">explanation</span> <span class="k">if</span> <span class="n">needed</span><span class="o">.</span> <span class="n">Explain</span> <span class="n">what</span>
+<span class="ow">and</span> <span class="n">why</span><span class="p">,</span> <span class="ow">not</span> <span class="n">how</span> <span class="p">(</span><span class="n">code</span> <span class="n">shows</span> <span class="n">how</span><span class="p">)</span><span class="o">.</span>
+
+<span class="o">-</span> <span class="n">Bullet</span> <span class="n">points</span> <span class="n">are</span> <span class="n">fine</span>
+<span class="o">-</span> <span class="n">Multiple</span> <span class="n">paragraphs</span> <span class="n">are</span> <span class="n">okay</span>
+
+<span class="n">Fixes</span> <span class="c1">#123</span>
+</pre></div>
+</div>
+<p><strong>Conventional Commits</strong> (popular style):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">feat</span><span class="p">:</span> <span class="n">add</span> <span class="n">user</span> <span class="n">registration</span>
+<span class="n">fix</span><span class="p">:</span> <span class="n">resolve</span> <span class="n">login</span> <span class="n">timeout</span> <span class="n">issue</span>
+<span class="n">docs</span><span class="p">:</span> <span class="n">update</span> <span class="n">README</span> <span class="k">with</span> <span class="n">setup</span> <span class="n">instructions</span>
+<span class="n">style</span><span class="p">:</span> <span class="nb">format</span> <span class="n">code</span> <span class="k">with</span> <span class="n">black</span>
+<span class="n">refactor</span><span class="p">:</span> <span class="n">simplify</span> <span class="n">authentication</span> <span class="n">logic</span>
+<span class="n">test</span><span class="p">:</span> <span class="n">add</span> <span class="n">tests</span> <span class="k">for</span> <span class="n">user</span> <span class="n">model</span>
+<span class="n">chore</span><span class="p">:</span> <span class="n">update</span> <span class="n">dependencies</span>
+</pre></div>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="viewing-history">
+<h2>6. Viewing History<a class="headerlink" href="#viewing-history" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># View commit history</span>
+<span class="err">!</span><span class="n">git</span> <span class="n">log</span>
+
+<span class="c1"># One-line format (compact)</span>
+<span class="err">!</span><span class="n">git</span> <span class="n">log</span> <span class="o">--</span><span class="n">oneline</span>
+
+<span class="c1"># Show last 5 commits</span>
+<span class="err">!</span><span class="n">git</span> <span class="n">log</span> <span class="o">-</span><span class="mi">5</span>
+
+<span class="c1"># Show commits with diff</span>
+<span class="err">!</span><span class="n">git</span> <span class="n">log</span> <span class="o">-</span><span class="n">p</span>
+
+<span class="c1"># Show commits with stats</span>
+<span class="err">!</span><span class="n">git</span> <span class="n">log</span> <span class="o">--</span><span class="n">stat</span>
+
+<span class="c1"># Pretty graph view</span>
+<span class="err">!</span><span class="n">git</span> <span class="n">log</span> <span class="o">--</span><span class="n">oneline</span> <span class="o">--</span><span class="n">graph</span> <span class="o">--</span><span class="nb">all</span> <span class="o">--</span><span class="n">decorate</span>
+
+<span class="c1"># Search commits by message</span>
+<span class="err">!</span><span class="n">git</span> <span class="n">log</span> <span class="o">--</span><span class="n">grep</span><span class="o">=</span><span class="s2">&quot;bug fix&quot;</span>
+
+<span class="c1"># Show commits by author</span>
+<span class="err">!</span><span class="n">git</span> <span class="n">log</span> <span class="o">--</span><span class="n">author</span><span class="o">=</span><span class="s2">&quot;Alice&quot;</span>
+
+<span class="c1"># Show commits in date range</span>
+<span class="err">!</span><span class="n">git</span> <span class="n">log</span> <span class="o">--</span><span class="n">since</span><span class="o">=</span><span class="s2">&quot;2 weeks ago&quot;</span> <span class="o">--</span><span class="n">until</span><span class="o">=</span><span class="s2">&quot;1 week ago&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="viewing-changes">
+<h3>Viewing Changes<a class="headerlink" href="#viewing-changes" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Show unstaged changes</span>
+<span class="err">!</span><span class="n">git</span> <span class="n">diff</span>
+
+<span class="c1"># Show staged changes</span>
+<span class="err">!</span><span class="n">git</span> <span class="n">diff</span> <span class="o">--</span><span class="n">staged</span>
+<span class="c1"># or</span>
+<span class="err">!</span><span class="n">git</span> <span class="n">diff</span> <span class="o">--</span><span class="n">cached</span>
+
+<span class="c1"># Show changes in specific file</span>
+<span class="err">!</span><span class="n">git</span> <span class="n">diff</span> <span class="n">file</span><span class="o">.</span><span class="n">txt</span>
+
+<span class="c1"># Compare two commits</span>
+<span class="err">!</span><span class="n">git</span> <span class="n">diff</span> <span class="n">abc123</span> <span class="n">def456</span>
+
+<span class="c1"># Compare branches</span>
+<span class="err">!</span><span class="n">git</span> <span class="n">diff</span> <span class="n">main</span> <span class="n">feature</span><span class="o">-</span><span class="n">branch</span>
+
+<span class="c1"># Show who changed each line of a file</span>
+<span class="err">!</span><span class="n">git</span> <span class="n">blame</span> <span class="n">file</span><span class="o">.</span><span class="n">txt</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="branching-and-merging">
+<h2>7. Branching and Merging<a class="headerlink" href="#branching-and-merging" title="Link to this heading">#</a></h2>
+<p><strong>Branches are Git’s killer feature!</strong> They let you work on features without affecting the main code.</p>
+<section id="why-branch">
+<h3>Why Branch?<a class="headerlink" href="#why-branch" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Isolation</strong>: Work on features independently</p></li>
+<li><p><strong>Experimentation</strong>: Try ideas without risk</p></li>
+<li><p><strong>Collaboration</strong>: Multiple people work simultaneously</p></li>
+<li><p><strong>Organization</strong>: Separate production code from development</p></li>
+</ul>
+</section>
+<section id="branch-commands">
+<h3>Branch Commands<a class="headerlink" href="#branch-commands" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># List all branches</span>
+<span class="err">!</span><span class="n">git</span> <span class="n">branch</span>
+
+<span class="c1"># List all branches (including remote)</span>
+<span class="err">!</span><span class="n">git</span> <span class="n">branch</span> <span class="o">-</span><span class="n">a</span>
+
+<span class="c1"># Create a new branch</span>
+<span class="err">!</span><span class="n">git</span> <span class="n">branch</span> <span class="n">feature</span><span class="o">-</span><span class="n">login</span>
+
+<span class="c1"># Switch to a branch</span>
+<span class="err">!</span><span class="n">git</span> <span class="n">checkout</span> <span class="n">feature</span><span class="o">-</span><span class="n">login</span>
+<span class="c1"># or (newer syntax)</span>
+<span class="err">!</span><span class="n">git</span> <span class="n">switch</span> <span class="n">feature</span><span class="o">-</span><span class="n">login</span>
+
+<span class="c1"># Create and switch in one command</span>
+<span class="err">!</span><span class="n">git</span> <span class="n">checkout</span> <span class="o">-</span><span class="n">b</span> <span class="n">feature</span><span class="o">-</span><span class="n">dashboard</span>
+<span class="c1"># or</span>
+<span class="err">!</span><span class="n">git</span> <span class="n">switch</span> <span class="o">-</span><span class="n">c</span> <span class="n">feature</span><span class="o">-</span><span class="n">dashboard</span>
+
+<span class="c1"># Delete a branch</span>
+<span class="err">!</span><span class="n">git</span> <span class="n">branch</span> <span class="o">-</span><span class="n">d</span> <span class="n">feature</span><span class="o">-</span><span class="n">login</span>
+
+<span class="c1"># Force delete (even if not merged)</span>
+<span class="err">!</span><span class="n">git</span> <span class="n">branch</span> <span class="o">-</span><span class="n">D</span> <span class="n">feature</span><span class="o">-</span><span class="n">login</span>
+
+<span class="c1"># Rename current branch</span>
+<span class="err">!</span><span class="n">git</span> <span class="n">branch</span> <span class="o">-</span><span class="n">m</span> <span class="n">new</span><span class="o">-</span><span class="n">name</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="merging-branches">
+<h3>Merging Branches<a class="headerlink" href="#merging-branches" title="Link to this heading">#</a></h3>
+<p><strong>Scenario</strong>: You finished work on <code class="docutils literal notranslate"><span class="pre">feature-login</span></code> and want to add it to <code class="docutils literal notranslate"><span class="pre">main</span></code></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Switch to the branch you want to merge INTO</span>
+<span class="err">!</span><span class="n">git</span> <span class="n">checkout</span> <span class="n">main</span>
+
+<span class="c1"># Merge feature branch into main</span>
+<span class="err">!</span><span class="n">git</span> <span class="n">merge</span> <span class="n">feature</span><span class="o">-</span><span class="n">login</span>
+
+<span class="c1"># If there are conflicts, Git will tell you</span>
+<span class="c1"># Fix conflicts, then:</span>
+<span class="err">!</span><span class="n">git</span> <span class="n">add</span> <span class="o">.</span>
+<span class="err">!</span><span class="n">git</span> <span class="n">commit</span> <span class="o">-</span><span class="n">m</span> <span class="s2">&quot;Merge feature-login into main&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="merge-conflicts">
+<h3>Merge Conflicts<a class="headerlink" href="#merge-conflicts" title="Link to this heading">#</a></h3>
+<p>Conflicts occur when the same lines were changed in both branches.</p>
+<p><strong>What a conflict looks like:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;&lt;&lt;&lt;&lt;&lt;&lt;</span> <span class="n">HEAD</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Hello from main branch&quot;</span><span class="p">)</span>
+<span class="o">=======</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Hello from feature branch&quot;</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;&gt;&gt;&gt;&gt;</span> <span class="n">feature</span><span class="o">-</span><span class="n">login</span>
+</pre></div>
+</div>
+<p><strong>How to resolve:</strong></p>
+<ol class="arabic simple">
+<li><p>Open the file</p></li>
+<li><p>Edit to keep what you want (remove markers)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">add</span></code> the resolved file</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">commit</span></code> to complete the merge</p></li>
+</ol>
+<p><strong>Tools to help:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>mergetool<span class="w">  </span><span class="c1"># Opens visual merge tool</span>
+git<span class="w"> </span>merge<span class="w"> </span>--abort<span class="w">  </span><span class="c1"># Cancel the merge</span>
+</pre></div>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="working-with-remotes-github">
+<h2>8. Working with Remotes (GitHub)<a class="headerlink" href="#working-with-remotes-github" title="Link to this heading">#</a></h2>
+<section id="adding-a-remote">
+<h3>Adding a Remote<a class="headerlink" href="#adding-a-remote" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Add remote repository</span>
+<span class="err">!</span><span class="n">git</span> <span class="n">remote</span> <span class="n">add</span> <span class="n">origin</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">username</span><span class="o">/</span><span class="n">repo</span><span class="o">.</span><span class="n">git</span>
+
+<span class="c1"># View remotes</span>
+<span class="err">!</span><span class="n">git</span> <span class="n">remote</span> <span class="o">-</span><span class="n">v</span>
+
+<span class="c1"># Remove a remote</span>
+<span class="err">!</span><span class="n">git</span> <span class="n">remote</span> <span class="n">remove</span> <span class="n">origin</span>
+
+<span class="c1"># Rename a remote</span>
+<span class="err">!</span><span class="n">git</span> <span class="n">remote</span> <span class="n">rename</span> <span class="n">origin</span> <span class="n">upstream</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="pushing-changes">
+<h3>Pushing Changes<a class="headerlink" href="#pushing-changes" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Push to remote (first time)</span>
+<span class="err">!</span><span class="n">git</span> <span class="n">push</span> <span class="o">-</span><span class="n">u</span> <span class="n">origin</span> <span class="n">main</span>
+
+<span class="c1"># Push after first time</span>
+<span class="err">!</span><span class="n">git</span> <span class="n">push</span>
+
+<span class="c1"># Push specific branch</span>
+<span class="err">!</span><span class="n">git</span> <span class="n">push</span> <span class="n">origin</span> <span class="n">feature</span><span class="o">-</span><span class="n">branch</span>
+
+<span class="c1"># Push all branches</span>
+<span class="err">!</span><span class="n">git</span> <span class="n">push</span> <span class="o">--</span><span class="nb">all</span>
+
+<span class="c1"># Push tags</span>
+<span class="err">!</span><span class="n">git</span> <span class="n">push</span> <span class="o">--</span><span class="n">tags</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>What <code class="docutils literal notranslate"><span class="pre">-u</span></code> does:</strong></p>
+<ul class="simple">
+<li><p>Sets upstream tracking</p></li>
+<li><p>After this, you can just use <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">push</span></code> and <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">pull</span></code></p></li>
+</ul>
+</section>
+<section id="pulling-changes">
+<h3>Pulling Changes<a class="headerlink" href="#pulling-changes" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Fetch + merge in one command</span>
+<span class="err">!</span><span class="n">git</span> <span class="n">pull</span>
+
+<span class="c1"># Pull specific branch</span>
+<span class="err">!</span><span class="n">git</span> <span class="n">pull</span> <span class="n">origin</span> <span class="n">main</span>
+
+<span class="c1"># Pull with rebase (cleaner history)</span>
+<span class="err">!</span><span class="n">git</span> <span class="n">pull</span> <span class="o">--</span><span class="n">rebase</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="fetching-changes">
+<h3>Fetching Changes<a class="headerlink" href="#fetching-changes" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Download changes without merging</span>
+<span class="err">!</span><span class="n">git</span> <span class="n">fetch</span>
+
+<span class="c1"># Fetch from specific remote</span>
+<span class="err">!</span><span class="n">git</span> <span class="n">fetch</span> <span class="n">origin</span>
+
+<span class="c1"># Fetch all remotes</span>
+<span class="err">!</span><span class="n">git</span> <span class="n">fetch</span> <span class="o">--</span><span class="nb">all</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong><code class="docutils literal notranslate"><span class="pre">pull</span></code> vs <code class="docutils literal notranslate"><span class="pre">fetch</span></code>:</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">fetch</span></code>: Downloads changes, doesn’t modify your files</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pull</span></code>: Downloads changes AND merges them (fetch + merge)</p></li>
+</ul>
+</section>
+</section>
+<hr class="docutils" />
+<section id="undoing-changes">
+<h2>9. Undoing Changes<a class="headerlink" href="#undoing-changes" title="Link to this heading">#</a></h2>
+<section id="unstaging-files">
+<h3>Unstaging Files<a class="headerlink" href="#unstaging-files" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Unstage a file (keep changes)</span>
+<span class="err">!</span><span class="n">git</span> <span class="n">restore</span> <span class="o">--</span><span class="n">staged</span> <span class="n">file</span><span class="o">.</span><span class="n">txt</span>
+<span class="c1"># or (older way)</span>
+<span class="err">!</span><span class="n">git</span> <span class="n">reset</span> <span class="n">HEAD</span> <span class="n">file</span><span class="o">.</span><span class="n">txt</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="discarding-changes">
+<h3>Discarding Changes<a class="headerlink" href="#discarding-changes" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Discard changes in working directory</span>
+<span class="err">!</span><span class="n">git</span> <span class="n">restore</span> <span class="n">file</span><span class="o">.</span><span class="n">txt</span>
+<span class="c1"># or (older way)</span>
+<span class="err">!</span><span class="n">git</span> <span class="n">checkout</span> <span class="o">--</span> <span class="n">file</span><span class="o">.</span><span class="n">txt</span>
+
+<span class="c1"># Discard all changes</span>
+<span class="err">!</span><span class="n">git</span> <span class="n">restore</span> <span class="o">.</span>
+
+<span class="c1"># Remove untracked files (be careful!)</span>
+<span class="err">!</span><span class="n">git</span> <span class="n">clean</span> <span class="o">-</span><span class="n">n</span>  <span class="c1"># Dry run (shows what would be deleted)</span>
+<span class="err">!</span><span class="n">git</span> <span class="n">clean</span> <span class="o">-</span><span class="n">f</span>  <span class="c1"># Actually delete</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="amending-commits">
+<h3>Amending Commits<a class="headerlink" href="#amending-commits" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Fix the last commit (change message)</span>
+<span class="err">!</span><span class="n">git</span> <span class="n">commit</span> <span class="o">--</span><span class="n">amend</span> <span class="o">-</span><span class="n">m</span> <span class="s2">&quot;New message&quot;</span>
+
+<span class="c1"># Add forgotten files to last commit</span>
+<span class="err">!</span><span class="n">git</span> <span class="n">add</span> <span class="n">forgotten_file</span><span class="o">.</span><span class="n">txt</span>
+<span class="err">!</span><span class="n">git</span> <span class="n">commit</span> <span class="o">--</span><span class="n">amend</span> <span class="o">--</span><span class="n">no</span><span class="o">-</span><span class="n">edit</span>
+
+<span class="c1"># Edit last commit in editor</span>
+<span class="err">!</span><span class="n">git</span> <span class="n">commit</span> <span class="o">--</span><span class="n">amend</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>⚠️ Warning</strong>: Never amend commits that have been pushed to shared branches!</p>
+</section>
+<section id="reverting-commits">
+<h3>Reverting Commits<a class="headerlink" href="#reverting-commits" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Undo a commit by creating a new commit</span>
+<span class="err">!</span><span class="n">git</span> <span class="n">revert</span> <span class="n">abc123</span>
+
+<span class="c1"># Revert without committing (stage changes)</span>
+<span class="err">!</span><span class="n">git</span> <span class="n">revert</span> <span class="o">--</span><span class="n">no</span><span class="o">-</span><span class="n">commit</span> <span class="n">abc123</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="resetting">
+<h3>Resetting<a class="headerlink" href="#resetting" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Soft reset (keep changes staged)</span>
+<span class="err">!</span><span class="n">git</span> <span class="n">reset</span> <span class="o">--</span><span class="n">soft</span> <span class="n">HEAD</span><span class="o">~</span><span class="mi">1</span>
+
+<span class="c1"># Mixed reset (keep changes unstaged) - DEFAULT</span>
+<span class="err">!</span><span class="n">git</span> <span class="n">reset</span> <span class="n">HEAD</span><span class="o">~</span><span class="mi">1</span>
+<span class="err">!</span><span class="n">git</span> <span class="n">reset</span> <span class="o">--</span><span class="n">mixed</span> <span class="n">HEAD</span><span class="o">~</span><span class="mi">1</span>
+
+<span class="c1"># Hard reset (DISCARD all changes) - DANGEROUS!</span>
+<span class="err">!</span><span class="n">git</span> <span class="n">reset</span> <span class="o">--</span><span class="n">hard</span> <span class="n">HEAD</span><span class="o">~</span><span class="mi">1</span>
+
+<span class="c1"># Reset to specific commit</span>
+<span class="err">!</span><span class="n">git</span> <span class="n">reset</span> <span class="o">--</span><span class="n">hard</span> <span class="n">abc123</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Understanding <code class="docutils literal notranslate"><span class="pre">HEAD~1</span></code>:</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">HEAD</span></code> = Current commit</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">HEAD~1</span></code> = One commit before current</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">HEAD~2</span></code> = Two commits before current</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">HEAD^</span></code> = Same as <code class="docutils literal notranslate"><span class="pre">HEAD~1</span></code></p></li>
+</ul>
+</section>
+</section>
+<hr class="docutils" />
+<section id="gitignore-ignoring-files">
+<h2>10. .gitignore: Ignoring Files<a class="headerlink" href="#gitignore-ignoring-files" title="Link to this heading">#</a></h2>
+<p>Some files shouldn’t be tracked (secrets, build files, OS files)</p>
+<section id="creating-gitignore">
+<h3>Creating .gitignore<a class="headerlink" href="#creating-gitignore" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">writefile</span> <span class="o">.</span><span class="n">gitignore</span>
+<span class="c1"># Python</span>
+<span class="n">__pycache__</span><span class="o">/</span>
+<span class="o">*.</span><span class="n">pyc</span>
+<span class="o">*.</span><span class="n">pyo</span>
+<span class="o">.</span><span class="n">pytest_cache</span><span class="o">/</span>
+<span class="n">venv</span><span class="o">/</span>
+<span class="o">.</span><span class="n">env</span>
+
+<span class="c1"># IDEs</span>
+<span class="o">.</span><span class="n">vscode</span><span class="o">/</span>
+<span class="o">.</span><span class="n">idea</span><span class="o">/</span>
+<span class="o">*.</span><span class="n">swp</span>
+
+<span class="c1"># OS files</span>
+<span class="o">.</span><span class="n">DS_Store</span>
+<span class="n">Thumbs</span><span class="o">.</span><span class="n">db</span>
+
+<span class="c1"># Build outputs</span>
+<span class="n">dist</span><span class="o">/</span>
+<span class="n">build</span><span class="o">/</span>
+<span class="o">*.</span><span class="n">egg</span><span class="o">-</span><span class="n">info</span><span class="o">/</span>
+
+<span class="c1"># Logs</span>
+<span class="o">*.</span><span class="n">log</span>
+
+<span class="c1"># Secrets</span>
+<span class="o">.</span><span class="n">env</span>
+<span class="n">secrets</span><span class="o">.</span><span class="n">txt</span>
+<span class="n">credentials</span><span class="o">.</span><span class="n">json</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Patterns:</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>*.txt          # All .txt files
+!important.txt # Except important.txt
+folder/        # Entire folder
+**/*.log       # .log files in all subdirectories
+</pre></div>
+</div>
+<p><strong>Get templates:</strong> <a class="reference external" href="https://github.com/github/gitignore">github.com/github/gitignore</a></p>
+</section>
+</section>
+<hr class="docutils" />
+<section id="common-workflows">
+<h2>11. Common Workflows<a class="headerlink" href="#common-workflows" title="Link to this heading">#</a></h2>
+<section id="feature-branch-workflow">
+<h3>Feature Branch Workflow<a class="headerlink" href="#feature-branch-workflow" title="Link to this heading">#</a></h3>
+<p><strong>Most common in teams:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># 1. Update main</span>
+git<span class="w"> </span>checkout<span class="w"> </span>main
+git<span class="w"> </span>pull
+
+<span class="c1"># 2. Create feature branch</span>
+git<span class="w"> </span>checkout<span class="w"> </span>-b<span class="w"> </span>feature/user-auth
+
+<span class="c1"># 3. Work on feature</span>
+<span class="c1"># ... make changes ...</span>
+git<span class="w"> </span>add<span class="w"> </span>.
+git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;Add login endpoint&quot;</span>
+
+<span class="c1"># 4. Push feature branch</span>
+git<span class="w"> </span>push<span class="w"> </span>-u<span class="w"> </span>origin<span class="w"> </span>feature/user-auth
+
+<span class="c1"># 5. Create Pull Request on GitHub</span>
+
+<span class="c1"># 6. After merge, delete branch</span>
+git<span class="w"> </span>checkout<span class="w"> </span>main
+git<span class="w"> </span>pull
+git<span class="w"> </span>branch<span class="w"> </span>-d<span class="w"> </span>feature/user-auth
+</pre></div>
+</div>
+</section>
+<section id="fork-and-pull-request-open-source">
+<h3>Fork and Pull Request (Open Source)<a class="headerlink" href="#fork-and-pull-request-open-source" title="Link to this heading">#</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># 1. Fork repo on GitHub</span>
+
+<span class="c1"># 2. Clone your fork</span>
+git<span class="w"> </span>clone<span class="w"> </span>https://github.com/YOUR-USERNAME/repo.git
+
+<span class="c1"># 3. Add upstream remote</span>
+git<span class="w"> </span>remote<span class="w"> </span>add<span class="w"> </span>upstream<span class="w"> </span>https://github.com/ORIGINAL-OWNER/repo.git
+
+<span class="c1"># 4. Create branch</span>
+git<span class="w"> </span>checkout<span class="w"> </span>-b<span class="w"> </span>fix-typo
+
+<span class="c1"># 5. Make changes, commit, push</span>
+git<span class="w"> </span>push<span class="w"> </span>origin<span class="w"> </span>fix-typo
+
+<span class="c1"># 6. Create Pull Request from your fork to original repo</span>
+
+<span class="c1"># 7. Keep fork updated</span>
+git<span class="w"> </span>fetch<span class="w"> </span>upstream
+git<span class="w"> </span>checkout<span class="w"> </span>main
+git<span class="w"> </span>merge<span class="w"> </span>upstream/main
+</pre></div>
+</div>
+</section>
+<section id="hotfix-workflow">
+<h3>Hotfix Workflow<a class="headerlink" href="#hotfix-workflow" title="Link to this heading">#</a></h3>
+<p><strong>For urgent production fixes:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create from main/production</span>
+git<span class="w"> </span>checkout<span class="w"> </span>main
+git<span class="w"> </span>checkout<span class="w"> </span>-b<span class="w"> </span>hotfix/critical-bug
+
+<span class="c1"># Fix, commit, push</span>
+git<span class="w"> </span>commit<span class="w"> </span>-am<span class="w"> </span><span class="s2">&quot;Fix critical security issue&quot;</span>
+git<span class="w"> </span>push<span class="w"> </span>origin<span class="w"> </span>hotfix/critical-bug
+
+<span class="c1"># Merge to main AND develop</span>
+git<span class="w"> </span>checkout<span class="w"> </span>main
+git<span class="w"> </span>merge<span class="w"> </span>hotfix/critical-bug
+git<span class="w"> </span>checkout<span class="w"> </span>develop
+git<span class="w"> </span>merge<span class="w"> </span>hotfix/critical-bug
+</pre></div>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="advanced-tips-tricks">
+<h2>12. Advanced Tips &amp; Tricks<a class="headerlink" href="#advanced-tips-tricks" title="Link to this heading">#</a></h2>
+<section id="stashing-changes">
+<h3>Stashing Changes<a class="headerlink" href="#stashing-changes" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Save work in progress</span>
+<span class="err">!</span><span class="n">git</span> <span class="n">stash</span>
+
+<span class="c1"># Stash with message</span>
+<span class="err">!</span><span class="n">git</span> <span class="n">stash</span> <span class="n">save</span> <span class="s2">&quot;WIP: refactoring auth&quot;</span>
+
+<span class="c1"># List stashes</span>
+<span class="err">!</span><span class="n">git</span> <span class="n">stash</span> <span class="nb">list</span>
+
+<span class="c1"># Apply most recent stash</span>
+<span class="err">!</span><span class="n">git</span> <span class="n">stash</span> <span class="n">pop</span>
+
+<span class="c1"># Apply specific stash</span>
+<span class="err">!</span><span class="n">git</span> <span class="n">stash</span> <span class="n">apply</span> <span class="n">stash</span><span class="o">@</span><span class="p">{</span><span class="mi">0</span><span class="p">}</span>
+
+<span class="c1"># Delete stash</span>
+<span class="err">!</span><span class="n">git</span> <span class="n">stash</span> <span class="n">drop</span> <span class="n">stash</span><span class="o">@</span><span class="p">{</span><span class="mi">0</span><span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="tagging-releases">
+<h3>Tagging Releases<a class="headerlink" href="#tagging-releases" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create lightweight tag</span>
+<span class="err">!</span><span class="n">git</span> <span class="n">tag</span> <span class="n">v1</span><span class="mf">.0.0</span>
+
+<span class="c1"># Create annotated tag (recommended)</span>
+<span class="err">!</span><span class="n">git</span> <span class="n">tag</span> <span class="o">-</span><span class="n">a</span> <span class="n">v1</span><span class="mf">.0.0</span> <span class="o">-</span><span class="n">m</span> <span class="s2">&quot;Release version 1.0.0&quot;</span>
+
+<span class="c1"># List tags</span>
+<span class="err">!</span><span class="n">git</span> <span class="n">tag</span>
+
+<span class="c1"># Push tag to remote</span>
+<span class="err">!</span><span class="n">git</span> <span class="n">push</span> <span class="n">origin</span> <span class="n">v1</span><span class="mf">.0.0</span>
+
+<span class="c1"># Push all tags</span>
+<span class="err">!</span><span class="n">git</span> <span class="n">push</span> <span class="o">--</span><span class="n">tags</span>
+
+<span class="c1"># Delete tag</span>
+<span class="err">!</span><span class="n">git</span> <span class="n">tag</span> <span class="o">-</span><span class="n">d</span> <span class="n">v1</span><span class="mf">.0.0</span>
+<span class="err">!</span><span class="n">git</span> <span class="n">push</span> <span class="n">origin</span> <span class="o">--</span><span class="n">delete</span> <span class="n">v1</span><span class="mf">.0.0</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="rebasing-advanced">
+<h3>Rebasing (Advanced)<a class="headerlink" href="#rebasing-advanced" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Rebase feature branch onto main</span>
+<span class="err">!</span><span class="n">git</span> <span class="n">checkout</span> <span class="n">feature</span><span class="o">-</span><span class="n">branch</span>
+<span class="err">!</span><span class="n">git</span> <span class="n">rebase</span> <span class="n">main</span>
+
+<span class="c1"># Interactive rebase (edit history)</span>
+<span class="err">!</span><span class="n">git</span> <span class="n">rebase</span> <span class="o">-</span><span class="n">i</span> <span class="n">HEAD</span><span class="o">~</span><span class="mi">3</span>
+
+<span class="c1"># Abort rebase if something goes wrong</span>
+<span class="err">!</span><span class="n">git</span> <span class="n">rebase</span> <span class="o">--</span><span class="n">abort</span>
+
+<span class="c1"># Continue after resolving conflicts</span>
+<span class="err">!</span><span class="n">git</span> <span class="n">rebase</span> <span class="o">--</span><span class="k">continue</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Merge vs Rebase:</strong></p>
+<ul class="simple">
+<li><p><strong>Merge</strong>: Preserves history, creates merge commits</p></li>
+<li><p><strong>Rebase</strong>: Rewrites history, linear timeline</p></li>
+</ul>
+<p><strong>Golden Rule</strong>: Never rebase commits that exist on shared branches!</p>
+</section>
+<section id="useful-aliases">
+<h3>Useful Aliases<a class="headerlink" href="#useful-aliases" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set up useful shortcuts</span>
+<span class="err">!</span><span class="n">git</span> <span class="n">config</span> <span class="o">--</span><span class="k">global</span> <span class="n">alias</span><span class="o">.</span><span class="n">st</span> <span class="n">status</span>
+<span class="err">!</span><span class="n">git</span> <span class="n">config</span> <span class="o">--</span><span class="k">global</span> <span class="n">alias</span><span class="o">.</span><span class="n">co</span> <span class="n">checkout</span>
+<span class="err">!</span><span class="n">git</span> <span class="n">config</span> <span class="o">--</span><span class="k">global</span> <span class="n">alias</span><span class="o">.</span><span class="n">br</span> <span class="n">branch</span>
+<span class="err">!</span><span class="n">git</span> <span class="n">config</span> <span class="o">--</span><span class="k">global</span> <span class="n">alias</span><span class="o">.</span><span class="n">ci</span> <span class="n">commit</span>
+<span class="err">!</span><span class="n">git</span> <span class="n">config</span> <span class="o">--</span><span class="k">global</span> <span class="n">alias</span><span class="o">.</span><span class="n">unstage</span> <span class="s1">&#39;reset HEAD --&#39;</span>
+<span class="err">!</span><span class="n">git</span> <span class="n">config</span> <span class="o">--</span><span class="k">global</span> <span class="n">alias</span><span class="o">.</span><span class="n">last</span> <span class="s1">&#39;log -1 HEAD&#39;</span>
+<span class="err">!</span><span class="n">git</span> <span class="n">config</span> <span class="o">--</span><span class="k">global</span> <span class="n">alias</span><span class="o">.</span><span class="n">lg</span> <span class="s2">&quot;log --oneline --graph --all --decorate&quot;</span>
+
+<span class="c1"># Now you can use:</span>
+<span class="c1"># git st  instead of  git status</span>
+<span class="c1"># git co  instead of  git checkout</span>
+<span class="c1"># git lg  instead of  git log --oneline --graph --all --decorate</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="git-best-practices">
+<h2>13. Git Best Practices<a class="headerlink" href="#git-best-practices" title="Link to this heading">#</a></h2>
+<section id="commit-often-push-regularly">
+<h3>Commit Often, Push Regularly<a class="headerlink" href="#commit-often-push-regularly" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Small, focused commits are better than large ones</p></li>
+<li><p>Commit working code, not broken code</p></li>
+<li><p>Push at least daily to backup work</p></li>
+</ul>
+</section>
+<section id="write-meaningful-commit-messages">
+<h3>Write Meaningful Commit Messages<a class="headerlink" href="#write-meaningful-commit-messages" title="Link to this heading">#</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>✅ Fix: Resolve login timeout on slow networks
+✅ Add: User profile page with avatar upload
+✅ Refactor: Simplify database connection logic
+
+❌ fix stuff
+❌ updates
+❌ asdf
+</pre></div>
+</div>
+</section>
+<section id="use-branches">
+<h3>Use Branches<a class="headerlink" href="#use-branches" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">main</span></code> should always be stable</p></li>
+<li><p>Create branches for features, bugs, experiments</p></li>
+<li><p>Delete branches after merging</p></li>
+</ul>
+</section>
+<section id="pull-before-push">
+<h3>Pull Before Push<a class="headerlink" href="#pull-before-push" title="Link to this heading">#</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>pull<span class="w">  </span><span class="c1"># Get latest changes</span>
+<span class="c1"># ... resolve any conflicts ...</span>
+git<span class="w"> </span>push<span class="w">  </span><span class="c1"># Upload your changes</span>
+</pre></div>
+</div>
+</section>
+<section id="never-commit-secrets">
+<h3>Never Commit Secrets<a class="headerlink" href="#never-commit-secrets" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>No passwords, API keys, tokens in code</p></li>
+<li><p>Use <code class="docutils literal notranslate"><span class="pre">.env</span></code> files (add to <code class="docutils literal notranslate"><span class="pre">.gitignore</span></code>)</p></li>
+<li><p>Use secret management tools in production</p></li>
+</ul>
+</section>
+<section id="review-before-committing">
+<h3>Review Before Committing<a class="headerlink" href="#review-before-committing" title="Link to this heading">#</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>diff<span class="w">          </span><span class="c1"># What changed?</span>
+git<span class="w"> </span>status<span class="w">        </span><span class="c1"># What will be committed?</span>
+git<span class="w"> </span>commit<span class="w">        </span><span class="c1"># Commit with confidence</span>
+</pre></div>
+</div>
+</section>
+<section id="use-pull-requests">
+<h3>Use Pull Requests<a class="headerlink" href="#use-pull-requests" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Code review catches bugs</p></li>
+<li><p>Knowledge sharing in teams</p></li>
+<li><p>Discussion of implementation</p></li>
+<li><p>Required for most professional teams</p></li>
+</ul>
+</section>
+</section>
+<hr class="docutils" />
+<section id="troubleshooting-common-issues">
+<h2>14. Troubleshooting Common Issues<a class="headerlink" href="#troubleshooting-common-issues" title="Link to this heading">#</a></h2>
+<section id="i-committed-to-the-wrong-branch">
+<h3>“I committed to the wrong branch!”<a class="headerlink" href="#i-committed-to-the-wrong-branch" title="Link to this heading">#</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Move commit to correct branch</span>
+git<span class="w"> </span>log<span class="w">  </span><span class="c1"># Copy commit hash</span>
+git<span class="w"> </span>checkout<span class="w"> </span>correct-branch
+git<span class="w"> </span>cherry-pick<span class="w"> </span>abc123
+git<span class="w"> </span>checkout<span class="w"> </span>wrong-branch
+git<span class="w"> </span>reset<span class="w"> </span>--hard<span class="w"> </span>HEAD~1
+</pre></div>
+</div>
+</section>
+<section id="i-need-to-undo-the-last-commit">
+<h3>“I need to undo the last commit!”<a class="headerlink" href="#i-need-to-undo-the-last-commit" title="Link to this heading">#</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Keep changes</span>
+git<span class="w"> </span>reset<span class="w"> </span>--soft<span class="w"> </span>HEAD~1
+
+<span class="c1"># Discard changes</span>
+git<span class="w"> </span>reset<span class="w"> </span>--hard<span class="w"> </span>HEAD~1
+</pre></div>
+</div>
+</section>
+<section id="i-have-merge-conflicts">
+<h3>“I have merge conflicts!”<a class="headerlink" href="#i-have-merge-conflicts" title="Link to this heading">#</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># 1. See which files conflict</span>
+git<span class="w"> </span>status
+
+<span class="c1"># 2. Open conflicted files, resolve manually</span>
+
+<span class="c1"># 3. Stage resolved files</span>
+git<span class="w"> </span>add<span class="w"> </span>resolved_file.txt
+
+<span class="c1"># 4. Complete merge</span>
+git<span class="w"> </span>commit
+
+<span class="c1"># Or abort the merge</span>
+git<span class="w"> </span>merge<span class="w"> </span>--abort
+</pre></div>
+</div>
+</section>
+<section id="i-accidentally-deleted-a-file">
+<h3>“I accidentally deleted a file!”<a class="headerlink" href="#i-accidentally-deleted-a-file" title="Link to this heading">#</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># If not yet committed</span>
+git<span class="w"> </span>restore<span class="w"> </span>file.txt
+
+<span class="c1"># If already committed</span>
+git<span class="w"> </span>checkout<span class="w"> </span>HEAD~1<span class="w"> </span>--<span class="w"> </span>file.txt
+</pre></div>
+</div>
+</section>
+<section id="help-i-broke-everything">
+<h3>“Help! I broke everything!”<a class="headerlink" href="#help-i-broke-everything" title="Link to this heading">#</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># The time machine - see all actions</span>
+git<span class="w"> </span>reflog
+
+<span class="c1"># Go back to before you broke it</span>
+git<span class="w"> </span>reset<span class="w"> </span>--hard<span class="w"> </span>abc123
+</pre></div>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="exercises">
+<h2>📝 Exercises<a class="headerlink" href="#exercises" title="Link to this heading">#</a></h2>
+<section id="exercise-1-first-repository">
+<h3>Exercise 1: First Repository<a class="headerlink" href="#exercise-1-first-repository" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p>Create a new folder for a project</p></li>
+<li><p>Initialize a Git repository</p></li>
+<li><p>Create a <code class="docutils literal notranslate"><span class="pre">README.md</span></code> file</p></li>
+<li><p>Add and commit the file</p></li>
+<li><p>View the commit history</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Your commands here</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="exercise-2-branching-practice">
+<h3>Exercise 2: Branching Practice<a class="headerlink" href="#exercise-2-branching-practice" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p>Create a branch called <code class="docutils literal notranslate"><span class="pre">feature-test</span></code></p></li>
+<li><p>Switch to that branch</p></li>
+<li><p>Create a file <code class="docutils literal notranslate"><span class="pre">test.txt</span></code></p></li>
+<li><p>Commit the file</p></li>
+<li><p>Switch back to <code class="docutils literal notranslate"><span class="pre">main</span></code></p></li>
+<li><p>Merge <code class="docutils literal notranslate"><span class="pre">feature-test</span></code> into <code class="docutils literal notranslate"><span class="pre">main</span></code></p></li>
+<li><p>Delete the feature branch</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Your commands here</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="exercise-3-github-workflow">
+<h3>Exercise 3: GitHub Workflow<a class="headerlink" href="#exercise-3-github-workflow" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p>Create a new repository on GitHub</p></li>
+<li><p>Connect your local repo to GitHub</p></li>
+<li><p>Push your commits</p></li>
+<li><p>Make a change locally</p></li>
+<li><p>Commit and push again</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Your commands here</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="exercise-4-undoing-mistakes">
+<h3>Exercise 4: Undoing Mistakes<a class="headerlink" href="#exercise-4-undoing-mistakes" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p>Make a change to a file</p></li>
+<li><p>Stage it with <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">add</span></code></p></li>
+<li><p>Unstage it</p></li>
+<li><p>Make another change</p></li>
+<li><p>Discard the change</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Your commands here</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="exercise-5-gitignore-practice">
+<h3>Exercise 5: .gitignore Practice<a class="headerlink" href="#exercise-5-gitignore-practice" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p>Create a <code class="docutils literal notranslate"><span class="pre">.gitignore</span></code> file</p></li>
+<li><p>Add patterns to ignore <code class="docutils literal notranslate"><span class="pre">.log</span></code> files and a <code class="docutils literal notranslate"><span class="pre">secrets/</span></code> folder</p></li>
+<li><p>Create a test <code class="docutils literal notranslate"><span class="pre">.log</span></code> file</p></li>
+<li><p>Run <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">status</span></code> and verify it’s ignored</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Your commands here</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="self-check-quiz">
+<h2>✅ Self-Check Quiz<a class="headerlink" href="#self-check-quiz" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p>What is version control?</p></li>
+<li><p>What’s the difference between Git and GitHub?</p></li>
+<li><p>What is a commit?</p></li>
+<li><p>What is a branch?</p></li>
+<li><p>What are the three states in Git?</p></li>
+<li><p>What does <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">add</span></code> do?</p></li>
+<li><p>What’s the difference between <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">pull</span></code> and <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">fetch</span></code>?</p></li>
+<li><p>What is a merge conflict?</p></li>
+<li><p>Why should you never commit secrets?</p></li>
+<li><p>What does <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">stash</span></code> do?</p></li>
+</ol>
+</section>
+<hr class="docutils" />
+<section id="key-takeaways">
+<h2>🎯 Key Takeaways<a class="headerlink" href="#key-takeaways" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><strong>Git</strong> tracks changes to code over time</p></li>
+<li><p><strong>Commits</strong> are snapshots of your project</p></li>
+<li><p><strong>Branches</strong> let you work on features independently</p></li>
+<li><p><strong>Three states</strong>: Working Directory → Staging → Repository</p></li>
+<li><p><strong>Basic workflow</strong>: <code class="docutils literal notranslate"><span class="pre">add</span></code> → <code class="docutils literal notranslate"><span class="pre">commit</span></code> → <code class="docutils literal notranslate"><span class="pre">push</span></code></p></li>
+<li><p><strong>Branches</strong> enable parallel development</p></li>
+<li><p><strong>Merge</strong> combines branches</p></li>
+<li><p><strong>Remotes</strong> (GitHub) backup and enable collaboration</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">.gitignore</span></code></strong> prevents committing unwanted files</p></li>
+<li><p><strong>Good commits</strong> are small, focused, and well-described</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="next-steps">
+<h2>🚀 Next Steps<a class="headerlink" href="#next-steps" title="Link to this heading">#</a></h2>
+<p><strong>You now know Git!</strong> This is a career-changing skill.</p>
+<p><strong>Practice by:</strong></p>
+<ul class="simple">
+<li><p>Using Git for ALL your projects</p></li>
+<li><p>Contributing to open source on GitHub</p></li>
+<li><p>Reading other people’s code and commits</p></li>
+</ul>
+<p><strong>Continue learning:</strong></p>
+<ul class="simple">
+<li><p><strong>Shell Scripting</strong>: <code class="docutils literal notranslate"><span class="pre">tools/02_shell_scripting.ipynb</span></code></p></li>
+<li><p><strong>Text Editors</strong>: <code class="docutils literal notranslate"><span class="pre">tools/04_text_editors.ipynb</span></code></p></li>
+<li><p><strong>Debugging</strong>: <code class="docutils literal notranslate"><span class="pre">tools/06_debugging_profiling.ipynb</span></code></p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="pro-tips">
+<h2>💡 Pro Tips<a class="headerlink" href="#pro-tips" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p><strong>Commit early, commit often</strong> - Small commits are easier to understand</p></li>
+<li><p><strong>Write good messages</strong> - Future you will thank you</p></li>
+<li><p><strong>Branch for everything</strong> - main should always work</p></li>
+<li><p><strong>Pull before push</strong> - Avoid conflicts</p></li>
+<li><p><strong>Use .gitignore</strong> - Never commit secrets or build files</p></li>
+<li><p><strong>Learn to read diffs</strong> - Understand what changed</p></li>
+<li><p><strong>Don’t fear mistakes</strong> - Git has many undo mechanisms</p></li>
+<li><p><strong>Use Pull Requests</strong> - Code review makes better code</p></li>
+</ol>
+</section>
+<hr class="docutils" />
+<section id="resources">
+<h2>📚 Resources<a class="headerlink" href="#resources" title="Link to this heading">#</a></h2>
+<p><strong>Official Documentation:</strong></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://git-scm.com/doc">Git Official Docs</a></p></li>
+<li><p><a class="reference external" href="https://git-scm.com/book">Pro Git Book (Free)</a></p></li>
+</ul>
+<p><strong>Interactive Learning:</strong></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://learngitbranching.js.org/">Learn Git Branching</a></p></li>
+<li><p><a class="reference external" href="https://skills.github.com/">GitHub Skills</a></p></li>
+</ul>
+<p><strong>Cheat Sheets:</strong></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://education.github.com/git-cheat-sheet-education.pdf">GitHub Git Cheat Sheet</a></p></li>
+<li><p><a class="reference external" href="https://www.atlassian.com/git/tutorials">Atlassian Git Tutorial</a></p></li>
+</ul>
+<p><strong>Visual Tools:</strong></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.gitkraken.com/">GitKraken</a> - Visual Git client</p></li>
+<li><p><a class="reference external" href="https://desktop.github.com/">GitHub Desktop</a> - Simple Git GUI</p></li>
+</ul>
+<hr class="docutils" />
+<p><strong>Git is not optional - it’s essential!</strong> Every professional developer uses it. Master Git and you’ll never lose work again. 🎉</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./tools"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="02_command_line_tools.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Command Line Tools</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="04_text_editors.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Text Editors: Vim &amp; Modern Alternatives</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-you-ll-learn">What You’ll Learn</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#real-world-analogy">💡 Real-World Analogy</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-version-control">1. What is Version Control?</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#why-git">Why Git?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#git-vs-github">Git vs GitHub</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#core-git-concepts">2. Core Git Concepts</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#repository-repo">Repository (Repo)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#commit">Commit</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#branch">Branch</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#working-directory">Working Directory</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#staging-area-index">Staging Area (Index)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#remote">Remote</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-three-states">The Three States</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setting-up-git">3. Setting Up Git</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#installation">Installation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#initial-configuration">Initial Configuration</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-your-first-repository">4. Creating Your First Repository</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#method-1-start-a-new-project">Method 1: Start a New Project</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#method-2-clone-an-existing-repository">Method 2: Clone an Existing Repository</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-git-workflow">5. Basic Git Workflow</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#checking-status">Checking Status</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#staging-changes">Staging Changes</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#committing-changes">Committing Changes</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#writing-good-commit-messages">Writing Good Commit Messages</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#viewing-history">6. Viewing History</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#viewing-changes">Viewing Changes</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#branching-and-merging">7. Branching and Merging</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#why-branch">Why Branch?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#branch-commands">Branch Commands</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#merging-branches">Merging Branches</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#merge-conflicts">Merge Conflicts</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#working-with-remotes-github">8. Working with Remotes (GitHub)</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#adding-a-remote">Adding a Remote</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pushing-changes">Pushing Changes</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pulling-changes">Pulling Changes</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fetching-changes">Fetching Changes</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#undoing-changes">9. Undoing Changes</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#unstaging-files">Unstaging Files</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#discarding-changes">Discarding Changes</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#amending-commits">Amending Commits</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reverting-commits">Reverting Commits</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#resetting">Resetting</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gitignore-ignoring-files">10. .gitignore: Ignoring Files</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-gitignore">Creating .gitignore</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#common-workflows">11. Common Workflows</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#feature-branch-workflow">Feature Branch Workflow</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fork-and-pull-request-open-source">Fork and Pull Request (Open Source)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hotfix-workflow">Hotfix Workflow</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#advanced-tips-tricks">12. Advanced Tips &amp; Tricks</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#stashing-changes">Stashing Changes</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tagging-releases">Tagging Releases</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rebasing-advanced">Rebasing (Advanced)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#useful-aliases">Useful Aliases</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#git-best-practices">13. Git Best Practices</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#commit-often-push-regularly">Commit Often, Push Regularly</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#write-meaningful-commit-messages">Write Meaningful Commit Messages</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#use-branches">Use Branches</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pull-before-push">Pull Before Push</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#never-commit-secrets">Never Commit Secrets</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#review-before-committing">Review Before Committing</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#use-pull-requests">Use Pull Requests</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#troubleshooting-common-issues">14. Troubleshooting Common Issues</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#i-committed-to-the-wrong-branch">“I committed to the wrong branch!”</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#i-need-to-undo-the-last-commit">“I need to undo the last commit!”</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#i-have-merge-conflicts">“I have merge conflicts!”</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#i-accidentally-deleted-a-file">“I accidentally deleted a file!”</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#help-i-broke-everything">“Help! I broke everything!”</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">📝 Exercises</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-1-first-repository">Exercise 1: First Repository</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-2-branching-practice">Exercise 2: Branching Practice</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-3-github-workflow">Exercise 3: GitHub Workflow</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-4-undoing-mistakes">Exercise 4: Undoing Mistakes</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-5-gitignore-practice">Exercise 5: .gitignore Practice</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#self-check-quiz">✅ Self-Check Quiz</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#key-takeaways">🎯 Key Takeaways</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#next-steps">🚀 Next Steps</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pro-tips">💡 Pro Tips</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resources">📚 Resources</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Mykolas Perevicius
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

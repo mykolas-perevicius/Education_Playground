@@ -1,0 +1,1451 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Lesson 5: Computing Fundamentals &#8212; Education Playground</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=0c185eed" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=c73c0f3e"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'easy/05_computing_fundamentals';</script>
+    <script src="../_static/js/onboarding.js?v=557b7536"></script>
+    <link rel="canonical" href="https://mykolas-perevicius.github.io/Education_Playground/easy/05_computing_fundamentals.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="📘 Medium Level - Intermediate Track" href="../medium/README_MEDIUM.html" />
+    <link rel="prev" title="Lesson 4: Introduction to AI and Machine Learning" href="04_intro_to_ai_and_ml.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../README.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Education Playground</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../00_calibration_test.html">🎯 Calibration Test - Find Your Level</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../beginner_scripts/README.html">🌱 Beginner Scripts (10 Python Files)</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="README_EASY.html">📗 Easy Level - Beginner</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="01_introduction_to_python.html">1. Introduction to Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02_variables_and_data_types.html">2. Variables and Data Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03_basic_operations_and_conditionals.html">3. Operations and Conditionals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04_intro_to_ai_and_ml.html">4. Intro to AI and ML</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">5. Computing Fundamentals</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../medium/README_MEDIUM.html">📘 Medium Level - Intermediate</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../medium/01_functions_and_modules.html">1. Functions and Modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../medium/02_data_structures.html">2. Data Structures</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../medium/03_classes_and_oop.html">3. Classes and OOP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../medium/04_machine_learning_basics.html">4. Machine Learning Basics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../medium/05_data_analysis_with_pandas.html">5. Data Analysis with Pandas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../medium/06_algorithms_and_problem_solving.html">6. Algorithms and Problem Solving</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../hard/README_HARD.html">📕 Hard Level - Advanced</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../hard/01_advanced_functions_and_decorators.html">1. Advanced Functions &amp; Decorators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hard/02_generators_and_iterators.html">2. Generators and Iterators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hard/03_algorithms_and_complexity.html">3. Algorithms and Complexity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hard/04_deep_learning_and_neural_networks.html">4. Deep Learning &amp; Neural Networks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hard/05_advanced_ml_and_nlp.html">5. Advanced ML and NLP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hard/06_computer_systems_and_theory.html">6. Computer Systems and Theory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hard/07_project_ideas.html">7. Project Ideas &amp; Implementation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hard/08_classic_problems.html">Lesson 8: Classic Problems Collection</a></li>
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../hard/09_ctf_challenges.html">Lesson 9: Capture The Flag (CTF) - Hacker Training</a></li>
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../hard/10_performance_computing.html">10. Performance Computing ⚡ NEW!</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hard/11_cuda_and_parallel_computing.html">11. CUDA &amp; GPU Computing 🎮 NEW!</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../tools/README.html">🛠️ Developer Tools Track</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../tools/01_shell_basics.html">1. Shell and Command Line</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools/02_command_line_tools.html">2. Command Line Tools</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools/03_git_essentials.html">3. Git Essentials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools/04_text_editors.html">4. Text Editors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools/05_build_systems_cicd.html">5. Build Systems and CI/CD</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools/06_debugging_profiling.html">6. Debugging and Profiling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools/07_security_essentials.html">7. Security Essentials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools/08_package_management.html">8. Package Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools/09_ssh_remote_systems.html">9. SSH and Remote Systems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools/10_docker_containers.html">10. Docker and Containers</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../solutions/README_SOLUTIONS.html">📝 Solutions</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../solutions/easy_solutions.html">Easy Level - Complete Solutions</a></li>
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../solutions/medium_solutions.html">Medium Level - Complete Solutions</a></li>
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../solutions/hard_solutions.html">Hard Level - Complete Solutions</a></li>
+
+
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../solutions/tools_solutions.html">Developer Tools - Complete Solutions</a></li>
+
+
+
+
+
+
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../RESOURCES.html">📚 Learning Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../PYTHON_CHEATSHEET.html">⚡ Python Cheat Sheet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ML_AI_CHEATSHEET.html">🤖 ML/AI Cheat Sheet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../SETUP.html">🔧 Setup Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../RELEASE_NOTES_v2.0.0.html">🎉 Release Notes v2.0.0</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none"></div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Lesson 5: Computing Fundamentals</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-you-ll-learn">What You’ll Learn</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#real-world-analogy">💡 Real-World Analogy</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-binary-system-how-computers-think">1. The Binary System: How Computers Think</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#why-binary">Why Binary?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#how-we-count-vs-how-computers-count">How We Count vs How Computers Count</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#counting-in-binary">Counting in Binary</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#understanding-binary-place-values">2. Understanding Binary Place Values</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#decimal-place-values">Decimal Place Values:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#binary-place-values">Binary Place Values:</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bits-and-bytes-storage-units">3. Bits and Bytes: Storage Units</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-building-blocks">The Building Blocks</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#storage-size-hierarchy">Storage Size Hierarchy</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#why-1024-instead-of-1000">Why 1024 instead of 1000?</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#text-encoding-how-computers-store-text">4. Text Encoding: How Computers Store Text</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ascii-american-standard-code-for-information-interchange">ASCII (American Standard Code for Information Interchange)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#unicode-utf-8">Unicode / UTF-8</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#computer-components-the-hardware">5. Computer Components: The Hardware</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-main-parts-of-a-computer">The Main Parts of a Computer</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#how-they-work-together">How They Work Together</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-data-is-represented">6. How Data is Represented</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#images">Images 🖼️</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#audio">Audio 🎵</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#video">Video 🎬</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#compression">Compression</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#operating-systems">7. Operating Systems</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-does-an-os-do">What Does an OS Do?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#popular-operating-systems">Popular Operating Systems</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#networks-and-the-internet">8. Networks and the Internet</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#how-computers-communicate">How Computers Communicate</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#key-concepts">Key Concepts</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-happens-when-you-visit-a-website">What Happens When You Visit a Website?</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-programs-work">9. How Programs Work</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-execution-cycle">The Execution Cycle</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#programming-languages">Programming Languages</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">📝 Exercises</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-1-binary-converter">Exercise 1: Binary Converter</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-2-word-analyzer">Exercise 2: Word Analyzer</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-3-storage-calculator">Exercise 3: Storage Calculator</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-4-secret-message-encoder">Exercise 4: Secret Message Encoder</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-5-download-time-calculator">Exercise 5: Download Time Calculator</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-6-computer-spec-analyzer">Exercise 6: Computer Spec Analyzer</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#self-check-quiz">✅ Self-Check Quiz</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#key-takeaways">🎯 Key Takeaways</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#next-steps">🚀 Next Steps</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pro-tips">💡 Pro Tips</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fun-facts">🌟 Fun Facts</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="lesson-5-computing-fundamentals">
+<h1>Lesson 5: Computing Fundamentals<a class="headerlink" href="#lesson-5-computing-fundamentals" title="Link to this heading">#</a></h1>
+<p>Ever wondered how computers <strong>actually work</strong>? How do they store photos, play music, and run programs? Let’s peek under the hood!</p>
+<section id="what-you-ll-learn">
+<h2>What You’ll Learn<a class="headerlink" href="#what-you-ll-learn" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>How computers store information (binary!)</p></li>
+<li><p>What bits, bytes, and memory are</p></li>
+<li><p>How text, images, and sound are stored</p></li>
+<li><p>Computer hardware components</p></li>
+<li><p>How the Internet works</p></li>
+<li><p>Operating systems basics</p></li>
+</ul>
+</section>
+<section id="real-world-analogy">
+<h2>💡 Real-World Analogy<a class="headerlink" href="#real-world-analogy" title="Link to this heading">#</a></h2>
+<p>Think of a computer like a kitchen:</p>
+<ul class="simple">
+<li><p><strong>CPU</strong> (processor) = The chef (does the work)</p></li>
+<li><p><strong>RAM</strong> (memory) = The countertop (temporary workspace)</p></li>
+<li><p><strong>Storage</strong> (hard drive) = The pantry (long-term storage)</p></li>
+<li><p><strong>Input</strong> = Ingredients you bring in</p></li>
+<li><p><strong>Output</strong> = The delicious meal you create!</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="the-binary-system-how-computers-think">
+<h2>1. The Binary System: How Computers Think<a class="headerlink" href="#the-binary-system-how-computers-think" title="Link to this heading">#</a></h2>
+<p><strong>Everything in a computer is stored as 0s and 1s!</strong></p>
+<section id="why-binary">
+<h3>Why Binary?<a class="headerlink" href="#why-binary" title="Link to this heading">#</a></h3>
+<p>Computers use electricity, which has two states:</p>
+<ul class="simple">
+<li><p><strong>0</strong> = No electricity (OFF)</p></li>
+<li><p><strong>1</strong> = Electricity flowing (ON)</p></li>
+</ul>
+<p>This is called <strong>binary</strong> - a number system with only two digits (0 and 1).</p>
+</section>
+<section id="how-we-count-vs-how-computers-count">
+<h3>How We Count vs How Computers Count<a class="headerlink" href="#how-we-count-vs-how-computers-count" title="Link to this heading">#</a></h3>
+<p><strong>Humans (Decimal - Base 10):</strong></p>
+<ul class="simple">
+<li><p>Digits: 0, 1, 2, 3, 4, 5, 6, 7, 8, 9</p></li>
+<li><p>After 9, we go to 10 (one group of ten, zero ones)</p></li>
+</ul>
+<p><strong>Computers (Binary - Base 2):</strong></p>
+<ul class="simple">
+<li><p>Digits: 0, 1</p></li>
+<li><p>After 1, we go to 10 (one group of two, zero ones)</p></li>
+</ul>
+</section>
+<section id="counting-in-binary">
+<h3>Counting in Binary<a class="headerlink" href="#counting-in-binary" title="Link to this heading">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Decimal</p></th>
+<th class="head"><p>Binary</p></th>
+<th class="head"><p>Explanation</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>Zero</p></td>
+</tr>
+<tr class="row-odd"><td><p>1</p></td>
+<td><p>1</p></td>
+<td><p>One</p></td>
+</tr>
+<tr class="row-even"><td><p>2</p></td>
+<td><p>10</p></td>
+<td><p>One two, zero ones</p></td>
+</tr>
+<tr class="row-odd"><td><p>3</p></td>
+<td><p>11</p></td>
+<td><p>One two, one one</p></td>
+</tr>
+<tr class="row-even"><td><p>4</p></td>
+<td><p>100</p></td>
+<td><p>One four, zero twos, zero ones</p></td>
+</tr>
+<tr class="row-odd"><td><p>5</p></td>
+<td><p>101</p></td>
+<td><p>One four, zero twos, one one</p></td>
+</tr>
+<tr class="row-even"><td><p>6</p></td>
+<td><p>110</p></td>
+<td><p>One four, one two, zero ones</p></td>
+</tr>
+<tr class="row-odd"><td><p>7</p></td>
+<td><p>111</p></td>
+<td><p>One four, one two, one one</p></td>
+</tr>
+<tr class="row-even"><td><p>8</p></td>
+<td><p>1000</p></td>
+<td><p>One eight, zero fours, zero twos, zero ones</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Python can convert numbers to binary</span>
+<span class="n">number</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">binary</span> <span class="o">=</span> <span class="nb">bin</span><span class="p">(</span><span class="n">number</span><span class="p">)</span>  <span class="c1"># bin() converts to binary string</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The number </span><span class="si">{</span><span class="n">number</span><span class="si">}</span><span class="s2"> in binary is: </span><span class="si">{</span><span class="n">binary</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Without &#39;0b&#39; prefix: </span><span class="si">{</span><span class="n">binary</span><span class="p">[</span><span class="mi">2</span><span class="p">:]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Let&#39;s see more examples</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Decimal to Binary:&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">num</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">255</span><span class="p">]:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">num</span><span class="si">:</span><span class="s2">3d</span><span class="si">}</span><span class="s2"> = </span><span class="si">{</span><span class="nb">bin</span><span class="p">(</span><span class="n">num</span><span class="p">)[</span><span class="mi">2</span><span class="p">:]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="understanding-binary-place-values">
+<h2>2. Understanding Binary Place Values<a class="headerlink" href="#understanding-binary-place-values" title="Link to this heading">#</a></h2>
+<p>Just like decimal has place values (ones, tens, hundreds), binary has place values too!</p>
+<section id="decimal-place-values">
+<h3>Decimal Place Values:<a class="headerlink" href="#decimal-place-values" title="Link to this heading">#</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span> 1  2  3  4
+ ↓  ↓  ↓  ↓
+1000 100 10 1  (powers of 10)
+</pre></div>
+</div>
+</section>
+<section id="binary-place-values">
+<h3>Binary Place Values:<a class="headerlink" href="#binary-place-values" title="Link to this heading">#</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span> 1  0  1  0
+ ↓  ↓  ↓  ↓
+ 8  4  2  1  (powers of 2)
+</pre></div>
+</div>
+<p>To convert binary to decimal:</p>
+<ol class="arabic simple">
+<li><p>Write the place values (8, 4, 2, 1)</p></li>
+<li><p>If the binary digit is 1, add that place value</p></li>
+<li><p>If the binary digit is 0, skip it</p></li>
+</ol>
+<p><strong>Example: 1010 in binary</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Binary</span><span class="p">:</span>  <span class="mi">1</span>    <span class="mi">0</span>    <span class="mi">1</span>    <span class="mi">0</span>
+<span class="n">Value</span><span class="p">:</span>   <span class="mi">8</span>  <span class="o">+</span> <span class="mi">0</span>  <span class="o">+</span> <span class="mi">2</span>  <span class="o">+</span> <span class="mi">0</span>  <span class="o">=</span> <span class="mi">10</span>
+</pre></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Let&#39;s manually convert binary to decimal</span>
+<span class="k">def</span> <span class="nf">binary_to_decimal</span><span class="p">(</span><span class="n">binary_string</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Convert binary string to decimal number.</span>
+<span class="sd">    Shows the step-by-step calculation.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Remove &#39;0b&#39; prefix if present</span>
+    <span class="n">binary_string</span> <span class="o">=</span> <span class="n">binary_string</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;0b&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+    
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Converting binary </span><span class="si">{</span><span class="n">binary_string</span><span class="si">}</span><span class="s2"> to decimal:&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Position values (powers of 2):&quot;</span><span class="p">)</span>
+    
+    <span class="n">decimal</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">length</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">binary_string</span><span class="p">)</span>
+    
+    <span class="c1"># Show place values</span>
+    <span class="n">place_values</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span> <span class="o">**</span> <span class="p">(</span><span class="n">length</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">length</span><span class="p">)]</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Position:&quot;</span><span class="p">,</span> <span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">pv</span><span class="p">)</span><span class="o">.</span><span class="n">rjust</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span> <span class="k">for</span> <span class="n">pv</span> <span class="ow">in</span> <span class="n">place_values</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Binary:  &quot;</span><span class="p">,</span> <span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">digit</span><span class="o">.</span><span class="n">rjust</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span> <span class="k">for</span> <span class="n">digit</span> <span class="ow">in</span> <span class="n">binary_string</span><span class="p">))</span>
+    
+    <span class="c1"># Calculate</span>
+    <span class="n">calculation</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">digit</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">binary_string</span><span class="p">):</span>
+        <span class="n">position</span> <span class="o">=</span> <span class="n">length</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">i</span>
+        <span class="n">value</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">**</span> <span class="n">position</span>
+        <span class="k">if</span> <span class="n">digit</span> <span class="o">==</span> <span class="s1">&#39;1&#39;</span><span class="p">:</span>
+            <span class="n">decimal</span> <span class="o">+=</span> <span class="n">value</span>
+            <span class="n">calculation</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">value</span><span class="p">))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">calculation</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;0&#39;</span><span class="p">)</span>
+    
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Values:  &quot;</span><span class="p">,</span> <span class="s1">&#39; + &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">val</span><span class="o">.</span><span class="n">rjust</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span> <span class="k">for</span> <span class="n">val</span> <span class="ow">in</span> <span class="n">calculation</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Result: </span><span class="si">{</span><span class="n">decimal</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">decimal</span>
+
+<span class="c1"># Test it</span>
+<span class="n">binary_to_decimal</span><span class="p">(</span><span class="s2">&quot;1010&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="s2">&quot;=&quot;</span><span class="o">*</span><span class="mi">40</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">binary_to_decimal</span><span class="p">(</span><span class="s2">&quot;1111&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Convert binary to decimal (Python&#39;s way)</span>
+<span class="n">binary_string</span> <span class="o">=</span> <span class="s2">&quot;0b1010&quot;</span>  <span class="c1"># &#39;0b&#39; prefix means binary</span>
+<span class="n">decimal</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">binary_string</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>  <span class="c1"># Convert from base 2</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Binary </span><span class="si">{</span><span class="n">binary_string</span><span class="si">}</span><span class="s2"> = Decimal </span><span class="si">{</span><span class="n">decimal</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Try more examples</span>
+<span class="n">binary_numbers</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;1&quot;</span><span class="p">,</span> <span class="s2">&quot;10&quot;</span><span class="p">,</span> <span class="s2">&quot;11&quot;</span><span class="p">,</span> <span class="s2">&quot;100&quot;</span><span class="p">,</span> <span class="s2">&quot;101&quot;</span><span class="p">,</span> <span class="s2">&quot;110&quot;</span><span class="p">,</span> <span class="s2">&quot;111&quot;</span><span class="p">,</span> <span class="s2">&quot;1000&quot;</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Binary to Decimal conversions:&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">binary</span> <span class="ow">in</span> <span class="n">binary_numbers</span><span class="p">:</span>
+    <span class="n">decimal</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">binary</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">binary</span><span class="si">:</span><span class="s2">&gt;4s</span><span class="si">}</span><span class="s2"> = </span><span class="si">{</span><span class="n">decimal</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="bits-and-bytes-storage-units">
+<h2>3. Bits and Bytes: Storage Units<a class="headerlink" href="#bits-and-bytes-storage-units" title="Link to this heading">#</a></h2>
+<section id="the-building-blocks">
+<h3>The Building Blocks<a class="headerlink" href="#the-building-blocks" title="Link to this heading">#</a></h3>
+<p><strong>Bit (Binary Digit)</strong>:</p>
+<ul class="simple">
+<li><p>The smallest unit of data</p></li>
+<li><p>Can be either 0 or 1</p></li>
+<li><p>Like a single light switch (on or off)</p></li>
+</ul>
+<p><strong>Byte</strong>:</p>
+<ul class="simple">
+<li><p>8 bits grouped together</p></li>
+<li><p>Can store values from 0 to 255</p></li>
+<li><p>Can represent one character (like ‘A’ or ‘5’)</p></li>
+</ul>
+</section>
+<section id="storage-size-hierarchy">
+<h3>Storage Size Hierarchy<a class="headerlink" href="#storage-size-hierarchy" title="Link to this heading">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Unit</p></th>
+<th class="head"><p>Size</p></th>
+<th class="head"><p>Example</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>1 Bit</strong></p></td>
+<td><p>0 or 1</p></td>
+<td><p>One light switch</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>1 Byte</strong></p></td>
+<td><p>8 bits</p></td>
+<td><p>One character (‘A’)</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>1 Kilobyte (KB)</strong></p></td>
+<td><p>1,024 bytes</p></td>
+<td><p>One page of text</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>1 Megabyte (MB)</strong></p></td>
+<td><p>1,024 KB</p></td>
+<td><p>One high-quality photo</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>1 Gigabyte (GB)</strong></p></td>
+<td><p>1,024 MB</p></td>
+<td><p>About 1 hour of HD video</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>1 Terabyte (TB)</strong></p></td>
+<td><p>1,024 GB</p></td>
+<td><p>250,000 songs</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="why-1024-instead-of-1000">
+<h3>Why 1024 instead of 1000?<a class="headerlink" href="#why-1024-instead-of-1000" title="Link to this heading">#</a></h3>
+<p>Because computers use binary! 1024 = 2^10, which is more natural for computers than 1000.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Understanding byte capacity</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;What can 1 byte (8 bits) store?&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Minimum value: </span><span class="si">{</span><span class="mi">0</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Maximum value: </span><span class="si">{</span><span class="mi">2</span><span class="o">**</span><span class="mi">8</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="si">}</span><span class="s2"> (255)&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Total possible values: </span><span class="si">{</span><span class="mi">2</span><span class="o">**</span><span class="mi">8</span><span class="si">}</span><span class="s2"> (0-255)&quot;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">In binary:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Smallest: </span><span class="si">{</span><span class="nb">bin</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Largest:  </span><span class="si">{</span><span class="nb">bin</span><span class="p">(</span><span class="mi">255</span><span class="p">)</span><span class="si">}</span><span class="s2"> (11111111)&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Convert bytes to human-readable format</span>
+<span class="k">def</span> <span class="nf">bytes_to_readable</span><span class="p">(</span><span class="n">bytes_count</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Convert bytes to human-readable format.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">bytes_count</span> <span class="o">&lt;</span> <span class="mi">1024</span><span class="p">:</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">bytes_count</span><span class="si">}</span><span class="s2"> bytes&quot;</span>
+    <span class="k">elif</span> <span class="n">bytes_count</span> <span class="o">&lt;</span> <span class="mi">1024</span> <span class="o">*</span> <span class="mi">1024</span><span class="p">:</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">bytes_count</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">1024</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> KB&quot;</span>
+    <span class="k">elif</span> <span class="n">bytes_count</span> <span class="o">&lt;</span> <span class="mi">1024</span> <span class="o">*</span> <span class="mi">1024</span> <span class="o">*</span> <span class="mi">1024</span><span class="p">:</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">bytes_count</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="mi">1024</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">1024</span><span class="p">)</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> MB&quot;</span>
+    <span class="k">elif</span> <span class="n">bytes_count</span> <span class="o">&lt;</span> <span class="mi">1024</span> <span class="o">*</span> <span class="mi">1024</span> <span class="o">*</span> <span class="mi">1024</span> <span class="o">*</span> <span class="mi">1024</span><span class="p">:</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">bytes_count</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="mi">1024</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">1024</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">1024</span><span class="p">)</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> GB&quot;</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">bytes_count</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="mi">1024</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">1024</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">1024</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">1024</span><span class="p">)</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> TB&quot;</span>
+
+<span class="c1"># Test with different file sizes</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;File Size Examples:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Text file: </span><span class="si">{</span><span class="n">bytes_to_readable</span><span class="p">(</span><span class="mi">500</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Small image: </span><span class="si">{</span><span class="n">bytes_to_readable</span><span class="p">(</span><span class="mi">50000</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Song (MP3): </span><span class="si">{</span><span class="n">bytes_to_readable</span><span class="p">(</span><span class="mi">5000000</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;HD Movie: </span><span class="si">{</span><span class="n">bytes_to_readable</span><span class="p">(</span><span class="mi">5000000000</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Video game: </span><span class="si">{</span><span class="n">bytes_to_readable</span><span class="p">(</span><span class="mi">50000000000</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="text-encoding-how-computers-store-text">
+<h2>4. Text Encoding: How Computers Store Text<a class="headerlink" href="#text-encoding-how-computers-store-text" title="Link to this heading">#</a></h2>
+<p>Computers don’t actually store letters - they store numbers! <strong>Text encoding</strong> is the system that maps letters to numbers.</p>
+<section id="ascii-american-standard-code-for-information-interchange">
+<h3>ASCII (American Standard Code for Information Interchange)<a class="headerlink" href="#ascii-american-standard-code-for-information-interchange" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Created in 1963</p></li>
+<li><p>Uses 7 bits (128 characters)</p></li>
+<li><p>Includes: A-Z, a-z, 0-9, punctuation, control characters</p></li>
+</ul>
+<p><strong>Example ASCII Codes:</strong></p>
+<ul class="simple">
+<li><p>‘A’ = 65</p></li>
+<li><p>‘B’ = 66</p></li>
+<li><p>‘a’ = 97</p></li>
+<li><p>‘0’ = 48</p></li>
+<li><p>‘ ‘ (space) = 32</p></li>
+</ul>
+</section>
+<section id="unicode-utf-8">
+<h3>Unicode / UTF-8<a class="headerlink" href="#unicode-utf-8" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Modern standard for text</p></li>
+<li><p>Can represent ALL languages and emojis!</p></li>
+<li><p>UTF-8 can use 1-4 bytes per character</p></li>
+<li><p>Backward compatible with ASCII</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Working with ASCII codes</span>
+<span class="n">letter</span> <span class="o">=</span> <span class="s1">&#39;A&#39;</span>
+<span class="n">code</span> <span class="o">=</span> <span class="nb">ord</span><span class="p">(</span><span class="n">letter</span><span class="p">)</span>  <span class="c1"># ord() gets the ASCII/Unicode code</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Letter &#39;</span><span class="si">{</span><span class="n">letter</span><span class="si">}</span><span class="s2">&#39; has code: </span><span class="si">{</span><span class="n">code</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;In binary: </span><span class="si">{</span><span class="nb">bin</span><span class="p">(</span><span class="n">code</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Convert code back to letter</span>
+<span class="n">code</span> <span class="o">=</span> <span class="mi">65</span>
+<span class="n">letter</span> <span class="o">=</span> <span class="nb">chr</span><span class="p">(</span><span class="n">code</span><span class="p">)</span>  <span class="c1"># chr() converts code to character</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Code </span><span class="si">{</span><span class="n">code</span><span class="si">}</span><span class="s2"> represents: &#39;</span><span class="si">{</span><span class="n">letter</span><span class="si">}</span><span class="s2">&#39;&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Encode a message</span>
+<span class="n">message</span> <span class="o">=</span> <span class="s2">&quot;HELLO&quot;</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Encoding message: &#39;</span><span class="si">{</span><span class="n">message</span><span class="si">}</span><span class="s2">&#39;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Letter | ASCII Code | Binary&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;-------|------------|------------------&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">char</span> <span class="ow">in</span> <span class="n">message</span><span class="p">:</span>
+    <span class="n">code</span> <span class="o">=</span> <span class="nb">ord</span><span class="p">(</span><span class="n">char</span><span class="p">)</span>
+    <span class="n">binary</span> <span class="o">=</span> <span class="nb">bin</span><span class="p">(</span><span class="n">code</span><span class="p">)[</span><span class="mi">2</span><span class="p">:]</span><span class="o">.</span><span class="n">zfill</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span>  <span class="c1"># 8-bit binary</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  </span><span class="si">{</span><span class="n">char</span><span class="si">}</span><span class="s2">    |    </span><span class="si">{</span><span class="n">code</span><span class="si">:</span><span class="s2">3d</span><span class="si">}</span><span class="s2">     | </span><span class="si">{</span><span class="n">binary</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Calculate storage needed</span>
+<span class="n">bytes_needed</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+<span class="n">bits_needed</span> <span class="o">=</span> <span class="n">bytes_needed</span> <span class="o">*</span> <span class="mi">8</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Storage needed: </span><span class="si">{</span><span class="n">bytes_needed</span><span class="si">}</span><span class="s2"> bytes (</span><span class="si">{</span><span class="n">bits_needed</span><span class="si">}</span><span class="s2"> bits)&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Uppercase vs lowercase</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Notice the pattern between uppercase and lowercase:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">letters</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;Z&#39;</span><span class="p">,</span> <span class="s1">&#39;z&#39;</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">letter</span> <span class="ow">in</span> <span class="n">letters</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;&#39;</span><span class="si">{</span><span class="n">letter</span><span class="si">}</span><span class="s2">&#39; = </span><span class="si">{</span><span class="nb">ord</span><span class="p">(</span><span class="n">letter</span><span class="p">)</span><span class="si">:</span><span class="s2">3d</span><span class="si">}</span><span class="s2"> = </span><span class="si">{</span><span class="nb">bin</span><span class="p">(</span><span class="nb">ord</span><span class="p">(</span><span class="n">letter</span><span class="p">))</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Difference: lowercase = uppercase + 32&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;In binary, that&#39;s flipping one bit!&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Modern Unicode: Emojis!</span>
+<span class="n">emojis</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;😀&#39;</span><span class="p">,</span> <span class="s1">&#39;❤️&#39;</span><span class="p">,</span> <span class="s1">&#39;🐍&#39;</span><span class="p">,</span> <span class="s1">&#39;💻&#39;</span><span class="p">,</span> <span class="s1">&#39;🚀&#39;</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Unicode for Emojis:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">emoji</span> <span class="ow">in</span> <span class="n">emojis</span><span class="p">:</span>
+    <span class="n">code</span> <span class="o">=</span> <span class="nb">ord</span><span class="p">(</span><span class="n">emoji</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">emoji</span><span class="si">}</span><span class="s2"> = </span><span class="si">{</span><span class="n">code</span><span class="si">}</span><span class="s2"> (needs more than 1 byte!)&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="computer-components-the-hardware">
+<h2>5. Computer Components: The Hardware<a class="headerlink" href="#computer-components-the-hardware" title="Link to this heading">#</a></h2>
+<section id="the-main-parts-of-a-computer">
+<h3>The Main Parts of a Computer<a class="headerlink" href="#the-main-parts-of-a-computer" title="Link to this heading">#</a></h3>
+<p><strong>1. CPU (Central Processing Unit)</strong> 🧠</p>
+<ul class="simple">
+<li><p>The “brain” of the computer</p></li>
+<li><p>Performs calculations and executes instructions</p></li>
+<li><p>Measured in GHz (billions of operations per second)</p></li>
+<li><p>Example: Intel Core i7, Apple M1</p></li>
+</ul>
+<p><strong>2. RAM (Random Access Memory)</strong> 📝</p>
+<ul class="simple">
+<li><p>Short-term memory (temporary workspace)</p></li>
+<li><p>Fast but <strong>volatile</strong> (loses data when power off)</p></li>
+<li><p>Holds currently running programs and data</p></li>
+<li><p>Typical size: 8GB - 32GB</p></li>
+</ul>
+<p><strong>3. Storage (Hard Drive / SSD)</strong> 💾</p>
+<ul class="simple">
+<li><p>Long-term memory (permanent storage)</p></li>
+<li><p><strong>Persistent</strong> (keeps data when power off)</p></li>
+<li><p>Stores files, programs, operating system</p></li>
+<li><p>HDD (slower, cheaper) vs SSD (faster, expensive)</p></li>
+</ul>
+<p><strong>4. GPU (Graphics Processing Unit)</strong> 🎮</p>
+<ul class="simple">
+<li><p>Specialized processor for graphics and parallel tasks</p></li>
+<li><p>Essential for gaming, video editing, AI/ML</p></li>
+<li><p>Example: NVIDIA GeForce, AMD Radeon</p></li>
+</ul>
+<p><strong>5. Motherboard</strong> 🔌</p>
+<ul class="simple">
+<li><p>Connects all components together</p></li>
+<li><p>The “nervous system” of the computer</p></li>
+</ul>
+<p><strong>6. Input Devices</strong> ⌨️🖱️</p>
+<ul class="simple">
+<li><p>Keyboard, mouse, touchscreen, microphone</p></li>
+<li><p>How you communicate with the computer</p></li>
+</ul>
+<p><strong>7. Output Devices</strong> 🖥️🔊</p>
+<ul class="simple">
+<li><p>Monitor, speakers, printer</p></li>
+<li><p>How the computer communicates with you</p></li>
+</ul>
+</section>
+<section id="how-they-work-together">
+<h3>How They Work Together<a class="headerlink" href="#how-they-work-together" title="Link to this heading">#</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Input → RAM → CPU → RAM → Output
+        ↑     ↓     ↑
+        └── Storage ──┘
+</pre></div>
+</div>
+<p><strong>Example: Opening a photo</strong></p>
+<ol class="arabic simple">
+<li><p>You click the photo file (<strong>Input</strong>)</p></li>
+<li><p>OS loads photo from <strong>Storage</strong> to <strong>RAM</strong></p></li>
+<li><p><strong>CPU</strong> processes image data</p></li>
+<li><p><strong>GPU</strong> renders the image</p></li>
+<li><p>Image displays on <strong>Monitor</strong> (<strong>Output</strong>)</p></li>
+</ol>
+</section>
+</section>
+<hr class="docutils" />
+<section id="how-data-is-represented">
+<h2>6. How Data is Represented<a class="headerlink" href="#how-data-is-represented" title="Link to this heading">#</a></h2>
+<p>Everything is stored as binary, but how?</p>
+<section id="images">
+<h3>Images 🖼️<a class="headerlink" href="#images" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Pixels</strong>: Tiny dots of color</p></li>
+<li><p>Each pixel stores RGB values (Red, Green, Blue)</p></li>
+<li><p>Each color component: 0-255 (1 byte)</p></li>
+<li><p>Total per pixel: 3 bytes</p></li>
+<li><p>Example: 1920x1080 image = 2,073,600 pixels × 3 bytes = ~6MB</p></li>
+</ul>
+</section>
+<section id="audio">
+<h3>Audio 🎵<a class="headerlink" href="#audio" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Sampling</strong>: Record sound at regular intervals</p></li>
+<li><p>CD quality: 44,100 samples per second</p></li>
+<li><p>Each sample: 2 bytes</p></li>
+<li><p>Stereo (2 channels) × 44,100 × 2 bytes = ~172KB per second</p></li>
+<li><p>3-minute song = ~30MB uncompressed</p></li>
+</ul>
+</section>
+<section id="video">
+<h3>Video 🎬<a class="headerlink" href="#video" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Sequence of images (frames) + audio</p></li>
+<li><p>30 frames per second (fps) is standard</p></li>
+<li><p>HD video (1920x1080, 30fps) = ~60MB per second uncompressed!</p></li>
+<li><p>Compression (H.264, H.265) reduces to ~5MB per second</p></li>
+</ul>
+</section>
+<section id="compression">
+<h3>Compression<a class="headerlink" href="#compression" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Reduces file size</strong> by removing redundant data</p></li>
+<li><p><strong>Lossy</strong>: Some quality lost (JPEG, MP3, MP4)</p></li>
+<li><p><strong>Lossless</strong>: Perfect quality (PNG, FLAC, ZIP)</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Calculate image storage size</span>
+<span class="k">def</span> <span class="nf">calculate_image_size</span><span class="p">(</span><span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">,</span> <span class="n">bits_per_pixel</span><span class="o">=</span><span class="mi">24</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Calculate uncompressed image size.</span>
+<span class="sd">    24 bits = 3 bytes (RGB)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">total_pixels</span> <span class="o">=</span> <span class="n">width</span> <span class="o">*</span> <span class="n">height</span>
+    <span class="n">bytes_per_pixel</span> <span class="o">=</span> <span class="n">bits_per_pixel</span> <span class="o">//</span> <span class="mi">8</span>
+    <span class="n">total_bytes</span> <span class="o">=</span> <span class="n">total_pixels</span> <span class="o">*</span> <span class="n">bytes_per_pixel</span>
+    
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Image: </span><span class="si">{</span><span class="n">width</span><span class="si">}</span><span class="s2">x</span><span class="si">{</span><span class="n">height</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Total pixels: </span><span class="si">{</span><span class="n">total_pixels</span><span class="si">:</span><span class="s2">,</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Bytes per pixel: </span><span class="si">{</span><span class="n">bytes_per_pixel</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Uncompressed size: </span><span class="si">{</span><span class="n">bytes_to_readable</span><span class="p">(</span><span class="n">total_bytes</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">()</span>
+
+<span class="c1"># Common image resolutions</span>
+<span class="n">calculate_image_size</span><span class="p">(</span><span class="mi">640</span><span class="p">,</span> <span class="mi">480</span><span class="p">)</span>    <span class="c1"># VGA</span>
+<span class="n">calculate_image_size</span><span class="p">(</span><span class="mi">1920</span><span class="p">,</span> <span class="mi">1080</span><span class="p">)</span>  <span class="c1"># Full HD</span>
+<span class="n">calculate_image_size</span><span class="p">(</span><span class="mi">3840</span><span class="p">,</span> <span class="mi">2160</span><span class="p">)</span>  <span class="c1"># 4K</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="operating-systems">
+<h2>7. Operating Systems<a class="headerlink" href="#operating-systems" title="Link to this heading">#</a></h2>
+<p>An <strong>Operating System (OS)</strong> manages all computer resources and provides services to programs.</p>
+<section id="what-does-an-os-do">
+<h3>What Does an OS Do?<a class="headerlink" href="#what-does-an-os-do" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p><strong>Manages Hardware</strong></p>
+<ul class="simple">
+<li><p>Controls CPU, memory, storage, devices</p></li>
+<li><p>Allocates resources to programs</p></li>
+</ul>
+</li>
+<li><p><strong>Provides User Interface</strong></p>
+<ul class="simple">
+<li><p>GUI (Graphical User Interface) - Windows, icons, menus</p></li>
+<li><p>CLI (Command Line Interface) - Text commands</p></li>
+</ul>
+</li>
+<li><p><strong>Runs Programs</strong></p>
+<ul class="simple">
+<li><p>Loads programs into memory</p></li>
+<li><p>Manages multiple programs at once (multitasking)</p></li>
+</ul>
+</li>
+<li><p><strong>Manages Files</strong></p>
+<ul class="simple">
+<li><p>Organizes files in folders</p></li>
+<li><p>Handles reading/writing files</p></li>
+</ul>
+</li>
+<li><p><strong>Security</strong></p>
+<ul class="simple">
+<li><p>User accounts and permissions</p></li>
+<li><p>Protects against malware</p></li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="popular-operating-systems">
+<h3>Popular Operating Systems<a class="headerlink" href="#popular-operating-systems" title="Link to this heading">#</a></h3>
+<p><strong>Desktop:</strong></p>
+<ul class="simple">
+<li><p>Windows (Microsoft)</p></li>
+<li><p>macOS (Apple)</p></li>
+<li><p>Linux (Open source - Ubuntu, Fedora, etc.)</p></li>
+</ul>
+<p><strong>Mobile:</strong></p>
+<ul class="simple">
+<li><p>Android (Google)</p></li>
+<li><p>iOS (Apple)</p></li>
+</ul>
+<p><strong>Servers:</strong></p>
+<ul class="simple">
+<li><p>Linux (most web servers)</p></li>
+<li><p>Windows Server</p></li>
+</ul>
+</section>
+</section>
+<hr class="docutils" />
+<section id="networks-and-the-internet">
+<h2>8. Networks and the Internet<a class="headerlink" href="#networks-and-the-internet" title="Link to this heading">#</a></h2>
+<section id="how-computers-communicate">
+<h3>How Computers Communicate<a class="headerlink" href="#how-computers-communicate" title="Link to this heading">#</a></h3>
+<p><strong>Network</strong>: Connected computers that can share data</p>
+<p><strong>Internet</strong>: The worldwide network of networks</p>
+</section>
+<section id="key-concepts">
+<h3>Key Concepts<a class="headerlink" href="#key-concepts" title="Link to this heading">#</a></h3>
+<p><strong>1. IP Address</strong></p>
+<ul class="simple">
+<li><p>Unique identifier for each device</p></li>
+<li><p>Like a street address for your computer</p></li>
+<li><p>Example: 192.168.1.1 (IPv4)</p></li>
+</ul>
+<p><strong>2. Packets</strong></p>
+<ul class="simple">
+<li><p>Data broken into small chunks</p></li>
+<li><p>Each packet travels independently</p></li>
+<li><p>Reassembled at destination</p></li>
+</ul>
+<p><strong>3. Protocols</strong></p>
+<ul class="simple">
+<li><p>Rules for communication</p></li>
+<li><p>HTTP/HTTPS: Web pages</p></li>
+<li><p>TCP/IP: How packets are sent</p></li>
+<li><p>DNS: Translates domain names to IP addresses</p></li>
+</ul>
+<p><strong>4. Bandwidth</strong></p>
+<ul class="simple">
+<li><p>How much data can transfer per second</p></li>
+<li><p>Measured in Mbps (megabits per second)</p></li>
+<li><p>Example: 100 Mbps = ~12 MB per second</p></li>
+</ul>
+</section>
+<section id="what-happens-when-you-visit-a-website">
+<h3>What Happens When You Visit a Website?<a class="headerlink" href="#what-happens-when-you-visit-a-website" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p>You type “<a class="reference external" href="http://www.google.com">www.google.com</a>” in browser</p></li>
+<li><p>DNS converts domain to IP address</p></li>
+<li><p>Browser sends HTTP request to Google’s server</p></li>
+<li><p>Server sends back HTML, CSS, JavaScript</p></li>
+<li><p>Browser renders the page</p></li>
+</ol>
+<p>All in milliseconds!</p>
+</section>
+</section>
+<hr class="docutils" />
+<section id="how-programs-work">
+<h2>9. How Programs Work<a class="headerlink" href="#how-programs-work" title="Link to this heading">#</a></h2>
+<section id="the-execution-cycle">
+<h3>The Execution Cycle<a class="headerlink" href="#the-execution-cycle" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p><strong>Fetch</strong>: CPU gets instruction from memory</p></li>
+<li><p><strong>Decode</strong>: CPU figures out what the instruction means</p></li>
+<li><p><strong>Execute</strong>: CPU performs the operation</p></li>
+<li><p><strong>Store</strong>: CPU saves the result</p></li>
+</ol>
+<p>This happens <strong>billions of times per second</strong>!</p>
+</section>
+<section id="programming-languages">
+<h3>Programming Languages<a class="headerlink" href="#programming-languages" title="Link to this heading">#</a></h3>
+<p><strong>Low Level</strong> (closer to computer):</p>
+<ul class="simple">
+<li><p><strong>Machine Code</strong>: Binary (0s and 1s)</p></li>
+<li><p><strong>Assembly</strong>: Symbolic machine code (MOV, ADD, SUB)</p></li>
+</ul>
+<p><strong>High Level</strong> (closer to human):</p>
+<ul class="simple">
+<li><p><strong>Python, JavaScript, Java, C++</strong></p></li>
+<li><p>Easier to read and write</p></li>
+<li><p>Needs to be <strong>compiled</strong> or <strong>interpreted</strong> to machine code</p></li>
+</ul>
+<p><strong>Compilation vs Interpretation:</strong></p>
+<ul class="simple">
+<li><p><strong>Compiled</strong>: Translated all at once (C, C++, Go)</p></li>
+<li><p><strong>Interpreted</strong>: Translated line-by-line (Python, JavaScript)</p></li>
+</ul>
+</section>
+</section>
+<hr class="docutils" />
+<section id="exercises">
+<h2>📝 Exercises<a class="headerlink" href="#exercises" title="Link to this heading">#</a></h2>
+<section id="exercise-1-binary-converter">
+<h3>Exercise 1: Binary Converter<a class="headerlink" href="#exercise-1-binary-converter" title="Link to this heading">#</a></h3>
+<p>Create a program that:</p>
+<ol class="arabic simple">
+<li><p>Takes a decimal number</p></li>
+<li><p>Converts it to binary</p></li>
+<li><p>Shows the place values</p></li>
+<li><p>Verifies by converting back</p></li>
+</ol>
+<p>Test with: 10, 25, 100, 255</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="exercise-2-word-analyzer">
+<h3>Exercise 2: Word Analyzer<a class="headerlink" href="#exercise-2-word-analyzer" title="Link to this heading">#</a></h3>
+<p>Create a function that takes a word and:</p>
+<ol class="arabic simple">
+<li><p>Converts each letter to ASCII code</p></li>
+<li><p>Shows the binary representation</p></li>
+<li><p>Calculates total storage needed (bytes and bits)</p></li>
+</ol>
+<p>Test with: “CODE”, “PYTHON”, “HELLO WORLD”</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="exercise-3-storage-calculator">
+<h3>Exercise 3: Storage Calculator<a class="headerlink" href="#exercise-3-storage-calculator" title="Link to this heading">#</a></h3>
+<p>Create a program that calculates storage for different media:</p>
+<ul class="simple">
+<li><p>Text file: 1 byte per character</p></li>
+<li><p>Image: width × height × 3 bytes</p></li>
+<li><p>Audio: seconds × 44,100 × 2 bytes</p></li>
+</ul>
+<p>Calculate storage for:</p>
+<ul class="simple">
+<li><p>A 5-page essay (2000 characters)</p></li>
+<li><p>A 1920×1080 photo</p></li>
+<li><p>A 3-minute song</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="exercise-4-secret-message-encoder">
+<h3>Exercise 4: Secret Message Encoder<a class="headerlink" href="#exercise-4-secret-message-encoder" title="Link to this heading">#</a></h3>
+<p>Create a simple encoder/decoder:</p>
+<ol class="arabic simple">
+<li><p>Convert text to ASCII codes</p></li>
+<li><p>Add 3 to each code (Caesar cipher!)</p></li>
+<li><p>Convert back to text</p></li>
+<li><p>Create decoder that subtracts 3</p></li>
+</ol>
+<p>Test by encoding and decoding: “HELLO”</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="exercise-5-download-time-calculator">
+<h3>Exercise 5: Download Time Calculator<a class="headerlink" href="#exercise-5-download-time-calculator" title="Link to this heading">#</a></h3>
+<p>Create a function that calculates download time:</p>
+<ul class="simple">
+<li><p>Input: file size (MB), internet speed (Mbps)</p></li>
+<li><p>Remember: 1 Byte = 8 bits</p></li>
+<li><p>Output: time in seconds and minutes</p></li>
+</ul>
+<p>Calculate download time for:</p>
+<ul class="simple">
+<li><p>100 MB file at 10 Mbps</p></li>
+<li><p>5 GB movie at 100 Mbps</p></li>
+<li><p>50 GB game at 50 Mbps</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="exercise-6-computer-spec-analyzer">
+<h3>Exercise 6: Computer Spec Analyzer<a class="headerlink" href="#exercise-6-computer-spec-analyzer" title="Link to this heading">#</a></h3>
+<p>Create a program that rates computer specs:</p>
+<ul class="simple">
+<li><p>Rate CPU speed (GHz): &gt;3.0 = Fast, 2.0-3.0 = Medium, &lt;2.0 = Slow</p></li>
+<li><p>Rate RAM (GB): &gt;16 = Great, 8-16 = Good, &lt;8 = Low</p></li>
+<li><p>Rate Storage (GB): &gt;500 = Spacious, 250-500 = Adequate, &lt;250 = Limited</p></li>
+</ul>
+<p>Test with different configurations and give an overall rating.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="self-check-quiz">
+<h2>✅ Self-Check Quiz<a class="headerlink" href="#self-check-quiz" title="Link to this heading">#</a></h2>
+<p>Before moving on, make sure you can answer these:</p>
+<ol class="arabic simple">
+<li><p>What is binary and why do computers use it?</p></li>
+<li><p>How many values can 1 byte (8 bits) store?</p></li>
+<li><p>What’s the difference between a bit and a byte?</p></li>
+<li><p>How many bytes in a kilobyte? Why 1024 and not 1000?</p></li>
+<li><p>What is ASCII?</p></li>
+<li><p>What does the CPU do?</p></li>
+<li><p>What’s the difference between RAM and storage?</p></li>
+<li><p>What is an operating system?</p></li>
+<li><p>What is an IP address?</p></li>
+<li><p>How is text stored in a computer?</p></li>
+</ol>
+</section>
+<hr class="docutils" />
+<section id="key-takeaways">
+<h2>🎯 Key Takeaways<a class="headerlink" href="#key-takeaways" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><strong>Binary</strong> is how computers store everything (0s and 1s)</p></li>
+<li><p><strong>1 Bit</strong> = one 0 or 1</p></li>
+<li><p><strong>1 Byte</strong> = 8 bits (can store 0-255)</p></li>
+<li><p><strong>Storage hierarchy</strong>: Byte → KB → MB → GB → TB</p></li>
+<li><p><strong>ASCII/Unicode</strong> maps characters to numbers</p></li>
+<li><p><strong>CPU</strong> = brain (processes), <strong>RAM</strong> = short-term memory, <strong>Storage</strong> = long-term memory</p></li>
+<li><p><strong>Operating System</strong> manages hardware and runs programs</p></li>
+<li><p><strong>Internet</strong> = worldwide network of computers</p></li>
+<li><p><strong>Everything</strong> (text, images, audio, video) is ultimately stored as binary</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="next-steps">
+<h2>🚀 Next Steps<a class="headerlink" href="#next-steps" title="Link to this heading">#</a></h2>
+<p>Congratulations! You now understand how computers work at a fundamental level!</p>
+<p><strong>You’ve completed the Easy level! 🎉</strong></p>
+<p>You now have a solid foundation in:</p>
+<ul class="simple">
+<li><p>✅ Python programming basics</p></li>
+<li><p>✅ Variables and data types</p></li>
+<li><p>✅ Operations and conditionals</p></li>
+<li><p>✅ AI and machine learning concepts</p></li>
+<li><p>✅ How computers work</p></li>
+</ul>
+<p><strong>Ready for more?</strong></p>
+<ul class="simple">
+<li><p><strong>Medium Level</strong>: Functions, loops, data structures, OOP</p></li>
+<li><p><strong>Developer Tools</strong>: <code class="docutils literal notranslate"><span class="pre">tools/01_shell_basics.ipynb</span></code> - Essential professional skills</p></li>
+<li><p><strong>Hard Level</strong>: Advanced algorithms, deep learning, computer systems</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="pro-tips">
+<h2>💡 Pro Tips<a class="headerlink" href="#pro-tips" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p><strong>Everything is binary</strong>: Understanding this helps debug and optimize code</p></li>
+<li><p><strong>Memory matters</strong>: Efficient programs use less RAM and storage</p></li>
+<li><p><strong>Compression is magic</strong>: Reduces file sizes dramatically</p></li>
+<li><p><strong>Think in powers of 2</strong>: 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024…</p></li>
+<li><p><strong>Network speed</strong>: Bits vs Bytes - divide Mbps by 8 for MB/s</p></li>
+<li><p><strong>Modern computers are fast</strong>: Billions of operations per second!</p></li>
+<li><p><strong>But they’re still limited</strong>: Good code respects resource constraints</p></li>
+</ol>
+</section>
+<hr class="docutils" />
+<section id="fun-facts">
+<h2>🌟 Fun Facts<a class="headerlink" href="#fun-facts" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><strong>Apollo 11</strong> (1969 moon landing) had only 4KB of RAM!</p></li>
+<li><p>Your <strong>phone</strong> has over 1,000,000 times more RAM</p></li>
+<li><p>The first <strong>1GB hard drive</strong> (1980) weighed 550 pounds and cost $40,000</p></li>
+<li><p>Today you can buy 1TB (1,000 GB) for $50</p></li>
+<li><p><strong>ENIAC</strong> (1945), the first computer, weighed 30 tons</p></li>
+<li><p>Modern <strong>smartphones</strong> are millions of times more powerful</p></li>
+<li><p>Every <strong>Google search</strong> involves thousands of computers</p></li>
+<li><p><strong>Netflix</strong> streams over 1 billion hours per week</p></li>
+<li><p>The <strong>Internet</strong> transmits about 2.5 quintillion bytes per day!</p></li>
+</ul>
+<hr class="docutils" />
+<p><strong>You’ve learned the fundamentals - now go build amazing things!</strong> 🚀</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./easy"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="04_intro_to_ai_and_ml.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Lesson 4: Introduction to AI and Machine Learning</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../medium/README_MEDIUM.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">📘 Medium Level - Intermediate Track</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-you-ll-learn">What You’ll Learn</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#real-world-analogy">💡 Real-World Analogy</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-binary-system-how-computers-think">1. The Binary System: How Computers Think</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#why-binary">Why Binary?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#how-we-count-vs-how-computers-count">How We Count vs How Computers Count</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#counting-in-binary">Counting in Binary</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#understanding-binary-place-values">2. Understanding Binary Place Values</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#decimal-place-values">Decimal Place Values:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#binary-place-values">Binary Place Values:</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bits-and-bytes-storage-units">3. Bits and Bytes: Storage Units</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-building-blocks">The Building Blocks</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#storage-size-hierarchy">Storage Size Hierarchy</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#why-1024-instead-of-1000">Why 1024 instead of 1000?</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#text-encoding-how-computers-store-text">4. Text Encoding: How Computers Store Text</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ascii-american-standard-code-for-information-interchange">ASCII (American Standard Code for Information Interchange)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#unicode-utf-8">Unicode / UTF-8</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#computer-components-the-hardware">5. Computer Components: The Hardware</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-main-parts-of-a-computer">The Main Parts of a Computer</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#how-they-work-together">How They Work Together</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-data-is-represented">6. How Data is Represented</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#images">Images 🖼️</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#audio">Audio 🎵</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#video">Video 🎬</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#compression">Compression</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#operating-systems">7. Operating Systems</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-does-an-os-do">What Does an OS Do?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#popular-operating-systems">Popular Operating Systems</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#networks-and-the-internet">8. Networks and the Internet</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#how-computers-communicate">How Computers Communicate</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#key-concepts">Key Concepts</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-happens-when-you-visit-a-website">What Happens When You Visit a Website?</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-programs-work">9. How Programs Work</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-execution-cycle">The Execution Cycle</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#programming-languages">Programming Languages</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">📝 Exercises</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-1-binary-converter">Exercise 1: Binary Converter</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-2-word-analyzer">Exercise 2: Word Analyzer</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-3-storage-calculator">Exercise 3: Storage Calculator</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-4-secret-message-encoder">Exercise 4: Secret Message Encoder</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-5-download-time-calculator">Exercise 5: Download Time Calculator</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-6-computer-spec-analyzer">Exercise 6: Computer Spec Analyzer</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#self-check-quiz">✅ Self-Check Quiz</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#key-takeaways">🎯 Key Takeaways</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#next-steps">🚀 Next Steps</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pro-tips">💡 Pro Tips</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fun-facts">🌟 Fun Facts</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Mykolas Perevicius
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

@@ -1,0 +1,1565 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Command Line Tools &#8212; Education Playground</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=0c185eed" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=c73c0f3e"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'tools/02_command_line_tools';</script>
+    <script src="../_static/js/onboarding.js?v=557b7536"></script>
+    <link rel="canonical" href="https://mykolas-perevicius.github.io/Education_Playground/tools/02_command_line_tools.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Git Essentials: Version Control for Developers" href="03_git_essentials.html" />
+    <link rel="prev" title="The Shell: Your Command Center" href="01_shell_basics.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../README.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Education Playground</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../00_calibration_test.html">🎯 Calibration Test - Find Your Level</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../beginner_scripts/README.html">🌱 Beginner Scripts (10 Python Files)</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../easy/README_EASY.html">📗 Easy Level - Beginner</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../easy/01_introduction_to_python.html">1. Introduction to Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../easy/02_variables_and_data_types.html">2. Variables and Data Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../easy/03_basic_operations_and_conditionals.html">3. Operations and Conditionals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../easy/04_intro_to_ai_and_ml.html">4. Intro to AI and ML</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../easy/05_computing_fundamentals.html">5. Computing Fundamentals</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../medium/README_MEDIUM.html">📘 Medium Level - Intermediate</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../medium/01_functions_and_modules.html">1. Functions and Modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../medium/02_data_structures.html">2. Data Structures</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../medium/03_classes_and_oop.html">3. Classes and OOP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../medium/04_machine_learning_basics.html">4. Machine Learning Basics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../medium/05_data_analysis_with_pandas.html">5. Data Analysis with Pandas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../medium/06_algorithms_and_problem_solving.html">6. Algorithms and Problem Solving</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../hard/README_HARD.html">📕 Hard Level - Advanced</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../hard/01_advanced_functions_and_decorators.html">1. Advanced Functions &amp; Decorators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hard/02_generators_and_iterators.html">2. Generators and Iterators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hard/03_algorithms_and_complexity.html">3. Algorithms and Complexity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hard/04_deep_learning_and_neural_networks.html">4. Deep Learning &amp; Neural Networks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hard/05_advanced_ml_and_nlp.html">5. Advanced ML and NLP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hard/06_computer_systems_and_theory.html">6. Computer Systems and Theory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hard/07_project_ideas.html">7. Project Ideas &amp; Implementation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hard/08_classic_problems.html">Lesson 8: Classic Problems Collection</a></li>
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../hard/09_ctf_challenges.html">Lesson 9: Capture The Flag (CTF) - Hacker Training</a></li>
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../hard/10_performance_computing.html">10. Performance Computing ⚡ NEW!</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hard/11_cuda_and_parallel_computing.html">11. CUDA &amp; GPU Computing 🎮 NEW!</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="README.html">🛠️ Developer Tools Track</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="01_shell_basics.html">1. Shell and Command Line</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">2. Command Line Tools</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03_git_essentials.html">3. Git Essentials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04_text_editors.html">4. Text Editors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05_build_systems_cicd.html">5. Build Systems and CI/CD</a></li>
+<li class="toctree-l2"><a class="reference internal" href="06_debugging_profiling.html">6. Debugging and Profiling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="07_security_essentials.html">7. Security Essentials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="08_package_management.html">8. Package Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="09_ssh_remote_systems.html">9. SSH and Remote Systems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="10_docker_containers.html">10. Docker and Containers</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../solutions/README_SOLUTIONS.html">📝 Solutions</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../solutions/easy_solutions.html">Easy Level - Complete Solutions</a></li>
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../solutions/medium_solutions.html">Medium Level - Complete Solutions</a></li>
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../solutions/hard_solutions.html">Hard Level - Complete Solutions</a></li>
+
+
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../solutions/tools_solutions.html">Developer Tools - Complete Solutions</a></li>
+
+
+
+
+
+
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../RESOURCES.html">📚 Learning Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../PYTHON_CHEATSHEET.html">⚡ Python Cheat Sheet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ML_AI_CHEATSHEET.html">🤖 ML/AI Cheat Sheet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../SETUP.html">🔧 Setup Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../RELEASE_NOTES_v2.0.0.html">🎉 Release Notes v2.0.0</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none"></div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Command Line Tools</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-power-of-unix-tools">The Power of Unix Tools</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#finding-files-find">1. Finding Files: <code class="docutils literal notranslate"><span class="pre">find</span></code></a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-syntax">Basic Syntax</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#common-use-cases">Common Use Cases</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pro-tips-for-find">🎯 Pro Tips for <code class="docutils literal notranslate"><span class="pre">find</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#searching-text-grep">2. Searching Text: <code class="docutils literal notranslate"><span class="pre">grep</span></code></a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-usage">Basic Usage</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#regular-expressions-with-grep">Regular Expressions with grep</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#real-world-grep-examples">🎯 Real-World grep Examples</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#stream-editing-sed">3. Stream Editing: <code class="docutils literal notranslate"><span class="pre">sed</span></code></a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-substitution">Basic Substitution</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#advanced-sed-usage">Advanced sed Usage</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#real-world-sed-examples">🎯 Real-World sed Examples</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pattern-scanning-awk">4. Pattern Scanning: <code class="docutils literal notranslate"><span class="pre">awk</span></code></a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-awk-structure">Basic awk Structure</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#built-in-variables">Built-in Variables</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#advanced-awk">Advanced awk</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#real-world-awk-examples">🎯 Real-World awk Examples</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#text-manipulation-cut-paste-sort-uniq">5. Text Manipulation: <code class="docutils literal notranslate"><span class="pre">cut</span></code>, <code class="docutils literal notranslate"><span class="pre">paste</span></code>, <code class="docutils literal notranslate"><span class="pre">sort</span></code>, <code class="docutils literal notranslate"><span class="pre">uniq</span></code></a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cut-extract-columns"><code class="docutils literal notranslate"><span class="pre">cut</span></code> - Extract Columns</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sort-sort-lines"><code class="docutils literal notranslate"><span class="pre">sort</span></code> - Sort Lines</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#uniq-remove-duplicates"><code class="docutils literal notranslate"><span class="pre">uniq</span></code> - Remove Duplicates</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pipelines-combining-tools">6. Pipelines: Combining Tools</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#real-world-pipeline-examples">Real-World Pipeline Examples</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pro-pipeline-patterns">🎯 Pro Pipeline Patterns</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-processing-jq-and-modern-tools">7. Data Processing: <code class="docutils literal notranslate"><span class="pre">jq</span></code> and Modern Tools</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#jq-json-processor"><code class="docutils literal notranslate"><span class="pre">jq</span></code> - JSON Processor</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#python-alternative-for-json">Python Alternative for JSON</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#text-statistics-wc-head-tail">8. Text Statistics: <code class="docutils literal notranslate"><span class="pre">wc</span></code>, <code class="docutils literal notranslate"><span class="pre">head</span></code>, <code class="docutils literal notranslate"><span class="pre">tail</span></code></a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#wc-word-count"><code class="docutils literal notranslate"><span class="pre">wc</span></code> - Word Count</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#head-and-tail-first-last-lines"><code class="docutils literal notranslate"><span class="pre">head</span></code> and <code class="docutils literal notranslate"><span class="pre">tail</span></code> - First/Last Lines</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#process-substitution-and-advanced-techniques">9. Process Substitution and Advanced Techniques</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#compare-outputs">Compare Outputs</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#xargs-build-command-lines"><code class="docutils literal notranslate"><span class="pre">xargs</span></code> - Build Command Lines</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modern-alternatives">10. Modern Alternatives</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fast-modern-tools">Fast Modern Tools</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-ripgrep">Example: <code class="docutils literal notranslate"><span class="pre">ripgrep</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hands-on-exercises">🎯 Hands-On Exercises</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-1-log-analysis">Exercise 1: Log Analysis</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-2-csv-processing">Exercise 2: CSV Processing</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-3-code-analysis">Exercise 3: Code Analysis</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-4-data-transformation">Exercise 4: Data Transformation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-5-pipeline-challenge">Exercise 5: Pipeline Challenge</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#self-check-quiz">📝 Self-Check Quiz</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#key-takeaways">🎓 Key Takeaways</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#next-steps">🚀 Next Steps</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#additional-resources">📚 Additional Resources</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="command-line-tools">
+<h1>Command Line Tools<a class="headerlink" href="#command-line-tools" title="Link to this heading">#</a></h1>
+<section id="the-power-of-unix-tools">
+<h2>The Power of Unix Tools<a class="headerlink" href="#the-power-of-unix-tools" title="Link to this heading">#</a></h2>
+<p><strong>Real-world analogy:</strong> Think of command-line tools as a Swiss Army knife for working with files and data. Each tool does one thing extremely well, and when combined together, they become incredibly powerful.</p>
+<p>Modern developers spend significant time working with text files: code, logs, configuration files, data exports. Mastering command-line tools makes you 10x more efficient at these tasks.</p>
+<p><strong>What you’ll learn:</strong></p>
+<ul class="simple">
+<li><p>Essential text processing tools (grep, sed, awk)</p></li>
+<li><p>File finding and manipulation</p></li>
+<li><p>Data transformation and analysis</p></li>
+<li><p>Pipeline composition</p></li>
+<li><p>Real-world automation workflows</p></li>
+</ul>
+<p><strong>Time investment:</strong> 60-90 minutes<br />
+<strong>Difficulty:</strong> Intermediate</p>
+</section>
+<hr class="docutils" />
+<section id="finding-files-find">
+<h2>1. Finding Files: <code class="docutils literal notranslate"><span class="pre">find</span></code><a class="headerlink" href="#finding-files-find" title="Link to this heading">#</a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">find</span></code> command searches for files and directories based on various criteria.</p>
+<section id="basic-syntax">
+<h3>Basic Syntax<a class="headerlink" href="#basic-syntax" title="Link to this heading">#</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>find<span class="w"> </span><span class="o">[</span>path<span class="o">]</span><span class="w"> </span><span class="o">[</span>options<span class="o">]</span><span class="w"> </span><span class="o">[</span>expression<span class="o">]</span>
+</pre></div>
+</div>
+</section>
+<section id="common-use-cases">
+<h3>Common Use Cases<a class="headerlink" href="#common-use-cases" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create test files for examples</span>
+<span class="o">!</span>mkdir<span class="w"> </span>-p<span class="w"> </span>test_files/subdir
+<span class="o">!</span>touch<span class="w"> </span>test_files/file1.txt<span class="w"> </span>test_files/file2.py<span class="w"> </span>test_files/file3.js
+<span class="o">!</span>touch<span class="w"> </span>test_files/subdir/nested.txt<span class="w"> </span>test_files/README.md
+
+<span class="c1"># Find all files in current directory and subdirectories</span>
+<span class="o">!</span>find<span class="w"> </span>test_files<span class="w"> </span>-type<span class="w"> </span>f
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Find files by name pattern</span>
+<span class="o">!</span>find<span class="w"> </span>test_files<span class="w"> </span>-name<span class="w"> </span><span class="s2">&quot;*.txt&quot;</span>
+
+<span class="c1"># Case-insensitive name search</span>
+<span class="o">!</span>find<span class="w"> </span>test_files<span class="w"> </span>-iname<span class="w"> </span><span class="s2">&quot;readme*&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Find files modified in last 7 days</span>
+<span class="o">!</span>find<span class="w"> </span>test_files<span class="w"> </span>-type<span class="w"> </span>f<span class="w"> </span>-mtime<span class="w"> </span>-7
+
+<span class="c1"># Find files larger than 1MB</span>
+<span class="o">!</span>find<span class="w"> </span>test_files<span class="w"> </span>-type<span class="w"> </span>f<span class="w"> </span>-size<span class="w"> </span>+1M
+
+<span class="c1"># Find and execute command on each file</span>
+<span class="o">!</span>find<span class="w"> </span>test_files<span class="w"> </span>-name<span class="w"> </span><span class="s2">&quot;*.txt&quot;</span><span class="w"> </span>-exec<span class="w"> </span>wc<span class="w"> </span>-l<span class="w"> </span><span class="o">{}</span><span class="w"> </span><span class="se">\;</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="pro-tips-for-find">
+<h3>🎯 Pro Tips for <code class="docutils literal notranslate"><span class="pre">find</span></code><a class="headerlink" href="#pro-tips-for-find" title="Link to this heading">#</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Delete all .pyc files (Python cache)</span>
+find<span class="w"> </span>.<span class="w"> </span>-name<span class="w"> </span><span class="s2">&quot;*.pyc&quot;</span><span class="w"> </span>-delete
+
+<span class="c1"># Find empty directories</span>
+find<span class="w"> </span>.<span class="w"> </span>-type<span class="w"> </span>d<span class="w"> </span>-empty
+
+<span class="c1"># Find files with specific permissions</span>
+find<span class="w"> </span>.<span class="w"> </span>-type<span class="w"> </span>f<span class="w"> </span>-perm<span class="w"> </span><span class="m">644</span>
+
+<span class="c1"># Find and count files by extension</span>
+find<span class="w"> </span>.<span class="w"> </span>-type<span class="w"> </span>f<span class="w"> </span>-name<span class="w"> </span><span class="s2">&quot;*.py&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>wc<span class="w"> </span>-l
+</pre></div>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="searching-text-grep">
+<h2>2. Searching Text: <code class="docutils literal notranslate"><span class="pre">grep</span></code><a class="headerlink" href="#searching-text-grep" title="Link to this heading">#</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">grep</span></code> (Global Regular Expression Print) searches for patterns in text files.</p>
+<section id="basic-usage">
+<h3>Basic Usage<a class="headerlink" href="#basic-usage" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create sample file</span>
+<span class="n">sample_text</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;Python is awesome</span>
+<span class="s2">python is easy to learn</span>
+<span class="s2">Java is verbose</span>
+<span class="s2">JavaScript is everywhere</span>
+<span class="s2">Error: File not found</span>
+<span class="s2">Warning: Deprecated function</span>
+<span class="s2">INFO: Server started on port 8080</span>
+<span class="s2">&quot;&quot;&quot;</span>
+
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;test_files/sample.log&#39;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">sample_text</span><span class="p">)</span>
+
+<span class="c1"># Basic search</span>
+<span class="o">!</span>grep<span class="w"> </span><span class="s2">&quot;Python&quot;</span><span class="w"> </span>test_files/sample.log
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Case-insensitive search</span>
+<span class="o">!</span>grep<span class="w"> </span>-i<span class="w"> </span><span class="s2">&quot;python&quot;</span><span class="w"> </span>test_files/sample.log
+
+<span class="c1"># Show line numbers</span>
+<span class="o">!</span>grep<span class="w"> </span>-n<span class="w"> </span><span class="s2">&quot;is&quot;</span><span class="w"> </span>test_files/sample.log
+
+<span class="c1"># Count matches</span>
+<span class="o">!</span>grep<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;is&quot;</span><span class="w"> </span>test_files/sample.log
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Invert match (lines NOT containing pattern)</span>
+<span class="o">!</span>grep<span class="w"> </span>-v<span class="w"> </span><span class="s2">&quot;Python&quot;</span><span class="w"> </span>test_files/sample.log
+
+<span class="c1"># Search recursively in directories</span>
+<span class="o">!</span>grep<span class="w"> </span>-r<span class="w"> </span><span class="s2">&quot;Python&quot;</span><span class="w"> </span>test_files/
+
+<span class="c1"># Show context (lines before and after)</span>
+<span class="o">!</span>grep<span class="w"> </span>-A<span class="w"> </span><span class="m">1</span><span class="w"> </span>-B<span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="s2">&quot;Error&quot;</span><span class="w"> </span>test_files/sample.log<span class="w">  </span>#<span class="w"> </span><span class="m">1</span><span class="w"> </span>line<span class="w"> </span>after,<span class="w"> </span><span class="m">1</span><span class="w"> </span>before
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="regular-expressions-with-grep">
+<h3>Regular Expressions with grep<a class="headerlink" href="#regular-expressions-with-grep" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Match lines starting with specific text</span>
+<span class="o">!</span>grep<span class="w"> </span><span class="s2">&quot;^Error&quot;</span><span class="w"> </span>test_files/sample.log
+
+<span class="c1"># Match lines ending with specific text</span>
+<span class="o">!</span>grep<span class="w"> </span><span class="s2">&quot;8080</span>$<span class="s2">&quot;</span><span class="w"> </span>test_files/sample.log
+
+<span class="c1"># Match either pattern (OR)</span>
+<span class="o">!</span>grep<span class="w"> </span>-E<span class="w"> </span><span class="s2">&quot;Error|Warning&quot;</span><span class="w"> </span>test_files/sample.log
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="real-world-grep-examples">
+<h3>🎯 Real-World grep Examples<a class="headerlink" href="#real-world-grep-examples" title="Link to this heading">#</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Find all TODO comments in Python files</span>
+grep<span class="w"> </span>-rn<span class="w"> </span><span class="s2">&quot;TODO&quot;</span><span class="w"> </span>--include<span class="o">=</span><span class="s2">&quot;*.py&quot;</span><span class="w"> </span>.
+
+<span class="c1"># Find IP addresses in logs</span>
+grep<span class="w"> </span>-E<span class="w"> </span><span class="s2">&quot;[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}&quot;</span><span class="w"> </span>access.log
+
+<span class="c1"># Find error messages (case insensitive)</span>
+grep<span class="w"> </span>-i<span class="w"> </span><span class="s2">&quot;error\|exception\|failed&quot;</span><span class="w"> </span>app.log
+
+<span class="c1"># Find functions in Python code</span>
+grep<span class="w"> </span>-n<span class="w"> </span><span class="s2">&quot;^def &quot;</span><span class="w"> </span>*.py
+</pre></div>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="stream-editing-sed">
+<h2>3. Stream Editing: <code class="docutils literal notranslate"><span class="pre">sed</span></code><a class="headerlink" href="#stream-editing-sed" title="Link to this heading">#</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">sed</span></code> (Stream EDitor) performs text transformations on input streams.</p>
+<section id="basic-substitution">
+<h3>Basic Substitution<a class="headerlink" href="#basic-substitution" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create test file</span>
+<span class="o">!</span><span class="nb">echo</span><span class="w"> </span>-e<span class="w"> </span><span class="s2">&quot;Hello World\nHello Universe\nHello Everyone&quot;</span><span class="w"> </span>&gt;<span class="w"> </span>test_files/greetings.txt
+
+<span class="c1"># Replace first occurrence on each line</span>
+<span class="o">!</span>sed<span class="w"> </span><span class="s1">&#39;s/Hello/Hi/&#39;</span><span class="w"> </span>test_files/greetings.txt
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Replace ALL occurrences (global flag)</span>
+<span class="o">!</span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;foo bar foo baz foo&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>sed<span class="w"> </span><span class="s1">&#39;s/foo/FOO/g&#39;</span>
+
+<span class="c1"># Case-insensitive replacement</span>
+<span class="o">!</span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Hello hello HELLO&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>sed<span class="w"> </span><span class="s1">&#39;s/hello/hi/gI&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Delete lines matching pattern</span>
+<span class="o">!</span>sed<span class="w"> </span><span class="s1">&#39;/World/d&#39;</span><span class="w"> </span>test_files/greetings.txt
+
+<span class="c1"># Delete empty lines</span>
+<span class="o">!</span><span class="nb">echo</span><span class="w"> </span>-e<span class="w"> </span><span class="s2">&quot;line1\n\nline2\n\nline3&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>sed<span class="w"> </span><span class="s1">&#39;/^$/d&#39;</span>
+
+<span class="c1"># Print only lines matching pattern</span>
+<span class="o">!</span>sed<span class="w"> </span>-n<span class="w"> </span><span class="s1">&#39;/Universe/p&#39;</span><span class="w"> </span>test_files/greetings.txt
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="advanced-sed-usage">
+<h3>Advanced sed Usage<a class="headerlink" href="#advanced-sed-usage" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># In-place editing (modify file)</span>
+<span class="o">!</span>cp<span class="w"> </span>test_files/greetings.txt<span class="w"> </span>test_files/greetings_backup.txt
+<span class="o">!</span>sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">&#39;s/Hello/Greetings/&#39;</span><span class="w"> </span>test_files/greetings_backup.txt
+<span class="o">!</span>cat<span class="w"> </span>test_files/greetings_backup.txt
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Multiple commands</span>
+<span class="o">!</span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;foo bar&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>sed<span class="w"> </span><span class="s1">&#39;s/foo/FOO/; s/bar/BAR/&#39;</span>
+
+<span class="c1"># Line number ranges</span>
+<span class="o">!</span>sed<span class="w"> </span>-n<span class="w"> </span><span class="s1">&#39;1,2p&#39;</span><span class="w"> </span>test_files/greetings.txt<span class="w">  </span>#<span class="w"> </span>Print<span class="w"> </span>lines<span class="w"> </span><span class="m">1</span>-2
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="real-world-sed-examples">
+<h3>🎯 Real-World sed Examples<a class="headerlink" href="#real-world-sed-examples" title="Link to this heading">#</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Remove trailing whitespace</span>
+sed<span class="w"> </span><span class="s1">&#39;s/[[:space:]]*$//&#39;</span><span class="w"> </span>file.txt
+
+<span class="c1"># Add line numbers</span>
+<span class="nv">sed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>file.txt<span class="w"> </span><span class="p">|</span><span class="w"> </span>sed<span class="w"> </span><span class="s1">&#39;N;s/\n/\t/&#39;</span>
+
+<span class="c1"># Comment out lines containing pattern</span>
+sed<span class="w"> </span><span class="s1">&#39;/DEBUG/s/^/# /&#39;</span><span class="w"> </span>config.py
+
+<span class="c1"># Replace date format: 2024-01-15 → 01/15/2024</span>
+sed<span class="w"> </span><span class="s1">&#39;s/\([0-9]\{4\}\)-\([0-9]\{2\}\)-\([0-9]\{2\}\)/\2\/\3\/\1/&#39;</span>
+</pre></div>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="pattern-scanning-awk">
+<h2>4. Pattern Scanning: <code class="docutils literal notranslate"><span class="pre">awk</span></code><a class="headerlink" href="#pattern-scanning-awk" title="Link to this heading">#</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">awk</span></code> is a powerful text processing language, perfect for structured data.</p>
+<section id="basic-awk-structure">
+<h3>Basic awk Structure<a class="headerlink" href="#basic-awk-structure" title="Link to this heading">#</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>awk<span class="w"> </span><span class="s1">&#39;pattern { action }&#39;</span><span class="w"> </span>file
+</pre></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create sample data</span>
+<span class="n">data</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;Alice 25 Engineer</span>
+<span class="s2">Bob 30 Designer</span>
+<span class="s2">Charlie 35 Manager</span>
+<span class="s2">Diana 28 Developer</span>
+<span class="s2">&quot;&quot;&quot;</span>
+
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;test_files/employees.txt&#39;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+
+<span class="c1"># Print entire file</span>
+<span class="o">!</span>awk<span class="w"> </span><span class="s1">&#39;{print}&#39;</span><span class="w"> </span>test_files/employees.txt
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Print specific columns (fields)</span>
+<span class="o">!</span>awk<span class="w"> </span><span class="s1">&#39;{print $1, $3}&#39;</span><span class="w"> </span>test_files/employees.txt<span class="w">  </span>#<span class="w"> </span>Name<span class="w"> </span>and<span class="w"> </span>job<span class="w"> </span>title
+
+<span class="c1"># Print with custom separator</span>
+<span class="o">!</span>awk<span class="w"> </span><span class="s1">&#39;{print $1 &quot; is a &quot; $3}&#39;</span><span class="w"> </span>test_files/employees.txt
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Pattern matching</span>
+<span class="o">!</span>awk<span class="w"> </span><span class="s1">&#39;/Developer/ {print}&#39;</span><span class="w"> </span>test_files/employees.txt
+
+<span class="c1"># Conditional logic</span>
+<span class="o">!</span>awk<span class="w"> </span><span class="s1">&#39;$2 &gt; 28 {print $1, &quot;is over 28&quot;}&#39;</span><span class="w"> </span>test_files/employees.txt
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="built-in-variables">
+<h3>Built-in Variables<a class="headerlink" href="#built-in-variables" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># NR = Record Number (line number)</span>
+<span class="o">!</span>awk<span class="w"> </span><span class="s1">&#39;{print NR, $0}&#39;</span><span class="w"> </span>test_files/employees.txt
+
+<span class="c1"># NF = Number of Fields</span>
+<span class="o">!</span>awk<span class="w"> </span><span class="s1">&#39;{print $1, &quot;has&quot;, NF, &quot;fields&quot;}&#39;</span><span class="w"> </span>test_files/employees.txt
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># BEGIN and END blocks</span>
+<span class="o">!</span>awk<span class="w"> </span><span class="s1">&#39;BEGIN {print &quot;Employee Report&quot;} {print $1} END {print &quot;Total:&quot;, NR}&#39;</span><span class="w"> </span>test_files/employees.txt
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="advanced-awk">
+<h3>Advanced awk<a class="headerlink" href="#advanced-awk" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create CSV data</span>
+<span class="n">csv_data</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;name,age,salary</span>
+<span class="s2">Alice,25,75000</span>
+<span class="s2">Bob,30,85000</span>
+<span class="s2">Charlie,35,95000</span>
+<span class="s2">&quot;&quot;&quot;</span>
+
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;test_files/salaries.csv&#39;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">csv_data</span><span class="p">)</span>
+
+<span class="c1"># Process CSV (custom field separator)</span>
+<span class="o">!</span>awk<span class="w"> </span>-F<span class="s1">&#39;,&#39;</span><span class="w"> </span><span class="s1">&#39;NR&gt;1 {print $1, &quot;earns&quot;, $3}&#39;</span><span class="w"> </span>test_files/salaries.csv
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Calculate sum</span>
+<span class="o">!</span>awk<span class="w"> </span>-F<span class="s1">&#39;,&#39;</span><span class="w"> </span><span class="s1">&#39;NR&gt;1 {sum+=$3} END {print &quot;Total salary:&quot;, sum}&#39;</span><span class="w"> </span>test_files/salaries.csv
+
+<span class="c1"># Calculate average</span>
+<span class="o">!</span>awk<span class="w"> </span>-F<span class="s1">&#39;,&#39;</span><span class="w"> </span><span class="s1">&#39;NR&gt;1 {sum+=$3; count++} END {print &quot;Average:&quot;, sum/count}&#39;</span><span class="w"> </span>test_files/salaries.csv
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="real-world-awk-examples">
+<h3>🎯 Real-World awk Examples<a class="headerlink" href="#real-world-awk-examples" title="Link to this heading">#</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Print unique values from column</span>
+awk<span class="w"> </span><span class="s1">&#39;{print $3}&#39;</span><span class="w"> </span>employees.txt<span class="w"> </span><span class="p">|</span><span class="w"> </span>sort<span class="w"> </span><span class="p">|</span><span class="w"> </span>uniq
+
+<span class="c1"># Format output as table</span>
+awk<span class="w"> </span><span class="s1">&#39;{printf &quot;%-10s %-5s %-15s\n&quot;, $1, $2, $3}&#39;</span><span class="w"> </span>employees.txt
+
+<span class="c1"># Parse Apache access logs</span>
+awk<span class="w"> </span><span class="s1">&#39;{print $1}&#39;</span><span class="w"> </span>access.log<span class="w"> </span><span class="p">|</span><span class="w"> </span>sort<span class="w"> </span><span class="p">|</span><span class="w"> </span>uniq<span class="w"> </span>-c<span class="w"> </span><span class="p">|</span><span class="w"> </span>sort<span class="w"> </span>-rn<span class="w"> </span><span class="p">|</span><span class="w"> </span>head<span class="w"> </span>-10
+
+<span class="c1"># Extract JSON-like values</span>
+awk<span class="w"> </span>-F<span class="s1">&#39;&quot;&#39;</span><span class="w"> </span><span class="s1">&#39;{print $4}&#39;</span><span class="w"> </span>data.txt
+</pre></div>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="text-manipulation-cut-paste-sort-uniq">
+<h2>5. Text Manipulation: <code class="docutils literal notranslate"><span class="pre">cut</span></code>, <code class="docutils literal notranslate"><span class="pre">paste</span></code>, <code class="docutils literal notranslate"><span class="pre">sort</span></code>, <code class="docutils literal notranslate"><span class="pre">uniq</span></code><a class="headerlink" href="#text-manipulation-cut-paste-sort-uniq" title="Link to this heading">#</a></h2>
+<section id="cut-extract-columns">
+<h3><code class="docutils literal notranslate"><span class="pre">cut</span></code> - Extract Columns<a class="headerlink" href="#cut-extract-columns" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Extract specific characters</span>
+<span class="o">!</span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Hello World&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>cut<span class="w"> </span>-c<span class="w"> </span><span class="m">1</span>-5
+
+<span class="c1"># Extract fields (default delimiter: tab)</span>
+<span class="o">!</span><span class="nb">echo</span><span class="w"> </span>-e<span class="w"> </span><span class="s2">&quot;A\tB\tC\tD&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>cut<span class="w"> </span>-f<span class="w"> </span><span class="m">1</span>,3
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Custom delimiter</span>
+<span class="o">!</span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Alice,25,Engineer&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>cut<span class="w"> </span>-d<span class="s1">&#39;,&#39;</span><span class="w"> </span>-f1,3
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="sort-sort-lines">
+<h3><code class="docutils literal notranslate"><span class="pre">sort</span></code> - Sort Lines<a class="headerlink" href="#sort-sort-lines" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create unsorted data</span>
+<span class="o">!</span><span class="nb">echo</span><span class="w"> </span>-e<span class="w"> </span><span class="s2">&quot;banana\napple\ncherry\napricot&quot;</span><span class="w"> </span>&gt;<span class="w"> </span>test_files/fruits.txt
+
+<span class="c1"># Alphabetical sort</span>
+<span class="o">!</span>sort<span class="w"> </span>test_files/fruits.txt
+
+<span class="c1"># Reverse sort</span>
+<span class="o">!</span>sort<span class="w"> </span>-r<span class="w"> </span>test_files/fruits.txt
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Numeric sort</span>
+<span class="o">!</span><span class="nb">echo</span><span class="w"> </span>-e<span class="w"> </span><span class="s2">&quot;10\n2\n100\n20&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>sort<span class="w"> </span>-n
+
+<span class="c1"># Sort by specific column</span>
+<span class="o">!</span>sort<span class="w"> </span>-k2<span class="w"> </span>-n<span class="w"> </span>test_files/employees.txt<span class="w">  </span>#<span class="w"> </span>Sort<span class="w"> </span>by<span class="w"> </span>age<span class="w"> </span><span class="o">(</span>column<span class="w"> </span><span class="m">2</span><span class="o">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="uniq-remove-duplicates">
+<h3><code class="docutils literal notranslate"><span class="pre">uniq</span></code> - Remove Duplicates<a class="headerlink" href="#uniq-remove-duplicates" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create file with duplicates</span>
+<span class="o">!</span><span class="nb">echo</span><span class="w"> </span>-e<span class="w"> </span><span class="s2">&quot;apple\napple\nbanana\napple\ncherry\nbanana&quot;</span><span class="w"> </span>&gt;<span class="w"> </span>test_files/duplicates.txt
+
+<span class="c1"># Remove adjacent duplicates (must sort first!)</span>
+<span class="o">!</span>sort<span class="w"> </span>test_files/duplicates.txt<span class="w"> </span><span class="p">|</span><span class="w"> </span>uniq
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Count occurrences</span>
+<span class="o">!</span>sort<span class="w"> </span>test_files/duplicates.txt<span class="w"> </span><span class="p">|</span><span class="w"> </span>uniq<span class="w"> </span>-c
+
+<span class="c1"># Show only duplicates</span>
+<span class="o">!</span>sort<span class="w"> </span>test_files/duplicates.txt<span class="w"> </span><span class="p">|</span><span class="w"> </span>uniq<span class="w"> </span>-d
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="pipelines-combining-tools">
+<h2>6. Pipelines: Combining Tools<a class="headerlink" href="#pipelines-combining-tools" title="Link to this heading">#</a></h2>
+<p>The true power comes from combining tools with pipes (<code class="docutils literal notranslate"><span class="pre">|</span></code>).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create log file</span>
+<span class="n">log_data</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;2024-01-15 ERROR Database connection failed</span>
+<span class="s2">2024-01-15 INFO Server started</span>
+<span class="s2">2024-01-15 ERROR File not found: config.json</span>
+<span class="s2">2024-01-15 WARN Deprecated function used</span>
+<span class="s2">2024-01-15 ERROR Connection timeout</span>
+<span class="s2">2024-01-15 INFO Request processed</span>
+<span class="s2">&quot;&quot;&quot;</span>
+
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;test_files/app.log&#39;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">log_data</span><span class="p">)</span>
+
+<span class="c1"># Find and count errors</span>
+<span class="o">!</span>grep<span class="w"> </span><span class="s2">&quot;ERROR&quot;</span><span class="w"> </span>test_files/app.log<span class="w"> </span><span class="p">|</span><span class="w"> </span>wc<span class="w"> </span>-l
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Extract unique error messages</span>
+<span class="o">!</span>grep<span class="w"> </span><span class="s2">&quot;ERROR&quot;</span><span class="w"> </span>test_files/app.log<span class="w"> </span><span class="p">|</span><span class="w"> </span>cut<span class="w"> </span>-d<span class="s1">&#39; &#39;</span><span class="w"> </span>-f4-<span class="w"> </span><span class="p">|</span><span class="w"> </span>sort<span class="w"> </span><span class="p">|</span><span class="w"> </span>uniq
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Complex pipeline: Find most common log levels</span>
+<span class="o">!</span>cat<span class="w"> </span>test_files/app.log<span class="w"> </span><span class="p">|</span><span class="w"> </span>awk<span class="w"> </span><span class="s1">&#39;{print $3}&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>sort<span class="w"> </span><span class="p">|</span><span class="w"> </span>uniq<span class="w"> </span>-c<span class="w"> </span><span class="p">|</span><span class="w"> </span>sort<span class="w"> </span>-rn
+</pre></div>
+</div>
+</div>
+</div>
+<section id="real-world-pipeline-examples">
+<h3>Real-World Pipeline Examples<a class="headerlink" href="#real-world-pipeline-examples" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Analyze which Python files have the most lines</span>
+<span class="o">!</span>find<span class="w"> </span>.<span class="w"> </span>-name<span class="w"> </span><span class="s2">&quot;*.py&quot;</span><span class="w"> </span>-type<span class="w"> </span>f<span class="w"> </span>-exec<span class="w"> </span>wc<span class="w"> </span>-l<span class="w"> </span><span class="o">{}</span><span class="w"> </span><span class="se">\;</span><span class="w"> </span><span class="m">2</span>&gt;/dev/null<span class="w"> </span><span class="p">|</span><span class="w"> </span>sort<span class="w"> </span>-rn<span class="w"> </span><span class="p">|</span><span class="w"> </span>head<span class="w"> </span>-5
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="pro-pipeline-patterns">
+<h3>🎯 Pro Pipeline Patterns<a class="headerlink" href="#pro-pipeline-patterns" title="Link to this heading">#</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Find largest files in directory</span>
+du<span class="w"> </span>-ah<span class="w"> </span>.<span class="w"> </span><span class="p">|</span><span class="w"> </span>sort<span class="w"> </span>-rh<span class="w"> </span><span class="p">|</span><span class="w"> </span>head<span class="w"> </span>-20
+
+<span class="c1"># Find most frequently used commands in bash history</span>
+<span class="nb">history</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>awk<span class="w"> </span><span class="s1">&#39;{print $2}&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>sort<span class="w"> </span><span class="p">|</span><span class="w"> </span>uniq<span class="w"> </span>-c<span class="w"> </span><span class="p">|</span><span class="w"> </span>sort<span class="w"> </span>-rn<span class="w"> </span><span class="p">|</span><span class="w"> </span>head<span class="w"> </span>-10
+
+<span class="c1"># Count TODO comments per file</span>
+find<span class="w"> </span>.<span class="w"> </span>-name<span class="w"> </span><span class="s2">&quot;*.py&quot;</span><span class="w"> </span>-exec<span class="w"> </span>grep<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;TODO&quot;</span><span class="w"> </span><span class="o">{}</span><span class="w"> </span><span class="se">\;</span><span class="w"> </span>-print<span class="w"> </span><span class="p">|</span><span class="w"> </span>paste<span class="w"> </span>-<span class="w"> </span>-
+
+<span class="c1"># Extract email addresses from files</span>
+grep<span class="w"> </span>-roh<span class="w"> </span><span class="s2">&quot;[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}&quot;</span><span class="w"> </span>.<span class="w"> </span><span class="p">|</span><span class="w"> </span>sort<span class="w"> </span><span class="p">|</span><span class="w"> </span>uniq
+</pre></div>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="data-processing-jq-and-modern-tools">
+<h2>7. Data Processing: <code class="docutils literal notranslate"><span class="pre">jq</span></code> and Modern Tools<a class="headerlink" href="#data-processing-jq-and-modern-tools" title="Link to this heading">#</a></h2>
+<section id="jq-json-processor">
+<h3><code class="docutils literal notranslate"><span class="pre">jq</span></code> - JSON Processor<a class="headerlink" href="#jq-json-processor" title="Link to this heading">#</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">jq</span></code> is like <code class="docutils literal notranslate"><span class="pre">sed</span></code> for JSON data.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create JSON test data</span>
+<span class="kn">import</span> <span class="nn">json</span>
+
+<span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;users&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Alice&quot;</span><span class="p">,</span> <span class="s2">&quot;age&quot;</span><span class="p">:</span> <span class="mi">25</span><span class="p">,</span> <span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;Engineer&quot;</span><span class="p">},</span>
+        <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Bob&quot;</span><span class="p">,</span> <span class="s2">&quot;age&quot;</span><span class="p">:</span> <span class="mi">30</span><span class="p">,</span> <span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;Designer&quot;</span><span class="p">},</span>
+        <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Charlie&quot;</span><span class="p">,</span> <span class="s2">&quot;age&quot;</span><span class="p">:</span> <span class="mi">35</span><span class="p">,</span> <span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;Manager&quot;</span><span class="p">}</span>
+    <span class="p">],</span>
+    <span class="s2">&quot;company&quot;</span><span class="p">:</span> <span class="s2">&quot;Tech Corp&quot;</span>
+<span class="p">}</span>
+
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;test_files/data.json&#39;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">json</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="o">!</span>cat<span class="w"> </span>test_files/data.json
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Pretty print JSON</span>
+<span class="o">!</span>jq<span class="w"> </span><span class="s1">&#39;.&#39;</span><span class="w"> </span>test_files/data.json<span class="w"> </span><span class="m">2</span>&gt;/dev/null<span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;jq not installed (optional tool)&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Extract specific field</span>
+<span class="o">!</span>jq<span class="w"> </span><span class="s1">&#39;.company&#39;</span><span class="w"> </span>test_files/data.json<span class="w"> </span><span class="m">2</span>&gt;/dev/null<span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;jq not installed&quot;</span>
+
+<span class="c1"># Extract array elements</span>
+<span class="o">!</span>jq<span class="w"> </span><span class="s1">&#39;.users[0].name&#39;</span><span class="w"> </span>test_files/data.json<span class="w"> </span><span class="m">2</span>&gt;/dev/null<span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;jq not installed&quot;</span>
+
+<span class="c1"># Map over array</span>
+<span class="o">!</span>jq<span class="w"> </span><span class="s1">&#39;.users[] | .name&#39;</span><span class="w"> </span>test_files/data.json<span class="w"> </span><span class="m">2</span>&gt;/dev/null<span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;jq not installed&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="python-alternative-for-json">
+<h3>Python Alternative for JSON<a class="headerlink" href="#python-alternative-for-json" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Using Python for JSON processing (always available)</span>
+<span class="kn">import</span> <span class="nn">json</span>
+
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;test_files/data.json&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+
+<span class="c1"># Extract names</span>
+<span class="n">names</span> <span class="o">=</span> <span class="p">[</span><span class="n">user</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span> <span class="k">for</span> <span class="n">user</span> <span class="ow">in</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;users&#39;</span><span class="p">]]</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Names:&quot;</span><span class="p">,</span> <span class="n">names</span><span class="p">)</span>
+
+<span class="c1"># Filter users over 25</span>
+<span class="n">senior</span> <span class="o">=</span> <span class="p">[</span><span class="n">u</span> <span class="k">for</span> <span class="n">u</span> <span class="ow">in</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;users&#39;</span><span class="p">]</span> <span class="k">if</span> <span class="n">u</span><span class="p">[</span><span class="s1">&#39;age&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">25</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Senior users:&quot;</span><span class="p">,</span> <span class="n">senior</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="text-statistics-wc-head-tail">
+<h2>8. Text Statistics: <code class="docutils literal notranslate"><span class="pre">wc</span></code>, <code class="docutils literal notranslate"><span class="pre">head</span></code>, <code class="docutils literal notranslate"><span class="pre">tail</span></code><a class="headerlink" href="#text-statistics-wc-head-tail" title="Link to this heading">#</a></h2>
+<section id="wc-word-count">
+<h3><code class="docutils literal notranslate"><span class="pre">wc</span></code> - Word Count<a class="headerlink" href="#wc-word-count" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Count lines, words, characters</span>
+<span class="o">!</span>wc<span class="w"> </span>test_files/sample.log
+
+<span class="c1"># Count only lines</span>
+<span class="o">!</span>wc<span class="w"> </span>-l<span class="w"> </span>test_files/sample.log
+
+<span class="c1"># Count only words</span>
+<span class="o">!</span>wc<span class="w"> </span>-w<span class="w"> </span>test_files/sample.log
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="head-and-tail-first-last-lines">
+<h3><code class="docutils literal notranslate"><span class="pre">head</span></code> and <code class="docutils literal notranslate"><span class="pre">tail</span></code> - First/Last Lines<a class="headerlink" href="#head-and-tail-first-last-lines" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># First 3 lines</span>
+<span class="o">!</span>head<span class="w"> </span>-n<span class="w"> </span><span class="m">3</span><span class="w"> </span>test_files/sample.log
+
+<span class="c1"># Last 3 lines</span>
+<span class="o">!</span>tail<span class="w"> </span>-n<span class="w"> </span><span class="m">3</span><span class="w"> </span>test_files/sample.log
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Follow file (live updates) - useful for logs</span>
+<span class="c1"># tail -f /var/log/syslog  # Would continuously show new lines</span>
+
+<span class="c1"># Skip first N lines</span>
+<span class="o">!</span>tail<span class="w"> </span>-n<span class="w"> </span>+2<span class="w"> </span>test_files/salaries.csv<span class="w">  </span>#<span class="w"> </span>Skip<span class="w"> </span>header
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="process-substitution-and-advanced-techniques">
+<h2>9. Process Substitution and Advanced Techniques<a class="headerlink" href="#process-substitution-and-advanced-techniques" title="Link to this heading">#</a></h2>
+<section id="compare-outputs">
+<h3>Compare Outputs<a class="headerlink" href="#compare-outputs" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create two files</span>
+<span class="o">!</span><span class="nb">echo</span><span class="w"> </span>-e<span class="w"> </span><span class="s2">&quot;apple\nbanana\ncherry&quot;</span><span class="w"> </span>&gt;<span class="w"> </span>test_files/list1.txt
+<span class="o">!</span><span class="nb">echo</span><span class="w"> </span>-e<span class="w"> </span><span class="s2">&quot;banana\ncherry\ndate&quot;</span><span class="w"> </span>&gt;<span class="w"> </span>test_files/list2.txt
+
+<span class="c1"># Show lines unique to first file</span>
+<span class="o">!</span>comm<span class="w"> </span>-23<span class="w"> </span>&lt;<span class="o">(</span>sort<span class="w"> </span>test_files/list1.txt<span class="o">)</span><span class="w"> </span>&lt;<span class="o">(</span>sort<span class="w"> </span>test_files/list2.txt<span class="o">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="xargs-build-command-lines">
+<h3><code class="docutils literal notranslate"><span class="pre">xargs</span></code> - Build Command Lines<a class="headerlink" href="#xargs-build-command-lines" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Find and process files</span>
+<span class="o">!</span>find<span class="w"> </span>test_files<span class="w"> </span>-name<span class="w"> </span><span class="s2">&quot;*.txt&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>head<span class="w"> </span>-3<span class="w"> </span><span class="p">|</span><span class="w"> </span>xargs<span class="w"> </span>wc<span class="w"> </span>-l
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Parallel processing</span>
+<span class="o">!</span><span class="nb">echo</span><span class="w"> </span>-e<span class="w"> </span><span class="s2">&quot;test1\ntest2\ntest3&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>xargs<span class="w"> </span>-I<span class="w"> </span><span class="o">{}</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Processing: {}&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="modern-alternatives">
+<h2>10. Modern Alternatives<a class="headerlink" href="#modern-alternatives" title="Link to this heading">#</a></h2>
+<section id="fast-modern-tools">
+<h3>Fast Modern Tools<a class="headerlink" href="#fast-modern-tools" title="Link to this heading">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Classic</p></th>
+<th class="head"><p>Modern Alternative</p></th>
+<th class="head"><p>Why Better</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">grep</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">ripgrep</span> <span class="pre">(rg)</span></code></p></td>
+<td><p>10-100x faster, respects .gitignore</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">find</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">fd</span></code></p></td>
+<td><p>Simpler syntax, faster</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">cat</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">bat</span></code></p></td>
+<td><p>Syntax highlighting, line numbers</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">ls</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">exa</span></code></p></td>
+<td><p>Better formatting, git aware</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">du</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">dust</span></code></p></td>
+<td><p>Visual tree, faster</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="example-ripgrep">
+<h3>Example: <code class="docutils literal notranslate"><span class="pre">ripgrep</span></code><a class="headerlink" href="#example-ripgrep" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># ripgrep syntax (if installed)</span>
+<span class="c1"># Much faster than grep, respects .gitignore automatically</span>
+
+<span class="c1"># rg &quot;TODO&quot;                    # Search current directory</span>
+<span class="c1"># rg &quot;TODO&quot; -t py             # Only Python files</span>
+<span class="c1"># rg &quot;TODO&quot; -g &#39;!tests&#39;       # Exclude tests directory</span>
+<span class="c1"># rg &quot;function&quot; -A 3          # Show 3 lines after match</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Install ripgrep: cargo install ripgrep&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Or: apt install ripgrep (Ubuntu)&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Or: brew install ripgrep (macOS)&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="hands-on-exercises">
+<h2>🎯 Hands-On Exercises<a class="headerlink" href="#hands-on-exercises" title="Link to this heading">#</a></h2>
+<section id="exercise-1-log-analysis">
+<h3>Exercise 1: Log Analysis<a class="headerlink" href="#exercise-1-log-analysis" title="Link to this heading">#</a></h3>
+<p>You have a web server log file. Extract useful statistics:</p>
+<ul class="simple">
+<li><p>Count total requests</p></li>
+<li><p>Find most common status codes</p></li>
+<li><p>List top 5 most accessed URLs</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create sample access log</span>
+<span class="n">access_log</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;192.168.1.1 - - [15/Jan/2024:10:15:30] &quot;GET /home 200</span>
+<span class="s2">192.168.1.2 - - [15/Jan/2024:10:15:31] &quot;GET /about 200</span>
+<span class="s2">192.168.1.1 - - [15/Jan/2024:10:15:32] &quot;GET /home 200</span>
+<span class="s2">192.168.1.3 - - [15/Jan/2024:10:15:33] &quot;GET /contact 404</span>
+<span class="s2">192.168.1.2 - - [15/Jan/2024:10:15:34] &quot;POST /api/login 200</span>
+<span class="s2">192.168.1.4 - - [15/Jan/2024:10:15:35] &quot;GET /admin 403</span>
+<span class="s2">192.168.1.1 - - [15/Jan/2024:10:15:36] &quot;GET /home 200</span>
+<span class="s2">&quot;&quot;&quot;</span>
+
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;test_files/access.log&#39;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">access_log</span><span class="p">)</span>
+
+<span class="c1"># TODO: Your solution here</span>
+<span class="c1"># Count total requests:</span>
+
+<span class="c1"># Most common status codes:</span>
+
+<span class="c1"># Top URLs:</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="exercise-2-csv-processing">
+<h3>Exercise 2: CSV Processing<a class="headerlink" href="#exercise-2-csv-processing" title="Link to this heading">#</a></h3>
+<p>Process a sales CSV file to find:</p>
+<ul class="simple">
+<li><p>Total sales amount</p></li>
+<li><p>Average sale price</p></li>
+<li><p>Top 3 products by quantity</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create sales data</span>
+<span class="n">sales_csv</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;product,quantity,price</span>
+<span class="s2">Laptop,5,1200</span>
+<span class="s2">Mouse,15,25</span>
+<span class="s2">Keyboard,10,75</span>
+<span class="s2">Monitor,8,300</span>
+<span class="s2">Laptop,3,1200</span>
+<span class="s2">Mouse,20,25</span>
+<span class="s2">&quot;&quot;&quot;</span>
+
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;test_files/sales.csv&#39;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">sales_csv</span><span class="p">)</span>
+
+<span class="c1"># TODO: Your solution here</span>
+<span class="c1"># Total sales:</span>
+
+<span class="c1"># Average price:</span>
+
+<span class="c1"># Top products:</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="exercise-3-code-analysis">
+<h3>Exercise 3: Code Analysis<a class="headerlink" href="#exercise-3-code-analysis" title="Link to this heading">#</a></h3>
+<p>Analyze Python source files:</p>
+<ul class="simple">
+<li><p>Count total lines of code (excluding comments and blanks)</p></li>
+<li><p>Find all function definitions</p></li>
+<li><p>List files with TODO comments</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create sample Python file</span>
+<span class="n">py_code</span> <span class="o">=</span> <span class="s1">&#39;&#39;&#39;# Calculate factorial</span>
+<span class="s1">def factorial(n):</span>
+<span class="s1">    &quot;&quot;&quot;Calculate factorial recursively&quot;&quot;&quot;</span>
+<span class="s1">    # TODO: Add input validation</span>
+<span class="s1">    if n &lt;= 1:</span>
+<span class="s1">        return 1</span>
+<span class="s1">    return n * factorial(n-1)</span>
+
+<span class="s1">def fibonacci(n):</span>
+<span class="s1">    &quot;&quot;&quot;Calculate nth Fibonacci number&quot;&quot;&quot;</span>
+<span class="s1">    if n &lt;= 1:</span>
+<span class="s1">        return n</span>
+<span class="s1">    return fibonacci(n-1) + fibonacci(n-2)</span>
+<span class="s1">&#39;&#39;&#39;</span>
+
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;test_files/math_utils.py&#39;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">py_code</span><span class="p">)</span>
+
+<span class="c1"># TODO: Your solution here</span>
+<span class="c1"># Count LOC:</span>
+
+<span class="c1"># Find functions:</span>
+
+<span class="c1"># Find TODOs:</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="exercise-4-data-transformation">
+<h3>Exercise 4: Data Transformation<a class="headerlink" href="#exercise-4-data-transformation" title="Link to this heading">#</a></h3>
+<p>Transform a space-separated file to CSV format with headers.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Input data (space-separated)</span>
+<span class="o">!</span><span class="nb">echo</span><span class="w"> </span>-e<span class="w"> </span><span class="s2">&quot;Alice 25 Engineer\nBob 30 Designer\nCharlie 35 Manager&quot;</span><span class="w"> </span>&gt;<span class="w"> </span>test_files/input.txt
+
+<span class="c1"># TODO: Convert to CSV with headers: name,age,role</span>
+<span class="c1"># Your solution here:</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="exercise-5-pipeline-challenge">
+<h3>Exercise 5: Pipeline Challenge<a class="headerlink" href="#exercise-5-pipeline-challenge" title="Link to this heading">#</a></h3>
+<p>Create a one-liner pipeline to:</p>
+<ol class="arabic simple">
+<li><p>Find all <code class="docutils literal notranslate"><span class="pre">.txt</span></code> files</p></li>
+<li><p>Count words in each</p></li>
+<li><p>Show only files with more than 10 words</p></li>
+<li><p>Sort by word count (descending)</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># TODO: Your one-liner here</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="self-check-quiz">
+<h2>📝 Self-Check Quiz<a class="headerlink" href="#self-check-quiz" title="Link to this heading">#</a></h2>
+<p>Test your understanding:</p>
+<ol class="arabic simple">
+<li><p><strong>What’s the difference between <code class="docutils literal notranslate"><span class="pre">grep</span> <span class="pre">-E</span></code> and regular <code class="docutils literal notranslate"><span class="pre">grep</span></code>?</strong></p>
+<ul class="simple">
+<li><p>Extended regex support vs basic regex</p></li>
+</ul>
+</li>
+<li><p><strong>Why must you <code class="docutils literal notranslate"><span class="pre">sort</span></code> before <code class="docutils literal notranslate"><span class="pre">uniq</span></code>?</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">uniq</span></code> only removes <em>adjacent</em> duplicates</p></li>
+</ul>
+</li>
+<li><p><strong>What does <code class="docutils literal notranslate"><span class="pre">awk</span> <span class="pre">'{print</span> <span class="pre">$NF}'</span></code> do?</strong></p>
+<ul class="simple">
+<li><p>Prints the last field of each line</p></li>
+</ul>
+</li>
+<li><p><strong>How to replace text in a file in-place with <code class="docutils literal notranslate"><span class="pre">sed</span></code>?</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">sed</span> <span class="pre">-i</span> <span class="pre">'s/old/new/g'</span> <span class="pre">file.txt</span></code></p></li>
+</ul>
+</li>
+<li><p><strong>What’s the difference between <code class="docutils literal notranslate"><span class="pre">&gt;</span></code> and <code class="docutils literal notranslate"><span class="pre">&gt;&gt;</span></code>?</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">&gt;</span></code> overwrites, <code class="docutils literal notranslate"><span class="pre">&gt;&gt;</span></code> appends</p></li>
+</ul>
+</li>
+<li><p><strong>How to search case-insensitively with <code class="docutils literal notranslate"><span class="pre">grep</span></code>?</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">grep</span> <span class="pre">-i</span> <span class="pre">pattern</span> <span class="pre">file</span></code></p></li>
+</ul>
+</li>
+<li><p><strong>What does <code class="docutils literal notranslate"><span class="pre">2&gt;&amp;1</span></code> do?</strong></p>
+<ul class="simple">
+<li><p>Redirects stderr to stdout</p></li>
+</ul>
+</li>
+<li><p><strong>How to process CSV with <code class="docutils literal notranslate"><span class="pre">awk</span></code>?</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">awk</span> <span class="pre">-F','</span> <span class="pre">'{print</span> <span class="pre">$1}'</span> <span class="pre">file.csv</span></code></p></li>
+</ul>
+</li>
+<li><p><strong>What’s a pipeline?</strong></p>
+<ul class="simple">
+<li><p>Chaining commands with <code class="docutils literal notranslate"><span class="pre">|</span></code> to pass output as input</p></li>
+</ul>
+</li>
+<li><p><strong>How to follow a log file in real-time?</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">tail</span> <span class="pre">-f</span> <span class="pre">logfile</span></code></p></li>
+</ul>
+</li>
+</ol>
+</section>
+<hr class="docutils" />
+<section id="key-takeaways">
+<h2>🎓 Key Takeaways<a class="headerlink" href="#key-takeaways" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p><strong>Unix Philosophy</strong>: Do one thing well, compose tools</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">find</span></code></strong>: Search for files by name, type, size, time</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">grep</span></code></strong>: Search text patterns, supports regex</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">sed</span></code></strong>: Stream editor for text transformation</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">awk</span></code></strong>: Pattern scanning and processing language</p></li>
+<li><p><strong>Pipelines</strong>: Chain tools with <code class="docutils literal notranslate"><span class="pre">|</span></code> for powerful workflows</p></li>
+<li><p><strong>Modern tools</strong>: <code class="docutils literal notranslate"><span class="pre">ripgrep</span></code>, <code class="docutils literal notranslate"><span class="pre">fd</span></code>, <code class="docutils literal notranslate"><span class="pre">bat</span></code> are faster alternatives</p></li>
+<li><p><strong>Practice</strong>: Master these tools through daily use</p></li>
+</ol>
+<p><strong>Remember:</strong> These tools are 40+ years old and still dominant because they’re incredibly powerful and composable!</p>
+</section>
+<hr class="docutils" />
+<section id="next-steps">
+<h2>🚀 Next Steps<a class="headerlink" href="#next-steps" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p><strong>Practice daily</strong>: Use these tools in your workflow</p></li>
+<li><p><strong>Read man pages</strong>: <code class="docutils literal notranslate"><span class="pre">man</span> <span class="pre">grep</span></code>, <code class="docutils literal notranslate"><span class="pre">man</span> <span class="pre">awk</span></code> for deep dives</p></li>
+<li><p><strong>Install modern tools</strong>: Try <code class="docutils literal notranslate"><span class="pre">ripgrep</span></code>, <code class="docutils literal notranslate"><span class="pre">fd</span></code>, <code class="docutils literal notranslate"><span class="pre">bat</span></code></p></li>
+<li><p><strong>Next lesson</strong>: <code class="docutils literal notranslate"><span class="pre">03_git_essentials.ipynb</span></code> - Version control mastery</p></li>
+</ol>
+</section>
+<hr class="docutils" />
+<section id="additional-resources">
+<h2>📚 Additional Resources<a class="headerlink" href="#additional-resources" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/jlevy/the-art-of-command-line">The Art of Command Line</a></p></li>
+<li><p><a class="reference external" href="https://www.grymoire.com/Unix/Awk.html">Awk Tutorial</a></p></li>
+<li><p><a class="reference external" href="https://www.grymoire.com/Unix/Sed.html">Sed Tutorial</a></p></li>
+<li><p><a class="reference external" href="https://github.com/BurntSushi/ripgrep/blob/master/GUIDE.md">Ripgrep User Guide</a></p></li>
+<li><p><a class="reference external" href="https://explainshell.com/">explainshell.com</a> - Explains shell commands</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Cleanup test files</span>
+<span class="o">!</span>rm<span class="w"> </span>-rf<span class="w"> </span>test_files/
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;✅ Test files cleaned up!&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">🎉 Congratulations on completing Command Line Tools!&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;You now have powerful text processing skills.&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./tools"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="01_shell_basics.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">The Shell: Your Command Center</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="03_git_essentials.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Git Essentials: Version Control for Developers</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-power-of-unix-tools">The Power of Unix Tools</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#finding-files-find">1. Finding Files: <code class="docutils literal notranslate"><span class="pre">find</span></code></a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-syntax">Basic Syntax</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#common-use-cases">Common Use Cases</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pro-tips-for-find">🎯 Pro Tips for <code class="docutils literal notranslate"><span class="pre">find</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#searching-text-grep">2. Searching Text: <code class="docutils literal notranslate"><span class="pre">grep</span></code></a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-usage">Basic Usage</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#regular-expressions-with-grep">Regular Expressions with grep</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#real-world-grep-examples">🎯 Real-World grep Examples</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#stream-editing-sed">3. Stream Editing: <code class="docutils literal notranslate"><span class="pre">sed</span></code></a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-substitution">Basic Substitution</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#advanced-sed-usage">Advanced sed Usage</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#real-world-sed-examples">🎯 Real-World sed Examples</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pattern-scanning-awk">4. Pattern Scanning: <code class="docutils literal notranslate"><span class="pre">awk</span></code></a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-awk-structure">Basic awk Structure</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#built-in-variables">Built-in Variables</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#advanced-awk">Advanced awk</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#real-world-awk-examples">🎯 Real-World awk Examples</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#text-manipulation-cut-paste-sort-uniq">5. Text Manipulation: <code class="docutils literal notranslate"><span class="pre">cut</span></code>, <code class="docutils literal notranslate"><span class="pre">paste</span></code>, <code class="docutils literal notranslate"><span class="pre">sort</span></code>, <code class="docutils literal notranslate"><span class="pre">uniq</span></code></a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cut-extract-columns"><code class="docutils literal notranslate"><span class="pre">cut</span></code> - Extract Columns</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sort-sort-lines"><code class="docutils literal notranslate"><span class="pre">sort</span></code> - Sort Lines</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#uniq-remove-duplicates"><code class="docutils literal notranslate"><span class="pre">uniq</span></code> - Remove Duplicates</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pipelines-combining-tools">6. Pipelines: Combining Tools</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#real-world-pipeline-examples">Real-World Pipeline Examples</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pro-pipeline-patterns">🎯 Pro Pipeline Patterns</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-processing-jq-and-modern-tools">7. Data Processing: <code class="docutils literal notranslate"><span class="pre">jq</span></code> and Modern Tools</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#jq-json-processor"><code class="docutils literal notranslate"><span class="pre">jq</span></code> - JSON Processor</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#python-alternative-for-json">Python Alternative for JSON</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#text-statistics-wc-head-tail">8. Text Statistics: <code class="docutils literal notranslate"><span class="pre">wc</span></code>, <code class="docutils literal notranslate"><span class="pre">head</span></code>, <code class="docutils literal notranslate"><span class="pre">tail</span></code></a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#wc-word-count"><code class="docutils literal notranslate"><span class="pre">wc</span></code> - Word Count</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#head-and-tail-first-last-lines"><code class="docutils literal notranslate"><span class="pre">head</span></code> and <code class="docutils literal notranslate"><span class="pre">tail</span></code> - First/Last Lines</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#process-substitution-and-advanced-techniques">9. Process Substitution and Advanced Techniques</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#compare-outputs">Compare Outputs</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#xargs-build-command-lines"><code class="docutils literal notranslate"><span class="pre">xargs</span></code> - Build Command Lines</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modern-alternatives">10. Modern Alternatives</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fast-modern-tools">Fast Modern Tools</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-ripgrep">Example: <code class="docutils literal notranslate"><span class="pre">ripgrep</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hands-on-exercises">🎯 Hands-On Exercises</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-1-log-analysis">Exercise 1: Log Analysis</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-2-csv-processing">Exercise 2: CSV Processing</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-3-code-analysis">Exercise 3: Code Analysis</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-4-data-transformation">Exercise 4: Data Transformation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-5-pipeline-challenge">Exercise 5: Pipeline Challenge</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#self-check-quiz">📝 Self-Check Quiz</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#key-takeaways">🎓 Key Takeaways</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#next-steps">🚀 Next Steps</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#additional-resources">📚 Additional Resources</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Mykolas Perevicius
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

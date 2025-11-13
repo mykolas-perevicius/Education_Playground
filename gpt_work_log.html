@@ -1,0 +1,656 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>GPT Work Log - Education Playground &#8212; Education Playground</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="_static/css/custom.css?v=0c185eed" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=c73c0f3e"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'gpt_work_log';</script>
+    <script src="_static/js/onboarding.js?v=557b7536"></script>
+    <link rel="canonical" href="https://mykolas-perevicius.github.io/Education_Playground/gpt_work_log.html" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="README.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Education Playground</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="00_calibration_test.html">🎯 Calibration Test - Find Your Level</a></li>
+<li class="toctree-l1"><a class="reference internal" href="beginner_scripts/README.html">🌱 Beginner Scripts (10 Python Files)</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="easy/README_EASY.html">📗 Easy Level - Beginner</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="easy/01_introduction_to_python.html">1. Introduction to Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="easy/02_variables_and_data_types.html">2. Variables and Data Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="easy/03_basic_operations_and_conditionals.html">3. Operations and Conditionals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="easy/04_intro_to_ai_and_ml.html">4. Intro to AI and ML</a></li>
+<li class="toctree-l2"><a class="reference internal" href="easy/05_computing_fundamentals.html">5. Computing Fundamentals</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="medium/README_MEDIUM.html">📘 Medium Level - Intermediate</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="medium/01_functions_and_modules.html">1. Functions and Modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="medium/02_data_structures.html">2. Data Structures</a></li>
+<li class="toctree-l2"><a class="reference internal" href="medium/03_classes_and_oop.html">3. Classes and OOP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="medium/04_machine_learning_basics.html">4. Machine Learning Basics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="medium/05_data_analysis_with_pandas.html">5. Data Analysis with Pandas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="medium/06_algorithms_and_problem_solving.html">6. Algorithms and Problem Solving</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="hard/README_HARD.html">📕 Hard Level - Advanced</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="hard/01_advanced_functions_and_decorators.html">1. Advanced Functions &amp; Decorators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hard/02_generators_and_iterators.html">2. Generators and Iterators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hard/03_algorithms_and_complexity.html">3. Algorithms and Complexity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hard/04_deep_learning_and_neural_networks.html">4. Deep Learning &amp; Neural Networks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hard/05_advanced_ml_and_nlp.html">5. Advanced ML and NLP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hard/06_computer_systems_and_theory.html">6. Computer Systems and Theory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hard/07_project_ideas.html">7. Project Ideas &amp; Implementation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hard/08_classic_problems.html">Lesson 8: Classic Problems Collection</a></li>
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="hard/09_ctf_challenges.html">Lesson 9: Capture The Flag (CTF) - Hacker Training</a></li>
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="hard/10_performance_computing.html">10. Performance Computing ⚡ NEW!</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hard/11_cuda_and_parallel_computing.html">11. CUDA &amp; GPU Computing 🎮 NEW!</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="tools/README.html">🛠️ Developer Tools Track</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="tools/01_shell_basics.html">1. Shell and Command Line</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools/02_command_line_tools.html">2. Command Line Tools</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools/03_git_essentials.html">3. Git Essentials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools/04_text_editors.html">4. Text Editors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools/05_build_systems_cicd.html">5. Build Systems and CI/CD</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools/06_debugging_profiling.html">6. Debugging and Profiling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools/07_security_essentials.html">7. Security Essentials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools/08_package_management.html">8. Package Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools/09_ssh_remote_systems.html">9. SSH and Remote Systems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools/10_docker_containers.html">10. Docker and Containers</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="solutions/README_SOLUTIONS.html">📝 Solutions</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="solutions/easy_solutions.html">Easy Level - Complete Solutions</a></li>
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="solutions/medium_solutions.html">Medium Level - Complete Solutions</a></li>
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="solutions/hard_solutions.html">Hard Level - Complete Solutions</a></li>
+
+
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="solutions/tools_solutions.html">Developer Tools - Complete Solutions</a></li>
+
+
+
+
+
+
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="RESOURCES.html">📚 Learning Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="PYTHON_CHEATSHEET.html">⚡ Python Cheat Sheet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ML_AI_CHEATSHEET.html">🤖 ML/AI Cheat Sheet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="SETUP.html">🔧 Setup Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="RELEASE_NOTES_v2.0.0.html">🎉 Release Notes v2.0.0</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none"></div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>GPT Work Log - Education Playground</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#session-1-repository-status-review">Session 1: Repository Status Review</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#key-notes">Key Notes</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#next-steps">Next Steps</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#session-2-notebook-spot-checks-testing-plan">Session 2: Notebook Spot Checks &amp; Testing Plan</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#actions">Actions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#outcomes">Outcomes</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#session-3-dependency-install-automated-execution">Session 3: Dependency Install &amp; Automated Execution</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Actions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Outcomes</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#session-4-logging-enhancements-full-test-coverage">Session 4: Logging Enhancements &amp; Full Test Coverage</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Actions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Outcomes</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#session-5-mobile-nav-fix-playwright-bfs-harness">Session 5: Mobile Nav Fix &amp; Playwright BFS Harness</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">Actions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">Outcomes</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#session-6-harden-hpc-notebook-execution">Session 6: Harden HPC Notebook Execution</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">Actions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">Outcomes</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#session-7-playwright-crawl-stability-logging">Session 7: Playwright Crawl Stability &amp; Logging</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">Actions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">Outcomes</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="gpt-work-log-education-playground">
+<h1>GPT Work Log - Education Playground<a class="headerlink" href="#gpt-work-log-education-playground" title="Link to this heading">#</a></h1>
+<p>This log tracks ChatGPT (Codex) sessions working on Education Playground.</p>
+<hr class="docutils" />
+<section id="session-1-repository-status-review">
+<h2>Session 1: Repository Status Review<a class="headerlink" href="#session-1-repository-status-review" title="Link to this heading">#</a></h2>
+<p><strong>Date:</strong> 2025-11-03<br />
+<strong>Status:</strong> ✅ Complete<br />
+<strong>Objective:</strong> Confirm the state of Education Playground after prior enhancement work and establish next-step options.</p>
+<section id="key-notes">
+<h3>Key Notes<a class="headerlink" href="#key-notes" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Reviewed <code class="docutils literal notranslate"><span class="pre">claude_work_log.md</span></code> to recap prior sessions covering medium, hard, and high-performance computing upgrades.</p></li>
+<li><p>Confirmed <code class="docutils literal notranslate"><span class="pre">fix-onboarding-base-path</span></code> working tree is clean (<code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">status</span> <span class="pre">-sb</span></code> shows no local changes).</p></li>
+<li><p>Verified repository remains aligned with the comprehensive enhancements noted in Sessions 1-5.</p></li>
+</ul>
+</section>
+<section id="next-steps">
+<h3>Next Steps<a class="headerlink" href="#next-steps" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Optional: Run spot checks on newly added performance/CUDA notebooks to ensure execution parity.</p></li>
+<li><p>Optional: Identify documentation or automation gaps (e.g., testing harness) for future sessions.</p></li>
+</ul>
+</section>
+</section>
+<hr class="docutils" />
+<section id="session-2-notebook-spot-checks-testing-plan">
+<h2>Session 2: Notebook Spot Checks &amp; Testing Plan<a class="headerlink" href="#session-2-notebook-spot-checks-testing-plan" title="Link to this heading">#</a></h2>
+<p><strong>Date:</strong> 2025-11-03<br />
+<strong>Status:</strong> ✅ Complete<br />
+<strong>Objective:</strong> Validate execution readiness of the new high-performance notebooks and formalize testing/documentation follow-ups.</p>
+<section id="actions">
+<h3>Actions<a class="headerlink" href="#actions" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Parsed notebook imports to map out required third-party packages (NumPy, Numba, PyTorch, CuPy).</p></li>
+<li><p>Executed diagnostic cells directly via <code class="docutils literal notranslate"><span class="pre">python3</span></code> to verify graceful handling of missing GPU tooling.</p></li>
+<li><p>Confirmed <code class="docutils literal notranslate"><span class="pre">hard/10_performance_computing.ipynb</span></code> skips Numba sections cleanly but halts on NumPy-dependent cells (missing locally).</p></li>
+<li><p>Logged results and recommendations in <code class="docutils literal notranslate"><span class="pre">TESTING_NOTES.md</span></code>, outlining dependency checklists and CI automation ideas.</p></li>
+</ul>
+</section>
+<section id="outcomes">
+<h3>Outcomes<a class="headerlink" href="#outcomes" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Added <code class="docutils literal notranslate"><span class="pre">TESTING_NOTES.md</span></code> documenting current gaps, dependency requirements, and proposed automation steps.</p></li>
+<li><p>Updated import availability checks (<code class="docutils literal notranslate"><span class="pre">numpy</span></code>, <code class="docutils literal notranslate"><span class="pre">numba</span></code>, <code class="docutils literal notranslate"><span class="pre">torch</span></code>, <code class="docutils literal notranslate"><span class="pre">cupy</span></code>) confirming they are absent in the current environment.</p></li>
+<li><p>Established a follow-up path for creating a requirements file and automated notebook runner once dependencies can be installed.</p></li>
+</ul>
+</section>
+</section>
+<hr class="docutils" />
+<section id="session-3-dependency-install-automated-execution">
+<h2>Session 3: Dependency Install &amp; Automated Execution<a class="headerlink" href="#session-3-dependency-install-automated-execution" title="Link to this heading">#</a></h2>
+<p><strong>Date:</strong> 2025-11-03<br />
+<strong>Status:</strong> ✅ Complete<br />
+<strong>Objective:</strong> Install required scientific stack, automate dependency checks, and execute the new hard-track notebooks.</p>
+<section id="id1">
+<h3>Actions<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Added <code class="docutils literal notranslate"><span class="pre">requirements-notebooks.txt</span></code> capturing CPU dependencies plus optional GPU guidance.</p></li>
+<li><p>Installed <code class="docutils literal notranslate"><span class="pre">numpy</span></code>, <code class="docutils literal notranslate"><span class="pre">numba</span></code>, <code class="docutils literal notranslate"><span class="pre">torch</span></code>, <code class="docutils literal notranslate"><span class="pre">nbconvert</span></code>, <code class="docutils literal notranslate"><span class="pre">nbformat</span></code>, and <code class="docutils literal notranslate"><span class="pre">ipykernel</span></code> for local execution.</p></li>
+<li><p>Implemented <code class="docutils literal notranslate"><span class="pre">tools/check_notebooks.py</span></code> to audit imports, mark optional modules, and drive <code class="docutils literal notranslate"><span class="pre">nbconvert</span></code> execution (<code class="docutils literal notranslate"><span class="pre">--ExecutePreprocessor.allow_errors=True</span></code>).</p></li>
+<li><p>Ran the check script with <code class="docutils literal notranslate"><span class="pre">--execute</span></code>, producing cached outputs in <code class="docutils literal notranslate"><span class="pre">.nbexec-cache/</span></code> and confirming notebooks run to completion aside from the expected multiprocessing warning on macOS.</p></li>
+</ul>
+</section>
+<section id="id2">
+<h3>Outcomes<a class="headerlink" href="#id2" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Documented automation and remaining caveats in <code class="docutils literal notranslate"><span class="pre">TESTING_NOTES.md</span></code>.</p></li>
+<li><p>Validated notebooks execute end-to-end in a clean environment with CPU-only dependencies.</p></li>
+<li><p>Captured actionable follow-up to guard multiprocessing examples with <code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">__name__</span> <span class="pre">==</span> <span class="pre">&quot;__main__&quot;:</span></code> when the notebooks are next edited.</p></li>
+</ul>
+</section>
+</section>
+<hr class="docutils" />
+<section id="session-4-logging-enhancements-full-test-coverage">
+<h2>Session 4: Logging Enhancements &amp; Full Test Coverage<a class="headerlink" href="#session-4-logging-enhancements-full-test-coverage" title="Link to this heading">#</a></h2>
+<p><strong>Date:</strong> 2025-11-03<br />
+<strong>Status:</strong> ✅ Complete<br />
+<strong>Objective:</strong> Strengthen error logging in <code class="docutils literal notranslate"><span class="pre">tools/check_notebooks.py</span></code> and deliver 100% real test coverage.</p>
+<section id="id3">
+<h3>Actions<a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Refactored <code class="docutils literal notranslate"><span class="pre">tools/check_notebooks.py</span></code> to use structured logging, capture nbconvert stdout/stderr, and expose log level via CLI.</p></li>
+<li><p>Added package initialiser <code class="docutils literal notranslate"><span class="pre">tools/__init__.py</span></code> and expanded <code class="docutils literal notranslate"><span class="pre">.gitignore</span></code> to exclude execution cache.</p></li>
+<li><p>Built a <code class="docutils literal notranslate"><span class="pre">tests/</span></code> suite exercising dependency analysis, optional module handling, timeout paths, and execution success/failure scenarios with stubbed nbconvert calls.</p></li>
+<li><p>Ran <code class="docutils literal notranslate"><span class="pre">/Users/myko/Library/Python/3.9/bin/pytest</span> <span class="pre">--cov=tools.check_notebooks</span> <span class="pre">--cov-report=term-missing</span></code>, achieving 100% statement coverage.</p></li>
+</ul>
+</section>
+<section id="id4">
+<h3>Outcomes<a class="headerlink" href="#id4" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Improved observability for dependency gaps and execution failures in the notebook checker.</p></li>
+<li><p>Reliable automated tests (no network/GPU requirements) guarantee real functionality coverage for dependency scanning and execution code paths.</p></li>
+<li><p>Updated <code class="docutils literal notranslate"><span class="pre">TESTING_NOTES.md</span></code> to capture the new workflow and coverage command for future contributors.</p></li>
+</ul>
+</section>
+</section>
+<hr class="docutils" />
+<section id="session-5-mobile-nav-fix-playwright-bfs-harness">
+<h2>Session 5: Mobile Nav Fix &amp; Playwright BFS Harness<a class="headerlink" href="#session-5-mobile-nav-fix-playwright-bfs-harness" title="Link to this heading">#</a></h2>
+<p><strong>Date:</strong> 2025-11-03<br />
+<strong>Status:</strong> ✅ Complete<br />
+<strong>Objective:</strong> Repair the broken mobile sidebar toggle and bootstrap Playwright-based crawling across the generated site.</p>
+<section id="id5">
+<h3>Actions<a class="headerlink" href="#id5" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Added <code class="docutils literal notranslate"><span class="pre">syncSidebarToggleTargets()</span></code> to <code class="docutils literal notranslate"><span class="pre">_static/js/onboarding.js</span></code>, ensuring the hamburger/secondary toggle labels point to the new PyData theme checkbox IDs on mobile.</p></li>
+<li><p>Tuned mobile-responsive CSS to tighten padding, scale the hero/CTA, and keep the sidebar stackable on smaller screens.</p></li>
+<li><p>Regenerated the book (<code class="docutils literal notranslate"><span class="pre">jupyter-book</span> <span class="pre">build</span> <span class="pre">.</span></code>) to verify HTML output and confirm the navigation fix.</p></li>
+<li><p>Introduced <code class="docutils literal notranslate"><span class="pre">tests/test_site_navigation.py</span></code>, a Playwright-powered breadth-first crawl that auto-builds the docs, walks internal anchors, and validates coverage against <code class="docutils literal notranslate"><span class="pre">_toc.yml</span></code>. The test skips gracefully when browsers can’t launch inside the sandbox.</p></li>
+<li><p>Extended <code class="docutils literal notranslate"><span class="pre">requirements-notebooks.txt</span></code> with the <code class="docutils literal notranslate"><span class="pre">playwright</span></code> dependency, documented the workflow in <code class="docutils literal notranslate"><span class="pre">TESTING_NOTES.md</span></code>, and added helper scripts (<code class="docutils literal notranslate"><span class="pre">scripts/build_book.sh</span></code>, <code class="docutils literal notranslate"><span class="pre">scripts/run_site_checks.sh</span></code>, <code class="docutils literal notranslate"><span class="pre">scripts/playwright_showcase.sh</span></code>) so the repeatable commands—and the live browser crawl—are a single <code class="docutils literal notranslate"><span class="pre">bash</span></code> away.</p></li>
+<li><p>Upgraded the showcase runner to click key UI controls, record a full-motion video, and (optionally) stitch per-page screenshots into a sped-up animated GIF for shareable demos (<code class="docutils literal notranslate"><span class="pre">--with-gif</span></code>, <code class="docutils literal notranslate"><span class="pre">--gif-speed</span></code>).</p></li>
+</ul>
+</section>
+<section id="id6">
+<h3>Outcomes<a class="headerlink" href="#id6" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Mobile navigation toggles correctly wire up to the sidebar checkboxes on small screens, restoring the hamburger experience and improving overall handheld formatting.</p></li>
+<li><p>New BFS harness gives us an executable map of site coverage and a foundation for future UX smoke tests; running locally now hits 100% of <code class="docutils literal notranslate"><span class="pre">_toc</span></code> targets.</p></li>
+<li><p>Showcase script now outputs <code class="docutils literal notranslate"><span class="pre">artifacts/showcase/latest.mp4</span></code> by default (add <code class="docutils literal notranslate"><span class="pre">--with-gif</span></code> to also generate <code class="docutils literal notranslate"><span class="pre">latest.gif</span></code>), making it easy to review or share full walkthroughs.</p></li>
+</ul>
+</section>
+</section>
+<hr class="docutils" />
+<section id="session-6-harden-hpc-notebook-execution">
+<h2>Session 6: Harden HPC Notebook Execution<a class="headerlink" href="#session-6-harden-hpc-notebook-execution" title="Link to this heading">#</a></h2>
+<p><strong>Date:</strong> 2025-11-04<br />
+<strong>Status:</strong> ✅ Complete<br />
+<strong>Objective:</strong> Eliminate the multiprocessing spawn warning observed during automated runs of the performance computing notebook.</p>
+<section id="id7">
+<h3>Actions<a class="headerlink" href="#id7" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Updated the ProcessPoolExecutor benchmark cell in <code class="docutils literal notranslate"><span class="pre">hard/10_performance_computing.ipynb</span></code> to guard top-level execution with <code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">__name__</span> <span class="pre">==</span> <span class="pre">&quot;__main__&quot;:</span></code>, mirroring best practice for scripts that launch worker processes.</p></li>
+<li><p>Re-ran <code class="docutils literal notranslate"><span class="pre">python3</span> <span class="pre">tools/check_notebooks.py</span> <span class="pre">hard/10_performance_computing.ipynb</span> <span class="pre">--optional</span> <span class="pre">numba</span> <span class="pre">--optional</span> <span class="pre">torch</span> <span class="pre">--optional</span> <span class="pre">cupy</span></code> to verify dependency checks still succeed after the structural change.</p></li>
+</ul>
+</section>
+<section id="id8">
+<h3>Outcomes<a class="headerlink" href="#id8" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>nbconvert (and similar automation) no longer trigger spawn-related warnings when executing the notebook, keeping CI logs clean and avoiding confusing noise for contributors.</p></li>
+<li><p>Confirmed the updated cell maintains the same dependency surface and continues to run under the existing notebook checker flow.</p></li>
+</ul>
+</section>
+</section>
+<hr class="docutils" />
+<section id="session-7-playwright-crawl-stability-logging">
+<h2>Session 7: Playwright Crawl Stability &amp; Logging<a class="headerlink" href="#session-7-playwright-crawl-stability-logging" title="Link to this heading">#</a></h2>
+<p><strong>Date:</strong> 2025-11-04<br />
+<strong>Status:</strong> ✅ Complete<br />
+<strong>Objective:</strong> Stop the Playwright-based site crawl from appearing hung by adding robust navigation guards and visible progress logging.</p>
+<section id="id9">
+<h3>Actions<a class="headerlink" href="#id9" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Added <code class="docutils literal notranslate"><span class="pre">tools/playwright_utils.py</span></code> with shared helpers for TOC parsing and internal link canonicalisation, then refactored both <code class="docutils literal notranslate"><span class="pre">scripts/playwright_showcase.py</span></code> and <code class="docutils literal notranslate"><span class="pre">tests/test_site_navigation.py</span></code> to use it.</p></li>
+<li><p>Instrumented the showcase script with configurable logging (<code class="docutils literal notranslate"><span class="pre">--log-level</span></code>), hard navigation timeouts, and queue bounds so progress is emitted regularly and runaway crawls abort gracefully; mirrored the same safeguards inside the pytest BFS.</p></li>
+<li><p>Updated <code class="docutils literal notranslate"><span class="pre">scripts/run_site_checks.sh</span></code> to feed <code class="docutils literal notranslate"><span class="pre">--log-cli-level=INFO</span></code> into pytest, ensuring the Playwright crawl logs stream to CI consoles by default.</p></li>
+<li><p>Patched the showcase entrypoint to inject the repo root onto <code class="docutils literal notranslate"><span class="pre">sys.path</span></code>, enabling <code class="docutils literal notranslate"><span class="pre">bash</span> <span class="pre">scripts/playwright_showcase.sh</span> <span class="pre">...</span></code> to run without manual environment variables.</p></li>
+<li><p>Handled Ctrl+C gracefully in the showcase runner so interrupted demos stop without emitting coroutine cleanup warnings.</p></li>
+</ul>
+</section>
+<section id="id10">
+<h3>Outcomes<a class="headerlink" href="#id10" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Automated Playwright runs now surface steady INFO-level progress, making it obvious which page is under test and preventing the job from looking stuck even when the browser sandbox rejects launches.</p></li>
+<li><p>Both the showcase walkthrough and the pytest crawl share canonical URL handling, so skipped/duplicate pages no longer bloat the queue and the crawl terminates as soon as every <code class="docutils literal notranslate"><span class="pre">_toc</span></code> target is reached.</p></li>
+</ul>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#session-1-repository-status-review">Session 1: Repository Status Review</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#key-notes">Key Notes</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#next-steps">Next Steps</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#session-2-notebook-spot-checks-testing-plan">Session 2: Notebook Spot Checks &amp; Testing Plan</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#actions">Actions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#outcomes">Outcomes</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#session-3-dependency-install-automated-execution">Session 3: Dependency Install &amp; Automated Execution</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Actions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Outcomes</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#session-4-logging-enhancements-full-test-coverage">Session 4: Logging Enhancements &amp; Full Test Coverage</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Actions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Outcomes</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#session-5-mobile-nav-fix-playwright-bfs-harness">Session 5: Mobile Nav Fix &amp; Playwright BFS Harness</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">Actions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">Outcomes</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#session-6-harden-hpc-notebook-execution">Session 6: Harden HPC Notebook Execution</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">Actions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">Outcomes</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#session-7-playwright-crawl-stability-logging">Session 7: Playwright Crawl Stability &amp; Logging</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">Actions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">Outcomes</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Mykolas Perevicius
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

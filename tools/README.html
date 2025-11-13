@@ -1,0 +1,799 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>The Missing Semester: Essential Developer Tools &#8212; Education Playground</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=0c185eed" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=c73c0f3e"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'tools/README';</script>
+    <script src="../_static/js/onboarding.js?v=557b7536"></script>
+    <link rel="canonical" href="https://mykolas-perevicius.github.io/Education_Playground/tools/README.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="The Shell: Your Command Center" href="01_shell_basics.html" />
+    <link rel="prev" title="Hard Level: CUDA &amp; GPU Parallel Computing" href="../hard/11_cuda_and_parallel_computing.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../README.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Education Playground</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../00_calibration_test.html">🎯 Calibration Test - Find Your Level</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../beginner_scripts/README.html">🌱 Beginner Scripts (10 Python Files)</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../easy/README_EASY.html">📗 Easy Level - Beginner</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../easy/01_introduction_to_python.html">1. Introduction to Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../easy/02_variables_and_data_types.html">2. Variables and Data Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../easy/03_basic_operations_and_conditionals.html">3. Operations and Conditionals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../easy/04_intro_to_ai_and_ml.html">4. Intro to AI and ML</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../easy/05_computing_fundamentals.html">5. Computing Fundamentals</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../medium/README_MEDIUM.html">📘 Medium Level - Intermediate</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../medium/01_functions_and_modules.html">1. Functions and Modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../medium/02_data_structures.html">2. Data Structures</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../medium/03_classes_and_oop.html">3. Classes and OOP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../medium/04_machine_learning_basics.html">4. Machine Learning Basics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../medium/05_data_analysis_with_pandas.html">5. Data Analysis with Pandas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../medium/06_algorithms_and_problem_solving.html">6. Algorithms and Problem Solving</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../hard/README_HARD.html">📕 Hard Level - Advanced</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../hard/01_advanced_functions_and_decorators.html">1. Advanced Functions &amp; Decorators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hard/02_generators_and_iterators.html">2. Generators and Iterators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hard/03_algorithms_and_complexity.html">3. Algorithms and Complexity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hard/04_deep_learning_and_neural_networks.html">4. Deep Learning &amp; Neural Networks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hard/05_advanced_ml_and_nlp.html">5. Advanced ML and NLP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hard/06_computer_systems_and_theory.html">6. Computer Systems and Theory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hard/07_project_ideas.html">7. Project Ideas &amp; Implementation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hard/08_classic_problems.html">Lesson 8: Classic Problems Collection</a></li>
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../hard/09_ctf_challenges.html">Lesson 9: Capture The Flag (CTF) - Hacker Training</a></li>
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../hard/10_performance_computing.html">10. Performance Computing ⚡ NEW!</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hard/11_cuda_and_parallel_computing.html">11. CUDA &amp; GPU Computing 🎮 NEW!</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">🛠️ Developer Tools Track</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="01_shell_basics.html">1. Shell and Command Line</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02_command_line_tools.html">2. Command Line Tools</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03_git_essentials.html">3. Git Essentials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04_text_editors.html">4. Text Editors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05_build_systems_cicd.html">5. Build Systems and CI/CD</a></li>
+<li class="toctree-l2"><a class="reference internal" href="06_debugging_profiling.html">6. Debugging and Profiling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="07_security_essentials.html">7. Security Essentials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="08_package_management.html">8. Package Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="09_ssh_remote_systems.html">9. SSH and Remote Systems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="10_docker_containers.html">10. Docker and Containers</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../solutions/README_SOLUTIONS.html">📝 Solutions</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../solutions/easy_solutions.html">Easy Level - Complete Solutions</a></li>
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../solutions/medium_solutions.html">Medium Level - Complete Solutions</a></li>
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../solutions/hard_solutions.html">Hard Level - Complete Solutions</a></li>
+
+
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../solutions/tools_solutions.html">Developer Tools - Complete Solutions</a></li>
+
+
+
+
+
+
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../RESOURCES.html">📚 Learning Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../PYTHON_CHEATSHEET.html">⚡ Python Cheat Sheet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ML_AI_CHEATSHEET.html">🤖 ML/AI Cheat Sheet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../SETUP.html">🔧 Setup Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../RELEASE_NOTES_v2.0.0.html">🎉 Release Notes v2.0.0</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none"></div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>The Missing Semester: Essential Developer Tools</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-these-tools-matter">Why These Tools Matter</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#course-structure">Course Structure</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#shell-and-command-line-01-shell-basics-ipynb">1. Shell and Command Line (<code class="docutils literal notranslate"><span class="pre">01_shell_basics.ipynb</span></code>)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#shell-scripting-02-shell-scripting-ipynb">2. Shell Scripting (<code class="docutils literal notranslate"><span class="pre">02_shell_scripting.ipynb</span></code>)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#version-control-with-git-03-git-essentials-ipynb">3. Version Control with Git (<code class="docutils literal notranslate"><span class="pre">03_git_essentials.ipynb</span></code>)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#text-editors-04-text-editors-ipynb">4. Text Editors (<code class="docutils literal notranslate"><span class="pre">04_text_editors.ipynb</span></code>)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-wrangling-05-data-wrangling-ipynb">5. Data Wrangling (<code class="docutils literal notranslate"><span class="pre">05_data_wrangling.ipynb</span></code>)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#debugging-and-profiling-06-debugging-profiling-ipynb">6. Debugging and Profiling (<code class="docutils literal notranslate"><span class="pre">06_debugging_profiling.ipynb</span></code>)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#security-basics-07-security-essentials-ipynb">7. Security Basics (<code class="docutils literal notranslate"><span class="pre">07_security_essentials.ipynb</span></code>)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#build-systems-and-ci-cd-08-build-and-automation-ipynb">8. Build Systems and CI/CD (<code class="docutils literal notranslate"><span class="pre">08_build_and_automation.ipynb</span></code>)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#package-management-09-package-management-ipynb">9. Package Management (<code class="docutils literal notranslate"><span class="pre">09_package_management.ipynb</span></code>)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dotfiles-and-configuration-10-dotfiles-ipynb">10. Dotfiles and Configuration (<code class="docutils literal notranslate"><span class="pre">10_dotfiles.ipynb</span></code>)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-path">Learning Path</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#for-complete-beginners">For Complete Beginners</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#for-intermediate-developers">For Intermediate Developers</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#for-advanced-users">For Advanced Users</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prerequisites">Prerequisites</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-use-these-lessons">How to Use These Lessons</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-learn-these-tools">Why Learn These Tools?</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#command-line">Command Line</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#git">Git</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#text-editors">Text Editors</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scripting">Scripting</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#debugging">Debugging</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#additional-resources">Additional Resources</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#official-documentation">Official Documentation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interactive-learning">Interactive Learning</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cheat-sheets">Cheat Sheets</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#books">Books</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quick-start">Quick Start</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#shell-compatibility-note">Shell Compatibility Note</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pro-tips">Pro Tips</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="the-missing-semester-essential-developer-tools">
+<h1>The Missing Semester: Essential Developer Tools<a class="headerlink" href="#the-missing-semester-essential-developer-tools" title="Link to this heading">#</a></h1>
+<p>Inspired by MIT’s “The Missing Semester of Your CS Education” - this section covers practical tools and skills that every developer needs but are rarely taught in formal CS courses.</p>
+<section id="why-these-tools-matter">
+<h2>Why These Tools Matter<a class="headerlink" href="#why-these-tools-matter" title="Link to this heading">#</a></h2>
+<p>Traditional CS education focuses on theory, algorithms, and programming languages. But real-world development requires mastery of powerful tools that make you 10x more productive:</p>
+<ul class="simple">
+<li><p><strong>Command Line</strong>: Navigate and automate tasks faster than any GUI</p></li>
+<li><p><strong>Git</strong>: Collaborate with others and never lose work</p></li>
+<li><p><strong>Text Editors</strong>: Edit code at the speed of thought</p></li>
+<li><p><strong>Shell Scripting</strong>: Automate repetitive tasks</p></li>
+<li><p><strong>Debugging</strong>: Find and fix bugs efficiently</p></li>
+<li><p><strong>Security</strong>: Protect your systems and data</p></li>
+</ul>
+</section>
+<section id="course-structure">
+<h2>Course Structure<a class="headerlink" href="#course-structure" title="Link to this heading">#</a></h2>
+<p>All lessons are <strong>independent</strong> - start anywhere based on your needs!</p>
+<section id="shell-and-command-line-01-shell-basics-ipynb">
+<h3>1. Shell and Command Line (<code class="docutils literal notranslate"><span class="pre">01_shell_basics.ipynb</span></code>)<a class="headerlink" href="#shell-and-command-line-01-shell-basics-ipynb" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Terminal fundamentals</p></li>
+<li><p>Navigation and file operations</p></li>
+<li><p>Pipes and redirection</p></li>
+<li><p>Environment variables</p></li>
+<li><p>Job control</p></li>
+</ul>
+</section>
+<section id="shell-scripting-02-shell-scripting-ipynb">
+<h3>2. Shell Scripting (<code class="docutils literal notranslate"><span class="pre">02_shell_scripting.ipynb</span></code>)<a class="headerlink" href="#shell-scripting-02-shell-scripting-ipynb" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Writing bash scripts</p></li>
+<li><p>Variables and arguments</p></li>
+<li><p>Control flow in shell</p></li>
+<li><p>Text processing (sed, awk, grep)</p></li>
+<li><p>Useful one-liners</p></li>
+</ul>
+</section>
+<section id="version-control-with-git-03-git-essentials-ipynb">
+<h3>3. Version Control with Git (<code class="docutils literal notranslate"><span class="pre">03_git_essentials.ipynb</span></code>)<a class="headerlink" href="#version-control-with-git-03-git-essentials-ipynb" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Git fundamentals</p></li>
+<li><p>Branches and merging</p></li>
+<li><p>Collaboration workflows</p></li>
+<li><p>Resolving conflicts</p></li>
+<li><p>Advanced Git (rebase, cherry-pick, bisect)</p></li>
+</ul>
+</section>
+<section id="text-editors-04-text-editors-ipynb">
+<h3>4. Text Editors (<code class="docutils literal notranslate"><span class="pre">04_text_editors.ipynb</span></code>)<a class="headerlink" href="#text-editors-04-text-editors-ipynb" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Vim basics and philosophy</p></li>
+<li><p>Essential Vim commands</p></li>
+<li><p>VS Code power features</p></li>
+<li><p>Editor configuration</p></li>
+</ul>
+</section>
+<section id="data-wrangling-05-data-wrangling-ipynb">
+<h3>5. Data Wrangling (<code class="docutils literal notranslate"><span class="pre">05_data_wrangling.ipynb</span></code>)<a class="headerlink" href="#data-wrangling-05-data-wrangling-ipynb" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Processing text with Unix tools</p></li>
+<li><p>Regular expressions</p></li>
+<li><p>JSON/CSV manipulation</p></li>
+<li><p>Combining commands with pipes</p></li>
+</ul>
+</section>
+<section id="debugging-and-profiling-06-debugging-profiling-ipynb">
+<h3>6. Debugging and Profiling (<code class="docutils literal notranslate"><span class="pre">06_debugging_profiling.ipynb</span></code>)<a class="headerlink" href="#debugging-and-profiling-06-debugging-profiling-ipynb" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Python debugger (pdb)</p></li>
+<li><p>Logging best practices</p></li>
+<li><p>Performance profiling</p></li>
+<li><p>Memory analysis</p></li>
+<li><p>Static analysis tools</p></li>
+</ul>
+</section>
+<section id="security-basics-07-security-essentials-ipynb">
+<h3>7. Security Basics (<code class="docutils literal notranslate"><span class="pre">07_security_essentials.ipynb</span></code>)<a class="headerlink" href="#security-basics-07-security-essentials-ipynb" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>SSH and key-based authentication</p></li>
+<li><p>Password management</p></li>
+<li><p>Environment variables and secrets</p></li>
+<li><p>Common vulnerabilities</p></li>
+<li><p>HTTPS and certificates</p></li>
+</ul>
+</section>
+<section id="build-systems-and-ci-cd-08-build-and-automation-ipynb">
+<h3>8. Build Systems and CI/CD (<code class="docutils literal notranslate"><span class="pre">08_build_and_automation.ipynb</span></code>)<a class="headerlink" href="#build-systems-and-ci-cd-08-build-and-automation-ipynb" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Make and Makefiles</p></li>
+<li><p>GitHub Actions</p></li>
+<li><p>Testing automation</p></li>
+<li><p>Docker basics</p></li>
+<li><p>Deployment pipelines</p></li>
+</ul>
+</section>
+<section id="package-management-09-package-management-ipynb">
+<h3>9. Package Management (<code class="docutils literal notranslate"><span class="pre">09_package_management.ipynb</span></code>)<a class="headerlink" href="#package-management-09-package-management-ipynb" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>pip and virtual environments</p></li>
+<li><p>poetry and modern Python tools</p></li>
+<li><p>System package managers (apt, brew, etc.)</p></li>
+<li><p>Dependency management</p></li>
+</ul>
+</section>
+<section id="dotfiles-and-configuration-10-dotfiles-ipynb">
+<h3>10. Dotfiles and Configuration (<code class="docutils literal notranslate"><span class="pre">10_dotfiles.ipynb</span></code>)<a class="headerlink" href="#dotfiles-and-configuration-10-dotfiles-ipynb" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Shell configuration (.bashrc, .zshrc)</p></li>
+<li><p>Git configuration</p></li>
+<li><p>Tool configuration</p></li>
+<li><p>Dotfile management with Git</p></li>
+</ul>
+</section>
+</section>
+<hr class="docutils" />
+<section id="learning-path">
+<h2>Learning Path<a class="headerlink" href="#learning-path" title="Link to this heading">#</a></h2>
+<section id="for-complete-beginners">
+<h3>For Complete Beginners<a class="headerlink" href="#for-complete-beginners" title="Link to this heading">#</a></h3>
+<p>Start with:</p>
+<ol class="arabic simple">
+<li><p>Shell and Command Line</p></li>
+<li><p>Version Control with Git</p></li>
+<li><p>Text Editors</p></li>
+</ol>
+</section>
+<section id="for-intermediate-developers">
+<h3>For Intermediate Developers<a class="headerlink" href="#for-intermediate-developers" title="Link to this heading">#</a></h3>
+<p>Focus on:</p>
+<ol class="arabic simple">
+<li><p>Shell Scripting</p></li>
+<li><p>Debugging and Profiling</p></li>
+<li><p>Security Basics</p></li>
+</ol>
+</section>
+<section id="for-advanced-users">
+<h3>For Advanced Users<a class="headerlink" href="#for-advanced-users" title="Link to this heading">#</a></h3>
+<p>Dive into:</p>
+<ol class="arabic simple">
+<li><p>Build Systems and CI/CD</p></li>
+<li><p>Data Wrangling</p></li>
+<li><p>Advanced Git workflows</p></li>
+</ol>
+</section>
+</section>
+<hr class="docutils" />
+<section id="prerequisites">
+<h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Completed Easy level Python lessons (or equivalent programming knowledge)</p></li>
+<li><p>Access to a Unix-like terminal (Linux, macOS, or Windows with WSL)</p></li>
+<li><p>Git installed on your system</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="how-to-use-these-lessons">
+<h2>How to Use These Lessons<a class="headerlink" href="#how-to-use-these-lessons" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p><strong>Hands-on practice</strong>: Run every command yourself</p></li>
+<li><p><strong>Experiment</strong>: Try variations of commands</p></li>
+<li><p><strong>Build real projects</strong>: Apply tools to your own work</p></li>
+<li><p><strong>Reference, don’t memorize</strong>: Use these as a reference guide</p></li>
+<li><p><strong>Practice regularly</strong>: Skills fade without use</p></li>
+</ol>
+</section>
+<hr class="docutils" />
+<section id="why-learn-these-tools">
+<h2>Why Learn These Tools?<a class="headerlink" href="#why-learn-these-tools" title="Link to this heading">#</a></h2>
+<section id="command-line">
+<h3>Command Line<a class="headerlink" href="#command-line" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>10x faster than clicking through GUIs</p></li>
+<li><p>Automate repetitive tasks</p></li>
+<li><p>Work on remote servers</p></li>
+</ul>
+</section>
+<section id="git">
+<h3>Git<a class="headerlink" href="#git" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Industry standard for version control</p></li>
+<li><p>Required for team collaboration</p></li>
+<li><p>Backup and history of all your work</p></li>
+</ul>
+</section>
+<section id="text-editors">
+<h3>Text Editors<a class="headerlink" href="#text-editors" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Spend thousands of hours editing code</p></li>
+<li><p>Master your editor = massive productivity gain</p></li>
+<li><p>Edit at the speed of thought</p></li>
+</ul>
+</section>
+<section id="scripting">
+<h3>Scripting<a class="headerlink" href="#scripting" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Automate boring tasks</p></li>
+<li><p>Process data at scale</p></li>
+<li><p>Glue different tools together</p></li>
+</ul>
+</section>
+<section id="debugging">
+<h3>Debugging<a class="headerlink" href="#debugging" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Find bugs faster</p></li>
+<li><p>Understand code behavior</p></li>
+<li><p>Fix production issues</p></li>
+</ul>
+</section>
+</section>
+<hr class="docutils" />
+<section id="additional-resources">
+<h2>Additional Resources<a class="headerlink" href="#additional-resources" title="Link to this heading">#</a></h2>
+<section id="official-documentation">
+<h3>Official Documentation<a class="headerlink" href="#official-documentation" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.gnu.org/software/bash/manual/">GNU Bash Manual</a></p></li>
+<li><p><a class="reference external" href="https://git-scm.com/doc">Git Documentation</a></p></li>
+<li><p><a class="reference external" href="https://www.vim.org/docs.php">Vim Documentation</a></p></li>
+</ul>
+</section>
+<section id="interactive-learning">
+<h3>Interactive Learning<a class="headerlink" href="#interactive-learning" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><a class="reference external" href="https://missing.csail.mit.edu/">The Missing Semester (MIT)</a></p></li>
+<li><p><a class="reference external" href="https://learngitbranching.js.org/">Learn Git Branching</a></p></li>
+<li><p><a class="reference external" href="https://vim-adventures.com/">Vim Adventures</a></p></li>
+<li><p><a class="reference external" href="https://regexone.com/">RegexOne</a></p></li>
+</ul>
+</section>
+<section id="cheat-sheets">
+<h3>Cheat Sheets<a class="headerlink" href="#cheat-sheets" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><a class="reference external" href="https://devhints.io/">DevHints</a> - Quick references for everything</p></li>
+<li><p><a class="reference external" href="https://explainshell.com/">Explainshell</a> - Understand any shell command</p></li>
+</ul>
+</section>
+<section id="books">
+<h3>Books<a class="headerlink" href="#books" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><em>The Linux Command Line</em> by William Shotts (free online)</p></li>
+<li><p><em>Pro Git</em> by Scott Chacon (free online)</p></li>
+<li><p><em>Practical Vim</em> by Drew Neil</p></li>
+</ul>
+</section>
+</section>
+<hr class="docutils" />
+<section id="quick-start">
+<h2>Quick Start<a class="headerlink" href="#quick-start" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p>Open a terminal</p></li>
+<li><p>Navigate to this directory: <code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">Education_Playground/tools</span></code></p></li>
+<li><p>Start with <code class="docutils literal notranslate"><span class="pre">01_shell_basics.ipynb</span></code></p></li>
+<li><p>Run commands in your terminal alongside the notebook</p></li>
+</ol>
+</section>
+<hr class="docutils" />
+<section id="shell-compatibility-note">
+<h2>Shell Compatibility Note<a class="headerlink" href="#shell-compatibility-note" title="Link to this heading">#</a></h2>
+<p>These lessons focus on <strong>Bash</strong> (Bourne Again Shell), which is:</p>
+<ul class="simple">
+<li><p>Default on most Linux distributions</p></li>
+<li><p>Available on macOS</p></li>
+<li><p>Available on Windows via WSL, Git Bash, or Cygwin</p></li>
+</ul>
+<p>Commands should work on any Unix-like system. Windows-specific differences will be noted.</p>
+</section>
+<hr class="docutils" />
+<section id="pro-tips">
+<h2>Pro Tips<a class="headerlink" href="#pro-tips" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p><strong>Learn by doing</strong>: Don’t just read - type every command</p></li>
+<li><p><strong>Break things</strong>: You learn best from mistakes (use a test directory!)</p></li>
+<li><p><strong>Read error messages</strong>: They’re trying to help you</p></li>
+<li><p><strong>Use man pages</strong>: <code class="docutils literal notranslate"><span class="pre">man</span> <span class="pre">&lt;command&gt;</span></code> shows documentation</p></li>
+<li><p><strong>Google is your friend</strong>: Everyone looks up commands</p></li>
+<li><p><strong>Build muscle memory</strong>: Practice common commands daily</p></li>
+</ol>
+<hr class="docutils" />
+<p><strong>Ready to level up your developer toolbox?</strong> Start with <code class="docutils literal notranslate"><span class="pre">01_shell_basics.ipynb</span></code>!</p>
+</section>
+<div class="toctree-wrapper compound">
+</div>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./tools"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../hard/11_cuda_and_parallel_computing.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Hard Level: CUDA &amp; GPU Parallel Computing</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="01_shell_basics.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">The Shell: Your Command Center</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-these-tools-matter">Why These Tools Matter</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#course-structure">Course Structure</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#shell-and-command-line-01-shell-basics-ipynb">1. Shell and Command Line (<code class="docutils literal notranslate"><span class="pre">01_shell_basics.ipynb</span></code>)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#shell-scripting-02-shell-scripting-ipynb">2. Shell Scripting (<code class="docutils literal notranslate"><span class="pre">02_shell_scripting.ipynb</span></code>)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#version-control-with-git-03-git-essentials-ipynb">3. Version Control with Git (<code class="docutils literal notranslate"><span class="pre">03_git_essentials.ipynb</span></code>)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#text-editors-04-text-editors-ipynb">4. Text Editors (<code class="docutils literal notranslate"><span class="pre">04_text_editors.ipynb</span></code>)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-wrangling-05-data-wrangling-ipynb">5. Data Wrangling (<code class="docutils literal notranslate"><span class="pre">05_data_wrangling.ipynb</span></code>)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#debugging-and-profiling-06-debugging-profiling-ipynb">6. Debugging and Profiling (<code class="docutils literal notranslate"><span class="pre">06_debugging_profiling.ipynb</span></code>)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#security-basics-07-security-essentials-ipynb">7. Security Basics (<code class="docutils literal notranslate"><span class="pre">07_security_essentials.ipynb</span></code>)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#build-systems-and-ci-cd-08-build-and-automation-ipynb">8. Build Systems and CI/CD (<code class="docutils literal notranslate"><span class="pre">08_build_and_automation.ipynb</span></code>)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#package-management-09-package-management-ipynb">9. Package Management (<code class="docutils literal notranslate"><span class="pre">09_package_management.ipynb</span></code>)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dotfiles-and-configuration-10-dotfiles-ipynb">10. Dotfiles and Configuration (<code class="docutils literal notranslate"><span class="pre">10_dotfiles.ipynb</span></code>)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-path">Learning Path</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#for-complete-beginners">For Complete Beginners</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#for-intermediate-developers">For Intermediate Developers</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#for-advanced-users">For Advanced Users</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prerequisites">Prerequisites</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-use-these-lessons">How to Use These Lessons</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-learn-these-tools">Why Learn These Tools?</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#command-line">Command Line</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#git">Git</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#text-editors">Text Editors</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scripting">Scripting</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#debugging">Debugging</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#additional-resources">Additional Resources</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#official-documentation">Official Documentation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interactive-learning">Interactive Learning</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cheat-sheets">Cheat Sheets</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#books">Books</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quick-start">Quick Start</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#shell-compatibility-note">Shell Compatibility Note</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pro-tips">Pro Tips</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Mykolas Perevicius
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

@@ -1,0 +1,862 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>🚀 Quick Start Guide - CodeBridge Landing Page &#8212; Education Playground</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=0c185eed" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=c73c0f3e"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'codebridge-landing/QUICK_START';</script>
+    <script src="../_static/js/onboarding.js?v=557b7536"></script>
+    <link rel="canonical" href="https://mykolas-perevicius.github.io/Education_Playground/codebridge-landing/QUICK_START.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../README.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Education Playground</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../00_calibration_test.html">🎯 Calibration Test - Find Your Level</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../beginner_scripts/README.html">🌱 Beginner Scripts (10 Python Files)</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../easy/README_EASY.html">📗 Easy Level - Beginner</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../easy/01_introduction_to_python.html">1. Introduction to Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../easy/02_variables_and_data_types.html">2. Variables and Data Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../easy/03_basic_operations_and_conditionals.html">3. Operations and Conditionals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../easy/04_intro_to_ai_and_ml.html">4. Intro to AI and ML</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../easy/05_computing_fundamentals.html">5. Computing Fundamentals</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../medium/README_MEDIUM.html">📘 Medium Level - Intermediate</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../medium/01_functions_and_modules.html">1. Functions and Modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../medium/02_data_structures.html">2. Data Structures</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../medium/03_classes_and_oop.html">3. Classes and OOP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../medium/04_machine_learning_basics.html">4. Machine Learning Basics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../medium/05_data_analysis_with_pandas.html">5. Data Analysis with Pandas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../medium/06_algorithms_and_problem_solving.html">6. Algorithms and Problem Solving</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../hard/README_HARD.html">📕 Hard Level - Advanced</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../hard/01_advanced_functions_and_decorators.html">1. Advanced Functions &amp; Decorators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hard/02_generators_and_iterators.html">2. Generators and Iterators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hard/03_algorithms_and_complexity.html">3. Algorithms and Complexity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hard/04_deep_learning_and_neural_networks.html">4. Deep Learning &amp; Neural Networks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hard/05_advanced_ml_and_nlp.html">5. Advanced ML and NLP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hard/06_computer_systems_and_theory.html">6. Computer Systems and Theory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hard/07_project_ideas.html">7. Project Ideas &amp; Implementation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hard/08_classic_problems.html">Lesson 8: Classic Problems Collection</a></li>
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../hard/09_ctf_challenges.html">Lesson 9: Capture The Flag (CTF) - Hacker Training</a></li>
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../hard/10_performance_computing.html">10. Performance Computing ⚡ NEW!</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hard/11_cuda_and_parallel_computing.html">11. CUDA &amp; GPU Computing 🎮 NEW!</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../tools/README.html">🛠️ Developer Tools Track</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../tools/01_shell_basics.html">1. Shell and Command Line</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools/02_command_line_tools.html">2. Command Line Tools</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools/03_git_essentials.html">3. Git Essentials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools/04_text_editors.html">4. Text Editors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools/05_build_systems_cicd.html">5. Build Systems and CI/CD</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools/06_debugging_profiling.html">6. Debugging and Profiling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools/07_security_essentials.html">7. Security Essentials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools/08_package_management.html">8. Package Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools/09_ssh_remote_systems.html">9. SSH and Remote Systems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools/10_docker_containers.html">10. Docker and Containers</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../solutions/README_SOLUTIONS.html">📝 Solutions</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../solutions/easy_solutions.html">Easy Level - Complete Solutions</a></li>
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../solutions/medium_solutions.html">Medium Level - Complete Solutions</a></li>
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../solutions/hard_solutions.html">Hard Level - Complete Solutions</a></li>
+
+
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../solutions/tools_solutions.html">Developer Tools - Complete Solutions</a></li>
+
+
+
+
+
+
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../RESOURCES.html">📚 Learning Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../PYTHON_CHEATSHEET.html">⚡ Python Cheat Sheet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ML_AI_CHEATSHEET.html">🤖 ML/AI Cheat Sheet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../SETUP.html">🔧 Setup Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../RELEASE_NOTES_v2.0.0.html">🎉 Release Notes v2.0.0</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none"></div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>🚀 Quick Start Guide - CodeBridge Landing Page</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#you-re-live">🎯 You’re Live!</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#minute-setup-checklist">⚡ 5-Minute Setup Checklist</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#set-up-analytics-critical">1. Set Up Analytics (Critical!)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#create-your-first-posthog-funnel">2. Create Your First PostHog Funnel</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#enable-session-recordings">3. Enable Session Recordings</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#update-contact-info">4. Update Contact Info</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#daily-monitoring-5-minutes-day">📊 Daily Monitoring (5 minutes/day)</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#morning-check-2-min">Morning Check (2 min)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#weekly-deep-dive-30-min">Weekly Deep Dive (30 min)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#making-changes">🔧 Making Changes</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#update-content">Update Content</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#add-new-a-b-test">Add New A/B Test</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#track-custom-event">Track Custom Event</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#customization-checklist">🎨 Customization Checklist</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#troubleshooting">🐛 Troubleshooting</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#analytics-not-tracking">“Analytics not tracking”</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-b-tests-not-changing">“A/B tests not changing”</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#changes-not-showing-up">“Changes not showing up”</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-to-track">📈 What to Track</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#key-metrics">Key Metrics</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#red-flags">Red Flags 🚩</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pro-tips">💡 Pro Tips</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-resources">🎓 Learning Resources</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#get-help">🆘 Get Help</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#your-first-week-action-plan">🎯 Your First Week Action Plan</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#day-1-today">Day 1 (Today!)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#day-2-7">Day 2-7</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#week-2">Week 2</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#month-1-goal">Month 1 Goal</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="quick-start-guide-codebridge-landing-page">
+<h1>🚀 Quick Start Guide - CodeBridge Landing Page<a class="headerlink" href="#quick-start-guide-codebridge-landing-page" title="Link to this heading">#</a></h1>
+<section id="you-re-live">
+<h2>🎯 You’re Live!<a class="headerlink" href="#you-re-live" title="Link to this heading">#</a></h2>
+<p><strong>Landing Page</strong>: <a class="reference external" href="https://mykolas-perevicius.github.io/Education_Playground/">https://mykolas-perevicius.github.io/Education_Playground/</a></p>
+<p><strong>Status</strong>: ✅ Deployed and tracking users</p>
+</section>
+<hr class="docutils" />
+<section id="minute-setup-checklist">
+<h2>⚡ 5-Minute Setup Checklist<a class="headerlink" href="#minute-setup-checklist" title="Link to this heading">#</a></h2>
+<section id="set-up-analytics-critical">
+<h3>1. Set Up Analytics (Critical!)<a class="headerlink" href="#set-up-analytics-critical" title="Link to this heading">#</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Sign up for PostHog (free)</span>
+<span class="m">1</span>.<span class="w"> </span>Go<span class="w"> </span>to:<span class="w"> </span>https://app.posthog.com/signup
+<span class="m">2</span>.<span class="w"> </span>Create<span class="w"> </span>project:<span class="w"> </span><span class="s2">&quot;CodeBridge Landing&quot;</span>
+<span class="m">3</span>.<span class="w"> </span>Copy<span class="w"> </span>API<span class="w"> </span>key<span class="w"> </span>from<span class="w"> </span>Project<span class="w"> </span>Settings
+</pre></div>
+</div>
+<p>Add to Vercel (if deploying there) or local <code class="docutils literal notranslate"><span class="pre">.env.local</span></code>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">NEXT_PUBLIC_POSTHOG_KEY</span><span class="o">=</span>phc_your_key_here
+<span class="nv">NEXT_PUBLIC_POSTHOG_HOST</span><span class="o">=</span>https://app.posthog.com
+</pre></div>
+</div>
+<p><strong>Redeploy after adding env vars!</strong></p>
+</section>
+<hr class="docutils" />
+<section id="create-your-first-posthog-funnel">
+<h3>2. Create Your First PostHog Funnel<a class="headerlink" href="#create-your-first-posthog-funnel" title="Link to this heading">#</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>PostHog Dashboard → Insights → New Insight → Funnel
+
+Add steps:
+1. page_view
+2. hero_view
+3. pricing_section_view
+4. book_call_click
+
+Save as: &quot;Landing Page Conversion Funnel&quot;
+</pre></div>
+</div>
+<p><strong>What you’ll see</strong>: Exact drop-off rates at each stage!</p>
+</section>
+<hr class="docutils" />
+<section id="enable-session-recordings">
+<h3>3. Enable Session Recordings<a class="headerlink" href="#enable-session-recordings" title="Link to this heading">#</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>PostHog → Settings → Session Recording → Enable
+
+Settings:
+✅ Record sessions
+✅ Record network performance
+✅ Record console logs
+❌ Mask all text inputs (privacy)
+</pre></div>
+</div>
+<p><strong>Watch your first visitor</strong>: See exactly how real users interact with your page!</p>
+</section>
+<hr class="docutils" />
+<section id="update-contact-info">
+<h3>4. Update Contact Info<a class="headerlink" href="#update-contact-info" title="Link to this heading">#</a></h3>
+<p>Edit these files to add your real contact details:</p>
+<p><strong>File</strong>: <code class="docutils literal notranslate"><span class="pre">components/Hero.tsx</span></code></p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="c1">// Line 82: Update Calendly URL</span>
+<span class="nx">href</span><span class="o">=</span><span class="s2">&quot;https://calendly.com/YOUR-ACTUAL-LINK&quot;</span>
+</pre></div>
+</div>
+<p><strong>File</strong>: <code class="docutils literal notranslate"><span class="pre">components/Footer.tsx</span></code></p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="c1">// Line 113: Update email</span>
+<span class="nx">href</span><span class="o">=</span><span class="s2">&quot;mailto:YOUR-REAL-EMAIL@codebridge.com&quot;</span>
+
+<span class="c1">// Line 122: Update phone</span>
+<span class="o">&lt;</span><span class="nx">span</span><span class="o">&gt;</span><span class="nx">YOUR</span><span class="o">-</span><span class="nx">REAL</span><span class="o">-</span><span class="nx">PHONE</span><span class="o">&lt;</span><span class="err">/span&gt;</span>
+</pre></div>
+</div>
+<p><strong>Redeploy</strong>: <code class="docutils literal notranslate"><span class="pre">./deploy.sh</span></code></p>
+</section>
+</section>
+<hr class="docutils" />
+<section id="daily-monitoring-5-minutes-day">
+<h2>📊 Daily Monitoring (5 minutes/day)<a class="headerlink" href="#daily-monitoring-5-minutes-day" title="Link to this heading">#</a></h2>
+<section id="morning-check-2-min">
+<h3>Morning Check (2 min)<a class="headerlink" href="#morning-check-2-min" title="Link to this heading">#</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>1. PostHog → Live Events
+   - How many page_views yesterday?
+   - Any book_call_clicks?
+   - Conversion rate trend up/down?
+
+2. PostHog → Session Recordings
+   - Watch 2-3 recent sessions
+   - Any UX issues? Broken links? Confusion?
+</pre></div>
+</div>
+</section>
+<section id="weekly-deep-dive-30-min">
+<h3>Weekly Deep Dive (30 min)<a class="headerlink" href="#weekly-deep-dive-30-min" title="Link to this heading">#</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>1. Check funnel drop-off rates
+   - Which stage losing most users?
+   - Any trends over time?
+
+2. Review A/B test results
+   - Enough data yet? (100+ conversions per variant)
+   - Clear winner emerging?
+
+3. Watch 10-15 session recordings
+   - Common pain points?
+   - Unexpected behavior?
+   - Mobile issues?
+
+4. Export conversion data
+   - PostHog → Insights → Export to CSV
+   - Analyze in Excel/Sheets
+</pre></div>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="making-changes">
+<h2>🔧 Making Changes<a class="headerlink" href="#making-changes" title="Link to this heading">#</a></h2>
+<section id="update-content">
+<h3>Update Content<a class="headerlink" href="#update-content" title="Link to this heading">#</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>/home/myko/Education_Playground/codebridge-landing
+
+<span class="c1"># Edit any component:</span>
+nano<span class="w"> </span>components/Hero.tsx
+nano<span class="w"> </span>components/Courses.tsx
+<span class="c1"># etc.</span>
+
+<span class="c1"># Deploy:</span>
+./deploy.sh
+</pre></div>
+</div>
+<p><strong>Changes go live in 1-2 minutes!</strong></p>
+</section>
+<hr class="docutils" />
+<section id="add-new-a-b-test">
+<h3>Add New A/B Test<a class="headerlink" href="#add-new-a-b-test" title="Link to this heading">#</a></h3>
+<p><strong>File</strong>: <code class="docutils literal notranslate"><span class="pre">lib/ab-testing.ts</span></code></p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="c1">// Add new experiment</span>
+<span class="k">export</span><span class="w"> </span><span class="kd">const</span><span class="w"> </span><span class="nx">EXPERIMENTS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="c1">// ... existing experiments</span>
+
+<span class="w">  </span><span class="nx">MY_NEW_TEST</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;my_new_test&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">variants</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;control&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;variant_a&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;variant_b&#39;</span><span class="p">],</span>
+<span class="w">    </span><span class="nx">weights</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="mf">0.34</span><span class="p">,</span><span class="w"> </span><span class="mf">0.33</span><span class="p">,</span><span class="w"> </span><span class="mf">0.33</span><span class="p">],</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="p">};</span>
+
+<span class="c1">// Add variant configs</span>
+<span class="k">export</span><span class="w"> </span><span class="kd">const</span><span class="w"> </span><span class="nx">VARIANT_CONFIGS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="c1">// ... existing configs</span>
+
+<span class="w">  </span><span class="nx">my_new_test_control</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// Your control config</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nx">my_new_test_variant_a</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// Variant A config</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nx">my_new_test_variant_b</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// Variant B config</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p><strong>Use in component</strong>:</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">EXPERIMENTS</span><span class="p">,</span><span class="w"> </span><span class="nx">useExperiment</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;@/lib/ab-testing&#39;</span><span class="p">;</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">variant</span><span class="p">,</span><span class="w"> </span><span class="nx">config</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">useExperiment</span><span class="p">(</span><span class="nx">EXPERIMENTS</span><span class="p">.</span><span class="nx">MY_NEW_TEST</span><span class="p">);</span>
+</pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="track-custom-event">
+<h3>Track Custom Event<a class="headerlink" href="#track-custom-event" title="Link to this heading">#</a></h3>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">trackConversion</span><span class="p">,</span><span class="w"> </span><span class="nx">ConversionEvent</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;@/lib/analytics&#39;</span><span class="p">;</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">handleCustomAction</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">trackConversion</span><span class="p">(</span><span class="nx">ConversionEvent</span><span class="p">.</span><span class="nx">YOUR_EVENT</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">custom_property</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;value&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">user_segment</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;high_intent&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="p">});</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p><strong>View in PostHog</strong>: Events → Filter by event name</p>
+</section>
+</section>
+<hr class="docutils" />
+<section id="customization-checklist">
+<h2>🎨 Customization Checklist<a class="headerlink" href="#customization-checklist" title="Link to this heading">#</a></h2>
+<ul class="contains-task-list simple">
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> Update Calendly link (Hero.tsx)</p></li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> Update email address (Footer.tsx)</p></li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> Update phone number (Footer.tsx)</p></li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> Add real testimonials (Results.tsx)</p></li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> Update course links (Courses.tsx)</p></li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> Set up PostHog analytics</p></li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> Create conversion funnel</p></li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> Enable session recording</p></li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> Review first 10 recordings</p></li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> Set up A/B test tracking</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="troubleshooting">
+<h2>🐛 Troubleshooting<a class="headerlink" href="#troubleshooting" title="Link to this heading">#</a></h2>
+<section id="analytics-not-tracking">
+<h3>“Analytics not tracking”<a class="headerlink" href="#analytics-not-tracking" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p>Check browser console for errors</p></li>
+<li><p>Verify PostHog API key in environment</p></li>
+<li><p>Disable ad blockers</p></li>
+<li><p>Test in incognito mode</p></li>
+</ol>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="c1">// Test manually in browser console:</span>
+<span class="nb">window</span><span class="p">.</span><span class="nx">posthog</span><span class="p">.</span><span class="nx">capture</span><span class="p">(</span><span class="s1">&#39;test_event&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">test</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span><span class="w"> </span><span class="p">})</span>
+</pre></div>
+</div>
+</section>
+<section id="a-b-tests-not-changing">
+<h3>“A/B tests not changing”<a class="headerlink" href="#a-b-tests-not-changing" title="Link to this heading">#</a></h3>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="c1">// Clear localStorage in browser console:</span>
+<span class="nx">localStorage</span><span class="p">.</span><span class="nx">clear</span><span class="p">()</span>
+
+<span class="c1">// Or force specific variant:</span>
+<span class="nx">localStorage</span><span class="p">.</span><span class="nx">setItem</span><span class="p">(</span><span class="s1">&#39;experiment_hero_headline&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;benefit_focused&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="changes-not-showing-up">
+<h3>“Changes not showing up”<a class="headerlink" href="#changes-not-showing-up" title="Link to this heading">#</a></h3>
+<ol class="arabic">
+<li><p>Clear browser cache (Ctrl+Shift+R)</p></li>
+<li><p>Wait 2 minutes (GitHub Pages propagation)</p></li>
+<li><p>Check gh-pages branch was updated:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>log<span class="w"> </span>origin/gh-pages<span class="w"> </span>-1
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+</section>
+<hr class="docutils" />
+<section id="what-to-track">
+<h2>📈 What to Track<a class="headerlink" href="#what-to-track" title="Link to this heading">#</a></h2>
+<section id="key-metrics">
+<h3>Key Metrics<a class="headerlink" href="#key-metrics" title="Link to this heading">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Metric</p></th>
+<th class="head"><p>How to Check</p></th>
+<th class="head"><p>Target</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Page Views</strong></p></td>
+<td><p>PostHog → Trends → page_view</p></td>
+<td><p>1,000+/month</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Conversion Rate</strong></p></td>
+<td><p>book_call_clicks / page_views × 100</p></td>
+<td><p>3-5%</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Avg Time on Page</strong></p></td>
+<td><p>PostHog → Session Duration</p></td>
+<td><p>2+ minutes</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Scroll to Pricing</strong></p></td>
+<td><p>pricing_section_view / page_view × 100</p></td>
+<td><p>60%+</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Mobile Traffic</strong></p></td>
+<td><p>PostHog → Device Type</p></td>
+<td><p>Track for optimization</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="red-flags">
+<h3>Red Flags 🚩<a class="headerlink" href="#red-flags" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Conversion rate &lt; 1%</strong>: UX problem or traffic quality issue</p></li>
+<li><p><strong>Bounce rate &gt; 70%</strong>: Messaging mismatch or slow load time</p></li>
+<li><p><strong>Avg time &lt; 30 seconds</strong>: Not engaging, need better hook</p></li>
+<li><p><strong>Session errors</strong>: Broken functionality, investigate immediately</p></li>
+</ul>
+</section>
+</section>
+<hr class="docutils" />
+<section id="pro-tips">
+<h2>💡 Pro Tips<a class="headerlink" href="#pro-tips" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p><strong>Watch Sessions Weekly</strong>: You’ll spot issues analytics won’t show</p></li>
+<li><p><strong>Test One Thing at a Time</strong>: Multiple changes = can’t tell what worked</p></li>
+<li><p><strong>Let Tests Run</strong>: Minimum 1 week, 100 conversions per variant</p></li>
+<li><p><strong>Segment Your Data</strong>: Mobile vs desktop, source, time of day</p></li>
+<li><p><strong>Act on Insights</strong>: Data without action = wasted opportunity</p></li>
+</ol>
+</section>
+<hr class="docutils" />
+<section id="learning-resources">
+<h2>🎓 Learning Resources<a class="headerlink" href="#learning-resources" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><strong>PostHog Docs</strong>: <a class="reference external" href="https://posthog.com/docs">https://posthog.com/docs</a></p></li>
+<li><p><strong>A/B Testing Guide</strong>: See <code class="docutils literal notranslate"><span class="pre">AB_TESTING_STRATEGY.md</span></code></p></li>
+<li><p><strong>Analytics Setup</strong>: See <code class="docutils literal notranslate"><span class="pre">ANALYTICS_SETUP.md</span></code></p></li>
+<li><p><strong>Deployment</strong>: See <code class="docutils literal notranslate"><span class="pre">DEPLOYMENT.md</span></code></p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="get-help">
+<h2>🆘 Get Help<a class="headerlink" href="#get-help" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><strong>PostHog Community</strong>: <a class="reference external" href="https://posthog.com/questions">https://posthog.com/questions</a></p></li>
+<li><p><strong>Next.js Docs</strong>: <a class="reference external" href="https://nextjs.org/docs">https://nextjs.org/docs</a></p></li>
+<li><p><strong>GitHub Issues</strong>: Open issue in your repo</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="your-first-week-action-plan">
+<h2>🎯 Your First Week Action Plan<a class="headerlink" href="#your-first-week-action-plan" title="Link to this heading">#</a></h2>
+<section id="day-1-today">
+<h3>Day 1 (Today!)<a class="headerlink" href="#day-1-today" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>✅ Site is live</p></li>
+<li><p>⏳ Set up PostHog (30 min)</p></li>
+<li><p>⏳ Create conversion funnel (5 min)</p></li>
+<li><p>⏳ Enable session recording (2 min)</p></li>
+<li><p>⏳ Update contact info (10 min)</p></li>
+</ul>
+</section>
+<section id="day-2-7">
+<h3>Day 2-7<a class="headerlink" href="#day-2-7" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Watch 2-3 session recordings daily</p></li>
+<li><p>Note any UX issues or confusing sections</p></li>
+<li><p>Check conversion rate trend</p></li>
+<li><p>Share site with 5-10 people for feedback</p></li>
+</ul>
+</section>
+<section id="week-2">
+<h3>Week 2<a class="headerlink" href="#week-2" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Review A/B test data (need ~50 conversions minimum)</p></li>
+<li><p>Identify funnel drop-off stage</p></li>
+<li><p>Plan optimization for weakest stage</p></li>
+<li><p>Launch next experiment</p></li>
+</ul>
+</section>
+<section id="month-1-goal">
+<h3>Month 1 Goal<a class="headerlink" href="#month-1-goal" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>100+ page views</p></li>
+<li><p>3-5% conversion rate</p></li>
+<li><p>Clear winner in headline test</p></li>
+<li><p>2-3 UX improvements implemented</p></li>
+<li><p>1 new experiment running</p></li>
+</ul>
+<hr class="docutils" />
+<p><strong>You’re all set! 🎉</strong></p>
+<p>Your landing page is live, analytics are ready, and you’re set up to optimize for conversions. Start small, test often, and let the data guide you! 🚀</p>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./codebridge-landing"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#you-re-live">🎯 You’re Live!</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#minute-setup-checklist">⚡ 5-Minute Setup Checklist</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#set-up-analytics-critical">1. Set Up Analytics (Critical!)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#create-your-first-posthog-funnel">2. Create Your First PostHog Funnel</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#enable-session-recordings">3. Enable Session Recordings</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#update-contact-info">4. Update Contact Info</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#daily-monitoring-5-minutes-day">📊 Daily Monitoring (5 minutes/day)</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#morning-check-2-min">Morning Check (2 min)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#weekly-deep-dive-30-min">Weekly Deep Dive (30 min)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#making-changes">🔧 Making Changes</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#update-content">Update Content</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#add-new-a-b-test">Add New A/B Test</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#track-custom-event">Track Custom Event</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#customization-checklist">🎨 Customization Checklist</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#troubleshooting">🐛 Troubleshooting</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#analytics-not-tracking">“Analytics not tracking”</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-b-tests-not-changing">“A/B tests not changing”</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#changes-not-showing-up">“Changes not showing up”</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-to-track">📈 What to Track</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#key-metrics">Key Metrics</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#red-flags">Red Flags 🚩</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pro-tips">💡 Pro Tips</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-resources">🎓 Learning Resources</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#get-help">🆘 Get Help</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#your-first-week-action-plan">🎯 Your First Week Action Plan</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#day-1-today">Day 1 (Today!)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#day-2-7">Day 2-7</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#week-2">Week 2</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#month-1-goal">Month 1 Goal</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Mykolas Perevicius
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

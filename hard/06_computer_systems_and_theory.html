@@ -1,0 +1,2183 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Lesson 6: Computer Systems and Theory &#8212; Education Playground</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=0c185eed" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=c73c0f3e"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'hard/06_computer_systems_and_theory';</script>
+    <script src="../_static/js/onboarding.js?v=557b7536"></script>
+    <link rel="canonical" href="https://mykolas-perevicius.github.io/Education_Playground/hard/06_computer_systems_and_theory.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Hard Level: Advanced Project Ideas &amp; Implementation Guide" href="07_project_ideas.html" />
+    <link rel="prev" title="Lesson 5: Advanced Machine Learning and NLP" href="05_advanced_ml_and_nlp.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../README.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Education Playground</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../00_calibration_test.html">🎯 Calibration Test - Find Your Level</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../beginner_scripts/README.html">🌱 Beginner Scripts (10 Python Files)</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../easy/README_EASY.html">📗 Easy Level - Beginner</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../easy/01_introduction_to_python.html">1. Introduction to Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../easy/02_variables_and_data_types.html">2. Variables and Data Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../easy/03_basic_operations_and_conditionals.html">3. Operations and Conditionals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../easy/04_intro_to_ai_and_ml.html">4. Intro to AI and ML</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../easy/05_computing_fundamentals.html">5. Computing Fundamentals</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../medium/README_MEDIUM.html">📘 Medium Level - Intermediate</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../medium/01_functions_and_modules.html">1. Functions and Modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../medium/02_data_structures.html">2. Data Structures</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../medium/03_classes_and_oop.html">3. Classes and OOP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../medium/04_machine_learning_basics.html">4. Machine Learning Basics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../medium/05_data_analysis_with_pandas.html">5. Data Analysis with Pandas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../medium/06_algorithms_and_problem_solving.html">6. Algorithms and Problem Solving</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="README_HARD.html">📕 Hard Level - Advanced</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="01_advanced_functions_and_decorators.html">1. Advanced Functions &amp; Decorators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02_generators_and_iterators.html">2. Generators and Iterators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03_algorithms_and_complexity.html">3. Algorithms and Complexity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04_deep_learning_and_neural_networks.html">4. Deep Learning &amp; Neural Networks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05_advanced_ml_and_nlp.html">5. Advanced ML and NLP</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">6. Computer Systems and Theory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="07_project_ideas.html">7. Project Ideas &amp; Implementation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="08_classic_problems.html">Lesson 8: Classic Problems Collection</a></li>
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="09_ctf_challenges.html">Lesson 9: Capture The Flag (CTF) - Hacker Training</a></li>
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="10_performance_computing.html">10. Performance Computing ⚡ NEW!</a></li>
+<li class="toctree-l2"><a class="reference internal" href="11_cuda_and_parallel_computing.html">11. CUDA &amp; GPU Computing 🎮 NEW!</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../tools/README.html">🛠️ Developer Tools Track</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../tools/01_shell_basics.html">1. Shell and Command Line</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools/02_command_line_tools.html">2. Command Line Tools</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools/03_git_essentials.html">3. Git Essentials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools/04_text_editors.html">4. Text Editors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools/05_build_systems_cicd.html">5. Build Systems and CI/CD</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools/06_debugging_profiling.html">6. Debugging and Profiling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools/07_security_essentials.html">7. Security Essentials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools/08_package_management.html">8. Package Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools/09_ssh_remote_systems.html">9. SSH and Remote Systems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools/10_docker_containers.html">10. Docker and Containers</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../solutions/README_SOLUTIONS.html">📝 Solutions</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../solutions/easy_solutions.html">Easy Level - Complete Solutions</a></li>
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../solutions/medium_solutions.html">Medium Level - Complete Solutions</a></li>
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../solutions/hard_solutions.html">Hard Level - Complete Solutions</a></li>
+
+
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../solutions/tools_solutions.html">Developer Tools - Complete Solutions</a></li>
+
+
+
+
+
+
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../RESOURCES.html">📚 Learning Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../PYTHON_CHEATSHEET.html">⚡ Python Cheat Sheet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ML_AI_CHEATSHEET.html">🤖 ML/AI Cheat Sheet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../SETUP.html">🔧 Setup Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../RELEASE_NOTES_v2.0.0.html">🎉 Release Notes v2.0.0</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none"></div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Lesson 6: Computer Systems and Theory</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#real-world-context">Real-World Context</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-you-ll-learn">What You’ll Learn</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-1-computer-architecture-fundamentals">Part 1: Computer Architecture Fundamentals</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#von-neumann-architecture-1945">Von Neumann Architecture (1945)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cpu-execution-cycle-fetch-decode-execute">CPU Execution Cycle: Fetch-Decode-Execute</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#instruction-types">Instruction Types</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-2-memory-hierarchy-and-caching">Part 2: Memory Hierarchy and Caching</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-memory-wall-problem">The Memory Wall Problem</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#memory-hierarchy-latency-size">Memory Hierarchy (Latency &amp; Size)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cache-principles">Cache Principles</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cache-replacement-policies">Cache Replacement Policies</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cache-performance-analysis">Cache Performance Analysis</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-3-concurrency-and-parallelism">Part 3: Concurrency and Parallelism</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#key-concepts">Key Concepts</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#amdahl-s-law-parallel-speedup">Amdahl’s Law (Parallel Speedup)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#synchronization-problems">Synchronization Problems</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#producer-consumer-problem-classic-concurrency">Producer-Consumer Problem (Classic Concurrency)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-4-computational-complexity-theory">Part 4: Computational Complexity Theory</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#complexity-classes">Complexity Classes</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#p-vs-np-million-dollar-question">P vs NP (Million Dollar Question)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#famous-np-complete-problems">Famous NP-Complete Problems</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reductions-proving-np-completeness">Reductions (Proving NP-Completeness)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-5-automata-theory-and-formal-languages">Part 5: Automata Theory and Formal Languages</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#chomsky-hierarchy">Chomsky Hierarchy</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#finite-state-machine-fsm">Finite State Machine (FSM)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#regular-expressions-finite-automata">Regular Expressions ≡ Finite Automata</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-6-virtual-memory-and-paging">Part 6: Virtual Memory and Paging</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#why-virtual-memory">Why Virtual Memory?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#address-translation">Address Translation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#page-replacement-algorithms">Page Replacement Algorithms</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-7-modern-hardware-and-parallelism">Part 7: Modern Hardware and Parallelism</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#multi-core-vs-gpu">Multi-Core vs GPU</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#simd-single-instruction-multiple-data">SIMD (Single Instruction, Multiple Data)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-8-exercises">Part 8: Exercises</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-1-process-scheduler">Exercise 1: Process Scheduler (⭐⭐)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-2-deadlock-detection">Exercise 2: Deadlock Detection (⭐⭐⭐)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-3-memory-allocator">Exercise 3: Memory Allocator (⭐⭐⭐)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-4-np-completeness-proof">Exercise 4: NP-Completeness Proof (⭐⭐⭐⭐)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-5-build-a-virtual-machine">Exercise 5: Build a Virtual Machine (⭐⭐⭐⭐)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#self-check-quiz">Self-Check Quiz</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#key-takeaways">Key Takeaways</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#computer-architecture">Computer Architecture</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#concurrency">Concurrency</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#complexity-theory">Complexity Theory</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#automata-theory">Automata Theory</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#virtual-memory">Virtual Memory</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pro-tips">Pro Tips</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#common-mistakes">Common Mistakes</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#debug-checklist">Debug Checklist</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-s-next">What’s Next?</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#continue-in-hard-track">Continue in Hard Track:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#deepen-your-systems-knowledge">Deepen Your Systems Knowledge:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#practice-projects">Practice Projects:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#resources">Resources:</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="lesson-6-computer-systems-and-theory">
+<h1>Lesson 6: Computer Systems and Theory<a class="headerlink" href="#lesson-6-computer-systems-and-theory" title="Link to this heading">#</a></h1>
+<p><strong>Master computer architecture, operating systems, and theoretical computer science</strong></p>
+<section id="real-world-context">
+<h2>Real-World Context<a class="headerlink" href="#real-world-context" title="Link to this heading">#</a></h2>
+<p>Understanding computer systems is essential for writing efficient code, debugging performance issues, and system design. This knowledge powers: high-performance computing (Google scale), operating systems (Linux kernel), embedded systems (smartphones), and distributed systems (cloud infrastructure).</p>
+</section>
+<section id="what-you-ll-learn">
+<h2>What You’ll Learn<a class="headerlink" href="#what-you-ll-learn" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p><strong>Computer Architecture</strong>: CPU, memory hierarchy, instruction execution</p></li>
+<li><p><strong>Memory Management</strong>: Virtual memory, paging, caching strategies</p></li>
+<li><p><strong>Concurrency</strong>: Threads, processes, synchronization primitives</p></li>
+<li><p><strong>Operating Systems</strong>: Scheduling, file systems, I/O management</p></li>
+<li><p><strong>Computational Complexity</strong>: P vs NP, complexity classes, reductions</p></li>
+<li><p><strong>Automata Theory</strong>: Finite state machines, regular expressions, grammars</p></li>
+<li><p><strong>Modern Hardware</strong>: Multi-core, GPUs, SIMD, memory models</p></li>
+<li><p><strong>System Design</strong>: Scalability, reliability, performance optimization</p></li>
+</ol>
+<p><strong>Prerequisites</strong>: Python, basic data structures, algorithms</p>
+<p><strong>Time</strong>: 4-5 hours</p>
+</section>
+<section id="part-1-computer-architecture-fundamentals">
+<h2>Part 1: Computer Architecture Fundamentals<a class="headerlink" href="#part-1-computer-architecture-fundamentals" title="Link to this heading">#</a></h2>
+<section id="von-neumann-architecture-1945">
+<h3>Von Neumann Architecture (1945)<a class="headerlink" href="#von-neumann-architecture-1945" title="Link to this heading">#</a></h3>
+<p><strong>Core Components:</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>┌─────────────────────────────────────┐
+│  CPU (Central Processing Unit)      │
+│  ┌──────────────┐  ┌─────────────┐ │
+│  │ Control Unit │  │     ALU     │ │
+│  └──────────────┘  └─────────────┘ │
+│  ┌──────────────────────────────┐  │
+│  │       Registers              │  │
+│  └──────────────────────────────┘  │
+└─────────────────────────────────────┘
+         ↕ (Bus)
+┌─────────────────────────────────────┐
+│          Memory (RAM)                │
+│  [Instructions] [Data] [Stack]      │
+└─────────────────────────────────────┘
+         ↕
+┌─────────────────────────────────────┐
+│        I/O Devices                   │
+│  Keyboard, Display, Disk, Network   │
+└─────────────────────────────────────┘
+</pre></div>
+</div>
+</section>
+<section id="cpu-execution-cycle-fetch-decode-execute">
+<h3>CPU Execution Cycle: Fetch-Decode-Execute<a class="headerlink" href="#cpu-execution-cycle-fetch-decode-execute" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p><strong>Fetch</strong>: Load instruction from memory (PC → Memory → IR)</p></li>
+<li><p><strong>Decode</strong>: Interpret instruction (IR → Control Unit)</p></li>
+<li><p><strong>Execute</strong>: Perform operation (ALU, Registers)</p></li>
+<li><p><strong>Write-back</strong>: Store result (Registers → Memory)</p></li>
+</ol>
+</section>
+<section id="instruction-types">
+<h3>Instruction Types<a class="headerlink" href="#instruction-types" title="Link to this heading">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Category</p></th>
+<th class="head"><p>Examples</p></th>
+<th class="head"><p>Purpose</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Data Transfer</strong></p></td>
+<td><p>LOAD, STORE, MOVE</p></td>
+<td><p>Move data between registers/memory</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Arithmetic</strong></p></td>
+<td><p>ADD, SUB, MUL, DIV</p></td>
+<td><p>Mathematical operations</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Logical</strong></p></td>
+<td><p>AND, OR, XOR, NOT</p></td>
+<td><p>Bitwise operations</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Control Flow</strong></p></td>
+<td><p>JMP, JZ, CALL, RET</p></td>
+<td><p>Program flow control</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>I/O</strong></p></td>
+<td><p>IN, OUT</p></td>
+<td><p>Interact with devices</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">SimpleCPU</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Educational CPU simulator with fetch-decode-execute cycle.&quot;&quot;&quot;</span>
+    
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># Registers</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">registers</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;A&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;C&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;D&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pc</span> <span class="o">=</span> <span class="mi">0</span>  <span class="c1"># Program Counter</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ir</span> <span class="o">=</span> <span class="kc">None</span>  <span class="c1"># Instruction Register</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">flags</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;zero&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span> <span class="s1">&#39;carry&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">}</span>  <span class="c1"># Status flags</span>
+        
+        <span class="c1"># Memory</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">memory</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="mi">256</span>
+        
+        <span class="c1"># Statistics</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cycles</span> <span class="o">=</span> <span class="mi">0</span>
+        
+    <span class="k">def</span> <span class="nf">fetch</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">program</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Fetch instruction from program memory.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">pc</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">program</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">ir</span> <span class="o">=</span> <span class="n">program</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">pc</span><span class="p">]</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">pc</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">cycles</span> <span class="o">+=</span> <span class="mi">1</span>  <span class="c1"># Fetch takes 1 cycle</span>
+            <span class="k">return</span> <span class="kc">True</span>
+        <span class="k">return</span> <span class="kc">False</span>
+    
+    <span class="k">def</span> <span class="nf">decode_execute</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Decode and execute instruction.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">ir</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span>
+        
+        <span class="n">parts</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ir</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+        <span class="n">opcode</span> <span class="o">=</span> <span class="n">parts</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        
+        <span class="k">if</span> <span class="n">opcode</span> <span class="o">==</span> <span class="s1">&#39;LOAD&#39;</span><span class="p">:</span>
+            <span class="c1"># LOAD reg, value</span>
+            <span class="n">reg</span><span class="p">,</span> <span class="n">value</span> <span class="o">=</span> <span class="n">parts</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="nb">int</span><span class="p">(</span><span class="n">parts</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">registers</span><span class="p">[</span><span class="n">reg</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  LOAD </span><span class="si">{</span><span class="n">reg</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">value</span><span class="si">}</span><span class="s2">  → </span><span class="si">{</span><span class="n">reg</span><span class="si">}</span><span class="s2">=</span><span class="si">{</span><span class="n">value</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            
+        <span class="k">elif</span> <span class="n">opcode</span> <span class="o">==</span> <span class="s1">&#39;ADD&#39;</span><span class="p">:</span>
+            <span class="c1"># ADD reg1, reg2, dest</span>
+            <span class="n">r1</span><span class="p">,</span> <span class="n">r2</span><span class="p">,</span> <span class="n">dest</span> <span class="o">=</span> <span class="n">parts</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">parts</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">parts</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">registers</span><span class="p">[</span><span class="n">r1</span><span class="p">]</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">registers</span><span class="p">[</span><span class="n">r2</span><span class="p">]</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">registers</span><span class="p">[</span><span class="n">dest</span><span class="p">]</span> <span class="o">=</span> <span class="n">result</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">flags</span><span class="p">[</span><span class="s1">&#39;zero&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">result</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  ADD </span><span class="si">{</span><span class="n">r1</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">r2</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">dest</span><span class="si">}</span><span class="s2">  → </span><span class="si">{</span><span class="n">dest</span><span class="si">}</span><span class="s2">=</span><span class="si">{</span><span class="n">result</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            
+        <span class="k">elif</span> <span class="n">opcode</span> <span class="o">==</span> <span class="s1">&#39;SUB&#39;</span><span class="p">:</span>
+            <span class="c1"># SUB reg1, reg2, dest</span>
+            <span class="n">r1</span><span class="p">,</span> <span class="n">r2</span><span class="p">,</span> <span class="n">dest</span> <span class="o">=</span> <span class="n">parts</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">parts</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">parts</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">registers</span><span class="p">[</span><span class="n">r1</span><span class="p">]</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">registers</span><span class="p">[</span><span class="n">r2</span><span class="p">]</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">registers</span><span class="p">[</span><span class="n">dest</span><span class="p">]</span> <span class="o">=</span> <span class="n">result</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">flags</span><span class="p">[</span><span class="s1">&#39;zero&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">result</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  SUB </span><span class="si">{</span><span class="n">r1</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">r2</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">dest</span><span class="si">}</span><span class="s2">  → </span><span class="si">{</span><span class="n">dest</span><span class="si">}</span><span class="s2">=</span><span class="si">{</span><span class="n">result</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            
+        <span class="k">elif</span> <span class="n">opcode</span> <span class="o">==</span> <span class="s1">&#39;MUL&#39;</span><span class="p">:</span>
+            <span class="c1"># MUL reg1, reg2, dest</span>
+            <span class="n">r1</span><span class="p">,</span> <span class="n">r2</span><span class="p">,</span> <span class="n">dest</span> <span class="o">=</span> <span class="n">parts</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">parts</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">parts</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">registers</span><span class="p">[</span><span class="n">r1</span><span class="p">]</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">registers</span><span class="p">[</span><span class="n">r2</span><span class="p">]</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">registers</span><span class="p">[</span><span class="n">dest</span><span class="p">]</span> <span class="o">=</span> <span class="n">result</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  MUL </span><span class="si">{</span><span class="n">r1</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">r2</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">dest</span><span class="si">}</span><span class="s2">  → </span><span class="si">{</span><span class="n">dest</span><span class="si">}</span><span class="s2">=</span><span class="si">{</span><span class="n">result</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            
+        <span class="k">elif</span> <span class="n">opcode</span> <span class="o">==</span> <span class="s1">&#39;STORE&#39;</span><span class="p">:</span>
+            <span class="c1"># STORE reg, address</span>
+            <span class="n">reg</span><span class="p">,</span> <span class="n">addr</span> <span class="o">=</span> <span class="n">parts</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="nb">int</span><span class="p">(</span><span class="n">parts</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">memory</span><span class="p">[</span><span class="n">addr</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">registers</span><span class="p">[</span><span class="n">reg</span><span class="p">]</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  STORE </span><span class="si">{</span><span class="n">reg</span><span class="si">}</span><span class="s2">, [</span><span class="si">{</span><span class="n">addr</span><span class="si">}</span><span class="s2">]  → Memory[</span><span class="si">{</span><span class="n">addr</span><span class="si">}</span><span class="s2">]=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">registers</span><span class="p">[</span><span class="n">reg</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            
+        <span class="k">elif</span> <span class="n">opcode</span> <span class="o">==</span> <span class="s1">&#39;JMP&#39;</span><span class="p">:</span>
+            <span class="c1"># JMP address</span>
+            <span class="n">addr</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">parts</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">pc</span> <span class="o">=</span> <span class="n">addr</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  JMP </span><span class="si">{</span><span class="n">addr</span><span class="si">}</span><span class="s2">  → PC=</span><span class="si">{</span><span class="n">addr</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            
+        <span class="k">elif</span> <span class="n">opcode</span> <span class="o">==</span> <span class="s1">&#39;HALT&#39;</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  HALT&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">False</span>
+            
+        <span class="bp">self</span><span class="o">.</span><span class="n">cycles</span> <span class="o">+=</span> <span class="mi">1</span>  <span class="c1"># Execute takes 1 cycle (simplified)</span>
+        <span class="k">return</span> <span class="kc">True</span>
+    
+    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">program</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Execute complete program.&quot;&quot;&quot;</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;🖥️  CPU Execution Start</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Cycle | Instruction&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;─&quot;</span> <span class="o">*</span> <span class="mi">40</span><span class="p">)</span>
+        
+        <span class="k">while</span> <span class="bp">self</span><span class="o">.</span><span class="n">fetch</span><span class="p">(</span><span class="n">program</span><span class="p">):</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">cycles</span><span class="si">:</span><span class="s2">3d</span><span class="si">}</span><span class="s2">   |&quot;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot; &quot;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">decode_execute</span><span class="p">():</span>
+                <span class="k">break</span>
+        
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="s2">&quot;─&quot;</span> <span class="o">*</span> <span class="mi">40</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;✅ Execution Complete</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Final Registers: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">registers</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Total Cycles: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">cycles</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Instructions Executed: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">pc</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Example program: Calculate (10 + 20) * 3</span>
+<span class="n">program</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;LOAD A 10&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;LOAD B 20&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ADD A B C&quot;</span><span class="p">,</span>    <span class="c1"># C = A + B = 30</span>
+    <span class="s2">&quot;LOAD D 3&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;MUL C D A&quot;</span><span class="p">,</span>    <span class="c1"># A = C * D = 90</span>
+    <span class="s2">&quot;STORE A 100&quot;</span><span class="p">,</span>  <span class="c1"># Store result at memory[100]</span>
+    <span class="s2">&quot;HALT&quot;</span>
+<span class="p">]</span>
+
+<span class="n">cpu</span> <span class="o">=</span> <span class="n">SimpleCPU</span><span class="p">()</span>
+<span class="n">cpu</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">program</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="part-2-memory-hierarchy-and-caching">
+<h2>Part 2: Memory Hierarchy and Caching<a class="headerlink" href="#part-2-memory-hierarchy-and-caching" title="Link to this heading">#</a></h2>
+<section id="the-memory-wall-problem">
+<h3>The Memory Wall Problem<a class="headerlink" href="#the-memory-wall-problem" title="Link to this heading">#</a></h3>
+<p><strong>CPU speed</strong> has increased <strong>1000×</strong> faster than <strong>memory speed</strong> over 30 years!</p>
+</section>
+<section id="memory-hierarchy-latency-size">
+<h3>Memory Hierarchy (Latency &amp; Size)<a class="headerlink" href="#memory-hierarchy-latency-size" title="Link to this heading">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Level</p></th>
+<th class="head"><p>Latency</p></th>
+<th class="head"><p>Size</p></th>
+<th class="head"><p>Cost/GB</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Registers</strong></p></td>
+<td><p>0.3 ns (~1 cycle)</p></td>
+<td><p>1 KB</p></td>
+<td><p>N/A</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>L1 Cache</strong></p></td>
+<td><p>1 ns (~4 cycles)</p></td>
+<td><p>32-64 KB</p></td>
+<td><p>$10,000</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>L2 Cache</strong></p></td>
+<td><p>3 ns (~12 cycles)</p></td>
+<td><p>256 KB-1 MB</p></td>
+<td><p>$1,000</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>L3 Cache</strong></p></td>
+<td><p>12 ns (~40 cycles)</p></td>
+<td><p>8-64 MB</p></td>
+<td><p>$100</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>RAM</strong></p></td>
+<td><p>100 ns (~300 cycles)</p></td>
+<td><p>8-64 GB</p></td>
+<td><p>$5</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>SSD</strong></p></td>
+<td><p>100 μs (100,000 ns)</p></td>
+<td><p>256 GB-2 TB</p></td>
+<td><p>$0.20</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>HDD</strong></p></td>
+<td><p>10 ms (10,000,000 ns)</p></td>
+<td><p>1-10 TB</p></td>
+<td><p>$0.02</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="cache-principles">
+<h3>Cache Principles<a class="headerlink" href="#cache-principles" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p><strong>Temporal Locality</strong>: Recently accessed data likely to be accessed again</p></li>
+<li><p><strong>Spatial Locality</strong>: Nearby data likely to be accessed together</p></li>
+</ol>
+</section>
+<section id="cache-replacement-policies">
+<h3>Cache Replacement Policies<a class="headerlink" href="#cache-replacement-policies" title="Link to this heading">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Policy</p></th>
+<th class="head"><p>Strategy</p></th>
+<th class="head"><p>Use Case</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>LRU</strong></p></td>
+<td><p>Evict least recently used</p></td>
+<td><p>General purpose (most common)</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>LFU</strong></p></td>
+<td><p>Evict least frequently used</p></td>
+<td><p>Long-term patterns</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>FIFO</strong></p></td>
+<td><p>Evict oldest</p></td>
+<td><p>Simple hardware</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Random</strong></p></td>
+<td><p>Evict random entry</p></td>
+<td><p>Fastest, unpredictable</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">OrderedDict</span>
+<span class="kn">import</span> <span class="nn">random</span>
+
+<span class="k">class</span> <span class="nc">CacheSimulator</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Simulate different cache replacement policies.&quot;&quot;&quot;</span>
+    
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">capacity</span><span class="p">,</span> <span class="n">policy</span><span class="o">=</span><span class="s1">&#39;LRU&#39;</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">capacity</span> <span class="o">=</span> <span class="n">capacity</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">policy</span> <span class="o">=</span> <span class="n">policy</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cache</span> <span class="o">=</span> <span class="n">OrderedDict</span><span class="p">()</span> <span class="k">if</span> <span class="n">policy</span> <span class="o">==</span> <span class="s1">&#39;LRU&#39;</span> <span class="k">else</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">access_counts</span> <span class="o">=</span> <span class="p">{}</span>  <span class="c1"># For LFU</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">hits</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">misses</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">evictions</span> <span class="o">=</span> <span class="mi">0</span>
+        
+    <span class="k">def</span> <span class="nf">access</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">address</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Access memory address.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">address</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">cache</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">hits</span> <span class="o">+=</span> <span class="mi">1</span>
+            
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">policy</span> <span class="o">==</span> <span class="s1">&#39;LRU&#39;</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">cache</span><span class="o">.</span><span class="n">move_to_end</span><span class="p">(</span><span class="n">address</span><span class="p">)</span>  <span class="c1"># Mark as recently used</span>
+            <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">policy</span> <span class="o">==</span> <span class="s1">&#39;LFU&#39;</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">access_counts</span><span class="p">[</span><span class="n">address</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+                
+            <span class="k">return</span> <span class="s1">&#39;HIT&#39;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">misses</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_load_to_cache</span><span class="p">(</span><span class="n">address</span><span class="p">)</span>
+            <span class="k">return</span> <span class="s1">&#39;MISS&#39;</span>
+    
+    <span class="k">def</span> <span class="nf">_load_to_cache</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">address</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Load address into cache, evicting if necessary.&quot;&quot;&quot;</span>
+        <span class="c1"># Evict if full</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cache</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">capacity</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_evict</span><span class="p">()</span>
+            
+        <span class="c1"># Add to cache</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cache</span><span class="p">[</span><span class="n">address</span><span class="p">]</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;data_</span><span class="si">{</span><span class="n">address</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">policy</span> <span class="o">==</span> <span class="s1">&#39;LFU&#39;</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">access_counts</span><span class="p">[</span><span class="n">address</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+    
+    <span class="k">def</span> <span class="nf">_evict</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Evict entry based on policy.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">evictions</span> <span class="o">+=</span> <span class="mi">1</span>
+        
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">policy</span> <span class="o">==</span> <span class="s1">&#39;LRU&#39;</span><span class="p">:</span>
+            <span class="c1"># Remove least recently used (first item)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">cache</span><span class="o">.</span><span class="n">popitem</span><span class="p">(</span><span class="n">last</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+            
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">policy</span> <span class="o">==</span> <span class="s1">&#39;LFU&#39;</span><span class="p">:</span>
+            <span class="c1"># Remove least frequently used</span>
+            <span class="n">lfu_key</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">access_counts</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">access_counts</span><span class="o">.</span><span class="n">get</span><span class="p">)</span>
+            <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">cache</span><span class="p">[</span><span class="n">lfu_key</span><span class="p">]</span>
+            <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">access_counts</span><span class="p">[</span><span class="n">lfu_key</span><span class="p">]</span>
+            
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">policy</span> <span class="o">==</span> <span class="s1">&#39;FIFO&#39;</span><span class="p">:</span>
+            <span class="c1"># Remove first added</span>
+            <span class="n">first_key</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="nb">iter</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cache</span><span class="p">))</span>
+            <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">cache</span><span class="p">[</span><span class="n">first_key</span><span class="p">]</span>
+            
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">policy</span> <span class="o">==</span> <span class="s1">&#39;RANDOM&#39;</span><span class="p">:</span>
+            <span class="c1"># Remove random</span>
+            <span class="n">random_key</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cache</span><span class="o">.</span><span class="n">keys</span><span class="p">()))</span>
+            <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">cache</span><span class="p">[</span><span class="n">random_key</span><span class="p">]</span>
+    
+    <span class="k">def</span> <span class="nf">stats</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Calculate performance statistics.&quot;&quot;&quot;</span>
+        <span class="n">total</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">hits</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">misses</span>
+        <span class="n">hit_rate</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">hits</span> <span class="o">/</span> <span class="n">total</span> <span class="k">if</span> <span class="n">total</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="mi">0</span>
+        <span class="k">return</span> <span class="p">{</span>
+            <span class="s1">&#39;hits&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">hits</span><span class="p">,</span>
+            <span class="s1">&#39;misses&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">misses</span><span class="p">,</span>
+            <span class="s1">&#39;hit_rate&#39;</span><span class="p">:</span> <span class="n">hit_rate</span><span class="p">,</span>
+            <span class="s1">&#39;evictions&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">evictions</span>
+        <span class="p">}</span>
+
+<span class="c1"># Compare cache policies</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;📊 Cache Policy Comparison</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Access pattern with locality</span>
+<span class="n">access_pattern</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span> <span class="o">*</span> <span class="mi">3</span> <span class="o">+</span>       <span class="c1"># Repeated accesses (temporal locality)</span>
+    <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span> <span class="o">+</span>         <span class="c1"># Sequential access (spatial locality)</span>
+    <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span> <span class="o">*</span> <span class="mi">5</span> <span class="o">+</span>              <span class="c1"># Hot data</span>
+    <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">))</span>          <span class="c1"># New data</span>
+<span class="p">)</span>
+
+<span class="n">policies</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;LRU&#39;</span><span class="p">,</span> <span class="s1">&#39;LFU&#39;</span><span class="p">,</span> <span class="s1">&#39;FIFO&#39;</span><span class="p">,</span> <span class="s1">&#39;RANDOM&#39;</span><span class="p">]</span>
+<span class="n">results</span> <span class="o">=</span> <span class="p">{}</span>
+
+<span class="k">for</span> <span class="n">policy</span> <span class="ow">in</span> <span class="n">policies</span><span class="p">:</span>
+    <span class="n">cache</span> <span class="o">=</span> <span class="n">CacheSimulator</span><span class="p">(</span><span class="n">capacity</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">policy</span><span class="o">=</span><span class="n">policy</span><span class="p">)</span>
+    
+    <span class="k">for</span> <span class="n">addr</span> <span class="ow">in</span> <span class="n">access_pattern</span><span class="p">:</span>
+        <span class="n">cache</span><span class="o">.</span><span class="n">access</span><span class="p">(</span><span class="n">addr</span><span class="p">)</span>
+    
+    <span class="n">results</span><span class="p">[</span><span class="n">policy</span><span class="p">]</span> <span class="o">=</span> <span class="n">cache</span><span class="o">.</span><span class="n">stats</span><span class="p">()</span>
+
+<span class="c1"># Display results</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="s1">&#39;Policy&#39;</span><span class="si">:</span><span class="s2">&lt;10</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="s1">&#39;Hits&#39;</span><span class="si">:</span><span class="s2">&lt;8</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="s1">&#39;Misses&#39;</span><span class="si">:</span><span class="s2">&lt;8</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="s1">&#39;Hit Rate&#39;</span><span class="si">:</span><span class="s2">&lt;10</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="s1">&#39;Evictions&#39;</span><span class="si">:</span><span class="s2">&lt;10</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;─&quot;</span> <span class="o">*</span> <span class="mi">50</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">policy</span><span class="p">,</span> <span class="n">stats</span> <span class="ow">in</span> <span class="n">results</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">policy</span><span class="si">:</span><span class="s2">&lt;10</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">stats</span><span class="p">[</span><span class="s1">&#39;hits&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">&lt;8</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">stats</span><span class="p">[</span><span class="s1">&#39;misses&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">&lt;8</span><span class="si">}</span><span class="s2"> &quot;</span>
+          <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">stats</span><span class="p">[</span><span class="s1">&#39;hit_rate&#39;</span><span class="p">]</span><span class="o">*</span><span class="mi">100</span><span class="si">:</span><span class="s2">&gt;7.1f</span><span class="si">}</span><span class="s2">%  </span><span class="si">{</span><span class="n">stats</span><span class="p">[</span><span class="s1">&#39;evictions&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">&lt;10</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">🏆 Winner: LRU typically performs best for most workloads&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="cache-performance-analysis">
+<h3>Cache Performance Analysis<a class="headerlink" href="#cache-performance-analysis" title="Link to this heading">#</a></h3>
+<p><strong>Average Access Time:</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>AAT = Hit_Rate × Cache_Latency + Miss_Rate × (Cache_Latency + Memory_Latency)
+</pre></div>
+</div>
+<p><strong>Example:</strong></p>
+<ul class="simple">
+<li><p>Cache hit: 4 cycles</p></li>
+<li><p>Memory access: 100 cycles</p></li>
+<li><p>Hit rate: 95%</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>AAT = 0.95 × 4 + 0.05 × (4 + 100) = 3.8 + 5.2 = 9 cycles
+</pre></div>
+</div>
+<p>Without cache: <strong>100 cycles</strong> → With cache: <strong>9 cycles</strong> = <strong>11× speedup!</strong></p>
+</section>
+</section>
+<section id="part-3-concurrency-and-parallelism">
+<h2>Part 3: Concurrency and Parallelism<a class="headerlink" href="#part-3-concurrency-and-parallelism" title="Link to this heading">#</a></h2>
+<section id="key-concepts">
+<h3>Key Concepts<a class="headerlink" href="#key-concepts" title="Link to this heading">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Concept</p></th>
+<th class="head"><p>Definition</p></th>
+<th class="head"><p>Example</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Concurrency</strong></p></td>
+<td><p>Multiple tasks making progress (may be interleaved)</p></td>
+<td><p>Single-core multitasking</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Parallelism</strong></p></td>
+<td><p>Multiple tasks executing simultaneously</p></td>
+<td><p>Multi-core execution</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Thread</strong></p></td>
+<td><p>Lightweight execution unit (shares memory)</p></td>
+<td><p>Worker threads</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Process</strong></p></td>
+<td><p>Heavy execution unit (isolated memory)</p></td>
+<td><p>Separate programs</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="amdahl-s-law-parallel-speedup">
+<h3>Amdahl’s Law (Parallel Speedup)<a class="headerlink" href="#amdahl-s-law-parallel-speedup" title="Link to this heading">#</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Speedup</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="n">S</span> <span class="o">+</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">S</span><span class="p">)</span> <span class="o">/</span> <span class="n">N</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Where:</p>
+<ul class="simple">
+<li><p>S = Serial fraction (cannot be parallelized)</p></li>
+<li><p>N = Number of processors</p></li>
+</ul>
+<p><strong>Example</strong>: If 10% is serial (S=0.1), max speedup with infinite cores = 10×</p>
+</section>
+<section id="synchronization-problems">
+<h3>Synchronization Problems<a class="headerlink" href="#synchronization-problems" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p><strong>Race Condition</strong>: Multiple threads access shared data without coordination</p></li>
+<li><p><strong>Deadlock</strong>: Circular waiting for resources</p></li>
+<li><p><strong>Starvation</strong>: Thread never gets CPU time</p></li>
+<li><p><strong>Priority Inversion</strong>: Low-priority task blocks high-priority task</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">threading</span>
+<span class="kn">import</span> <span class="nn">time</span>
+
+<span class="k">class</span> <span class="nc">ThreadSafeBankAccount</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Bank account with proper synchronization.&quot;&quot;&quot;</span>
+    
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">balance</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">balance</span> <span class="o">=</span> <span class="n">balance</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">lock</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">Lock</span><span class="p">()</span>  <span class="c1"># Mutual exclusion</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">transactions</span> <span class="o">=</span> <span class="mi">0</span>
+        
+    <span class="k">def</span> <span class="nf">deposit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">amount</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Thread-safe deposit.&quot;&quot;&quot;</span>
+        <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">lock</span><span class="p">:</span>  <span class="c1"># Acquire lock automatically</span>
+            <span class="n">current</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">balance</span>
+            <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.0001</span><span class="p">)</span>  <span class="c1"># Simulate processing delay</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">balance</span> <span class="o">=</span> <span class="n">current</span> <span class="o">+</span> <span class="n">amount</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">transactions</span> <span class="o">+=</span> <span class="mi">1</span>
+            
+    <span class="k">def</span> <span class="nf">withdraw</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">amount</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Thread-safe withdrawal.&quot;&quot;&quot;</span>
+        <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">lock</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">balance</span> <span class="o">&gt;=</span> <span class="n">amount</span><span class="p">:</span>
+                <span class="n">current</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">balance</span>
+                <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.0001</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">balance</span> <span class="o">=</span> <span class="n">current</span> <span class="o">-</span> <span class="n">amount</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">transactions</span> <span class="o">+=</span> <span class="mi">1</span>
+                <span class="k">return</span> <span class="kc">True</span>
+            <span class="k">return</span> <span class="kc">False</span>
+    
+    <span class="k">def</span> <span class="nf">get_balance</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Thread-safe balance check.&quot;&quot;&quot;</span>
+        <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">lock</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">balance</span>
+
+<span class="c1"># Demonstrate race condition (without lock)</span>
+<span class="k">class</span> <span class="nc">UnsafeBankAccount</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">balance</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">balance</span> <span class="o">=</span> <span class="n">balance</span>
+    
+    <span class="k">def</span> <span class="nf">deposit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">amount</span><span class="p">):</span>
+        <span class="n">current</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">balance</span>
+        <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.0001</span><span class="p">)</span>  <span class="c1"># Context switch happens here!</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">balance</span> <span class="o">=</span> <span class="n">current</span> <span class="o">+</span> <span class="n">amount</span>
+
+<span class="k">def</span> <span class="nf">run_concurrent_transactions</span><span class="p">(</span><span class="n">account</span><span class="p">,</span> <span class="n">num_threads</span><span class="p">,</span> <span class="n">deposits_per_thread</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Run concurrent deposit operations.&quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">worker</span><span class="p">():</span>
+        <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">deposits_per_thread</span><span class="p">):</span>
+            <span class="n">account</span><span class="o">.</span><span class="n">deposit</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+    
+    <span class="n">threads</span> <span class="o">=</span> <span class="p">[</span><span class="n">threading</span><span class="o">.</span><span class="n">Thread</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">worker</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_threads</span><span class="p">)]</span>
+    
+    <span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">threads</span><span class="p">:</span>
+        <span class="n">t</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">threads</span><span class="p">:</span>
+        <span class="n">t</span><span class="o">.</span><span class="n">join</span><span class="p">()</span>
+    <span class="n">elapsed</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">start</span>
+    
+    <span class="k">return</span> <span class="n">elapsed</span>
+
+<span class="c1"># Test unsafe vs safe</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;🧪 Testing Thread Safety</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="n">num_threads</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">deposits_per_thread</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="n">expected</span> <span class="o">=</span> <span class="n">num_threads</span> <span class="o">*</span> <span class="n">deposits_per_thread</span> <span class="o">*</span> <span class="mi">10</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Unsafe Account (Race Condition):&quot;</span><span class="p">)</span>
+<span class="n">unsafe</span> <span class="o">=</span> <span class="n">UnsafeBankAccount</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">time_unsafe</span> <span class="o">=</span> <span class="n">run_concurrent_transactions</span><span class="p">(</span><span class="n">unsafe</span><span class="p">,</span> <span class="n">num_threads</span><span class="p">,</span> <span class="n">deposits_per_thread</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Expected: $</span><span class="si">{</span><span class="n">expected</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Actual: $</span><span class="si">{</span><span class="n">unsafe</span><span class="o">.</span><span class="n">balance</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Error: $</span><span class="si">{</span><span class="n">expected</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">unsafe</span><span class="o">.</span><span class="n">balance</span><span class="si">}</span><span class="s2"> (lost updates!)&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Time: </span><span class="si">{</span><span class="n">time_unsafe</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">s</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Safe Account (With Lock):&quot;</span><span class="p">)</span>
+<span class="n">safe</span> <span class="o">=</span> <span class="n">ThreadSafeBankAccount</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">time_safe</span> <span class="o">=</span> <span class="n">run_concurrent_transactions</span><span class="p">(</span><span class="n">safe</span><span class="p">,</span> <span class="n">num_threads</span><span class="p">,</span> <span class="n">deposits_per_thread</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Expected: $</span><span class="si">{</span><span class="n">expected</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Actual: $</span><span class="si">{</span><span class="n">safe</span><span class="o">.</span><span class="n">balance</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Error: $0 (correct!)&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Time: </span><span class="si">{</span><span class="n">time_safe</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">s&quot;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">⚠️  Synchronization overhead: </span><span class="si">{</span><span class="n">time_safe</span><span class="o">/</span><span class="n">time_unsafe</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">x slower&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;But correctness is worth it!&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="producer-consumer-problem-classic-concurrency">
+<h3>Producer-Consumer Problem (Classic Concurrency)<a class="headerlink" href="#producer-consumer-problem-classic-concurrency" title="Link to this heading">#</a></h3>
+<p><strong>Problem</strong>: Multiple producers create items, multiple consumers process them.</p>
+<p><strong>Solution</strong>: Bounded buffer with semaphores</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">threading</span> <span class="kn">import</span> <span class="n">Semaphore</span><span class="p">,</span> <span class="n">Thread</span>
+<span class="kn">from</span> <span class="nn">queue</span> <span class="kn">import</span> <span class="n">Queue</span>
+<span class="kn">import</span> <span class="nn">random</span>
+
+<span class="k">class</span> <span class="nc">BoundedBuffer</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Thread-safe bounded buffer for producer-consumer.&quot;&quot;&quot;</span>
+    
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">capacity</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">buffer</span> <span class="o">=</span> <span class="n">Queue</span><span class="p">(</span><span class="n">maxsize</span><span class="o">=</span><span class="n">capacity</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">empty</span> <span class="o">=</span> <span class="n">Semaphore</span><span class="p">(</span><span class="n">capacity</span><span class="p">)</span>  <span class="c1"># Count empty slots</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">full</span> <span class="o">=</span> <span class="n">Semaphore</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>  <span class="c1"># Count full slots</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mutex</span> <span class="o">=</span> <span class="n">Semaphore</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>  <span class="c1"># Mutual exclusion</span>
+        
+    <span class="k">def</span> <span class="nf">produce</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Add item to buffer.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">empty</span><span class="o">.</span><span class="n">acquire</span><span class="p">()</span>  <span class="c1"># Wait for empty slot</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mutex</span><span class="o">.</span><span class="n">acquire</span><span class="p">()</span>  <span class="c1"># Lock buffer</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">buffer</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Produced: </span><span class="si">{</span><span class="n">item</span><span class="si">}</span><span class="s2"> (buffer size: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">buffer</span><span class="o">.</span><span class="n">qsize</span><span class="p">()</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">mutex</span><span class="o">.</span><span class="n">release</span><span class="p">()</span>  <span class="c1"># Unlock buffer</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">full</span><span class="o">.</span><span class="n">release</span><span class="p">()</span>  <span class="c1"># Signal full slot</span>
+        
+    <span class="k">def</span> <span class="nf">consume</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Remove item from buffer.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">full</span><span class="o">.</span><span class="n">acquire</span><span class="p">()</span>  <span class="c1"># Wait for full slot</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mutex</span><span class="o">.</span><span class="n">acquire</span><span class="p">()</span>  <span class="c1"># Lock buffer</span>
+        
+        <span class="n">item</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">buffer</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Consumed: </span><span class="si">{</span><span class="n">item</span><span class="si">}</span><span class="s2"> (buffer size: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">buffer</span><span class="o">.</span><span class="n">qsize</span><span class="p">()</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">mutex</span><span class="o">.</span><span class="n">release</span><span class="p">()</span>  <span class="c1"># Unlock buffer</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">empty</span><span class="o">.</span><span class="n">release</span><span class="p">()</span>  <span class="c1"># Signal empty slot</span>
+        <span class="k">return</span> <span class="n">item</span>
+
+<span class="c1"># Demo</span>
+<span class="n">buffer</span> <span class="o">=</span> <span class="n">BoundedBuffer</span><span class="p">(</span><span class="n">capacity</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">items_produced</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">items_consumed</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="k">def</span> <span class="nf">producer</span><span class="p">(</span><span class="n">buffer</span><span class="p">,</span> <span class="n">count</span><span class="p">):</span>
+    <span class="k">global</span> <span class="n">items_produced</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">count</span><span class="p">):</span>
+        <span class="n">item</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;item_</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="n">buffer</span><span class="o">.</span><span class="n">produce</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+        <span class="n">items_produced</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">))</span>
+
+<span class="k">def</span> <span class="nf">consumer</span><span class="p">(</span><span class="n">buffer</span><span class="p">,</span> <span class="n">count</span><span class="p">):</span>
+    <span class="k">global</span> <span class="n">items_consumed</span>
+    <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">count</span><span class="p">):</span>
+        <span class="n">buffer</span><span class="o">.</span><span class="n">consume</span><span class="p">()</span>
+        <span class="n">items_consumed</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">))</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;🏭 Producer-Consumer Simulation</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="n">num_items</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">producers</span> <span class="o">=</span> <span class="p">[</span><span class="n">Thread</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">producer</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">buffer</span><span class="p">,</span> <span class="n">num_items</span> <span class="o">//</span> <span class="mi">2</span><span class="p">))</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">)]</span>
+<span class="n">consumers</span> <span class="o">=</span> <span class="p">[</span><span class="n">Thread</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">consumer</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">buffer</span><span class="p">,</span> <span class="n">num_items</span> <span class="o">//</span> <span class="mi">2</span><span class="p">))</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">)]</span>
+
+<span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">producers</span><span class="p">:</span>
+    <span class="n">p</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">consumers</span><span class="p">:</span>
+    <span class="n">c</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+
+<span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">producers</span><span class="p">:</span>
+    <span class="n">p</span><span class="o">.</span><span class="n">join</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">consumers</span><span class="p">:</span>
+    <span class="n">c</span><span class="o">.</span><span class="n">join</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">✅ Complete: Produced </span><span class="si">{</span><span class="n">items_produced</span><span class="si">}</span><span class="s2">, Consumed </span><span class="si">{</span><span class="n">items_consumed</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="part-4-computational-complexity-theory">
+<h2>Part 4: Computational Complexity Theory<a class="headerlink" href="#part-4-computational-complexity-theory" title="Link to this heading">#</a></h2>
+<section id="complexity-classes">
+<h3>Complexity Classes<a class="headerlink" href="#complexity-classes" title="Link to this heading">#</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>        ┌──────────────────────────────┐
+        │     EXPTIME (2^n)           │
+        │  ┌─────────────────────────┐│
+        │  │  PSPACE (polynomial)    ││
+        │  │ ┌──────────────────────┐││
+        │  │ │   NP-Complete        │││
+        │  │ │  ┌────────────────┐  │││
+        │  │ │  │  NP-Hard       │  │││
+        │  │ │  │  ┌──────────┐  │  │││
+        │  │ │  │  │    P     │  │  │││
+        │  │ │  │  └──────────┘  │  │││
+        │  │ │  └────────────────┘  │││
+        │  │ └──────────────────────┘││
+        │  └─────────────────────────┘│
+        └──────────────────────────────┘
+</pre></div>
+</div>
+</section>
+<section id="p-vs-np-million-dollar-question">
+<h3>P vs NP (Million Dollar Question)<a class="headerlink" href="#p-vs-np-million-dollar-question" title="Link to this heading">#</a></h3>
+<p><strong>P (Polynomial Time)</strong>:</p>
+<ul class="simple">
+<li><p>Problems solvable in O(n^k) time</p></li>
+<li><p>Examples: Sorting, shortest path, matrix multiplication</p></li>
+</ul>
+<p><strong>NP (Nondeterministic Polynomial)</strong>:</p>
+<ul class="simple">
+<li><p>Solutions verifiable in polynomial time</p></li>
+<li><p>Examples: SAT, Traveling Salesman, Graph Coloring</p></li>
+</ul>
+<p><strong>NP-Complete</strong>:</p>
+<ul class="simple">
+<li><p>Hardest problems in NP</p></li>
+<li><p>If any NP-Complete problem is in P, then P = NP</p></li>
+<li><p>Examples: SAT, 3-SAT, Hamiltonian Path</p></li>
+</ul>
+<p><strong>NP-Hard</strong>:</p>
+<ul class="simple">
+<li><p>At least as hard as NP-Complete</p></li>
+<li><p>May not be in NP</p></li>
+<li><p>Examples: Halting Problem, TSP optimization</p></li>
+</ul>
+</section>
+<section id="famous-np-complete-problems">
+<h3>Famous NP-Complete Problems<a class="headerlink" href="#famous-np-complete-problems" title="Link to this heading">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Problem</p></th>
+<th class="head"><p>Description</p></th>
+<th class="head"><p>Verification Time</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>SAT</strong></p></td>
+<td><p>Boolean satisfiability</p></td>
+<td><p>O(n)</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>3-SAT</strong></p></td>
+<td><p>SAT with 3 literals per clause</p></td>
+<td><p>O(n)</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>TSP Decision</strong></p></td>
+<td><p>Is there tour &lt; k?</p></td>
+<td><p>O(n)</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Vertex Cover</strong></p></td>
+<td><p>Cover with k vertices?</p></td>
+<td><p>O(n)</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Knapsack</strong></p></td>
+<td><p>Can fit with value ≥ k?</p></td>
+<td><p>O(n)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">math</span>
+<span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">permutations</span>
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="k">def</span> <span class="nf">tsp_brute_force</span><span class="p">(</span><span class="n">distances</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Solve TSP with brute force - O(n!) exponential.&quot;&quot;&quot;</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">distances</span><span class="p">)</span>
+    <span class="n">cities</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">))</span>
+    <span class="n">min_distance</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="s1">&#39;inf&#39;</span><span class="p">)</span>
+    <span class="n">best_path</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">permutations_checked</span> <span class="o">=</span> <span class="mi">0</span>
+    
+    <span class="c1"># Try all permutations (starting from city 0)</span>
+    <span class="k">for</span> <span class="n">perm</span> <span class="ow">in</span> <span class="n">permutations</span><span class="p">(</span><span class="n">cities</span><span class="p">[</span><span class="mi">1</span><span class="p">:]):</span>
+        <span class="n">path</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="nb">list</span><span class="p">(</span><span class="n">perm</span><span class="p">)</span> <span class="o">+</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span>  <span class="c1"># Return to start</span>
+        <span class="n">distance</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">distances</span><span class="p">[</span><span class="n">path</span><span class="p">[</span><span class="n">i</span><span class="p">]][</span><span class="n">path</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">path</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span>
+        <span class="n">permutations_checked</span> <span class="o">+=</span> <span class="mi">1</span>
+        
+        <span class="k">if</span> <span class="n">distance</span> <span class="o">&lt;</span> <span class="n">min_distance</span><span class="p">:</span>
+            <span class="n">min_distance</span> <span class="o">=</span> <span class="n">distance</span>
+            <span class="n">best_path</span> <span class="o">=</span> <span class="n">path</span>
+    
+    <span class="k">return</span> <span class="n">best_path</span><span class="p">,</span> <span class="n">min_distance</span><span class="p">,</span> <span class="n">permutations_checked</span>
+
+<span class="k">def</span> <span class="nf">tsp_greedy</span><span class="p">(</span><span class="n">distances</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Approximate TSP with greedy nearest neighbor - O(n²) polynomial.&quot;&quot;&quot;</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">distances</span><span class="p">)</span>
+    <span class="n">unvisited</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="p">))</span>
+    <span class="n">path</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">total_distance</span> <span class="o">=</span> <span class="mi">0</span>
+    
+    <span class="n">current</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">while</span> <span class="n">unvisited</span><span class="p">:</span>
+        <span class="c1"># Find nearest unvisited city</span>
+        <span class="n">nearest</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">unvisited</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">city</span><span class="p">:</span> <span class="n">distances</span><span class="p">[</span><span class="n">current</span><span class="p">][</span><span class="n">city</span><span class="p">])</span>
+        <span class="n">total_distance</span> <span class="o">+=</span> <span class="n">distances</span><span class="p">[</span><span class="n">current</span><span class="p">][</span><span class="n">nearest</span><span class="p">]</span>
+        <span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">nearest</span><span class="p">)</span>
+        <span class="n">unvisited</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">nearest</span><span class="p">)</span>
+        <span class="n">current</span> <span class="o">=</span> <span class="n">nearest</span>
+    
+    <span class="c1"># Return to start</span>
+    <span class="n">total_distance</span> <span class="o">+=</span> <span class="n">distances</span><span class="p">[</span><span class="n">current</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">path</span><span class="p">,</span> <span class="n">total_distance</span>
+
+<span class="k">def</span> <span class="nf">verify_tsp_solution</span><span class="p">(</span><span class="n">distances</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">claimed_distance</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Verify TSP solution - O(n) polynomial (easy to verify!).&quot;&quot;&quot;</span>
+    <span class="n">actual_distance</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">distances</span><span class="p">[</span><span class="n">path</span><span class="p">[</span><span class="n">i</span><span class="p">]][</span><span class="n">path</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">path</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">actual_distance</span> <span class="o">==</span> <span class="n">claimed_distance</span>
+
+<span class="c1"># Compare algorithms</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;🗺️  Traveling Salesman Problem (TSP)</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Small example (5 cities)</span>
+<span class="n">distances</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
+    <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">25</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">35</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">30</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">15</span><span class="p">,</span> <span class="mi">35</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">20</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">20</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">15</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">25</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+<span class="p">])</span>
+
+<span class="n">n_cities</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">distances</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Problem: </span><span class="si">{</span><span class="n">n_cities</span><span class="si">}</span><span class="s2"> cities</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Exact solution (brute force)</span>
+<span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+<span class="n">optimal_path</span><span class="p">,</span> <span class="n">optimal_dist</span><span class="p">,</span> <span class="n">perms</span> <span class="o">=</span> <span class="n">tsp_brute_force</span><span class="p">(</span><span class="n">distances</span><span class="p">)</span>
+<span class="n">brute_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">start</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Optimal Solution (Brute Force):&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Path: </span><span class="si">{</span><span class="n">optimal_path</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Distance: </span><span class="si">{</span><span class="n">optimal_dist</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Permutations checked: </span><span class="si">{</span><span class="n">perms</span><span class="si">:</span><span class="s2">,</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Time: </span><span class="si">{</span><span class="n">brute_time</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2">s</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Approximation (greedy)</span>
+<span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+<span class="n">greedy_path</span><span class="p">,</span> <span class="n">greedy_dist</span> <span class="o">=</span> <span class="n">tsp_greedy</span><span class="p">(</span><span class="n">distances</span><span class="p">)</span>
+<span class="n">greedy_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">start</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Greedy Approximation:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Path: </span><span class="si">{</span><span class="n">greedy_path</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Distance: </span><span class="si">{</span><span class="n">greedy_dist</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Approximation ratio: </span><span class="si">{</span><span class="n">greedy_dist</span><span class="o">/</span><span class="n">optimal_dist</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">x&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Time: </span><span class="si">{</span><span class="n">greedy_time</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2">s&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Speedup: </span><span class="si">{</span><span class="n">brute_time</span><span class="o">/</span><span class="n">greedy_time</span><span class="si">:</span><span class="s2">.0f</span><span class="si">}</span><span class="s2">x faster</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Verification is fast!</span>
+<span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+<span class="n">is_valid</span> <span class="o">=</span> <span class="n">verify_tsp_solution</span><span class="p">(</span><span class="n">distances</span><span class="p">,</span> <span class="n">optimal_path</span><span class="p">,</span> <span class="n">optimal_dist</span><span class="p">)</span>
+<span class="n">verify_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">start</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Solution Verification:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Valid: </span><span class="si">{</span><span class="n">is_valid</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Time: </span><span class="si">{</span><span class="n">verify_time</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2">s (instant!)</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Scaling analysis</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;📊 Complexity Analysis:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Brute force: O(</span><span class="si">{</span><span class="n">n_cities</span><span class="si">}</span><span class="s2">!) = </span><span class="si">{</span><span class="n">math</span><span class="o">.</span><span class="n">factorial</span><span class="p">(</span><span class="n">n_cities</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="si">:</span><span class="s2">,</span><span class="si">}</span><span class="s2"> permutations&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Greedy: O(</span><span class="si">{</span><span class="n">n_cities</span><span class="si">}</span><span class="s2">²) = </span><span class="si">{</span><span class="n">n_cities</span><span class="o">**</span><span class="mi">2</span><span class="si">}</span><span class="s2"> operations&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Verification: O(</span><span class="si">{</span><span class="n">n_cities</span><span class="si">}</span><span class="s2">) = </span><span class="si">{</span><span class="n">n_cities</span><span class="si">}</span><span class="s2"> operations&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">  For 10 cities: </span><span class="si">{</span><span class="n">math</span><span class="o">.</span><span class="n">factorial</span><span class="p">(</span><span class="mi">9</span><span class="p">)</span><span class="si">:</span><span class="s2">,</span><span class="si">}</span><span class="s2"> permutations! (intractable)&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  For 20 cities: </span><span class="si">{</span><span class="n">math</span><span class="o">.</span><span class="n">factorial</span><span class="p">(</span><span class="mi">19</span><span class="p">)</span><span class="si">:</span><span class="s2">,</span><span class="si">}</span><span class="s2"> permutations! (universe ends first)&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="reductions-proving-np-completeness">
+<h3>Reductions (Proving NP-Completeness)<a class="headerlink" href="#reductions-proving-np-completeness" title="Link to this heading">#</a></h3>
+<p><strong>Idea</strong>: To prove problem B is NP-Complete:</p>
+<ol class="arabic simple">
+<li><p>Show B is in NP (solution verifiable in polynomial time)</p></li>
+<li><p>Reduce known NP-Complete problem A to B</p></li>
+<li><p>If we can solve B quickly, we can solve A quickly</p></li>
+</ol>
+<p><strong>Cook-Levin Theorem (1971)</strong>: SAT is NP-Complete (first proven NP-Complete problem)</p>
+</section>
+</section>
+<section id="part-5-automata-theory-and-formal-languages">
+<h2>Part 5: Automata Theory and Formal Languages<a class="headerlink" href="#part-5-automata-theory-and-formal-languages" title="Link to this heading">#</a></h2>
+<section id="chomsky-hierarchy">
+<h3>Chomsky Hierarchy<a class="headerlink" href="#chomsky-hierarchy" title="Link to this heading">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Type</p></th>
+<th class="head"><p>Language Class</p></th>
+<th class="head"><p>Automaton</p></th>
+<th class="head"><p>Example</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Type 0</strong></p></td>
+<td><p>Recursively Enumerable</p></td>
+<td><p>Turing Machine</p></td>
+<td><p>Any computable</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Type 1</strong></p></td>
+<td><p>Context-Sensitive</p></td>
+<td><p>Linear-bounded</p></td>
+<td><p>Natural language</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Type 2</strong></p></td>
+<td><p>Context-Free</p></td>
+<td><p>Pushdown</p></td>
+<td><p>Programming languages</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Type 3</strong></p></td>
+<td><p>Regular</p></td>
+<td><p>Finite State</p></td>
+<td><p>Pattern matching</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="finite-state-machine-fsm">
+<h3>Finite State Machine (FSM)<a class="headerlink" href="#finite-state-machine-fsm" title="Link to this heading">#</a></h3>
+<p><strong>Components:</strong></p>
+<ul class="simple">
+<li><p>States (Q): Finite set</p></li>
+<li><p>Alphabet (Σ): Input symbols</p></li>
+<li><p>Transition function (δ): Q × Σ → Q</p></li>
+<li><p>Start state (q₀)</p></li>
+<li><p>Accept states (F)</p></li>
+</ul>
+<p><strong>Applications:</strong></p>
+<ul class="simple">
+<li><p>Regular expressions</p></li>
+<li><p>Lexical analysis (tokenization)</p></li>
+<li><p>Protocol verification</p></li>
+<li><p>Game AI</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">FiniteStateMachine</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;General-purpose finite state machine.&quot;&quot;&quot;</span>
+    
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">states</span><span class="p">,</span> <span class="n">alphabet</span><span class="p">,</span> <span class="n">transitions</span><span class="p">,</span> <span class="n">start_state</span><span class="p">,</span> <span class="n">accept_states</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">states</span> <span class="o">=</span> <span class="n">states</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">alphabet</span> <span class="o">=</span> <span class="n">alphabet</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">transitions</span> <span class="o">=</span> <span class="n">transitions</span>  <span class="c1"># {(state, symbol): next_state}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">start_state</span> <span class="o">=</span> <span class="n">start_state</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">accept_states</span> <span class="o">=</span> <span class="n">accept_states</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">current_state</span> <span class="o">=</span> <span class="n">start_state</span>
+        
+    <span class="k">def</span> <span class="nf">reset</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Reset to start state.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">current_state</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">start_state</span>
+        
+    <span class="k">def</span> <span class="nf">transition</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">symbol</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Process single symbol.&quot;&quot;&quot;</span>
+        <span class="n">key</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">current_state</span><span class="p">,</span> <span class="n">symbol</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">key</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">transitions</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">current_state</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">transitions</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
+            <span class="k">return</span> <span class="kc">True</span>
+        <span class="k">return</span> <span class="kc">False</span>  <span class="c1"># Invalid transition</span>
+        
+    <span class="k">def</span> <span class="nf">accepts</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">input_string</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Check if FSM accepts the input string.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">reset</span><span class="p">()</span>
+        
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">symbol</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">input_string</span><span class="p">):</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">transition</span><span class="p">(</span><span class="n">symbol</span><span class="p">):</span>
+                <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Rejected at position </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">: &#39;</span><span class="si">{</span><span class="n">symbol</span><span class="si">}</span><span class="s2">&#39;&quot;</span><span class="p">)</span>
+                <span class="k">return</span> <span class="kc">False</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  &#39;</span><span class="si">{</span><span class="n">symbol</span><span class="si">}</span><span class="s2">&#39; → </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">current_state</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        
+        <span class="n">accepted</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">current_state</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">accept_states</span>
+        <span class="k">return</span> <span class="n">accepted</span>
+
+<span class="c1"># Example: FSM that accepts binary strings with even number of 1s</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;🤖 FSM: Accept binary strings with even number of 1s</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="n">fsm_even_ones</span> <span class="o">=</span> <span class="n">FiniteStateMachine</span><span class="p">(</span>
+    <span class="n">states</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;EVEN&#39;</span><span class="p">,</span> <span class="s1">&#39;ODD&#39;</span><span class="p">},</span>
+    <span class="n">alphabet</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;0&#39;</span><span class="p">,</span> <span class="s1">&#39;1&#39;</span><span class="p">},</span>
+    <span class="n">transitions</span><span class="o">=</span><span class="p">{</span>
+        <span class="p">(</span><span class="s1">&#39;EVEN&#39;</span><span class="p">,</span> <span class="s1">&#39;0&#39;</span><span class="p">):</span> <span class="s1">&#39;EVEN&#39;</span><span class="p">,</span>  <span class="c1"># Stay in EVEN on 0</span>
+        <span class="p">(</span><span class="s1">&#39;EVEN&#39;</span><span class="p">,</span> <span class="s1">&#39;1&#39;</span><span class="p">):</span> <span class="s1">&#39;ODD&#39;</span><span class="p">,</span>   <span class="c1"># Go to ODD on 1</span>
+        <span class="p">(</span><span class="s1">&#39;ODD&#39;</span><span class="p">,</span> <span class="s1">&#39;0&#39;</span><span class="p">):</span> <span class="s1">&#39;ODD&#39;</span><span class="p">,</span>    <span class="c1"># Stay in ODD on 0</span>
+        <span class="p">(</span><span class="s1">&#39;ODD&#39;</span><span class="p">,</span> <span class="s1">&#39;1&#39;</span><span class="p">):</span> <span class="s1">&#39;EVEN&#39;</span><span class="p">,</span>   <span class="c1"># Go to EVEN on 1</span>
+    <span class="p">},</span>
+    <span class="n">start_state</span><span class="o">=</span><span class="s1">&#39;EVEN&#39;</span><span class="p">,</span>
+    <span class="n">accept_states</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;EVEN&#39;</span><span class="p">}</span>
+<span class="p">)</span>
+
+<span class="n">test_strings</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;0011&#39;</span><span class="p">,</span> <span class="s1">&#39;101&#39;</span><span class="p">,</span> <span class="s1">&#39;1100&#39;</span><span class="p">,</span> <span class="s1">&#39;111&#39;</span><span class="p">]</span>
+
+<span class="k">for</span> <span class="n">test</span> <span class="ow">in</span> <span class="n">test_strings</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Testing: &#39;</span><span class="si">{</span><span class="n">test</span><span class="si">}</span><span class="s2">&#39;&quot;</span><span class="p">)</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">fsm_even_ones</span><span class="o">.</span><span class="n">accepts</span><span class="p">(</span><span class="n">test</span><span class="p">)</span>
+    <span class="n">ones_count</span> <span class="o">=</span> <span class="n">test</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="s1">&#39;1&#39;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Result: </span><span class="si">{</span><span class="s1">&#39;✅ ACCEPT&#39;</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">result</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="s1">&#39;❌ REJECT&#39;</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  (Has </span><span class="si">{</span><span class="n">ones_count</span><span class="si">}</span><span class="s2"> ones)</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="regular-expressions-finite-automata">
+<h3>Regular Expressions ≡ Finite Automata<a class="headerlink" href="#regular-expressions-finite-automata" title="Link to this heading">#</a></h3>
+<p><strong>Theorem</strong>: Regular languages can be recognized by both:</p>
+<ol class="arabic simple">
+<li><p>Regular expressions</p></li>
+<li><p>Finite state machines</p></li>
+</ol>
+<p><strong>Example</strong>: <code class="docutils literal notranslate"><span class="pre">(0|1)*1(0|1)*</span></code> matches strings containing at least one ‘1’</p>
+</section>
+</section>
+<section id="part-6-virtual-memory-and-paging">
+<h2>Part 6: Virtual Memory and Paging<a class="headerlink" href="#part-6-virtual-memory-and-paging" title="Link to this heading">#</a></h2>
+<section id="why-virtual-memory">
+<h3>Why Virtual Memory?<a class="headerlink" href="#why-virtual-memory" title="Link to this heading">#</a></h3>
+<p><strong>Benefits:</strong></p>
+<ol class="arabic simple">
+<li><p><strong>Isolation</strong>: Processes can’t access each other’s memory</p></li>
+<li><p><strong>Larger address space</strong>: Programs think they have more RAM</p></li>
+<li><p><strong>Sharing</strong>: Multiple processes can share code (libraries)</p></li>
+<li><p><strong>Protection</strong>: Read-only, read-write, execute permissions</p></li>
+</ol>
+</section>
+<section id="address-translation">
+<h3>Address Translation<a class="headerlink" href="#address-translation" title="Link to this heading">#</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Virtual Address = [Page Number | Offset]
+                        ↓
+                  Page Table Lookup
+                        ↓
+Physical Address = [Frame Number | Offset]
+</pre></div>
+</div>
+</section>
+<section id="page-replacement-algorithms">
+<h3>Page Replacement Algorithms<a class="headerlink" href="#page-replacement-algorithms" title="Link to this heading">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Algorithm</p></th>
+<th class="head"><p>Strategy</p></th>
+<th class="head"><p>Complexity</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>FIFO</strong></p></td>
+<td><p>Remove oldest page</p></td>
+<td><p>O(1)</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>LRU</strong></p></td>
+<td><p>Remove least recently used</p></td>
+<td><p>O(1) with hardware</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>LFU</strong></p></td>
+<td><p>Remove least frequently used</p></td>
+<td><p>O(log n)</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Clock</strong></p></td>
+<td><p>Approximation of LRU</p></td>
+<td><p>O(1)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">VirtualMemorySimulator</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Simulate virtual memory with paging.&quot;&quot;&quot;</span>
+    
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">num_frames</span><span class="p">,</span> <span class="n">page_size</span><span class="p">,</span> <span class="n">replacement</span><span class="o">=</span><span class="s1">&#39;LRU&#39;</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">page_size</span> <span class="o">=</span> <span class="n">page_size</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">num_frames</span> <span class="o">=</span> <span class="n">num_frames</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">replacement</span> <span class="o">=</span> <span class="n">replacement</span>
+        
+        <span class="c1"># Page table: virtual page → physical frame</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">page_table</span> <span class="o">=</span> <span class="p">{}</span>
+        
+        <span class="c1"># Physical memory</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">frames</span> <span class="o">=</span> <span class="p">[</span><span class="kc">None</span><span class="p">]</span> <span class="o">*</span> <span class="n">num_frames</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">frame_age</span> <span class="o">=</span> <span class="p">{}</span>  <span class="c1"># For LRU</span>
+        
+        <span class="c1"># Statistics</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">page_faults</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">page_hits</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">access_count</span> <span class="o">=</span> <span class="mi">0</span>
+        
+    <span class="k">def</span> <span class="nf">translate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">virtual_address</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Translate virtual address to physical address.&quot;&quot;&quot;</span>
+        <span class="n">page_num</span> <span class="o">=</span> <span class="n">virtual_address</span> <span class="o">//</span> <span class="bp">self</span><span class="o">.</span><span class="n">page_size</span>
+        <span class="n">offset</span> <span class="o">=</span> <span class="n">virtual_address</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">page_size</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">access_count</span> <span class="o">+=</span> <span class="mi">1</span>
+        
+        <span class="k">if</span> <span class="n">page_num</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">page_table</span><span class="p">:</span>
+            <span class="c1"># Page hit!</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">page_hits</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="n">frame</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">page_table</span><span class="p">[</span><span class="n">page_num</span><span class="p">]</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">frame_age</span><span class="p">[</span><span class="n">frame</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">access_count</span>  <span class="c1"># Update access time</span>
+            <span class="n">physical_addr</span> <span class="o">=</span> <span class="n">frame</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">page_size</span> <span class="o">+</span> <span class="n">offset</span>
+            <span class="k">return</span> <span class="n">physical_addr</span><span class="p">,</span> <span class="s1">&#39;HIT&#39;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># Page fault!</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">page_faults</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="n">frame</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_load_page</span><span class="p">(</span><span class="n">page_num</span><span class="p">)</span>
+            <span class="n">physical_addr</span> <span class="o">=</span> <span class="n">frame</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">page_size</span> <span class="o">+</span> <span class="n">offset</span>
+            <span class="k">return</span> <span class="n">physical_addr</span><span class="p">,</span> <span class="s1">&#39;FAULT&#39;</span>
+    
+    <span class="k">def</span> <span class="nf">_load_page</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">page_num</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Load page into physical memory.&quot;&quot;&quot;</span>
+        <span class="c1"># Find free frame or evict</span>
+        <span class="k">if</span> <span class="kc">None</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">frames</span><span class="p">:</span>
+            <span class="n">frame</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">frames</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">frame</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_evict_page</span><span class="p">()</span>
+        
+        <span class="c1"># Load page</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">frames</span><span class="p">[</span><span class="n">frame</span><span class="p">]</span> <span class="o">=</span> <span class="n">page_num</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">page_table</span><span class="p">[</span><span class="n">page_num</span><span class="p">]</span> <span class="o">=</span> <span class="n">frame</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">frame_age</span><span class="p">[</span><span class="n">frame</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">access_count</span>
+        
+        <span class="k">return</span> <span class="n">frame</span>
+    
+    <span class="k">def</span> <span class="nf">_evict_page</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Evict page based on replacement policy.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">replacement</span> <span class="o">==</span> <span class="s1">&#39;LRU&#39;</span><span class="p">:</span>
+            <span class="c1"># Remove least recently used</span>
+            <span class="n">lru_frame</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">frame_age</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">frame_age</span><span class="o">.</span><span class="n">get</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">replacement</span> <span class="o">==</span> <span class="s1">&#39;FIFO&#39;</span><span class="p">:</span>
+            <span class="c1"># Remove oldest (first added)</span>
+            <span class="n">lru_frame</span> <span class="o">=</span> <span class="mi">0</span>  <span class="c1"># Simplified: always evict first</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">lru_frame</span> <span class="o">=</span> <span class="mi">0</span>
+        
+        <span class="c1"># Remove from page table</span>
+        <span class="n">old_page</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">frames</span><span class="p">[</span><span class="n">lru_frame</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">old_page</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">page_table</span><span class="p">:</span>
+            <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">page_table</span><span class="p">[</span><span class="n">old_page</span><span class="p">]</span>
+        
+        <span class="k">return</span> <span class="n">lru_frame</span>
+    
+    <span class="k">def</span> <span class="nf">stats</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return performance statistics.&quot;&quot;&quot;</span>
+        <span class="n">total</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">page_hits</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">page_faults</span>
+        <span class="n">hit_rate</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">page_hits</span> <span class="o">/</span> <span class="n">total</span> <span class="k">if</span> <span class="n">total</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="mi">0</span>
+        <span class="k">return</span> <span class="p">{</span>
+            <span class="s1">&#39;hits&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">page_hits</span><span class="p">,</span>
+            <span class="s1">&#39;faults&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">page_faults</span><span class="p">,</span>
+            <span class="s1">&#39;hit_rate&#39;</span><span class="p">:</span> <span class="n">hit_rate</span><span class="p">,</span>
+            <span class="s1">&#39;fault_rate&#39;</span><span class="p">:</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">hit_rate</span>
+        <span class="p">}</span>
+
+<span class="c1"># Simulate memory access pattern</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;💾 Virtual Memory Simulation</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="n">vm</span> <span class="o">=</span> <span class="n">VirtualMemorySimulator</span><span class="p">(</span><span class="n">num_frames</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">page_size</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">replacement</span><span class="o">=</span><span class="s1">&#39;LRU&#39;</span><span class="p">)</span>
+
+<span class="c1"># Access pattern (address → page number)</span>
+<span class="c1"># 0-999 → page 0, 1000-1999 → page 1, etc.</span>
+<span class="n">access_pattern</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="mi">100</span><span class="p">,</span>    <span class="c1"># Page 0 (fault)</span>
+    <span class="mi">1200</span><span class="p">,</span>   <span class="c1"># Page 1 (fault)</span>
+    <span class="mi">250</span><span class="p">,</span>    <span class="c1"># Page 0 (hit)</span>
+    <span class="mi">2500</span><span class="p">,</span>   <span class="c1"># Page 2 (fault)</span>
+    <span class="mi">3100</span><span class="p">,</span>   <span class="c1"># Page 3 (fault)</span>
+    <span class="mi">4000</span><span class="p">,</span>   <span class="c1"># Page 4 (fault, eviction!)</span>
+    <span class="mi">1250</span><span class="p">,</span>   <span class="c1"># Page 1 (hit)</span>
+    <span class="mi">2750</span><span class="p">,</span>   <span class="c1"># Page 2 (hit)</span>
+    <span class="mi">100</span><span class="p">,</span>    <span class="c1"># Page 0 (fault, was evicted)</span>
+<span class="p">]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="s1">&#39;Virtual Addr&#39;</span><span class="si">:</span><span class="s2">&lt;15</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="s1">&#39;Page&#39;</span><span class="si">:</span><span class="s2">&lt;8</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="s1">&#39;Physical Addr&#39;</span><span class="si">:</span><span class="s2">&lt;15</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="s1">&#39;Result&#39;</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;─&quot;</span> <span class="o">*</span> <span class="mi">55</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">vaddr</span> <span class="ow">in</span> <span class="n">access_pattern</span><span class="p">:</span>
+    <span class="n">paddr</span><span class="p">,</span> <span class="n">result</span> <span class="o">=</span> <span class="n">vm</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">vaddr</span><span class="p">)</span>
+    <span class="n">page</span> <span class="o">=</span> <span class="n">vaddr</span> <span class="o">//</span> <span class="n">vm</span><span class="o">.</span><span class="n">page_size</span>
+    <span class="n">status</span> <span class="o">=</span> <span class="s2">&quot;🟢 HIT&quot;</span> <span class="k">if</span> <span class="n">result</span> <span class="o">==</span> <span class="s1">&#39;HIT&#39;</span> <span class="k">else</span> <span class="s2">&quot;🔴 FAULT&quot;</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">vaddr</span><span class="si">:</span><span class="s2">&lt;15</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">page</span><span class="si">:</span><span class="s2">&lt;8</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">paddr</span><span class="si">:</span><span class="s2">&lt;15</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">status</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="s2">&quot;─&quot;</span> <span class="o">*</span> <span class="mi">55</span><span class="p">)</span>
+<span class="n">stats</span> <span class="o">=</span> <span class="n">vm</span><span class="o">.</span><span class="n">stats</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Page Hits: </span><span class="si">{</span><span class="n">stats</span><span class="p">[</span><span class="s1">&#39;hits&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Page Faults: </span><span class="si">{</span><span class="n">stats</span><span class="p">[</span><span class="s1">&#39;faults&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Hit Rate: </span><span class="si">{</span><span class="n">stats</span><span class="p">[</span><span class="s1">&#39;hit_rate&#39;</span><span class="p">]</span><span class="o">*</span><span class="mi">100</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">%&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Fault Rate: </span><span class="si">{</span><span class="n">stats</span><span class="p">[</span><span class="s1">&#39;fault_rate&#39;</span><span class="p">]</span><span class="o">*</span><span class="mi">100</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">%&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="part-7-modern-hardware-and-parallelism">
+<h2>Part 7: Modern Hardware and Parallelism<a class="headerlink" href="#part-7-modern-hardware-and-parallelism" title="Link to this heading">#</a></h2>
+<section id="multi-core-vs-gpu">
+<h3>Multi-Core vs GPU<a class="headerlink" href="#multi-core-vs-gpu" title="Link to this heading">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Feature</p></th>
+<th class="head"><p>CPU (Multi-core)</p></th>
+<th class="head"><p>GPU</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Cores</strong></p></td>
+<td><p>4-64</p></td>
+<td><p>1000s-10000s</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Clock Speed</strong></p></td>
+<td><p>3-5 GHz</p></td>
+<td><p>1-2 GHz</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Use Case</strong></p></td>
+<td><p>General purpose, complex control flow</p></td>
+<td><p>Data parallel, simple operations</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Memory</strong></p></td>
+<td><p>Large cache, low latency</p></td>
+<td><p>High bandwidth, high latency</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Best For</strong></p></td>
+<td><p>Databases, web servers, compilers</p></td>
+<td><p>Deep learning, graphics, crypto</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="simd-single-instruction-multiple-data">
+<h3>SIMD (Single Instruction, Multiple Data)<a class="headerlink" href="#simd-single-instruction-multiple-data" title="Link to this heading">#</a></h3>
+<p><strong>Idea</strong>: Apply same operation to multiple data elements simultaneously</p>
+<p><strong>Example</strong>: Vector addition</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Scalar</span><span class="p">:</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span> <span class="n">c</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">b</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>  <span class="c1"># n operations</span>
+<span class="n">SIMD</span><span class="p">:</span>   <span class="n">c</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span>                              <span class="c1"># 1 operation (hardware vectorized)</span>
+</pre></div>
+</div>
+<p><strong>Applications:</strong></p>
+<ul class="simple">
+<li><p>Image/video processing</p></li>
+<li><p>Scientific computing</p></li>
+<li><p>Machine learning</p></li>
+<li><p>Cryptography</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">multiprocessing</span> <span class="kn">import</span> <span class="n">Pool</span><span class="p">,</span> <span class="n">cpu_count</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="k">def</span> <span class="nf">parallel_computation_demo</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Compare serial vs parallel execution.&quot;&quot;&quot;</span>
+    
+    <span class="k">def</span> <span class="nf">compute_intensive_task</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Simulate CPU-intensive task.&quot;&quot;&quot;</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+            <span class="n">result</span> <span class="o">+=</span> <span class="n">i</span> <span class="o">**</span> <span class="mi">2</span>
+        <span class="k">return</span> <span class="n">result</span>
+    
+    <span class="n">tasks</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1000000</span><span class="p">]</span> <span class="o">*</span> <span class="mi">8</span>  <span class="c1"># 8 tasks</span>
+    
+    <span class="c1"># Serial execution</span>
+    <span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+    <span class="n">serial_results</span> <span class="o">=</span> <span class="p">[</span><span class="n">compute_intensive_task</span><span class="p">(</span><span class="n">t</span><span class="p">)</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">tasks</span><span class="p">]</span>
+    <span class="n">serial_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">start</span>
+    
+    <span class="c1"># Parallel execution</span>
+    <span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+    <span class="k">with</span> <span class="n">Pool</span><span class="p">(</span><span class="n">processes</span><span class="o">=</span><span class="n">cpu_count</span><span class="p">())</span> <span class="k">as</span> <span class="n">pool</span><span class="p">:</span>
+        <span class="n">parallel_results</span> <span class="o">=</span> <span class="n">pool</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">compute_intensive_task</span><span class="p">,</span> <span class="n">tasks</span><span class="p">)</span>
+    <span class="n">parallel_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">start</span>
+    
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;⚡ Parallel Computation Comparison</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Number of tasks: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">tasks</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;CPU cores: </span><span class="si">{</span><span class="n">cpu_count</span><span class="p">()</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Serial time: </span><span class="si">{</span><span class="n">serial_time</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">s&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Parallel time: </span><span class="si">{</span><span class="n">parallel_time</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">s&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Speedup: </span><span class="si">{</span><span class="n">serial_time</span><span class="o">/</span><span class="n">parallel_time</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">x&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Efficiency: </span><span class="si">{</span><span class="p">(</span><span class="n">serial_time</span><span class="o">/</span><span class="n">parallel_time</span><span class="p">)</span><span class="o">/</span><span class="n">cpu_count</span><span class="p">()</span><span class="o">*</span><span class="mi">100</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">%&quot;</span><span class="p">)</span>
+    
+    <span class="c1"># Amdahl&#39;s Law prediction</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">📊 Amdahl&#39;s Law Analysis:&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Assuming 100% parallelizable (S=0):&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Theoretical max speedup: </span><span class="si">{</span><span class="n">cpu_count</span><span class="p">()</span><span class="si">}</span><span class="s2">x&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Actual speedup: </span><span class="si">{</span><span class="n">serial_time</span><span class="o">/</span><span class="n">parallel_time</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">x&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Overhead: ~</span><span class="si">{</span><span class="p">(</span><span class="mi">1</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">parallel_time</span><span class="o">*</span><span class="n">cpu_count</span><span class="p">()</span><span class="o">/</span><span class="n">serial_time</span><span class="p">)</span><span class="o">*</span><span class="mi">100</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">%&quot;</span><span class="p">)</span>
+
+<span class="n">parallel_computation_demo</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="part-8-exercises">
+<h2>Part 8: Exercises<a class="headerlink" href="#part-8-exercises" title="Link to this heading">#</a></h2>
+<section id="exercise-1-process-scheduler">
+<h3>Exercise 1: Process Scheduler (⭐⭐)<a class="headerlink" href="#exercise-1-process-scheduler" title="Link to this heading">#</a></h3>
+<p>Implement CPU scheduling algorithms:</p>
+<ol class="arabic simple">
+<li><p><strong>Round Robin</strong>: Each process gets fixed time slice</p></li>
+<li><p><strong>Shortest Job First</strong>: Execute shortest process first</p></li>
+<li><p><strong>Priority Scheduling</strong>: Execute highest priority first</p></li>
+<li><p>Compare average waiting time and turnaround time</p></li>
+<li><p>Visualize Gantt chart</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Exercise 1: Your code here</span>
+<span class="c1"># Hint: Create Process class with arrival_time, burst_time, priority</span>
+<span class="c1"># Hint: Implement scheduler that maintains ready queue</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="exercise-2-deadlock-detection">
+<h3>Exercise 2: Deadlock Detection (⭐⭐⭐)<a class="headerlink" href="#exercise-2-deadlock-detection" title="Link to this heading">#</a></h3>
+<p>Implement deadlock detection:</p>
+<ol class="arabic simple">
+<li><p>Create resource allocation graph</p></li>
+<li><p>Implement cycle detection algorithm</p></li>
+<li><p>Simulate Banker’s Algorithm for deadlock avoidance</p></li>
+<li><p>Test with various resource request patterns</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Exercise 2: Your code here</span>
+<span class="c1"># Hint: Use graph representation (adjacency list)</span>
+<span class="c1"># Hint: DFS for cycle detection</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="exercise-3-memory-allocator">
+<h3>Exercise 3: Memory Allocator (⭐⭐⭐)<a class="headerlink" href="#exercise-3-memory-allocator" title="Link to this heading">#</a></h3>
+<p>Implement dynamic memory allocation:</p>
+<ol class="arabic simple">
+<li><p><strong>First-fit</strong>: Allocate first block large enough</p></li>
+<li><p><strong>Best-fit</strong>: Allocate smallest block large enough</p></li>
+<li><p><strong>Worst-fit</strong>: Allocate largest available block</p></li>
+<li><p>Handle fragmentation (external and internal)</p></li>
+<li><p>Compare allocation success rate and fragmentation</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Exercise 3: Your code here</span>
+<span class="c1"># Hint: Maintain list of free blocks</span>
+<span class="c1"># Hint: Merge adjacent free blocks</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="exercise-4-np-completeness-proof">
+<h3>Exercise 4: NP-Completeness Proof (⭐⭐⭐⭐)<a class="headerlink" href="#exercise-4-np-completeness-proof" title="Link to this heading">#</a></h3>
+<p>Prove a problem is NP-Complete:</p>
+<ol class="arabic simple">
+<li><p>Choose problem (e.g., Vertex Cover, Subset Sum)</p></li>
+<li><p>Show it’s in NP (create verifier)</p></li>
+<li><p>Reduce from known NP-Complete problem (e.g., 3-SAT)</p></li>
+<li><p>Implement reduction algorithm</p></li>
+<li><p>Test with examples</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Exercise 4: Your code here</span>
+<span class="c1"># Hint: Start with verifier (polynomial time check)</span>
+<span class="c1"># Hint: For reduction, show if we can solve B, we can solve A</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="exercise-5-build-a-virtual-machine">
+<h3>Exercise 5: Build a Virtual Machine (⭐⭐⭐⭐)<a class="headerlink" href="#exercise-5-build-a-virtual-machine" title="Link to this heading">#</a></h3>
+<p>Create a simple stack-based VM:</p>
+<ol class="arabic simple">
+<li><p>Design bytecode instruction set (PUSH, POP, ADD, etc.)</p></li>
+<li><p>Implement stack operations</p></li>
+<li><p>Support function calls (CALL, RET)</p></li>
+<li><p>Add conditional jumps (JZ, JNZ)</p></li>
+<li><p>Write “compiler” to generate bytecode from simple expressions</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Exercise 5: Your code here</span>
+<span class="c1"># Hint: Maintain operand stack and call stack</span>
+<span class="c1"># Hint: VM state: {pc, stack, memory, callstack}</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="self-check-quiz">
+<h2>Self-Check Quiz<a class="headerlink" href="#self-check-quiz" title="Link to this heading">#</a></h2>
+<p>Test your understanding:</p>
+<ol class="arabic simple">
+<li><p><strong>What is the fetch-decode-execute cycle?</strong></p>
+<ul class="simple">
+<li><p>A) How CPU processes instructions</p></li>
+<li><p>B) How memory is accessed</p></li>
+<li><p>C) How cache works</p></li>
+<li><p>D) How I/O happens</p></li>
+</ul>
+</li>
+<li><p><strong>Which cache replacement policy is most common?</strong></p>
+<ul class="simple">
+<li><p>A) FIFO</p></li>
+<li><p>B) LRU</p></li>
+<li><p>C) Random</p></li>
+<li><p>D) LFU</p></li>
+</ul>
+</li>
+<li><p><strong>What is the difference between concurrency and parallelism?</strong></p>
+<ul class="simple">
+<li><p>A) No difference</p></li>
+<li><p>B) Concurrency is interleaved, parallelism is simultaneous</p></li>
+<li><p>C) Parallelism is slower</p></li>
+<li><p>D) Concurrency requires multiple CPUs</p></li>
+</ul>
+</li>
+<li><p><strong>What does P = NP mean?</strong></p>
+<ul class="simple">
+<li><p>A) All problems are easy</p></li>
+<li><p>B) Problems with fast verification also have fast solutions</p></li>
+<li><p>C) Computers are perfect</p></li>
+<li><p>D) No hard problems exist</p></li>
+</ul>
+</li>
+<li><p><strong>What is NP-Complete?</strong></p>
+<ul class="simple">
+<li><p>A) Easiest problems</p></li>
+<li><p>B) Hardest problems in NP</p></li>
+<li><p>C) Impossible problems</p></li>
+<li><p>D) Polynomial problems</p></li>
+</ul>
+</li>
+<li><p><strong>What can a finite state machine recognize?</strong></p>
+<ul class="simple">
+<li><p>A) Any language</p></li>
+<li><p>B) Regular languages only</p></li>
+<li><p>C) Context-free languages</p></li>
+<li><p>D) Natural languages</p></li>
+</ul>
+</li>
+<li><p><strong>What is a page fault?</strong></p>
+<ul class="simple">
+<li><p>A) Hardware error</p></li>
+<li><p>B) Accessing page not in physical memory</p></li>
+<li><p>C) Software bug</p></li>
+<li><p>D) Network error</p></li>
+</ul>
+</li>
+<li><p><strong>What is Amdahl’s Law about?</strong></p>
+<ul class="simple">
+<li><p>A) Cache performance</p></li>
+<li><p>B) Parallel speedup limits</p></li>
+<li><p>C) Memory bandwidth</p></li>
+<li><p>D) Disk throughput</p></li>
+</ul>
+</li>
+<li><p><strong>Which synchronization primitive prevents race conditions?</strong></p>
+<ul class="simple">
+<li><p>A) Barrier</p></li>
+<li><p>B) Mutex/Lock</p></li>
+<li><p>C) Semaphore</p></li>
+<li><p>D) All of the above</p></li>
+</ul>
+</li>
+<li><p><strong>What is SIMD?</strong></p>
+<ul class="simple">
+<li><p>A) Sequential processing</p></li>
+<li><p>B) Same operation on multiple data</p></li>
+<li><p>C) Multiple operations on same data</p></li>
+<li><p>D) Random processing</p></li>
+</ul>
+</li>
+</ol>
+<p><strong>Answers</strong>: 1-A, 2-B, 3-B, 4-B, 5-B, 6-B, 7-B, 8-B, 9-D, 10-B</p>
+</section>
+<section id="key-takeaways">
+<h2>Key Takeaways<a class="headerlink" href="#key-takeaways" title="Link to this heading">#</a></h2>
+<section id="computer-architecture">
+<h3>Computer Architecture<a class="headerlink" href="#computer-architecture" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>✅ CPU executes fetch-decode-execute cycle</p></li>
+<li><p>✅ Memory hierarchy: Registers → Cache → RAM → Disk</p></li>
+<li><p>✅ Cache exploits temporal and spatial locality</p></li>
+<li><p>✅ LRU is most common cache replacement policy</p></li>
+</ul>
+</section>
+<section id="concurrency">
+<h3>Concurrency<a class="headerlink" href="#concurrency" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>✅ Concurrency ≠ Parallelism (interleaved vs simultaneous)</p></li>
+<li><p>✅ Race conditions require synchronization (locks, semaphores)</p></li>
+<li><p>✅ Amdahl’s Law limits parallel speedup</p></li>
+<li><p>✅ Always test concurrent code thoroughly</p></li>
+</ul>
+</section>
+<section id="complexity-theory">
+<h3>Complexity Theory<a class="headerlink" href="#complexity-theory" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>✅ P = problems solvable in polynomial time</p></li>
+<li><p>✅ NP = problems verifiable in polynomial time</p></li>
+<li><p>✅ NP-Complete = hardest problems in NP</p></li>
+<li><p>✅ If P = NP, crypto breaks (major unsolved problem)</p></li>
+</ul>
+</section>
+<section id="automata-theory">
+<h3>Automata Theory<a class="headerlink" href="#automata-theory" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>✅ FSMs recognize regular languages</p></li>
+<li><p>✅ Regular expressions ≡ Finite automata</p></li>
+<li><p>✅ Pushdown automata ≡ Context-free grammars</p></li>
+<li><p>✅ Turing machines ≡ General computation</p></li>
+</ul>
+</section>
+<section id="virtual-memory">
+<h3>Virtual Memory<a class="headerlink" href="#virtual-memory" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>✅ Provides isolation and protection</p></li>
+<li><p>✅ Page faults load pages from disk</p></li>
+<li><p>✅ TLB caches address translations</p></li>
+<li><p>✅ Page replacement crucial for performance</p></li>
+</ul>
+</section>
+</section>
+<section id="pro-tips">
+<h2>Pro Tips<a class="headerlink" href="#pro-tips" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p><strong>Profile before optimizing</strong>: Measure where time is spent</p></li>
+<li><p><strong>Cache-friendly code</strong>: Access data sequentially when possible</p></li>
+<li><p><strong>Avoid false sharing</strong>: Pad shared data to cache line boundaries</p></li>
+<li><p><strong>Lock granularity</strong>: Fine-grained locks = more parallelism, more overhead</p></li>
+<li><p><strong>Use lock-free data structures</strong>: When possible (hard to get right!)</p></li>
+<li><p><strong>P vs NP awareness</strong>: Don’t try exact solutions for NP-Hard problems at scale</p></li>
+<li><p><strong>Approximation algorithms</strong>: Often good enough in practice</p></li>
+<li><p><strong>Vectorize code</strong>: Use NumPy/SIMD for data parallel operations</p></li>
+<li><p><strong>Understand your hardware</strong>: CPU cores, cache sizes, memory bandwidth</p></li>
+<li><p><strong>Test concurrency</strong>: Race conditions are non-deterministic bugs</p></li>
+</ol>
+<section id="common-mistakes">
+<h3>Common Mistakes<a class="headerlink" href="#common-mistakes" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>❌ Forgetting to synchronize shared data</p></li>
+<li><p>❌ Holding locks too long (reduces parallelism)</p></li>
+<li><p>❌ Ignoring cache effects in tight loops</p></li>
+<li><p>❌ Trying exact solutions for large NP-Complete problems</p></li>
+<li><p>❌ Not considering false sharing in parallel code</p></li>
+<li><p>❌ Over-parallelizing (overhead exceeds benefit)</p></li>
+<li><p>❌ Assuming atomic operations when they’re not</p></li>
+<li><p>❌ Creating too many threads (context switch overhead)</p></li>
+</ul>
+</section>
+<section id="debug-checklist">
+<h3>Debug Checklist<a class="headerlink" href="#debug-checklist" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>⚠️ Race condition → Add synchronization, test with ThreadSanitizer</p></li>
+<li><p>⚠️ Deadlock → Check lock ordering, use timeout</p></li>
+<li><p>⚠️ Poor cache performance → Profile cache misses, improve locality</p></li>
+<li><p>⚠️ Slow parallel code → Check for serial bottlenecks (Amdahl’s Law)</p></li>
+<li><p>⚠️ Page faults → Increase memory, improve access patterns</p></li>
+</ul>
+</section>
+</section>
+<section id="what-s-next">
+<h2>What’s Next?<a class="headerlink" href="#what-s-next" title="Link to this heading">#</a></h2>
+<section id="continue-in-hard-track">
+<h3>Continue in Hard Track:<a class="headerlink" href="#continue-in-hard-track" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Lesson 7</strong>: Project Ideas (apply all knowledge!)</p></li>
+<li><p><strong>Lesson 8</strong>: Classic Problems (interview preparation)</p></li>
+<li><p><strong>Lesson 9</strong>: CTF Challenges (security skills)</p></li>
+</ul>
+</section>
+<section id="deepen-your-systems-knowledge">
+<h3>Deepen Your Systems Knowledge:<a class="headerlink" href="#deepen-your-systems-knowledge" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>MIT 6.004</strong>: Computation Structures</p></li>
+<li><p><strong>CMU 15-213</strong>: Computer Systems (CSAPP book)</p></li>
+<li><p><strong>Operating Systems: Three Easy Pieces</strong> (free online)</p></li>
+<li><p><strong>Coursera: Parallel Programming</strong></p></li>
+</ul>
+</section>
+<section id="practice-projects">
+<h3>Practice Projects:<a class="headerlink" href="#practice-projects" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p>Build a shell (bash clone)</p></li>
+<li><p>Implement malloc/free</p></li>
+<li><p>Write a thread pool</p></li>
+<li><p>Create a key-value store</p></li>
+<li><p>Build a simple OS kernel</p></li>
+</ol>
+</section>
+<section id="resources">
+<h3>Resources:<a class="headerlink" href="#resources" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Books</strong>: CSAPP, Modern Operating Systems (Tanenbaum)</p></li>
+<li><p><strong>Online</strong>: OSDev wiki, Linux kernel source</p></li>
+<li><p><strong>Tools</strong>: perf, valgrind, gdb, ThreadSanitizer</p></li>
+</ul>
+<hr class="docutils" />
+<p><strong>Congratulations!</strong> You now understand how computers work at the systems level and can reason about complexity! 🖥️</p>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./hard"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="05_advanced_ml_and_nlp.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Lesson 5: Advanced Machine Learning and NLP</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="07_project_ideas.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Hard Level: Advanced Project Ideas &amp; Implementation Guide</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#real-world-context">Real-World Context</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-you-ll-learn">What You’ll Learn</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-1-computer-architecture-fundamentals">Part 1: Computer Architecture Fundamentals</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#von-neumann-architecture-1945">Von Neumann Architecture (1945)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cpu-execution-cycle-fetch-decode-execute">CPU Execution Cycle: Fetch-Decode-Execute</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#instruction-types">Instruction Types</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-2-memory-hierarchy-and-caching">Part 2: Memory Hierarchy and Caching</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-memory-wall-problem">The Memory Wall Problem</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#memory-hierarchy-latency-size">Memory Hierarchy (Latency &amp; Size)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cache-principles">Cache Principles</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cache-replacement-policies">Cache Replacement Policies</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cache-performance-analysis">Cache Performance Analysis</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-3-concurrency-and-parallelism">Part 3: Concurrency and Parallelism</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#key-concepts">Key Concepts</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#amdahl-s-law-parallel-speedup">Amdahl’s Law (Parallel Speedup)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#synchronization-problems">Synchronization Problems</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#producer-consumer-problem-classic-concurrency">Producer-Consumer Problem (Classic Concurrency)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-4-computational-complexity-theory">Part 4: Computational Complexity Theory</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#complexity-classes">Complexity Classes</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#p-vs-np-million-dollar-question">P vs NP (Million Dollar Question)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#famous-np-complete-problems">Famous NP-Complete Problems</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reductions-proving-np-completeness">Reductions (Proving NP-Completeness)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-5-automata-theory-and-formal-languages">Part 5: Automata Theory and Formal Languages</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#chomsky-hierarchy">Chomsky Hierarchy</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#finite-state-machine-fsm">Finite State Machine (FSM)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#regular-expressions-finite-automata">Regular Expressions ≡ Finite Automata</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-6-virtual-memory-and-paging">Part 6: Virtual Memory and Paging</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#why-virtual-memory">Why Virtual Memory?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#address-translation">Address Translation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#page-replacement-algorithms">Page Replacement Algorithms</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-7-modern-hardware-and-parallelism">Part 7: Modern Hardware and Parallelism</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#multi-core-vs-gpu">Multi-Core vs GPU</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#simd-single-instruction-multiple-data">SIMD (Single Instruction, Multiple Data)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-8-exercises">Part 8: Exercises</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-1-process-scheduler">Exercise 1: Process Scheduler (⭐⭐)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-2-deadlock-detection">Exercise 2: Deadlock Detection (⭐⭐⭐)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-3-memory-allocator">Exercise 3: Memory Allocator (⭐⭐⭐)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-4-np-completeness-proof">Exercise 4: NP-Completeness Proof (⭐⭐⭐⭐)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-5-build-a-virtual-machine">Exercise 5: Build a Virtual Machine (⭐⭐⭐⭐)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#self-check-quiz">Self-Check Quiz</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#key-takeaways">Key Takeaways</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#computer-architecture">Computer Architecture</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#concurrency">Concurrency</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#complexity-theory">Complexity Theory</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#automata-theory">Automata Theory</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#virtual-memory">Virtual Memory</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pro-tips">Pro Tips</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#common-mistakes">Common Mistakes</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#debug-checklist">Debug Checklist</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-s-next">What’s Next?</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#continue-in-hard-track">Continue in Hard Track:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#deepen-your-systems-knowledge">Deepen Your Systems Knowledge:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#practice-projects">Practice Projects:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#resources">Resources:</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Mykolas Perevicius
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

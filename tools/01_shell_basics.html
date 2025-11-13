@@ -1,0 +1,1081 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>The Shell: Your Command Center &#8212; Education Playground</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=0c185eed" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=c73c0f3e"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'tools/01_shell_basics';</script>
+    <script src="../_static/js/onboarding.js?v=557b7536"></script>
+    <link rel="canonical" href="https://mykolas-perevicius.github.io/Education_Playground/tools/01_shell_basics.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Command Line Tools" href="02_command_line_tools.html" />
+    <link rel="prev" title="The Missing Semester: Essential Developer Tools" href="README.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../README.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Education Playground</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../00_calibration_test.html">🎯 Calibration Test - Find Your Level</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../beginner_scripts/README.html">🌱 Beginner Scripts (10 Python Files)</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../easy/README_EASY.html">📗 Easy Level - Beginner</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../easy/01_introduction_to_python.html">1. Introduction to Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../easy/02_variables_and_data_types.html">2. Variables and Data Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../easy/03_basic_operations_and_conditionals.html">3. Operations and Conditionals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../easy/04_intro_to_ai_and_ml.html">4. Intro to AI and ML</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../easy/05_computing_fundamentals.html">5. Computing Fundamentals</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../medium/README_MEDIUM.html">📘 Medium Level - Intermediate</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../medium/01_functions_and_modules.html">1. Functions and Modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../medium/02_data_structures.html">2. Data Structures</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../medium/03_classes_and_oop.html">3. Classes and OOP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../medium/04_machine_learning_basics.html">4. Machine Learning Basics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../medium/05_data_analysis_with_pandas.html">5. Data Analysis with Pandas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../medium/06_algorithms_and_problem_solving.html">6. Algorithms and Problem Solving</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../hard/README_HARD.html">📕 Hard Level - Advanced</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../hard/01_advanced_functions_and_decorators.html">1. Advanced Functions &amp; Decorators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hard/02_generators_and_iterators.html">2. Generators and Iterators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hard/03_algorithms_and_complexity.html">3. Algorithms and Complexity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hard/04_deep_learning_and_neural_networks.html">4. Deep Learning &amp; Neural Networks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hard/05_advanced_ml_and_nlp.html">5. Advanced ML and NLP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hard/06_computer_systems_and_theory.html">6. Computer Systems and Theory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hard/07_project_ideas.html">7. Project Ideas &amp; Implementation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hard/08_classic_problems.html">Lesson 8: Classic Problems Collection</a></li>
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../hard/09_ctf_challenges.html">Lesson 9: Capture The Flag (CTF) - Hacker Training</a></li>
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../hard/10_performance_computing.html">10. Performance Computing ⚡ NEW!</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hard/11_cuda_and_parallel_computing.html">11. CUDA &amp; GPU Computing 🎮 NEW!</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="README.html">🛠️ Developer Tools Track</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">1. Shell and Command Line</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02_command_line_tools.html">2. Command Line Tools</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03_git_essentials.html">3. Git Essentials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04_text_editors.html">4. Text Editors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05_build_systems_cicd.html">5. Build Systems and CI/CD</a></li>
+<li class="toctree-l2"><a class="reference internal" href="06_debugging_profiling.html">6. Debugging and Profiling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="07_security_essentials.html">7. Security Essentials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="08_package_management.html">8. Package Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="09_ssh_remote_systems.html">9. SSH and Remote Systems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="10_docker_containers.html">10. Docker and Containers</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../solutions/README_SOLUTIONS.html">📝 Solutions</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../solutions/easy_solutions.html">Easy Level - Complete Solutions</a></li>
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../solutions/medium_solutions.html">Medium Level - Complete Solutions</a></li>
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../solutions/hard_solutions.html">Hard Level - Complete Solutions</a></li>
+
+
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../solutions/tools_solutions.html">Developer Tools - Complete Solutions</a></li>
+
+
+
+
+
+
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../RESOURCES.html">📚 Learning Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../PYTHON_CHEATSHEET.html">⚡ Python Cheat Sheet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ML_AI_CHEATSHEET.html">🤖 ML/AI Cheat Sheet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../SETUP.html">🔧 Setup Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../RELEASE_NOTES_v2.0.0.html">🎉 Release Notes v2.0.0</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none"></div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>The Shell: Your Command Center</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-you-ll-learn">What You’ll Learn</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prerequisites">Prerequisites</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#note-about-this-notebook">📝 Note About This Notebook</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-the-shell">1. What is the Shell?</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#common-shells">Common Shells</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#terminology">Terminology</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-prompt">The Prompt</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#navigation-commands">2. Navigation Commands</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pwd-print-working-directory"><code class="docutils literal notranslate"><span class="pre">pwd</span></code> - Print Working Directory</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ls-list-files"><code class="docutils literal notranslate"><span class="pre">ls</span></code> - List Files</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cd-change-directory"><code class="docutils literal notranslate"><span class="pre">cd</span></code> - Change Directory</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#special-paths">Special Paths</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#file-operations">3. File Operations</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-files-and-directories">Creating Files and Directories</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#copying-files">Copying Files</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#moving-renaming-files">Moving/Renaming Files</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#deleting-files">Deleting Files</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pro-tip">💡 Pro Tip</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#viewing-file-contents">4. Viewing File Contents</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cat-concatenate-and-display"><code class="docutils literal notranslate"><span class="pre">cat</span></code> - Concatenate and Display</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#less-view-large-files"><code class="docutils literal notranslate"><span class="pre">less</span></code> - View Large Files</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#head-and-tail-view-start-end"><code class="docutils literal notranslate"><span class="pre">head</span></code> and <code class="docutils literal notranslate"><span class="pre">tail</span></code> - View Start/End</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#searching">5. Searching</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#grep-search-file-contents"><code class="docutils literal notranslate"><span class="pre">grep</span></code> - Search File Contents</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#find-search-for-files"><code class="docutils literal notranslate"><span class="pre">find</span></code> - Search for Files</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pipes-and-redirection">6. Pipes and Redirection</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#output-redirection">Output Redirection</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#input-redirection">Input Redirection</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pipes-chain-commands">Pipes <code class="docutils literal notranslate"><span class="pre">|</span></code> - Chain Commands</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#useful-commands">7. Useful Commands</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#file-information">File Information</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#text-processing">Text Processing</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#system-information">System Information</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#keyboard-shortcuts">8. Keyboard Shortcuts</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#essential-shortcuts">Essential Shortcuts</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">💡 Pro Tip</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#command-history">9. Command History</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#getting-help">10. Getting Help</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#man-manual-pages"><code class="docutils literal notranslate"><span class="pre">man</span></code> - Manual Pages</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#other-help">Other Help</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">📝 Exercises</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-1-navigation">Exercise 1: Navigation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-2-file-operations">Exercise 2: File Operations</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-3-working-with-content">Exercise 3: Working with Content</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-4-pipes">Exercise 4: Pipes</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-5-advanced">Exercise 5: Advanced</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#common-patterns">🎯 Common Patterns</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#find-large-files">Find Large Files</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#search-all-python-files-for-pattern">Search All Python Files for Pattern</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#count-lines-of-code">Count Lines of Code</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#find-recently-modified-files">Find Recently Modified Files</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#disk-usage-by-directory">Disk Usage by Directory</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#common-mistakes-to-avoid">⚠️ Common Mistakes to Avoid</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#key-takeaways">🎯 Key Takeaways</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#next-steps">🚀 Next Steps</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#further-reading">📚 Further Reading</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="the-shell-your-command-center">
+<h1>The Shell: Your Command Center<a class="headerlink" href="#the-shell-your-command-center" title="Link to this heading">#</a></h1>
+<p>The shell is a text-based interface to your computer. While it might seem old-fashioned compared to graphical interfaces, it’s incredibly powerful and fast once you learn it.</p>
+<section id="what-you-ll-learn">
+<h2>What You’ll Learn<a class="headerlink" href="#what-you-ll-learn" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>What the shell is and why it matters</p></li>
+<li><p>Basic navigation commands</p></li>
+<li><p>File operations</p></li>
+<li><p>Pipes and redirection</p></li>
+<li><p>Tips and tricks</p></li>
+</ul>
+</section>
+<section id="prerequisites">
+<h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Access to a terminal (Linux/macOS built-in, Windows use WSL or Git Bash)</p></li>
+<li><p>Basic typing skills</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="note-about-this-notebook">
+<h2>📝 Note About This Notebook<a class="headerlink" href="#note-about-this-notebook" title="Link to this heading">#</a></h2>
+<p>While you can run some commands in Jupyter cells using <code class="docutils literal notranslate"><span class="pre">!</span></code> or <code class="docutils literal notranslate"><span class="pre">%%bash</span></code>, it’s <strong>highly recommended</strong> to practice in an actual terminal for the full experience.</p>
+<p>Open a terminal and run commands there!</p>
+</section>
+<hr class="docutils" />
+<section id="what-is-the-shell">
+<h2>1. What is the Shell?<a class="headerlink" href="#what-is-the-shell" title="Link to this heading">#</a></h2>
+<p>The <strong>shell</strong> is a program that takes commands from the keyboard and gives them to the operating system to perform.</p>
+<section id="common-shells">
+<h3>Common Shells<a class="headerlink" href="#common-shells" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Bash</strong> (Bourne Again Shell) - Most popular, we’ll use this</p></li>
+<li><p><strong>Zsh</strong> (Z Shell) - Default on modern macOS</p></li>
+<li><p><strong>Fish</strong> (Friendly Interactive Shell) - Beginner-friendly</p></li>
+<li><p><strong>PowerShell</strong> - Windows default (different syntax)</p></li>
+</ul>
+</section>
+<section id="terminology">
+<h3>Terminology<a class="headerlink" href="#terminology" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Shell</strong>: The program that interprets commands</p></li>
+<li><p><strong>Terminal</strong>: The application that runs the shell</p></li>
+<li><p><strong>Console</strong>: Physical terminal (mostly historical)</p></li>
+<li><p><strong>Command Line</strong>: The text interface</p></li>
+</ul>
+</section>
+<section id="the-prompt">
+<h3>The Prompt<a class="headerlink" href="#the-prompt" title="Link to this heading">#</a></h3>
+<p>When you open a terminal, you’ll see something like:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>username@hostname:~/path<span class="w"> </span>$
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">username</span></code>: Your user account</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">hostname</span></code>: Computer name</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">~/path</span></code>: Current directory (<code class="docutils literal notranslate"><span class="pre">~</span></code> = home directory)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">$</span></code>: Prompt symbol (<code class="docutils literal notranslate"><span class="pre">#</span></code> for root user)</p></li>
+</ul>
+</section>
+</section>
+<hr class="docutils" />
+<section id="navigation-commands">
+<h2>2. Navigation Commands<a class="headerlink" href="#navigation-commands" title="Link to this heading">#</a></h2>
+<section id="pwd-print-working-directory">
+<h3><code class="docutils literal notranslate"><span class="pre">pwd</span></code> - Print Working Directory<a class="headerlink" href="#pwd-print-working-directory" title="Link to this heading">#</a></h3>
+<p>Shows where you currently are in the filesystem.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="err">!</span><span class="n">pwd</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="ls-list-files">
+<h3><code class="docutils literal notranslate"><span class="pre">ls</span></code> - List Files<a class="headerlink" href="#ls-list-files" title="Link to this heading">#</a></h3>
+<p>Shows files and directories in the current location.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ls<span class="w">           </span><span class="c1"># List files</span>
+ls<span class="w"> </span>-l<span class="w">        </span><span class="c1"># Long format (details)</span>
+ls<span class="w"> </span>-a<span class="w">        </span><span class="c1"># Show hidden files (start with .)</span>
+ls<span class="w"> </span>-la<span class="w">       </span><span class="c1"># Combine: long format + hidden files</span>
+ls<span class="w"> </span>-lh<span class="w">       </span><span class="c1"># Human-readable file sizes</span>
+ls<span class="w"> </span>-R<span class="w">        </span><span class="c1"># Recursive (show subdirectories)</span>
+ls<span class="w"> </span>*.py<span class="w">      </span><span class="c1"># List only Python files</span>
+</pre></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="err">!</span><span class="n">ls</span> <span class="o">-</span><span class="n">lh</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="cd-change-directory">
+<h3><code class="docutils literal notranslate"><span class="pre">cd</span></code> - Change Directory<a class="headerlink" href="#cd-change-directory" title="Link to this heading">#</a></h3>
+<p>Navigate to different folders.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>/path/to/directory<span class="w">    </span><span class="c1"># Go to specific path</span>
+<span class="nb">cd</span><span class="w"> </span>..<span class="w">                     </span><span class="c1"># Go up one level</span>
+<span class="nb">cd</span><span class="w"> </span>~<span class="w">                      </span><span class="c1"># Go to home directory</span>
+<span class="nb">cd</span><span class="w"> </span>~/Documents<span class="w">            </span><span class="c1"># Go to Documents in home</span>
+<span class="nb">cd</span><span class="w"> </span>-<span class="w">                      </span><span class="c1"># Go to previous directory</span>
+<span class="nb">cd</span><span class="w">                        </span><span class="c1"># Go to home (same as cd ~)</span>
+</pre></div>
+</div>
+</section>
+<section id="special-paths">
+<h3>Special Paths<a class="headerlink" href="#special-paths" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">.</span></code> = Current directory</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">..</span></code> = Parent directory</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">~</span></code> = Home directory</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">/</span></code> = Root directory</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-</span></code> = Previous directory</p></li>
+</ul>
+</section>
+</section>
+<hr class="docutils" />
+<section id="file-operations">
+<h2>3. File Operations<a class="headerlink" href="#file-operations" title="Link to this heading">#</a></h2>
+<section id="creating-files-and-directories">
+<h3>Creating Files and Directories<a class="headerlink" href="#creating-files-and-directories" title="Link to this heading">#</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>touch<span class="w"> </span>file.txt<span class="w">           </span><span class="c1"># Create empty file</span>
+mkdir<span class="w"> </span>mydir<span class="w">              </span><span class="c1"># Create directory</span>
+mkdir<span class="w"> </span>-p<span class="w"> </span>a/b/c<span class="w">           </span><span class="c1"># Create nested directories</span>
+</pre></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Try creating a test directory</span>
+<span class="err">!</span><span class="n">mkdir</span> <span class="o">-</span><span class="n">p</span> <span class="n">test_shell</span><span class="o">/</span><span class="n">subdir</span>
+<span class="err">!</span><span class="n">touch</span> <span class="n">test_shell</span><span class="o">/</span><span class="n">file</span><span class="o">.</span><span class="n">txt</span>
+<span class="err">!</span><span class="n">ls</span> <span class="o">-</span><span class="n">R</span> <span class="n">test_shell</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="copying-files">
+<h3>Copying Files<a class="headerlink" href="#copying-files" title="Link to this heading">#</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cp<span class="w"> </span>file.txt<span class="w"> </span>copy.txt<span class="w">         </span><span class="c1"># Copy file</span>
+cp<span class="w"> </span>file.txt<span class="w"> </span>~/Documents/<span class="w">     </span><span class="c1"># Copy to different directory</span>
+cp<span class="w"> </span>-r<span class="w"> </span>mydir<span class="w"> </span>mydir_copy<span class="w">       </span><span class="c1"># Copy directory recursively</span>
+cp<span class="w"> </span>*.txt<span class="w"> </span>backup/<span class="w">             </span><span class="c1"># Copy all .txt files</span>
+</pre></div>
+</div>
+</section>
+<section id="moving-renaming-files">
+<h3>Moving/Renaming Files<a class="headerlink" href="#moving-renaming-files" title="Link to this heading">#</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mv<span class="w"> </span>oldname.txt<span class="w"> </span>newname.txt<span class="w">   </span><span class="c1"># Rename file</span>
+mv<span class="w"> </span>file.txt<span class="w"> </span>~/Documents/<span class="w">     </span><span class="c1"># Move file</span>
+mv<span class="w"> </span>*.txt<span class="w"> </span>archive/<span class="w">            </span><span class="c1"># Move multiple files</span>
+</pre></div>
+</div>
+</section>
+<section id="deleting-files">
+<h3>Deleting Files<a class="headerlink" href="#deleting-files" title="Link to this heading">#</a></h3>
+<p>⚠️ <strong>WARNING</strong>: Deletion is permanent! No recycle bin!</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>rm<span class="w"> </span>file.txt<span class="w">              </span><span class="c1"># Delete file</span>
+rm<span class="w"> </span>-i<span class="w"> </span>file.txt<span class="w">           </span><span class="c1"># Interactive (ask before deleting)</span>
+rm<span class="w"> </span>-r<span class="w"> </span>mydir<span class="w">              </span><span class="c1"># Delete directory recursively</span>
+rm<span class="w"> </span>-f<span class="w"> </span>file.txt<span class="w">           </span><span class="c1"># Force delete (no confirmation)</span>
+rm<span class="w"> </span>-rf<span class="w"> </span>mydir<span class="w">             </span><span class="c1"># Force delete directory (DANGEROUS!)</span>
+</pre></div>
+</div>
+</section>
+<section id="pro-tip">
+<h3>💡 Pro Tip<a class="headerlink" href="#pro-tip" title="Link to this heading">#</a></h3>
+<p>Never run <code class="docutils literal notranslate"><span class="pre">rm</span> <span class="pre">-rf</span> <span class="pre">/</span></code> or <code class="docutils literal notranslate"><span class="pre">rm</span> <span class="pre">-rf</span> <span class="pre">*</span></code> as root - you’ll delete everything!</p>
+</section>
+</section>
+<hr class="docutils" />
+<section id="viewing-file-contents">
+<h2>4. Viewing File Contents<a class="headerlink" href="#viewing-file-contents" title="Link to this heading">#</a></h2>
+<section id="cat-concatenate-and-display">
+<h3><code class="docutils literal notranslate"><span class="pre">cat</span></code> - Concatenate and Display<a class="headerlink" href="#cat-concatenate-and-display" title="Link to this heading">#</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cat<span class="w"> </span>file.txt<span class="w">             </span><span class="c1"># Display entire file</span>
+cat<span class="w"> </span>file1.txt<span class="w"> </span>file2.txt<span class="w">  </span><span class="c1"># Display multiple files</span>
+cat<span class="w"> </span>*.txt<span class="w">                </span><span class="c1"># Display all .txt files</span>
+</pre></div>
+</div>
+</section>
+<section id="less-view-large-files">
+<h3><code class="docutils literal notranslate"><span class="pre">less</span></code> - View Large Files<a class="headerlink" href="#less-view-large-files" title="Link to this heading">#</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>less<span class="w"> </span>largefile.txt<span class="w">       </span><span class="c1"># Page through file</span>
+<span class="c1"># Press:</span>
+<span class="c1">#   Space = next page</span>
+<span class="c1">#   b = previous page</span>
+<span class="c1">#   / = search</span>
+<span class="c1">#   q = quit</span>
+</pre></div>
+</div>
+</section>
+<section id="head-and-tail-view-start-end">
+<h3><code class="docutils literal notranslate"><span class="pre">head</span></code> and <code class="docutils literal notranslate"><span class="pre">tail</span></code> - View Start/End<a class="headerlink" href="#head-and-tail-view-start-end" title="Link to this heading">#</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>head<span class="w"> </span>file.txt<span class="w">            </span><span class="c1"># First 10 lines</span>
+head<span class="w"> </span>-n<span class="w"> </span><span class="m">20</span><span class="w"> </span>file.txt<span class="w">      </span><span class="c1"># First 20 lines</span>
+tail<span class="w"> </span>file.txt<span class="w">            </span><span class="c1"># Last 10 lines</span>
+tail<span class="w"> </span>-n<span class="w"> </span><span class="m">50</span><span class="w"> </span>file.txt<span class="w">      </span><span class="c1"># Last 50 lines</span>
+tail<span class="w"> </span>-f<span class="w"> </span>logfile.txt<span class="w">      </span><span class="c1"># Follow (watch file grow)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="searching">
+<h2>5. Searching<a class="headerlink" href="#searching" title="Link to this heading">#</a></h2>
+<section id="grep-search-file-contents">
+<h3><code class="docutils literal notranslate"><span class="pre">grep</span></code> - Search File Contents<a class="headerlink" href="#grep-search-file-contents" title="Link to this heading">#</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>grep<span class="w"> </span><span class="s2">&quot;pattern&quot;</span><span class="w"> </span>file.txt<span class="w">          </span><span class="c1"># Find pattern in file</span>
+grep<span class="w"> </span>-i<span class="w"> </span><span class="s2">&quot;pattern&quot;</span><span class="w"> </span>file.txt<span class="w">       </span><span class="c1"># Case-insensitive</span>
+grep<span class="w"> </span>-r<span class="w"> </span><span class="s2">&quot;pattern&quot;</span><span class="w"> </span>directory/<span class="w">     </span><span class="c1"># Recursive search</span>
+grep<span class="w"> </span>-n<span class="w"> </span><span class="s2">&quot;pattern&quot;</span><span class="w"> </span>file.txt<span class="w">       </span><span class="c1"># Show line numbers</span>
+grep<span class="w"> </span>-v<span class="w"> </span><span class="s2">&quot;pattern&quot;</span><span class="w"> </span>file.txt<span class="w">       </span><span class="c1"># Invert (show non-matching)</span>
+</pre></div>
+</div>
+</section>
+<section id="find-search-for-files">
+<h3><code class="docutils literal notranslate"><span class="pre">find</span></code> - Search for Files<a class="headerlink" href="#find-search-for-files" title="Link to this heading">#</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>find<span class="w"> </span>.<span class="w"> </span>-name<span class="w"> </span><span class="s2">&quot;*.py&quot;</span><span class="w">              </span><span class="c1"># Find all Python files</span>
+find<span class="w"> </span>/home<span class="w"> </span>-type<span class="w"> </span>d<span class="w"> </span>-name<span class="w"> </span><span class="s2">&quot;test&quot;</span><span class="w"> </span><span class="c1"># Find directories named test</span>
+find<span class="w"> </span>.<span class="w"> </span>-size<span class="w"> </span>+1M<span class="w">                 </span><span class="c1"># Files larger than 1MB</span>
+find<span class="w"> </span>.<span class="w"> </span>-mtime<span class="w"> </span>-7<span class="w">                 </span><span class="c1"># Modified in last 7 days</span>
+</pre></div>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="pipes-and-redirection">
+<h2>6. Pipes and Redirection<a class="headerlink" href="#pipes-and-redirection" title="Link to this heading">#</a></h2>
+<p>This is where the shell becomes incredibly powerful!</p>
+<section id="output-redirection">
+<h3>Output Redirection<a class="headerlink" href="#output-redirection" title="Link to this heading">#</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">command</span><span class="w"> </span>&gt;<span class="w"> </span>file.txt<span class="w">       </span><span class="c1"># Write output to file (overwrite)</span>
+<span class="nb">command</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>file.txt<span class="w">      </span><span class="c1"># Append output to file</span>
+<span class="nb">command</span><span class="w"> </span><span class="m">2</span>&gt;<span class="w"> </span>error.log<span class="w">     </span><span class="c1"># Redirect errors</span>
+<span class="nb">command</span><span class="w"> </span><span class="p">&amp;</span>&gt;<span class="w"> </span>all.log<span class="w">       </span><span class="c1"># Redirect both output and errors</span>
+</pre></div>
+</div>
+</section>
+<section id="input-redirection">
+<h3>Input Redirection<a class="headerlink" href="#input-redirection" title="Link to this heading">#</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">command</span><span class="w"> </span>&lt;<span class="w"> </span>input.txt<span class="w">      </span><span class="c1"># Read input from file</span>
+</pre></div>
+</div>
+</section>
+<section id="pipes-chain-commands">
+<h3>Pipes <code class="docutils literal notranslate"><span class="pre">|</span></code> - Chain Commands<a class="headerlink" href="#pipes-chain-commands" title="Link to this heading">#</a></h3>
+<p>Send output of one command as input to another.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ls<span class="w"> </span>-l<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span><span class="s2">&quot;.py&quot;</span><span class="w">                    </span><span class="c1"># List only Python files</span>
+cat<span class="w"> </span>file.txt<span class="w"> </span><span class="p">|</span><span class="w"> </span>wc<span class="w"> </span>-l<span class="w">                   </span><span class="c1"># Count lines</span>
+ps<span class="w"> </span>aux<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>python<span class="w">                   </span><span class="c1"># Find Python processes</span>
+<span class="nb">history</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>tail<span class="w"> </span>-n<span class="w"> </span><span class="m">20</span><span class="w">                   </span><span class="c1"># Last 20 commands</span>
+cat<span class="w"> </span>huge.txt<span class="w"> </span><span class="p">|</span><span class="w"> </span>head<span class="w"> </span>-n<span class="w"> </span><span class="m">100</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>tail<span class="w"> </span>-n<span class="w"> </span><span class="m">10</span><span class="w">  </span><span class="c1"># Lines 90-100</span>
+</pre></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Example: Count Python files</span>
+<span class="err">!</span><span class="n">ls</span> <span class="o">-</span><span class="n">R</span> <span class="o">..</span> <span class="o">|</span> <span class="n">grep</span> <span class="s2">&quot;.py&quot;</span> <span class="o">|</span> <span class="n">wc</span> <span class="o">-</span><span class="n">l</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="useful-commands">
+<h2>7. Useful Commands<a class="headerlink" href="#useful-commands" title="Link to this heading">#</a></h2>
+<section id="file-information">
+<h3>File Information<a class="headerlink" href="#file-information" title="Link to this heading">#</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>wc<span class="w"> </span>file.txt<span class="w">              </span><span class="c1"># Count lines, words, characters</span>
+wc<span class="w"> </span>-l<span class="w"> </span>file.txt<span class="w">           </span><span class="c1"># Count lines only</span>
+du<span class="w"> </span>-sh<span class="w"> </span>directory/<span class="w">        </span><span class="c1"># Disk usage (size)</span>
+file<span class="w"> </span>filename<span class="w">            </span><span class="c1"># Determine file type</span>
+stat<span class="w"> </span>filename<span class="w">            </span><span class="c1"># Detailed file information</span>
+</pre></div>
+</div>
+</section>
+<section id="text-processing">
+<h3>Text Processing<a class="headerlink" href="#text-processing" title="Link to this heading">#</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sort<span class="w"> </span>file.txt<span class="w">            </span><span class="c1"># Sort lines</span>
+uniq<span class="w"> </span>file.txt<span class="w">            </span><span class="c1"># Remove duplicate adjacent lines</span>
+sort<span class="w"> </span>file.txt<span class="w"> </span><span class="p">|</span><span class="w"> </span>uniq<span class="w">     </span><span class="c1"># Remove all duplicates</span>
+cut<span class="w"> </span>-d<span class="s1">&#39;,&#39;</span><span class="w"> </span>-f1<span class="w"> </span>file.csv<span class="w">   </span><span class="c1"># Extract first column</span>
+tr<span class="w"> </span><span class="s1">&#39;a-z&#39;</span><span class="w"> </span><span class="s1">&#39;A-Z&#39;</span><span class="w"> </span>&lt;<span class="w"> </span>file<span class="w">    </span><span class="c1"># Convert to uppercase</span>
+</pre></div>
+</div>
+</section>
+<section id="system-information">
+<h3>System Information<a class="headerlink" href="#system-information" title="Link to this heading">#</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>date<span class="w">                     </span><span class="c1"># Current date and time</span>
+whoami<span class="w">                   </span><span class="c1"># Current username</span>
+hostname<span class="w">                 </span><span class="c1"># Computer name</span>
+uptime<span class="w">                   </span><span class="c1"># How long system has been running</span>
+df<span class="w"> </span>-h<span class="w">                    </span><span class="c1"># Disk space</span>
+free<span class="w"> </span>-h<span class="w">                  </span><span class="c1"># Memory usage</span>
+top<span class="w">                      </span><span class="c1"># Running processes (q to quit)</span>
+ps<span class="w"> </span>aux<span class="w">                   </span><span class="c1"># All processes</span>
+</pre></div>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="keyboard-shortcuts">
+<h2>8. Keyboard Shortcuts<a class="headerlink" href="#keyboard-shortcuts" title="Link to this heading">#</a></h2>
+<section id="essential-shortcuts">
+<h3>Essential Shortcuts<a class="headerlink" href="#essential-shortcuts" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Ctrl+C</strong>: Kill current command</p></li>
+<li><p><strong>Ctrl+D</strong>: Exit shell / End of input</p></li>
+<li><p><strong>Ctrl+Z</strong>: Suspend current command</p></li>
+<li><p><strong>Ctrl+L</strong>: Clear screen (same as <code class="docutils literal notranslate"><span class="pre">clear</span></code>)</p></li>
+<li><p><strong>Ctrl+A</strong>: Go to beginning of line</p></li>
+<li><p><strong>Ctrl+E</strong>: Go to end of line</p></li>
+<li><p><strong>Ctrl+U</strong>: Delete from cursor to beginning</p></li>
+<li><p><strong>Ctrl+K</strong>: Delete from cursor to end</p></li>
+<li><p><strong>Ctrl+W</strong>: Delete word before cursor</p></li>
+<li><p><strong>Ctrl+R</strong>: Reverse search command history</p></li>
+<li><p><strong>Tab</strong>: Auto-complete</p></li>
+<li><p><strong>↑/↓</strong>: Navigate command history</p></li>
+</ul>
+</section>
+<section id="id1">
+<h3>💡 Pro Tip<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
+<p>The <strong>Tab</strong> key is your best friend! It auto-completes filenames and commands.</p>
+</section>
+</section>
+<hr class="docutils" />
+<section id="command-history">
+<h2>9. Command History<a class="headerlink" href="#command-history" title="Link to this heading">#</a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">history</span><span class="w">                  </span><span class="c1"># Show command history</span>
+<span class="nb">history</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>git<span class="w">       </span><span class="c1"># Search history for git commands</span>
+!123<span class="w">                     </span><span class="c1"># Run command number 123 from history</span>
+!!<span class="w">                       </span><span class="c1"># Run last command again</span>
+!$<span class="w">                       </span><span class="c1"># Last argument of previous command</span>
+</pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="getting-help">
+<h2>10. Getting Help<a class="headerlink" href="#getting-help" title="Link to this heading">#</a></h2>
+<section id="man-manual-pages">
+<h3><code class="docutils literal notranslate"><span class="pre">man</span></code> - Manual Pages<a class="headerlink" href="#man-manual-pages" title="Link to this heading">#</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>man<span class="w"> </span><span class="nb">command</span><span class="w">              </span><span class="c1"># Show manual for command</span>
+man<span class="w"> </span>ls<span class="w">                   </span><span class="c1"># Manual for ls</span>
+man<span class="w"> </span>man<span class="w">                  </span><span class="c1"># Manual for man itself!</span>
+</pre></div>
+</div>
+</section>
+<section id="other-help">
+<h3>Other Help<a class="headerlink" href="#other-help" title="Link to this heading">#</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">command</span><span class="w"> </span>--help<span class="w">           </span><span class="c1"># Short help (most commands)</span>
+<span class="nb">command</span><span class="w"> </span>-h<span class="w">               </span><span class="c1"># Alternative help flag</span>
+info<span class="w"> </span><span class="nb">command</span><span class="w">             </span><span class="c1"># Info pages (alternative to man)</span>
+which<span class="w"> </span><span class="nb">command</span><span class="w">            </span><span class="c1"># Show command location</span>
+<span class="nb">type</span><span class="w"> </span><span class="nb">command</span><span class="w">             </span><span class="c1"># Show command type</span>
+</pre></div>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="exercises">
+<h2>📝 Exercises<a class="headerlink" href="#exercises" title="Link to this heading">#</a></h2>
+<section id="exercise-1-navigation">
+<h3>Exercise 1: Navigation<a class="headerlink" href="#exercise-1-navigation" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p>Find your current location with <code class="docutils literal notranslate"><span class="pre">pwd</span></code></p></li>
+<li><p>Go to your home directory</p></li>
+<li><p>List all files including hidden ones</p></li>
+<li><p>Go back to where you started</p></li>
+</ol>
+</section>
+<section id="exercise-2-file-operations">
+<h3>Exercise 2: File Operations<a class="headerlink" href="#exercise-2-file-operations" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p>Create a directory called <code class="docutils literal notranslate"><span class="pre">shell_practice</span></code></p></li>
+<li><p>Create three empty files in it: <code class="docutils literal notranslate"><span class="pre">file1.txt</span></code>, <code class="docutils literal notranslate"><span class="pre">file2.txt</span></code>, <code class="docutils literal notranslate"><span class="pre">file3.txt</span></code></p></li>
+<li><p>List the contents</p></li>
+<li><p>Rename <code class="docutils literal notranslate"><span class="pre">file1.txt</span></code> to <code class="docutils literal notranslate"><span class="pre">important.txt</span></code></p></li>
+<li><p>Delete <code class="docutils literal notranslate"><span class="pre">file3.txt</span></code></p></li>
+</ol>
+</section>
+<section id="exercise-3-working-with-content">
+<h3>Exercise 3: Working with Content<a class="headerlink" href="#exercise-3-working-with-content" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p>Echo text into a file: <code class="docutils literal notranslate"><span class="pre">echo</span> <span class="pre">&quot;Hello</span> <span class="pre">Shell&quot;</span> <span class="pre">&gt;</span> <span class="pre">greeting.txt</span></code></p></li>
+<li><p>Append more text: <code class="docutils literal notranslate"><span class="pre">echo</span> <span class="pre">&quot;Learning</span> <span class="pre">is</span> <span class="pre">fun!&quot;</span> <span class="pre">&gt;&gt;</span> <span class="pre">greeting.txt</span></code></p></li>
+<li><p>Display the file contents</p></li>
+<li><p>Count the lines in the file</p></li>
+</ol>
+</section>
+<section id="exercise-4-pipes">
+<h3>Exercise 4: Pipes<a class="headerlink" href="#exercise-4-pipes" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p>List all files in your current directory</p></li>
+<li><p>Pipe that through <code class="docutils literal notranslate"><span class="pre">grep</span></code> to find only <code class="docutils literal notranslate"><span class="pre">.txt</span></code> files</p></li>
+<li><p>Count how many there are with <code class="docutils literal notranslate"><span class="pre">wc</span> <span class="pre">-l</span></code></p></li>
+</ol>
+</section>
+<section id="exercise-5-advanced">
+<h3>Exercise 5: Advanced<a class="headerlink" href="#exercise-5-advanced" title="Link to this heading">#</a></h3>
+<p>Find all Python files in your Education_Playground directory:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>find<span class="w"> </span>~/Education_Playground<span class="w"> </span>-name<span class="w"> </span><span class="s2">&quot;*.py&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>wc<span class="w"> </span>-l
+</pre></div>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="common-patterns">
+<h2>🎯 Common Patterns<a class="headerlink" href="#common-patterns" title="Link to this heading">#</a></h2>
+<section id="find-large-files">
+<h3>Find Large Files<a class="headerlink" href="#find-large-files" title="Link to this heading">#</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>find<span class="w"> </span>.<span class="w"> </span>-type<span class="w"> </span>f<span class="w"> </span>-size<span class="w"> </span>+100M<span class="w"> </span><span class="p">|</span><span class="w"> </span>sort<span class="w"> </span>-rh<span class="w"> </span><span class="p">|</span><span class="w"> </span>head<span class="w"> </span>-10
+</pre></div>
+</div>
+</section>
+<section id="search-all-python-files-for-pattern">
+<h3>Search All Python Files for Pattern<a class="headerlink" href="#search-all-python-files-for-pattern" title="Link to this heading">#</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>grep<span class="w"> </span>-r<span class="w"> </span><span class="s2">&quot;def&quot;</span><span class="w"> </span>--include<span class="o">=</span><span class="s2">&quot;*.py&quot;</span><span class="w"> </span>.
+</pre></div>
+</div>
+</section>
+<section id="count-lines-of-code">
+<h3>Count Lines of Code<a class="headerlink" href="#count-lines-of-code" title="Link to this heading">#</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>find<span class="w"> </span>.<span class="w"> </span>-name<span class="w"> </span><span class="s2">&quot;*.py&quot;</span><span class="w"> </span>-exec<span class="w"> </span>wc<span class="w"> </span>-l<span class="w"> </span><span class="o">{}</span><span class="w"> </span>+<span class="w"> </span><span class="p">|</span><span class="w"> </span>tail<span class="w"> </span>-1
+</pre></div>
+</div>
+</section>
+<section id="find-recently-modified-files">
+<h3>Find Recently Modified Files<a class="headerlink" href="#find-recently-modified-files" title="Link to this heading">#</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>find<span class="w"> </span>.<span class="w"> </span>-type<span class="w"> </span>f<span class="w"> </span>-mtime<span class="w"> </span>-1
+</pre></div>
+</div>
+</section>
+<section id="disk-usage-by-directory">
+<h3>Disk Usage by Directory<a class="headerlink" href="#disk-usage-by-directory" title="Link to this heading">#</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>du<span class="w"> </span>-sh<span class="w"> </span>*/<span class="w"> </span><span class="p">|</span><span class="w"> </span>sort<span class="w"> </span>-rh<span class="w"> </span><span class="p">|</span><span class="w"> </span>head<span class="w"> </span>-10
+</pre></div>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="common-mistakes-to-avoid">
+<h2>⚠️ Common Mistakes to Avoid<a class="headerlink" href="#common-mistakes-to-avoid" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p><strong>No spaces in variable assignment</strong>: <code class="docutils literal notranslate"><span class="pre">x=5</span></code> not <code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">=</span> <span class="pre">5</span></code></p></li>
+<li><p><strong>Case sensitive</strong>: <code class="docutils literal notranslate"><span class="pre">File.txt</span></code> ≠ <code class="docutils literal notranslate"><span class="pre">file.txt</span></code></p></li>
+<li><p><strong>Quote paths with spaces</strong>: <code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">&quot;My</span> <span class="pre">Documents&quot;</span></code> not <code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">My</span> <span class="pre">Documents</span></code></p></li>
+<li><p><strong>No undo for rm</strong>: Always double-check before deleting</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">rm</span> <span class="pre">-rf</span> <span class="pre">*</span></code> is dangerous</strong>: Be very careful with wildcards</p></li>
+</ol>
+</section>
+<hr class="docutils" />
+<section id="key-takeaways">
+<h2>🎯 Key Takeaways<a class="headerlink" href="#key-takeaways" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>The shell is <strong>fast</strong> and <strong>powerful</strong> once you learn it</p></li>
+<li><p><strong>Navigation</strong>: <code class="docutils literal notranslate"><span class="pre">pwd</span></code>, <code class="docutils literal notranslate"><span class="pre">ls</span></code>, <code class="docutils literal notranslate"><span class="pre">cd</span></code></p></li>
+<li><p><strong>File ops</strong>: <code class="docutils literal notranslate"><span class="pre">cp</span></code>, <code class="docutils literal notranslate"><span class="pre">mv</span></code>, <code class="docutils literal notranslate"><span class="pre">rm</span></code>, <code class="docutils literal notranslate"><span class="pre">mkdir</span></code></p></li>
+<li><p><strong>Viewing</strong>: <code class="docutils literal notranslate"><span class="pre">cat</span></code>, <code class="docutils literal notranslate"><span class="pre">less</span></code>, <code class="docutils literal notranslate"><span class="pre">head</span></code>, <code class="docutils literal notranslate"><span class="pre">tail</span></code></p></li>
+<li><p><strong>Searching</strong>: <code class="docutils literal notranslate"><span class="pre">grep</span></code>, <code class="docutils literal notranslate"><span class="pre">find</span></code></p></li>
+<li><p><strong>Pipes</strong> (<code class="docutils literal notranslate"><span class="pre">|</span></code>) chain commands together</p></li>
+<li><p><strong>Tab completion</strong> and <strong>history</strong> save time</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">man</span></code> pages are your friend</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="next-steps">
+<h2>🚀 Next Steps<a class="headerlink" href="#next-steps" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><strong>Practice daily</strong>: Use the terminal for everyday tasks</p></li>
+<li><p><strong>Learn shell scripting</strong>: Automate repetitive tasks (<code class="docutils literal notranslate"><span class="pre">02_shell_scripting.ipynb</span></code>)</p></li>
+<li><p><strong>Master Git</strong>: Version control is essential (<code class="docutils literal notranslate"><span class="pre">03_git_essentials.ipynb</span></code>)</p></li>
+<li><p><strong>Customize</strong>: Set up aliases and functions in your <code class="docutils literal notranslate"><span class="pre">.bashrc</span></code></p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="further-reading">
+<h2>📚 Further Reading<a class="headerlink" href="#further-reading" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="http://linuxcommand.org/tlcl.php">The Linux Command Line</a> - Free book</p></li>
+<li><p><a class="reference external" href="https://explainshell.com/">Explainshell</a> - Understand any command</p></li>
+<li><p><a class="reference external" href="https://cmdchallenge.com/">Command Line Challenge</a> - Practice exercises</p></li>
+</ul>
+<p><strong>Remember</strong>: Everyone started as a beginner. Practice makes perfect! 🚀</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./tools"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="README.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">The Missing Semester: Essential Developer Tools</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="02_command_line_tools.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Command Line Tools</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-you-ll-learn">What You’ll Learn</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prerequisites">Prerequisites</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#note-about-this-notebook">📝 Note About This Notebook</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-the-shell">1. What is the Shell?</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#common-shells">Common Shells</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#terminology">Terminology</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-prompt">The Prompt</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#navigation-commands">2. Navigation Commands</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pwd-print-working-directory"><code class="docutils literal notranslate"><span class="pre">pwd</span></code> - Print Working Directory</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ls-list-files"><code class="docutils literal notranslate"><span class="pre">ls</span></code> - List Files</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cd-change-directory"><code class="docutils literal notranslate"><span class="pre">cd</span></code> - Change Directory</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#special-paths">Special Paths</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#file-operations">3. File Operations</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-files-and-directories">Creating Files and Directories</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#copying-files">Copying Files</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#moving-renaming-files">Moving/Renaming Files</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#deleting-files">Deleting Files</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pro-tip">💡 Pro Tip</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#viewing-file-contents">4. Viewing File Contents</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cat-concatenate-and-display"><code class="docutils literal notranslate"><span class="pre">cat</span></code> - Concatenate and Display</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#less-view-large-files"><code class="docutils literal notranslate"><span class="pre">less</span></code> - View Large Files</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#head-and-tail-view-start-end"><code class="docutils literal notranslate"><span class="pre">head</span></code> and <code class="docutils literal notranslate"><span class="pre">tail</span></code> - View Start/End</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#searching">5. Searching</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#grep-search-file-contents"><code class="docutils literal notranslate"><span class="pre">grep</span></code> - Search File Contents</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#find-search-for-files"><code class="docutils literal notranslate"><span class="pre">find</span></code> - Search for Files</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pipes-and-redirection">6. Pipes and Redirection</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#output-redirection">Output Redirection</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#input-redirection">Input Redirection</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pipes-chain-commands">Pipes <code class="docutils literal notranslate"><span class="pre">|</span></code> - Chain Commands</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#useful-commands">7. Useful Commands</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#file-information">File Information</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#text-processing">Text Processing</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#system-information">System Information</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#keyboard-shortcuts">8. Keyboard Shortcuts</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#essential-shortcuts">Essential Shortcuts</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">💡 Pro Tip</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#command-history">9. Command History</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#getting-help">10. Getting Help</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#man-manual-pages"><code class="docutils literal notranslate"><span class="pre">man</span></code> - Manual Pages</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#other-help">Other Help</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">📝 Exercises</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-1-navigation">Exercise 1: Navigation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-2-file-operations">Exercise 2: File Operations</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-3-working-with-content">Exercise 3: Working with Content</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-4-pipes">Exercise 4: Pipes</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-5-advanced">Exercise 5: Advanced</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#common-patterns">🎯 Common Patterns</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#find-large-files">Find Large Files</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#search-all-python-files-for-pattern">Search All Python Files for Pattern</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#count-lines-of-code">Count Lines of Code</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#find-recently-modified-files">Find Recently Modified Files</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#disk-usage-by-directory">Disk Usage by Directory</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#common-mistakes-to-avoid">⚠️ Common Mistakes to Avoid</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#key-takeaways">🎯 Key Takeaways</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#next-steps">🚀 Next Steps</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#further-reading">📚 Further Reading</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Mykolas Perevicius
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

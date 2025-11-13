@@ -1,0 +1,890 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Analytics &amp; A/B Testing Setup Guide &#8212; Education Playground</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=0c185eed" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=c73c0f3e"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'codebridge-landing/ANALYTICS_SETUP';</script>
+    <script src="../_static/js/onboarding.js?v=557b7536"></script>
+    <link rel="canonical" href="https://mykolas-perevicius.github.io/Education_Playground/codebridge-landing/ANALYTICS_SETUP.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../README.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Education Playground</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../00_calibration_test.html">🎯 Calibration Test - Find Your Level</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../beginner_scripts/README.html">🌱 Beginner Scripts (10 Python Files)</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../easy/README_EASY.html">📗 Easy Level - Beginner</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../easy/01_introduction_to_python.html">1. Introduction to Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../easy/02_variables_and_data_types.html">2. Variables and Data Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../easy/03_basic_operations_and_conditionals.html">3. Operations and Conditionals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../easy/04_intro_to_ai_and_ml.html">4. Intro to AI and ML</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../easy/05_computing_fundamentals.html">5. Computing Fundamentals</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../medium/README_MEDIUM.html">📘 Medium Level - Intermediate</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../medium/01_functions_and_modules.html">1. Functions and Modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../medium/02_data_structures.html">2. Data Structures</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../medium/03_classes_and_oop.html">3. Classes and OOP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../medium/04_machine_learning_basics.html">4. Machine Learning Basics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../medium/05_data_analysis_with_pandas.html">5. Data Analysis with Pandas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../medium/06_algorithms_and_problem_solving.html">6. Algorithms and Problem Solving</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../hard/README_HARD.html">📕 Hard Level - Advanced</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../hard/01_advanced_functions_and_decorators.html">1. Advanced Functions &amp; Decorators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hard/02_generators_and_iterators.html">2. Generators and Iterators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hard/03_algorithms_and_complexity.html">3. Algorithms and Complexity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hard/04_deep_learning_and_neural_networks.html">4. Deep Learning &amp; Neural Networks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hard/05_advanced_ml_and_nlp.html">5. Advanced ML and NLP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hard/06_computer_systems_and_theory.html">6. Computer Systems and Theory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hard/07_project_ideas.html">7. Project Ideas &amp; Implementation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hard/08_classic_problems.html">Lesson 8: Classic Problems Collection</a></li>
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../hard/09_ctf_challenges.html">Lesson 9: Capture The Flag (CTF) - Hacker Training</a></li>
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../hard/10_performance_computing.html">10. Performance Computing ⚡ NEW!</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hard/11_cuda_and_parallel_computing.html">11. CUDA &amp; GPU Computing 🎮 NEW!</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../tools/README.html">🛠️ Developer Tools Track</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../tools/01_shell_basics.html">1. Shell and Command Line</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools/02_command_line_tools.html">2. Command Line Tools</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools/03_git_essentials.html">3. Git Essentials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools/04_text_editors.html">4. Text Editors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools/05_build_systems_cicd.html">5. Build Systems and CI/CD</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools/06_debugging_profiling.html">6. Debugging and Profiling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools/07_security_essentials.html">7. Security Essentials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools/08_package_management.html">8. Package Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools/09_ssh_remote_systems.html">9. SSH and Remote Systems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools/10_docker_containers.html">10. Docker and Containers</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../solutions/README_SOLUTIONS.html">📝 Solutions</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../solutions/easy_solutions.html">Easy Level - Complete Solutions</a></li>
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../solutions/medium_solutions.html">Medium Level - Complete Solutions</a></li>
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../solutions/hard_solutions.html">Hard Level - Complete Solutions</a></li>
+
+
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../solutions/tools_solutions.html">Developer Tools - Complete Solutions</a></li>
+
+
+
+
+
+
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../RESOURCES.html">📚 Learning Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../PYTHON_CHEATSHEET.html">⚡ Python Cheat Sheet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ML_AI_CHEATSHEET.html">🤖 ML/AI Cheat Sheet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../SETUP.html">🔧 Setup Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../RELEASE_NOTES_v2.0.0.html">🎉 Release Notes v2.0.0</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none"></div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Analytics & A/B Testing Setup Guide</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">📊 Overview</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quick-setup">🚀 Quick Setup</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#posthog-setup-free">1. PostHog Setup (Free)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vercel-setup-automatic">2. Vercel Setup (Automatic)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#features-included">📈 Features Included</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#funnel-tracking">Funnel Tracking</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#conversion-events">Conversion Events</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#user-interactions">User Interactions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-b-testing-experiments">A/B Testing Experiments</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#hero-headline-test">1. Hero Headline Test</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#cta-text-test">2. CTA Text Test</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pricing-display-test">3. Pricing Display Test</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#viewing-your-data">🎯 Viewing Your Data</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#posthog-dashboard">PostHog Dashboard</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-posthog-funnels">Creating PostHog Funnels</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vercel-analytics">Vercel Analytics</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#testing-your-setup">🧪 Testing Your Setup</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#verify-analytics-are-working">1. Verify Analytics Are Working</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#test-event-tracking">2. Test Event Tracking</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#force-a-b-test-variant">3. Force A/B Test Variant</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#view-active-experiments">4. View Active Experiments</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#key-metrics-to-track">📊 Key Metrics to Track</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#conversion-rate">Conversion Rate</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#funnel-drop-off">Funnel Drop-off</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#engagement">Engagement</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-b-test-winners">A/B Test Winners</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#advanced-configuration">🔧 Advanced Configuration</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#add-custom-events">Add Custom Events</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#add-new-a-b-tests">Add New A/B Tests</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#session-recording-privacy">Session Recording Privacy</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gdpr-compliance">📱 GDPR Compliance</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#troubleshooting">🐛 Troubleshooting</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#analytics-not-loading">Analytics Not Loading</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#events-not-appearing">Events Not Appearing</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-b-tests-not-changing">A/B Tests Not Changing</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resources">📚 Resources</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pro-tips">💡 Pro Tips</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="analytics-a-b-testing-setup-guide">
+<h1>Analytics &amp; A/B Testing Setup Guide<a class="headerlink" href="#analytics-a-b-testing-setup-guide" title="Link to this heading">#</a></h1>
+<section id="overview">
+<h2>📊 Overview<a class="headerlink" href="#overview" title="Link to this heading">#</a></h2>
+<p>CodeBridge landing page includes comprehensive analytics, funnel tracking, and A/B testing capabilities using:</p>
+<ul class="simple">
+<li><p><strong>PostHog</strong>: Open-source product analytics with session recording</p></li>
+<li><p><strong>Vercel Analytics</strong>: Real-time traffic and performance monitoring</p></li>
+<li><p><strong>Vercel Speed Insights</strong>: Core Web Vitals tracking</p></li>
+<li><p><strong>Custom Funnel Tracking</strong>: User journey visualization</p></li>
+<li><p><strong>A/B Testing</strong>: Multiple experiment variants</p></li>
+</ul>
+</section>
+<section id="quick-setup">
+<h2>🚀 Quick Setup<a class="headerlink" href="#quick-setup" title="Link to this heading">#</a></h2>
+<section id="posthog-setup-free">
+<h3>1. PostHog Setup (Free)<a class="headerlink" href="#posthog-setup-free" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p><strong>Sign up</strong> at <a class="reference external" href="https://app.posthog.com/signup">https://app.posthog.com/signup</a></p></li>
+<li><p>Create a new project</p></li>
+<li><p>Copy your <strong>Project API Key</strong> from Project Settings</p></li>
+<li><p>Add to your <code class="docutils literal notranslate"><span class="pre">.env.local</span></code> file:</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">NEXT_PUBLIC_POSTHOG_KEY</span><span class="o">=</span>phc_your_api_key_here
+<span class="nv">NEXT_PUBLIC_POSTHOG_HOST</span><span class="o">=</span>https://app.posthog.com
+</pre></div>
+</div>
+</section>
+<section id="vercel-setup-automatic">
+<h3>2. Vercel Setup (Automatic)<a class="headerlink" href="#vercel-setup-automatic" title="Link to this heading">#</a></h3>
+<p>Vercel Analytics and Speed Insights are automatically enabled when you deploy to Vercel. No additional configuration needed!</p>
+</section>
+</section>
+<section id="features-included">
+<h2>📈 Features Included<a class="headerlink" href="#features-included" title="Link to this heading">#</a></h2>
+<section id="funnel-tracking">
+<h3>Funnel Tracking<a class="headerlink" href="#funnel-tracking" title="Link to this heading">#</a></h3>
+<p>Automatically tracks user journey through these stages:</p>
+<ol class="arabic simple">
+<li><p><strong>Page View</strong> - Initial landing</p></li>
+<li><p><strong>Hero View</strong> - Above-the-fold engagement</p></li>
+<li><p><strong>Problem Section</strong> - Pain point awareness</p></li>
+<li><p><strong>How It Works</strong> - Process understanding</p></li>
+<li><p><strong>Courses</strong> - Product interest</p></li>
+<li><p><strong>Results</strong> - Social proof engagement</p></li>
+<li><p><strong>Pricing</strong> - Purchase intent</p></li>
+</ol>
+</section>
+<section id="conversion-events">
+<h3>Conversion Events<a class="headerlink" href="#conversion-events" title="Link to this heading">#</a></h3>
+<p>Tracks all critical actions:</p>
+<ul class="simple">
+<li><p><strong>Book Call Click</strong> - Primary CTA</p></li>
+<li><p><strong>Download Catalog</strong> - Lead magnet</p></li>
+<li><p><strong>View Syllabus</strong> - Course interest</p></li>
+<li><p><strong>Email Click</strong> - Contact intent</p></li>
+<li><p><strong>Phone Click</strong> - Direct contact</p></li>
+<li><p><strong>Social Click</strong> - Brand engagement</p></li>
+</ul>
+</section>
+<section id="user-interactions">
+<h3>User Interactions<a class="headerlink" href="#user-interactions" title="Link to this heading">#</a></h3>
+<p>Monitors engagement:</p>
+<ul class="simple">
+<li><p><strong>Dark Mode Toggle</strong> - Preference tracking</p></li>
+<li><p><strong>Mobile Menu</strong> - Navigation patterns</p></li>
+<li><p><strong>Course Card Hover</strong> - Interest signals</p></li>
+<li><p><strong>Scroll Depth</strong> - Content consumption (25%, 50%, 75%, 90%, 100%)</p></li>
+<li><p><strong>Time on Page</strong> - Engagement duration</p></li>
+<li><p><strong>Time per Section</strong> - Content effectiveness</p></li>
+</ul>
+</section>
+<section id="a-b-testing-experiments">
+<h3>A/B Testing Experiments<a class="headerlink" href="#a-b-testing-experiments" title="Link to this heading">#</a></h3>
+<p>Three active experiments:</p>
+<section id="hero-headline-test">
+<h4>1. Hero Headline Test<a class="headerlink" href="#hero-headline-test" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>Variants</strong>:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">original</span></code>: “Bring Modern Computer Science to Your School”</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">benefit_focused</span></code>: “Launch CS Classes in 48 Hours — No Hiring Required”</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">question_format</span></code>: “Want to Offer CS but Don’t Have the Teachers?”</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="cta-text-test">
+<h4>2. CTA Text Test<a class="headerlink" href="#cta-text-test" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>Variants</strong>:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">book_call</span></code>: “Book an Information Call”</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">schedule_demo</span></code>: “Schedule a Demo”</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">get_started</span></code>: “Get Started Today”</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="pricing-display-test">
+<h4>3. Pricing Display Test<a class="headerlink" href="#pricing-display-test" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>Variants</strong>:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">inquiry_only</span></code>: Contact-only pricing</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">range_shown</span></code>: Display starting price range</p></li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+</section>
+<section id="viewing-your-data">
+<h2>🎯 Viewing Your Data<a class="headerlink" href="#viewing-your-data" title="Link to this heading">#</a></h2>
+<section id="posthog-dashboard">
+<h3>PostHog Dashboard<a class="headerlink" href="#posthog-dashboard" title="Link to this heading">#</a></h3>
+<p>Access your analytics at <a class="reference external" href="https://app.posthog.com">https://app.posthog.com</a></p>
+<p><strong>Key Dashboards to Create:</strong></p>
+<ol class="arabic simple">
+<li><p><strong>Conversion Funnel</strong></p>
+<ul class="simple">
+<li><p>Path: page_view → hero_view → courses_view → book_call_click</p></li>
+<li><p>Shows drop-off at each stage</p></li>
+</ul>
+</li>
+<li><p><strong>A/B Test Results</strong></p>
+<ul class="simple">
+<li><p>Compare conversion rates by variant</p></li>
+<li><p>Filter by <code class="docutils literal notranslate"><span class="pre">experiment_hero_headline</span></code>, <code class="docutils literal notranslate"><span class="pre">experiment_cta_text</span></code>, etc.</p></li>
+</ul>
+</li>
+<li><p><strong>User Journey</strong></p>
+<ul class="simple">
+<li><p>Session recordings show actual user behavior</p></li>
+<li><p>Click heatmaps reveal engagement patterns</p></li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="creating-posthog-funnels">
+<h3>Creating PostHog Funnels<a class="headerlink" href="#creating-posthog-funnels" title="Link to this heading">#</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>1. Go to &quot;Insights&quot; → &quot;New Insight&quot; → &quot;Funnel&quot;
+2. Add steps:
+   - Step 1: page_view
+   - Step 2: hero_view
+   - Step 3: pricing_section_view
+   - Step 4: book_call_click
+3. Add breakdown by: experiment_hero_headline
+4. Compare conversion rates across variants
+</pre></div>
+</div>
+</section>
+<section id="vercel-analytics">
+<h3>Vercel Analytics<a class="headerlink" href="#vercel-analytics" title="Link to this heading">#</a></h3>
+<p>Access at <code class="docutils literal notranslate"><span class="pre">https://vercel.com/your-team/codebridge-landing/analytics</span></code></p>
+<p>Shows:</p>
+<ul class="simple">
+<li><p>Real-time visitors</p></li>
+<li><p>Top pages</p></li>
+<li><p>Referral sources</p></li>
+<li><p>Geographic distribution</p></li>
+</ul>
+</section>
+</section>
+<section id="testing-your-setup">
+<h2>🧪 Testing Your Setup<a class="headerlink" href="#testing-your-setup" title="Link to this heading">#</a></h2>
+<section id="verify-analytics-are-working">
+<h3>1. Verify Analytics Are Working<a class="headerlink" href="#verify-analytics-are-working" title="Link to this heading">#</a></h3>
+<p>Open your browser console and check for:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">PostHog</span> <span class="n">initialized</span> <span class="n">successfully</span>
+</pre></div>
+</div>
+</section>
+<section id="test-event-tracking">
+<h3>2. Test Event Tracking<a class="headerlink" href="#test-event-tracking" title="Link to this heading">#</a></h3>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="c1">// Open browser console</span>
+<span class="nb">window</span><span class="p">.</span><span class="nx">posthog</span><span class="p">.</span><span class="nx">capture</span><span class="p">(</span><span class="s1">&#39;test_event&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">test</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span><span class="w"> </span><span class="p">})</span>
+</pre></div>
+</div>
+<p>Check PostHog dashboard → Live Events to see it appear.</p>
+</section>
+<section id="force-a-b-test-variant">
+<h3>3. Force A/B Test Variant<a class="headerlink" href="#force-a-b-test-variant" title="Link to this heading">#</a></h3>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="c1">// Open browser console</span>
+<span class="nx">localStorage</span><span class="p">.</span><span class="nx">setItem</span><span class="p">(</span><span class="s1">&#39;experiment_hero_headline&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;benefit_focused&#39;</span><span class="p">)</span>
+<span class="c1">// Reload page</span>
+</pre></div>
+</div>
+</section>
+<section id="view-active-experiments">
+<h3>4. View Active Experiments<a class="headerlink" href="#view-active-experiments" title="Link to this heading">#</a></h3>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="c1">// Open browser console</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">keys</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">Object</span><span class="p">.</span><span class="nx">keys</span><span class="p">(</span><span class="nx">localStorage</span><span class="p">)</span>
+<span class="w">  </span><span class="p">.</span><span class="nx">filter</span><span class="p">(</span><span class="nx">k</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">k</span><span class="p">.</span><span class="nx">startsWith</span><span class="p">(</span><span class="s1">&#39;experiment_&#39;</span><span class="p">));</span>
+<span class="nx">keys</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="nx">k</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">k</span><span class="p">,</span><span class="w"> </span><span class="nx">localStorage</span><span class="p">.</span><span class="nx">getItem</span><span class="p">(</span><span class="nx">k</span><span class="p">)));</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="key-metrics-to-track">
+<h2>📊 Key Metrics to Track<a class="headerlink" href="#key-metrics-to-track" title="Link to this heading">#</a></h2>
+<section id="conversion-rate">
+<h3>Conversion Rate<a class="headerlink" href="#conversion-rate" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Formula</strong>: (book_call_clicks / page_views) × 100</p></li>
+<li><p><strong>Target</strong>: 5-10% for B2B landing pages</p></li>
+<li><p><strong>Track by</strong>: Experiment variant, traffic source, device type</p></li>
+</ul>
+</section>
+<section id="funnel-drop-off">
+<h3>Funnel Drop-off<a class="headerlink" href="#funnel-drop-off" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Identify where users leave</p></li>
+<li><p>Optimize weakest stages first</p></li>
+<li><p>A/B test improvements</p></li>
+</ul>
+</section>
+<section id="engagement">
+<h3>Engagement<a class="headerlink" href="#engagement" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Scroll Depth</strong>: Target 75%+ reach pricing</p></li>
+<li><p><strong>Time on Page</strong>: Target 2+ minutes</p></li>
+<li><p><strong>Section Views</strong>: Which content resonates</p></li>
+</ul>
+</section>
+<section id="a-b-test-winners">
+<h3>A/B Test Winners<a class="headerlink" href="#a-b-test-winners" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Minimum Sample</strong>: 100 conversions per variant</p></li>
+<li><p><strong>Statistical Significance</strong>: p &lt; 0.05</p></li>
+<li><p><strong>Lift</strong>: &gt;10% improvement to justify change</p></li>
+</ul>
+</section>
+</section>
+<section id="advanced-configuration">
+<h2>🔧 Advanced Configuration<a class="headerlink" href="#advanced-configuration" title="Link to this heading">#</a></h2>
+<section id="add-custom-events">
+<h3>Add Custom Events<a class="headerlink" href="#add-custom-events" title="Link to this heading">#</a></h3>
+<p>Edit <code class="docutils literal notranslate"><span class="pre">lib/analytics.ts</span></code>:</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="k">export</span><span class="w"> </span><span class="kd">enum</span><span class="w"> </span><span class="nx">CustomEvent</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">VIDEO_PLAY</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;video_play&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">CALCULATOR_USE</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;calculator_use&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="c1">// Add your events</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Track in components:</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">trackInteraction</span><span class="p">,</span><span class="w"> </span><span class="nx">InteractionEvent</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;@/lib/analytics&#39;</span><span class="p">;</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">handleVideoPlay</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">trackInteraction</span><span class="p">(</span><span class="nx">InteractionEvent</span><span class="p">.</span><span class="nx">VIDEO_PLAY</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">video_id</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;intro_video&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">timestamp</span><span class="o">:</span><span class="w"> </span><span class="kt">Date.now</span><span class="p">(),</span>
+<span class="w">  </span><span class="p">});</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+</section>
+<section id="add-new-a-b-tests">
+<h3>Add New A/B Tests<a class="headerlink" href="#add-new-a-b-tests" title="Link to this heading">#</a></h3>
+<p>Edit <code class="docutils literal notranslate"><span class="pre">lib/ab-testing.ts</span></code>:</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="k">export</span><span class="w"> </span><span class="kd">const</span><span class="w"> </span><span class="nx">EXPERIMENTS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="c1">// Add new experiment</span>
+<span class="w">  </span><span class="nx">TESTIMONIAL_STYLE</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;testimonial_style&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">variants</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;cards&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;quotes&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;video&#39;</span><span class="p">],</span>
+<span class="w">    </span><span class="nx">weights</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="mf">0.33</span><span class="p">,</span><span class="w"> </span><span class="mf">0.33</span><span class="p">,</span><span class="w"> </span><span class="mf">0.34</span><span class="p">],</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>Add variant configs:</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="k">export</span><span class="w"> </span><span class="kd">const</span><span class="w"> </span><span class="nx">VARIANT_CONFIGS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">testimonial_style_cards</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">layout</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;grid&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">showImages</span><span class="o">:</span><span class="w"> </span><span class="kt">true</span><span class="p">,</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="c1">// Add configs for each variant</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>Use in component:</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">variant</span><span class="p">,</span><span class="w"> </span><span class="nx">config</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">useExperiment</span><span class="p">(</span><span class="nx">EXPERIMENTS</span><span class="p">.</span><span class="nx">TESTIMONIAL_STYLE</span><span class="p">);</span>
+</pre></div>
+</div>
+</section>
+<section id="session-recording-privacy">
+<h3>Session Recording Privacy<a class="headerlink" href="#session-recording-privacy" title="Link to this heading">#</a></h3>
+<p>PostHog automatically masks sensitive data. To customize:</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="c1">// In lib/analytics.ts</span>
+<span class="nx">posthog</span><span class="p">.</span><span class="nx">init</span><span class="p">(</span><span class="nx">apiKey</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">session_recording</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">maskAllInputs</span><span class="o">:</span><span class="w"> </span><span class="kt">true</span><span class="p">,</span><span class="w">  </span><span class="c1">// Mask all input fields</span>
+<span class="w">    </span><span class="nx">maskTextSelector</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;.sensitive&#39;</span><span class="p">,</span><span class="w">  </span><span class="c1">// Mask specific elements</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="gdpr-compliance">
+<h2>📱 GDPR Compliance<a class="headerlink" href="#gdpr-compliance" title="Link to this heading">#</a></h2>
+<p>PostHog is GDPR-compliant by default:</p>
+<ul class="simple">
+<li><p>No PII collected without consent</p></li>
+<li><p>Data stored in EU (if using EU cloud)</p></li>
+<li><p>User opt-out supported</p></li>
+</ul>
+<p>Add cookie consent banner if needed (recommend: <a class="reference external" href="http://cookieyes.com">cookieyes.com</a>)</p>
+</section>
+<section id="troubleshooting">
+<h2>🐛 Troubleshooting<a class="headerlink" href="#troubleshooting" title="Link to this heading">#</a></h2>
+<section id="analytics-not-loading">
+<h3>Analytics Not Loading<a class="headerlink" href="#analytics-not-loading" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p>Check browser console for errors</p></li>
+<li><p>Verify API key in <code class="docutils literal notranslate"><span class="pre">.env.local</span></code></p></li>
+<li><p>Check PostHog project is active</p></li>
+<li><p>Verify no ad blockers blocking PostHog</p></li>
+</ol>
+</section>
+<section id="events-not-appearing">
+<h3>Events Not Appearing<a class="headerlink" href="#events-not-appearing" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p>Check PostHog Live Events view</p></li>
+<li><p>Verify event name spelling</p></li>
+<li><p>Check browser console for errors</p></li>
+<li><p>Test with <code class="docutils literal notranslate"><span class="pre">window.posthog.capture('test')</span></code></p></li>
+</ol>
+</section>
+<section id="a-b-tests-not-changing">
+<h3>A/B Tests Not Changing<a class="headerlink" href="#a-b-tests-not-changing" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p>Clear localStorage: <code class="docutils literal notranslate"><span class="pre">localStorage.clear()</span></code></p></li>
+<li><p>Open in incognito window</p></li>
+<li><p>Check variant assignment in localStorage</p></li>
+<li><p>Verify experiment config in <code class="docutils literal notranslate"><span class="pre">lib/ab-testing.ts</span></code></p></li>
+</ol>
+</section>
+</section>
+<section id="resources">
+<h2>📚 Resources<a class="headerlink" href="#resources" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://posthog.com/docs">PostHog Documentation</a></p></li>
+<li><p><a class="reference external" href="https://vercel.com/docs/analytics">Vercel Analytics Docs</a></p></li>
+<li><p><a class="reference external" href="https://vwo.com/ab-testing/">A/B Testing Best Practices</a></p></li>
+<li><p><a class="reference external" href="https://mixpanel.com/topics/what-is-funnel-analysis/">Funnel Analysis Guide</a></p></li>
+</ul>
+</section>
+<section id="pro-tips">
+<h2>💡 Pro Tips<a class="headerlink" href="#pro-tips" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p><strong>Test One Thing at a Time</strong>: Don’t run competing experiments on same page elements</p></li>
+<li><p><strong>Let Tests Run</strong>: Minimum 1-2 weeks for statistical significance</p></li>
+<li><p><strong>Segment Your Data</strong>: Compare mobile vs desktop, new vs returning</p></li>
+<li><p><strong>Watch Session Recordings</strong>: See real user behavior, not just numbers</p></li>
+<li><p><strong>Set Up Alerts</strong>: Get notified of conversion rate drops</p></li>
+<li><p><strong>Export Data</strong>: Download for deeper analysis in SQL/Python</p></li>
+</ol>
+<hr class="docutils" />
+<p><strong>Need Help?</strong></p>
+<ul class="simple">
+<li><p>PostHog Community: <a class="reference external" href="https://posthog.com/questions">https://posthog.com/questions</a></p></li>
+<li><p>Vercel Support: <a class="reference external" href="https://vercel.com/support">https://vercel.com/support</a></p></li>
+</ul>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./codebridge-landing"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">📊 Overview</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quick-setup">🚀 Quick Setup</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#posthog-setup-free">1. PostHog Setup (Free)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vercel-setup-automatic">2. Vercel Setup (Automatic)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#features-included">📈 Features Included</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#funnel-tracking">Funnel Tracking</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#conversion-events">Conversion Events</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#user-interactions">User Interactions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-b-testing-experiments">A/B Testing Experiments</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#hero-headline-test">1. Hero Headline Test</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#cta-text-test">2. CTA Text Test</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pricing-display-test">3. Pricing Display Test</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#viewing-your-data">🎯 Viewing Your Data</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#posthog-dashboard">PostHog Dashboard</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-posthog-funnels">Creating PostHog Funnels</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vercel-analytics">Vercel Analytics</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#testing-your-setup">🧪 Testing Your Setup</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#verify-analytics-are-working">1. Verify Analytics Are Working</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#test-event-tracking">2. Test Event Tracking</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#force-a-b-test-variant">3. Force A/B Test Variant</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#view-active-experiments">4. View Active Experiments</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#key-metrics-to-track">📊 Key Metrics to Track</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#conversion-rate">Conversion Rate</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#funnel-drop-off">Funnel Drop-off</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#engagement">Engagement</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-b-test-winners">A/B Test Winners</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#advanced-configuration">🔧 Advanced Configuration</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#add-custom-events">Add Custom Events</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#add-new-a-b-tests">Add New A/B Tests</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#session-recording-privacy">Session Recording Privacy</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gdpr-compliance">📱 GDPR Compliance</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#troubleshooting">🐛 Troubleshooting</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#analytics-not-loading">Analytics Not Loading</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#events-not-appearing">Events Not Appearing</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-b-tests-not-changing">A/B Tests Not Changing</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resources">📚 Resources</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pro-tips">💡 Pro Tips</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Mykolas Perevicius
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

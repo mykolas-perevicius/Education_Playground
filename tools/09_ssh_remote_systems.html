@@ -1,0 +1,533 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>SSH &amp; Remote Systems\n\n## Secure Remote Access\n\nWhat you’ll learn:\n- SSH fundamentals\n- Key-based authentication\n- SSH config\n- Remote command execution\n- File transfer (scp, rsync)\n- Port forwarding &amp; tunneling\n- tmux for persistent sessions\n\nTime: 75-90 minutes &#8212; Education Playground</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=0c185eed" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=c73c0f3e"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'tools/09_ssh_remote_systems';</script>
+    <script src="../_static/js/onboarding.js?v=557b7536"></script>
+    <link rel="canonical" href="https://mykolas-perevicius.github.io/Education_Playground/tools/09_ssh_remote_systems.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Docker &amp; Containers\n\n## Containerization Fundamentals\n\nWhat you’ll learn:\n- Container concepts\n- Docker basics (images, containers)\n- Dockerfile creation\n- Docker Compose\n- Multi-stage builds\n- Container orchestration intro\n- Best practices\n\nTime: 90-120 minutes" href="10_docker_containers.html" />
+    <link rel="prev" title="Package Management\n\n## Managing Dependencies Like a Pro\n\nWhat you’ll learn:\n- Python: pip, conda, poetry, pipenv\n- Node.js: npm, yarn, pnpm\n- System packages: apt, yum, brew\n- Version pinning and lock files\n- Virtual environments\n- Security and auditing\n\nTime: 60-90 minutes" href="08_package_management.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../README.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Education Playground</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../00_calibration_test.html">🎯 Calibration Test - Find Your Level</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../beginner_scripts/README.html">🌱 Beginner Scripts (10 Python Files)</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../easy/README_EASY.html">📗 Easy Level - Beginner</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../easy/01_introduction_to_python.html">1. Introduction to Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../easy/02_variables_and_data_types.html">2. Variables and Data Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../easy/03_basic_operations_and_conditionals.html">3. Operations and Conditionals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../easy/04_intro_to_ai_and_ml.html">4. Intro to AI and ML</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../easy/05_computing_fundamentals.html">5. Computing Fundamentals</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../medium/README_MEDIUM.html">📘 Medium Level - Intermediate</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../medium/01_functions_and_modules.html">1. Functions and Modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../medium/02_data_structures.html">2. Data Structures</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../medium/03_classes_and_oop.html">3. Classes and OOP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../medium/04_machine_learning_basics.html">4. Machine Learning Basics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../medium/05_data_analysis_with_pandas.html">5. Data Analysis with Pandas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../medium/06_algorithms_and_problem_solving.html">6. Algorithms and Problem Solving</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../hard/README_HARD.html">📕 Hard Level - Advanced</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../hard/01_advanced_functions_and_decorators.html">1. Advanced Functions &amp; Decorators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hard/02_generators_and_iterators.html">2. Generators and Iterators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hard/03_algorithms_and_complexity.html">3. Algorithms and Complexity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hard/04_deep_learning_and_neural_networks.html">4. Deep Learning &amp; Neural Networks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hard/05_advanced_ml_and_nlp.html">5. Advanced ML and NLP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hard/06_computer_systems_and_theory.html">6. Computer Systems and Theory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hard/07_project_ideas.html">7. Project Ideas &amp; Implementation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hard/08_classic_problems.html">Lesson 8: Classic Problems Collection</a></li>
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../hard/09_ctf_challenges.html">Lesson 9: Capture The Flag (CTF) - Hacker Training</a></li>
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../hard/10_performance_computing.html">10. Performance Computing ⚡ NEW!</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hard/11_cuda_and_parallel_computing.html">11. CUDA &amp; GPU Computing 🎮 NEW!</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="README.html">🛠️ Developer Tools Track</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="01_shell_basics.html">1. Shell and Command Line</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02_command_line_tools.html">2. Command Line Tools</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03_git_essentials.html">3. Git Essentials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04_text_editors.html">4. Text Editors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05_build_systems_cicd.html">5. Build Systems and CI/CD</a></li>
+<li class="toctree-l2"><a class="reference internal" href="06_debugging_profiling.html">6. Debugging and Profiling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="07_security_essentials.html">7. Security Essentials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="08_package_management.html">8. Package Management</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">9. SSH and Remote Systems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="10_docker_containers.html">10. Docker and Containers</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../solutions/README_SOLUTIONS.html">📝 Solutions</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../solutions/easy_solutions.html">Easy Level - Complete Solutions</a></li>
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../solutions/medium_solutions.html">Medium Level - Complete Solutions</a></li>
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../solutions/hard_solutions.html">Hard Level - Complete Solutions</a></li>
+
+
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../solutions/tools_solutions.html">Developer Tools - Complete Solutions</a></li>
+
+
+
+
+
+
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../RESOURCES.html">📚 Learning Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../PYTHON_CHEATSHEET.html">⚡ Python Cheat Sheet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ML_AI_CHEATSHEET.html">🤖 ML/AI Cheat Sheet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../SETUP.html">🔧 Setup Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../RELEASE_NOTES_v2.0.0.html">🎉 Release Notes v2.0.0</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none"></div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>SSH & Remote Systems\n\n## Secure Remote Access\n\nWhat you’ll learn:\n- SSH fundamentals\n- Key-based authentication\n- SSH config\n- Remote command execution\n- File transfer (scp, rsync)\n- Port forwarding & tunneling\n- tmux for persistent sessions\n\nTime: 75-90 minutes</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ssh-basics-n-n-connecting-to-remote-server-n-nbash-n-basic-connection-nssh-username-hostname-n-n-specify-port-nssh-p-2222-username-hostname-n-n-run-command-and-exit-nssh-user-host-ls-la-n-n-interactive-shell-nssh-user-host-n">1. SSH Basics\n\n### Connecting to Remote Server\n\n<code class="docutils literal notranslate"><span class="pre">bash\n#</span> <span class="pre">Basic</span> <span class="pre">connection\nssh</span> <span class="pre">username@hostname\n\n#</span> <span class="pre">Specify</span> <span class="pre">port\nssh</span> <span class="pre">-p</span> <span class="pre">2222</span> <span class="pre">username@hostname\n\n#</span> <span class="pre">Run</span> <span class="pre">command</span> <span class="pre">and</span> <span class="pre">exit\nssh</span> <span class="pre">user@host</span> <span class="pre">'ls</span> <span class="pre">-la'\n\n#</span> <span class="pre">Interactive</span> <span class="pre">shell\nssh</span> <span class="pre">user@host\n</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ssh-keys-n-n-generate-ssh-key-pair-n-nbash-n-generate-new-key-nssh-keygen-t-ed25519-c-your-email-example-com-n-n-or-rsa-legacy-nssh-keygen-t-rsa-b-4096-n-n-files-created-n-ssh-id-ed25519-private-key-never-share-n-ssh-id-ed25519-pub-public-key-safe-to-share-n">2. SSH Keys\n\n### Generate SSH Key Pair\n\n<code class="docutils literal notranslate"><span class="pre">bash\n#</span> <span class="pre">Generate</span> <span class="pre">new</span> <span class="pre">key\nssh-keygen</span> <span class="pre">-t</span> <span class="pre">ed25519</span> <span class="pre">-C</span> <span class="pre">\"your_email@example.com\"\n\n#</span> <span class="pre">Or</span> <span class="pre">RSA</span> <span class="pre">(legacy)\nssh-keygen</span> <span class="pre">-t</span> <span class="pre">rsa</span> <span class="pre">-b</span> <span class="pre">4096\n\n#</span> <span class="pre">Files</span> <span class="pre">created:\n#</span> <span class="pre">~/.ssh/id_ed25519</span>      <span class="pre">#</span> <span class="pre">Private</span> <span class="pre">key</span> <span class="pre">(NEVER</span> <span class="pre">share!)\n#</span> <span class="pre">~/.ssh/id_ed25519.pub</span>  <span class="pre">#</span> <span class="pre">Public</span> <span class="pre">key</span> <span class="pre">(safe</span> <span class="pre">to</span> <span class="pre">share)\n</span></code></a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#add-key-to-server-n-nbash-n-copy-public-key-to-server-nssh-copy-id-user-hostname-n-n-manual-method-ncat-ssh-id-ed25519-pub-ssh-user-host-mkdir-p-ssh-cat-ssh-authorized-keys-n-n-now-you-can-login-without-password-nssh-user-host-n">Add Key to Server\n\n<code class="docutils literal notranslate"><span class="pre">bash\n#</span> <span class="pre">Copy</span> <span class="pre">public</span> <span class="pre">key</span> <span class="pre">to</span> <span class="pre">server\nssh-copy-id</span> <span class="pre">user@hostname\n\n#</span> <span class="pre">Manual</span> <span class="pre">method\ncat</span> <span class="pre">~/.ssh/id_ed25519.pub</span> <span class="pre">|</span> <span class="pre">ssh</span> <span class="pre">user@host</span> <span class="pre">\"mkdir</span> <span class="pre">-p</span> <span class="pre">~/.ssh</span> <span class="pre">&amp;&amp;</span> <span class="pre">cat</span> <span class="pre">&gt;&gt;</span> <span class="pre">~/.ssh/authorized_keys\"\n\n#</span> <span class="pre">Now</span> <span class="pre">you</span> <span class="pre">can</span> <span class="pre">login</span> <span class="pre">without</span> <span class="pre">password!\nssh</span> <span class="pre">user@host\n</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ssh-config-n-n-ssh-config-n-nbash-n-create-config-file-ncat-ssh-config-eof-nhost-myserver-n-hostname-192-168-1-100-n-user-admin-n-port-22-n-identityfile-ssh-id-ed25519-n-nhost-github-n-hostname-github-com-n-user-git-n-identityfile-ssh-github-key-n-nhost-example-com-n-user-admin-n-forwardagent-yes-neof-n-n-now-just-use-nssh-myserver-instead-of-ssh-p-22-admin-192-168-1-100-n">3. SSH Config\n\n### ~/.ssh/config\n\n<code class="docutils literal notranslate"><span class="pre">bash\n#</span> <span class="pre">Create</span> <span class="pre">config</span> <span class="pre">file\ncat</span> <span class="pre">&gt;</span> <span class="pre">~/.ssh/config</span> <span class="pre">&lt;&lt;</span> <span class="pre">'EOF'\nHost</span> <span class="pre">myserver\n</span>    <span class="pre">HostName</span> <span class="pre">192.168.1.100\n</span>    <span class="pre">User</span> <span class="pre">admin\n</span>    <span class="pre">Port</span> <span class="pre">22\n</span>    <span class="pre">IdentityFile</span> <span class="pre">~/.ssh/id_ed25519\n\nHost</span> <span class="pre">github\n</span>    <span class="pre">HostName</span> <span class="pre">github.com\n</span>    <span class="pre">User</span> <span class="pre">git\n</span>    <span class="pre">IdentityFile</span> <span class="pre">~/.ssh/github_key\n\nHost</span> <span class="pre">*.example.com\n</span>    <span class="pre">User</span> <span class="pre">admin\n</span>    <span class="pre">ForwardAgent</span> <span class="pre">yes\nEOF\n\n#</span> <span class="pre">Now</span> <span class="pre">just</span> <span class="pre">use:\nssh</span> <span class="pre">myserver</span>  <span class="pre">#</span> <span class="pre">Instead</span> <span class="pre">of</span> <span class="pre">ssh</span> <span class="pre">-p</span> <span class="pre">22</span> <span class="pre">admin@192.168.1.100\n</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#file-transfer-n-n-scp-secure-copy-n-nbash-n-copy-file-to-server-nscp-file-txt-user-host-path-to-destination-n-n-copy-from-server-nscp-user-host-path-to-file-txt-local-n-n-copy-directory-recursive-nscp-r-folder-user-host-path-n-n-specify-port-nscp-p-2222-file-txt-user-host-path-n">4. File Transfer\n\n### scp - Secure Copy\n\n<code class="docutils literal notranslate"><span class="pre">bash\n#</span> <span class="pre">Copy</span> <span class="pre">file</span> <span class="pre">to</span> <span class="pre">server\nscp</span> <span class="pre">file.txt</span> <span class="pre">user@host:/path/to/destination/\n\n#</span> <span class="pre">Copy</span> <span class="pre">from</span> <span class="pre">server\nscp</span> <span class="pre">user@host:/path/to/file.txt</span> <span class="pre">./local/\n\n#</span> <span class="pre">Copy</span> <span class="pre">directory</span> <span class="pre">(recursive)\nscp</span> <span class="pre">-r</span> <span class="pre">folder/</span> <span class="pre">user@host:/path/\n\n#</span> <span class="pre">Specify</span> <span class="pre">port\nscp</span> <span class="pre">-P</span> <span class="pre">2222</span> <span class="pre">file.txt</span> <span class="pre">user@host:/path/\n</span></code></a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rsync-efficient-sync-n-nbash-n-sync-directory-only-changed-files-nrsync-avz-folder-user-host-path-n-n-flags-n-a-archive-mode-preserves-permissions-timestamps-n-v-verbose-n-z-compress-during-transfer-n-p-show-progress-n-n-dry-run-see-what-would-be-transferred-nrsync-avzn-folder-user-host-path-n-n-delete-files-on-destination-not-in-source-nrsync-avz-delete-folder-user-host-path-n">rsync - Efficient Sync\n\n<code class="docutils literal notranslate"><span class="pre">bash\n#</span> <span class="pre">Sync</span> <span class="pre">directory</span> <span class="pre">(only</span> <span class="pre">changed</span> <span class="pre">files)\nrsync</span> <span class="pre">-avz</span> <span class="pre">folder/</span> <span class="pre">user@host:/path/\n\n#</span> <span class="pre">Flags:\n#</span> <span class="pre">-a</span>  <span class="pre">archive</span> <span class="pre">mode</span> <span class="pre">(preserves</span> <span class="pre">permissions,</span> <span class="pre">timestamps)\n#</span> <span class="pre">-v</span>  <span class="pre">verbose\n#</span> <span class="pre">-z</span>  <span class="pre">compress</span> <span class="pre">during</span> <span class="pre">transfer\n#</span> <span class="pre">-P</span>  <span class="pre">show</span> <span class="pre">progress\n\n#</span> <span class="pre">Dry</span> <span class="pre">run</span> <span class="pre">(see</span> <span class="pre">what</span> <span class="pre">would</span> <span class="pre">be</span> <span class="pre">transferred)\nrsync</span> <span class="pre">-avzn</span> <span class="pre">folder/</span> <span class="pre">user@host:/path/\n\n#</span> <span class="pre">Delete</span> <span class="pre">files</span> <span class="pre">on</span> <span class="pre">destination</span> <span class="pre">not</span> <span class="pre">in</span> <span class="pre">source\nrsync</span> <span class="pre">-avz</span> <span class="pre">--delete</span> <span class="pre">folder/</span> <span class="pre">user@host:/path/\n</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#port-forwarding-n-n-local-port-forwarding-n-nbash-n-access-remote-service-on-local-port-nssh-l-8080-localhost-80-user-host-n-n-now-localhost-8080-remote-80-n-n-example-access-remote-database-nssh-l-5432-localhost-5432-user-db-server-npsql-h-localhost-p-5432-connects-to-remote-db-n">5. Port Forwarding\n\n### Local Port Forwarding\n\n<code class="docutils literal notranslate"><span class="pre">bash\n#</span> <span class="pre">Access</span> <span class="pre">remote</span> <span class="pre">service</span> <span class="pre">on</span> <span class="pre">local</span> <span class="pre">port\nssh</span> <span class="pre">-L</span> <span class="pre">8080:localhost:80</span> <span class="pre">user@host\n\n#</span> <span class="pre">Now</span> <span class="pre">localhost:8080</span> <span class="pre">→</span> <span class="pre">remote:80\n\n#</span> <span class="pre">Example:</span> <span class="pre">Access</span> <span class="pre">remote</span> <span class="pre">database\nssh</span> <span class="pre">-L</span> <span class="pre">5432:localhost:5432</span> <span class="pre">user@db-server\npsql</span> <span class="pre">-h</span> <span class="pre">localhost</span> <span class="pre">-p</span> <span class="pre">5432</span>  <span class="pre">#</span> <span class="pre">Connects</span> <span class="pre">to</span> <span class="pre">remote</span> <span class="pre">DB\n</span></code></a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#remote-port-forwarding-n-nbash-n-expose-local-service-to-remote-nssh-r-8080-localhost-3000-user-host-n-n-remote-can-access-your-local-3000-via-their-localhost-8080-n">Remote Port Forwarding\n\n<code class="docutils literal notranslate"><span class="pre">bash\n#</span> <span class="pre">Expose</span> <span class="pre">local</span> <span class="pre">service</span> <span class="pre">to</span> <span class="pre">remote\nssh</span> <span class="pre">-R</span> <span class="pre">8080:localhost:3000</span> <span class="pre">user@host\n\n#</span> <span class="pre">Remote</span> <span class="pre">can</span> <span class="pre">access</span> <span class="pre">your</span> <span class="pre">local:3000</span> <span class="pre">via</span> <span class="pre">their</span> <span class="pre">localhost:8080\n</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dynamic-port-forwarding-socks-proxy-n-nbash-n-create-socks-proxy-nssh-d-8080-user-host-n-n-configure-browser-to-use-localhost-8080-as-socks-proxy-n-now-all-traffic-goes-through-remote-server-n">Dynamic Port Forwarding (SOCKS Proxy)\n\n<code class="docutils literal notranslate"><span class="pre">bash\n#</span> <span class="pre">Create</span> <span class="pre">SOCKS</span> <span class="pre">proxy\nssh</span> <span class="pre">-D</span> <span class="pre">8080</span> <span class="pre">user@host\n\n#</span> <span class="pre">Configure</span> <span class="pre">browser</span> <span class="pre">to</span> <span class="pre">use</span> <span class="pre">localhost:8080</span> <span class="pre">as</span> <span class="pre">SOCKS</span> <span class="pre">proxy\n#</span> <span class="pre">Now</span> <span class="pre">all</span> <span class="pre">traffic</span> <span class="pre">goes</span> <span class="pre">through</span> <span class="pre">remote</span> <span class="pre">server\n</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tmux-persistent-sessions-n-n-why-tmux-n-n-keep-processes-running-after-disconnect-n-multiple-windows-in-one-ssh-session-n-split-panes-n-attach-detach-sessions-n-nbash-n-install-nsudo-apt-install-tmux-n-n-start-session-ntmux-n-n-new-named-session-ntmux-new-s-mysession-n-n-detach-ctrl-b-then-d-n-n-list-sessions-ntmux-ls-n-n-attach-to-session-ntmux-attach-t-mysession-n">6. tmux - Persistent Sessions\n\n### Why tmux?\n\n- Keep processes running after disconnect\n- Multiple windows in one SSH session\n- Split panes\n- Attach/detach sessions\n\n<code class="docutils literal notranslate"><span class="pre">bash\n#</span> <span class="pre">Install\nsudo</span> <span class="pre">apt</span> <span class="pre">install</span> <span class="pre">tmux\n\n#</span> <span class="pre">Start</span> <span class="pre">session\ntmux\n\n#</span> <span class="pre">New</span> <span class="pre">named</span> <span class="pre">session\ntmux</span> <span class="pre">new</span> <span class="pre">-s</span> <span class="pre">mysession\n\n#</span> <span class="pre">Detach:</span> <span class="pre">Ctrl+b,</span> <span class="pre">then</span> <span class="pre">d\n\n#</span> <span class="pre">List</span> <span class="pre">sessions\ntmux</span> <span class="pre">ls\n\n#</span> <span class="pre">Attach</span> <span class="pre">to</span> <span class="pre">session\ntmux</span> <span class="pre">attach</span> <span class="pre">-t</span> <span class="pre">mysession\n</span></code></a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tmux-key-bindings-n-nprefix-ctrl-b-press-first-then-command-n-n-nprefix-c-new-window-nprefix-n-next-window-nprefix-p-previous-window-nprefix-split-vertically-nprefix-split-horizontally-nprefix-o-switch-pane-nprefix-d-detach-session-nprefix-scroll-mode-q-to-exit-n">tmux Key Bindings\n\n<strong>Prefix:</strong> <code class="docutils literal notranslate"><span class="pre">Ctrl+b</span></code> (press first, then command)\n\n<code class="docutils literal notranslate"><span class="pre">\nPrefix</span> <span class="pre">+</span> <span class="pre">c</span>    <span class="pre">New</span> <span class="pre">window\nPrefix</span> <span class="pre">+</span> <span class="pre">n</span>    <span class="pre">Next</span> <span class="pre">window\nPrefix</span> <span class="pre">+</span> <span class="pre">p</span>    <span class="pre">Previous</span> <span class="pre">window\nPrefix</span> <span class="pre">+</span> <span class="pre">%</span>    <span class="pre">Split</span> <span class="pre">vertically\nPrefix</span> <span class="pre">+</span> <span class="pre">\"</span>    <span class="pre">Split</span> <span class="pre">horizontally\nPrefix</span> <span class="pre">+</span> <span class="pre">o</span>    <span class="pre">Switch</span> <span class="pre">pane\nPrefix</span> <span class="pre">+</span> <span class="pre">d</span>    <span class="pre">Detach</span> <span class="pre">session\nPrefix</span> <span class="pre">+</span> <span class="pre">[</span>    <span class="pre">Scroll</span> <span class="pre">mode</span> <span class="pre">(q</span> <span class="pre">to</span> <span class="pre">exit)\n</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ssh-security-n-n-hardening-ssh-n-nbash-n-edit-etc-ssh-sshd-config-n-n-disable-password-auth-keys-only-npasswordauthentication-no-n-n-disable-root-login-npermitrootlogin-no-n-n-change-default-port-nport-2222-n-n-allow-specific-users-only-nallowusers-alice-bob-n-n-restart-ssh-nsudo-systemctl-restart-sshd-n">7. SSH Security\n\n### Hardening SSH\n\n<code class="docutils literal notranslate"><span class="pre">bash\n#</span> <span class="pre">Edit</span> <span class="pre">/etc/ssh/sshd_config\n\n#</span> <span class="pre">Disable</span> <span class="pre">password</span> <span class="pre">auth</span> <span class="pre">(keys</span> <span class="pre">only)\nPasswordAuthentication</span> <span class="pre">no\n\n#</span> <span class="pre">Disable</span> <span class="pre">root</span> <span class="pre">login\nPermitRootLogin</span> <span class="pre">no\n\n#</span> <span class="pre">Change</span> <span class="pre">default</span> <span class="pre">port\nPort</span> <span class="pre">2222\n\n#</span> <span class="pre">Allow</span> <span class="pre">specific</span> <span class="pre">users</span> <span class="pre">only\nAllowUsers</span> <span class="pre">alice</span> <span class="pre">bob\n\n#</span> <span class="pre">Restart</span> <span class="pre">SSH\nsudo</span> <span class="pre">systemctl</span> <span class="pre">restart</span> <span class="pre">sshd\n</span></code></a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ssh-agent-n-nbash-n-start-agent-neval-ssh-agent-n-n-add-key-nssh-add-ssh-id-ed25519-n-n-list-loaded-keys-nssh-add-l-n-n-enable-agent-forwarding-nssh-a-user-host-n-now-you-can-ssh-from-remote-to-another-server-using-your-keys-n">SSH Agent\n\n<code class="docutils literal notranslate"><span class="pre">bash\n#</span> <span class="pre">Start</span> <span class="pre">agent\neval</span> <span class="pre">$(ssh-agent)\n\n#</span> <span class="pre">Add</span> <span class="pre">key\nssh-add</span> <span class="pre">~/.ssh/id_ed25519\n\n#</span> <span class="pre">List</span> <span class="pre">loaded</span> <span class="pre">keys\nssh-add</span> <span class="pre">-l\n\n#</span> <span class="pre">Enable</span> <span class="pre">agent</span> <span class="pre">forwarding\nssh</span> <span class="pre">-A</span> <span class="pre">user@host\n#</span> <span class="pre">Now</span> <span class="pre">you</span> <span class="pre">can</span> <span class="pre">SSH</span> <span class="pre">from</span> <span class="pre">remote</span> <span class="pre">to</span> <span class="pre">another</span> <span class="pre">server</span> <span class="pre">using</span> <span class="pre">your</span> <span class="pre">keys\n</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises-n-n1-generate-ssh-key-pair-n2-set-up-passwordless-ssh-n3-create-ssh-config-with-aliases-n4-transfer-files-with-rsync-n5-set-up-tmux-session-n-n-key-takeaways-n-n-use-ssh-keys-not-passwords-n-configure-ssh-config-n-rsync-scp-for-large-transfers-n-tmux-for-persistent-sessions-n-harden-ssh-for-security">🎯 Exercises\n\n1. Generate SSH key pair\n2. Set up passwordless SSH\n3. Create SSH config with aliases\n4. Transfer files with rsync\n5. Set up tmux session\n\n## 🎓 Key Takeaways\n\n- Use SSH keys, not passwords\n- Configure ~/.ssh/config\n- rsync &gt; scp for large transfers\n- tmux for persistent sessions\n- Harden SSH for security</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#next-steps-n-nnext-lesson-10-docker-containers-ipynb-n-n-resources-n-n-ssh-academy-n-tmux-cheat-sheet-n-rsync-examples">🚀 Next Steps\n\n<strong>Next lesson:</strong> <code class="docutils literal notranslate"><span class="pre">10_docker_containers.ipynb</span></code>\n\n## 📚 Resources\n\n- SSH Academy\n- tmux Cheat Sheet\n- rsync Examples</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="ssh-remote-systems-n-n-secure-remote-access-n-nwhat-you-ll-learn-n-ssh-fundamentals-n-key-based-authentication-n-ssh-config-n-remote-command-execution-n-file-transfer-scp-rsync-n-port-forwarding-tunneling-n-tmux-for-persistent-sessions-n-ntime-75-90-minutes">
+<h1>SSH &amp; Remote Systems\n\n## Secure Remote Access\n\n<strong>What you’ll learn:</strong>\n- SSH fundamentals\n- Key-based authentication\n- SSH config\n- Remote command execution\n- File transfer (scp, rsync)\n- Port forwarding &amp; tunneling\n- tmux for persistent sessions\n\n<strong>Time:</strong> 75-90 minutes<a class="headerlink" href="#ssh-remote-systems-n-n-secure-remote-access-n-nwhat-you-ll-learn-n-ssh-fundamentals-n-key-based-authentication-n-ssh-config-n-remote-command-execution-n-file-transfer-scp-rsync-n-port-forwarding-tunneling-n-tmux-for-persistent-sessions-n-ntime-75-90-minutes" title="Link to this heading">#</a></h1>
+<section id="ssh-basics-n-n-connecting-to-remote-server-n-nbash-n-basic-connection-nssh-username-hostname-n-n-specify-port-nssh-p-2222-username-hostname-n-n-run-command-and-exit-nssh-user-host-ls-la-n-n-interactive-shell-nssh-user-host-n">
+<h2>1. SSH Basics\n\n### Connecting to Remote Server\n\n<code class="docutils literal notranslate"><span class="pre">bash\n#</span> <span class="pre">Basic</span> <span class="pre">connection\nssh</span> <span class="pre">username&#64;hostname\n\n#</span> <span class="pre">Specify</span> <span class="pre">port\nssh</span> <span class="pre">-p</span> <span class="pre">2222</span> <span class="pre">username&#64;hostname\n\n#</span> <span class="pre">Run</span> <span class="pre">command</span> <span class="pre">and</span> <span class="pre">exit\nssh</span> <span class="pre">user&#64;host</span> <span class="pre">'ls</span> <span class="pre">-la'\n\n#</span> <span class="pre">Interactive</span> <span class="pre">shell\nssh</span> <span class="pre">user&#64;host\n</span></code><a class="headerlink" href="#ssh-basics-n-n-connecting-to-remote-server-n-nbash-n-basic-connection-nssh-username-hostname-n-n-specify-port-nssh-p-2222-username-hostname-n-n-run-command-and-exit-nssh-user-host-ls-la-n-n-interactive-shell-nssh-user-host-n" title="Link to this heading">#</a></h2>
+</section>
+<section id="ssh-keys-n-n-generate-ssh-key-pair-n-nbash-n-generate-new-key-nssh-keygen-t-ed25519-c-your-email-example-com-n-n-or-rsa-legacy-nssh-keygen-t-rsa-b-4096-n-n-files-created-n-ssh-id-ed25519-private-key-never-share-n-ssh-id-ed25519-pub-public-key-safe-to-share-n">
+<h2>2. SSH Keys\n\n### Generate SSH Key Pair\n\n<code class="docutils literal notranslate"><span class="pre">bash\n#</span> <span class="pre">Generate</span> <span class="pre">new</span> <span class="pre">key\nssh-keygen</span> <span class="pre">-t</span> <span class="pre">ed25519</span> <span class="pre">-C</span> <span class="pre">\&quot;your_email&#64;example.com\&quot;\n\n#</span> <span class="pre">Or</span> <span class="pre">RSA</span> <span class="pre">(legacy)\nssh-keygen</span> <span class="pre">-t</span> <span class="pre">rsa</span> <span class="pre">-b</span> <span class="pre">4096\n\n#</span> <span class="pre">Files</span> <span class="pre">created:\n#</span> <span class="pre">~/.ssh/id_ed25519</span>&#160;&#160;&#160;&#160;&#160; <span class="pre">#</span> <span class="pre">Private</span> <span class="pre">key</span> <span class="pre">(NEVER</span> <span class="pre">share!)\n#</span> <span class="pre">~/.ssh/id_ed25519.pub</span>&#160; <span class="pre">#</span> <span class="pre">Public</span> <span class="pre">key</span> <span class="pre">(safe</span> <span class="pre">to</span> <span class="pre">share)\n</span></code><a class="headerlink" href="#ssh-keys-n-n-generate-ssh-key-pair-n-nbash-n-generate-new-key-nssh-keygen-t-ed25519-c-your-email-example-com-n-n-or-rsa-legacy-nssh-keygen-t-rsa-b-4096-n-n-files-created-n-ssh-id-ed25519-private-key-never-share-n-ssh-id-ed25519-pub-public-key-safe-to-share-n" title="Link to this heading">#</a></h2>
+<section id="add-key-to-server-n-nbash-n-copy-public-key-to-server-nssh-copy-id-user-hostname-n-n-manual-method-ncat-ssh-id-ed25519-pub-ssh-user-host-mkdir-p-ssh-cat-ssh-authorized-keys-n-n-now-you-can-login-without-password-nssh-user-host-n">
+<h3>Add Key to Server\n\n<code class="docutils literal notranslate"><span class="pre">bash\n#</span> <span class="pre">Copy</span> <span class="pre">public</span> <span class="pre">key</span> <span class="pre">to</span> <span class="pre">server\nssh-copy-id</span> <span class="pre">user&#64;hostname\n\n#</span> <span class="pre">Manual</span> <span class="pre">method\ncat</span> <span class="pre">~/.ssh/id_ed25519.pub</span> <span class="pre">|</span> <span class="pre">ssh</span> <span class="pre">user&#64;host</span> <span class="pre">\&quot;mkdir</span> <span class="pre">-p</span> <span class="pre">~/.ssh</span> <span class="pre">&amp;&amp;</span> <span class="pre">cat</span> <span class="pre">&gt;&gt;</span> <span class="pre">~/.ssh/authorized_keys\&quot;\n\n#</span> <span class="pre">Now</span> <span class="pre">you</span> <span class="pre">can</span> <span class="pre">login</span> <span class="pre">without</span> <span class="pre">password!\nssh</span> <span class="pre">user&#64;host\n</span></code><a class="headerlink" href="#add-key-to-server-n-nbash-n-copy-public-key-to-server-nssh-copy-id-user-hostname-n-n-manual-method-ncat-ssh-id-ed25519-pub-ssh-user-host-mkdir-p-ssh-cat-ssh-authorized-keys-n-n-now-you-can-login-without-password-nssh-user-host-n" title="Link to this heading">#</a></h3>
+</section>
+</section>
+<section id="ssh-config-n-n-ssh-config-n-nbash-n-create-config-file-ncat-ssh-config-eof-nhost-myserver-n-hostname-192-168-1-100-n-user-admin-n-port-22-n-identityfile-ssh-id-ed25519-n-nhost-github-n-hostname-github-com-n-user-git-n-identityfile-ssh-github-key-n-nhost-example-com-n-user-admin-n-forwardagent-yes-neof-n-n-now-just-use-nssh-myserver-instead-of-ssh-p-22-admin-192-168-1-100-n">
+<h2>3. SSH Config\n\n### ~/.ssh/config\n\n<code class="docutils literal notranslate"><span class="pre">bash\n#</span> <span class="pre">Create</span> <span class="pre">config</span> <span class="pre">file\ncat</span> <span class="pre">&gt;</span> <span class="pre">~/.ssh/config</span> <span class="pre">&lt;&lt;</span> <span class="pre">'EOF'\nHost</span> <span class="pre">myserver\n</span>&#160;&#160;&#160; <span class="pre">HostName</span> <span class="pre">192.168.1.100\n</span>&#160;&#160;&#160; <span class="pre">User</span> <span class="pre">admin\n</span>&#160;&#160;&#160; <span class="pre">Port</span> <span class="pre">22\n</span>&#160;&#160;&#160; <span class="pre">IdentityFile</span> <span class="pre">~/.ssh/id_ed25519\n\nHost</span> <span class="pre">github\n</span>&#160;&#160;&#160; <span class="pre">HostName</span> <span class="pre">github.com\n</span>&#160;&#160;&#160; <span class="pre">User</span> <span class="pre">git\n</span>&#160;&#160;&#160; <span class="pre">IdentityFile</span> <span class="pre">~/.ssh/github_key\n\nHost</span> <span class="pre">*.example.com\n</span>&#160;&#160;&#160; <span class="pre">User</span> <span class="pre">admin\n</span>&#160;&#160;&#160; <span class="pre">ForwardAgent</span> <span class="pre">yes\nEOF\n\n#</span> <span class="pre">Now</span> <span class="pre">just</span> <span class="pre">use:\nssh</span> <span class="pre">myserver</span>&#160; <span class="pre">#</span> <span class="pre">Instead</span> <span class="pre">of</span> <span class="pre">ssh</span> <span class="pre">-p</span> <span class="pre">22</span> <span class="pre">admin&#64;192.168.1.100\n</span></code><a class="headerlink" href="#ssh-config-n-n-ssh-config-n-nbash-n-create-config-file-ncat-ssh-config-eof-nhost-myserver-n-hostname-192-168-1-100-n-user-admin-n-port-22-n-identityfile-ssh-id-ed25519-n-nhost-github-n-hostname-github-com-n-user-git-n-identityfile-ssh-github-key-n-nhost-example-com-n-user-admin-n-forwardagent-yes-neof-n-n-now-just-use-nssh-myserver-instead-of-ssh-p-22-admin-192-168-1-100-n" title="Link to this heading">#</a></h2>
+</section>
+<section id="file-transfer-n-n-scp-secure-copy-n-nbash-n-copy-file-to-server-nscp-file-txt-user-host-path-to-destination-n-n-copy-from-server-nscp-user-host-path-to-file-txt-local-n-n-copy-directory-recursive-nscp-r-folder-user-host-path-n-n-specify-port-nscp-p-2222-file-txt-user-host-path-n">
+<h2>4. File Transfer\n\n### scp - Secure Copy\n\n<code class="docutils literal notranslate"><span class="pre">bash\n#</span> <span class="pre">Copy</span> <span class="pre">file</span> <span class="pre">to</span> <span class="pre">server\nscp</span> <span class="pre">file.txt</span> <span class="pre">user&#64;host:/path/to/destination/\n\n#</span> <span class="pre">Copy</span> <span class="pre">from</span> <span class="pre">server\nscp</span> <span class="pre">user&#64;host:/path/to/file.txt</span> <span class="pre">./local/\n\n#</span> <span class="pre">Copy</span> <span class="pre">directory</span> <span class="pre">(recursive)\nscp</span> <span class="pre">-r</span> <span class="pre">folder/</span> <span class="pre">user&#64;host:/path/\n\n#</span> <span class="pre">Specify</span> <span class="pre">port\nscp</span> <span class="pre">-P</span> <span class="pre">2222</span> <span class="pre">file.txt</span> <span class="pre">user&#64;host:/path/\n</span></code><a class="headerlink" href="#file-transfer-n-n-scp-secure-copy-n-nbash-n-copy-file-to-server-nscp-file-txt-user-host-path-to-destination-n-n-copy-from-server-nscp-user-host-path-to-file-txt-local-n-n-copy-directory-recursive-nscp-r-folder-user-host-path-n-n-specify-port-nscp-p-2222-file-txt-user-host-path-n" title="Link to this heading">#</a></h2>
+<section id="rsync-efficient-sync-n-nbash-n-sync-directory-only-changed-files-nrsync-avz-folder-user-host-path-n-n-flags-n-a-archive-mode-preserves-permissions-timestamps-n-v-verbose-n-z-compress-during-transfer-n-p-show-progress-n-n-dry-run-see-what-would-be-transferred-nrsync-avzn-folder-user-host-path-n-n-delete-files-on-destination-not-in-source-nrsync-avz-delete-folder-user-host-path-n">
+<h3>rsync - Efficient Sync\n\n<code class="docutils literal notranslate"><span class="pre">bash\n#</span> <span class="pre">Sync</span> <span class="pre">directory</span> <span class="pre">(only</span> <span class="pre">changed</span> <span class="pre">files)\nrsync</span> <span class="pre">-avz</span> <span class="pre">folder/</span> <span class="pre">user&#64;host:/path/\n\n#</span> <span class="pre">Flags:\n#</span> <span class="pre">-a</span>&#160; <span class="pre">archive</span> <span class="pre">mode</span> <span class="pre">(preserves</span> <span class="pre">permissions,</span> <span class="pre">timestamps)\n#</span> <span class="pre">-v</span>&#160; <span class="pre">verbose\n#</span> <span class="pre">-z</span>&#160; <span class="pre">compress</span> <span class="pre">during</span> <span class="pre">transfer\n#</span> <span class="pre">-P</span>&#160; <span class="pre">show</span> <span class="pre">progress\n\n#</span> <span class="pre">Dry</span> <span class="pre">run</span> <span class="pre">(see</span> <span class="pre">what</span> <span class="pre">would</span> <span class="pre">be</span> <span class="pre">transferred)\nrsync</span> <span class="pre">-avzn</span> <span class="pre">folder/</span> <span class="pre">user&#64;host:/path/\n\n#</span> <span class="pre">Delete</span> <span class="pre">files</span> <span class="pre">on</span> <span class="pre">destination</span> <span class="pre">not</span> <span class="pre">in</span> <span class="pre">source\nrsync</span> <span class="pre">-avz</span> <span class="pre">--delete</span> <span class="pre">folder/</span> <span class="pre">user&#64;host:/path/\n</span></code><a class="headerlink" href="#rsync-efficient-sync-n-nbash-n-sync-directory-only-changed-files-nrsync-avz-folder-user-host-path-n-n-flags-n-a-archive-mode-preserves-permissions-timestamps-n-v-verbose-n-z-compress-during-transfer-n-p-show-progress-n-n-dry-run-see-what-would-be-transferred-nrsync-avzn-folder-user-host-path-n-n-delete-files-on-destination-not-in-source-nrsync-avz-delete-folder-user-host-path-n" title="Link to this heading">#</a></h3>
+</section>
+</section>
+<section id="port-forwarding-n-n-local-port-forwarding-n-nbash-n-access-remote-service-on-local-port-nssh-l-8080-localhost-80-user-host-n-n-now-localhost-8080-remote-80-n-n-example-access-remote-database-nssh-l-5432-localhost-5432-user-db-server-npsql-h-localhost-p-5432-connects-to-remote-db-n">
+<h2>5. Port Forwarding\n\n### Local Port Forwarding\n\n<code class="docutils literal notranslate"><span class="pre">bash\n#</span> <span class="pre">Access</span> <span class="pre">remote</span> <span class="pre">service</span> <span class="pre">on</span> <span class="pre">local</span> <span class="pre">port\nssh</span> <span class="pre">-L</span> <span class="pre">8080:localhost:80</span> <span class="pre">user&#64;host\n\n#</span> <span class="pre">Now</span> <span class="pre">localhost:8080</span> <span class="pre">→</span> <span class="pre">remote:80\n\n#</span> <span class="pre">Example:</span> <span class="pre">Access</span> <span class="pre">remote</span> <span class="pre">database\nssh</span> <span class="pre">-L</span> <span class="pre">5432:localhost:5432</span> <span class="pre">user&#64;db-server\npsql</span> <span class="pre">-h</span> <span class="pre">localhost</span> <span class="pre">-p</span> <span class="pre">5432</span>&#160; <span class="pre">#</span> <span class="pre">Connects</span> <span class="pre">to</span> <span class="pre">remote</span> <span class="pre">DB\n</span></code><a class="headerlink" href="#port-forwarding-n-n-local-port-forwarding-n-nbash-n-access-remote-service-on-local-port-nssh-l-8080-localhost-80-user-host-n-n-now-localhost-8080-remote-80-n-n-example-access-remote-database-nssh-l-5432-localhost-5432-user-db-server-npsql-h-localhost-p-5432-connects-to-remote-db-n" title="Link to this heading">#</a></h2>
+<section id="remote-port-forwarding-n-nbash-n-expose-local-service-to-remote-nssh-r-8080-localhost-3000-user-host-n-n-remote-can-access-your-local-3000-via-their-localhost-8080-n">
+<h3>Remote Port Forwarding\n\n<code class="docutils literal notranslate"><span class="pre">bash\n#</span> <span class="pre">Expose</span> <span class="pre">local</span> <span class="pre">service</span> <span class="pre">to</span> <span class="pre">remote\nssh</span> <span class="pre">-R</span> <span class="pre">8080:localhost:3000</span> <span class="pre">user&#64;host\n\n#</span> <span class="pre">Remote</span> <span class="pre">can</span> <span class="pre">access</span> <span class="pre">your</span> <span class="pre">local:3000</span> <span class="pre">via</span> <span class="pre">their</span> <span class="pre">localhost:8080\n</span></code><a class="headerlink" href="#remote-port-forwarding-n-nbash-n-expose-local-service-to-remote-nssh-r-8080-localhost-3000-user-host-n-n-remote-can-access-your-local-3000-via-their-localhost-8080-n" title="Link to this heading">#</a></h3>
+</section>
+<section id="dynamic-port-forwarding-socks-proxy-n-nbash-n-create-socks-proxy-nssh-d-8080-user-host-n-n-configure-browser-to-use-localhost-8080-as-socks-proxy-n-now-all-traffic-goes-through-remote-server-n">
+<h3>Dynamic Port Forwarding (SOCKS Proxy)\n\n<code class="docutils literal notranslate"><span class="pre">bash\n#</span> <span class="pre">Create</span> <span class="pre">SOCKS</span> <span class="pre">proxy\nssh</span> <span class="pre">-D</span> <span class="pre">8080</span> <span class="pre">user&#64;host\n\n#</span> <span class="pre">Configure</span> <span class="pre">browser</span> <span class="pre">to</span> <span class="pre">use</span> <span class="pre">localhost:8080</span> <span class="pre">as</span> <span class="pre">SOCKS</span> <span class="pre">proxy\n#</span> <span class="pre">Now</span> <span class="pre">all</span> <span class="pre">traffic</span> <span class="pre">goes</span> <span class="pre">through</span> <span class="pre">remote</span> <span class="pre">server\n</span></code><a class="headerlink" href="#dynamic-port-forwarding-socks-proxy-n-nbash-n-create-socks-proxy-nssh-d-8080-user-host-n-n-configure-browser-to-use-localhost-8080-as-socks-proxy-n-now-all-traffic-goes-through-remote-server-n" title="Link to this heading">#</a></h3>
+</section>
+</section>
+<section id="tmux-persistent-sessions-n-n-why-tmux-n-n-keep-processes-running-after-disconnect-n-multiple-windows-in-one-ssh-session-n-split-panes-n-attach-detach-sessions-n-nbash-n-install-nsudo-apt-install-tmux-n-n-start-session-ntmux-n-n-new-named-session-ntmux-new-s-mysession-n-n-detach-ctrl-b-then-d-n-n-list-sessions-ntmux-ls-n-n-attach-to-session-ntmux-attach-t-mysession-n">
+<h2>6. tmux - Persistent Sessions\n\n### Why tmux?\n\n- Keep processes running after disconnect\n- Multiple windows in one SSH session\n- Split panes\n- Attach/detach sessions\n\n<code class="docutils literal notranslate"><span class="pre">bash\n#</span> <span class="pre">Install\nsudo</span> <span class="pre">apt</span> <span class="pre">install</span> <span class="pre">tmux\n\n#</span> <span class="pre">Start</span> <span class="pre">session\ntmux\n\n#</span> <span class="pre">New</span> <span class="pre">named</span> <span class="pre">session\ntmux</span> <span class="pre">new</span> <span class="pre">-s</span> <span class="pre">mysession\n\n#</span> <span class="pre">Detach:</span> <span class="pre">Ctrl+b,</span> <span class="pre">then</span> <span class="pre">d\n\n#</span> <span class="pre">List</span> <span class="pre">sessions\ntmux</span> <span class="pre">ls\n\n#</span> <span class="pre">Attach</span> <span class="pre">to</span> <span class="pre">session\ntmux</span> <span class="pre">attach</span> <span class="pre">-t</span> <span class="pre">mysession\n</span></code><a class="headerlink" href="#tmux-persistent-sessions-n-n-why-tmux-n-n-keep-processes-running-after-disconnect-n-multiple-windows-in-one-ssh-session-n-split-panes-n-attach-detach-sessions-n-nbash-n-install-nsudo-apt-install-tmux-n-n-start-session-ntmux-n-n-new-named-session-ntmux-new-s-mysession-n-n-detach-ctrl-b-then-d-n-n-list-sessions-ntmux-ls-n-n-attach-to-session-ntmux-attach-t-mysession-n" title="Link to this heading">#</a></h2>
+<section id="tmux-key-bindings-n-nprefix-ctrl-b-press-first-then-command-n-n-nprefix-c-new-window-nprefix-n-next-window-nprefix-p-previous-window-nprefix-split-vertically-nprefix-split-horizontally-nprefix-o-switch-pane-nprefix-d-detach-session-nprefix-scroll-mode-q-to-exit-n">
+<h3>tmux Key Bindings\n\n<strong>Prefix:</strong> <code class="docutils literal notranslate"><span class="pre">Ctrl+b</span></code> (press first, then command)\n\n<code class="docutils literal notranslate"><span class="pre">\nPrefix</span> <span class="pre">+</span> <span class="pre">c</span>&#160;&#160;&#160; <span class="pre">New</span> <span class="pre">window\nPrefix</span> <span class="pre">+</span> <span class="pre">n</span>&#160;&#160;&#160; <span class="pre">Next</span> <span class="pre">window\nPrefix</span> <span class="pre">+</span> <span class="pre">p</span>&#160;&#160;&#160; <span class="pre">Previous</span> <span class="pre">window\nPrefix</span> <span class="pre">+</span> <span class="pre">%</span>&#160;&#160;&#160; <span class="pre">Split</span> <span class="pre">vertically\nPrefix</span> <span class="pre">+</span> <span class="pre">\&quot;</span>&#160;&#160;&#160; <span class="pre">Split</span> <span class="pre">horizontally\nPrefix</span> <span class="pre">+</span> <span class="pre">o</span>&#160;&#160;&#160; <span class="pre">Switch</span> <span class="pre">pane\nPrefix</span> <span class="pre">+</span> <span class="pre">d</span>&#160;&#160;&#160; <span class="pre">Detach</span> <span class="pre">session\nPrefix</span> <span class="pre">+</span> <span class="pre">[</span>&#160;&#160;&#160; <span class="pre">Scroll</span> <span class="pre">mode</span> <span class="pre">(q</span> <span class="pre">to</span> <span class="pre">exit)\n</span></code><a class="headerlink" href="#tmux-key-bindings-n-nprefix-ctrl-b-press-first-then-command-n-n-nprefix-c-new-window-nprefix-n-next-window-nprefix-p-previous-window-nprefix-split-vertically-nprefix-split-horizontally-nprefix-o-switch-pane-nprefix-d-detach-session-nprefix-scroll-mode-q-to-exit-n" title="Link to this heading">#</a></h3>
+</section>
+</section>
+<section id="ssh-security-n-n-hardening-ssh-n-nbash-n-edit-etc-ssh-sshd-config-n-n-disable-password-auth-keys-only-npasswordauthentication-no-n-n-disable-root-login-npermitrootlogin-no-n-n-change-default-port-nport-2222-n-n-allow-specific-users-only-nallowusers-alice-bob-n-n-restart-ssh-nsudo-systemctl-restart-sshd-n">
+<h2>7. SSH Security\n\n### Hardening SSH\n\n<code class="docutils literal notranslate"><span class="pre">bash\n#</span> <span class="pre">Edit</span> <span class="pre">/etc/ssh/sshd_config\n\n#</span> <span class="pre">Disable</span> <span class="pre">password</span> <span class="pre">auth</span> <span class="pre">(keys</span> <span class="pre">only)\nPasswordAuthentication</span> <span class="pre">no\n\n#</span> <span class="pre">Disable</span> <span class="pre">root</span> <span class="pre">login\nPermitRootLogin</span> <span class="pre">no\n\n#</span> <span class="pre">Change</span> <span class="pre">default</span> <span class="pre">port\nPort</span> <span class="pre">2222\n\n#</span> <span class="pre">Allow</span> <span class="pre">specific</span> <span class="pre">users</span> <span class="pre">only\nAllowUsers</span> <span class="pre">alice</span> <span class="pre">bob\n\n#</span> <span class="pre">Restart</span> <span class="pre">SSH\nsudo</span> <span class="pre">systemctl</span> <span class="pre">restart</span> <span class="pre">sshd\n</span></code><a class="headerlink" href="#ssh-security-n-n-hardening-ssh-n-nbash-n-edit-etc-ssh-sshd-config-n-n-disable-password-auth-keys-only-npasswordauthentication-no-n-n-disable-root-login-npermitrootlogin-no-n-n-change-default-port-nport-2222-n-n-allow-specific-users-only-nallowusers-alice-bob-n-n-restart-ssh-nsudo-systemctl-restart-sshd-n" title="Link to this heading">#</a></h2>
+<section id="ssh-agent-n-nbash-n-start-agent-neval-ssh-agent-n-n-add-key-nssh-add-ssh-id-ed25519-n-n-list-loaded-keys-nssh-add-l-n-n-enable-agent-forwarding-nssh-a-user-host-n-now-you-can-ssh-from-remote-to-another-server-using-your-keys-n">
+<h3>SSH Agent\n\n<code class="docutils literal notranslate"><span class="pre">bash\n#</span> <span class="pre">Start</span> <span class="pre">agent\neval</span> <span class="pre">$(ssh-agent)\n\n#</span> <span class="pre">Add</span> <span class="pre">key\nssh-add</span> <span class="pre">~/.ssh/id_ed25519\n\n#</span> <span class="pre">List</span> <span class="pre">loaded</span> <span class="pre">keys\nssh-add</span> <span class="pre">-l\n\n#</span> <span class="pre">Enable</span> <span class="pre">agent</span> <span class="pre">forwarding\nssh</span> <span class="pre">-A</span> <span class="pre">user&#64;host\n#</span> <span class="pre">Now</span> <span class="pre">you</span> <span class="pre">can</span> <span class="pre">SSH</span> <span class="pre">from</span> <span class="pre">remote</span> <span class="pre">to</span> <span class="pre">another</span> <span class="pre">server</span> <span class="pre">using</span> <span class="pre">your</span> <span class="pre">keys\n</span></code><a class="headerlink" href="#ssh-agent-n-nbash-n-start-agent-neval-ssh-agent-n-n-add-key-nssh-add-ssh-id-ed25519-n-n-list-loaded-keys-nssh-add-l-n-n-enable-agent-forwarding-nssh-a-user-host-n-now-you-can-ssh-from-remote-to-another-server-using-your-keys-n" title="Link to this heading">#</a></h3>
+</section>
+</section>
+<section id="exercises-n-n1-generate-ssh-key-pair-n2-set-up-passwordless-ssh-n3-create-ssh-config-with-aliases-n4-transfer-files-with-rsync-n5-set-up-tmux-session-n-n-key-takeaways-n-n-use-ssh-keys-not-passwords-n-configure-ssh-config-n-rsync-scp-for-large-transfers-n-tmux-for-persistent-sessions-n-harden-ssh-for-security">
+<h2>🎯 Exercises\n\n1. Generate SSH key pair\n2. Set up passwordless SSH\n3. Create SSH config with aliases\n4. Transfer files with rsync\n5. Set up tmux session\n\n## 🎓 Key Takeaways\n\n- Use SSH keys, not passwords\n- Configure ~/.ssh/config\n- rsync &gt; scp for large transfers\n- tmux for persistent sessions\n- Harden SSH for security<a class="headerlink" href="#exercises-n-n1-generate-ssh-key-pair-n2-set-up-passwordless-ssh-n3-create-ssh-config-with-aliases-n4-transfer-files-with-rsync-n5-set-up-tmux-session-n-n-key-takeaways-n-n-use-ssh-keys-not-passwords-n-configure-ssh-config-n-rsync-scp-for-large-transfers-n-tmux-for-persistent-sessions-n-harden-ssh-for-security" title="Link to this heading">#</a></h2>
+</section>
+<section id="next-steps-n-nnext-lesson-10-docker-containers-ipynb-n-n-resources-n-n-ssh-academy-n-tmux-cheat-sheet-n-rsync-examples">
+<h2>🚀 Next Steps\n\n<strong>Next lesson:</strong> <code class="docutils literal notranslate"><span class="pre">10_docker_containers.ipynb</span></code>\n\n## 📚 Resources\n\n- <a class="reference external" href="https://www.ssh.com/academy/ssh">SSH Academy</a>\n- <a class="reference external" href="https://tmuxcheatsheet.com/">tmux Cheat Sheet</a>\n- <a class="reference external" href="https://www.tecmint.com/rsync-local-remote-file-synchronization-commands/">rsync Examples</a><a class="headerlink" href="#next-steps-n-nnext-lesson-10-docker-containers-ipynb-n-n-resources-n-n-ssh-academy-n-tmux-cheat-sheet-n-rsync-examples" title="Link to this heading">#</a></h2>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./tools"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="08_package_management.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Package Management\n\n## Managing Dependencies Like a Pro\n\n<strong>What you’ll learn:</strong>\n- Python: pip, conda, poetry, pipenv\n- Node.js: npm, yarn, pnpm\n- System packages: apt, yum, brew\n- Version pinning and lock files\n- Virtual environments\n- Security and auditing\n\n<strong>Time:</strong> 60-90 minutes</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="10_docker_containers.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Docker &amp; Containers\n\n## Containerization Fundamentals\n\n<strong>What you’ll learn:</strong>\n- Container concepts\n- Docker basics (images, containers)\n- Dockerfile creation\n- Docker Compose\n- Multi-stage builds\n- Container orchestration intro\n- Best practices\n\n<strong>Time:</strong> 90-120 minutes</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ssh-basics-n-n-connecting-to-remote-server-n-nbash-n-basic-connection-nssh-username-hostname-n-n-specify-port-nssh-p-2222-username-hostname-n-n-run-command-and-exit-nssh-user-host-ls-la-n-n-interactive-shell-nssh-user-host-n">1. SSH Basics\n\n### Connecting to Remote Server\n\n<code class="docutils literal notranslate"><span class="pre">bash\n#</span> <span class="pre">Basic</span> <span class="pre">connection\nssh</span> <span class="pre">username@hostname\n\n#</span> <span class="pre">Specify</span> <span class="pre">port\nssh</span> <span class="pre">-p</span> <span class="pre">2222</span> <span class="pre">username@hostname\n\n#</span> <span class="pre">Run</span> <span class="pre">command</span> <span class="pre">and</span> <span class="pre">exit\nssh</span> <span class="pre">user@host</span> <span class="pre">'ls</span> <span class="pre">-la'\n\n#</span> <span class="pre">Interactive</span> <span class="pre">shell\nssh</span> <span class="pre">user@host\n</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ssh-keys-n-n-generate-ssh-key-pair-n-nbash-n-generate-new-key-nssh-keygen-t-ed25519-c-your-email-example-com-n-n-or-rsa-legacy-nssh-keygen-t-rsa-b-4096-n-n-files-created-n-ssh-id-ed25519-private-key-never-share-n-ssh-id-ed25519-pub-public-key-safe-to-share-n">2. SSH Keys\n\n### Generate SSH Key Pair\n\n<code class="docutils literal notranslate"><span class="pre">bash\n#</span> <span class="pre">Generate</span> <span class="pre">new</span> <span class="pre">key\nssh-keygen</span> <span class="pre">-t</span> <span class="pre">ed25519</span> <span class="pre">-C</span> <span class="pre">\"your_email@example.com\"\n\n#</span> <span class="pre">Or</span> <span class="pre">RSA</span> <span class="pre">(legacy)\nssh-keygen</span> <span class="pre">-t</span> <span class="pre">rsa</span> <span class="pre">-b</span> <span class="pre">4096\n\n#</span> <span class="pre">Files</span> <span class="pre">created:\n#</span> <span class="pre">~/.ssh/id_ed25519</span>      <span class="pre">#</span> <span class="pre">Private</span> <span class="pre">key</span> <span class="pre">(NEVER</span> <span class="pre">share!)\n#</span> <span class="pre">~/.ssh/id_ed25519.pub</span>  <span class="pre">#</span> <span class="pre">Public</span> <span class="pre">key</span> <span class="pre">(safe</span> <span class="pre">to</span> <span class="pre">share)\n</span></code></a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#add-key-to-server-n-nbash-n-copy-public-key-to-server-nssh-copy-id-user-hostname-n-n-manual-method-ncat-ssh-id-ed25519-pub-ssh-user-host-mkdir-p-ssh-cat-ssh-authorized-keys-n-n-now-you-can-login-without-password-nssh-user-host-n">Add Key to Server\n\n<code class="docutils literal notranslate"><span class="pre">bash\n#</span> <span class="pre">Copy</span> <span class="pre">public</span> <span class="pre">key</span> <span class="pre">to</span> <span class="pre">server\nssh-copy-id</span> <span class="pre">user@hostname\n\n#</span> <span class="pre">Manual</span> <span class="pre">method\ncat</span> <span class="pre">~/.ssh/id_ed25519.pub</span> <span class="pre">|</span> <span class="pre">ssh</span> <span class="pre">user@host</span> <span class="pre">\"mkdir</span> <span class="pre">-p</span> <span class="pre">~/.ssh</span> <span class="pre">&amp;&amp;</span> <span class="pre">cat</span> <span class="pre">&gt;&gt;</span> <span class="pre">~/.ssh/authorized_keys\"\n\n#</span> <span class="pre">Now</span> <span class="pre">you</span> <span class="pre">can</span> <span class="pre">login</span> <span class="pre">without</span> <span class="pre">password!\nssh</span> <span class="pre">user@host\n</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ssh-config-n-n-ssh-config-n-nbash-n-create-config-file-ncat-ssh-config-eof-nhost-myserver-n-hostname-192-168-1-100-n-user-admin-n-port-22-n-identityfile-ssh-id-ed25519-n-nhost-github-n-hostname-github-com-n-user-git-n-identityfile-ssh-github-key-n-nhost-example-com-n-user-admin-n-forwardagent-yes-neof-n-n-now-just-use-nssh-myserver-instead-of-ssh-p-22-admin-192-168-1-100-n">3. SSH Config\n\n### ~/.ssh/config\n\n<code class="docutils literal notranslate"><span class="pre">bash\n#</span> <span class="pre">Create</span> <span class="pre">config</span> <span class="pre">file\ncat</span> <span class="pre">&gt;</span> <span class="pre">~/.ssh/config</span> <span class="pre">&lt;&lt;</span> <span class="pre">'EOF'\nHost</span> <span class="pre">myserver\n</span>    <span class="pre">HostName</span> <span class="pre">192.168.1.100\n</span>    <span class="pre">User</span> <span class="pre">admin\n</span>    <span class="pre">Port</span> <span class="pre">22\n</span>    <span class="pre">IdentityFile</span> <span class="pre">~/.ssh/id_ed25519\n\nHost</span> <span class="pre">github\n</span>    <span class="pre">HostName</span> <span class="pre">github.com\n</span>    <span class="pre">User</span> <span class="pre">git\n</span>    <span class="pre">IdentityFile</span> <span class="pre">~/.ssh/github_key\n\nHost</span> <span class="pre">*.example.com\n</span>    <span class="pre">User</span> <span class="pre">admin\n</span>    <span class="pre">ForwardAgent</span> <span class="pre">yes\nEOF\n\n#</span> <span class="pre">Now</span> <span class="pre">just</span> <span class="pre">use:\nssh</span> <span class="pre">myserver</span>  <span class="pre">#</span> <span class="pre">Instead</span> <span class="pre">of</span> <span class="pre">ssh</span> <span class="pre">-p</span> <span class="pre">22</span> <span class="pre">admin@192.168.1.100\n</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#file-transfer-n-n-scp-secure-copy-n-nbash-n-copy-file-to-server-nscp-file-txt-user-host-path-to-destination-n-n-copy-from-server-nscp-user-host-path-to-file-txt-local-n-n-copy-directory-recursive-nscp-r-folder-user-host-path-n-n-specify-port-nscp-p-2222-file-txt-user-host-path-n">4. File Transfer\n\n### scp - Secure Copy\n\n<code class="docutils literal notranslate"><span class="pre">bash\n#</span> <span class="pre">Copy</span> <span class="pre">file</span> <span class="pre">to</span> <span class="pre">server\nscp</span> <span class="pre">file.txt</span> <span class="pre">user@host:/path/to/destination/\n\n#</span> <span class="pre">Copy</span> <span class="pre">from</span> <span class="pre">server\nscp</span> <span class="pre">user@host:/path/to/file.txt</span> <span class="pre">./local/\n\n#</span> <span class="pre">Copy</span> <span class="pre">directory</span> <span class="pre">(recursive)\nscp</span> <span class="pre">-r</span> <span class="pre">folder/</span> <span class="pre">user@host:/path/\n\n#</span> <span class="pre">Specify</span> <span class="pre">port\nscp</span> <span class="pre">-P</span> <span class="pre">2222</span> <span class="pre">file.txt</span> <span class="pre">user@host:/path/\n</span></code></a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rsync-efficient-sync-n-nbash-n-sync-directory-only-changed-files-nrsync-avz-folder-user-host-path-n-n-flags-n-a-archive-mode-preserves-permissions-timestamps-n-v-verbose-n-z-compress-during-transfer-n-p-show-progress-n-n-dry-run-see-what-would-be-transferred-nrsync-avzn-folder-user-host-path-n-n-delete-files-on-destination-not-in-source-nrsync-avz-delete-folder-user-host-path-n">rsync - Efficient Sync\n\n<code class="docutils literal notranslate"><span class="pre">bash\n#</span> <span class="pre">Sync</span> <span class="pre">directory</span> <span class="pre">(only</span> <span class="pre">changed</span> <span class="pre">files)\nrsync</span> <span class="pre">-avz</span> <span class="pre">folder/</span> <span class="pre">user@host:/path/\n\n#</span> <span class="pre">Flags:\n#</span> <span class="pre">-a</span>  <span class="pre">archive</span> <span class="pre">mode</span> <span class="pre">(preserves</span> <span class="pre">permissions,</span> <span class="pre">timestamps)\n#</span> <span class="pre">-v</span>  <span class="pre">verbose\n#</span> <span class="pre">-z</span>  <span class="pre">compress</span> <span class="pre">during</span> <span class="pre">transfer\n#</span> <span class="pre">-P</span>  <span class="pre">show</span> <span class="pre">progress\n\n#</span> <span class="pre">Dry</span> <span class="pre">run</span> <span class="pre">(see</span> <span class="pre">what</span> <span class="pre">would</span> <span class="pre">be</span> <span class="pre">transferred)\nrsync</span> <span class="pre">-avzn</span> <span class="pre">folder/</span> <span class="pre">user@host:/path/\n\n#</span> <span class="pre">Delete</span> <span class="pre">files</span> <span class="pre">on</span> <span class="pre">destination</span> <span class="pre">not</span> <span class="pre">in</span> <span class="pre">source\nrsync</span> <span class="pre">-avz</span> <span class="pre">--delete</span> <span class="pre">folder/</span> <span class="pre">user@host:/path/\n</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#port-forwarding-n-n-local-port-forwarding-n-nbash-n-access-remote-service-on-local-port-nssh-l-8080-localhost-80-user-host-n-n-now-localhost-8080-remote-80-n-n-example-access-remote-database-nssh-l-5432-localhost-5432-user-db-server-npsql-h-localhost-p-5432-connects-to-remote-db-n">5. Port Forwarding\n\n### Local Port Forwarding\n\n<code class="docutils literal notranslate"><span class="pre">bash\n#</span> <span class="pre">Access</span> <span class="pre">remote</span> <span class="pre">service</span> <span class="pre">on</span> <span class="pre">local</span> <span class="pre">port\nssh</span> <span class="pre">-L</span> <span class="pre">8080:localhost:80</span> <span class="pre">user@host\n\n#</span> <span class="pre">Now</span> <span class="pre">localhost:8080</span> <span class="pre">→</span> <span class="pre">remote:80\n\n#</span> <span class="pre">Example:</span> <span class="pre">Access</span> <span class="pre">remote</span> <span class="pre">database\nssh</span> <span class="pre">-L</span> <span class="pre">5432:localhost:5432</span> <span class="pre">user@db-server\npsql</span> <span class="pre">-h</span> <span class="pre">localhost</span> <span class="pre">-p</span> <span class="pre">5432</span>  <span class="pre">#</span> <span class="pre">Connects</span> <span class="pre">to</span> <span class="pre">remote</span> <span class="pre">DB\n</span></code></a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#remote-port-forwarding-n-nbash-n-expose-local-service-to-remote-nssh-r-8080-localhost-3000-user-host-n-n-remote-can-access-your-local-3000-via-their-localhost-8080-n">Remote Port Forwarding\n\n<code class="docutils literal notranslate"><span class="pre">bash\n#</span> <span class="pre">Expose</span> <span class="pre">local</span> <span class="pre">service</span> <span class="pre">to</span> <span class="pre">remote\nssh</span> <span class="pre">-R</span> <span class="pre">8080:localhost:3000</span> <span class="pre">user@host\n\n#</span> <span class="pre">Remote</span> <span class="pre">can</span> <span class="pre">access</span> <span class="pre">your</span> <span class="pre">local:3000</span> <span class="pre">via</span> <span class="pre">their</span> <span class="pre">localhost:8080\n</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dynamic-port-forwarding-socks-proxy-n-nbash-n-create-socks-proxy-nssh-d-8080-user-host-n-n-configure-browser-to-use-localhost-8080-as-socks-proxy-n-now-all-traffic-goes-through-remote-server-n">Dynamic Port Forwarding (SOCKS Proxy)\n\n<code class="docutils literal notranslate"><span class="pre">bash\n#</span> <span class="pre">Create</span> <span class="pre">SOCKS</span> <span class="pre">proxy\nssh</span> <span class="pre">-D</span> <span class="pre">8080</span> <span class="pre">user@host\n\n#</span> <span class="pre">Configure</span> <span class="pre">browser</span> <span class="pre">to</span> <span class="pre">use</span> <span class="pre">localhost:8080</span> <span class="pre">as</span> <span class="pre">SOCKS</span> <span class="pre">proxy\n#</span> <span class="pre">Now</span> <span class="pre">all</span> <span class="pre">traffic</span> <span class="pre">goes</span> <span class="pre">through</span> <span class="pre">remote</span> <span class="pre">server\n</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tmux-persistent-sessions-n-n-why-tmux-n-n-keep-processes-running-after-disconnect-n-multiple-windows-in-one-ssh-session-n-split-panes-n-attach-detach-sessions-n-nbash-n-install-nsudo-apt-install-tmux-n-n-start-session-ntmux-n-n-new-named-session-ntmux-new-s-mysession-n-n-detach-ctrl-b-then-d-n-n-list-sessions-ntmux-ls-n-n-attach-to-session-ntmux-attach-t-mysession-n">6. tmux - Persistent Sessions\n\n### Why tmux?\n\n- Keep processes running after disconnect\n- Multiple windows in one SSH session\n- Split panes\n- Attach/detach sessions\n\n<code class="docutils literal notranslate"><span class="pre">bash\n#</span> <span class="pre">Install\nsudo</span> <span class="pre">apt</span> <span class="pre">install</span> <span class="pre">tmux\n\n#</span> <span class="pre">Start</span> <span class="pre">session\ntmux\n\n#</span> <span class="pre">New</span> <span class="pre">named</span> <span class="pre">session\ntmux</span> <span class="pre">new</span> <span class="pre">-s</span> <span class="pre">mysession\n\n#</span> <span class="pre">Detach:</span> <span class="pre">Ctrl+b,</span> <span class="pre">then</span> <span class="pre">d\n\n#</span> <span class="pre">List</span> <span class="pre">sessions\ntmux</span> <span class="pre">ls\n\n#</span> <span class="pre">Attach</span> <span class="pre">to</span> <span class="pre">session\ntmux</span> <span class="pre">attach</span> <span class="pre">-t</span> <span class="pre">mysession\n</span></code></a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tmux-key-bindings-n-nprefix-ctrl-b-press-first-then-command-n-n-nprefix-c-new-window-nprefix-n-next-window-nprefix-p-previous-window-nprefix-split-vertically-nprefix-split-horizontally-nprefix-o-switch-pane-nprefix-d-detach-session-nprefix-scroll-mode-q-to-exit-n">tmux Key Bindings\n\n<strong>Prefix:</strong> <code class="docutils literal notranslate"><span class="pre">Ctrl+b</span></code> (press first, then command)\n\n<code class="docutils literal notranslate"><span class="pre">\nPrefix</span> <span class="pre">+</span> <span class="pre">c</span>    <span class="pre">New</span> <span class="pre">window\nPrefix</span> <span class="pre">+</span> <span class="pre">n</span>    <span class="pre">Next</span> <span class="pre">window\nPrefix</span> <span class="pre">+</span> <span class="pre">p</span>    <span class="pre">Previous</span> <span class="pre">window\nPrefix</span> <span class="pre">+</span> <span class="pre">%</span>    <span class="pre">Split</span> <span class="pre">vertically\nPrefix</span> <span class="pre">+</span> <span class="pre">\"</span>    <span class="pre">Split</span> <span class="pre">horizontally\nPrefix</span> <span class="pre">+</span> <span class="pre">o</span>    <span class="pre">Switch</span> <span class="pre">pane\nPrefix</span> <span class="pre">+</span> <span class="pre">d</span>    <span class="pre">Detach</span> <span class="pre">session\nPrefix</span> <span class="pre">+</span> <span class="pre">[</span>    <span class="pre">Scroll</span> <span class="pre">mode</span> <span class="pre">(q</span> <span class="pre">to</span> <span class="pre">exit)\n</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ssh-security-n-n-hardening-ssh-n-nbash-n-edit-etc-ssh-sshd-config-n-n-disable-password-auth-keys-only-npasswordauthentication-no-n-n-disable-root-login-npermitrootlogin-no-n-n-change-default-port-nport-2222-n-n-allow-specific-users-only-nallowusers-alice-bob-n-n-restart-ssh-nsudo-systemctl-restart-sshd-n">7. SSH Security\n\n### Hardening SSH\n\n<code class="docutils literal notranslate"><span class="pre">bash\n#</span> <span class="pre">Edit</span> <span class="pre">/etc/ssh/sshd_config\n\n#</span> <span class="pre">Disable</span> <span class="pre">password</span> <span class="pre">auth</span> <span class="pre">(keys</span> <span class="pre">only)\nPasswordAuthentication</span> <span class="pre">no\n\n#</span> <span class="pre">Disable</span> <span class="pre">root</span> <span class="pre">login\nPermitRootLogin</span> <span class="pre">no\n\n#</span> <span class="pre">Change</span> <span class="pre">default</span> <span class="pre">port\nPort</span> <span class="pre">2222\n\n#</span> <span class="pre">Allow</span> <span class="pre">specific</span> <span class="pre">users</span> <span class="pre">only\nAllowUsers</span> <span class="pre">alice</span> <span class="pre">bob\n\n#</span> <span class="pre">Restart</span> <span class="pre">SSH\nsudo</span> <span class="pre">systemctl</span> <span class="pre">restart</span> <span class="pre">sshd\n</span></code></a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ssh-agent-n-nbash-n-start-agent-neval-ssh-agent-n-n-add-key-nssh-add-ssh-id-ed25519-n-n-list-loaded-keys-nssh-add-l-n-n-enable-agent-forwarding-nssh-a-user-host-n-now-you-can-ssh-from-remote-to-another-server-using-your-keys-n">SSH Agent\n\n<code class="docutils literal notranslate"><span class="pre">bash\n#</span> <span class="pre">Start</span> <span class="pre">agent\neval</span> <span class="pre">$(ssh-agent)\n\n#</span> <span class="pre">Add</span> <span class="pre">key\nssh-add</span> <span class="pre">~/.ssh/id_ed25519\n\n#</span> <span class="pre">List</span> <span class="pre">loaded</span> <span class="pre">keys\nssh-add</span> <span class="pre">-l\n\n#</span> <span class="pre">Enable</span> <span class="pre">agent</span> <span class="pre">forwarding\nssh</span> <span class="pre">-A</span> <span class="pre">user@host\n#</span> <span class="pre">Now</span> <span class="pre">you</span> <span class="pre">can</span> <span class="pre">SSH</span> <span class="pre">from</span> <span class="pre">remote</span> <span class="pre">to</span> <span class="pre">another</span> <span class="pre">server</span> <span class="pre">using</span> <span class="pre">your</span> <span class="pre">keys\n</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises-n-n1-generate-ssh-key-pair-n2-set-up-passwordless-ssh-n3-create-ssh-config-with-aliases-n4-transfer-files-with-rsync-n5-set-up-tmux-session-n-n-key-takeaways-n-n-use-ssh-keys-not-passwords-n-configure-ssh-config-n-rsync-scp-for-large-transfers-n-tmux-for-persistent-sessions-n-harden-ssh-for-security">🎯 Exercises\n\n1. Generate SSH key pair\n2. Set up passwordless SSH\n3. Create SSH config with aliases\n4. Transfer files with rsync\n5. Set up tmux session\n\n## 🎓 Key Takeaways\n\n- Use SSH keys, not passwords\n- Configure ~/.ssh/config\n- rsync &gt; scp for large transfers\n- tmux for persistent sessions\n- Harden SSH for security</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#next-steps-n-nnext-lesson-10-docker-containers-ipynb-n-n-resources-n-n-ssh-academy-n-tmux-cheat-sheet-n-rsync-examples">🚀 Next Steps\n\n<strong>Next lesson:</strong> <code class="docutils literal notranslate"><span class="pre">10_docker_containers.ipynb</span></code>\n\n## 📚 Resources\n\n- SSH Academy\n- tmux Cheat Sheet\n- rsync Examples</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Mykolas Perevicius
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

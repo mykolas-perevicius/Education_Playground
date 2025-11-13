@@ -1,0 +1,1268 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Lesson 4: Introduction to AI and Machine Learning &#8212; Education Playground</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=0c185eed" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=c73c0f3e"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'easy/04_intro_to_ai_and_ml';</script>
+    <script src="../_static/js/onboarding.js?v=557b7536"></script>
+    <link rel="canonical" href="https://mykolas-perevicius.github.io/Education_Playground/easy/04_intro_to_ai_and_ml.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Lesson 5: Computing Fundamentals" href="05_computing_fundamentals.html" />
+    <link rel="prev" title="Lesson 3: Basic Operations and Conditionals" href="03_basic_operations_and_conditionals.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../README.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Education Playground</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../00_calibration_test.html">🎯 Calibration Test - Find Your Level</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../beginner_scripts/README.html">🌱 Beginner Scripts (10 Python Files)</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="README_EASY.html">📗 Easy Level - Beginner</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="01_introduction_to_python.html">1. Introduction to Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02_variables_and_data_types.html">2. Variables and Data Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03_basic_operations_and_conditionals.html">3. Operations and Conditionals</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">4. Intro to AI and ML</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05_computing_fundamentals.html">5. Computing Fundamentals</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../medium/README_MEDIUM.html">📘 Medium Level - Intermediate</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../medium/01_functions_and_modules.html">1. Functions and Modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../medium/02_data_structures.html">2. Data Structures</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../medium/03_classes_and_oop.html">3. Classes and OOP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../medium/04_machine_learning_basics.html">4. Machine Learning Basics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../medium/05_data_analysis_with_pandas.html">5. Data Analysis with Pandas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../medium/06_algorithms_and_problem_solving.html">6. Algorithms and Problem Solving</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../hard/README_HARD.html">📕 Hard Level - Advanced</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../hard/01_advanced_functions_and_decorators.html">1. Advanced Functions &amp; Decorators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hard/02_generators_and_iterators.html">2. Generators and Iterators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hard/03_algorithms_and_complexity.html">3. Algorithms and Complexity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hard/04_deep_learning_and_neural_networks.html">4. Deep Learning &amp; Neural Networks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hard/05_advanced_ml_and_nlp.html">5. Advanced ML and NLP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hard/06_computer_systems_and_theory.html">6. Computer Systems and Theory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hard/07_project_ideas.html">7. Project Ideas &amp; Implementation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hard/08_classic_problems.html">Lesson 8: Classic Problems Collection</a></li>
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../hard/09_ctf_challenges.html">Lesson 9: Capture The Flag (CTF) - Hacker Training</a></li>
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../hard/10_performance_computing.html">10. Performance Computing ⚡ NEW!</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hard/11_cuda_and_parallel_computing.html">11. CUDA &amp; GPU Computing 🎮 NEW!</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../tools/README.html">🛠️ Developer Tools Track</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../tools/01_shell_basics.html">1. Shell and Command Line</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools/02_command_line_tools.html">2. Command Line Tools</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools/03_git_essentials.html">3. Git Essentials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools/04_text_editors.html">4. Text Editors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools/05_build_systems_cicd.html">5. Build Systems and CI/CD</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools/06_debugging_profiling.html">6. Debugging and Profiling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools/07_security_essentials.html">7. Security Essentials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools/08_package_management.html">8. Package Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools/09_ssh_remote_systems.html">9. SSH and Remote Systems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools/10_docker_containers.html">10. Docker and Containers</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../solutions/README_SOLUTIONS.html">📝 Solutions</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../solutions/easy_solutions.html">Easy Level - Complete Solutions</a></li>
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../solutions/medium_solutions.html">Medium Level - Complete Solutions</a></li>
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../solutions/hard_solutions.html">Hard Level - Complete Solutions</a></li>
+
+
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../solutions/tools_solutions.html">Developer Tools - Complete Solutions</a></li>
+
+
+
+
+
+
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../RESOURCES.html">📚 Learning Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../PYTHON_CHEATSHEET.html">⚡ Python Cheat Sheet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ML_AI_CHEATSHEET.html">🤖 ML/AI Cheat Sheet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../SETUP.html">🔧 Setup Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../RELEASE_NOTES_v2.0.0.html">🎉 Release Notes v2.0.0</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none"></div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Lesson 4: Introduction to AI and Machine Learning</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-you-ll-learn">What You’ll Learn</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#real-world-analogy">💡 Real-World Analogy</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-artificial-intelligence">1. What is Artificial Intelligence?</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#examples-of-ai-in-your-daily-life">Examples of AI in Your Daily Life:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#two-types-of-ai">Two Types of AI</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-machine-learning">2. What is Machine Learning?</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#traditional-programming-vs-machine-learning">Traditional Programming vs Machine Learning</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#three-main-types-of-machine-learning">Three Main Types of Machine Learning</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#key-ai-ml-terms">3. Key AI/ML Terms</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#your-first-ai-rule-based-systems">4. Your First AI: Rule-Based Systems</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#limitations-of-rule-based-ai">🤔 Limitations of Rule-Based AI</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-from-data-pattern-recognition">5. Learning from Data: Pattern Recognition</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#this-is-machine-learning">🎯 This is Machine Learning!</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#classification-categorizing-things">6. Classification: Categorizing Things</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#recommendation-systems">7. Recommendation Systems</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#real-world-ai-applications">8. Real-World AI Applications</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#healthcare">Healthcare 🏥</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#transportation">Transportation 🚗</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#finance">Finance 💰</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#entertainment">Entertainment 🎮</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#communication">Communication 💬</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#social-media">Social Media 📱</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ai-ethics-and-responsibility">9. AI Ethics and Responsibility</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#important-ethical-considerations">Important Ethical Considerations:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-future-of-ai">The Future of AI</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">📝 Exercises</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-1-age-based-activity-recommender">Exercise 1: Age-Based Activity Recommender</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-2-simple-grade-predictor">Exercise 2: Simple Grade Predictor</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-3-movie-genre-classifier">Exercise 3: Movie Genre Classifier</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-4-music-recommender">Exercise 4: Music Recommender</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-5-simple-password-strength-checker">Exercise 5: Simple Password Strength Checker</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-6-temperature-predictor">Exercise 6: Temperature Predictor</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#self-check-quiz">✅ Self-Check Quiz</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#key-takeaways">🎯 Key Takeaways</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#next-steps">🚀 Next Steps</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pro-tips">💡 Pro Tips</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fun-facts">🌟 Fun Facts</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="lesson-4-introduction-to-ai-and-machine-learning">
+<h1>Lesson 4: Introduction to AI and Machine Learning<a class="headerlink" href="#lesson-4-introduction-to-ai-and-machine-learning" title="Link to this heading">#</a></h1>
+<p>Welcome to the fascinating world of <strong>Artificial Intelligence</strong>! AI is everywhere - from your phone’s voice assistant to Netflix recommendations to self-driving cars.</p>
+<section id="what-you-ll-learn">
+<h2>What You’ll Learn<a class="headerlink" href="#what-you-ll-learn" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>What is Artificial Intelligence and Machine Learning?</p></li>
+<li><p>Different types of AI and ML</p></li>
+<li><p>How computers “learn” from data</p></li>
+<li><p>Building simple AI programs in Python</p></li>
+<li><p>Real-world AI applications</p></li>
+<li><p>AI ethics and responsibility</p></li>
+</ul>
+</section>
+<section id="real-world-analogy">
+<h2>💡 Real-World Analogy<a class="headerlink" href="#real-world-analogy" title="Link to this heading">#</a></h2>
+<p>Think of AI like teaching a child:</p>
+<ul class="simple">
+<li><p>You show them examples (training)</p></li>
+<li><p>They learn patterns (“hot stoves burn”)</p></li>
+<li><p>They make predictions (“this stove is hot, don’t touch!”)</p></li>
+</ul>
+<p>AI works the same way - it learns from examples to make predictions!</p>
+</section>
+<hr class="docutils" />
+<section id="what-is-artificial-intelligence">
+<h2>1. What is Artificial Intelligence?<a class="headerlink" href="#what-is-artificial-intelligence" title="Link to this heading">#</a></h2>
+<p><strong>Artificial Intelligence (AI)</strong> is when computers can perform tasks that typically require human intelligence.</p>
+<section id="examples-of-ai-in-your-daily-life">
+<h3>Examples of AI in Your Daily Life:<a class="headerlink" href="#examples-of-ai-in-your-daily-life" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>📱 <strong>Siri/Alexa</strong>: Understanding and responding to your voice</p></li>
+<li><p>📧 <strong>Email Spam Filters</strong>: Detecting which emails are junk</p></li>
+<li><p>🎬 <strong>Netflix/YouTube</strong>: Recommending shows you might like</p></li>
+<li><p>📸 <strong>Photo Apps</strong>: Recognizing faces and organizing photos</p></li>
+<li><p>🗺️ <strong>Google Maps</strong>: Predicting traffic and best routes</p></li>
+<li><p>🎮 <strong>Video Game Enemies</strong>: Adapting to your playing style</p></li>
+<li><p>🛒 <strong>Amazon</strong>: “Customers who bought this also bought…”</p></li>
+<li><p>🚗 <strong>Self-Driving Cars</strong>: Navigating roads autonomously</p></li>
+</ul>
+</section>
+<section id="two-types-of-ai">
+<h3>Two Types of AI<a class="headerlink" href="#two-types-of-ai" title="Link to this heading">#</a></h3>
+<p><strong>1. Narrow AI (Weak AI)</strong> - Most common today</p>
+<ul class="simple">
+<li><p>Good at ONE specific task</p></li>
+<li><p>Examples: Face recognition, playing chess, translating languages</p></li>
+<li><p>Can’t do anything outside its specific task</p></li>
+</ul>
+<p><strong>2. General AI (Strong AI)</strong> - Future goal</p>
+<ul class="simple">
+<li><p>Can do ANY intellectual task a human can</p></li>
+<li><p>Can learn and adapt to new situations</p></li>
+<li><p><strong>Doesn’t exist yet!</strong> (despite what movies show)</p></li>
+</ul>
+</section>
+</section>
+<hr class="docutils" />
+<section id="what-is-machine-learning">
+<h2>2. What is Machine Learning?<a class="headerlink" href="#what-is-machine-learning" title="Link to this heading">#</a></h2>
+<p><strong>Machine Learning (ML)</strong> is a type of AI where computers <strong>learn from data</strong> instead of being explicitly programmed with rules.</p>
+<section id="traditional-programming-vs-machine-learning">
+<h3>Traditional Programming vs Machine Learning<a class="headerlink" href="#traditional-programming-vs-machine-learning" title="Link to this heading">#</a></h3>
+<p><strong>Traditional Programming:</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Rules + Data → Computer → Answer
+</pre></div>
+</div>
+<p>Example: “If email contains ‘FREE MONEY’, mark as spam”</p>
+<p><strong>Machine Learning:</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Data + Answers → Computer → Rules (Model)
+</pre></div>
+</div>
+<p>Example: Show computer 10,000 spam emails and 10,000 real emails. Computer learns patterns automatically!</p>
+</section>
+<section id="three-main-types-of-machine-learning">
+<h3>Three Main Types of Machine Learning<a class="headerlink" href="#three-main-types-of-machine-learning" title="Link to this heading">#</a></h3>
+<p><strong>1. Supervised Learning</strong> (Learning with a teacher)</p>
+<ul class="simple">
+<li><p>You provide <strong>labeled data</strong> (examples with correct answers)</p></li>
+<li><p>AI learns the pattern, then predicts on new data</p></li>
+<li><p>Example: Show AI 1000 cat photos labeled “cat” and 1000 dog photos labeled “dog”. Now it can recognize new cats and dogs!</p></li>
+</ul>
+<p><strong>2. Unsupervised Learning</strong> (Learning without a teacher)</p>
+<ul class="simple">
+<li><p>You provide <strong>unlabeled data</strong> (no correct answers)</p></li>
+<li><p>AI finds patterns and groups similar things together</p></li>
+<li><p>Example: Give AI customer shopping data. It discovers “people who buy diapers often buy beer” (true story!)</p></li>
+</ul>
+<p><strong>3. Reinforcement Learning</strong> (Learning through trial and error)</p>
+<ul class="simple">
+<li><p>AI tries different actions and gets rewards/penalties</p></li>
+<li><p>Learns which actions lead to best outcomes</p></li>
+<li><p>Example: AI learning to play video games by trying moves and getting points</p></li>
+</ul>
+</section>
+</section>
+<hr class="docutils" />
+<section id="key-ai-ml-terms">
+<h2>3. Key AI/ML Terms<a class="headerlink" href="#key-ai-ml-terms" title="Link to this heading">#</a></h2>
+<p>Let’s learn the vocabulary of AI:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Term</p></th>
+<th class="head"><p>Definition</p></th>
+<th class="head"><p>Example</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Training</strong></p></td>
+<td><p>Teaching AI by showing it examples</p></td>
+<td><p>Showing 1000 spam emails</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Model</strong></p></td>
+<td><p>The AI’s learned understanding of patterns</p></td>
+<td><p>The spam filter’s knowledge</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Prediction</strong></p></td>
+<td><p>AI’s guess about new, unseen data</p></td>
+<td><p>“This email is probably spam”</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Features</strong></p></td>
+<td><p>Properties used to make decisions</p></td>
+<td><p>Email length, sender, words used</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Label</strong></p></td>
+<td><p>The correct answer in training data</p></td>
+<td><p>“spam” or “not spam”</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Accuracy</strong></p></td>
+<td><p>How often the AI is correct</p></td>
+<td><p>“95% of predictions are right”</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Dataset</strong></p></td>
+<td><p>Collection of data used for training</p></td>
+<td><p>10,000 emails with labels</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<hr class="docutils" />
+<section id="your-first-ai-rule-based-systems">
+<h2>4. Your First AI: Rule-Based Systems<a class="headerlink" href="#your-first-ai-rule-based-systems" title="Link to this heading">#</a></h2>
+<p>Before machine learning, AI used <strong>rules</strong> (if-then statements). Let’s build some!</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Example 1: Simple number classifier</span>
+<span class="k">def</span> <span class="nf">classify_number</span><span class="p">(</span><span class="n">number</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A simple rule-based AI that classifies numbers.</span>
+<span class="sd">    This isn&#39;t &quot;learning&quot; - we explicitly program the rules.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">number</span> <span class="o">&gt;</span> <span class="mi">50</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s2">&quot;BIG&quot;</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s2">&quot;SMALL&quot;</span>
+
+<span class="c1"># Test our simple AI</span>
+<span class="n">test_numbers</span> <span class="o">=</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">75</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">50</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">num</span> <span class="ow">in</span> <span class="n">test_numbers</span><span class="p">:</span>
+    <span class="n">prediction</span> <span class="o">=</span> <span class="n">classify_number</span><span class="p">(</span><span class="n">num</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Number </span><span class="si">{</span><span class="n">num</span><span class="si">}</span><span class="s2"> is classified as: </span><span class="si">{</span><span class="n">prediction</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Example 2: Weather-based activity recommender</span>
+<span class="k">def</span> <span class="nf">recommend_activity</span><span class="p">(</span><span class="n">temperature</span><span class="p">,</span> <span class="n">is_raining</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Rule-based AI that recommends activities based on weather.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">is_raining</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s2">&quot;Stay inside and read a book! 📚&quot;</span>
+    <span class="k">elif</span> <span class="n">temperature</span> <span class="o">&gt;</span> <span class="mi">30</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s2">&quot;Go swimming! 🏊&quot;</span>
+    <span class="k">elif</span> <span class="n">temperature</span> <span class="o">&gt;</span> <span class="mi">20</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s2">&quot;Perfect for a walk! 🚶&quot;</span>
+    <span class="k">elif</span> <span class="n">temperature</span> <span class="o">&gt;</span> <span class="mi">10</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s2">&quot;Wear a jacket and go hiking! 🥾&quot;</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s2">&quot;Stay warm inside! ☕&quot;</span>
+
+<span class="c1"># Test different weather conditions</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Weather AI Recommendations:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">recommend_activity</span><span class="p">(</span><span class="mi">25</span><span class="p">,</span> <span class="kc">False</span><span class="p">))</span>  <span class="c1"># Nice day</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">recommend_activity</span><span class="p">(</span><span class="mi">25</span><span class="p">,</span> <span class="kc">True</span><span class="p">))</span>   <span class="c1"># Rainy</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">recommend_activity</span><span class="p">(</span><span class="mi">35</span><span class="p">,</span> <span class="kc">False</span><span class="p">))</span>  <span class="c1"># Hot day</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">recommend_activity</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="kc">False</span><span class="p">))</span>   <span class="c1"># Cold day</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="limitations-of-rule-based-ai">
+<h3>🤔 Limitations of Rule-Based AI<a class="headerlink" href="#limitations-of-rule-based-ai" title="Link to this heading">#</a></h3>
+<p>Rule-based systems work, but they have problems:</p>
+<ul class="simple">
+<li><p><strong>You must think of EVERY rule</strong> - What about temperature 20.5? 19.9?</p></li>
+<li><p><strong>Hard to handle complex patterns</strong> - Recognizing faces would need millions of rules!</p></li>
+<li><p><strong>Can’t adapt</strong> - If conditions change, you must manually update rules</p></li>
+</ul>
+<p>This is why <strong>Machine Learning</strong> is better - it learns patterns automatically!</p>
+</section>
+</section>
+<hr class="docutils" />
+<section id="learning-from-data-pattern-recognition">
+<h2>5. Learning from Data: Pattern Recognition<a class="headerlink" href="#learning-from-data-pattern-recognition" title="Link to this heading">#</a></h2>
+<p>Let’s see how AI can find patterns in data!</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Training data: Hours studied → Test grade</span>
+<span class="c1"># This is LABELED data (we know the correct answers)</span>
+<span class="n">study_hours</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">]</span>
+<span class="n">test_grades</span> <span class="o">=</span> <span class="p">[</span><span class="mi">50</span><span class="p">,</span> <span class="mi">55</span><span class="p">,</span> <span class="mi">60</span><span class="p">,</span> <span class="mi">65</span><span class="p">,</span> <span class="mi">70</span><span class="p">,</span> <span class="mi">75</span><span class="p">,</span> <span class="mi">80</span><span class="p">,</span> <span class="mi">85</span><span class="p">]</span>
+
+<span class="c1"># Let&#39;s visualize the pattern</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Training Data:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Hours | Grade&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;------+------&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">hours</span><span class="p">,</span> <span class="n">grade</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">study_hours</span><span class="p">,</span> <span class="n">test_grades</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  </span><span class="si">{</span><span class="n">hours</span><span class="si">}</span><span class="s2">   |  </span><span class="si">{</span><span class="n">grade</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Can you see the pattern?</span>
+<span class="c1"># Each additional hour of study adds about 5 points to the grade!</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Now let&#39;s create a simple &quot;model&quot; that learned this pattern</span>
+<span class="k">def</span> <span class="nf">predict_grade</span><span class="p">(</span><span class="n">hours</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A simple ML model that predicts test grade based on study hours.</span>
+<span class="sd">    </span>
+<span class="sd">    Pattern discovered from data:</span>
+<span class="sd">    - Base grade: 45 (if you study 0 hours)</span>
+<span class="sd">    - Each hour adds: 5 points</span>
+<span class="sd">    </span>
+<span class="sd">    Formula: grade = 45 + (hours * 5)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">base_grade</span> <span class="o">=</span> <span class="mi">45</span>
+    <span class="n">points_per_hour</span> <span class="o">=</span> <span class="mi">5</span>
+    <span class="n">predicted_grade</span> <span class="o">=</span> <span class="n">base_grade</span> <span class="o">+</span> <span class="p">(</span><span class="n">hours</span> <span class="o">*</span> <span class="n">points_per_hour</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">predicted_grade</span>
+
+<span class="c1"># Test predictions on NEW data (data the model hasn&#39;t seen!)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Predictions on new data:&quot;</span><span class="p">)</span>
+<span class="n">test_cases</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">10</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">hours</span> <span class="ow">in</span> <span class="n">test_cases</span><span class="p">:</span>
+    <span class="n">prediction</span> <span class="o">=</span> <span class="n">predict_grade</span><span class="p">(</span><span class="n">hours</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Study </span><span class="si">{</span><span class="n">hours</span><span class="si">}</span><span class="s2"> hours → Predicted grade: </span><span class="si">{</span><span class="n">prediction</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="this-is-machine-learning">
+<h3>🎯 This is Machine Learning!<a class="headerlink" href="#this-is-machine-learning" title="Link to this heading">#</a></h3>
+<p>What we just did:</p>
+<ol class="arabic simple">
+<li><p>✅ <strong>Collected training data</strong> (study hours and grades)</p></li>
+<li><p>✅ <strong>Found a pattern</strong> (5 points per hour)</p></li>
+<li><p>✅ <strong>Created a model</strong> (the prediction function)</p></li>
+<li><p>✅ <strong>Made predictions</strong> on new, unseen data</p></li>
+</ol>
+<p>This is the essence of <strong>supervised learning</strong>!</p>
+</section>
+</section>
+<hr class="docutils" />
+<section id="classification-categorizing-things">
+<h2>6. Classification: Categorizing Things<a class="headerlink" href="#classification-categorizing-things" title="Link to this heading">#</a></h2>
+<p><strong>Classification</strong> is when AI puts things into categories. Let’s build a simple classifier!</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Example: Email spam detector (simplified)</span>
+<span class="c1"># In real ML, this would learn from thousands of examples</span>
+<span class="c1"># Here we&#39;ll use simple rules to demonstrate the concept</span>
+
+<span class="n">spam_words</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;free&quot;</span><span class="p">,</span> <span class="s2">&quot;winner&quot;</span><span class="p">,</span> <span class="s2">&quot;click here&quot;</span><span class="p">,</span> <span class="s2">&quot;urgent&quot;</span><span class="p">,</span> <span class="s2">&quot;money&quot;</span><span class="p">,</span> <span class="s2">&quot;prize&quot;</span><span class="p">,</span> <span class="s2">&quot;congratulations&quot;</span><span class="p">]</span>
+
+<span class="k">def</span> <span class="nf">is_spam</span><span class="p">(</span><span class="n">email_text</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Simple spam classifier.</span>
+<span class="sd">    Checks if email contains suspicious words.</span>
+<span class="sd">    </span>
+<span class="sd">    Returns: &quot;SPAM&quot; or &quot;NOT SPAM&quot;</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">email_lower</span> <span class="o">=</span> <span class="n">email_text</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+    <span class="n">spam_word_count</span> <span class="o">=</span> <span class="mi">0</span>
+    
+    <span class="c1"># Count how many spam words appear</span>
+    <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">spam_words</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">email_lower</span><span class="p">:</span>
+            <span class="n">spam_word_count</span> <span class="o">+=</span> <span class="mi">1</span>
+    
+    <span class="c1"># Decision rule: 2 or more spam words → probably spam</span>
+    <span class="k">if</span> <span class="n">spam_word_count</span> <span class="o">&gt;=</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s2">&quot;SPAM&quot;</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s2">&quot;NOT SPAM&quot;</span>
+
+<span class="c1"># Test the spam detector</span>
+<span class="n">emails</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;Hey, want to grab lunch tomorrow?&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;CONGRATULATIONS! You are a WINNER! Click here to claim your FREE prize!&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Meeting scheduled for 3pm today.&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;URGENT: Free money waiting for you! Click now!&quot;</span>
+<span class="p">]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Email Classification Results:&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">email</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">emails</span><span class="p">,</span> <span class="mi">1</span><span class="p">):</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">is_spam</span><span class="p">(</span><span class="n">email</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Email </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">email</span><span class="p">[:</span><span class="mi">50</span><span class="p">]</span><span class="si">}</span><span class="s2">...&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Classification: </span><span class="si">{</span><span class="n">result</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="recommendation-systems">
+<h2>7. Recommendation Systems<a class="headerlink" href="#recommendation-systems" title="Link to this heading">#</a></h2>
+<p>Ever wonder how Netflix knows what you might like? <strong>Recommendation systems</strong> are a type of AI!</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Simple movie recommender based on genre preference</span>
+<span class="n">movies</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;Action&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;Die Hard&quot;</span><span class="p">,</span> <span class="s2">&quot;Mad Max&quot;</span><span class="p">,</span> <span class="s2">&quot;John Wick&quot;</span><span class="p">,</span> <span class="s2">&quot;The Bourne Identity&quot;</span><span class="p">],</span>
+    <span class="s2">&quot;Comedy&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;Superbad&quot;</span><span class="p">,</span> <span class="s2">&quot;The Hangover&quot;</span><span class="p">,</span> <span class="s2">&quot;Bridesmaids&quot;</span><span class="p">,</span> <span class="s2">&quot;Step Brothers&quot;</span><span class="p">],</span>
+    <span class="s2">&quot;Sci-Fi&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;Inception&quot;</span><span class="p">,</span> <span class="s2">&quot;The Matrix&quot;</span><span class="p">,</span> <span class="s2">&quot;Interstellar&quot;</span><span class="p">,</span> <span class="s2">&quot;Blade Runner&quot;</span><span class="p">],</span>
+    <span class="s2">&quot;Horror&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;The Shining&quot;</span><span class="p">,</span> <span class="s2">&quot;Get Out&quot;</span><span class="p">,</span> <span class="s2">&quot;A Quiet Place&quot;</span><span class="p">,</span> <span class="s2">&quot;Hereditary&quot;</span><span class="p">],</span>
+    <span class="s2">&quot;Drama&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;The Shawshank Redemption&quot;</span><span class="p">,</span> <span class="s2">&quot;Forrest Gump&quot;</span><span class="p">,</span> <span class="s2">&quot;The Godfather&quot;</span><span class="p">,</span> <span class="s2">&quot;Parasite&quot;</span><span class="p">]</span>
+<span class="p">}</span>
+
+<span class="k">def</span> <span class="nf">recommend_movies</span><span class="p">(</span><span class="n">favorite_genre</span><span class="p">,</span> <span class="n">num_recommendations</span><span class="o">=</span><span class="mi">3</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Simple recommendation AI that suggests movies based on genre.</span>
+<span class="sd">    </span>
+<span class="sd">    In real systems, this would use:</span>
+<span class="sd">    - Your viewing history</span>
+<span class="sd">    - Ratings you&#39;ve given</span>
+<span class="sd">    - What similar users watched</span>
+<span class="sd">    - Complex algorithms</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">favorite_genre</span> <span class="ow">in</span> <span class="n">movies</span><span class="p">:</span>
+        <span class="n">recommendations</span> <span class="o">=</span> <span class="n">movies</span><span class="p">[</span><span class="n">favorite_genre</span><span class="p">][:</span><span class="n">num_recommendations</span><span class="p">]</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">🎬 Since you like </span><span class="si">{</span><span class="n">favorite_genre</span><span class="si">}</span><span class="s2">, you might enjoy:&quot;</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">movie</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">recommendations</span><span class="p">,</span> <span class="mi">1</span><span class="p">):</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;   </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">. </span><span class="si">{</span><span class="n">movie</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">❌ Genre &#39;</span><span class="si">{</span><span class="n">favorite_genre</span><span class="si">}</span><span class="s2">&#39; not found.&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Available genres: </span><span class="si">{</span><span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">movies</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Test the recommender</span>
+<span class="n">recommend_movies</span><span class="p">(</span><span class="s2">&quot;Action&quot;</span><span class="p">)</span>
+<span class="n">recommend_movies</span><span class="p">(</span><span class="s2">&quot;Sci-Fi&quot;</span><span class="p">)</span>
+<span class="n">recommend_movies</span><span class="p">(</span><span class="s2">&quot;Horror&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># More advanced: Recommender based on user ratings</span>
+<span class="c1"># This simulates &quot;collaborative filtering&quot; - recommending based on similar users</span>
+
+<span class="n">user_ratings</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;Alice&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;Inception&quot;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span> <span class="s2">&quot;The Matrix&quot;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span> <span class="s2">&quot;Die Hard&quot;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="s2">&quot;Superbad&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">},</span>
+    <span class="s2">&quot;Bob&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;Inception&quot;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span> <span class="s2">&quot;The Matrix&quot;</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span> <span class="s2">&quot;Interstellar&quot;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span> <span class="s2">&quot;Blade Runner&quot;</span><span class="p">:</span> <span class="mi">4</span><span class="p">},</span>
+    <span class="s2">&quot;Charlie&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;Superbad&quot;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span> <span class="s2">&quot;The Hangover&quot;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span> <span class="s2">&quot;Step Brothers&quot;</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span> <span class="s2">&quot;Die Hard&quot;</span><span class="p">:</span> <span class="mi">3</span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">def</span> <span class="nf">find_similar_user</span><span class="p">(</span><span class="n">target_user</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Find a user with similar taste.</span>
+<span class="sd">    In real systems, this uses complex similarity calculations.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">target_ratings</span> <span class="o">=</span> <span class="n">user_ratings</span><span class="p">[</span><span class="n">target_user</span><span class="p">]</span>
+    
+    <span class="c1"># Simple similarity: count how many movies they both rated highly</span>
+    <span class="n">best_match</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">best_match_score</span> <span class="o">=</span> <span class="mi">0</span>
+    
+    <span class="k">for</span> <span class="n">user</span><span class="p">,</span> <span class="n">ratings</span> <span class="ow">in</span> <span class="n">user_ratings</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="k">if</span> <span class="n">user</span> <span class="o">==</span> <span class="n">target_user</span><span class="p">:</span>
+            <span class="k">continue</span>
+        
+        <span class="c1"># Count shared high ratings</span>
+        <span class="n">similarity</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">movie</span> <span class="ow">in</span> <span class="n">target_ratings</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">movie</span> <span class="ow">in</span> <span class="n">ratings</span><span class="p">:</span>
+                <span class="c1"># Both like the movie?</span>
+                <span class="k">if</span> <span class="n">target_ratings</span><span class="p">[</span><span class="n">movie</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="mi">4</span> <span class="ow">and</span> <span class="n">ratings</span><span class="p">[</span><span class="n">movie</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="mi">4</span><span class="p">:</span>
+                    <span class="n">similarity</span> <span class="o">+=</span> <span class="mi">1</span>
+        
+        <span class="k">if</span> <span class="n">similarity</span> <span class="o">&gt;</span> <span class="n">best_match_score</span><span class="p">:</span>
+            <span class="n">best_match</span> <span class="o">=</span> <span class="n">user</span>
+            <span class="n">best_match_score</span> <span class="o">=</span> <span class="n">similarity</span>
+    
+    <span class="k">return</span> <span class="n">best_match</span>
+
+<span class="k">def</span> <span class="nf">recommend_from_similar_user</span><span class="p">(</span><span class="n">target_user</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Recommend movies that similar users liked.</span>
+<span class="sd">    This is &quot;collaborative filtering&quot; - the basis of Netflix recommendations!</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">similar_user</span> <span class="o">=</span> <span class="n">find_similar_user</span><span class="p">(</span><span class="n">target_user</span><span class="p">)</span>
+    
+    <span class="k">if</span> <span class="n">similar_user</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">👥 </span><span class="si">{</span><span class="n">target_user</span><span class="si">}</span><span class="s2">, you have similar taste to </span><span class="si">{</span><span class="n">similar_user</span><span class="si">}</span><span class="s2">!&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">🎬 </span><span class="si">{</span><span class="n">similar_user</span><span class="si">}</span><span class="s2"> also enjoyed:&quot;</span><span class="p">)</span>
+        
+        <span class="n">target_movies</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">user_ratings</span><span class="p">[</span><span class="n">target_user</span><span class="p">]</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+        <span class="n">similar_movies</span> <span class="o">=</span> <span class="n">user_ratings</span><span class="p">[</span><span class="n">similar_user</span><span class="p">]</span>
+        
+        <span class="k">for</span> <span class="n">movie</span><span class="p">,</span> <span class="n">rating</span> <span class="ow">in</span> <span class="n">similar_movies</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">if</span> <span class="n">movie</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">target_movies</span> <span class="ow">and</span> <span class="n">rating</span> <span class="o">&gt;=</span> <span class="mi">4</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;   - </span><span class="si">{</span><span class="n">movie</span><span class="si">}</span><span class="s2"> (</span><span class="si">{</span><span class="n">rating</span><span class="si">}</span><span class="s2">/5 stars)&quot;</span><span class="p">)</span>
+
+<span class="c1"># Test collaborative filtering</span>
+<span class="n">recommend_from_similar_user</span><span class="p">(</span><span class="s2">&quot;Alice&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="real-world-ai-applications">
+<h2>8. Real-World AI Applications<a class="headerlink" href="#real-world-ai-applications" title="Link to this heading">#</a></h2>
+<p>Let’s see where AI is being used today!</p>
+<section id="healthcare">
+<h3>Healthcare 🏥<a class="headerlink" href="#healthcare" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Detecting diseases from X-rays and MRI scans</p></li>
+<li><p>Predicting patient health risks</p></li>
+<li><p>Drug discovery and development</p></li>
+<li><p>Personalized treatment recommendations</p></li>
+</ul>
+</section>
+<section id="transportation">
+<h3>Transportation 🚗<a class="headerlink" href="#transportation" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Self-driving cars (Tesla, Waymo)</p></li>
+<li><p>Traffic prediction and optimization</p></li>
+<li><p>Ride-sharing route optimization (Uber, Lyft)</p></li>
+<li><p>Airline pricing and scheduling</p></li>
+</ul>
+</section>
+<section id="finance">
+<h3>Finance 💰<a class="headerlink" href="#finance" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Fraud detection on credit cards</p></li>
+<li><p>Stock market prediction</p></li>
+<li><p>Loan approval decisions</p></li>
+<li><p>Algorithmic trading</p></li>
+</ul>
+</section>
+<section id="entertainment">
+<h3>Entertainment 🎮<a class="headerlink" href="#entertainment" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Netflix/Spotify recommendations</p></li>
+<li><p>Video game AI opponents</p></li>
+<li><p>Content moderation (removing harmful content)</p></li>
+<li><p>Music and art generation</p></li>
+</ul>
+</section>
+<section id="communication">
+<h3>Communication 💬<a class="headerlink" href="#communication" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Language translation (Google Translate)</p></li>
+<li><p>Voice assistants (Siri, Alexa, Google Assistant)</p></li>
+<li><p>Autocomplete and spell check</p></li>
+<li><p>Chatbots for customer service</p></li>
+</ul>
+</section>
+<section id="social-media">
+<h3>Social Media 📱<a class="headerlink" href="#social-media" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Photo tagging and face recognition</p></li>
+<li><p>News feed personalization</p></li>
+<li><p>Ad targeting</p></li>
+<li><p>Identifying fake news</p></li>
+</ul>
+</section>
+</section>
+<hr class="docutils" />
+<section id="ai-ethics-and-responsibility">
+<h2>9. AI Ethics and Responsibility<a class="headerlink" href="#ai-ethics-and-responsibility" title="Link to this heading">#</a></h2>
+<p>AI is powerful, but we must use it responsibly!</p>
+<section id="important-ethical-considerations">
+<h3>Important Ethical Considerations:<a class="headerlink" href="#important-ethical-considerations" title="Link to this heading">#</a></h3>
+<p><strong>1. Bias in AI</strong> ⚠️</p>
+<ul class="simple">
+<li><p>AI learns from data. If data is biased, AI will be biased!</p></li>
+<li><p>Example: Hiring AI trained on mostly male resumes might discriminate against women</p></li>
+<li><p>Solution: Use diverse, representative training data</p></li>
+</ul>
+<p><strong>2. Privacy</strong> 🔒</p>
+<ul class="simple">
+<li><p>AI often needs personal data to work</p></li>
+<li><p>Example: Face recognition can be used for surveillance</p></li>
+<li><p>Question: Should companies track everything you do online?</p></li>
+</ul>
+<p><strong>3. Transparency</strong> 🔍</p>
+<ul class="simple">
+<li><p>Many AI systems are “black boxes” - we don’t know how they make decisions</p></li>
+<li><p>Example: If AI denies your loan, shouldn’t you know why?</p></li>
+<li><p>Challenge: Making AI explainable</p></li>
+</ul>
+<p><strong>4. Job Displacement</strong> 👷</p>
+<ul class="simple">
+<li><p>AI automation may replace some jobs</p></li>
+<li><p>Example: Self-checkout machines, autonomous vehicles</p></li>
+<li><p>Question: How do we help people transition to new careers?</p></li>
+</ul>
+<p><strong>5. Safety and Security</strong> 🛡️</p>
+<ul class="simple">
+<li><p>What if AI makes a mistake in a critical system?</p></li>
+<li><p>Example: Self-driving car crash, medical diagnosis error</p></li>
+<li><p>Need: Rigorous testing and fail-safes</p></li>
+</ul>
+</section>
+<section id="the-future-of-ai">
+<h3>The Future of AI<a class="headerlink" href="#the-future-of-ai" title="Link to this heading">#</a></h3>
+<p>As you learn AI, remember:</p>
+<ul class="simple">
+<li><p><strong>With great power comes great responsibility</strong></p></li>
+<li><p>Consider the impact of the AI systems you build</p></li>
+<li><p>Strive for fairness, transparency, and safety</p></li>
+<li><p>AI should help humans, not harm them!</p></li>
+</ul>
+</section>
+</section>
+<hr class="docutils" />
+<section id="exercises">
+<h2>📝 Exercises<a class="headerlink" href="#exercises" title="Link to this heading">#</a></h2>
+<section id="exercise-1-age-based-activity-recommender">
+<h3>Exercise 1: Age-Based Activity Recommender<a class="headerlink" href="#exercise-1-age-based-activity-recommender" title="Link to this heading">#</a></h3>
+<p>Create a function that recommends an activity based on age:</p>
+<ul class="simple">
+<li><p>Kids (0-12): “Play in the park”</p></li>
+<li><p>Teens (13-19): “Hang out with friends”</p></li>
+<li><p>Young Adults (20-30): “Explore career opportunities”</p></li>
+<li><p>Adults (31-64): “Focus on career and family”</p></li>
+<li><p>Seniors (65+): “Enjoy retirement and hobbies”</p></li>
+</ul>
+<p>Test it with different ages!</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="exercise-2-simple-grade-predictor">
+<h3>Exercise 2: Simple Grade Predictor<a class="headerlink" href="#exercise-2-simple-grade-predictor" title="Link to this heading">#</a></h3>
+<p>Look at this pattern:</p>
+<ul class="simple">
+<li><p>0 hours of homework → 40 grade</p></li>
+<li><p>1 hour of homework → 50 grade</p></li>
+<li><p>2 hours of homework → 60 grade</p></li>
+<li><p>3 hours of homework → 70 grade</p></li>
+</ul>
+<p>Create a function that predicts the grade based on homework hours. What pattern do you see? Test your function with 5 hours and 10 hours.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="exercise-3-movie-genre-classifier">
+<h3>Exercise 3: Movie Genre Classifier<a class="headerlink" href="#exercise-3-movie-genre-classifier" title="Link to this heading">#</a></h3>
+<p>Create a function that takes a movie description and classifies it:</p>
+<ul class="simple">
+<li><p>If description contains “space”, “robot”, “future” → “Sci-Fi”</p></li>
+<li><p>If description contains “funny”, “laugh”, “joke” → “Comedy”</p></li>
+<li><p>If description contains “scary”, “horror”, “fear” → “Horror”</p></li>
+<li><p>Otherwise → “Drama”</p></li>
+</ul>
+<p>Test with these descriptions:</p>
+<ul class="simple">
+<li><p>“A funny story about a clumsy spy”</p></li>
+<li><p>“Robots take over the future of space travel”</p></li>
+<li><p>“A scary tale of horror in an old house”</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="exercise-4-music-recommender">
+<h3>Exercise 4: Music Recommender<a class="headerlink" href="#exercise-4-music-recommender" title="Link to this heading">#</a></h3>
+<p>Create a simple music recommendation system:</p>
+<ol class="arabic simple">
+<li><p>Make a dictionary with music genres as keys and song lists as values</p></li>
+<li><p>Create a function that takes a mood (“happy”, “sad”, “energetic”, “relaxed”)</p></li>
+<li><p>Map moods to genres (e.g., “happy” → “Pop”, “energetic” → “Rock”)</p></li>
+<li><p>Return song recommendations for that mood</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="exercise-5-simple-password-strength-checker">
+<h3>Exercise 5: Simple Password Strength Checker<a class="headerlink" href="#exercise-5-simple-password-strength-checker" title="Link to this heading">#</a></h3>
+<p>Create an AI that checks password strength:</p>
+<ul class="simple">
+<li><p>“Weak” if less than 8 characters</p></li>
+<li><p>“Medium” if 8-12 characters</p></li>
+<li><p>“Strong” if more than 12 characters AND contains numbers</p></li>
+</ul>
+<p>Test with: “pass”, “password123”, “MyS3cur3P&#64;ssw0rd!”</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="exercise-6-temperature-predictor">
+<h3>Exercise 6: Temperature Predictor<a class="headerlink" href="#exercise-6-temperature-predictor" title="Link to this heading">#</a></h3>
+<p>You have temperature data by month:</p>
+<ul class="simple">
+<li><p>Month 1 (January): 10°C</p></li>
+<li><p>Month 4 (April): 20°C</p></li>
+<li><p>Month 7 (July): 30°C</p></li>
+<li><p>Month 10 (October): 20°C</p></li>
+</ul>
+<p>Create a simple function that predicts temperature for any month.
+Hint: Temperature peaks in summer (month 7) and is lowest in winter (month 1).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="self-check-quiz">
+<h2>✅ Self-Check Quiz<a class="headerlink" href="#self-check-quiz" title="Link to this heading">#</a></h2>
+<p>Before moving on, make sure you can answer these:</p>
+<ol class="arabic simple">
+<li><p>What is Artificial Intelligence?</p></li>
+<li><p>What’s the difference between Narrow AI and General AI?</p></li>
+<li><p>What is Machine Learning?</p></li>
+<li><p>What are the three main types of machine learning?</p></li>
+<li><p>What’s the difference between traditional programming and machine learning?</p></li>
+<li><p>What is “training” in machine learning?</p></li>
+<li><p>What is a “model” in AI?</p></li>
+<li><p>What is “classification”?</p></li>
+<li><p>How do recommendation systems work?</p></li>
+<li><p>Name three ethical concerns with AI.</p></li>
+</ol>
+</section>
+<hr class="docutils" />
+<section id="key-takeaways">
+<h2>🎯 Key Takeaways<a class="headerlink" href="#key-takeaways" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><strong>AI</strong> makes computers perform tasks that require human intelligence</p></li>
+<li><p><strong>Machine Learning</strong> teaches computers to learn from data instead of explicit rules</p></li>
+<li><p><strong>Three types of ML</strong>: Supervised (with labels), Unsupervised (find patterns), Reinforcement (trial and error)</p></li>
+<li><p><strong>Training</strong> → showing AI examples to learn patterns</p></li>
+<li><p><strong>Model</strong> → AI’s learned knowledge</p></li>
+<li><p><strong>Prediction</strong> → AI’s guess on new data</p></li>
+<li><p><strong>Classification</strong> → putting things into categories</p></li>
+<li><p><strong>Recommendation systems</strong> → suggesting things you might like</p></li>
+<li><p><strong>AI Ethics</strong> → fairness, privacy, transparency, safety are crucial!</p></li>
+<li><p>AI is everywhere: healthcare, transportation, entertainment, finance</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="next-steps">
+<h2>🚀 Next Steps<a class="headerlink" href="#next-steps" title="Link to this heading">#</a></h2>
+<p>Congratulations! You now understand the basics of AI and Machine Learning!</p>
+<p><strong>What we covered:</strong></p>
+<ul class="simple">
+<li><p>✅ What AI is and how it works</p></li>
+<li><p>✅ Different types of AI and ML</p></li>
+<li><p>✅ Building simple AI programs</p></li>
+<li><p>✅ Real-world applications</p></li>
+<li><p>✅ Ethical considerations</p></li>
+</ul>
+<p><strong>Continue learning:</strong></p>
+<ul class="simple">
+<li><p><strong>Computing Fundamentals</strong>: <code class="docutils literal notranslate"><span class="pre">05_computing_fundamentals.ipynb</span></code></p></li>
+<li><p><strong>Medium Level</strong>: Learn Python functions and data structures</p></li>
+<li><p><strong>Medium ML</strong>: <code class="docutils literal notranslate"><span class="pre">medium/04_machine_learning_basics.ipynb</span></code> - Real ML with scikit-learn!</p></li>
+<li><p><strong>Hard Level</strong>: Deep learning, neural networks, and NLP</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="pro-tips">
+<h2>💡 Pro Tips<a class="headerlink" href="#pro-tips" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p><strong>Start simple</strong>: Basic AI can be very effective!</p></li>
+<li><p><strong>Data is key</strong>: More (good) training data = better AI</p></li>
+<li><p><strong>Test thoroughly</strong>: AI can make mistakes</p></li>
+<li><p><strong>Think ethically</strong>: Consider the impact of your AI</p></li>
+<li><p><strong>Keep learning</strong>: AI is a rapidly evolving field</p></li>
+<li><p><strong>Practice</strong>: Build small AI projects to solidify concepts</p></li>
+<li><p><strong>Stay curious</strong>: Try to understand how AI around you works</p></li>
+</ol>
+</section>
+<hr class="docutils" />
+<section id="fun-facts">
+<h2>🌟 Fun Facts<a class="headerlink" href="#fun-facts" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><strong>1951</strong>: First AI program created (played checkers)</p></li>
+<li><p><strong>1997</strong>: IBM’s Deep Blue beat world chess champion Garry Kasparov</p></li>
+<li><p><strong>2011</strong>: IBM Watson won Jeopardy!</p></li>
+<li><p><strong>2016</strong>: AlphaGo beat world Go champion (Go is much harder than chess!)</p></li>
+<li><p><strong>2020</strong>: GPT-3 can write human-like text</p></li>
+<li><p><strong>Today</strong>: AI can generate images, code, music, and more!</p></li>
+</ul>
+<p><strong>The best part?</strong> You’re learning this NOW, when AI is transforming the world. The future is yours to build!</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./easy"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="03_basic_operations_and_conditionals.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Lesson 3: Basic Operations and Conditionals</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="05_computing_fundamentals.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Lesson 5: Computing Fundamentals</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-you-ll-learn">What You’ll Learn</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#real-world-analogy">💡 Real-World Analogy</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-artificial-intelligence">1. What is Artificial Intelligence?</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#examples-of-ai-in-your-daily-life">Examples of AI in Your Daily Life:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#two-types-of-ai">Two Types of AI</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-machine-learning">2. What is Machine Learning?</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#traditional-programming-vs-machine-learning">Traditional Programming vs Machine Learning</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#three-main-types-of-machine-learning">Three Main Types of Machine Learning</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#key-ai-ml-terms">3. Key AI/ML Terms</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#your-first-ai-rule-based-systems">4. Your First AI: Rule-Based Systems</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#limitations-of-rule-based-ai">🤔 Limitations of Rule-Based AI</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-from-data-pattern-recognition">5. Learning from Data: Pattern Recognition</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#this-is-machine-learning">🎯 This is Machine Learning!</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#classification-categorizing-things">6. Classification: Categorizing Things</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#recommendation-systems">7. Recommendation Systems</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#real-world-ai-applications">8. Real-World AI Applications</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#healthcare">Healthcare 🏥</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#transportation">Transportation 🚗</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#finance">Finance 💰</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#entertainment">Entertainment 🎮</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#communication">Communication 💬</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#social-media">Social Media 📱</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ai-ethics-and-responsibility">9. AI Ethics and Responsibility</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#important-ethical-considerations">Important Ethical Considerations:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-future-of-ai">The Future of AI</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">📝 Exercises</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-1-age-based-activity-recommender">Exercise 1: Age-Based Activity Recommender</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-2-simple-grade-predictor">Exercise 2: Simple Grade Predictor</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-3-movie-genre-classifier">Exercise 3: Movie Genre Classifier</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-4-music-recommender">Exercise 4: Music Recommender</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-5-simple-password-strength-checker">Exercise 5: Simple Password Strength Checker</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-6-temperature-predictor">Exercise 6: Temperature Predictor</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#self-check-quiz">✅ Self-Check Quiz</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#key-takeaways">🎯 Key Takeaways</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#next-steps">🚀 Next Steps</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pro-tips">💡 Pro Tips</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fun-facts">🌟 Fun Facts</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Mykolas Perevicius
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

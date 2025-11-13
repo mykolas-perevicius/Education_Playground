@@ -1,0 +1,1090 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>🧪 A/B Testing &amp; Conversion Optimization Strategy &#8212; Education Playground</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=0c185eed" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=c73c0f3e"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'codebridge-landing/AB_TESTING_STRATEGY';</script>
+    <script src="../_static/js/onboarding.js?v=557b7536"></script>
+    <link rel="canonical" href="https://mykolas-perevicius.github.io/Education_Playground/codebridge-landing/AB_TESTING_STRATEGY.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../README.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Education Playground</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../00_calibration_test.html">🎯 Calibration Test - Find Your Level</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../beginner_scripts/README.html">🌱 Beginner Scripts (10 Python Files)</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../easy/README_EASY.html">📗 Easy Level - Beginner</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../easy/01_introduction_to_python.html">1. Introduction to Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../easy/02_variables_and_data_types.html">2. Variables and Data Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../easy/03_basic_operations_and_conditionals.html">3. Operations and Conditionals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../easy/04_intro_to_ai_and_ml.html">4. Intro to AI and ML</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../easy/05_computing_fundamentals.html">5. Computing Fundamentals</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../medium/README_MEDIUM.html">📘 Medium Level - Intermediate</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../medium/01_functions_and_modules.html">1. Functions and Modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../medium/02_data_structures.html">2. Data Structures</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../medium/03_classes_and_oop.html">3. Classes and OOP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../medium/04_machine_learning_basics.html">4. Machine Learning Basics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../medium/05_data_analysis_with_pandas.html">5. Data Analysis with Pandas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../medium/06_algorithms_and_problem_solving.html">6. Algorithms and Problem Solving</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../hard/README_HARD.html">📕 Hard Level - Advanced</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../hard/01_advanced_functions_and_decorators.html">1. Advanced Functions &amp; Decorators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hard/02_generators_and_iterators.html">2. Generators and Iterators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hard/03_algorithms_and_complexity.html">3. Algorithms and Complexity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hard/04_deep_learning_and_neural_networks.html">4. Deep Learning &amp; Neural Networks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hard/05_advanced_ml_and_nlp.html">5. Advanced ML and NLP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hard/06_computer_systems_and_theory.html">6. Computer Systems and Theory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hard/07_project_ideas.html">7. Project Ideas &amp; Implementation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hard/08_classic_problems.html">Lesson 8: Classic Problems Collection</a></li>
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../hard/09_ctf_challenges.html">Lesson 9: Capture The Flag (CTF) - Hacker Training</a></li>
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../hard/10_performance_computing.html">10. Performance Computing ⚡ NEW!</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hard/11_cuda_and_parallel_computing.html">11. CUDA &amp; GPU Computing 🎮 NEW!</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../tools/README.html">🛠️ Developer Tools Track</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../tools/01_shell_basics.html">1. Shell and Command Line</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools/02_command_line_tools.html">2. Command Line Tools</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools/03_git_essentials.html">3. Git Essentials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools/04_text_editors.html">4. Text Editors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools/05_build_systems_cicd.html">5. Build Systems and CI/CD</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools/06_debugging_profiling.html">6. Debugging and Profiling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools/07_security_essentials.html">7. Security Essentials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools/08_package_management.html">8. Package Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools/09_ssh_remote_systems.html">9. SSH and Remote Systems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools/10_docker_containers.html">10. Docker and Containers</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../solutions/README_SOLUTIONS.html">📝 Solutions</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../solutions/easy_solutions.html">Easy Level - Complete Solutions</a></li>
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../solutions/medium_solutions.html">Medium Level - Complete Solutions</a></li>
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../solutions/hard_solutions.html">Hard Level - Complete Solutions</a></li>
+
+
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../solutions/tools_solutions.html">Developer Tools - Complete Solutions</a></li>
+
+
+
+
+
+
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../RESOURCES.html">📚 Learning Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../PYTHON_CHEATSHEET.html">⚡ Python Cheat Sheet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ML_AI_CHEATSHEET.html">🤖 ML/AI Cheat Sheet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../SETUP.html">🔧 Setup Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../RELEASE_NOTES_v2.0.0.html">🎉 Release Notes v2.0.0</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none"></div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>🧪 A/B Testing & Conversion Optimization Strategy</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#current-active-experiments">Current Active Experiments</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#experiment-1-hero-headline-test">Experiment 1: Hero Headline Test</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#experiment-2-cta-text-test">Experiment 2: CTA Text Test</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#experiment-3-pricing-display-test">Experiment 3: Pricing Display Test</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#testing-timeline">Testing Timeline</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#week-1-2-data-collection">Week 1-2: Data Collection</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#week-3-analysis">Week 3: Analysis</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#week-4-implementation">Week 4: Implementation</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#future-experiments-queue">Future Experiments Queue</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#priority-1-high-impact-tests">Priority 1: High-Impact Tests</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#priority-2-ux-improvements">Priority 2: UX Improvements</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#segmentation-strategy">Segmentation Strategy</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#analyze-by-segment">Analyze by Segment</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conversion-funnel-optimization">Conversion Funnel Optimization</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#current-funnel-benchmark">Current Funnel (Benchmark)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#optimization-priorities">Optimization Priorities</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#session-recording-analysis-plan">Session Recording Analysis Plan</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-to-watch-for">What to Watch For</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#action-items-from-recordings">Action Items from Recordings</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analytics-dashboard-setup">Analytics Dashboard Setup</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#posthog-dashboards-to-create">PostHog Dashboards to Create</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dashboard-1-conversion-overview">Dashboard 1: Conversion Overview</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dashboard-2-a-b-test-results">Dashboard 2: A/B Test Results</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dashboard-3-user-behavior">Dashboard 3: User Behavior</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dashboard-4-traffic-sources">Dashboard 4: Traffic Sources</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#when-to-stop-a-test">When to Stop a Test</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#stop-early-if">Stop Early If:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#never-stop-if">Never Stop If:</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#winning-variant-rollout-process">Winning Variant Rollout Process</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#roi-calculator">ROI Calculator</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-scenario">Example Scenario</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#common-mistakes-to-avoid">Common Mistakes to Avoid</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#success-metrics-benchmark">Success Metrics Benchmark</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#industry-benchmarks-b2b-saas-landing-pages">Industry Benchmarks (B2B SaaS Landing Pages)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#your-goals-6-months">Your Goals (6 Months)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resources">Resources</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="a-b-testing-conversion-optimization-strategy">
+<h1>🧪 A/B Testing &amp; Conversion Optimization Strategy<a class="headerlink" href="#a-b-testing-conversion-optimization-strategy" title="Link to this heading">#</a></h1>
+<section id="current-active-experiments">
+<h2>Current Active Experiments<a class="headerlink" href="#current-active-experiments" title="Link to this heading">#</a></h2>
+<section id="experiment-1-hero-headline-test">
+<h3>Experiment 1: Hero Headline Test<a class="headerlink" href="#experiment-1-hero-headline-test" title="Link to this heading">#</a></h3>
+<p><strong>Hypothesis</strong>: A benefit-focused headline will convert better than a descriptive one.</p>
+<p><strong>Variants</strong>:</p>
+<ul class="simple">
+<li><p><strong>A (Control)</strong>: “Bring Modern Computer Science to Your School”</p>
+<ul>
+<li><p><em>Descriptive, professional, status quo</em></p></li>
+</ul>
+</li>
+<li><p><strong>B (Benefit-Focused)</strong>: “Launch CS Classes in 48 Hours — No Hiring Required”</p>
+<ul>
+<li><p><em>Emphasizes speed + eliminates main pain point</em></p></li>
+</ul>
+</li>
+<li><p><strong>C (Question Format)</strong>: “Want to Offer CS but Don’t Have the Teachers?”</p>
+<ul>
+<li><p><em>Empathy-first, highlights exact problem</em></p></li>
+</ul>
+</li>
+</ul>
+<p><strong>Traffic Split</strong>: 34% / 33% / 33%</p>
+<p><strong>Success Metric</strong>: <code class="docutils literal notranslate"><span class="pre">book_call_click</span></code> conversion rate</p>
+<p><strong>Minimum Sample</strong>: 100 conversions per variant (300 total)</p>
+<p><strong>Expected Outcome</strong>: Variant B likely to win (+15-25% lift) due to:</p>
+<ul class="simple">
+<li><p>Quantified benefit (48 hours)</p></li>
+<li><p>Addresses #1 objection (hiring)</p></li>
+<li><p>Action-oriented language</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="experiment-2-cta-text-test">
+<h3>Experiment 2: CTA Text Test<a class="headerlink" href="#experiment-2-cta-text-test" title="Link to this heading">#</a></h3>
+<p><strong>Hypothesis</strong>: Different CTA copy appeals to different decision stages.</p>
+<p><strong>Variants</strong>:</p>
+<ul class="simple">
+<li><p><strong>A (Control)</strong>: “Book an Information Call”</p>
+<ul>
+<li><p><em>Low commitment, informational</em></p></li>
+</ul>
+</li>
+<li><p><strong>B (Demo)</strong>: “Schedule a Demo”</p>
+<ul>
+<li><p><em>Product-focused, show-me approach</em></p></li>
+</ul>
+</li>
+<li><p><strong>C (Action)</strong>: “Get Started Today”</p>
+<ul>
+<li><p><em>High commitment, action-oriented</em></p></li>
+</ul>
+</li>
+</ul>
+<p><strong>Traffic Split</strong>: 34% / 33% / 33%</p>
+<p><strong>Success Metric</strong>: CTA click-through rate</p>
+<p><strong>Expected Outcome</strong>: Variant A likely to win due to:</p>
+<ul class="simple">
+<li><p>B2B buyers prefer low-commitment first step</p></li>
+<li><p>“Information” feels safer than “Demo”</p></li>
+<li><p>School admins research extensively before committing</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="experiment-3-pricing-display-test">
+<h3>Experiment 3: Pricing Display Test<a class="headerlink" href="#experiment-3-pricing-display-test" title="Link to this heading">#</a></h3>
+<p><strong>Hypothesis</strong>: Showing price range reduces friction for qualified buyers.</p>
+<p><strong>Variants</strong>:</p>
+<ul class="simple">
+<li><p><strong>A (Control)</strong>: “Contact us for pricing”</p>
+<ul>
+<li><p><em>Standard B2B approach, no sticker shock</em></p></li>
+</ul>
+</li>
+<li><p><strong>B (Range Shown)</strong>: “Starting at $50/student/semester”</p>
+<ul>
+<li><p><em>Transparency, pre-qualifies buyers</em></p></li>
+</ul>
+</li>
+</ul>
+<p><strong>Traffic Split</strong>: 50% / 50%</p>
+<p><strong>Success Metric</strong>: <code class="docutils literal notranslate"><span class="pre">book_call_click</span></code> rate + form completion</p>
+<p><strong>Expected Outcome</strong>: UNCERTAIN - could go either way:</p>
+<ul class="simple">
+<li><p><strong>Variant A wins if</strong>: Price causes sticker shock, loses impulse interest</p></li>
+<li><p><strong>Variant B wins if</strong>: Transparency builds trust, pre-qualifies serious buyers</p></li>
+</ul>
+</section>
+</section>
+<hr class="docutils" />
+<section id="testing-timeline">
+<h2>Testing Timeline<a class="headerlink" href="#testing-timeline" title="Link to this heading">#</a></h2>
+<section id="week-1-2-data-collection">
+<h3>Week 1-2: Data Collection<a class="headerlink" href="#week-1-2-data-collection" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Goal</strong>: Reach 100+ conversions per variant</p></li>
+<li><p><strong>Action</strong>: Monitor daily, no changes</p></li>
+<li><p><strong>Watch for</strong>:</p>
+<ul>
+<li><p>Anomalies (bot traffic, one-day spikes)</p></li>
+<li><p>Technical issues (tracking failures)</p></li>
+<li><p>External factors (press coverage, campaigns)</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="week-3-analysis">
+<h3>Week 3: Analysis<a class="headerlink" href="#week-3-analysis" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Statistical Significance</strong>: Use Chi-square test (p &lt; 0.05)</p></li>
+<li><p><strong>Minimum Detectable Effect</strong>: 10% lift</p></li>
+<li><p><strong>Confidence Interval</strong>: 95%</p></li>
+</ul>
+<p><strong>Analysis Questions</strong>:</p>
+<ol class="arabic simple">
+<li><p>Which variant has highest conversion rate?</p></li>
+<li><p>Is the difference statistically significant?</p></li>
+<li><p>Are there segment differences? (mobile vs desktop, referral source, geographic)</p></li>
+<li><p>Any unexpected user behavior in session recordings?</p></li>
+</ol>
+</section>
+<section id="week-4-implementation">
+<h3>Week 4: Implementation<a class="headerlink" href="#week-4-implementation" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Winner Rollout</strong>: Implement winning variant to 100%</p></li>
+<li><p><strong>Documentation</strong>: Record results, learnings</p></li>
+<li><p><strong>Next Experiment</strong>: Launch new test based on findings</p></li>
+</ul>
+</section>
+</section>
+<hr class="docutils" />
+<section id="future-experiments-queue">
+<h2>Future Experiments Queue<a class="headerlink" href="#future-experiments-queue" title="Link to this heading">#</a></h2>
+<section id="priority-1-high-impact-tests">
+<h3>Priority 1: High-Impact Tests<a class="headerlink" href="#priority-1-high-impact-tests" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p><strong>Social Proof Placement</strong></p>
+<ul class="simple">
+<li><p>Variants: Testimonials above fold vs below fold vs removed</p></li>
+<li><p>Hypothesis: Above-fold social proof increases trust early</p></li>
+</ul>
+</li>
+<li><p><strong>Course Catalog Preview</strong></p>
+<ul class="simple">
+<li><p>Variants: Show 3 courses vs 6 courses vs “View All” CTA</p></li>
+<li><p>Hypothesis: More courses = overwhelming, 3 is optimal</p></li>
+</ul>
+</li>
+<li><p><strong>Pricing Anchor</strong></p>
+<ul class="simple">
+<li><p>Variants: No anchor vs “Schools pay <span class="math notranslate nohighlight">\(5,000-\)</span>50,000/year for 1 CS teacher”</p></li>
+<li><p>Hypothesis: Anchor makes pricing seem reasonable</p></li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="priority-2-ux-improvements">
+<h3>Priority 2: UX Improvements<a class="headerlink" href="#priority-2-ux-improvements" title="Link to this heading">#</a></h3>
+<ol class="arabic simple" start="4">
+<li><p><strong>Mobile CTA Placement</strong></p>
+<ul class="simple">
+<li><p>Variants: Sticky bottom bar vs inline only</p></li>
+<li><p>Hypothesis: Sticky CTA increases mobile conversions</p></li>
+</ul>
+</li>
+<li><p><strong>Form Length</strong></p>
+<ul class="simple">
+<li><p>Variants: Name + Email vs Full qualification form</p></li>
+<li><p>Hypothesis: Shorter form increases submissions, but may reduce lead quality</p></li>
+</ul>
+</li>
+<li><p><strong>Results Section Order</strong></p>
+<ul class="simple">
+<li><p>Variants: Metrics first vs Testimonials first</p></li>
+<li><p>Hypothesis: Testimonials (stories) more persuasive than numbers</p></li>
+</ul>
+</li>
+</ol>
+</section>
+</section>
+<hr class="docutils" />
+<section id="segmentation-strategy">
+<h2>Segmentation Strategy<a class="headerlink" href="#segmentation-strategy" title="Link to this heading">#</a></h2>
+<section id="analyze-by-segment">
+<h3>Analyze by Segment<a class="headerlink" href="#analyze-by-segment" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p><strong>Device Type</strong></p>
+<ul class="simple">
+<li><p>Mobile vs Tablet vs Desktop</p></li>
+<li><p>Insight: Mobile users may need different CTAs</p></li>
+</ul>
+</li>
+<li><p><strong>Traffic Source</strong></p>
+<ul class="simple">
+<li><p>Organic search vs Social vs Direct vs Referral</p></li>
+<li><p>Insight: Different sources = different intent levels</p></li>
+</ul>
+</li>
+<li><p><strong>Geographic</strong></p>
+<ul class="simple">
+<li><p>Urban vs Suburban vs Rural</p></li>
+<li><p>Insight: Budget constraints may vary</p></li>
+</ul>
+</li>
+<li><p><strong>Time of Day</strong></p>
+<ul class="simple">
+<li><p>Business hours vs Evening vs Weekend</p></li>
+<li><p>Insight: Evening browsers may be personal research (higher intent)</p></li>
+</ul>
+</li>
+</ol>
+</section>
+</section>
+<hr class="docutils" />
+<section id="conversion-funnel-optimization">
+<h2>Conversion Funnel Optimization<a class="headerlink" href="#conversion-funnel-optimization" title="Link to this heading">#</a></h2>
+<section id="current-funnel-benchmark">
+<h3>Current Funnel (Benchmark)<a class="headerlink" href="#current-funnel-benchmark" title="Link to this heading">#</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Page View (100%)
+    ↓ ~85%
+Hero View (85%)
+    ↓ ~70%
+Scroll to Courses (60%)
+    ↓ ~50%
+Scroll to Pricing (30%)
+    ↓ ~10-15%
+Book Call Click (3-5%)
+</pre></div>
+</div>
+</section>
+<section id="optimization-priorities">
+<h3>Optimization Priorities<a class="headerlink" href="#optimization-priorities" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p><strong>Hero → Courses</strong> (85% → 70% = 15% drop)</p>
+<ul class="simple">
+<li><p><strong>Issue</strong>: Users not scrolling past hero</p></li>
+<li><p><strong>Fix</strong>: Add scroll indicator, stronger value prop, curiosity gap</p></li>
+</ul>
+</li>
+<li><p><strong>Courses → Pricing</strong> (60% → 30% = 50% drop!)</p>
+<ul class="simple">
+<li><p><strong>Issue</strong>: MAJOR drop-off, need investigation</p></li>
+<li><p><strong>Fix</strong>: Watch session recordings, may need pricing earlier</p></li>
+</ul>
+</li>
+<li><p><strong>Pricing → Conversion</strong> (30% → 3-5% = 85-90% drop)</p>
+<ul class="simple">
+<li><p><strong>Issue</strong>: Standard B2B conversion rate (5% is good)</p></li>
+<li><p><strong>Fix</strong>: Optimize CTA copy, add urgency, simplify form</p></li>
+</ul>
+</li>
+</ol>
+</section>
+</section>
+<hr class="docutils" />
+<section id="session-recording-analysis-plan">
+<h2>Session Recording Analysis Plan<a class="headerlink" href="#session-recording-analysis-plan" title="Link to this heading">#</a></h2>
+<section id="what-to-watch-for">
+<h3>What to Watch For<a class="headerlink" href="#what-to-watch-for" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p><strong>Rage Clicks</strong>: User clicking same element repeatedly</p>
+<ul class="simple">
+<li><p>Indicates broken functionality or unclear interaction</p></li>
+</ul>
+</li>
+<li><p><strong>Dead Clicks</strong>: Clicking non-interactive elements</p>
+<ul class="simple">
+<li><p>Suggests elements look clickable but aren’t</p></li>
+</ul>
+</li>
+<li><p><strong>Scroll Patterns</strong>: How far users scroll before bouncing</p>
+<ul class="simple">
+<li><p>Identifies content that loses attention</p></li>
+</ul>
+</li>
+<li><p><strong>Form Abandonment</strong>: Start form but don’t submit</p>
+<ul class="simple">
+<li><p>Form too long? Privacy concerns? Unclear CTA?</p></li>
+</ul>
+</li>
+<li><p><strong>Mobile Issues</strong>: Pinch/zoom, horizontal scroll</p>
+<ul class="simple">
+<li><p>Responsive design problems</p></li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="action-items-from-recordings">
+<h3>Action Items from Recordings<a class="headerlink" href="#action-items-from-recordings" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Fix any broken interactions immediately</p></li>
+<li><p>Note common user paths (inform content structure)</p></li>
+<li><p>Identify confusing sections (rewrite or remove)</p></li>
+<li><p>Find “aha moments” (user suddenly engaged = good content)</p></li>
+</ul>
+</section>
+</section>
+<hr class="docutils" />
+<section id="analytics-dashboard-setup">
+<h2>Analytics Dashboard Setup<a class="headerlink" href="#analytics-dashboard-setup" title="Link to this heading">#</a></h2>
+<section id="posthog-dashboards-to-create">
+<h3>PostHog Dashboards to Create<a class="headerlink" href="#posthog-dashboards-to-create" title="Link to this heading">#</a></h3>
+<section id="dashboard-1-conversion-overview">
+<h4>Dashboard 1: Conversion Overview<a class="headerlink" href="#dashboard-1-conversion-overview" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>Total Page Views</strong> (line chart, 30 days)</p></li>
+<li><p><strong>Conversion Rate</strong> (%, trending)</p></li>
+<li><p><strong>Conversions by Variant</strong> (bar chart)</p></li>
+<li><p><strong>Funnel Visualization</strong> (all 8 stages)</p></li>
+</ul>
+</section>
+<section id="dashboard-2-a-b-test-results">
+<h4>Dashboard 2: A/B Test Results<a class="headerlink" href="#dashboard-2-a-b-test-results" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>Hero Headline Performance</strong> (table)</p>
+<ul>
+<li><p>Variant | Views | Conversions | Rate | Statistical Sig</p></li>
+</ul>
+</li>
+<li><p><strong>CTA Text Performance</strong> (table)</p></li>
+<li><p><strong>Pricing Display Performance</strong> (table)</p></li>
+</ul>
+</section>
+<section id="dashboard-3-user-behavior">
+<h4>Dashboard 3: User Behavior<a class="headerlink" href="#dashboard-3-user-behavior" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>Average Time on Page</strong> (seconds)</p></li>
+<li><p><strong>Scroll Depth Distribution</strong> (histogram)</p></li>
+<li><p><strong>Section View Rates</strong> (%)</p></li>
+<li><p><strong>Device Type Breakdown</strong> (pie chart)</p></li>
+</ul>
+</section>
+<section id="dashboard-4-traffic-sources">
+<h4>Dashboard 4: Traffic Sources<a class="headerlink" href="#dashboard-4-traffic-sources" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>Top Referrers</strong> (table)</p></li>
+<li><p><strong>Geographic Distribution</strong> (map)</p></li>
+<li><p><strong>Conversion Rate by Source</strong> (bar chart)</p></li>
+</ul>
+</section>
+</section>
+</section>
+<hr class="docutils" />
+<section id="when-to-stop-a-test">
+<h2>When to Stop a Test<a class="headerlink" href="#when-to-stop-a-test" title="Link to this heading">#</a></h2>
+<section id="stop-early-if">
+<h3>Stop Early If:<a class="headerlink" href="#stop-early-if" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p><strong>Clear Winner</strong> (&gt;99% confidence, &gt;20% lift, 100+ conversions)</p>
+<ul class="simple">
+<li><p>Example: Variant B at 8% vs Control at 4% with p &lt; 0.01</p></li>
+</ul>
+</li>
+<li><p><strong>No Measurable Difference</strong> (&gt;500 conversions, variants within 2%)</p>
+<ul class="simple">
+<li><p>Example: All variants ~3.5% ± 0.1% after 2 weeks</p></li>
+</ul>
+</li>
+<li><p><strong>Technical Issue Discovered</strong></p>
+<ul class="simple">
+<li><p>Tracking broken, variant not showing correctly, etc.</p></li>
+</ul>
+</li>
+<li><p><strong>External Event</strong> (major press, competitor launch, seasonal change)</p>
+<ul class="simple">
+<li><p>Confounds results, restart after event</p></li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="never-stop-if">
+<h3>Never Stop If:<a class="headerlink" href="#never-stop-if" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Less than 100 conversions per variant</p></li>
+<li><p>Statistical significance not reached (p &gt; 0.05)</p></li>
+<li><p>Weekend vs weekday traffic not balanced</p></li>
+<li><p>Less than 7 days running (avoid day-of-week bias)</p></li>
+</ul>
+</section>
+</section>
+<hr class="docutils" />
+<section id="winning-variant-rollout-process">
+<h2>Winning Variant Rollout Process<a class="headerlink" href="#winning-variant-rollout-process" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p><strong>Verify Results</strong></p>
+<ul class="simple">
+<li><p>Double-check statistical significance</p></li>
+<li><p>Review segment breakdowns (does winner win across all segments?)</p></li>
+<li><p>Watch session recordings of winning variant</p></li>
+</ul>
+</li>
+<li><p><strong>Document</strong></p>
+<ul class="simple">
+<li><p>Record final conversion rates</p></li>
+<li><p>Note lift percentage</p></li>
+<li><p>Save key learnings</p></li>
+</ul>
+</li>
+<li><p><strong>Implement Winner</strong></p>
+<ul class="simple">
+<li><p>Update default variant in code</p></li>
+<li><p>Remove losing variants</p></li>
+<li><p>Deploy to production</p></li>
+</ul>
+</li>
+<li><p><strong>Monitor Post-Rollout</strong></p>
+<ul class="simple">
+<li><p>Watch conversion rate for 1 week</p></li>
+<li><p>Ensure no regression</p></li>
+<li><p>Compare to test period</p></li>
+</ul>
+</li>
+<li><p><strong>Plan Next Test</strong></p>
+<ul class="simple">
+<li><p>Based on learnings, what to test next?</p></li>
+<li><p>Queue up new experiment</p></li>
+</ul>
+</li>
+</ol>
+</section>
+<hr class="docutils" />
+<section id="roi-calculator">
+<h2>ROI Calculator<a class="headerlink" href="#roi-calculator" title="Link to this heading">#</a></h2>
+<section id="example-scenario">
+<h3>Example Scenario<a class="headerlink" href="#example-scenario" title="Link to this heading">#</a></h3>
+<p><strong>Current Metrics</strong>:</p>
+<ul class="simple">
+<li><p>1,000 visitors/month</p></li>
+<li><p>3% conversion rate = 30 calls booked</p></li>
+<li><p>20% of calls become customers = 6 new schools/month</p></li>
+<li><p><span class="math notranslate nohighlight">\(10,000 average contract value = \)</span>60,000/month revenue</p></li>
+</ul>
+<p><strong>If A/B Test Wins with +20% Lift</strong>:</p>
+<ul class="simple">
+<li><p>Same 1,000 visitors/month</p></li>
+<li><p>3.6% conversion rate = 36 calls booked</p></li>
+<li><p>20% become customers = 7.2 new schools/month</p></li>
+<li><p><span class="math notranslate nohighlight">\(10,000 ACV = \)</span>72,000/month revenue</p></li>
+</ul>
+<p><strong>Incremental Gain</strong>: <span class="math notranslate nohighlight">\(12,000/month = \)</span>144,000/year</p>
+<p><strong>Cost of A/B Testing Program</strong>:</p>
+<ul class="simple">
+<li><p>PostHog: $0 (free tier)</p></li>
+<li><p>Implementation: 10 hours one-time</p></li>
+<li><p>Ongoing: 2 hours/week monitoring</p></li>
+</ul>
+<p><strong>ROI</strong>: <span class="math notranslate nohighlight">\(144,000 / ~\)</span>2,000 labor = <strong>72x return</strong></p>
+</section>
+</section>
+<hr class="docutils" />
+<section id="common-mistakes-to-avoid">
+<h2>Common Mistakes to Avoid<a class="headerlink" href="#common-mistakes-to-avoid" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p>❌ <strong>Testing too many things at once</strong></p>
+<ul class="simple">
+<li><p>Headline + CTA + layout + colors = can’t tell what worked</p></li>
+</ul>
+</li>
+<li><p>❌ <strong>Stopping test too early</strong></p>
+<ul class="simple">
+<li><p>“We got 10 conversions and B is winning!” = not statistically valid</p></li>
+</ul>
+</li>
+<li><p>❌ <strong>Ignoring segment differences</strong></p>
+<ul class="simple">
+<li><p>Overall winner may lose badly on mobile</p></li>
+</ul>
+</li>
+<li><p>❌ <strong>Not watching sessions</strong></p>
+<ul class="simple">
+<li><p>Numbers don’t show UX problems that kill conversions</p></li>
+</ul>
+</li>
+<li><p>❌ <strong>Testing cosmetic changes</strong></p>
+<ul class="simple">
+<li><p>Blue button vs green button = low impact</p></li>
+<li><p>Test value proposition, messaging, offers instead</p></li>
+</ul>
+</li>
+<li><p>❌ <strong>No follow-up tests</strong></p>
+<ul class="simple">
+<li><p>One test wins, then nothing = missed opportunity for compound gains</p></li>
+</ul>
+</li>
+</ol>
+</section>
+<hr class="docutils" />
+<section id="success-metrics-benchmark">
+<h2>Success Metrics Benchmark<a class="headerlink" href="#success-metrics-benchmark" title="Link to this heading">#</a></h2>
+<section id="industry-benchmarks-b2b-saas-landing-pages">
+<h3>Industry Benchmarks (B2B SaaS Landing Pages)<a class="headerlink" href="#industry-benchmarks-b2b-saas-landing-pages" title="Link to this heading">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Metric</p></th>
+<th class="head"><p>Poor</p></th>
+<th class="head"><p>Average</p></th>
+<th class="head"><p>Good</p></th>
+<th class="head"><p>Excellent</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Conversion Rate</strong></p></td>
+<td><p>&lt;1%</p></td>
+<td><p>1-3%</p></td>
+<td><p>3-5%</p></td>
+<td><p>&gt;5%</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Bounce Rate</strong></p></td>
+<td><p>&gt;70%</p></td>
+<td><p>50-70%</p></td>
+<td><p>30-50%</p></td>
+<td><p>&lt;30%</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Avg. Time on Page</strong></p></td>
+<td><p>&lt;30s</p></td>
+<td><p>30s-1m</p></td>
+<td><p>1-2m</p></td>
+<td><p>&gt;2m</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Scroll to Pricing</strong></p></td>
+<td><p>&lt;20%</p></td>
+<td><p>20-40%</p></td>
+<td><p>40-60%</p></td>
+<td><p>&gt;60%</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="your-goals-6-months">
+<h3>Your Goals (6 Months)<a class="headerlink" href="#your-goals-6-months" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Conversion Rate</strong>: 2% → 5% (150% increase)</p></li>
+<li><p><strong>Average Order Value</strong>: Increase per-student pricing or classroom size</p></li>
+<li><p><strong>Monthly Conversions</strong>: 30 → 75 calls booked</p></li>
+<li><p><strong>Close Rate</strong>: 20% → 30% (better qualified leads from pricing transparency)</p></li>
+</ul>
+</section>
+</section>
+<hr class="docutils" />
+<section id="resources">
+<h2>Resources<a class="headerlink" href="#resources" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://vwo.com/ab-testing/">A/B Testing Playbook (VWO)</a></p></li>
+<li><p><a class="reference external" href="https://abtestguide.com/calc/">Statistical Significance Calculator</a></p></li>
+<li><p><a class="reference external" href="https://posthog.com/docs/experiments">PostHog A/B Testing Docs</a></p></li>
+<li><p><a class="reference external" href="https://cxl.com/blog/conversion-research/">Conversion Research Framework</a></p></li>
+</ul>
+<hr class="docutils" />
+<p><strong>Remember</strong>: The goal isn’t to run tests — it’s to understand your customers and optimize their experience. Every test is a learning opportunity! 🚀</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./codebridge-landing"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#current-active-experiments">Current Active Experiments</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#experiment-1-hero-headline-test">Experiment 1: Hero Headline Test</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#experiment-2-cta-text-test">Experiment 2: CTA Text Test</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#experiment-3-pricing-display-test">Experiment 3: Pricing Display Test</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#testing-timeline">Testing Timeline</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#week-1-2-data-collection">Week 1-2: Data Collection</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#week-3-analysis">Week 3: Analysis</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#week-4-implementation">Week 4: Implementation</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#future-experiments-queue">Future Experiments Queue</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#priority-1-high-impact-tests">Priority 1: High-Impact Tests</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#priority-2-ux-improvements">Priority 2: UX Improvements</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#segmentation-strategy">Segmentation Strategy</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#analyze-by-segment">Analyze by Segment</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conversion-funnel-optimization">Conversion Funnel Optimization</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#current-funnel-benchmark">Current Funnel (Benchmark)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#optimization-priorities">Optimization Priorities</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#session-recording-analysis-plan">Session Recording Analysis Plan</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-to-watch-for">What to Watch For</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#action-items-from-recordings">Action Items from Recordings</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analytics-dashboard-setup">Analytics Dashboard Setup</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#posthog-dashboards-to-create">PostHog Dashboards to Create</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dashboard-1-conversion-overview">Dashboard 1: Conversion Overview</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dashboard-2-a-b-test-results">Dashboard 2: A/B Test Results</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dashboard-3-user-behavior">Dashboard 3: User Behavior</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dashboard-4-traffic-sources">Dashboard 4: Traffic Sources</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#when-to-stop-a-test">When to Stop a Test</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#stop-early-if">Stop Early If:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#never-stop-if">Never Stop If:</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#winning-variant-rollout-process">Winning Variant Rollout Process</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#roi-calculator">ROI Calculator</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-scenario">Example Scenario</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#common-mistakes-to-avoid">Common Mistakes to Avoid</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#success-metrics-benchmark">Success Metrics Benchmark</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#industry-benchmarks-b2b-saas-landing-pages">Industry Benchmarks (B2B SaaS Landing Pages)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#your-goals-6-months">Your Goals (6 Months)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resources">Resources</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Mykolas Perevicius
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
