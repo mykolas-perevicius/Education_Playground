@@ -19,6 +19,14 @@ html:
     <script src="_static/js/onboarding.js"></script>
   extra_css:
     - _static/css/custom.css
+  announcement: "<strong>🎉 Welcome to Coding Playground!</strong> Choose your skill level and start learning Python, Data Science, ML/AI, and more."
+
+sphinx:
+  config:
+    html_theme_options:
+      navigation_depth: 4
+      show_toc_level: 2
+      navbar_align: "left"
 
 launch_buttons:
   colab_url: "https://colab.research.google.com"
