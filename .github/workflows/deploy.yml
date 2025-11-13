@@ -21,11 +21,29 @@ jobs:
       with:
         python-version: '3.10'
 
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18'
+
     - name: Install dependencies
       run: |
         pip install jupyter-book
         pip install ghp-import
         pip install -r requirements.txt
+
+    - name: Build CodeBridge Labs landing page
+      run: |
+        if [ -d "codebridge-landing" ]; then
+          cd codebridge-landing
+          # Check if already built
+          if [ ! -d "out" ] || [ ! -f "out/index.html" ]; then
+            npm ci || npm install
+            npm run build || true
+            npm run export || npx next export || true
+          fi
+          cd ..
+        fi
 
     - name: Clean build directory
       run: jupyter-book clean .
@@ -35,11 +53,27 @@ jobs:
         # Build with error tolerance for now
         jupyter-book build . || true
 
-    - name: Ensure index.html exists
+    - name: Integrate landing page with Jupyter Book
       run: |
-        if [ ! -f _build/html/index.html ]; then
-          echo '<meta http-equiv="Refresh" content="0; url=README.html" />' > _build/html/index.html
-          echo "Created index.html redirect"
+        # Create playground subdirectory for Jupyter Book content
+        mkdir -p _build/html/playground
+
+        # Move Jupyter Book content to playground subdirectory
+        for file in _build/html/*.html _build/html/*.xml _build/html/*.json; do
+          [ -e "$file" ] && mv "$file" _build/html/playground/ || true
+        done
+
+        # Move directories to playground
+        for dir in _build/html/_*; do
+          [ -d "$dir" ] && mv "$dir" _build/html/playground/ || true
+        done
+
+        # Copy CodeBridge landing page to root if it exists
+        if [ -d "codebridge-landing/out" ]; then
+          cp -r codebridge-landing/out/* _build/html/ || true
+        else
+          # Fallback: create simple redirect index.html
+          echo '<meta http-equiv="Refresh" content="0; url=playground/README.html" />' > _build/html/index.html
         fi
 
     - name: Deploy to GitHub Pages

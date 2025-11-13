@@ -797,86 +797,13 @@ tr:hover {
 }
 
 /* ============================================
-   Continue Learning Banner
+   Clean Content Spacing (Replacing Banner)
    ============================================ */
 
-.continue-learning-banner {
-    background: linear-gradient(135deg, var(--secondary-color) 0%, var(--secondary-dark) 100%);
-    color: white;
-    border-radius: 12px;
-    padding: 20px 24px;
-    margin-bottom: 32px;
-    box-shadow: var(--shadow-md);
-}
-
-.continue-content {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 16px;
-    margin-bottom: 12px;
-}
-
-.continue-text {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-}
-
-.continue-text strong {
-    font-size: 18px;
-}
-
-.continue-text span {
-    font-size: 14px;
-    opacity: 0.9;
-}
-
-.continue-actions {
-    display: flex;
-    gap: 12px;
-    align-items: center;
-}
-
-.btn-continue {
-    background: var(--primary-color);
-    color: white;
-    padding: 12px 28px;
-    border-radius: 8px;
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 15px;
-    transition: all var(--transition-normal);
-    white-space: nowrap;
-    box-shadow: 0 2px 8px rgba(76, 175, 80, 0.3);
-}
-
-.btn-continue:hover {
-    background: var(--primary-hover);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 16px rgba(76, 175, 80, 0.4);
-    text-decoration: none;
-}
-
-.btn-reset {
-    background: rgba(255, 255, 255, 0.2);
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    color: white;
-    padding: 8px 16px;
-    border-radius: 6px;
-    font-size: 13px;
-    cursor: pointer;
-    transition: all var(--transition-normal);
-}
-
-.btn-reset:hover {
-    background: rgba(255, 255, 255, 0.3);
-}
-
-.continue-progress {
-    font-size: 13px;
-    opacity: 0.9;
-    text-align: right;
+/* Use subtle spacing instead of loud banners */
+.bd-article > section:first-child {
+    margin-top: 0;
+    padding-top: 0;
 }
 
 /* ============================================
@@ -1002,45 +929,45 @@ tr:hover {
 }
 
 /* ============================================
-   Enhanced Homepage Hero
+   Clean, Minimal Hero Section
    ============================================ */
 
 .hero-section {
-    background: linear-gradient(135deg, var(--secondary-color) 0%, var(--secondary-dark) 100%);
-    color: white;
-    padding: 60px 32px;
-    border-radius: 16px;
-    margin-bottom: 48px;
+    background: var(--bg-secondary);
+    padding: 40px 20px;
+    border-radius: 8px;
+    margin-bottom: 2rem;
     text-align: center;
+    border: 1px solid var(--border-color);
 }
 
 .hero-section h1 {
-    font-size: 42px;
-    margin: 0 0 16px 0;
-    color: white;
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: var(--text-primary);
 }
 
 .hero-section .subtitle {
-    font-size: 20px;
-    opacity: 0.9;
-    margin-bottom: 32px;
+    font-size: 1.125rem;
+    color: var(--text-secondary);
+    margin-bottom: 1.5rem;
 }
 
 .hero-cta {
     display: inline-block;
-    background: white;
-    color: var(--secondary-color);
-    padding: 16px 40px;
-    border-radius: 8px;
-    font-size: 18px;
+    background: var(--primary-color);
+    color: white;
+    padding: 12px 24px;
+    border-radius: 6px;
+    font-size: 1rem;
     font-weight: 600;
     text-decoration: none;
     transition: all var(--transition-normal);
 }
 
 .hero-cta:hover {
-    transform: translateY(-2px);
-    box-shadow: var(--shadow-lg);
+    background: var(--primary-hover);
+    transform: translateY(-1px);
 }
 
 /* ============================================
@@ -1121,24 +1048,37 @@ tr:hover {
 }
 
 /* ============================================
-   Responsive Design
+   Enhanced Mobile-First Responsive Design
    ============================================ */
 
+/* Mobile-First Touch Optimization */
 @media (max-width: 768px) {
+    /* Improved touch targets - iOS HIG recommends 44px minimum */
+    a, button, .btn,
+    .choice-card,
+    .quick-nav-btn {
+        min-height: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    /* Better mobile typography */
     body {
-        font-size: 15px;
+        font-size: 14px;
+        -webkit-text-size-adjust: 100%;
     }
 
     h1 {
-        font-size: 2rem;
-    }
-
-    h2 {
         font-size: 1.75rem;
     }
 
+    h2 {
+        font-size: 1.5rem;
+    }
+
     h3 {
-        font-size: 1.35rem;
+        font-size: 1.25rem;
     }
 
     .onboarding-content {
@@ -1215,18 +1155,6 @@ tr:hover {
         font-size: 16px;
     }
 
-    .continue-learning-banner {
-        padding: 18px;
-    }
-
-    .continue-content {
-        gap: 12px;
-    }
-
-    .continue-actions {
-        gap: 10px;
-    }
-
     .btn {
         width: 100%;
         text-align: center;
@@ -1251,10 +1179,88 @@ tr:hover {
     .bd-sidebar-primary .bd-sidenav {
         padding-bottom: 24px;
     }
+
+    /* Enhanced mobile sidebar - slide in from left */
+    .bd-sidebar-primary {
+        position: fixed !important;
+        left: 0;
+        top: 0;
+        height: 100vh;
+        z-index: 9999;
+        transform: translateX(-100%);
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        background: var(--bg-primary);
+        box-shadow: 2px 0 10px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Active state for mobile menu */
+    .bd-sidebar-primary.active {
+        transform: translateX(0);
+    }
+
+    /* Improved mobile content spacing */
+    .bd-article {
+        padding: 1rem;
+        max-width: 100%;
+    }
+
+    .bd-main .bd-content {
+        padding: 1rem;
+    }
+
+    /* Mobile-optimized code blocks */
+    pre {
+        font-size: 12px;
+        padding: 0.75rem;
+    }
+
+    /* Mobile tables - horizontal scroll */
+    table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+
+    /* Hamburger menu button */
+    .mobile-menu-toggle {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        z-index: 10000;
+        background: var(--primary-color);
+        color: white;
+        border: none;
+        border-radius: 4px;
+        padding: 8px 12px;
+        font-size: 24px;
+        cursor: pointer;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    }
+}
+
+/* Tablet-specific optimizations */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .bd-article {
+        max-width: 100%;
+        padding: 1.5rem;
+    }
+
+    .bd-sidebar-primary {
+        width: 240px;
+    }
+
+    .bd-main .bd-content {
+        max-width: 100%;
+        padding: 1.5rem;
+    }
 }
 
 @media (min-width: 769px) {
     .mobile-quick-nav {
+        display: none;
+    }
+
+    .mobile-menu-toggle {
         display: none;
     }
 }
@@ -1362,7 +1368,6 @@ tr:hover {
 
 @media print {
     .onboarding-modal,
-    .continue-learning-banner,
     .mobile-quick-nav,
     .mark-complete-btn,
     .completion-toast,
