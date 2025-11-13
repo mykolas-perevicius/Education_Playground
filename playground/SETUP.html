@@ -1,0 +1,997 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Education Playground Setup Guide &#8212; Education Playground</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="_static/css/custom.css?v=d2f94184" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=c73c0f3e"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'SETUP';</script>
+    <script src="_static/js/mobile-nav.js?v=66ebaa39"></script>
+    <script src="_static/js/onboarding.js?v=557b7536"></script>
+    <link rel="canonical" href="https://mykolas-perevicius.github.io/Education_Playground/SETUP.html" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="🎓 Education Playground v2.0.0 - Production Release" href="RELEASE_NOTES_v2.0.0.html" />
+    <link rel="prev" title="Machine Learning &amp; AI Quick Reference" href="ML_AI_CHEATSHEET.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="README.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Education Playground</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="00_calibration_test.html">🎯 Calibration Test - Find Your Level</a></li>
+<li class="toctree-l1"><a class="reference internal" href="beginner_scripts/README.html">🌱 Beginner Scripts (10 Python Files)</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="easy/README_EASY.html">📗 Easy Level - Beginner</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="easy/01_introduction_to_python.html">1. Introduction to Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="easy/02_variables_and_data_types.html">2. Variables and Data Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="easy/03_basic_operations_and_conditionals.html">3. Operations and Conditionals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="easy/04_intro_to_ai_and_ml.html">4. Intro to AI and ML</a></li>
+<li class="toctree-l2"><a class="reference internal" href="easy/05_computing_fundamentals.html">5. Computing Fundamentals</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="medium/README_MEDIUM.html">📘 Medium Level - Intermediate</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="medium/01_functions_and_modules.html">1. Functions and Modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="medium/02_data_structures.html">2. Data Structures</a></li>
+<li class="toctree-l2"><a class="reference internal" href="medium/03_classes_and_oop.html">3. Classes and OOP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="medium/04_machine_learning_basics.html">4. Machine Learning Basics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="medium/05_data_analysis_with_pandas.html">5. Data Analysis with Pandas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="medium/06_algorithms_and_problem_solving.html">6. Algorithms and Problem Solving</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="hard/README_HARD.html">📕 Hard Level - Advanced</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="hard/01_advanced_functions_and_decorators.html">1. Advanced Functions &amp; Decorators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hard/02_generators_and_iterators.html">2. Generators and Iterators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hard/03_algorithms_and_complexity.html">3. Algorithms and Complexity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hard/04_deep_learning_and_neural_networks.html">4. Deep Learning &amp; Neural Networks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hard/05_advanced_ml_and_nlp.html">5. Advanced ML and NLP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hard/06_computer_systems_and_theory.html">6. Computer Systems and Theory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hard/07_project_ideas.html">7. Project Ideas &amp; Implementation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hard/08_classic_problems.html">Lesson 8: Classic Problems Collection</a></li>
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="hard/09_ctf_challenges.html">Lesson 9: Capture The Flag (CTF) - Hacker Training</a></li>
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="hard/10_performance_computing.html">10. Performance Computing ⚡ NEW!</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hard/11_cuda_and_parallel_computing.html">11. CUDA &amp; GPU Computing 🎮 NEW!</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="tools/README.html">🛠️ Developer Tools Track</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="tools/01_shell_basics.html">1. Shell and Command Line</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools/02_command_line_tools.html">2. Command Line Tools</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools/03_git_essentials.html">3. Git Essentials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools/04_text_editors.html">4. Text Editors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools/05_build_systems_cicd.html">5. Build Systems and CI/CD</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools/06_debugging_profiling.html">6. Debugging and Profiling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools/07_security_essentials.html">7. Security Essentials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools/08_package_management.html">8. Package Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools/09_ssh_remote_systems.html">9. SSH and Remote Systems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools/10_docker_containers.html">10. Docker and Containers</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="solutions/README_SOLUTIONS.html">📝 Solutions</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="solutions/easy_solutions.html">Easy Level - Complete Solutions</a></li>
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="solutions/medium_solutions.html">Medium Level - Complete Solutions</a></li>
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="solutions/hard_solutions.html">Hard Level - Complete Solutions</a></li>
+
+
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="solutions/tools_solutions.html">Developer Tools - Complete Solutions</a></li>
+
+
+
+
+
+
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="RESOURCES.html">📚 Learning Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="PYTHON_CHEATSHEET.html">⚡ Python Cheat Sheet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ML_AI_CHEATSHEET.html">🤖 ML/AI Cheat Sheet</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">🔧 Setup Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="RELEASE_NOTES_v2.0.0.html">🎉 Release Notes v2.0.0</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none"></div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Education Playground Setup Guide</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#table-of-contents">Table of Contents</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prerequisites">Prerequisites</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#required">Required</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#optional-but-recommended">Optional but Recommended</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#installation-methods">Installation Methods</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#method-1-using-virtual-environment-recommended">Method 1: Using Virtual Environment (Recommended)</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-clone-the-repository">Step 1: Clone the Repository</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-create-virtual-environment">Step 2: Create Virtual Environment</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#step-3-install-dependencies">Step 3: Install Dependencies</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#step-4-download-nltk-data-for-nlp-lessons">Step 4: Download NLTK Data (for NLP lessons)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#step-5-start-jupyter">Step 5: Start Jupyter</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#method-2-using-conda">Method 2: Using Conda</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-clone-repository">Step 1: Clone Repository</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-create-conda-environment">Step 2: Create Conda Environment</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Step 3: Install Dependencies</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#step-4-start-jupyter">Step 4: Start Jupyter</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#method-3-using-docker">Method 3: Using Docker</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-create-dockerfile">Step 1: Create Dockerfile</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-build-and-run">Step 2: Build and Run</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#verification">Verification</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#run-the-calibration-test">Run the Calibration Test</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ide-setup">IDE Setup</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vs-code-recommended">VS Code (Recommended)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#jupyterlab">JupyterLab</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pycharm">PyCharm</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#troubleshooting">Troubleshooting</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#issue-jupyter-command-not-found">Issue: <code class="docutils literal notranslate"><span class="pre">jupyter:</span> <span class="pre">command</span> <span class="pre">not</span> <span class="pre">found</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#issue-tensorflow-installation-fails">Issue: TensorFlow installation fails</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#issue-nltk-data-not-found">Issue: NLTK data not found</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#issue-kernel-keeps-dying">Issue: Kernel keeps dying</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#issue-import-errors-after-installation">Issue: Import errors after installation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#issue-slow-pip-installation">Issue: Slow pip installation</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#platform-specific-notes">Platform-Specific Notes</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#macos">macOS</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#windows">Windows</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#linux">Linux</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#next-steps">Next Steps</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#getting-help">Getting Help</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#optional-gpu-setup-for-deep-learning">Optional: GPU Setup for Deep Learning</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nvidia-gpu-cuda">NVIDIA GPU (CUDA)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#apple-silicon-m1-m2-m3">Apple Silicon (M1/M2/M3)</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="education-playground-setup-guide">
+<h1>Education Playground Setup Guide<a class="headerlink" href="#education-playground-setup-guide" title="Link to this heading">#</a></h1>
+<p>Complete installation instructions for getting started with Education Playground.</p>
+<section id="table-of-contents">
+<h2>Table of Contents<a class="headerlink" href="#table-of-contents" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="#prerequisites"><span class="xref myst">Prerequisites</span></a></p></li>
+<li><p><a class="reference internal" href="#installation-methods"><span class="xref myst">Installation Methods</span></a></p>
+<ul>
+<li><p><a class="reference internal" href="#method-1-using-virtual-environment-recommended"><span class="xref myst">Method 1: Using Virtual Environment (Recommended)</span></a></p></li>
+<li><p><a class="reference internal" href="#method-2-using-conda"><span class="xref myst">Method 2: Using Conda</span></a></p></li>
+<li><p><a class="reference internal" href="#method-3-using-docker"><span class="xref myst">Method 3: Using Docker</span></a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#verification"><span class="xref myst">Verification</span></a></p></li>
+<li><p><a class="reference internal" href="#ide-setup"><span class="xref myst">IDE Setup</span></a></p></li>
+<li><p><a class="reference internal" href="#troubleshooting"><span class="xref myst">Troubleshooting</span></a></p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="prerequisites">
+<h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Link to this heading">#</a></h2>
+<section id="required">
+<h3>Required<a class="headerlink" href="#required" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Python 3.10 or higher</strong> (<a class="reference external" href="https://www.python.org/downloads/">Download</a>)</p></li>
+<li><p><strong>Git</strong> (<a class="reference external" href="https://git-scm.com/downloads">Download</a>)</p></li>
+<li><p><strong>4GB+ RAM</strong> (8GB+ recommended for deep learning)</p></li>
+<li><p><strong>5GB+ free disk space</strong></p></li>
+</ul>
+</section>
+<section id="optional-but-recommended">
+<h3>Optional but Recommended<a class="headerlink" href="#optional-but-recommended" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>VS Code</strong> with Jupyter extension (<a class="reference external" href="https://code.visualstudio.com/">Download</a>)</p></li>
+<li><p><strong>GPU</strong> for deep learning lessons (NVIDIA with CUDA support)</p></li>
+</ul>
+</section>
+</section>
+<hr class="docutils" />
+<section id="installation-methods">
+<h2>Installation Methods<a class="headerlink" href="#installation-methods" title="Link to this heading">#</a></h2>
+<section id="method-1-using-virtual-environment-recommended">
+<h3>Method 1: Using Virtual Environment (Recommended)<a class="headerlink" href="#method-1-using-virtual-environment-recommended" title="Link to this heading">#</a></h3>
+<p>Best for most users. Keeps dependencies isolated from system Python.</p>
+<section id="step-1-clone-the-repository">
+<h4>Step 1: Clone the Repository<a class="headerlink" href="#step-1-clone-the-repository" title="Link to this heading">#</a></h4>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/mykolas-perevicius/Education_Playground.git
+<span class="nb">cd</span><span class="w"> </span>Education_Playground
+</pre></div>
+</div>
+</section>
+<section id="step-2-create-virtual-environment">
+<h4>Step 2: Create Virtual Environment<a class="headerlink" href="#step-2-create-virtual-environment" title="Link to this heading">#</a></h4>
+<p><strong>On macOS/Linux:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>venv
+<span class="nb">source</span><span class="w"> </span>venv/bin/activate
+</pre></div>
+</div>
+<p><strong>On Windows:</strong></p>
+<div class="highlight-cmd notranslate"><div class="highlight"><pre><span></span>python -m venv venv
+venv\Scripts\activate
+</pre></div>
+</div>
+<p>You should see <code class="docutils literal notranslate"><span class="pre">(venv)</span></code> in your terminal prompt.</p>
+</section>
+<section id="step-3-install-dependencies">
+<h4>Step 3: Install Dependencies<a class="headerlink" href="#step-3-install-dependencies" title="Link to this heading">#</a></h4>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Upgrade pip first</span>
+pip<span class="w"> </span>install<span class="w"> </span>--upgrade<span class="w"> </span>pip
+
+<span class="c1"># Install all requirements</span>
+pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements.txt
+</pre></div>
+</div>
+<p><strong>For minimal installation</strong> (just basics, ~500MB):</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>jupyter<span class="w"> </span>numpy<span class="w"> </span>pandas<span class="w"> </span>matplotlib<span class="w"> </span>scikit-learn
+</pre></div>
+</div>
+<p><strong>For full installation</strong> (includes deep learning, ~3GB):</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements.txt
+</pre></div>
+</div>
+</section>
+<section id="step-4-download-nltk-data-for-nlp-lessons">
+<h4>Step 4: Download NLTK Data (for NLP lessons)<a class="headerlink" href="#step-4-download-nltk-data-for-nlp-lessons" title="Link to this heading">#</a></h4>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;import nltk; nltk.download(&#39;punkt&#39;); nltk.download(&#39;stopwords&#39;); nltk.download(&#39;wordnet&#39;)&quot;</span>
+</pre></div>
+</div>
+</section>
+<section id="step-5-start-jupyter">
+<h4>Step 5: Start Jupyter<a class="headerlink" href="#step-5-start-jupyter" title="Link to this heading">#</a></h4>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>jupyter<span class="w"> </span>notebook
+<span class="c1"># Or use JupyterLab for a modern interface</span>
+jupyter<span class="w"> </span>lab
+</pre></div>
+</div>
+<p>Your browser will open to <code class="docutils literal notranslate"><span class="pre">http://localhost:8888</span></code></p>
+</section>
+</section>
+<hr class="docutils" />
+<section id="method-2-using-conda">
+<h3>Method 2: Using Conda<a class="headerlink" href="#method-2-using-conda" title="Link to this heading">#</a></h3>
+<p>Great if you already use Anaconda/Miniconda.</p>
+<section id="step-1-clone-repository">
+<h4>Step 1: Clone Repository<a class="headerlink" href="#step-1-clone-repository" title="Link to this heading">#</a></h4>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/mykolas-perevicius/Education_Playground.git
+<span class="nb">cd</span><span class="w"> </span>Education_Playground
+</pre></div>
+</div>
+</section>
+<section id="step-2-create-conda-environment">
+<h4>Step 2: Create Conda Environment<a class="headerlink" href="#step-2-create-conda-environment" title="Link to this heading">#</a></h4>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>create<span class="w"> </span>-n<span class="w"> </span>education-playground<span class="w"> </span><span class="nv">python</span><span class="o">=</span><span class="m">3</span>.11
+conda<span class="w"> </span>activate<span class="w"> </span>education-playground
+</pre></div>
+</div>
+</section>
+<section id="id1">
+<h4>Step 3: Install Dependencies<a class="headerlink" href="#id1" title="Link to this heading">#</a></h4>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Install most packages via conda (faster, pre-compiled)</span>
+conda<span class="w"> </span>install<span class="w"> </span>jupyter<span class="w"> </span>numpy<span class="w"> </span>pandas<span class="w"> </span>matplotlib<span class="w"> </span>scikit-learn
+
+<span class="c1"># Install remaining via pip</span>
+pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements.txt
+</pre></div>
+</div>
+</section>
+<section id="step-4-start-jupyter">
+<h4>Step 4: Start Jupyter<a class="headerlink" href="#step-4-start-jupyter" title="Link to this heading">#</a></h4>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>jupyter<span class="w"> </span>notebook
+</pre></div>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="method-3-using-docker">
+<h3>Method 3: Using Docker<a class="headerlink" href="#method-3-using-docker" title="Link to this heading">#</a></h3>
+<p>For advanced users who want a containerized environment.</p>
+<section id="step-1-create-dockerfile">
+<h4>Step 1: Create Dockerfile<a class="headerlink" href="#step-1-create-dockerfile" title="Link to this heading">#</a></h4>
+<div class="highlight-dockerfile notranslate"><div class="highlight"><pre><span></span><span class="k">FROM</span><span class="w"> </span><span class="s">python:3.11-slim</span>
+
+<span class="k">WORKDIR</span><span class="w"> </span><span class="s">/app</span>
+
+<span class="c"># Install system dependencies</span>
+<span class="k">RUN</span><span class="w"> </span>apt-get<span class="w"> </span>update<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>git<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span><span class="o">&amp;&amp;</span><span class="w"> </span>rm<span class="w"> </span>-rf<span class="w"> </span>/var/lib/apt/lists/*
+
+<span class="c"># Copy requirements</span>
+<span class="k">COPY</span><span class="w"> </span>requirements.txt<span class="w"> </span>.
+
+<span class="c"># Install Python packages</span>
+<span class="k">RUN</span><span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>--no-cache-dir<span class="w"> </span>-r<span class="w"> </span>requirements.txt
+
+<span class="c"># Download NLTK data</span>
+<span class="k">RUN</span><span class="w"> </span>python<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;import nltk; nltk.download(&#39;punkt&#39;); nltk.download(&#39;stopwords&#39;); nltk.download(&#39;wordnet&#39;)&quot;</span>
+
+<span class="c"># Copy project files</span>
+<span class="k">COPY</span><span class="w"> </span>.<span class="w"> </span>.
+
+<span class="k">EXPOSE</span><span class="w"> </span><span class="s">8888</span>
+
+<span class="k">CMD</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;jupyter&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;notebook&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;--ip=0.0.0.0&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;--port=8888&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;--no-browser&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;--allow-root&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+</section>
+<section id="step-2-build-and-run">
+<h4>Step 2: Build and Run<a class="headerlink" href="#step-2-build-and-run" title="Link to this heading">#</a></h4>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>build<span class="w"> </span>-t<span class="w"> </span>education-playground<span class="w"> </span>.
+docker<span class="w"> </span>run<span class="w"> </span>-p<span class="w"> </span><span class="m">8888</span>:8888<span class="w"> </span>-v<span class="w"> </span><span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>:/app<span class="w"> </span>education-playground
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+<hr class="docutils" />
+<section id="verification">
+<h2>Verification<a class="headerlink" href="#verification" title="Link to this heading">#</a></h2>
+<p>Test your installation by running this in Python or a Jupyter cell:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Test imports</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Python version: </span><span class="si">{</span><span class="n">sys</span><span class="o">.</span><span class="n">version</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">sklearn</span>
+<span class="kn">import</span> <span class="nn">tensorflow</span> <span class="k">as</span> <span class="nn">tf</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;NumPy: </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">__version__</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Pandas: </span><span class="si">{</span><span class="n">pd</span><span class="o">.</span><span class="n">__version__</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Scikit-learn: </span><span class="si">{</span><span class="n">sklearn</span><span class="o">.</span><span class="n">__version__</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;TensorFlow: </span><span class="si">{</span><span class="n">tf</span><span class="o">.</span><span class="n">__version__</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">✓ All core packages installed successfully!&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<section id="run-the-calibration-test">
+<h3>Run the Calibration Test<a class="headerlink" href="#run-the-calibration-test" title="Link to this heading">#</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>jupyter<span class="w"> </span>notebook<span class="w"> </span>00_calibration_test.ipynb
+</pre></div>
+</div>
+<p>This will help you determine which level to start with.</p>
+</section>
+</section>
+<hr class="docutils" />
+<section id="ide-setup">
+<h2>IDE Setup<a class="headerlink" href="#ide-setup" title="Link to this heading">#</a></h2>
+<section id="vs-code-recommended">
+<h3>VS Code (Recommended)<a class="headerlink" href="#vs-code-recommended" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p>Install the <strong>Jupyter extension</strong> from Microsoft</p></li>
+<li><p>Open the Education_Playground folder: <code class="docutils literal notranslate"><span class="pre">File</span> <span class="pre">&gt;</span> <span class="pre">Open</span> <span class="pre">Folder</span></code></p></li>
+<li><p>Select Python interpreter:</p>
+<ul class="simple">
+<li><p>Press <code class="docutils literal notranslate"><span class="pre">Ctrl+Shift+P</span></code> (or <code class="docutils literal notranslate"><span class="pre">Cmd+Shift+P</span></code> on Mac)</p></li>
+<li><p>Type “Python: Select Interpreter”</p></li>
+<li><p>Choose your <code class="docutils literal notranslate"><span class="pre">venv</span></code> or <code class="docutils literal notranslate"><span class="pre">conda</span></code> environment</p></li>
+</ul>
+</li>
+<li><p>Open any <code class="docutils literal notranslate"><span class="pre">.ipynb</span></code> file and start coding!</p></li>
+</ol>
+<p><strong>Recommended VS Code Extensions:</strong></p>
+<ul class="simple">
+<li><p>Python (Microsoft)</p></li>
+<li><p>Jupyter (Microsoft)</p></li>
+<li><p>Pylance (Microsoft)</p></li>
+<li><p>Black Formatter</p></li>
+<li><p>Ruff</p></li>
+</ul>
+</section>
+<section id="jupyterlab">
+<h3>JupyterLab<a class="headerlink" href="#jupyterlab" title="Link to this heading">#</a></h3>
+<p>For a browser-based IDE with advanced features:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>jupyterlab
+jupyter<span class="w"> </span>lab
+</pre></div>
+</div>
+<p>Benefits:</p>
+<ul class="simple">
+<li><p>Multi-tab interface</p></li>
+<li><p>Built-in terminal</p></li>
+<li><p>File browser</p></li>
+<li><p>Extension ecosystem</p></li>
+</ul>
+</section>
+<section id="pycharm">
+<h3>PyCharm<a class="headerlink" href="#pycharm" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p>Open Education_Playground as a project</p></li>
+<li><p>Configure Python interpreter: <code class="docutils literal notranslate"><span class="pre">File</span> <span class="pre">&gt;</span> <span class="pre">Settings</span> <span class="pre">&gt;</span> <span class="pre">Project</span> <span class="pre">&gt;</span> <span class="pre">Python</span> <span class="pre">Interpreter</span></code></p></li>
+<li><p>Install Jupyter support: <code class="docutils literal notranslate"><span class="pre">Settings</span> <span class="pre">&gt;</span> <span class="pre">Plugins</span> <span class="pre">&gt;</span> <span class="pre">Jupyter</span></code></p></li>
+<li><p>Open <code class="docutils literal notranslate"><span class="pre">.ipynb</span></code> files directly in PyCharm</p></li>
+</ol>
+</section>
+</section>
+<hr class="docutils" />
+<section id="troubleshooting">
+<h2>Troubleshooting<a class="headerlink" href="#troubleshooting" title="Link to this heading">#</a></h2>
+<section id="issue-jupyter-command-not-found">
+<h3>Issue: <code class="docutils literal notranslate"><span class="pre">jupyter:</span> <span class="pre">command</span> <span class="pre">not</span> <span class="pre">found</span></code><a class="headerlink" href="#issue-jupyter-command-not-found" title="Link to this heading">#</a></h3>
+<p><strong>Solution:</strong> Your virtual environment isn’t activated or Jupyter isn’t installed.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Reactivate virtual environment</span>
+<span class="nb">source</span><span class="w"> </span>venv/bin/activate<span class="w">  </span><span class="c1"># macOS/Linux</span>
+venv<span class="se">\S</span>cripts<span class="se">\a</span>ctivate<span class="w">     </span><span class="c1"># Windows</span>
+
+<span class="c1"># Reinstall Jupyter</span>
+pip<span class="w"> </span>install<span class="w"> </span>jupyter
+</pre></div>
+</div>
+</section>
+<section id="issue-tensorflow-installation-fails">
+<h3>Issue: TensorFlow installation fails<a class="headerlink" href="#issue-tensorflow-installation-fails" title="Link to this heading">#</a></h3>
+<p><strong>Solution:</strong> TensorFlow has specific requirements.</p>
+<p><strong>On Apple Silicon (M1/M2/M3 Macs):</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>tensorflow-macos
+pip<span class="w"> </span>install<span class="w"> </span>tensorflow-metal<span class="w">  </span><span class="c1"># For GPU acceleration</span>
+</pre></div>
+</div>
+<p><strong>On Windows with GPU:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>tensorflow<span class="o">[</span>and-cuda<span class="o">]</span>
+</pre></div>
+</div>
+<p><strong>CPU-only (any platform):</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>tensorflow-cpu
+</pre></div>
+</div>
+</section>
+<section id="issue-nltk-data-not-found">
+<h3>Issue: NLTK data not found<a class="headerlink" href="#issue-nltk-data-not-found" title="Link to this heading">#</a></h3>
+<p><strong>Solution:</strong> Download required NLTK datasets:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">nltk</span>
+<span class="n">nltk</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="s1">&#39;punkt&#39;</span><span class="p">)</span>
+<span class="n">nltk</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="s1">&#39;stopwords&#39;</span><span class="p">)</span>
+<span class="n">nltk</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="s1">&#39;wordnet&#39;</span><span class="p">)</span>
+<span class="n">nltk</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="s1">&#39;averaged_perceptron_tagger&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="issue-kernel-keeps-dying">
+<h3>Issue: Kernel keeps dying<a class="headerlink" href="#issue-kernel-keeps-dying" title="Link to this heading">#</a></h3>
+<p><strong>Possible causes:</strong></p>
+<ul class="simple">
+<li><p>Insufficient RAM (need 4GB+, 8GB+ for deep learning)</p></li>
+<li><p>Memory leak in code</p></li>
+<li><p>Outdated packages</p></li>
+</ul>
+<p><strong>Solutions:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Update packages</span>
+pip<span class="w"> </span>install<span class="w"> </span>--upgrade<span class="w"> </span>jupyter<span class="w"> </span>ipykernel
+
+<span class="c1"># Restart kernel: Kernel &gt; Restart in Jupyter</span>
+
+<span class="c1"># Clear outputs before running: Cell &gt; All Output &gt; Clear</span>
+</pre></div>
+</div>
+</section>
+<section id="issue-import-errors-after-installation">
+<h3>Issue: Import errors after installation<a class="headerlink" href="#issue-import-errors-after-installation" title="Link to this heading">#</a></h3>
+<p><strong>Solution:</strong> Wrong Python interpreter selected.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check which Python you&#39;re using</span>
+which<span class="w"> </span>python<span class="w">   </span><span class="c1"># macOS/Linux</span>
+where<span class="w"> </span>python<span class="w">   </span><span class="c1"># Windows</span>
+
+<span class="c1"># Should point to your venv/conda environment</span>
+<span class="c1"># If not, reactivate your environment</span>
+</pre></div>
+</div>
+</section>
+<section id="issue-slow-pip-installation">
+<h3>Issue: Slow pip installation<a class="headerlink" href="#issue-slow-pip-installation" title="Link to this heading">#</a></h3>
+<p><strong>Solution:</strong> Use pip’s cache and parallel downloads:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements.txt<span class="w"> </span>--cache-dir<span class="w"> </span>~/.cache/pip
+</pre></div>
+</div>
+<p>Or switch to conda for faster binary installs:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>install<span class="w"> </span>--file<span class="w"> </span>requirements.txt
+</pre></div>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="platform-specific-notes">
+<h2>Platform-Specific Notes<a class="headerlink" href="#platform-specific-notes" title="Link to this heading">#</a></h2>
+<section id="macos">
+<h3>macOS<a class="headerlink" href="#macos" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Use <code class="docutils literal notranslate"><span class="pre">python3</span></code> instead of <code class="docutils literal notranslate"><span class="pre">python</span></code> if you have system Python 2.x</p></li>
+<li><p>May need Xcode Command Line Tools: <code class="docutils literal notranslate"><span class="pre">xcode-select</span> <span class="pre">--install</span></code></p></li>
+<li><p>For M1/M2/M3 chips, some packages have ARM-specific versions</p></li>
+</ul>
+</section>
+<section id="windows">
+<h3>Windows<a class="headerlink" href="#windows" title="Link to this heading">#</a></h3>
+<ul>
+<li><p>Enable long path support (for deep learning models): Run as Administrator</p>
+<div class="highlight-cmd notranslate"><div class="highlight"><pre><span></span>reg add HKLM\SYSTEM\CurrentControlSet\Control\FileSystem /v LongPathsEnabled /t REG_DWORD /d 1
+</pre></div>
+</div>
+</li>
+<li><p>Use PowerShell or Windows Terminal (better than CMD)</p></li>
+<li><p>If permission errors, run terminal as Administrator</p></li>
+</ul>
+</section>
+<section id="linux">
+<h3>Linux<a class="headerlink" href="#linux" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>May need build tools: <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">apt-get</span> <span class="pre">install</span> <span class="pre">python3-dev</span> <span class="pre">build-essential</span></code></p></li>
+<li><p>For GPU support: Install CUDA toolkit and cuDNN</p></li>
+<li><p>Check Python version: Many distros ship with older versions</p></li>
+</ul>
+</section>
+</section>
+<hr class="docutils" />
+<section id="next-steps">
+<h2>Next Steps<a class="headerlink" href="#next-steps" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p><strong>Take the calibration test</strong>: <code class="docutils literal notranslate"><span class="pre">00_calibration_test.ipynb</span></code></p></li>
+<li><p><strong>Navigate to your level</strong>: <code class="docutils literal notranslate"><span class="pre">easy/</span></code>, <code class="docutils literal notranslate"><span class="pre">medium/</span></code>, or <code class="docutils literal notranslate"><span class="pre">hard/</span></code></p></li>
+<li><p><strong>Read the README</strong>: Comprehensive course overview</p></li>
+<li><p><strong>Check out resources</strong>: <code class="docutils literal notranslate"><span class="pre">RESOURCES.md</span></code> for external learning materials</p></li>
+<li><p><strong>Review cheatsheets</strong>: Quick references as you learn</p></li>
+</ol>
+</section>
+<hr class="docutils" />
+<section id="getting-help">
+<h2>Getting Help<a class="headerlink" href="#getting-help" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><strong>Issues with setup</strong>: Open an issue on GitHub</p></li>
+<li><p><strong>Package-specific problems</strong>: Check official documentation</p>
+<ul>
+<li><p><a class="reference external" href="https://jupyter.org/documentation">Jupyter</a></p></li>
+<li><p><a class="reference external" href="https://numpy.org/doc/">NumPy</a></p></li>
+<li><p><a class="reference external" href="https://www.tensorflow.org/">TensorFlow</a></p></li>
+<li><p><a class="reference external" href="https://pytorch.org/docs/">PyTorch</a></p></li>
+</ul>
+</li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="optional-gpu-setup-for-deep-learning">
+<h2>Optional: GPU Setup for Deep Learning<a class="headerlink" href="#optional-gpu-setup-for-deep-learning" title="Link to this heading">#</a></h2>
+<section id="nvidia-gpu-cuda">
+<h3>NVIDIA GPU (CUDA)<a class="headerlink" href="#nvidia-gpu-cuda" title="Link to this heading">#</a></h3>
+<p><strong>Check GPU availability:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">tensorflow</span> <span class="k">as</span> <span class="nn">tf</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;GPUs available: </span><span class="si">{</span><span class="n">tf</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">list_physical_devices</span><span class="p">(</span><span class="s1">&#39;GPU&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="kn">import</span> <span class="nn">torch</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;CUDA available: </span><span class="si">{</span><span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">is_available</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Install CUDA support:</strong></p>
+<ol class="arabic simple">
+<li><p>Install <a class="reference external" href="https://developer.nvidia.com/cuda-downloads">NVIDIA CUDA Toolkit</a></p></li>
+<li><p>Install <a class="reference external" href="https://developer.nvidia.com/cudnn">cuDNN</a></p></li>
+<li><p>Install GPU-enabled versions:</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># TensorFlow with GPU</span>
+pip<span class="w"> </span>install<span class="w"> </span>tensorflow<span class="o">[</span>and-cuda<span class="o">]</span>
+
+<span class="c1"># PyTorch with GPU (check https://pytorch.org for your CUDA version)</span>
+pip<span class="w"> </span>install<span class="w"> </span>torch<span class="w"> </span>torchvision<span class="w"> </span>torchaudio<span class="w"> </span>--index-url<span class="w"> </span>https://download.pytorch.org/whl/cu118
+</pre></div>
+</div>
+</section>
+<section id="apple-silicon-m1-m2-m3">
+<h3>Apple Silicon (M1/M2/M3)<a class="headerlink" href="#apple-silicon-m1-m2-m3" title="Link to this heading">#</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>tensorflow-macos<span class="w"> </span>tensorflow-metal
+<span class="c1"># PyTorch automatically supports MPS (Metal Performance Shaders)</span>
+</pre></div>
+</div>
+<hr class="docutils" />
+<p><strong>Happy Learning!</strong> You’re all set to start your programming journey. 🚀</p>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="ML_AI_CHEATSHEET.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Machine Learning &amp; AI Quick Reference</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="RELEASE_NOTES_v2.0.0.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">🎓 Education Playground v2.0.0 - Production Release</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#table-of-contents">Table of Contents</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prerequisites">Prerequisites</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#required">Required</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#optional-but-recommended">Optional but Recommended</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#installation-methods">Installation Methods</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#method-1-using-virtual-environment-recommended">Method 1: Using Virtual Environment (Recommended)</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-clone-the-repository">Step 1: Clone the Repository</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-create-virtual-environment">Step 2: Create Virtual Environment</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#step-3-install-dependencies">Step 3: Install Dependencies</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#step-4-download-nltk-data-for-nlp-lessons">Step 4: Download NLTK Data (for NLP lessons)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#step-5-start-jupyter">Step 5: Start Jupyter</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#method-2-using-conda">Method 2: Using Conda</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-clone-repository">Step 1: Clone Repository</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-create-conda-environment">Step 2: Create Conda Environment</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Step 3: Install Dependencies</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#step-4-start-jupyter">Step 4: Start Jupyter</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#method-3-using-docker">Method 3: Using Docker</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-create-dockerfile">Step 1: Create Dockerfile</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-build-and-run">Step 2: Build and Run</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#verification">Verification</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#run-the-calibration-test">Run the Calibration Test</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ide-setup">IDE Setup</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vs-code-recommended">VS Code (Recommended)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#jupyterlab">JupyterLab</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pycharm">PyCharm</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#troubleshooting">Troubleshooting</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#issue-jupyter-command-not-found">Issue: <code class="docutils literal notranslate"><span class="pre">jupyter:</span> <span class="pre">command</span> <span class="pre">not</span> <span class="pre">found</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#issue-tensorflow-installation-fails">Issue: TensorFlow installation fails</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#issue-nltk-data-not-found">Issue: NLTK data not found</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#issue-kernel-keeps-dying">Issue: Kernel keeps dying</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#issue-import-errors-after-installation">Issue: Import errors after installation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#issue-slow-pip-installation">Issue: Slow pip installation</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#platform-specific-notes">Platform-Specific Notes</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#macos">macOS</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#windows">Windows</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#linux">Linux</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#next-steps">Next Steps</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#getting-help">Getting Help</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#optional-gpu-setup-for-deep-learning">Optional: GPU Setup for Deep Learning</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nvidia-gpu-cuda">NVIDIA GPU (CUDA)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#apple-silicon-m1-m2-m3">Apple Silicon (M1/M2/M3)</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Mykolas Perevicius
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
