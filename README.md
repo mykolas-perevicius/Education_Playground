@@ -5,10 +5,26 @@
 ![Jupyter Book](https://img.shields.io/badge/Jupyter-Book-orange.svg)
 ![Status](https://img.shields.io/badge/status-active-success.svg)
 ![Last Updated](https://img.shields.io/github/last-commit/mykolas-perevicius/Education_Playground)
+![Version](https://img.shields.io/badge/version-3.0-blue.svg)
 
 > Learn Python, AI, and Computing — From Zero to Hero
 
 A comprehensive, self-paced learning platform covering **Python**, **AI/ML**, **GPU Computing**, and **Computer Science** for all skill levels. **100% free** and runs in your browser!
+
+**🌐 Live Site:** https://mykolas-perevicius.github.io/Education_Playground/
+
+---
+
+## 📋 Project Documentation
+
+**New to this project? Start here:**
+
+- **[PROJECT_SUMMARY.md](PROJECT_SUMMARY.md)** - Complete overview, architecture, and current status
+- **[VERSION_HISTORY.md](VERSION_HISTORY.md)** - Full version history from v1.0 to v3.0
+- **[CHANGELOG.md](CHANGELOG.md)** - Detailed changelog with technical implementation details
+- **[DESIGN_ITERATIONS.md](DESIGN_ITERATIONS.md)** - Visual design evolution and design system
+- **[ARCHITECTURE.md](ARCHITECTURE.md)** - System architecture and technical decisions
+- **[QUICK_START.md](QUICK_START.md)** - Daily operations and deployment guide
 
 ---
 
