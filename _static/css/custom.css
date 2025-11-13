@@ -1047,101 +1047,45 @@ tr:hover {
    Main Content Layout & Alignment
    ============================================ */
 
-/* ============================================
-   CRITICAL LAYOUT FIXES - Override Theme Constraints
-   ============================================ */
-
-/* Force full width layout */
-.bd-container {
-    max-width: 100% !important;
-    width: 100% !important;
-}
-
-.bd-container__inner {
-    max-width: 1600px !important;
-    width: 100% !important;
-    margin: 0 auto !important;
-}
-
-/* Fix main content area to use available space */
-.bd-main {
-    width: 100% !important;
-    max-width: 100% !important;
-    flex-grow: 1 !important;
-}
-
+/* Gentle layout improvements - working WITH the theme */
 .bd-main .bd-content {
-    width: 100% !important;
-    max-width: 1200px !important;
-    margin: 0 auto !important;
-    padding: 2rem 3rem !important;
-}
-
-/* Fix article content width */
-.bd-article-container {
-    max-width: 100% !important;
-}
-
-.bd-article {
-    max-width: 1200px !important;
-    width: 100% !important;
-    margin: 0 auto !important;
-    padding: 2rem 3rem !important;
-}
-
-/* Ensure sidebar doesn't interfere with content */
-.bd-sidebar-primary {
-    flex-shrink: 0 !important;
-    width: 280px !important;
-    max-width: 280px !important;
-    min-width: 280px !important;
-}
-
-.bd-sidebar-secondary {
-    flex-shrink: 0 !important;
-    width: 240px !important;
-}
-
-/* Fix grid layout */
-.bd-page-width {
-    display: flex !important;
-    flex-direction: row !important;
-    gap: 0 !important;
-    max-width: 100% !important;
-}
-
-/* Ensure content area takes remaining space */
-.bd-main > .bd-content {
-    flex: 1 1 auto !important;
-    min-width: 0 !important;
-}
-
-/* Fix for narrow content issue */
-main.bd-content {
-    width: 100% !important;
-    max-width: none !important;
-}
-
-/* Override any conflicting max-widths */
-.bd-content .bd-article-container {
-    max-width: none !important;
-}
-
-/* Fix container padding */
-.bd-container {
-    padding-left: 0 !important;
-    padding-right: 0 !important;
-}
-
-/* Better content centering and max-width */
-.bd-article {
-    max-width: 1000px;
+    max-width: 1200px;
     margin: 0 auto;
     padding: 2rem;
 }
 
-/* Ensure main content area is properly centered */
-.bd-main .bd-content {
+/* Reasonable article width for readability */
+.bd-article {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+/* Fix sidebar width without breaking layout */
+.bd-sidebar-primary {
+    width: 280px;
+    flex-shrink: 0;
+}
+
+.bd-sidebar-secondary {
+    width: 240px;
+    flex-shrink: 0;
+}
+
+/* Improve content area flexibility */
+.bd-main {
+    flex-grow: 1;
+    min-width: 0;
+}
+
+/* Container improvements */
+.bd-container__inner {
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+/* Ensure proper content spacing */
+.bd-content > .bd-article-container {
     padding: 0 1.5rem;
 }
 
@@ -1369,20 +1313,20 @@ main.bd-content {
         margin-left: 0;
     }
 
-    /* Force full width on tablets/mobile */
+    /* Responsive adjustments for tablets/mobile */
     .bd-main .bd-content {
-        max-width: 100% !important;
-        padding: 1.5rem !important;
+        max-width: 100%;
+        padding: 1.5rem;
     }
 
     .bd-article {
-        max-width: 100% !important;
-        padding: 1.5rem !important;
+        max-width: 100%;
+        padding: 1.5rem;
     }
 
     /* Hide secondary sidebar on smaller screens */
     .bd-sidebar-secondary {
-        display: none !important;
+        display: none;
     }
 }
 
@@ -1439,8 +1383,8 @@ main.bd-content {
     .bd-main,
     .bd-content,
     .bd-article {
-        max-width: 100% !important;
-        width: 100% !important;
+        max-width: 100%;
+        width: 100%;
     }
 }
 

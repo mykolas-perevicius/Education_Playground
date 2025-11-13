@@ -44,3 +44,14 @@ parse:
     - linkify
     - substitution
     - tasklist
+
+# Exclude patterns to prevent build issues
+exclude_patterns:
+  - codebridge-landing/node_modules
+  - "*.pyc"
+  - ".DS_Store"
+  - "__pycache__"
+  - ".ipynb_checkpoints"
+  - "_build"
+  - "Thumbs.db"
+  - ".git"
