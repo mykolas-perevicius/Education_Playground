@@ -26,6 +26,14 @@ sphinx:
       navigation_depth: 4
       show_toc_level: 2
       navbar_align: "left"
+      # Layout fixes for proper content width
+      home_page_in_toc: false
+      collapse_navigation: false
+      navigation_with_keys: true
+      # Content width settings
+      article_header_start: []
+      article_header_end: []
+      primary_sidebar_end: []
 
 launch_buttons:
   colab_url: "https://colab.research.google.com"
