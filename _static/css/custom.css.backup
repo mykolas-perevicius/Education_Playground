@@ -42,36 +42,129 @@
     --transition-slow: 0.3s ease;
 }
 
-/* Dark Mode Variables */
+/* Dark Mode Variables - Automatic Detection */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --primary-color: #66bb6a;
+        --primary-hover: #81c784;
+        --primary-light: #1b2f1c;
+
+        /* Dark Backgrounds - Improved contrast */
+        --bg-primary: #0d1117;
+        --bg-secondary: #161b22;
+        --bg-tertiary: #21262d;
+        --bg-code: #161b22;
+
+        /* Dark Text - Much better contrast */
+        --text-primary: #f0f6fc;
+        --text-secondary: #c9d1d9;
+        --text-tertiary: #8b949e;
+
+        /* Dark Borders - More visible */
+        --border-color: #30363d;
+        --border-hover: #66bb6a;
+
+        /* Dark Shadows - Stronger */
+        --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.4);
+        --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.5);
+        --shadow-lg: 0 8px 20px rgba(0, 0, 0, 0.6);
+    }
+}
+
+/* Manual Dark Mode Override (for theme toggles) */
 html[data-theme="dark"],
 html.dark-mode {
     --primary-color: #66bb6a;
     --primary-hover: #81c784;
     --primary-light: #1b2f1c;
 
-    /* Dark Backgrounds */
-    --bg-primary: #1a1a1a;
-    --bg-secondary: #242424;
-    --bg-tertiary: #2d2d2d;
-    --bg-code: #2d2d2d;
+    /* Dark Backgrounds - Improved contrast */
+    --bg-primary: #0d1117;
+    --bg-secondary: #161b22;
+    --bg-tertiary: #21262d;
+    --bg-code: #161b22;
 
-    /* Dark Text */
-    --text-primary: #e0e0e0;
-    --text-secondary: #b0b0b0;
-    --text-tertiary: #808080;
+    /* Dark Text - Much better contrast */
+    --text-primary: #f0f6fc;
+    --text-secondary: #c9d1d9;
+    --text-tertiary: #8b949e;
 
-    /* Dark Borders */
-    --border-color: #404040;
+    /* Dark Borders - More visible */
+    --border-color: #30363d;
     --border-hover: #66bb6a;
 
-    /* Dark Shadows */
-    --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.3);
-    --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.4);
-    --shadow-lg: 0 8px 20px rgba(0, 0, 0, 0.5);
+    /* Dark Shadows - Stronger */
+    --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.4);
+    --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.5);
+    --shadow-lg: 0 8px 20px rgba(0, 0, 0, 0.6);
 }
 
 /* ============================================
-   Dark Mode Enhancements
+   Dark Mode Enhancements - Automatic Detection
+   ============================================ */
+
+@media (prefers-color-scheme: dark) {
+    body {
+        background-color: var(--bg-primary);
+        color: var(--text-primary);
+    }
+
+    .onboarding-content {
+        background: var(--bg-secondary);
+        color: var(--text-primary);
+    }
+
+    .choice-card {
+        background: var(--bg-tertiary);
+        border-color: var(--border-color);
+        color: var(--text-primary);
+    }
+
+    .choice-card:hover {
+        background: var(--bg-secondary);
+        border-color: var(--border-hover);
+    }
+
+    div.highlight {
+        background: var(--bg-code);
+        border: 1px solid var(--border-color);
+    }
+
+    pre {
+        background: var(--bg-code);
+        color: var(--text-primary);
+    }
+
+    table {
+        background: var(--bg-secondary);
+        color: var(--text-primary);
+    }
+
+    th {
+        background: var(--bg-tertiary);
+        color: var(--text-primary);
+    }
+
+    tr:nth-child(even) {
+        background: var(--bg-tertiary);
+    }
+
+    .bd-sidebar-primary {
+        background: var(--bg-secondary);
+    }
+
+    .bd-sidebar-primary .bd-sidenav {
+        background: var(--bg-secondary);
+    }
+
+    .bd-article {
+        background: var(--bg-primary);
+        color: var(--text-primary);
+    }
+}
+
+/* ============================================
+   Dark Mode - Manual Override Support
    ============================================ */
 
 html[data-theme="dark"] body,
@@ -168,6 +261,42 @@ html.dark-mode .bd-sidebar-primary .bd-sidenav {
     color: var(--text-primary);
 }
 
+/* Sidebar links in dark mode - better visibility */
+html[data-theme="dark"] .bd-sidebar-primary a,
+html.dark-mode .bd-sidebar-primary a {
+    color: #c9d1d9 !important;
+}
+
+html[data-theme="dark"] .bd-sidebar-primary a:hover,
+html.dark-mode .bd-sidebar-primary a:hover {
+    color: #f0f6fc !important;
+    background: var(--bg-tertiary) !important;
+}
+
+html[data-theme="dark"] .bd-sidebar-primary .active > a,
+html.dark-mode .bd-sidebar-primary .active > a {
+    color: var(--primary-color) !important;
+    background: var(--bg-tertiary) !important;
+    border-left: 3px solid var(--primary-color) !important;
+}
+
+@media (prefers-color-scheme: dark) {
+    .bd-sidebar-primary a {
+        color: #c9d1d9 !important;
+    }
+
+    .bd-sidebar-primary a:hover {
+        color: #f0f6fc !important;
+        background: var(--bg-tertiary) !important;
+    }
+
+    .bd-sidebar-primary .active > a {
+        color: var(--primary-color) !important;
+        background: var(--bg-tertiary) !important;
+        border-left: 3px solid var(--primary-color) !important;
+    }
+}
+
 /* ============================================
    Enhanced Typography
    ============================================ */
@@ -256,6 +385,14 @@ li code {
     color: var(--primary-color);
     padding: 0.15em 0.4em;
     font-weight: 500;
+}
+
+@media (prefers-color-scheme: dark) {
+    p code,
+    li code {
+        background: var(--bg-tertiary);
+        color: var(--primary-color);
+    }
 }
 
 html[data-theme="dark"] p code,
@@ -660,83 +797,13 @@ tr:hover {
 }
 
 /* ============================================
-   Continue Learning Banner
+   Clean Content Spacing (Replacing Banner)
    ============================================ */
 
-.continue-learning-banner {
-    background: linear-gradient(135deg, var(--secondary-color) 0%, var(--secondary-dark) 100%);
-    color: white;
-    border-radius: 12px;
-    padding: 20px 24px;
-    margin-bottom: 32px;
-    box-shadow: var(--shadow-md);
-}
-
-.continue-content {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 16px;
-    margin-bottom: 12px;
-}
-
-.continue-text {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-}
-
-.continue-text strong {
-    font-size: 18px;
-}
-
-.continue-text span {
-    font-size: 14px;
-    opacity: 0.9;
-}
-
-.continue-actions {
-    display: flex;
-    gap: 12px;
-    align-items: center;
-}
-
-.btn-continue {
-    background: white;
-    color: var(--secondary-color);
-    padding: 10px 24px;
-    border-radius: 6px;
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 14px;
-    transition: all var(--transition-normal);
-    white-space: nowrap;
-}
-
-.btn-continue:hover {
-    transform: translateY(-2px);
-    box-shadow: var(--shadow-md);
-}
-
-.btn-reset {
-    background: rgba(255, 255, 255, 0.2);
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    color: white;
-    padding: 8px 16px;
-    border-radius: 6px;
-    font-size: 13px;
-    cursor: pointer;
-    transition: all var(--transition-normal);
-}
-
-.btn-reset:hover {
-    background: rgba(255, 255, 255, 0.3);
-}
-
-.continue-progress {
-    font-size: 13px;
-    opacity: 0.9;
-    text-align: right;
+/* Use subtle spacing instead of loud banners */
+.bd-article > section:first-child {
+    margin-top: 0;
+    padding-top: 0;
 }
 
 /* ============================================
@@ -862,66 +929,156 @@ tr:hover {
 }
 
 /* ============================================
-   Enhanced Homepage Hero
+   Clean, Minimal Hero Section
    ============================================ */
 
 .hero-section {
-    background: linear-gradient(135deg, var(--secondary-color) 0%, var(--secondary-dark) 100%);
-    color: white;
-    padding: 60px 32px;
-    border-radius: 16px;
-    margin-bottom: 48px;
+    background: var(--bg-secondary);
+    padding: 40px 20px;
+    border-radius: 8px;
+    margin-bottom: 2rem;
     text-align: center;
+    border: 1px solid var(--border-color);
 }
 
 .hero-section h1 {
-    font-size: 42px;
-    margin: 0 0 16px 0;
-    color: white;
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: var(--text-primary);
 }
 
 .hero-section .subtitle {
-    font-size: 20px;
-    opacity: 0.9;
-    margin-bottom: 32px;
+    font-size: 1.125rem;
+    color: var(--text-secondary);
+    margin-bottom: 1.5rem;
 }
 
 .hero-cta {
     display: inline-block;
-    background: white;
-    color: var(--secondary-color);
-    padding: 16px 40px;
-    border-radius: 8px;
-    font-size: 18px;
+    background: var(--primary-color);
+    color: white;
+    padding: 12px 24px;
+    border-radius: 6px;
+    font-size: 1rem;
     font-weight: 600;
     text-decoration: none;
     transition: all var(--transition-normal);
 }
 
 .hero-cta:hover {
-    transform: translateY(-2px);
-    box-shadow: var(--shadow-lg);
+    background: var(--primary-hover);
+    transform: translateY(-1px);
 }
 
 /* ============================================
-   Responsive Design
+   Main Content Layout & Alignment
    ============================================ */
 
+/* Gentle layout improvements - working WITH the theme */
+.bd-main .bd-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+/* Reasonable article width for readability */
+.bd-article {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+/* Fix sidebar width without breaking layout */
+.bd-sidebar-primary {
+    width: 280px;
+    flex-shrink: 0;
+}
+
+.bd-sidebar-secondary {
+    width: 240px;
+    flex-shrink: 0;
+}
+
+/* Improve content area flexibility */
+.bd-main {
+    flex-grow: 1;
+    min-width: 0;
+}
+
+/* Container improvements */
+.bd-container__inner {
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+/* Ensure proper content spacing */
+.bd-content > .bd-article-container {
+    padding: 0 1.5rem;
+}
+
+/* Better spacing for content container */
+.bd-container__inner.bd-page-width {
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+/* Improve article section spacing */
+.bd-article > section {
+    margin-bottom: 3rem;
+}
+
+/* Center images and figures */
+.bd-article img,
+.bd-article figure {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 2rem auto;
+}
+
+/* Better list spacing */
+.bd-article ul,
+.bd-article ol {
+    margin: 1.5rem 0;
+    padding-left: 2rem;
+}
+
+.bd-article li {
+    margin-bottom: 0.5rem;
+}
+
+/* ============================================
+   Enhanced Mobile-First Responsive Design
+   ============================================ */
+
+/* Mobile-First Touch Optimization */
 @media (max-width: 768px) {
+    /* Improved touch targets - iOS HIG recommends 44px minimum */
+    a, button, .btn,
+    .choice-card,
+    .quick-nav-btn {
+        min-height: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    /* Better mobile typography */
     body {
-        font-size: 15px;
+        font-size: 14px;
+        -webkit-text-size-adjust: 100%;
     }
 
     h1 {
-        font-size: 2rem;
-    }
-
-    h2 {
         font-size: 1.75rem;
     }
 
+    h2 {
+        font-size: 1.5rem;
+    }
+
     h3 {
-        font-size: 1.35rem;
+        font-size: 1.25rem;
     }
 
     .onboarding-content {
@@ -998,18 +1155,6 @@ tr:hover {
         font-size: 16px;
     }
 
-    .continue-learning-banner {
-        padding: 18px;
-    }
-
-    .continue-content {
-        gap: 12px;
-    }
-
-    .continue-actions {
-        gap: 10px;
-    }
-
     .btn {
         width: 100%;
         text-align: center;
@@ -1034,10 +1179,88 @@ tr:hover {
     .bd-sidebar-primary .bd-sidenav {
         padding-bottom: 24px;
     }
+
+    /* Enhanced mobile sidebar - slide in from left */
+    .bd-sidebar-primary {
+        position: fixed !important;
+        left: 0;
+        top: 0;
+        height: 100vh;
+        z-index: 9999;
+        transform: translateX(-100%);
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        background: var(--bg-primary);
+        box-shadow: 2px 0 10px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Active state for mobile menu */
+    .bd-sidebar-primary.active {
+        transform: translateX(0);
+    }
+
+    /* Improved mobile content spacing */
+    .bd-article {
+        padding: 1rem;
+        max-width: 100%;
+    }
+
+    .bd-main .bd-content {
+        padding: 1rem;
+    }
+
+    /* Mobile-optimized code blocks */
+    pre {
+        font-size: 12px;
+        padding: 0.75rem;
+    }
+
+    /* Mobile tables - horizontal scroll */
+    table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+
+    /* Hamburger menu button */
+    .mobile-menu-toggle {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        z-index: 10000;
+        background: var(--primary-color);
+        color: white;
+        border: none;
+        border-radius: 4px;
+        padding: 8px 12px;
+        font-size: 24px;
+        cursor: pointer;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    }
+}
+
+/* Tablet-specific optimizations */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .bd-article {
+        max-width: 100%;
+        padding: 1.5rem;
+    }
+
+    .bd-sidebar-primary {
+        width: 240px;
+    }
+
+    .bd-main .bd-content {
+        max-width: 100%;
+        padding: 1.5rem;
+    }
 }
 
 @media (min-width: 769px) {
     .mobile-quick-nav {
+        display: none;
+    }
+
+    .mobile-menu-toggle {
         display: none;
     }
 }
@@ -1095,6 +1318,22 @@ tr:hover {
     .bd-main .bd-content {
         margin-left: 0;
     }
+
+    /* Responsive adjustments for tablets/mobile */
+    .bd-main .bd-content {
+        max-width: 100%;
+        padding: 1.5rem;
+    }
+
+    .bd-article {
+        max-width: 100%;
+        padding: 1.5rem;
+    }
+
+    /* Hide secondary sidebar on smaller screens */
+    .bd-sidebar-secondary {
+        display: none;
+    }
 }
 
 /* ============================================
@@ -1129,7 +1368,6 @@ tr:hover {
 
 @media print {
     .onboarding-modal,
-    .continue-learning-banner,
     .mobile-quick-nav,
     .mark-complete-btn,
     .completion-toast,
@@ -1145,6 +1383,13 @@ tr:hover {
 
     a {
         text-decoration: underline;
+    }
+
+    .bd-main,
+    .bd-content,
+    .bd-article {
+        max-width: 100%;
+        width: 100%;
     }
 }
 

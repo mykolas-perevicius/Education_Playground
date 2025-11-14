@@ -661,9 +661,9 @@
             setTimeout(() => modal.show(), 500);
         }
 
-        // Show continue learning banner
-        const continueLearning = new ContinueLearning(tracker);
-        continueLearning.init();
+        // Show continue learning banner - DISABLED for cleaner UI
+        // const continueLearning = new ContinueLearning(tracker);
+        // continueLearning.init();
 
         // Add mark as complete buttons
         addCompleteButtons(tracker);
