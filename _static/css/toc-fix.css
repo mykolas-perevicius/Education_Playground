@@ -1,0 +1,226 @@
+/**
+ * Critical TOC Positioning Fixes
+ * Forces the Table of Contents to stick to the right edge
+ * Overrides Jupyter Book's default positioning with maximum specificity
+ */
+
+/* ============================================
+   CRITICAL FIX: Force TOC to Right Edge
+   ============================================ */
+
+/* Remove the floating TOC and reposition it */
+html body .bd-container .bd-sidebar-secondary,
+html body .sidebar-secondary-item,
+html body .bd-sidebar-secondary .sidebar-secondary-item,
+html body div.sidebar-secondary-item {
+    position: fixed !important;
+    right: 20px !important;
+    top: 80px !important;
+    left: auto !important;
+    width: 260px !important;
+    max-width: 260px !important;
+    max-height: calc(100vh - 100px) !important;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+    z-index: 50 !important;
+    background: rgba(15, 23, 42, 0.95) !important;
+    backdrop-filter: blur(10px) !important;
+    border-radius: 8px !important;
+    padding: 1rem !important;
+    box-shadow: 0 10px 25px -5px rgb(0 0 0 / 0.3) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+/* Style the TOC header */
+html body .page-toc.tocsection {
+    background: transparent !important;
+    border: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+html body .page-toc.tocsection > svg {
+    display: none !important;
+}
+
+html body .page-toc.tocsection::before {
+    content: "📑 Contents" !important;
+    display: block !important;
+    font-size: 1rem !important;
+    font-weight: 600 !important;
+    color: #f1f5f9 !important;
+    margin-bottom: 1rem !important;
+    padding-bottom: 0.5rem !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+/* Style TOC navigation */
+html body .bd-toc-nav {
+    padding: 0 !important;
+}
+
+html body .bd-toc-nav ul {
+    list-style: none !important;
+    padding-left: 0 !important;
+    margin: 0 !important;
+}
+
+html body .bd-toc-nav li {
+    margin: 0.25rem 0 !important;
+}
+
+html body .bd-toc-nav a {
+    color: #94a3b8 !important;
+    text-decoration: none !important;
+    font-size: 0.875rem !important;
+    padding: 0.375rem 0.75rem !important;
+    display: block !important;
+    border-radius: 4px !important;
+    transition: all 0.15s ease !important;
+    border-left: 2px solid transparent !important;
+}
+
+html body .bd-toc-nav a:hover {
+    color: #f1f5f9 !important;
+    background: rgba(255, 255, 255, 0.05) !important;
+    border-left-color: #60a5fa !important;
+}
+
+html body .bd-toc-nav a.active,
+html body .bd-toc-nav .active > a {
+    color: #60a5fa !important;
+    background: rgba(96, 165, 250, 0.1) !important;
+    border-left-color: #60a5fa !important;
+    font-weight: 500 !important;
+}
+
+/* Nested TOC items */
+html body .bd-toc-nav ul ul {
+    padding-left: 1rem !important;
+    border-left: 1px solid rgba(255, 255, 255, 0.05) !important;
+    margin-left: 0.5rem !important;
+}
+
+/* ============================================
+   Adjust Main Content to Account for TOC
+   ============================================ */
+
+/* Ensure content doesn't go under the TOC */
+html body .bd-main {
+    margin-right: 300px !important;
+    max-width: calc(100% - 300px) !important;
+}
+
+html body .bd-article-container {
+    max-width: 900px !important;
+    margin: 0 auto !important;
+    padding: 2rem !important;
+}
+
+html body .bd-article {
+    max-width: 100% !important;
+}
+
+/* ============================================
+   Better Dark Mode Colors
+   ============================================ */
+
+/* Improve text contrast */
+html body {
+    background: #0f172a !important;
+    color: #f1f5f9 !important;
+}
+
+html body .bd-article p {
+    color: #cbd5e1 !important;
+    line-height: 1.75 !important;
+}
+
+html body .bd-article h1,
+html body .bd-article h2,
+html body .bd-article h3,
+html body .bd-article h4 {
+    color: #f1f5f9 !important;
+}
+
+/* Code blocks with better contrast */
+html body .bd-article pre {
+    background: #1e293b !important;
+    border: 1px solid #334155 !important;
+}
+
+html body .bd-article code {
+    background: #1e293b !important;
+    color: #60a5fa !important;
+}
+
+/* ============================================
+   Hide Duplicate/Broken Elements
+   ============================================ */
+
+/* Hide any duplicate TOC elements */
+html body .bd-sidebar-secondary:not(.sidebar-secondary-item) {
+    display: none !important;
+}
+
+/* Hide the original misplaced TOC */
+html body #pst-page-toc {
+    display: none !important;
+}
+
+/* ============================================
+   Responsive Design
+   ============================================ */
+
+/* Hide TOC on tablets and smaller */
+@media (max-width: 1400px) {
+    html body .sidebar-secondary-item,
+    html body .bd-sidebar-secondary {
+        display: none !important;
+    }
+
+    html body .bd-main {
+        margin-right: 2rem !important;
+        max-width: 100% !important;
+    }
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+    html body .bd-main {
+        margin-right: 0 !important;
+        padding: 1rem !important;
+    }
+
+    html body .bd-article-container {
+        padding: 1rem !important;
+    }
+}
+
+/* ============================================
+   Smooth Scrollbar Styling
+   ============================================ */
+
+html body .sidebar-secondary-item::-webkit-scrollbar {
+    width: 6px !important;
+}
+
+html body .sidebar-secondary-item::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.02) !important;
+    border-radius: 3px !important;
+}
+
+html body .sidebar-secondary-item::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.1) !important;
+    border-radius: 3px !important;
+}
+
+html body .sidebar-secondary-item::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.2) !important;
+}
+
+/* Firefox */
+html body .sidebar-secondary-item {
+    scrollbar-width: thin !important;
+    scrollbar-color: rgba(255, 255, 255, 0.1) rgba(255, 255, 255, 0.02) !important;
+}

@@ -4,6 +4,9 @@
  * Three-panel documentation layout with professional aesthetics
  */
 
+/* Import critical TOC positioning fixes */
+@import url('toc-fix.css');
+
 /* ============================================
    Phase 1: Core Layout Architecture
    ============================================ */
